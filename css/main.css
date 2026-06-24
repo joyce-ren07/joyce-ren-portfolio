@@ -53,94 +53,36 @@
   --radius-xl: 2.25rem;
   --radius-pill: 999px;
 
-  /* Stained glass — luminescent sheer panes */
-  --stained-lead: rgba(61, 50, 41, 0.26);
-  --stained-lead-light: rgba(61, 50, 41, 0.11);
-  --stained-lumen: rgba(255, 238, 195, 0.42);
-  --stained-lumen-soft: rgba(255, 248, 228, 0.22);
+  /* Stained glass — patchwork panes + lantern grid */
+  --stained-lead: rgba(61, 50, 41, 0.45);
+  --stained-tile: 130px;
+  --stained-tile-lg: 168px;
+  --stained-tile-sm: 72px;
 
-  --stained-pane-rose: rgba(224, 172, 172, 0.36);
-  --stained-pane-mauve: rgba(192, 128, 129, 0.3);
-  --stained-pane-sage: rgba(168, 184, 153, 0.28);
-  --stained-pane-cream: rgba(255, 249, 220, 0.38);
-  --stained-pane-lavender: rgba(214, 204, 224, 0.32);
-  --stained-pane-ochre: rgba(210, 180, 130, 0.3);
-  --stained-pane-plum: rgba(150, 110, 120, 0.24);
-
-  --stained-grid-lg:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 71px,
-      var(--stained-lead-light) 71px,
-      var(--stained-lead-light) 73px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 71px,
-      var(--stained-lead-light) 71px,
-      var(--stained-lead-light) 73px
-    );
-
-  --stained-grid-sm:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 27px,
-      rgba(61, 50, 41, 0.08) 27px,
-      rgba(61, 50, 41, 0.08) 28px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 27px,
-      rgba(61, 50, 41, 0.08) 27px,
-      rgba(61, 50, 41, 0.08) 28px
-    );
-
-  --stained-mosaic:
-    var(--stained-grid-sm),
-    var(--stained-grid-lg),
-    radial-gradient(ellipse 42% 38% at 18% 22%, var(--stained-pane-rose) 0%, transparent 68%),
-    radial-gradient(ellipse 36% 44% at 78% 18%, var(--stained-pane-lavender) 0%, transparent 65%),
-    radial-gradient(ellipse 48% 40% at 62% 58%, var(--stained-pane-cream) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 46% at 28% 72%, var(--stained-pane-sage) 0%, transparent 68%),
-    radial-gradient(ellipse 34% 36% at 88% 78%, var(--stained-pane-ochre) 0%, transparent 64%),
-    radial-gradient(ellipse 44% 50% at 48% 38%, var(--stained-pane-mauve) 0%, transparent 72%),
-    radial-gradient(ellipse 100% 90% at 50% 45%, var(--stained-lumen-soft) 0%, transparent 62%),
-    linear-gradient(155deg, rgba(255, 255, 255, 0.16) 0%, transparent 42%);
-
-  --stained-mosaic-sm:
-    var(--stained-grid-sm),
-    radial-gradient(ellipse 80% 70% at 30% 40%, var(--stained-pane-rose) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 60% at 75% 60%, var(--stained-pane-cream) 0%, transparent 68%),
-    radial-gradient(ellipse 90% 80% at 50% 50%, var(--stained-lumen-soft) 0%, transparent 65%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, transparent 55%);
-
-  --glass-blur: 44px;
-  --glass-blur-sm: 28px;
-  --glass-saturate: 240%;
-  --glass-bg: rgba(255, 246, 230, 0.05);
-  --glass-bg-strong: rgba(255, 240, 215, 0.12);
-  --glass-bg-subtle: rgba(255, 248, 235, 0.03);
-  --glass-border: var(--stained-lead);
-  --glass-border-subtle: rgba(61, 50, 41, 0.14);
-  --glass-warp-inset: 48px;
-  --glass-warp-inset-sm: 28px;
-  --glass-shine: var(--stained-mosaic);
+  --glass-blur: 36px;
+  --glass-blur-sm: 22px;
+  --glass-saturate: 260%;
+  --glass-bg: rgba(255, 244, 220, 0.04);
+  --glass-bg-strong: rgba(255, 238, 200, 0.1);
+  --glass-bg-subtle: rgba(255, 248, 235, 0.02);
+  --glass-border: rgba(61, 50, 41, 0.38);
+  --glass-border-subtle: rgba(61, 50, 41, 0.22);
+  --glass-warp-inset: 40px;
+  --glass-warp-inset-sm: 24px;
   --glass-shadow:
-    0 4px 28px rgba(107, 77, 87, 0.07),
-    0 0 56px rgba(255, 220, 160, 0.14);
+    0 8px 40px rgba(107, 77, 87, 0.1),
+    0 0 80px rgba(255, 210, 140, 0.28);
   --glass-inset:
-    inset 0 0 28px rgba(255, 235, 200, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.32),
-    inset 0 -1px 0 rgba(61, 50, 41, 0.05);
+    inset 0 0 64px rgba(255, 215, 150, 0.5),
+    inset 0 0 110px rgba(255, 238, 200, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
   --glass-inset-strong:
-    inset 0 0 36px rgba(255, 228, 180, 0.28),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.42),
-    inset 0 -1px 0 rgba(61, 50, 41, 0.08);
-  --glass-lumen-glow: 0 0 48px rgba(255, 220, 160, 0.1);
+    inset 0 0 80px rgba(255, 205, 140, 0.58),
+    inset 0 0 130px rgba(255, 230, 185, 0.32),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.65);
+  --glass-lumen-glow:
+    0 0 72px rgba(255, 210, 140, 0.35),
+    0 0 120px rgba(255, 235, 200, 0.18);
 
   --shadow-soft: 0 8px 40px rgba(107, 77, 87, 0.07);
   --shadow-card: var(--glass-shadow);
@@ -177,15 +119,16 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   background-image:
-    radial-gradient(ellipse 55% 45% at 50% 20%, rgba(255, 238, 195, 0.32) 0%, transparent 58%),
-    radial-gradient(ellipse 50% 40% at 20% 15%, rgba(255, 220, 160, 0.22) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 35% at 82% 8%, rgba(255, 235, 200, 0.18) 0%, transparent 50%),
-    radial-gradient(ellipse 90% 55% at 15% 8%, rgba(232, 196, 196, 0.28) 0%, transparent 58%),
-    radial-gradient(ellipse 65% 45% at 88% 15%, rgba(122, 141, 145, 0.12) 0%, transparent 52%),
-    radial-gradient(ellipse 75% 55% at 75% 92%, rgba(139, 148, 103, 0.14) 0%, transparent 48%),
-    radial-gradient(ellipse 55% 35% at 8% 78%, rgba(184, 136, 107, 0.12) 0%, transparent 42%),
-    radial-gradient(circle 18% at 65% 55%, rgba(255, 248, 220, 0.35) 0%, transparent 100%),
-    radial-gradient(circle 12% at 30% 70%, rgba(255, 235, 200, 0.25) 0%, transparent 100%);
+    radial-gradient(ellipse 70% 55% at 50% 15%, rgba(255, 235, 180, 0.55) 0%, transparent 62%),
+    radial-gradient(ellipse 55% 45% at 50% 20%, rgba(255, 238, 195, 0.38) 0%, transparent 58%),
+    radial-gradient(ellipse 50% 40% at 20% 15%, rgba(255, 220, 160, 0.28) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 35% at 82% 8%, rgba(255, 235, 200, 0.22) 0%, transparent 50%),
+    radial-gradient(ellipse 90% 55% at 15% 8%, rgba(232, 196, 196, 0.32) 0%, transparent 58%),
+    radial-gradient(ellipse 65% 45% at 88% 15%, rgba(122, 141, 145, 0.14) 0%, transparent 52%),
+    radial-gradient(ellipse 75% 55% at 75% 92%, rgba(139, 148, 103, 0.16) 0%, transparent 48%),
+    radial-gradient(ellipse 55% 35% at 8% 78%, rgba(184, 136, 107, 0.14) 0%, transparent 42%),
+    radial-gradient(circle 22% at 65% 55%, rgba(255, 248, 220, 0.45) 0%, transparent 100%),
+    radial-gradient(circle 14% at 30% 70%, rgba(255, 235, 200, 0.32) 0%, transparent 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   position: relative;
@@ -303,10 +246,18 @@ main,
 
 @keyframes stained-glow {
   0%, 100% {
-    box-shadow: var(--glass-shadow), var(--glass-inset), 0 0 40px rgba(255, 220, 160, 0.08);
+    box-shadow:
+      var(--glass-shadow),
+      var(--glass-inset),
+      0 0 60px rgba(255, 210, 140, 0.22),
+      0 0 100px rgba(255, 235, 200, 0.1);
   }
   50% {
-    box-shadow: var(--glass-shadow), var(--glass-inset), 0 0 64px rgba(255, 220, 160, 0.2);
+    box-shadow:
+      var(--glass-shadow),
+      var(--glass-inset),
+      0 0 96px rgba(255, 200, 120, 0.42),
+      0 0 160px rgba(255, 230, 180, 0.22);
   }
 }
 
@@ -328,11 +279,29 @@ main,
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--stained-mosaic);
+  background-color: rgba(255, 242, 215, 0.1);
+  background-image:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.45) 0%, transparent 38%),
+    radial-gradient(ellipse 90% 80% at 36% 28%, rgba(255, 225, 155, 0.78) 0%, transparent 68%),
+    url("stained-glass-patchwork.svg");
+  background-size: 100% 100%, 100% 100%, var(--stained-tile) var(--stained-tile);
+  background-repeat: no-repeat, no-repeat, repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.92;
-  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+.glass--hero::before {
+  background-size: 100% 100%, 100% 100%, var(--stained-tile-lg) var(--stained-tile-lg);
+}
+
+.glass--nav::before,
+.glass--footer::before {
+  background-image:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.38) 0%, transparent 38%),
+    radial-gradient(ellipse 85% 75% at 50% 40%, rgba(255, 230, 170, 0.65) 0%, transparent 68%),
+    url("stained-glass-lantern.svg");
+  background-size: 100% 100%, 100% 100%, var(--stained-tile-sm) var(--stained-tile-sm);
 }
 
 .glass > * {
@@ -394,10 +363,15 @@ main,
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--stained-mosaic-sm);
+  background-color: rgba(255, 248, 235, 0.06);
+  background-image:
+    radial-gradient(ellipse 90% 80% at 50% 40%, rgba(255, 230, 170, 0.55) 0%, transparent 70%),
+    url("stained-glass-lantern.svg");
+  background-size: 100% 100%, 56px 56px;
+  background-repeat: no-repeat, repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.88;
+  opacity: 1;
 }
 
 .glass-pill:hover {
@@ -475,10 +449,16 @@ a:hover {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--stained-mosaic);
+  background-color: rgba(255, 242, 215, 0.1);
+  background-image:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.42) 0%, transparent 38%),
+    radial-gradient(ellipse 90% 80% at 36% 28%, rgba(255, 225, 155, 0.75) 0%, transparent 68%),
+    url("stained-glass-patchwork.svg");
+  background-size: 100% 100%, 100% 100%, var(--stained-tile-lg) var(--stained-tile-lg);
+  background-repeat: no-repeat, no-repeat, repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .section--wash > * {
@@ -672,26 +652,31 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--stained-mosaic-sm);
+  background-color: rgba(255, 248, 235, 0.08);
+  background-image:
+    radial-gradient(ellipse 90% 80% at 50% 35%, rgba(255, 230, 170, 0.6) 0%, transparent 70%),
+    url("stained-glass-lantern.svg");
+  background-size: 100% 100%, 52px 52px;
+  background-repeat: no-repeat, repeat;
   pointer-events: none;
-  opacity: 0.85;
+  z-index: 0;
+  opacity: 1;
 }
 
 .btn--primary {
-  background: rgba(138, 154, 123, 0.55);
+  background: rgba(138, 154, 123, 0.48);
   color: #fff;
-  border-color: rgba(61, 50, 41, 0.28);
-  box-shadow: var(--glow-button), 0 0 32px rgba(255, 220, 160, 0.15);
+  border-color: rgba(61, 50, 41, 0.32);
+  box-shadow: var(--glow-button), 0 0 48px rgba(255, 220, 160, 0.28);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .btn--primary::before {
-  background:
-    var(--stained-grid-sm),
-    radial-gradient(ellipse 80% 70% at 40% 35%, rgba(168, 184, 153, 0.5) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 60% at 65% 65%, rgba(255, 249, 220, 0.35) 0%, transparent 68%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 55%);
-  opacity: 0.7;
+  background-image:
+    radial-gradient(ellipse 85% 75% at 45% 35%, rgba(255, 230, 170, 0.55) 0%, transparent 68%),
+    url("stained-glass-patchwork.svg");
+  background-size: 100% 100%, 88px 88px;
+  opacity: 0.85;
 }
 
 .btn--primary:hover {
@@ -742,21 +727,21 @@ p {
   box-shadow:
     var(--glass-shadow),
     var(--glass-inset),
-    0 0 80px rgba(255, 220, 160, 0.18),
-    0 0 140px rgba(255, 235, 200, 0.1);
+    0 0 120px rgba(255, 210, 140, 0.38),
+    0 0 200px rgba(255, 235, 200, 0.2);
 }
 
 /* Window backlight behind hero stained glass */
 .hero::before {
   content: "";
   position: absolute;
-  top: -8%;
-  left: -8%;
-  width: clamp(16rem, 48vw, 32rem);
-  height: clamp(16rem, 48vw, 32rem);
+  top: -12%;
+  left: -12%;
+  width: clamp(18rem, 55vw, 36rem);
+  height: clamp(18rem, 55vw, 36rem);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 238, 195, 0.45) 0%, rgba(255, 220, 160, 0.2) 35%, transparent 72%);
-  filter: blur(4px);
+  background: radial-gradient(circle, rgba(255, 238, 180, 0.72) 0%, rgba(255, 220, 150, 0.35) 38%, transparent 74%);
+  filter: blur(6px);
   pointer-events: none;
   animation: pulse-light 12s ease-in-out infinite;
 }
@@ -842,25 +827,32 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background:
-    var(--stained-grid-sm),
-    var(--stained-grid-lg),
-    radial-gradient(ellipse 48% 42% at 20% 25%, var(--pane-a, var(--stained-pane-rose)) 0%, transparent 68%),
-    radial-gradient(ellipse 44% 48% at 75% 65%, var(--pane-b, var(--stained-pane-cream)) 0%, transparent 66%),
-    radial-gradient(ellipse 38% 36% at 55% 45%, var(--stained-pane-mauve) 0%, transparent 70%),
-    radial-gradient(ellipse 100% 90% at 50% 45%, var(--stained-lumen-soft) 0%, transparent 62%),
-    linear-gradient(155deg, rgba(255, 255, 255, 0.14) 0%, transparent 42%);
+  background-color: rgba(255, 242, 215, 0.1);
+  background-image:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.38) 0%, transparent 38%),
+    radial-gradient(ellipse 85% 75% at 40% 30%, rgba(255, 220, 150, 0.68) 0%, transparent 66%),
+    url("stained-glass-patchwork.svg");
+  background-size: 100% 100%, 100% 100%, 118px 118px;
+  background-repeat: no-repeat, no-repeat, repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.9;
+  opacity: 1;
 }
 
-.work-card:nth-child(6n+1) { --pane-a: var(--stained-pane-rose); --pane-b: var(--stained-pane-cream); }
-.work-card:nth-child(6n+2) { --pane-a: var(--stained-pane-lavender); --pane-b: var(--stained-pane-ochre); }
-.work-card:nth-child(6n+3) { --pane-a: var(--stained-pane-sage); --pane-b: var(--stained-pane-mauve); }
-.work-card:nth-child(6n+4) { --pane-a: var(--stained-pane-cream); --pane-b: var(--stained-pane-plum); }
-.work-card:nth-child(6n+5) { --pane-a: var(--stained-pane-mauve); --pane-b: var(--stained-pane-sage); }
-.work-card:nth-child(6n+6) { --pane-a: var(--stained-pane-ochre); --pane-b: var(--stained-pane-lavender); }
+.work-card:nth-child(3n+2)::before {
+  background-image:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.38) 0%, transparent 38%),
+    radial-gradient(ellipse 85% 75% at 55% 35%, rgba(255, 210, 140, 0.65) 0%, transparent 66%),
+    url("stained-glass-warm.svg");
+}
+
+.work-card:nth-child(3n+3)::before {
+  background-image:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.42) 0%, transparent 38%),
+    radial-gradient(ellipse 85% 75% at 50% 40%, rgba(255, 235, 190, 0.7) 0%, transparent 66%),
+    url("stained-glass-lantern.svg");
+  background-size: 100% 100%, 100% 100%, 84px 84px;
+}
 
 .work-card:hover {
   transform: translateY(-6px) scale(1.01);
@@ -879,17 +871,13 @@ p {
 
 .work-card__image {
   aspect-ratio: 16 / 10;
-  background:
-    var(--stained-grid-sm),
-    radial-gradient(ellipse 55% 50% at 35% 40%, var(--stained-pane-rose) 0%, transparent 68%),
-    radial-gradient(ellipse 45% 55% at 70% 55%, var(--stained-pane-cream) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 45% at 50% 80%, var(--stained-pane-sage) 0%, transparent 70%),
-    radial-gradient(ellipse 80% 70% at 50% 50%, var(--stained-lumen-soft) 0%, transparent 62%),
-    linear-gradient(160deg,
-      rgba(255, 249, 220, 0.2) 0%,
-      rgba(230, 240, 243, 0.25) 40%,
-      rgba(139, 148, 103, 0.15) 100%);
-  backdrop-filter: blur(12px) saturate(var(--glass-saturate));
+  background-color: rgba(255, 242, 215, 0.12);
+  background-image:
+    radial-gradient(ellipse 80% 70% at 50% 45%, rgba(255, 225, 155, 0.55) 0%, transparent 68%),
+    url("stained-glass-patchwork.svg");
+  background-size: 100% 100%, 96px 96px;
+  background-repeat: no-repeat, repeat;
+  backdrop-filter: blur(10px) saturate(var(--glass-saturate));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1066,10 +1054,16 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--stained-mosaic);
+  background-color: rgba(255, 242, 215, 0.1);
+  background-image:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.4) 0%, transparent 38%),
+    radial-gradient(ellipse 90% 80% at 40% 30%, rgba(255, 225, 155, 0.72) 0%, transparent 68%),
+    url("stained-glass-patchwork.svg");
+  background-size: 100% 100%, 100% 100%, var(--stained-tile) var(--stained-tile);
+  background-repeat: no-repeat, no-repeat, repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .case-meta > div {
@@ -1114,18 +1108,15 @@ p {
 
 .case-image {
   aspect-ratio: 16 / 9;
-  background:
-    var(--stained-grid-sm),
-    var(--stained-grid-lg),
-    radial-gradient(ellipse 45% 40% at 25% 30%, var(--stained-pane-lavender) 0%, transparent 68%),
-    radial-gradient(ellipse 42% 48% at 72% 55%, var(--stained-pane-cream) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 45% at 48% 75%, var(--stained-pane-rose) 0%, transparent 70%),
-    radial-gradient(ellipse 90% 80% at 50% 50%, var(--stained-lumen-soft) 0%, transparent 62%),
-    var(--glass-bg);
+  background-color: rgba(255, 242, 215, 0.12);
+  background-image:
+    radial-gradient(ellipse 85% 75% at 45% 35%, rgba(255, 225, 155, 0.65) 0%, transparent 68%),
+    url("stained-glass-patchwork.svg");
+  background-size: 100% 100%, 110px 110px;
+  background-repeat: no-repeat, repeat;
   backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
-  filter: url(#glass-warp-sm);
-  border: 1px solid var(--glass-border);
+  border: 1.5px solid var(--glass-border);
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
@@ -1209,10 +1200,16 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--stained-mosaic);
+  background-color: rgba(255, 242, 215, 0.1);
+  background-image:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.38) 0%, transparent 38%),
+    radial-gradient(ellipse 85% 75% at 50% 35%, rgba(255, 220, 150, 0.68) 0%, transparent 66%),
+    url("stained-glass-lantern.svg");
+  background-size: 100% 100%, 100% 100%, 76px 76px;
+  background-repeat: no-repeat, no-repeat, repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .case-result:hover {
