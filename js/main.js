@@ -3,37 +3,6 @@
  */
 
 (function () {
-  /* SVG displacement filters for stained glass refraction */
-  if (!document.getElementById("glass-warp-svg")) {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("id", "glass-warp-svg");
-    svg.setAttribute("aria-hidden", "true");
-    svg.style.cssText = "position:absolute;width:0;height:0;overflow:hidden";
-    svg.innerHTML = `
-      <defs>
-        <filter id="glass-warp" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="3" seed="8" result="noise">
-            <animate attributeName="baseFrequency"
-              values="0.008 0.012;0.011 0.015;0.009 0.013;0.008 0.012"
-              dur="16s"
-              repeatCount="indefinite" />
-          </feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-        <filter id="glass-warp-sm" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.014" numOctaves="2" seed="3" result="noise">
-            <animate attributeName="baseFrequency"
-              values="0.01 0.014;0.013 0.017;0.011 0.015;0.01 0.014"
-              dur="14s"
-              repeatCount="indefinite" />
-          </feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-      </defs>
-    `;
-    document.body.prepend(svg);
-  }
-
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".site-nav");
 
@@ -62,4 +31,18 @@
   } else {
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
+
+  /* Card hover — local glow intensifies and shifts color temperature */
+  const interactiveCards = document.querySelectorAll(
+    ".work-card, .glass--hero, .glass--panel, .case-result"
+  );
+
+  interactiveCards.forEach((card) => {
+    card.addEventListener("pointerenter", () => {
+      card.dataset.glowTemp = Math.random() > 0.5 ? "warm" : "cool";
+    });
+    card.addEventListener("pointerleave", () => {
+      delete card.dataset.glowTemp;
+    });
+  });
 })();
