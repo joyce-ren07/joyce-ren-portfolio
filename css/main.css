@@ -38,7 +38,6 @@
   --color-accent-hover: #556649;
   --color-accent-warm: var(--color-mauve);
 
-  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --space-xs: 0.5rem;
@@ -78,8 +77,8 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.7;
+  font-weight: 400;
+  line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-bg);
   background-image:
@@ -265,33 +264,33 @@ a:hover {
    -------------------------------------------------------------------------- */
 
 .eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-mauve);
+  color: var(--color-text-muted);
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  line-height: 1.15;
+  font-family: var(--font-sans);
+  line-height: 1.2;
+  font-weight: 600;
   margin: 0 0 var(--space-sm);
   color: var(--color-text);
 }
 
 h1 {
-  font-size: clamp(2.75rem, 6vw, 4.25rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.01em;
 }
 
 h3 {
-  font-size: 1.375rem;
+  font-size: 1.25rem;
 }
 
 p {
@@ -300,10 +299,10 @@ p {
 
 .lead {
   font-size: 1.125rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--color-text-muted);
   max-width: 42rem;
-  line-height: 1.75;
+  line-height: 1.6;
 }
 
 .prose {
@@ -315,8 +314,8 @@ p {
 }
 
 .accent-italic {
-  font-family: var(--font-serif);
   font-style: italic;
+  font-weight: 500;
   color: var(--color-mauve);
 }
 
@@ -343,10 +342,9 @@ p {
 }
 
 .site-logo {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: 1.25rem;
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
   color: var(--color-text);
 }
 
@@ -357,9 +355,10 @@ p {
 }
 
 .site-nav a {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--color-text-muted);
 }
 
@@ -388,13 +387,13 @@ p {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: 0.875rem 1.75rem;
+  padding: 0.75rem 1.25rem;
   font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  border-radius: var(--radius);
   border: 1px solid transparent;
   transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
   cursor: pointer;
@@ -428,19 +427,15 @@ p {
 
 .text-link {
   font-size: 0.875rem;
-  font-weight: 400;
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--color-mauve);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-mauve) 35%, transparent);
-  padding-bottom: 2px;
-  transition: color var(--transition), border-color var(--transition);
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
 }
 
 .text-link:hover {
-  color: var(--color-plum);
-  border-bottom-color: var(--color-plum);
+  color: var(--color-accent-hover);
 }
 
 /* --------------------------------------------------------------------------
@@ -491,17 +486,17 @@ p {
 }
 
 .hero__title {
-  max-width: 14ch;
+  max-width: 16ch;
   margin-bottom: var(--space-md);
 }
 
 .hero__subtitle {
   font-size: 1.125rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--color-text-muted);
   max-width: 36rem;
   margin-bottom: var(--space-lg);
-  line-height: 1.75;
+  line-height: 1.6;
 }
 
 /* --------------------------------------------------------------------------
@@ -591,11 +586,11 @@ p {
 }
 
 .tag {
-  font-size: 0.625rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 0.3rem 0.65rem;
+  padding: 0.25rem 0.5rem;
   background: color-mix(in srgb, var(--color-sage) 15%, var(--color-bg));
   border: 1px solid color-mix(in srgb, var(--color-sage) 25%, transparent);
   border-radius: 999px;
@@ -609,31 +604,29 @@ p {
 }
 
 .work-card__title {
-  font-family: var(--font-serif);
-  font-size: 1.375rem;
-  font-weight: 500;
+  font-size: 1.125rem;
+  font-weight: 600;
   margin-bottom: var(--space-xs);
 }
 
 .work-card__desc {
-  font-size: 0.9375rem;
-  font-weight: 300;
+  font-size: 0.875rem;
+  font-weight: 400;
   color: var(--color-text-muted);
   margin-bottom: var(--space-md);
   flex: 1;
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
 .work-card__link {
-  font-family: var(--font-serif);
-  font-size: 0.9375rem;
-  font-style: italic;
-  color: var(--color-mauve);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-accent);
   transition: color var(--transition);
 }
 
 .work-card__link:hover {
-  color: var(--color-plum);
+  color: var(--color-accent-hover);
 }
 
 /* --------------------------------------------------------------------------
@@ -648,7 +641,7 @@ p {
 }
 
 .about-grid .prose {
-  font-weight: 300;
+  font-weight: 400;
   color: var(--color-text-muted);
 }
 
@@ -660,18 +653,16 @@ p {
 }
 
 .contact-links a {
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  font-style: italic;
-  color: var(--color-mauve);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-mauve) 30%, transparent);
-  padding-bottom: 2px;
-  transition: color var(--transition), border-color var(--transition);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  border-bottom: none;
+  padding-bottom: 0;
+  transition: color var(--transition);
 }
 
 .contact-links a:hover {
-  color: var(--color-plum);
-  border-bottom-color: var(--color-plum);
+  color: var(--color-text);
 }
 
 /* --------------------------------------------------------------------------
@@ -683,17 +674,17 @@ p {
 }
 
 .case-hero__title {
-  max-width: 18ch;
+  max-width: 20ch;
   margin-bottom: var(--space-sm);
 }
 
 .case-hero__summary {
   font-size: 1.125rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--color-text-muted);
   max-width: 42rem;
   margin-bottom: var(--space-md);
-  line-height: 1.75;
+  line-height: 1.6;
 }
 
 .case-meta {
@@ -711,18 +702,18 @@ p {
 }
 
 .case-meta dt {
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-mauve);
-  margin-bottom: 0.35rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
 }
 
 .case-meta dd {
   margin: 0;
   font-size: 0.9375rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--color-text);
 }
 
@@ -731,7 +722,7 @@ p {
 }
 
 .case-section__title {
-  font-family: var(--font-serif);
+  font-weight: 600;
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--color-border);
@@ -814,19 +805,17 @@ p {
 
 .case-result__value {
   display: block;
-  font-family: var(--font-serif);
-  font-size: 2.25rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--color-plum);
-  margin-bottom: 0.35rem;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
 }
 
 .case-result__label {
   font-size: 0.8125rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--color-text-muted);
-  letter-spacing: 0.02em;
 }
 
 .case-nav {
@@ -855,18 +844,16 @@ p {
   flex-wrap: wrap;
   gap: var(--space-sm);
   font-size: 0.8125rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--color-text-muted);
 }
 
 .site-footer a {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--color-mauve);
+  color: var(--color-text-muted);
 }
 
 .site-footer a:hover {
-  color: var(--color-plum);
+  color: var(--color-text);
 }
 
 /* --------------------------------------------------------------------------
