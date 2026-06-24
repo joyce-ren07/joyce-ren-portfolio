@@ -1,30 +1,30 @@
 /* ==========================================================================
    Portfolio — Paned glass design system
-   Morning light through frosted glass · soft refraction · luminous calm
+   Golden hour light through warm glass · sun-warmed · luminous
    ========================================================================== */
 
 :root {
-  /* Palette — muted, luminous washes */
+  /* Palette — warm golden hour only */
+  --color-peach: #f2c9b8;
+  --color-golden: #e8d5a0;
+  --color-rose: #d4b0a8;
+  --color-sage-warm: #c8cba8;
+  --color-ivory: #f0e8d8;
   --color-blush: #f2d4cc;
-  --color-ivory: #f5efe0;
-  --color-sky: #c8dce8;
-  --color-sage: #c8d8c0;
-  --color-golden: #ede0b0;
-  --color-lavender: #ddd0e8;
+  --color-amber: #ede0b0;
 
-  --color-bg-deep: #4a5560;
-  --color-teal-soft: #a8c8c4;
-  --color-surface: rgba(255, 255, 255, 0.12);
-  --color-surface-solid: rgba(255, 255, 255, 0.18);
+  --color-bg-deep: #f0e8d8;
+  --color-surface: rgba(255, 240, 210, 0.12);
+  --color-surface-solid: rgba(255, 235, 210, 0.18);
 
-  /* Typography — lit from behind */
-  --color-text: rgba(255, 255, 255, 0.92);
-  --color-text-muted: rgba(255, 255, 255, 0.7);
-  --color-text-soft: rgba(255, 255, 255, 0.55);
-  --color-eyebrow: rgba(240, 220, 200, 0.65);
-  --color-accent: rgba(248, 244, 238, 0.95);
-  --color-accent-hover: #ffffff;
-  --color-accent-warm: var(--color-ivory);
+  /* Typography — warm off-white */
+  --color-text: rgba(255, 248, 238, 0.95);
+  --color-text-muted: rgba(240, 225, 210, 0.75);
+  --color-text-soft: rgba(230, 210, 195, 0.6);
+  --color-eyebrow: rgba(220, 195, 175, 0.7);
+  --color-accent: rgba(255, 248, 238, 0.95);
+  --color-accent-hover: rgba(255, 252, 245, 1);
+  --color-accent-warm: var(--color-golden);
 
   --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
@@ -42,46 +42,62 @@
   --radius-xl: 28px;
   --radius-pill: 999px;
 
-  /* Liquid glass — Apple / visionOS */
+  /* Warm liquid glass */
   --glass-blur: 40px;
   --glass-blur-sm: 32px;
-  --glass-saturate: 180%;
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-bg-strong: rgba(255, 255, 255, 0.18);
-  --glass-bg-subtle: rgba(255, 255, 255, 0.04);
-  --glass-border: rgba(255, 255, 255, 0.25);
-  --glass-border-bright: rgba(255, 255, 255, 0.42);
-  --glass-border-subtle: rgba(255, 255, 255, 0.18);
-  --glass-highlight: radial-gradient(ellipse 90% 70% at 0% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 55%);
+  --glass-saturate: 160%;
+  --glass-bg: linear-gradient(
+    135deg,
+    rgba(255, 240, 210, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(240, 210, 190, 0.1) 100%
+  );
+  --glass-bg-hover: linear-gradient(
+    135deg,
+    rgba(255, 240, 210, 0.22) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(240, 210, 190, 0.16) 100%
+  );
+  --glass-bg-strong: rgba(255, 235, 210, 0.2);
+  --glass-bg-subtle: linear-gradient(
+    135deg,
+    rgba(255, 240, 210, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(240, 210, 190, 0.06) 100%
+  );
+  --glass-border: rgba(240, 215, 185, 0.35);
+  --glass-border-bright: rgba(240, 200, 140, 0.5);
+  --glass-border-subtle: rgba(240, 215, 185, 0.22);
+  --glass-highlight: radial-gradient(ellipse 85% 65% at 0% 0%, rgba(255, 230, 180, 0.18) 0%, transparent 55%);
   --glass-iridescent: linear-gradient(
     135deg,
-    rgba(255, 220, 220, 0.4) 0%,
-    rgba(200, 220, 255, 0.4) 35%,
-    rgba(220, 255, 220, 0.4) 65%,
-    rgba(255, 220, 220, 0.4) 100%
+    rgba(240, 210, 170, 0.5) 0%,
+    rgba(255, 230, 210, 0.3) 40%,
+    rgba(210, 190, 180, 0.4) 70%,
+    rgba(240, 210, 170, 0.5) 100%
   );
   --glass-shadow: none;
-  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  --glass-inset-strong: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 24px rgba(255, 255, 255, 0.08);
+  --glass-inset: inset 0 1px 0 rgba(255, 235, 210, 0.2);
+  --glass-inset-strong: inset 0 1px 0 rgba(255, 230, 200, 0.3), inset 0 0 24px rgba(255, 220, 170, 0.1);
   --glass-lumen-glow: none;
 
   --glow-card: none;
   --glow-card-hover:
-    inset 0 0 32px rgba(255, 255, 255, 0.1),
-    0 8px 32px rgba(200, 210, 220, 0.12);
-  --glow-card-hover-cool:
-    inset 0 0 32px rgba(255, 255, 255, 0.1),
-    0 8px 32px rgba(160, 200, 195, 0.15);
+    inset 0 0 36px rgba(255, 220, 170, 0.14),
+    0 8px 32px rgba(230, 190, 150, 0.15);
+  --glow-card-hover-warm:
+    inset 0 0 40px rgba(255, 210, 150, 0.18),
+    0 8px 36px rgba(240, 200, 140, 0.2);
   --glow-button: var(--glass-inset);
   --glow-button-hover:
-    inset 0 0 28px rgba(255, 255, 255, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    inset 0 0 32px rgba(255, 220, 170, 0.2),
+    inset 0 1px 0 rgba(240, 200, 140, 0.45),
+    0 0 24px rgba(240, 200, 140, 0.25);
 
   --transition: 600ms ease-in-out;
   --transition-glow: 600ms ease-in-out;
   --transition-fast: 400ms ease;
 
-  /* Mesh animation timing */
   --mesh-duration: 28s;
 }
 
@@ -133,15 +149,14 @@ main,
   width: 200%;
   height: 200%;
   background:
-    radial-gradient(ellipse 58% 52% at 6% 10%, rgba(237, 224, 176, 0.92) 0%, transparent 56%),
-    radial-gradient(ellipse 52% 48% at 94% 6%, rgba(242, 212, 204, 0.9) 0%, transparent 54%),
-    radial-gradient(ellipse 56% 54% at 92% 94%, rgba(160, 200, 195, 0.88) 0%, transparent 56%),
-    radial-gradient(ellipse 48% 44% at 18% 82%, rgba(200, 216, 192, 0.65) 0%, transparent 52%),
-    radial-gradient(ellipse 42% 38% at 72% 42%, rgba(221, 208, 232, 0.55) 0%, transparent 50%),
-    radial-gradient(ellipse 70% 55% at 42% 38%, rgba(200, 220, 232, 0.45) 0%, transparent 62%);
-  filter: blur(64px);
+    radial-gradient(ellipse 62% 55% at 8% 8%, rgba(232, 213, 160, 0.95) 0%, transparent 54%),
+    radial-gradient(ellipse 52% 48% at 88% 12%, rgba(212, 176, 168, 0.88) 0%, transparent 52%),
+    radial-gradient(ellipse 58% 52% at 12% 88%, rgba(242, 201, 184, 0.92) 0%, transparent 55%),
+    radial-gradient(ellipse 44% 40% at 90% 85%, rgba(200, 203, 168, 0.55) 0%, transparent 50%),
+    radial-gradient(ellipse 75% 60% at 50% 50%, rgba(240, 232, 216, 0.7) 0%, transparent 65%);
+  filter: blur(56px);
   animation: mesh-drift var(--mesh-duration) ease-in-out infinite;
-  opacity: 0.85;
+  opacity: 0.92;
   will-change: transform;
 }
 
@@ -160,11 +175,11 @@ main,
   }
 }
 
-/* Drifting glow points — warm ↔ cool */
+/* Drifting glow points — all warm */
 .glow-point {
   position: absolute;
   border-radius: 50%;
-  filter: blur(64px);
+  filter: blur(72px);
   --glow-offset-x: 0px;
   --glow-offset-y: 0px;
   transform: translate(var(--glow-offset-x), var(--glow-offset-y));
@@ -174,38 +189,38 @@ main,
 }
 
 .glow-point--1 {
-  top: 15%;
-  left: 20%;
-  width: clamp(12rem, 32vw, 22rem);
-  height: clamp(12rem, 32vw, 22rem);
-  background: radial-gradient(circle, rgba(237, 224, 176, 0.75) 0%, transparent 70%);
+  top: 10%;
+  left: 14%;
+  width: clamp(14rem, 36vw, 26rem);
+  height: clamp(14rem, 36vw, 26rem);
+  background: radial-gradient(circle, rgba(240, 210, 150, 0.4) 0%, transparent 68%);
   animation-delay: 0s;
 }
 
 .glow-point--2 {
-  top: 10%;
-  right: 15%;
+  top: 22%;
+  right: 18%;
   width: clamp(10rem, 26vw, 18rem);
   height: clamp(10rem, 26vw, 18rem);
-  background: radial-gradient(circle, rgba(242, 212, 204, 0.7) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(212, 176, 168, 0.35) 0%, transparent 65%);
   animation-delay: -7s;
 }
 
 .glow-point--3 {
-  bottom: 12%;
-  right: 10%;
-  width: clamp(14rem, 36vw, 24rem);
-  height: clamp(14rem, 36vw, 24rem);
-  background: radial-gradient(circle, rgba(160, 200, 195, 0.72) 0%, transparent 70%);
+  bottom: 10%;
+  right: 12%;
+  width: clamp(16rem, 38vw, 28rem);
+  height: clamp(16rem, 38vw, 28rem);
+  background: radial-gradient(circle, rgba(230, 190, 170, 0.3) 0%, transparent 68%);
   animation-delay: -14s;
 }
 
 .glow-point--4 {
-  top: 45%;
-  left: 40%;
-  width: clamp(8rem, 20vw, 14rem);
-  height: clamp(8rem, 20vw, 14rem);
-  background: radial-gradient(circle, rgba(200, 220, 232, 0.6) 0%, transparent 65%);
+  bottom: 28%;
+  left: 35%;
+  width: clamp(9rem, 22vw, 16rem);
+  height: clamp(9rem, 22vw, 16rem);
+  background: radial-gradient(circle, rgba(232, 213, 160, 0.32) 0%, transparent 62%);
   animation-delay: -21s;
 }
 
@@ -242,7 +257,7 @@ main,
   left: 40%;
   width: clamp(5rem, 12vw, 8rem);
   height: clamp(2.5rem, 6vw, 4rem);
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.45) 0%, rgba(237, 224, 176, 0.2) 40%, transparent 72%);
+  background: radial-gradient(ellipse, rgba(255, 230, 190, 0.4) 0%, rgba(237, 224, 176, 0.2) 40%, transparent 72%);
   animation-delay: -2s;
 }
 
@@ -251,7 +266,7 @@ main,
   left: 70%;
   width: clamp(4rem, 9vw, 6rem);
   height: clamp(2rem, 5vw, 3rem);
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.4) 0%, rgba(200, 220, 232, 0.18) 42%, transparent 74%);
+  background: radial-gradient(ellipse, rgba(255, 220, 180, 0.35) 0%, rgba(212, 176, 168, 0.18) 42%, transparent 74%);
   animation-delay: -8s;
   animation-duration: 30s;
 }
@@ -261,7 +276,7 @@ main,
   left: 18%;
   width: clamp(6rem, 14vw, 9rem);
   height: clamp(3rem, 7vw, 4.5rem);
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.35) 0%, rgba(242, 212, 204, 0.16) 38%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(255, 225, 185, 0.32) 0%, rgba(242, 201, 184, 0.16) 38%, transparent 70%);
   animation-delay: -14s;
   animation-duration: 22s;
 }
@@ -271,7 +286,7 @@ main,
   left: 44%;
   width: clamp(3rem, 7vw, 5rem);
   height: clamp(3.5rem, 8vw, 5.5rem);
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.42) 0%, rgba(200, 216, 192, 0.18) 36%, transparent 68%);
+  background: radial-gradient(ellipse, rgba(255, 235, 200, 0.38) 0%, rgba(200, 203, 168, 0.16) 36%, transparent 68%);
   animation-delay: -18s;
   animation-duration: 28s;
 }
@@ -345,7 +360,7 @@ main,
 }
 
 .glass:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--glass-bg-hover);
   box-shadow: var(--glow-card-hover);
 }
 
@@ -417,7 +432,7 @@ main,
 
 .glass-pill:hover {
   background: var(--glass-bg);
-  box-shadow: var(--glow-card-hover-cool);
+  box-shadow: var(--glow-card-hover-warm);
   transform: translateY(-1px);
 }
 
@@ -494,8 +509,8 @@ a:hover {
 }
 
 .section--wash:hover {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: var(--glow-card-hover);
+  background: var(--glass-bg-hover);
+  box-shadow: var(--glow-card-hover-warm);
 }
 
 .section--wash > * {
@@ -616,7 +631,7 @@ p {
   align-items: center;
   gap: 0.375rem;
   padding: 0.25rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--glass-bg-subtle);
   border: none;
   border-radius: var(--radius-pill);
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
@@ -653,12 +668,12 @@ p {
 }
 
 .site-nav a:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 235, 210, 0.1);
   color: var(--color-text);
 }
 
 .site-nav a[aria-current="page"] {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 235, 210, 0.2);
   color: var(--color-text);
   box-shadow: var(--glass-inset);
 }
@@ -740,7 +755,7 @@ p {
 }
 
 .btn--primary:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--glass-bg-hover);
   color: var(--color-accent-hover);
   transform: translateY(-2px);
   box-shadow: var(--glow-button-hover);
@@ -749,12 +764,13 @@ p {
 .btn--primary:hover::after {
   background: linear-gradient(
     135deg,
-    rgba(255, 230, 220, 0.55) 0%,
-    rgba(210, 230, 255, 0.55) 35%,
-    rgba(220, 255, 230, 0.55) 65%,
-    rgba(255, 230, 220, 0.55) 100%
+    rgba(240, 200, 140, 0.5) 0%,
+    rgba(255, 230, 200, 0.4) 40%,
+    rgba(230, 190, 160, 0.45) 70%,
+    rgba(240, 200, 140, 0.5) 100%
   );
   background-size: 300% 300%;
+  opacity: 1;
 }
 
 .btn--ghost {
@@ -768,7 +784,7 @@ p {
   background: var(--glass-bg);
   border-color: var(--glass-border);
   color: var(--color-text);
-  box-shadow: var(--glow-card-hover-cool);
+  box-shadow: var(--glow-card-hover-warm);
 }
 
 .text-link {
@@ -777,13 +793,13 @@ p {
   color: var(--color-text);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(248, 244, 238, 0.35);
+  text-decoration-color: rgba(240, 220, 200, 0.35);
   transition: color var(--transition), text-decoration-color var(--transition);
 }
 
 .text-link:hover {
   color: var(--color-accent-hover);
-  text-decoration-color: rgba(255, 255, 255, 0.6);
+  text-decoration-color: rgba(255, 240, 220, 0.65);
 }
 
 /* --------------------------------------------------------------------------
@@ -807,10 +823,10 @@ p {
   width: clamp(18rem, 55vw, 36rem);
   height: clamp(18rem, 55vw, 36rem);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(237, 224, 176, 0.45) 0%, rgba(200, 220, 232, 0.18) 42%, transparent 74%);
+  background: radial-gradient(circle, rgba(240, 210, 150, 0.5) 0%, rgba(232, 213, 160, 0.22) 42%, transparent 74%);
   filter: blur(12px);
   pointer-events: none;
-  animation: glow-breathe 18s ease-in-out infinite;
+  animation: glow-drift 18s ease-in-out infinite;
 }
 
 .hero::after {
@@ -839,14 +855,14 @@ p {
 .hero__title {
   max-width: 16ch;
   margin-bottom: var(--space-md);
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 248, 238, 0.95);
   font-weight: 300;
 }
 
 .hero__subtitle {
   font-size: 1.125rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(240, 225, 210, 0.75);
   max-width: 36rem;
   margin-bottom: var(--space-lg);
   line-height: 1.65;
@@ -906,14 +922,10 @@ p {
   z-index: 2;
 }
 
-.work-card:nth-child(odd):hover {
-  box-shadow: var(--glow-card-hover);
-  background: rgba(255, 255, 255, 0.1);
-}
-
+.work-card:nth-child(odd):hover,
 .work-card:nth-child(even):hover {
-  box-shadow: var(--glow-card-hover-cool);
-  background: rgba(255, 255, 255, 0.1);
+  box-shadow: var(--glow-card-hover-warm);
+  background: var(--glass-bg-hover);
 }
 
 .work-card:hover {
@@ -931,10 +943,10 @@ p {
 
 .work-card__image {
   aspect-ratio: 16 / 10;
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(255, 235, 210, 0.06);
   background-image:
-    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(237, 224, 176, 0.22) 0%, transparent 68%),
-    radial-gradient(ellipse 40% 35% at 70% 30%, rgba(200, 220, 232, 0.14) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(232, 213, 160, 0.24) 0%, transparent 68%),
+    radial-gradient(ellipse 40% 35% at 70% 30%, rgba(242, 201, 184, 0.16) 0%, transparent 60%);
   background-size: 180% 180%, 160% 160%;
   background-position: 0% 0%, 100% 100%;
   display: flex;
@@ -1090,7 +1102,8 @@ p {
 }
 
 .case-meta:hover {
-  box-shadow: var(--glow-card-hover);
+  background: var(--glass-bg-hover);
+  box-shadow: var(--glow-card-hover-warm);
 }
 
 .case-meta > div {
@@ -1130,10 +1143,10 @@ p {
 
 .case-image {
   aspect-ratio: 16 / 9;
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(255, 235, 210, 0.06);
   background-image:
-    radial-gradient(ellipse 70% 60% at 45% 35%, rgba(237, 224, 176, 0.2) 0%, transparent 68%),
-    radial-gradient(ellipse 40% 35% at 70% 55%, rgba(200, 220, 232, 0.12) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 60% at 45% 35%, rgba(232, 213, 160, 0.22) 0%, transparent 68%),
+    radial-gradient(ellipse 40% 35% at 70% 55%, rgba(242, 201, 184, 0.14) 0%, transparent 60%);
   backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   border: 1px solid var(--glass-border);
@@ -1189,8 +1202,8 @@ p {
 
 .case-result:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: var(--glow-card-hover-cool);
+  background: var(--glass-bg-hover);
+  box-shadow: var(--glow-card-hover-warm);
 }
 
 .case-result__value {
@@ -1225,8 +1238,8 @@ p {
 }
 
 .case-nav:hover {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: var(--glow-card-hover);
+  background: var(--glass-bg-hover);
+  box-shadow: var(--glow-card-hover-warm);
 }
 
 .site-footer {
