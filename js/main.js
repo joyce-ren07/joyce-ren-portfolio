@@ -3,37 +3,6 @@
  */
 
 (function () {
-  /* SVG displacement filters for soft glass refraction */
-  if (!document.getElementById("glass-warp-svg")) {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("id", "glass-warp-svg");
-    svg.setAttribute("aria-hidden", "true");
-    svg.style.cssText = "position:absolute;width:0;height:0;overflow:hidden";
-    svg.innerHTML = `
-      <defs>
-        <filter id="glass-warp" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.004 0.006" numOctaves="2" seed="8" result="noise">
-            <animate attributeName="baseFrequency"
-              values="0.004 0.006;0.006 0.008;0.005 0.007;0.004 0.006"
-              dur="24s"
-              repeatCount="indefinite" />
-          </feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-        <filter id="glass-warp-sm" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.005 0.007" numOctaves="2" seed="3" result="noise">
-            <animate attributeName="baseFrequency"
-              values="0.005 0.007;0.007 0.009;0.006 0.008;0.005 0.007"
-              dur="20s"
-              repeatCount="indefinite" />
-          </feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-      </defs>
-    `;
-    document.body.prepend(svg);
-  }
-
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".site-nav");
 
@@ -61,5 +30,52 @@
     reveals.forEach((el) => observer.observe(el));
   } else {
     reveals.forEach((el) => el.classList.add("is-visible"));
+  }
+
+  /* Cursor proximity — nearest glow point drifts toward pointer */
+  const glowPoints = document.querySelectorAll("[data-glow]");
+  if (glowPoints.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let rafId = null;
+
+    const onMove = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateGlow);
+      }
+    };
+
+    const updateGlow = () => {
+      rafId = null;
+      let nearest = null;
+      let minDist = Infinity;
+
+      glowPoints.forEach((point) => {
+        const rect = point.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dist = Math.hypot(mouseX - cx, mouseY - cy);
+        if (dist < minDist) {
+          minDist = dist;
+          nearest = { point, cx, cy };
+        }
+      });
+
+      glowPoints.forEach((point) => {
+        if (point === nearest.point) {
+          const dx = (mouseX - nearest.cx) * 0.04;
+          const dy = (mouseY - nearest.cy) * 0.04;
+          point.style.setProperty("--glow-offset-x", `${dx}px`);
+          point.style.setProperty("--glow-offset-y", `${dy}px`);
+        } else {
+          point.style.removeProperty("--glow-offset-x");
+          point.style.removeProperty("--glow-offset-y");
+        }
+      });
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
   }
 })();
