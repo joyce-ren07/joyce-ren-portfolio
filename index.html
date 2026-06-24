@@ -20,28 +20,34 @@
   </div>
 
   <header class="site-header">
-    <div class="container site-header__inner">
-      <a href="index.html" class="site-logo">Joyce Ren</a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-        Menu
-      </button>
-      <nav id="site-nav" class="site-nav" aria-label="Main">
-        <a href="#work" aria-current="page">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <div class="container">
+      <div class="glass glass--nav">
+        <div class="site-header__inner">
+          <a href="index.html" class="site-logo">Joyce Ren</a>
+          <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+            Menu
+          </button>
+          <nav id="site-nav" class="site-nav" aria-label="Main">
+            <a href="#work" aria-current="page">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero container reveal">
-      <p class="eyebrow">Product Design</p>
-      <h1 class="hero__title">Designing <span class="accent-italic">thoughtful</span> digital experiences</h1>
-      <p class="hero__subtitle">
-        I'm a product designer focused on clarity, craft, and impact.
-        I help teams turn complex problems into intuitive products people love to use.
-      </p>
-      <a href="#work" class="btn btn--primary">View selected work</a>
+      <div class="glass glass--hero">
+        <p class="eyebrow">Product Design</p>
+        <h1 class="hero__title">Designing <span class="accent-italic">thoughtful</span> digital experiences</h1>
+        <p class="hero__subtitle">
+          I'm a product designer focused on clarity, craft, and impact.
+          I help teams turn complex problems into intuitive products people love to use.
+        </p>
+        <a href="#work" class="btn btn--primary">View selected work</a>
+      </div>
     </section>
 
     <section id="work" class="section section--tight">
@@ -97,22 +103,26 @@
 
     <section id="contact" class="section section--tight">
       <div class="container reveal">
-        <p class="eyebrow">Contact</p>
-        <h2>Let's work together</h2>
-        <p class="lead">Open to full-time roles, contract work, and interesting collaborations.</p>
-        <div class="contact-links">
-          <a href="mailto:hello@example.com">hello@example.com</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <div class="glass glass--panel">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's work together</h2>
+          <p class="lead">Open to full-time roles, contract work, and interesting collaborations.</p>
+          <div class="contact-links">
+            <a href="mailto:hello@example.com" class="glass-pill">hello@example.com</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="glass-pill">LinkedIn</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="glass-pill">GitHub</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container site-footer__inner">
-      <span>© 2026 Joyce Ren</span>
-      <a href="#work">Back to top</a>
+    <div class="container">
+      <div class="glass glass--footer site-footer__inner">
+        <span>© 2026 Joyce Ren</span>
+        <a href="#work">Back to top</a>
+      </div>
     </div>
   </footer>
 
