@@ -20,12 +20,5 @@
   <rect x="4" y="102" width="44" height="44" fill="#fffaf0" fill-opacity="0.88"/>
   <rect x="53" y="102" width="44" height="44" fill="#f2e6d4" fill-opacity="0.84"/>
   <rect x="102" y="102" width="44" height="44" fill="#fff8ea" fill-opacity="0.9"/>
-  <g stroke="#3d3229" stroke-opacity="0.42" stroke-width="2.5" fill="none">
-    <path d="M4 4 H146 V146 H4 Z"/>
-    <path d="M53 4 V146"/>
-    <path d="M102 4 V146"/>
-    <path d="M4 53 H146"/>
-    <path d="M4 102 H146"/>
-  </g>
   <rect width="150" height="150" fill="url(#sheen)" opacity="0.35"/>
 </svg>
