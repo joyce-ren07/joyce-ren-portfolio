@@ -4,13 +4,14 @@
    ========================================================================== */
 
 :root {
-  /* Palette — chalky diffused light zones (reference accents) */
-  --color-peach-blush: rgba(225, 185, 165, 0.35);
-  --color-sage-gray: rgba(195, 200, 185, 0.3);
-  --color-golden-warm: rgba(235, 215, 175, 0.35);
-  --color-rose-mauve: rgba(210, 175, 170, 0.28);
-  --color-lavender-gray: rgba(185, 185, 205, 0.2);
-  --color-blush-pink: rgba(220, 190, 185, 0.25);
+  /* Palette — chalky diffused light (reference refraction) */
+  --color-peach-blush: rgba(225, 185, 165, 0.52);
+  --color-sage-gray: rgba(195, 200, 185, 0.45);
+  --color-golden-warm: rgba(235, 215, 175, 0.58);
+  --color-rose-mauve: rgba(210, 175, 170, 0.42);
+  --color-lavender-gray: rgba(185, 185, 205, 0.36);
+  --color-blush-pink: rgba(220, 190, 185, 0.4);
+  --color-mist-gray: rgba(175, 180, 195, 0.28);
 
   --scroll-hue-rotate: 0deg;
 
@@ -130,7 +131,7 @@ main,
 }
 
 /* --------------------------------------------------------------------------
-   White base + floating warm glow zones (afternoon light through windows)
+   Refractive light field — pearlescent columns, bands, caustics on white
    -------------------------------------------------------------------------- */
 
 .ambient-light {
@@ -139,28 +140,150 @@ main,
   pointer-events: none;
   z-index: 0;
   background: var(--color-bg-base);
+  filter: hue-rotate(var(--scroll-hue-rotate, 0deg));
 }
 
-.light-mesh {
-  display: none;
+/* Watercolor mesh — large chalky color pools bleeding together */
+.refraction-mesh {
+  position: absolute;
+  inset: -35%;
+  width: 170%;
+  height: 170%;
+  background:
+    radial-gradient(ellipse 55% 48% at 18% 28%, var(--color-peach-blush) 0%, transparent 68%),
+    radial-gradient(ellipse 48% 42% at 72% 18%, var(--color-golden-warm) 0%, transparent 64%),
+    radial-gradient(ellipse 50% 44% at 48% 52%, var(--color-sage-gray) 0%, transparent 66%),
+    radial-gradient(ellipse 42% 50% at 82% 62%, var(--color-rose-mauve) 0%, transparent 68%),
+    radial-gradient(ellipse 38% 40% at 12% 72%, var(--color-lavender-gray) 0%, transparent 70%),
+    radial-gradient(ellipse 44% 38% at 68% 82%, var(--color-blush-pink) 0%, transparent 66%),
+    radial-gradient(ellipse 60% 35% at 38% 88%, var(--color-mist-gray) 0%, transparent 72%);
+  filter: blur(72px) saturate(115%);
+  opacity: var(--mesh-opacity, 0.82);
+  transform: translate(var(--mesh-x, 0px), var(--mesh-y, 0px))
+    scale(var(--mesh-scale-x, 1), var(--mesh-scale-y, 1))
+    rotate(var(--mesh-rotate, 0deg));
+  transform-origin: 45% 40%;
 }
 
-/* Drifting glow pools — chalky, muted, bleeding into white */
+/* Horizontal pearlescent bands — brushed mother-of-pearl */
+.refraction-bands {
+  position: absolute;
+  inset: -15% -10%;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(195, 200, 185, 0.22) 12%,
+      transparent 22%,
+      rgba(235, 215, 175, 0.32) 34%,
+      rgba(255, 248, 235, 0.18) 42%,
+      transparent 52%,
+      rgba(185, 185, 205, 0.2) 64%,
+      transparent 74%,
+      rgba(210, 175, 170, 0.24) 86%,
+      transparent 100%
+    );
+  filter: blur(28px);
+  mix-blend-mode: multiply;
+  opacity: var(--bands-opacity, 0.7);
+  transform: translateY(var(--bands-y, 0px))
+    scaleY(var(--bands-scale-y, 1))
+    skewX(var(--bands-skew, 0deg));
+  transform-origin: center center;
+}
+
+/* Vertical light curtains — caustic columns through frosted glass */
+.refraction-columns {
+  position: absolute;
+  inset: -20% -15%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(255, 252, 245, 0.04) 28px,
+      rgba(235, 215, 175, 0.14) 56px,
+      rgba(255, 248, 238, 0.22) 84px,
+      rgba(225, 185, 165, 0.1) 112px,
+      transparent 148px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(185, 185, 205, 0.06) 64px,
+      rgba(255, 255, 255, 0.12) 96px,
+      transparent 132px
+    );
+  filter: blur(18px);
+  mix-blend-mode: soft-light;
+  opacity: var(--columns-opacity, 0.75);
+  transform: translate(var(--columns-x, 0px), var(--columns-y, 0px))
+    scaleX(var(--columns-scale-x, 1))
+    scaleY(var(--columns-scale-y, 1))
+    rotate(var(--columns-rotate, 0deg));
+  transform-origin: 55% 35%;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* Sparkle / caustic flecks in the light columns */
+.refraction-shimmer {
+  position: absolute;
+  inset: 0;
+  opacity: var(--shimmer-opacity, 0.45);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+  transform: translate(var(--shimmer-x, 0px), var(--shimmer-y, 0px))
+    scale(var(--shimmer-scale, 1));
+  mask-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(0, 0, 0, 0.85) 24px,
+      transparent 56px,
+      rgba(0, 0, 0, 0.6) 88px,
+      transparent 120px
+    ),
+    linear-gradient(180deg, transparent, black 15%, black 85%, transparent);
+  mask-composite: intersect;
+}
+
+/* Film grain — chalky organic texture */
+.ambient-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Color pools — individual drifting glow orbs */
 .glow-point {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(88px) saturate(110%);
   --glow-offset-x: 0px;
   --glow-offset-y: 0px;
   --scroll-shift-x: 0px;
   --scroll-shift-y: 0px;
-  opacity: var(--glow-scroll-opacity, 0.3);
+  --glow-scale-x: 1;
+  --glow-scale-y: 1;
+  --glow-rotate: 0deg;
+  opacity: var(--glow-scroll-opacity, 0.65);
   transform: translate(
-    calc(var(--glow-offset-x) + var(--scroll-shift-x)),
-    calc(var(--glow-offset-y) + var(--scroll-shift-y))
-  );
+      calc(var(--glow-offset-x) + var(--scroll-shift-x)),
+      calc(var(--glow-offset-y) + var(--scroll-shift-y))
+    )
+    scale(var(--glow-scale-x), var(--glow-scale-y))
+    rotate(var(--glow-rotate));
   animation: glow-drift var(--glow-duration) ease-in-out infinite;
-  transition: opacity 1.2s ease-out;
 }
 
 /* Warm peach-blush — large, left */
@@ -234,19 +357,17 @@ main,
     transform: translate(
       calc(var(--glow-offset-x) + var(--scroll-shift-x)),
       calc(var(--glow-offset-y) + var(--scroll-shift-y))
-    ) scale(1);
+    )
+    scale(var(--glow-scale-x), var(--glow-scale-y))
+    rotate(var(--glow-rotate));
   }
-  33% {
+  50% {
     transform: translate(
-      calc(var(--glow-offset-x) + var(--scroll-shift-x) + 28px),
-      calc(var(--glow-offset-y) + var(--scroll-shift-y) - 20px)
-    ) scale(1.03);
-  }
-  66% {
-    transform: translate(
-      calc(var(--glow-offset-x) + var(--scroll-shift-x) - 22px),
-      calc(var(--glow-offset-y) + var(--scroll-shift-y) + 24px)
-    ) scale(0.97);
+      calc(var(--glow-offset-x) + var(--scroll-shift-x) + 18px),
+      calc(var(--glow-offset-y) + var(--scroll-shift-y) - 14px)
+    )
+    scale(calc(var(--glow-scale-x) * 1.04), calc(var(--glow-scale-y) * 0.97))
+    rotate(calc(var(--glow-rotate) + 1.5deg));
   }
 }
 
@@ -1286,7 +1407,10 @@ p {
     transition: none;
   }
 
-  .light-mesh,
+  .refraction-mesh,
+  .refraction-bands,
+  .refraction-columns,
+  .refraction-shimmer,
   .glow-point,
   .glass::after,
   .work-card::after,
@@ -1296,10 +1420,12 @@ p {
     animation: none;
   }
 
+  .ambient-light {
+    filter: none;
+  }
+
   .glow-point {
-    transition: none;
     animation: none;
-    will-change: auto;
   }
 
   .btn,
