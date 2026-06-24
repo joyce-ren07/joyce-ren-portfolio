@@ -53,39 +53,101 @@
   --radius-xl: 2.25rem;
   --radius-pill: 999px;
 
-  /* Liquid glass */
-  --glass-blur: 56px;
-  --glass-blur-sm: 32px;
-  --glass-saturate: 210%;
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-bg-strong: rgba(255, 255, 255, 0.2);
-  --glass-bg-subtle: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.32);
-  --glass-border-subtle: rgba(255, 255, 255, 0.16);
-  --glass-warp-inset: 56px;
-  --glass-warp-inset-sm: 32px;
-  --glass-shine: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.28) 0%,
-    rgba(255, 255, 255, 0.05) 38%,
-    transparent 58%
-  );
+  /* Stained glass — luminescent sheer panes */
+  --stained-lead: rgba(61, 50, 41, 0.26);
+  --stained-lead-light: rgba(61, 50, 41, 0.11);
+  --stained-lumen: rgba(255, 238, 195, 0.42);
+  --stained-lumen-soft: rgba(255, 248, 228, 0.22);
+
+  --stained-pane-rose: rgba(224, 172, 172, 0.36);
+  --stained-pane-mauve: rgba(192, 128, 129, 0.3);
+  --stained-pane-sage: rgba(168, 184, 153, 0.28);
+  --stained-pane-cream: rgba(255, 249, 220, 0.38);
+  --stained-pane-lavender: rgba(214, 204, 224, 0.32);
+  --stained-pane-ochre: rgba(210, 180, 130, 0.3);
+  --stained-pane-plum: rgba(150, 110, 120, 0.24);
+
+  --stained-grid-lg:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 71px,
+      var(--stained-lead-light) 71px,
+      var(--stained-lead-light) 73px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 71px,
+      var(--stained-lead-light) 71px,
+      var(--stained-lead-light) 73px
+    );
+
+  --stained-grid-sm:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      rgba(61, 50, 41, 0.08) 27px,
+      rgba(61, 50, 41, 0.08) 28px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 27px,
+      rgba(61, 50, 41, 0.08) 27px,
+      rgba(61, 50, 41, 0.08) 28px
+    );
+
+  --stained-mosaic:
+    var(--stained-grid-sm),
+    var(--stained-grid-lg),
+    radial-gradient(ellipse 42% 38% at 18% 22%, var(--stained-pane-rose) 0%, transparent 68%),
+    radial-gradient(ellipse 36% 44% at 78% 18%, var(--stained-pane-lavender) 0%, transparent 65%),
+    radial-gradient(ellipse 48% 40% at 62% 58%, var(--stained-pane-cream) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 46% at 28% 72%, var(--stained-pane-sage) 0%, transparent 68%),
+    radial-gradient(ellipse 34% 36% at 88% 78%, var(--stained-pane-ochre) 0%, transparent 64%),
+    radial-gradient(ellipse 44% 50% at 48% 38%, var(--stained-pane-mauve) 0%, transparent 72%),
+    radial-gradient(ellipse 100% 90% at 50% 45%, var(--stained-lumen-soft) 0%, transparent 62%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.16) 0%, transparent 42%);
+
+  --stained-mosaic-sm:
+    var(--stained-grid-sm),
+    radial-gradient(ellipse 80% 70% at 30% 40%, var(--stained-pane-rose) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 60% at 75% 60%, var(--stained-pane-cream) 0%, transparent 68%),
+    radial-gradient(ellipse 90% 80% at 50% 50%, var(--stained-lumen-soft) 0%, transparent 65%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, transparent 55%);
+
+  --glass-blur: 44px;
+  --glass-blur-sm: 28px;
+  --glass-saturate: 240%;
+  --glass-bg: rgba(255, 246, 230, 0.05);
+  --glass-bg-strong: rgba(255, 240, 215, 0.12);
+  --glass-bg-subtle: rgba(255, 248, 235, 0.03);
+  --glass-border: var(--stained-lead);
+  --glass-border-subtle: rgba(61, 50, 41, 0.14);
+  --glass-warp-inset: 48px;
+  --glass-warp-inset-sm: 28px;
+  --glass-shine: var(--stained-mosaic);
   --glass-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.05),
-    0 12px 48px rgba(0, 0, 0, 0.03);
+    0 4px 28px rgba(107, 77, 87, 0.07),
+    0 0 56px rgba(255, 220, 160, 0.14);
   --glass-inset:
-    inset 0 1px 1px rgba(255, 255, 255, 0.42),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.06);
+    inset 0 0 28px rgba(255, 235, 200, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 0 rgba(61, 50, 41, 0.05);
   --glass-inset-strong:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.55),
-    inset 0 -1px 2px rgba(255, 255, 255, 0.08);
+    inset 0 0 36px rgba(255, 228, 180, 0.28),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -1px 0 rgba(61, 50, 41, 0.08);
+  --glass-lumen-glow: 0 0 48px rgba(255, 220, 160, 0.1);
 
   --shadow-soft: 0 8px 40px rgba(107, 77, 87, 0.07);
   --shadow-card: var(--glass-shadow);
   --glow-card: var(--glass-shadow), var(--glass-inset);
   --glow-card-hover:
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    0 20px 60px rgba(255, 200, 120, 0.12),
+    0 8px 32px rgba(107, 77, 87, 0.1),
+    0 0 72px rgba(255, 210, 140, 0.22),
     var(--glass-inset-strong);
   --glow-lantern: 0 0 60px rgba(255, 210, 140, 0.25), 0 0 120px rgba(255, 200, 120, 0.12);
   --glow-button: var(--glass-shadow), var(--glass-inset);
@@ -115,6 +177,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   background-image:
+    radial-gradient(ellipse 55% 45% at 50% 20%, rgba(255, 238, 195, 0.32) 0%, transparent 58%),
     radial-gradient(ellipse 50% 40% at 20% 15%, rgba(255, 220, 160, 0.22) 0%, transparent 55%),
     radial-gradient(ellipse 45% 35% at 82% 8%, rgba(255, 235, 200, 0.18) 0%, transparent 50%),
     radial-gradient(ellipse 90% 55% at 15% 8%, rgba(232, 196, 196, 0.28) 0%, transparent 58%),
@@ -225,16 +288,26 @@ main,
 }
 
 /* --------------------------------------------------------------------------
-   Liquid glass system
+   Stained glass system — luminescent sheer panes
    -------------------------------------------------------------------------- */
 
 .glass {
   position: relative;
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow), var(--glass-inset);
+  border: 1.5px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-inset), var(--glass-lumen-glow);
   overflow: hidden;
   isolation: isolate;
+  animation: stained-glow 12s ease-in-out infinite;
+}
+
+@keyframes stained-glow {
+  0%, 100% {
+    box-shadow: var(--glass-shadow), var(--glass-inset), 0 0 40px rgba(255, 220, 160, 0.08);
+  }
+  50% {
+    box-shadow: var(--glass-shadow), var(--glass-inset), 0 0 64px rgba(255, 220, 160, 0.2);
+  }
 }
 
 .glass::after {
@@ -255,9 +328,11 @@ main,
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--glass-shine);
+  background: var(--stained-mosaic);
   pointer-events: none;
   z-index: 1;
+  opacity: 0.92;
+  mix-blend-mode: normal;
 }
 
 .glass > * {
@@ -293,7 +368,7 @@ main,
   position: relative;
   padding: 0.5rem 1rem;
   background: var(--glass-bg-subtle);
-  border: 1px solid var(--glass-border-subtle);
+  border: 1.5px solid var(--glass-border-subtle);
   border-radius: var(--radius-pill);
   box-shadow: var(--glass-inset);
   transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
@@ -319,9 +394,10 @@ main,
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 50%);
+  background: var(--stained-mosaic-sm);
   pointer-events: none;
   z-index: 1;
+  opacity: 0.88;
 }
 
 .glass-pill:hover {
@@ -399,9 +475,10 @@ a:hover {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--glass-shine);
+  background: var(--stained-mosaic);
   pointer-events: none;
   z-index: 1;
+  opacity: 0.9;
 }
 
 .section--wash > * {
@@ -540,7 +617,7 @@ p {
 }
 
 .site-nav a:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 235, 200, 0.14);
   color: var(--color-text);
 }
 
@@ -595,23 +672,33 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, transparent 55%);
+  background: var(--stained-mosaic-sm);
   pointer-events: none;
+  opacity: 0.85;
 }
 
 .btn--primary {
-  background: rgba(107, 125, 98, 0.72);
+  background: rgba(138, 154, 123, 0.55);
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: var(--glow-button);
+  border-color: rgba(61, 50, 41, 0.28);
+  box-shadow: var(--glow-button), 0 0 32px rgba(255, 220, 160, 0.15);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
+.btn--primary::before {
+  background:
+    var(--stained-grid-sm),
+    radial-gradient(ellipse 80% 70% at 40% 35%, rgba(168, 184, 153, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 60% at 65% 65%, rgba(255, 249, 220, 0.35) 0%, transparent 68%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 55%);
+  opacity: 0.7;
+}
+
 .btn--primary:hover {
-  background: rgba(107, 77, 87, 0.78);
+  background: rgba(150, 110, 120, 0.62);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: var(--glow-button-hover);
+  box-shadow: var(--glow-button-hover), 0 0 48px rgba(255, 210, 140, 0.25);
 }
 
 .btn--ghost {
@@ -652,19 +739,24 @@ p {
 
 .hero .glass--hero {
   max-width: 42rem;
+  box-shadow:
+    var(--glass-shadow),
+    var(--glass-inset),
+    0 0 80px rgba(255, 220, 160, 0.18),
+    0 0 140px rgba(255, 235, 200, 0.1);
 }
 
-/* Lantern glow behind hero */
+/* Window backlight behind hero stained glass */
 .hero::before {
   content: "";
   position: absolute;
-  top: -5%;
-  left: -5%;
-  width: clamp(14rem, 40vw, 28rem);
-  height: clamp(14rem, 40vw, 28rem);
+  top: -8%;
+  left: -8%;
+  width: clamp(16rem, 48vw, 32rem);
+  height: clamp(16rem, 48vw, 32rem);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 220, 160, 0.3) 0%, rgba(255, 235, 200, 0.12) 40%, transparent 70%);
-  filter: blur(2px);
+  background: radial-gradient(circle, rgba(255, 238, 195, 0.45) 0%, rgba(255, 220, 160, 0.2) 35%, transparent 72%);
+  filter: blur(4px);
   pointer-events: none;
   animation: pulse-light 12s ease-in-out infinite;
 }
@@ -723,7 +815,7 @@ p {
   display: flex;
   flex-direction: column;
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  border: 1.5px solid var(--glass-border);
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--glow-card);
@@ -750,14 +842,29 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--glass-shine);
+  background:
+    var(--stained-grid-sm),
+    var(--stained-grid-lg),
+    radial-gradient(ellipse 48% 42% at 20% 25%, var(--pane-a, var(--stained-pane-rose)) 0%, transparent 68%),
+    radial-gradient(ellipse 44% 48% at 75% 65%, var(--pane-b, var(--stained-pane-cream)) 0%, transparent 66%),
+    radial-gradient(ellipse 38% 36% at 55% 45%, var(--stained-pane-mauve) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 90% at 50% 45%, var(--stained-lumen-soft) 0%, transparent 62%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.14) 0%, transparent 42%);
   pointer-events: none;
   z-index: 1;
+  opacity: 0.9;
 }
+
+.work-card:nth-child(6n+1) { --pane-a: var(--stained-pane-rose); --pane-b: var(--stained-pane-cream); }
+.work-card:nth-child(6n+2) { --pane-a: var(--stained-pane-lavender); --pane-b: var(--stained-pane-ochre); }
+.work-card:nth-child(6n+3) { --pane-a: var(--stained-pane-sage); --pane-b: var(--stained-pane-mauve); }
+.work-card:nth-child(6n+4) { --pane-a: var(--stained-pane-cream); --pane-b: var(--stained-pane-plum); }
+.work-card:nth-child(6n+5) { --pane-a: var(--stained-pane-mauve); --pane-b: var(--stained-pane-sage); }
+.work-card:nth-child(6n+6) { --pane-a: var(--stained-pane-ochre); --pane-b: var(--stained-pane-lavender); }
 
 .work-card:hover {
   transform: translateY(-6px) scale(1.01);
-  border-color: rgba(255, 255, 255, 0.42);
+  border-color: rgba(61, 50, 41, 0.34);
   box-shadow: var(--glow-card-hover);
 }
 
@@ -773,12 +880,16 @@ p {
 .work-card__image {
   aspect-ratio: 16 / 10;
   background:
-    radial-gradient(ellipse 70% 80% at 50% 110%, rgba(255, 210, 140, 0.35) 0%, transparent 55%),
+    var(--stained-grid-sm),
+    radial-gradient(ellipse 55% 50% at 35% 40%, var(--stained-pane-rose) 0%, transparent 68%),
+    radial-gradient(ellipse 45% 55% at 70% 55%, var(--stained-pane-cream) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 45% at 50% 80%, var(--stained-pane-sage) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 70% at 50% 50%, var(--stained-lumen-soft) 0%, transparent 62%),
     linear-gradient(160deg,
-      rgba(255, 255, 255, 0.25) 0%,
-      rgba(230, 240, 243, 0.35) 40%,
-      rgba(139, 148, 103, 0.2) 100%);
-  backdrop-filter: blur(8px);
+      rgba(255, 249, 220, 0.2) 0%,
+      rgba(230, 240, 243, 0.25) 40%,
+      rgba(139, 148, 103, 0.15) 100%);
+  backdrop-filter: blur(12px) saturate(var(--glass-saturate));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -955,9 +1066,10 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--glass-shine);
+  background: var(--stained-mosaic);
   pointer-events: none;
   z-index: 1;
+  opacity: 0.9;
 }
 
 .case-meta > div {
@@ -1003,7 +1115,12 @@ p {
 .case-image {
   aspect-ratio: 16 / 9;
   background:
-    radial-gradient(ellipse 60% 70% at 50% 100%, rgba(255, 210, 140, 0.25) 0%, transparent 55%),
+    var(--stained-grid-sm),
+    var(--stained-grid-lg),
+    radial-gradient(ellipse 45% 40% at 25% 30%, var(--stained-pane-lavender) 0%, transparent 68%),
+    radial-gradient(ellipse 42% 48% at 72% 55%, var(--stained-pane-cream) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 45% at 48% 75%, var(--stained-pane-rose) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 80% at 50% 50%, var(--stained-lumen-soft) 0%, transparent 62%),
     var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
@@ -1092,9 +1209,10 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--glass-shine);
+  background: var(--stained-mosaic);
   pointer-events: none;
   z-index: 1;
+  opacity: 0.9;
 }
 
 .case-result:hover {
@@ -1272,8 +1390,10 @@ p {
   }
 
   .btn,
-  .work-card {
+  .work-card,
+  .glass {
     transition: none;
+    animation: none;
   }
 
   .glass::after,
