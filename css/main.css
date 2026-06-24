@@ -4,11 +4,15 @@
    ========================================================================== */
 
 :root {
-  /* Palette — warm accents only (glow zones, not base) */
-  --color-peach-glow: rgba(240, 190, 160, 0.25);
-  --color-amber-glow: rgba(230, 195, 120, 0.2);
-  --color-rose-glow: rgba(220, 170, 160, 0.18);
-  --color-sage-glow: rgba(180, 200, 170, 0.12);
+  /* Palette — chalky diffused light zones (reference accents) */
+  --color-peach-blush: rgba(225, 185, 165, 0.35);
+  --color-sage-gray: rgba(195, 200, 185, 0.3);
+  --color-golden-warm: rgba(235, 215, 175, 0.35);
+  --color-rose-mauve: rgba(210, 175, 170, 0.28);
+  --color-lavender-gray: rgba(185, 185, 205, 0.2);
+  --color-blush-pink: rgba(220, 190, 185, 0.25);
+
+  --scroll-hue-rotate: 0deg;
 
   --color-bg-base: #ffffff;
   --color-surface: rgba(255, 255, 255, 0.02);
@@ -141,74 +145,108 @@ main,
   display: none;
 }
 
-/* Drifting glow pools — warmth as accent, not atmosphere */
+/* Drifting glow pools — chalky, muted, bleeding into white */
 .glow-point {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(100px);
   --glow-offset-x: 0px;
   --glow-offset-y: 0px;
-  transform: translate(var(--glow-offset-x), var(--glow-offset-y));
+  --scroll-shift-x: 0px;
+  --scroll-shift-y: 0px;
+  opacity: var(--glow-scroll-opacity, 0.3);
+  transform: translate(
+    calc(var(--glow-offset-x) + var(--scroll-shift-x)),
+    calc(var(--glow-offset-y) + var(--scroll-shift-y))
+  );
   animation: glow-drift var(--glow-duration) ease-in-out infinite;
-  transition: transform 800ms ease-out;
+  transition: opacity 1.2s ease-out;
 }
 
+/* Warm peach-blush — large, left */
 .glow-point--1 {
-  top: 6%;
-  left: 8%;
-  width: clamp(16rem, 40vw, 30rem);
-  height: clamp(16rem, 40vw, 30rem);
-  background: radial-gradient(circle, var(--color-peach-glow) 0%, transparent 70%);
+  top: 18%;
+  left: -4%;
+  width: clamp(22rem, 52vw, 42rem);
+  height: clamp(22rem, 52vw, 42rem);
+  background: radial-gradient(circle, var(--color-peach-blush) 0%, transparent 72%);
   animation-delay: 0s;
-  animation-duration: 28s;
-}
-
-.glow-point--2 {
-  top: 10%;
-  right: 10%;
-  width: clamp(14rem, 34vw, 26rem);
-  height: clamp(14rem, 34vw, 26rem);
-  background: radial-gradient(circle, var(--color-amber-glow) 0%, transparent 68%);
-  animation-delay: -7s;
-  animation-duration: 26s;
-}
-
-.glow-point--3 {
-  bottom: 8%;
-  right: 10%;
-  width: clamp(15rem, 36vw, 28rem);
-  height: clamp(15rem, 36vw, 28rem);
-  background: radial-gradient(circle, var(--color-rose-glow) 0%, transparent 70%);
-  animation-delay: -14s;
   animation-duration: 30s;
 }
 
+/* Soft sage-gray — upper middle */
+.glow-point--2 {
+  top: 8%;
+  left: 32%;
+  width: clamp(20rem, 46vw, 36rem);
+  height: clamp(20rem, 46vw, 36rem);
+  background: radial-gradient(circle, var(--color-sage-gray) 0%, transparent 70%);
+  animation-delay: -6s;
+  animation-duration: 28s;
+}
+
+/* Golden warm white — top bright zone */
+.glow-point--3 {
+  top: -6%;
+  left: 22%;
+  width: clamp(24rem, 56vw, 44rem);
+  height: clamp(20rem, 44vw, 36rem);
+  background: radial-gradient(ellipse 80% 70%, var(--color-golden-warm) 0%, transparent 68%);
+  animation-delay: -12s;
+  animation-duration: 32s;
+}
+
+/* Dusty rose-mauve — right */
 .glow-point--4 {
-  bottom: 12%;
-  left: 8%;
-  width: clamp(12rem, 28vw, 22rem);
-  height: clamp(12rem, 28vw, 22rem);
-  background: radial-gradient(circle, var(--color-sage-glow) 0%, transparent 68%);
-  animation-delay: -21s;
+  top: 22%;
+  right: -6%;
+  width: clamp(20rem, 44vw, 38rem);
+  height: clamp(20rem, 44vw, 38rem);
+  background: radial-gradient(circle, var(--color-rose-mauve) 0%, transparent 70%);
+  animation-delay: -9s;
+  animation-duration: 29s;
+}
+
+/* Cool lavender-gray — subtle edges */
+.glow-point--5 {
+  top: 42%;
+  left: -8%;
+  width: clamp(16rem, 34vw, 28rem);
+  height: clamp(16rem, 34vw, 28rem);
+  background: radial-gradient(circle, var(--color-lavender-gray) 0%, transparent 74%);
+  animation-delay: -18s;
   animation-duration: 27s;
+}
+
+/* Muted blush pink — lower right */
+.glow-point--6 {
+  bottom: 6%;
+  right: 4%;
+  width: clamp(18rem, 40vw, 34rem);
+  height: clamp(18rem, 40vw, 34rem);
+  background: radial-gradient(circle, var(--color-blush-pink) 0%, transparent 72%);
+  animation-delay: -15s;
+  animation-duration: 31s;
 }
 
 @keyframes glow-drift {
   0%, 100% {
-    opacity: 0.7;
-    transform: translate(var(--glow-offset-x), var(--glow-offset-y)) translate(0, 0) scale(1);
+    transform: translate(
+      calc(var(--glow-offset-x) + var(--scroll-shift-x)),
+      calc(var(--glow-offset-y) + var(--scroll-shift-y))
+    ) scale(1);
   }
-  25% {
-    opacity: 0.9;
-    transform: translate(var(--glow-offset-x), var(--glow-offset-y)) translate(40px, -28px) scale(1.04);
+  33% {
+    transform: translate(
+      calc(var(--glow-offset-x) + var(--scroll-shift-x) + 28px),
+      calc(var(--glow-offset-y) + var(--scroll-shift-y) - 20px)
+    ) scale(1.03);
   }
-  50% {
-    opacity: 0.75;
-    transform: translate(var(--glow-offset-x), var(--glow-offset-y)) translate(-32px, 36px) scale(0.96);
-  }
-  75% {
-    opacity: 0.85;
-    transform: translate(var(--glow-offset-x), var(--glow-offset-y)) translate(20px, 16px) scale(1.02);
+  66% {
+    transform: translate(
+      calc(var(--glow-offset-x) + var(--scroll-shift-x) - 22px),
+      calc(var(--glow-offset-y) + var(--scroll-shift-y) + 24px)
+    ) scale(0.97);
   }
 }
 
@@ -310,6 +348,7 @@ main,
   background: var(--glass-iridescent);
   background-size: 300% 300%;
   animation: iridescent-border var(--iridescent-duration) ease-in-out infinite;
+  filter: hue-rotate(var(--scroll-hue-rotate, 0deg));
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -391,6 +430,7 @@ main,
   background: var(--glass-iridescent);
   background-size: 300% 300%;
   animation: iridescent-border var(--iridescent-duration) ease-in-out infinite;
+  filter: hue-rotate(var(--scroll-hue-rotate, 0deg));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -468,6 +508,7 @@ a:hover {
   background: var(--glass-iridescent);
   background-size: 300% 300%;
   animation: iridescent-border var(--iridescent-duration) ease-in-out infinite;
+  filter: hue-rotate(var(--scroll-hue-rotate, 0deg));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -619,6 +660,7 @@ p {
   padding: 1px;
   background: var(--glass-iridescent);
   background-size: 300% 300%;
+  filter: hue-rotate(var(--scroll-hue-rotate, 0deg));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -700,6 +742,7 @@ p {
   background: var(--glass-iridescent);
   background-size: 300% 300%;
   animation: iridescent-border var(--iridescent-duration) ease-in-out infinite;
+  filter: hue-rotate(var(--scroll-hue-rotate, 0deg));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -834,6 +877,7 @@ p {
   background: var(--glass-iridescent);
   background-size: 300% 300%;
   animation: iridescent-border var(--iridescent-duration) ease-in-out infinite;
+  filter: hue-rotate(var(--scroll-hue-rotate, 0deg));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -1254,6 +1298,8 @@ p {
 
   .glow-point {
     transition: none;
+    animation: none;
+    will-change: auto;
   }
 
   .btn,
