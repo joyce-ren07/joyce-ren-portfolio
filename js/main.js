@@ -3,7 +3,7 @@
  */
 
 (function () {
-  /* SVG displacement filters for stained glass refraction */
+  /* SVG displacement filters for soft glass refraction */
   if (!document.getElementById("glass-warp-svg")) {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("id", "glass-warp-svg");
@@ -11,23 +11,23 @@
     svg.style.cssText = "position:absolute;width:0;height:0;overflow:hidden";
     svg.innerHTML = `
       <defs>
-        <filter id="glass-warp" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="3" seed="8" result="noise">
+        <filter id="glass-warp" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.004 0.006" numOctaves="2" seed="8" result="noise">
             <animate attributeName="baseFrequency"
-              values="0.008 0.012;0.011 0.015;0.009 0.013;0.008 0.012"
-              dur="16s"
+              values="0.004 0.006;0.006 0.008;0.005 0.007;0.004 0.006"
+              dur="24s"
               repeatCount="indefinite" />
           </feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
         </filter>
-        <filter id="glass-warp-sm" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.014" numOctaves="2" seed="3" result="noise">
+        <filter id="glass-warp-sm" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.005 0.007" numOctaves="2" seed="3" result="noise">
             <animate attributeName="baseFrequency"
-              values="0.01 0.014;0.013 0.017;0.011 0.015;0.01 0.014"
-              dur="14s"
+              values="0.005 0.007;0.007 0.009;0.006 0.008;0.005 0.007"
+              dur="20s"
               repeatCount="indefinite" />
           </feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
         </filter>
       </defs>
     `;

@@ -1,6 +1,6 @@
 /* ==========================================================================
    Portfolio — moodboard-inspired theme
-   Botanical · painterly · illuminated
+   Soft light · glass refraction · natural illumination
    ========================================================================== */
 
 :root {
@@ -53,48 +53,46 @@
   --radius-xl: 2.25rem;
   --radius-pill: 999px;
 
-  /* Stained glass — patchwork panes + lantern grid */
-  --stained-lead: rgba(61, 50, 41, 0.45);
-  --stained-tile: 130px;
-  --stained-tile-lg: 168px;
-  --stained-tile-sm: 72px;
+  /* Soft glass — sheer refraction + drifting light */
+  --light-yellow: #fff9e1;
+  --light-mint: #e0f2f1;
+  --light-blue: #e3f2fd;
+  --light-peach: #fbe9e7;
 
-  --glass-blur: 36px;
-  --glass-blur-sm: 22px;
-  --glass-saturate: 260%;
-  --glass-bg: rgba(255, 244, 220, 0.04);
-  --glass-bg-strong: rgba(255, 238, 200, 0.1);
-  --glass-bg-subtle: rgba(255, 248, 235, 0.02);
-  --glass-border: rgba(61, 50, 41, 0.38);
-  --glass-border-subtle: rgba(61, 50, 41, 0.22);
-  --glass-warp-inset: 40px;
-  --glass-warp-inset-sm: 24px;
+  --glass-blur: 28px;
+  --glass-blur-sm: 16px;
+  --glass-saturate: 115%;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-strong: rgba(255, 255, 255, 0.07);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.015);
+  --glass-border: rgba(255, 255, 255, 0.32);
+  --glass-border-subtle: rgba(255, 255, 255, 0.18);
+  --glass-warp-inset: 32px;
+  --glass-warp-inset-sm: 20px;
   --glass-shadow:
-    0 8px 40px rgba(107, 77, 87, 0.1),
-    0 0 80px rgba(255, 210, 140, 0.28);
+    0 4px 24px rgba(107, 77, 87, 0.04),
+    0 0 48px rgba(255, 235, 200, 0.08);
   --glass-inset:
-    inset 0 0 64px rgba(255, 215, 150, 0.5),
-    inset 0 0 110px rgba(255, 238, 200, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    inset 0 0 40px rgba(255, 249, 225, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
   --glass-inset-strong:
-    inset 0 0 80px rgba(255, 205, 140, 0.58),
-    inset 0 0 130px rgba(255, 230, 185, 0.32),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.65);
+    inset 0 0 56px rgba(255, 249, 225, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
   --glass-lumen-glow:
-    0 0 72px rgba(255, 210, 140, 0.35),
-    0 0 120px rgba(255, 235, 200, 0.18);
+    0 0 40px rgba(255, 235, 200, 0.1),
+    0 0 72px rgba(227, 242, 253, 0.06);
 
   --shadow-soft: 0 8px 40px rgba(107, 77, 87, 0.07);
   --shadow-card: var(--glass-shadow);
   --glow-card: var(--glass-shadow), var(--glass-inset);
   --glow-card-hover:
-    0 8px 32px rgba(107, 77, 87, 0.1),
-    0 0 72px rgba(255, 210, 140, 0.22),
+    0 6px 28px rgba(107, 77, 87, 0.06),
+    0 0 56px rgba(255, 235, 200, 0.1),
     var(--glass-inset-strong);
-  --glow-lantern: 0 0 60px rgba(255, 210, 140, 0.25), 0 0 120px rgba(255, 200, 120, 0.12);
+  --glow-lantern: 0 0 40px rgba(255, 235, 200, 0.12), 0 0 80px rgba(227, 242, 253, 0.06);
   --glow-button: var(--glass-shadow), var(--glass-inset);
   --glow-button-hover:
-    0 8px 32px rgba(255, 200, 120, 0.2),
+    0 6px 24px rgba(255, 235, 200, 0.1),
     var(--glass-inset-strong);
   --transition: 450ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-glow: 600ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -119,19 +117,23 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   background-image:
-    radial-gradient(ellipse 70% 55% at 50% 15%, rgba(255, 235, 180, 0.55) 0%, transparent 62%),
-    radial-gradient(ellipse 55% 45% at 50% 20%, rgba(255, 238, 195, 0.38) 0%, transparent 58%),
-    radial-gradient(ellipse 50% 40% at 20% 15%, rgba(255, 220, 160, 0.28) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 35% at 82% 8%, rgba(255, 235, 200, 0.22) 0%, transparent 50%),
-    radial-gradient(ellipse 90% 55% at 15% 8%, rgba(232, 196, 196, 0.32) 0%, transparent 58%),
-    radial-gradient(ellipse 65% 45% at 88% 15%, rgba(122, 141, 145, 0.14) 0%, transparent 52%),
-    radial-gradient(ellipse 75% 55% at 75% 92%, rgba(139, 148, 103, 0.16) 0%, transparent 48%),
-    radial-gradient(ellipse 55% 35% at 8% 78%, rgba(184, 136, 107, 0.14) 0%, transparent 42%),
-    radial-gradient(circle 22% at 65% 55%, rgba(255, 248, 220, 0.45) 0%, transparent 100%),
-    radial-gradient(circle 14% at 30% 70%, rgba(255, 235, 200, 0.32) 0%, transparent 100%);
+    radial-gradient(ellipse 80% 60% at 50% 12%, rgba(255, 249, 225, 0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 45% at 18% 20%, rgba(251, 233, 231, 0.28) 0%, transparent 58%),
+    radial-gradient(ellipse 50% 40% at 85% 15%, rgba(227, 242, 253, 0.3) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 72% 75%, rgba(224, 242, 241, 0.22) 0%, transparent 52%),
+    radial-gradient(ellipse 45% 35% at 12% 72%, rgba(255, 249, 225, 0.2) 0%, transparent 48%),
+    radial-gradient(ellipse 40% 30% at 55% 55%, rgba(227, 242, 253, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 28% at 38% 88%, rgba(251, 233, 231, 0.14) 0%, transparent 45%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   position: relative;
+  animation: ambient-shift 30s ease-in-out infinite;
+}
+
+@keyframes ambient-shift {
+  0%, 100% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+  33% { background-position: 2% 1%, -1% 2%, 1% -1%, -2% 1%, 1% 2%, -1% -1%, 2% 0%; }
+  66% { background-position: -1% 2%, 2% -1%, -2% 1%, 1% -2%, -1% 1%, 2% 1%, -1% 2%; }
 }
 
 /* Paper grain overlay */
@@ -158,11 +160,17 @@ body::after {
   height: 40vh;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(ellipse 100% 100% at 50% 100%, rgba(255, 210, 140, 0.14) 0%, transparent 70%);
+  background: radial-gradient(ellipse 100% 100% at 50% 100%, rgba(255, 249, 225, 0.1) 0%, transparent 70%);
+  animation: floor-glow 20s ease-in-out infinite;
+}
+
+@keyframes floor-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
 }
 
 /* --------------------------------------------------------------------------
-   Ambient light orbs (bokeh)
+   Ambient light orbs & caustic refractions
    -------------------------------------------------------------------------- */
 
 .ambient-light {
@@ -176,9 +184,9 @@ body::after {
 .light-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(40px);
-  opacity: 0.5;
-  animation: pulse-light 10s ease-in-out infinite;
+  filter: blur(48px);
+  opacity: 0.45;
+  animation: drift-light 18s ease-in-out infinite;
 }
 
 .light-orb--1 {
@@ -186,7 +194,7 @@ body::after {
   left: 12%;
   width: clamp(6rem, 18vw, 12rem);
   height: clamp(6rem, 18vw, 12rem);
-  background: radial-gradient(circle, var(--color-glow-warm) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 249, 225, 0.55) 0%, transparent 70%);
   animation-delay: 0s;
 }
 
@@ -195,8 +203,8 @@ body::after {
   right: 8%;
   width: clamp(8rem, 22vw, 16rem);
   height: clamp(8rem, 22vw, 16rem);
-  background: radial-gradient(circle, rgba(255, 248, 220, 0.5) 0%, transparent 70%);
-  animation-delay: -3s;
+  background: radial-gradient(circle, rgba(227, 242, 253, 0.4) 0%, transparent 70%);
+  animation-delay: -5s;
 }
 
 .light-orb--3 {
@@ -204,8 +212,8 @@ body::after {
   left: 25%;
   width: clamp(5rem, 14vw, 10rem);
   height: clamp(5rem, 14vw, 10rem);
-  background: radial-gradient(circle, rgba(230, 240, 243, 0.45) 0%, transparent 70%);
-  animation-delay: -6s;
+  background: radial-gradient(circle, rgba(224, 242, 241, 0.38) 0%, transparent 70%);
+  animation-delay: -10s;
 }
 
 .light-orb--4 {
@@ -213,14 +221,110 @@ body::after {
   left: 55%;
   width: clamp(4rem, 10vw, 7rem);
   height: clamp(4rem, 10vw, 7rem);
-  background: radial-gradient(circle, rgba(255, 235, 200, 0.4) 0%, transparent 70%);
-  animation-delay: -2s;
-  filter: blur(28px);
+  background: radial-gradient(circle, rgba(251, 233, 231, 0.35) 0%, transparent 70%);
+  animation-delay: -3s;
+  filter: blur(36px);
 }
 
-@keyframes pulse-light {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.65; transform: scale(1.08); }
+.light-orb--5 {
+  top: 18%;
+  right: 28%;
+  width: clamp(3rem, 8vw, 5rem);
+  height: clamp(3rem, 8vw, 5rem);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 249, 225, 0.2) 40%, transparent 70%);
+  animation-delay: -8s;
+  filter: blur(24px);
+}
+
+.light-orb--6 {
+  bottom: 35%;
+  right: 18%;
+  width: clamp(5rem, 12vw, 9rem);
+  height: clamp(5rem, 12vw, 9rem);
+  background: radial-gradient(circle, rgba(227, 242, 253, 0.32) 0%, transparent 68%);
+  animation-delay: -14s;
+}
+
+/* Drifting caustic flecks — prismatic light spots */
+.caustic {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  mix-blend-mode: soft-light;
+  animation: caustic-drift 22s ease-in-out infinite;
+}
+
+.caustic--1 {
+  top: 22%;
+  left: 38%;
+  width: clamp(4rem, 10vw, 7rem);
+  height: clamp(2rem, 5vw, 3.5rem);
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.55) 0%, rgba(255, 249, 225, 0.25) 35%, transparent 70%);
+  animation-delay: -2s;
+}
+
+.caustic--2 {
+  top: 48%;
+  left: 68%;
+  width: clamp(3rem, 7vw, 5rem);
+  height: clamp(1.5rem, 4vw, 2.5rem);
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.45) 0%, rgba(227, 242, 253, 0.2) 40%, transparent 72%);
+  animation-delay: -7s;
+  animation-duration: 26s;
+}
+
+.caustic--3 {
+  top: 72%;
+  left: 15%;
+  width: clamp(5rem, 12vw, 8rem);
+  height: clamp(2.5rem, 6vw, 4rem);
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.4) 0%, rgba(251, 233, 231, 0.18) 38%, transparent 68%);
+  animation-delay: -12s;
+  animation-duration: 20s;
+}
+
+.caustic--4 {
+  top: 60%;
+  left: 42%;
+  width: clamp(2.5rem, 6vw, 4rem);
+  height: clamp(3rem, 7vw, 5rem);
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.5) 0%, rgba(224, 242, 241, 0.22) 35%, transparent 65%);
+  animation-delay: -16s;
+  animation-duration: 24s;
+}
+
+@keyframes drift-light {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    opacity: 0.55;
+    transform: translate(12px, -8px) scale(1.06);
+  }
+  50% {
+    opacity: 0.42;
+    transform: translate(-8px, 14px) scale(0.96);
+  }
+  75% {
+    opacity: 0.58;
+    transform: translate(6px, 6px) scale(1.04);
+  }
+}
+
+@keyframes caustic-drift {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    opacity: 0.55;
+    transform: translate(24px, -16px) rotate(8deg) scale(1.12);
+  }
+  66% {
+    opacity: 0.38;
+    transform: translate(-18px, 20px) rotate(-5deg) scale(0.92);
+  }
 }
 
 main,
@@ -231,33 +335,31 @@ main,
 }
 
 /* --------------------------------------------------------------------------
-   Stained glass system — luminescent sheer panes
+   Soft glass system — sheer refraction + drifting color
    -------------------------------------------------------------------------- */
 
 .glass {
   position: relative;
   background: var(--glass-bg);
-  border: 1.5px solid var(--glass-border);
-  box-shadow: var(--glass-shadow), var(--glass-inset), var(--glass-lumen-glow);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-lumen-glow);
   overflow: hidden;
   isolation: isolate;
-  animation: stained-glow 12s ease-in-out infinite;
+  animation: glass-lumen 16s ease-in-out infinite;
 }
 
-@keyframes stained-glow {
+@keyframes glass-lumen {
   0%, 100% {
     box-shadow:
       var(--glass-shadow),
-      var(--glass-inset),
-      0 0 60px rgba(255, 210, 140, 0.22),
-      0 0 100px rgba(255, 235, 200, 0.1);
+      0 0 36px rgba(255, 249, 225, 0.08),
+      0 0 64px rgba(227, 242, 253, 0.04);
   }
   50% {
     box-shadow:
       var(--glass-shadow),
-      var(--glass-inset),
-      0 0 96px rgba(255, 200, 120, 0.42),
-      0 0 160px rgba(255, 230, 180, 0.22);
+      0 0 52px rgba(255, 249, 225, 0.14),
+      0 0 88px rgba(224, 242, 241, 0.08);
   }
 }
 
@@ -279,29 +381,45 @@ main,
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: rgba(255, 242, 215, 0.1);
   background-image:
-    linear-gradient(150deg, rgba(255, 255, 255, 0.45) 0%, transparent 38%),
-    radial-gradient(ellipse 90% 80% at 36% 28%, rgba(255, 225, 155, 0.78) 0%, transparent 68%),
-    url("stained-glass-patchwork.svg");
-  background-size: 100% 100%, 100% 100%, var(--stained-tile) var(--stained-tile);
-  background-repeat: no-repeat, no-repeat, repeat;
+    radial-gradient(ellipse 55% 45% at 28% 22%, rgba(255, 255, 255, 0.28) 0%, transparent 68%),
+    radial-gradient(ellipse 40% 38% at 72% 58%, rgba(227, 242, 253, 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 32% 30% at 48% 78%, rgba(224, 242, 241, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 22% 26% at 12% 62%, rgba(251, 233, 231, 0.16) 0%, transparent 55%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.12) 0%, transparent 44%);
+  background-size: 200% 200%, 180% 180%, 160% 160%, 140% 140%, 100% 100%;
+  background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 0% 0%;
+  background-repeat: no-repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 1;
+  opacity: 0.85;
+  animation: glass-caustic 20s ease-in-out infinite;
+}
+
+@keyframes glass-caustic {
+  0%, 100% {
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 0% 0%;
+    opacity: 0.7;
+  }
+  33% {
+    background-position: 30% 20%, 70% 80%, 60% 30%, 20% 60%, 0% 0%;
+    opacity: 0.9;
+  }
+  66% {
+    background-position: 60% 40%, 40% 60%, 30% 70%, 50% 20%, 0% 0%;
+    opacity: 0.65;
+  }
 }
 
 .glass--hero::before {
-  background-size: 100% 100%, 100% 100%, var(--stained-tile-lg) var(--stained-tile-lg);
+  background-size: 220% 220%, 200% 200%, 180% 180%, 160% 160%, 100% 100%;
+  animation-duration: 24s;
 }
 
 .glass--nav::before,
 .glass--footer::before {
-  background-image:
-    linear-gradient(150deg, rgba(255, 255, 255, 0.38) 0%, transparent 38%),
-    radial-gradient(ellipse 85% 75% at 50% 40%, rgba(255, 230, 170, 0.65) 0%, transparent 68%),
-    url("stained-glass-lantern.svg");
-  background-size: 100% 100%, 100% 100%, var(--stained-tile-sm) var(--stained-tile-sm);
+  opacity: 0.75;
+  animation-duration: 18s;
 }
 
 .glass > * {
@@ -337,7 +455,7 @@ main,
   position: relative;
   padding: 0.5rem 1rem;
   background: var(--glass-bg-subtle);
-  border: 1.5px solid var(--glass-border-subtle);
+  border: 1px solid var(--glass-border-subtle);
   border-radius: var(--radius-pill);
   box-shadow: var(--glass-inset);
   transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
@@ -363,15 +481,16 @@ main,
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: rgba(255, 248, 235, 0.06);
   background-image:
-    radial-gradient(ellipse 90% 80% at 50% 40%, rgba(255, 230, 170, 0.55) 0%, transparent 70%),
-    url("stained-glass-lantern.svg");
-  background-size: 100% 100%, 56px 56px;
-  background-repeat: no-repeat, repeat;
+    radial-gradient(ellipse 80% 70% at 50% 40%, rgba(255, 255, 255, 0.2) 0%, transparent 68%),
+    radial-gradient(ellipse 50% 45% at 70% 65%, rgba(227, 242, 253, 0.12) 0%, transparent 60%);
+  background-size: 180% 180%, 160% 160%;
+  background-position: 0% 0%, 100% 100%;
+  background-repeat: no-repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 1;
+  opacity: 0.8;
+  animation: glass-caustic 18s ease-in-out infinite;
 }
 
 .glass-pill:hover {
@@ -449,16 +568,18 @@ a:hover {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: rgba(255, 242, 215, 0.1);
   background-image:
-    linear-gradient(150deg, rgba(255, 255, 255, 0.42) 0%, transparent 38%),
-    radial-gradient(ellipse 90% 80% at 36% 28%, rgba(255, 225, 155, 0.75) 0%, transparent 68%),
-    url("stained-glass-patchwork.svg");
-  background-size: 100% 100%, 100% 100%, var(--stained-tile-lg) var(--stained-tile-lg);
-  background-repeat: no-repeat, no-repeat, repeat;
+    radial-gradient(ellipse 55% 45% at 28% 22%, rgba(255, 255, 255, 0.24) 0%, transparent 68%),
+    radial-gradient(ellipse 40% 38% at 72% 58%, rgba(227, 242, 253, 0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 32% 30% at 48% 78%, rgba(224, 242, 241, 0.12) 0%, transparent 60%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.1) 0%, transparent 44%);
+  background-size: 200% 200%, 180% 180%, 160% 160%, 100% 100%;
+  background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%;
+  background-repeat: no-repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 1;
+  opacity: 0.8;
+  animation: glass-caustic 22s ease-in-out infinite;
 }
 
 .section--wash > * {
@@ -597,7 +718,7 @@ p {
 }
 
 .site-nav a:hover {
-  background: rgba(255, 235, 200, 0.14);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--color-text);
 }
 
@@ -652,38 +773,35 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: rgba(255, 248, 235, 0.08);
   background-image:
-    radial-gradient(ellipse 90% 80% at 50% 35%, rgba(255, 230, 170, 0.6) 0%, transparent 70%),
-    url("stained-glass-lantern.svg");
-  background-size: 100% 100%, 52px 52px;
-  background-repeat: no-repeat, repeat;
+    radial-gradient(ellipse 80% 70% at 50% 35%, rgba(255, 255, 255, 0.18) 0%, transparent 68%),
+    radial-gradient(ellipse 50% 45% at 65% 70%, rgba(227, 242, 253, 0.1) 0%, transparent 60%);
+  background-size: 180% 180%, 160% 160%;
+  background-position: 0% 0%, 100% 100%;
+  background-repeat: no-repeat;
   pointer-events: none;
   z-index: 0;
-  opacity: 1;
+  opacity: 0.75;
+  animation: glass-caustic 16s ease-in-out infinite;
 }
 
 .btn--primary {
-  background: rgba(138, 154, 123, 0.48);
+  background: rgba(138, 154, 123, 0.42);
   color: #fff;
-  border-color: rgba(61, 50, 41, 0.32);
-  box-shadow: var(--glow-button), 0 0 48px rgba(255, 220, 160, 0.28);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: var(--glow-button), 0 0 32px rgba(255, 249, 225, 0.12);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
 .btn--primary::before {
-  background-image:
-    radial-gradient(ellipse 85% 75% at 45% 35%, rgba(255, 230, 170, 0.55) 0%, transparent 68%),
-    url("stained-glass-patchwork.svg");
-  background-size: 100% 100%, 88px 88px;
-  opacity: 0.85;
+  opacity: 0.7;
 }
 
 .btn--primary:hover {
-  background: rgba(150, 110, 120, 0.62);
+  background: rgba(150, 110, 120, 0.55);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: var(--glow-button-hover), 0 0 48px rgba(255, 210, 140, 0.25);
+  box-shadow: var(--glow-button-hover), 0 0 36px rgba(255, 249, 225, 0.1);
 }
 
 .btn--ghost {
@@ -726,12 +844,11 @@ p {
   max-width: 42rem;
   box-shadow:
     var(--glass-shadow),
-    var(--glass-inset),
-    0 0 120px rgba(255, 210, 140, 0.38),
-    0 0 200px rgba(255, 235, 200, 0.2);
+    0 0 72px rgba(255, 249, 225, 0.14),
+    0 0 120px rgba(227, 242, 253, 0.08);
 }
 
-/* Window backlight behind hero stained glass */
+/* Window backlight behind hero glass */
 .hero::before {
   content: "";
   position: absolute;
@@ -740,10 +857,10 @@ p {
   width: clamp(18rem, 55vw, 36rem);
   height: clamp(18rem, 55vw, 36rem);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 238, 180, 0.72) 0%, rgba(255, 220, 150, 0.35) 38%, transparent 74%);
-  filter: blur(6px);
+  background: radial-gradient(circle, rgba(255, 249, 225, 0.5) 0%, rgba(227, 242, 253, 0.2) 42%, transparent 74%);
+  filter: blur(8px);
   pointer-events: none;
-  animation: pulse-light 12s ease-in-out infinite;
+  animation: drift-light 14s ease-in-out infinite;
 }
 
 .hero::after {
@@ -754,9 +871,9 @@ p {
   width: clamp(8rem, 20vw, 14rem);
   height: clamp(8rem, 20vw, 14rem);
   border-radius: 50% 40% 55% 45%;
-  background: radial-gradient(circle, rgba(255, 248, 220, 0.35) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(251, 233, 231, 0.28) 0%, transparent 70%);
   pointer-events: none;
-  animation: float 8s ease-in-out infinite;
+  animation: float 10s ease-in-out infinite;
 }
 
 .hero > * {
@@ -800,7 +917,7 @@ p {
   display: flex;
   flex-direction: column;
   background: var(--glass-bg);
-  border: 1.5px solid var(--glass-border);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--glow-card);
@@ -827,36 +944,40 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: rgba(255, 242, 215, 0.1);
   background-image:
-    linear-gradient(150deg, rgba(255, 255, 255, 0.38) 0%, transparent 38%),
-    radial-gradient(ellipse 85% 75% at 40% 30%, rgba(255, 220, 150, 0.68) 0%, transparent 66%),
-    url("stained-glass-patchwork.svg");
-  background-size: 100% 100%, 100% 100%, 118px 118px;
-  background-repeat: no-repeat, no-repeat, repeat;
+    radial-gradient(ellipse 50% 42% at 32% 28%, rgba(255, 255, 255, 0.22) 0%, transparent 66%),
+    radial-gradient(ellipse 38% 35% at 68% 55%, rgba(227, 242, 253, 0.14) 0%, transparent 62%),
+    radial-gradient(ellipse 28% 28% at 50% 75%, rgba(224, 242, 241, 0.1) 0%, transparent 58%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+  background-size: 200% 200%, 180% 180%, 160% 160%, 100% 100%;
+  background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%;
+  background-repeat: no-repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 1;
+  opacity: 0.8;
+  animation: glass-caustic 20s ease-in-out infinite;
 }
 
 .work-card:nth-child(3n+2)::before {
   background-image:
-    linear-gradient(150deg, rgba(255, 255, 255, 0.38) 0%, transparent 38%),
-    radial-gradient(ellipse 85% 75% at 55% 35%, rgba(255, 210, 140, 0.65) 0%, transparent 66%),
-    url("stained-glass-warm.svg");
+    radial-gradient(ellipse 50% 42% at 55% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 66%),
+    radial-gradient(ellipse 38% 35% at 30% 60%, rgba(251, 233, 231, 0.14) 0%, transparent 62%),
+    radial-gradient(ellipse 28% 28% at 70% 70%, rgba(255, 249, 225, 0.1) 0%, transparent 58%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
 }
 
 .work-card:nth-child(3n+3)::before {
   background-image:
-    linear-gradient(150deg, rgba(255, 255, 255, 0.42) 0%, transparent 38%),
-    radial-gradient(ellipse 85% 75% at 50% 40%, rgba(255, 235, 190, 0.7) 0%, transparent 66%),
-    url("stained-glass-lantern.svg");
-  background-size: 100% 100%, 100% 100%, 84px 84px;
+    radial-gradient(ellipse 50% 42% at 45% 35%, rgba(255, 255, 255, 0.22) 0%, transparent 66%),
+    radial-gradient(ellipse 38% 35% at 75% 45%, rgba(224, 242, 241, 0.14) 0%, transparent 62%),
+    radial-gradient(ellipse 28% 28% at 25% 65%, rgba(227, 242, 253, 0.1) 0%, transparent 58%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+  animation-duration: 24s;
 }
 
 .work-card:hover {
   transform: translateY(-6px) scale(1.01);
-  border-color: rgba(61, 50, 41, 0.34);
+  border-color: rgba(255, 255, 255, 0.4);
   box-shadow: var(--glow-card-hover);
 }
 
@@ -871,13 +992,14 @@ p {
 
 .work-card__image {
   aspect-ratio: 16 / 10;
-  background-color: rgba(255, 242, 215, 0.12);
+  background-color: rgba(255, 255, 255, 0.02);
   background-image:
-    radial-gradient(ellipse 80% 70% at 50% 45%, rgba(255, 225, 155, 0.55) 0%, transparent 68%),
-    url("stained-glass-patchwork.svg");
-  background-size: 100% 100%, 96px 96px;
-  background-repeat: no-repeat, repeat;
-  backdrop-filter: blur(10px) saturate(var(--glass-saturate));
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(255, 249, 225, 0.28) 0%, transparent 68%),
+    radial-gradient(ellipse 40% 35% at 70% 30%, rgba(227, 242, 253, 0.15) 0%, transparent 60%);
+  background-size: 180% 180%, 160% 160%;
+  background-position: 0% 0%, 100% 100%;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(8px) saturate(var(--glass-saturate));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -890,6 +1012,7 @@ p {
   overflow: hidden;
   border-bottom: 1px solid var(--glass-border-subtle);
   z-index: 2;
+  animation: glass-caustic 18s ease-in-out infinite;
 }
 
 .work-card__image::before {
@@ -901,15 +1024,16 @@ p {
   width: 60%;
   height: 50%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 248, 220, 0.55) 0%, transparent 70%);
-  filter: blur(8px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
+  filter: blur(10px);
+  animation: caustic-drift 16s ease-in-out infinite;
 }
 
 .work-card__image::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 70%, rgba(255, 249, 227, 0.35) 0%, transparent 50%);
+  background: radial-gradient(circle at 30% 70%, rgba(255, 249, 225, 0.18) 0%, transparent 50%);
 }
 
 .work-card__tags {
@@ -1054,16 +1178,18 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: rgba(255, 242, 215, 0.1);
   background-image:
-    linear-gradient(150deg, rgba(255, 255, 255, 0.4) 0%, transparent 38%),
-    radial-gradient(ellipse 90% 80% at 40% 30%, rgba(255, 225, 155, 0.72) 0%, transparent 68%),
-    url("stained-glass-patchwork.svg");
-  background-size: 100% 100%, 100% 100%, var(--stained-tile) var(--stained-tile);
-  background-repeat: no-repeat, no-repeat, repeat;
+    radial-gradient(ellipse 55% 45% at 28% 22%, rgba(255, 255, 255, 0.22) 0%, transparent 68%),
+    radial-gradient(ellipse 40% 38% at 72% 58%, rgba(227, 242, 253, 0.14) 0%, transparent 65%),
+    radial-gradient(ellipse 32% 30% at 48% 78%, rgba(224, 242, 241, 0.1) 0%, transparent 60%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.1) 0%, transparent 44%);
+  background-size: 200% 200%, 180% 180%, 160% 160%, 100% 100%;
+  background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%;
+  background-repeat: no-repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 1;
+  opacity: 0.8;
+  animation: glass-caustic 20s ease-in-out infinite;
 }
 
 .case-meta > div {
@@ -1108,15 +1234,16 @@ p {
 
 .case-image {
   aspect-ratio: 16 / 9;
-  background-color: rgba(255, 242, 215, 0.12);
+  background-color: rgba(255, 255, 255, 0.02);
   background-image:
-    radial-gradient(ellipse 85% 75% at 45% 35%, rgba(255, 225, 155, 0.65) 0%, transparent 68%),
-    url("stained-glass-patchwork.svg");
-  background-size: 100% 100%, 110px 110px;
-  background-repeat: no-repeat, repeat;
+    radial-gradient(ellipse 70% 60% at 45% 35%, rgba(255, 249, 225, 0.25) 0%, transparent 68%),
+    radial-gradient(ellipse 40% 35% at 70% 55%, rgba(227, 242, 253, 0.14) 0%, transparent 60%);
+  background-size: 180% 180%, 160% 160%;
+  background-position: 0% 0%, 100% 100%;
+  background-repeat: no-repeat;
   backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
-  border: 1.5px solid var(--glass-border);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
@@ -1130,6 +1257,7 @@ p {
   box-shadow: var(--glow-card);
   position: relative;
   overflow: hidden;
+  animation: glass-caustic 18s ease-in-out infinite;
 }
 
 .case-image::before {
@@ -1140,15 +1268,16 @@ p {
   width: 35%;
   height: 45%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 248, 220, 0.5) 0%, transparent 70%);
-  filter: blur(6px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
+  filter: blur(8px);
+  animation: caustic-drift 14s ease-in-out infinite;
 }
 
 .case-image::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 60% 40%, rgba(255, 252, 247, 0.45) 0%, transparent 55%);
+  background: radial-gradient(ellipse at 60% 40%, rgba(255, 252, 247, 0.25) 0%, transparent 55%);
 }
 
 .case-image--wide {
@@ -1200,16 +1329,17 @@ p {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: rgba(255, 242, 215, 0.1);
   background-image:
-    linear-gradient(150deg, rgba(255, 255, 255, 0.38) 0%, transparent 38%),
-    radial-gradient(ellipse 85% 75% at 50% 35%, rgba(255, 220, 150, 0.68) 0%, transparent 66%),
-    url("stained-glass-lantern.svg");
-  background-size: 100% 100%, 100% 100%, 76px 76px;
-  background-repeat: no-repeat, no-repeat, repeat;
+    radial-gradient(ellipse 50% 42% at 50% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 66%),
+    radial-gradient(ellipse 38% 35% at 70% 65%, rgba(227, 242, 253, 0.12) 0%, transparent 62%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.08) 0%, transparent 40%);
+  background-size: 180% 180%, 160% 160%, 100% 100%;
+  background-position: 0% 0%, 100% 100%, 0% 0%;
+  background-repeat: no-repeat;
   pointer-events: none;
   z-index: 1;
-  opacity: 1;
+  opacity: 0.75;
+  animation: glass-caustic 18s ease-in-out infinite;
 }
 
 .case-result:hover {
@@ -1373,6 +1503,14 @@ p {
     scroll-behavior: auto;
   }
 
+  body {
+    animation: none;
+  }
+
+  body::after {
+    animation: none;
+  }
+
   .reveal {
     opacity: 1;
     transform: none;
@@ -1382,13 +1520,23 @@ p {
 
   .hero::before,
   .hero::after,
-  .light-orb {
+  .light-orb,
+  .caustic {
     animation: none;
   }
 
   .btn,
   .work-card,
-  .glass {
+  .glass,
+  .glass::before,
+  .glass-pill::before,
+  .section--wash::before,
+  .work-card::before,
+  .work-card__image,
+  .case-meta::before,
+  .case-result::before,
+  .case-image,
+  .btn::before {
     transition: none;
     animation: none;
   }
