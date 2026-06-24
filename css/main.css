@@ -11,8 +11,8 @@
   --color-sage-glow: rgba(180, 200, 170, 0.12);
 
   --color-bg-base: #ffffff;
-  --color-surface: rgba(255, 255, 255, 0.08);
-  --color-surface-solid: rgba(255, 255, 255, 0.12);
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-surface-solid: rgba(255, 255, 255, 0.08);
 
   /* Typography — warm-tinted dark on white */
   --color-text: #1a1410;
@@ -40,49 +40,49 @@
   --radius-xl: 28px;
   --radius-pill: 999px;
 
-  /* Figma liquid glass — exact values */
-  --glass-blur: 20px;
-  --glass-blur-sm: 20px;
-  --glass-saturate: 180%;
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-bg-hover: rgba(255, 255, 255, 0.14);
-  --glass-bg-strong: rgba(255, 255, 255, 0.12);
-  --glass-bg-subtle: rgba(255, 255, 255, 0.06);
-  --glass-bg-btn: rgba(255, 255, 255, 0.06);
-  --glass-bg-btn-hover: rgba(255, 255, 255, 0.25);
-  --glass-border: rgba(255, 255, 255, 0.35);
-  --glass-border-bright: rgba(255, 210, 190, 0.6);
-  --glass-border-subtle: rgba(255, 255, 255, 0.25);
+  /* visionOS liquid glass — ultra-clear */
+  --glass-blur: 24px;
+  --glass-blur-sm: 24px;
+  --glass-saturate: 200%;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-hover: rgba(255, 255, 255, 0.08);
+  --glass-bg-strong: rgba(255, 255, 255, 0.07);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.03);
+  --glass-bg-btn: rgba(255, 255, 255, 0.04);
+  --glass-bg-btn-hover: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-border-bright: rgba(255, 210, 190, 0.45);
+  --glass-border-subtle: rgba(255, 255, 255, 0.15);
   --glass-highlight:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, transparent 45%),
-    radial-gradient(ellipse at 15% 15%, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, transparent 42%),
+    radial-gradient(ellipse at 15% 15%, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
   --glass-iridescent: linear-gradient(
     135deg,
-    rgba(255, 210, 190, 0.6) 0%,
-    rgba(210, 220, 255, 0.4) 50%,
-    rgba(190, 255, 210, 0.3) 100%
+    rgba(255, 210, 190, 0.45) 0%,
+    rgba(210, 220, 255, 0.3) 50%,
+    rgba(190, 255, 210, 0.22) 100%
   );
   --glass-shadow:
-    0 8px 32px rgba(180, 150, 130, 0.15),
-    0 2px 8px rgba(180, 150, 130, 0.1);
+    0 8px 32px rgba(180, 150, 130, 0.12),
+    0 2px 8px rgba(180, 150, 130, 0.06);
   --glass-inset:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 1px 0 0 rgba(255, 255, 255, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 1px 0 0 rgba(255, 255, 255, 0.15);
   --glass-inset-strong: var(--glass-inset);
 
   --glow-card: var(--glass-shadow);
   --glow-card-hover:
-    0 8px 32px rgba(180, 150, 130, 0.18),
-    0 2px 8px rgba(180, 150, 130, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.65),
-    inset 1px 0 0 rgba(255, 255, 255, 0.35);
+    0 10px 36px rgba(180, 150, 130, 0.14),
+    0 2px 8px rgba(180, 150, 130, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.2);
   --glow-card-hover-warm: var(--glow-card-hover);
   --glow-button: var(--glass-shadow), var(--glass-inset);
   --glow-button-hover:
-    0 8px 32px rgba(180, 150, 130, 0.18),
-    0 0 20px rgba(255, 210, 190, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 1px 0 0 rgba(255, 255, 255, 0.4);
+    0 8px 32px rgba(180, 150, 130, 0.14),
+    0 0 16px rgba(255, 210, 190, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 1px 0 0 rgba(255, 255, 255, 0.22);
 
   --transition: 600ms ease-in-out;
   --transition-glow: 600ms ease-in-out;
@@ -100,6 +100,8 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--color-bg-base);
+  min-height: 100%;
 }
 
 body {
@@ -109,7 +111,7 @@ body {
   font-weight: 300;
   line-height: 1.65;
   color: var(--color-text-muted);
-  background-color: var(--color-bg-base);
+  background-color: transparent;
   -webkit-font-smoothing: antialiased;
   position: relative;
   min-height: 100vh;
@@ -120,6 +122,7 @@ main,
 .site-footer {
   position: relative;
   z-index: 1;
+  background: transparent;
 }
 
 /* --------------------------------------------------------------------------
@@ -131,7 +134,6 @@ main,
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  overflow: hidden;
   background: var(--color-bg-base);
 }
 
@@ -148,7 +150,6 @@ main,
   --glow-offset-y: 0px;
   transform: translate(var(--glow-offset-x), var(--glow-offset-y));
   animation: glow-drift var(--glow-duration) ease-in-out infinite;
-  will-change: transform, opacity;
   transition: transform 800ms ease-out;
 }
 
@@ -287,7 +288,6 @@ main,
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   overflow: hidden;
-  isolation: isolate;
   transition: box-shadow var(--transition-glow), background var(--transition);
 }
 
@@ -363,15 +363,14 @@ main,
   justify-content: center;
   position: relative;
   padding: 0.5rem 1rem;
-  background: var(--glass-bg-subtle);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-pill);
   box-shadow: var(--glass-shadow), var(--glass-inset);
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+  transition: background var(--transition), box-shadow var(--transition);
   overflow: hidden;
-  isolation: isolate;
 }
 
 .glass-pill::before {
@@ -402,7 +401,6 @@ main,
 .glass-pill:hover {
   background: var(--glass-bg-hover);
   box-shadow: var(--glow-card-hover-warm);
-  transform: translateY(-1px);
 }
 
 img {
@@ -449,7 +447,6 @@ a:hover {
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   overflow: hidden;
-  isolation: isolate;
   transition: box-shadow var(--transition-glow), background var(--transition);
 }
 
@@ -490,13 +487,11 @@ a:hover {
 
 .reveal {
   opacity: 0;
-  transform: translateY(1.25rem);
-  transition: opacity 900ms ease-in-out, transform 900ms ease-in-out;
+  transition: opacity 900ms ease-in-out;
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* --------------------------------------------------------------------------
@@ -599,12 +594,10 @@ p {
   align-items: center;
   gap: 0.375rem;
   padding: 0.25rem;
-  background: var(--glass-bg-subtle);
-  border: 1px solid var(--glass-border-subtle);
+  background: transparent;
+  border: none;
   border-radius: var(--radius-pill);
-  box-shadow: var(--glass-inset);
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: none;
 }
 
 .site-nav a {
@@ -616,7 +609,6 @@ p {
   color: var(--color-nav);
   border: none;
   transition: background var(--transition), color var(--transition), box-shadow var(--transition);
-  isolation: isolate;
 }
 
 .site-nav a::after {
@@ -637,12 +629,12 @@ p {
 }
 
 .site-nav a:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--color-text);
 }
 
 .site-nav a[aria-current="page"] {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--color-text);
   box-shadow: var(--glass-inset);
 }
@@ -654,7 +646,7 @@ p {
 
 .nav-toggle {
   display: none;
-  background: var(--glass-bg-subtle);
+  background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   border: 1px solid var(--glass-border);
@@ -684,11 +676,10 @@ p {
   border: none;
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  isolation: isolate;
 }
 
 .btn::before {
@@ -727,7 +718,6 @@ p {
 .btn--primary:hover {
   background: var(--glass-bg-btn-hover);
   color: var(--color-accent-hover);
-  transform: translateY(-2px);
   box-shadow: var(--glow-button-hover);
 }
 
@@ -736,7 +726,7 @@ p {
 }
 
 .btn--ghost {
-  background: var(--glass-bg-subtle);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border-subtle);
   color: var(--color-text-muted);
   box-shadow: var(--glass-inset);
@@ -821,9 +811,8 @@ p {
   box-shadow: var(--glass-shadow), var(--glass-inset);
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  transition: transform var(--transition), box-shadow var(--transition-glow), background var(--transition);
+  transition: box-shadow var(--transition-glow), background var(--transition);
   position: relative;
-  isolation: isolate;
 }
 
 .work-card::before {
@@ -853,14 +842,9 @@ p {
   z-index: 2;
 }
 
-.work-card:nth-child(odd):hover,
-.work-card:nth-child(even):hover {
+.work-card:hover {
   box-shadow: var(--glow-card-hover-warm);
   background: var(--glass-bg-hover);
-}
-
-.work-card:hover {
-  transform: translateY(-4px);
 }
 
 .work-card__body {
@@ -874,12 +858,7 @@ p {
 
 .work-card__image {
   aspect-ratio: 16 / 10;
-  background-color: rgba(255, 255, 255, 0.04);
-  background-image:
-    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(240, 190, 160, 0.12) 0%, transparent 68%),
-    radial-gradient(ellipse 40% 35% at 70% 30%, rgba(220, 170, 160, 0.08) 0%, transparent 60%);
-  background-size: 180% 180%, 160% 160%;
-  background-position: 0% 0%, 100% 100%;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -889,27 +868,12 @@ p {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   position: relative;
-  overflow: hidden;
   border-bottom: 1px solid var(--glass-border-subtle);
   z-index: 2;
-  transition: background-position var(--transition-glow);
-}
-
-.work-card:hover .work-card__image {
-  background-position: 20% 30%, 80% 70%;
 }
 
 .work-card__image::before {
-  content: "";
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  translate: -50% 0;
-  width: 60%;
-  height: 50%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
-  filter: blur(12px);
+  display: none;
 }
 
 .work-card__tags {
@@ -925,13 +889,13 @@ p {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 0.35rem 0.75rem;
-  background: var(--glass-bg-subtle);
+  background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   border: 1px solid var(--glass-border-subtle);
   border-radius: var(--radius-pill);
   color: var(--color-text-muted);
-  box-shadow: var(--glass-inset);
+  box-shadow: none;
 }
 
 .work-card__title {
@@ -1063,22 +1027,19 @@ p {
   font-weight: 400;
   margin-bottom: var(--space-md);
   padding: 0.75rem 1.25rem;
-  background: var(--glass-bg-subtle);
+  background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   border: 1px solid var(--glass-border-subtle);
   border-radius: var(--radius-pill);
-  box-shadow: var(--glass-inset);
+  box-shadow: none;
   color: var(--color-text);
   display: inline-block;
 }
 
 .case-image {
   aspect-ratio: 16 / 9;
-  background-color: rgba(255, 255, 255, 0.04);
-  background-image:
-    radial-gradient(ellipse 70% 60% at 45% 35%, rgba(240, 190, 160, 0.1) 0%, transparent 68%),
-    radial-gradient(ellipse 40% 35% at 70% 55%, rgba(220, 170, 160, 0.08) 0%, transparent 60%);
+  background: transparent;
   backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(var(--glass-saturate));
   border: 1px solid var(--glass-border);
@@ -1094,7 +1055,6 @@ p {
   margin-bottom: var(--space-md);
   box-shadow: var(--glow-card);
   position: relative;
-  overflow: hidden;
 }
 
 .case-image--wide {
@@ -1128,13 +1088,12 @@ p {
   box-shadow: var(--glass-shadow), var(--glass-inset);
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  transition: transform var(--transition), box-shadow var(--transition-glow), background var(--transition);
+  transition: box-shadow var(--transition-glow), background var(--transition);
   position: relative;
   overflow: hidden;
 }
 
 .case-result:hover {
-  transform: translateY(-4px);
   background: var(--glass-bg-hover);
   box-shadow: var(--glow-card-hover-warm);
 }
@@ -1229,7 +1188,7 @@ p {
     align-items: stretch;
     gap: 0.25rem;
     padding: 0.5rem;
-    background: var(--glass-bg-strong);
+    background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
     border: 1px solid var(--glass-border);
@@ -1280,7 +1239,6 @@ p {
 
   .reveal {
     opacity: 1;
-    transform: none;
     transition: none;
   }
 
