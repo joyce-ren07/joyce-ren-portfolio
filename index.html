@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Joyce Ren — Product designer and creative technologist.">
+  <title>Joyce Ren — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-logo">Joyce Ren</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        Menu
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="#work" aria-current="page">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <p class="eyebrow">Product Design</p>
+      <h1 class="hero__title">Designing thoughtful digital experiences</h1>
+      <p class="hero__subtitle">
+        I'm a product designer focused on clarity, craft, and impact.
+        I help teams turn complex problems into intuitive products people love to use.
+      </p>
+      <a href="#work" class="btn btn--primary">View selected work</a>
+    </section>
+
+    <section id="work" class="section section--tight">
+      <div class="container">
+        <p class="eyebrow">Selected work</p>
+        <h2>Case studies</h2>
+        <p class="lead">A few projects that highlight my process, collaboration, and outcomes.</p>
+
+        <ul class="work-grid">
+          <li>
+            <article class="work-card">
+              <div class="work-card__image" aria-hidden="true">Project thumbnail</div>
+              <div class="work-card__body">
+                <div class="work-card__tags">
+                  <span class="tag">Product Design</span>
+                  <span class="tag">UX Research</span>
+                </div>
+                <h3 class="work-card__title">Sample Project</h3>
+                <p class="work-card__desc">
+                  Redesigning a workflow tool to reduce task completion time and improve team adoption.
+                </p>
+                <a href="case-studies/sample-project/index.html" class="work-card__link">
+                  Read case study →
+                </a>
+              </div>
+            </article>
+          </li>
+
+          <!-- Duplicate the <li> block above for each new project -->
+        </ul>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>Hi, I'm Joyce</h2>
+        </div>
+        <div class="prose">
+          <p>
+            I design and ship digital products across web and mobile. My work spans
+            discovery, interaction design, prototyping, and close collaboration with
+            engineering and product teams.
+          </p>
+          <p>
+            I'm especially interested in tools that help people work smarter,
+            products with strong information architecture, and design systems that scale.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section--tight">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's work together</h2>
+        <p class="lead">Open to full-time roles, contract work, and interesting collaborations.</p>
+        <div class="contact-links">
+          <a href="mailto:hello@example.com">hello@example.com</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© 2026 Joyce Ren</span>
+      <a href="#work">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
