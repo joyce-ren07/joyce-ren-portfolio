@@ -38,7 +38,10 @@
   --color-accent-hover: #556649;
   --color-accent-warm: var(--color-mauve);
 
-  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-display-soft: "Fraunces", "Playfair Display", Georgia, serif;
+  --font-display-bold: "Syne", system-ui, sans-serif;
+  --font-display-wide: "Syncopate", system-ui, sans-serif;
+  --font-serif: var(--font-display-soft);
   --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --space-xs: 0.5rem;
@@ -261,37 +264,45 @@ a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Typography
+   Typography — layered display system
+   Soft (Fraunces) · Bold (Syne) · Wide (Syncopate)
    -------------------------------------------------------------------------- */
 
 .eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
+  font-family: var(--font-display-wide);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-mauve);
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.05;
   margin: 0 0 var(--space-sm);
   color: var(--color-text);
 }
 
 h1 {
-  font-size: clamp(2.75rem, 6vw, 4.25rem);
-  letter-spacing: -0.01em;
+  font-family: var(--font-display-soft);
+  font-weight: 800;
+  font-size: clamp(2.75rem, 7vw, 4.75rem);
+  letter-spacing: -0.025em;
+  font-variation-settings: "SOFT" 45, "WONK" 1;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-family: var(--font-display-bold);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
+  letter-spacing: -0.03em;
 }
 
 h3 {
+  font-family: var(--font-display-bold);
+  font-weight: 600;
   font-size: 1.375rem;
+  letter-spacing: -0.02em;
 }
 
 p {
@@ -299,6 +310,7 @@ p {
 }
 
 .lead {
+  font-family: var(--font-sans);
   font-size: 1.125rem;
   font-weight: 300;
   color: var(--color-text-muted);
@@ -314,10 +326,30 @@ p {
   margin-bottom: 0;
 }
 
+/* Soft high-contrast accent — Fraunces italic */
 .accent-italic {
-  font-family: var(--font-serif);
+  font-family: var(--font-display-soft);
   font-style: italic;
+  font-weight: 600;
+  font-variation-settings: "SOFT" 60, "WONK" 1;
   color: var(--color-mauve);
+  text-shadow: 0 0 32px rgba(192, 128, 129, 0.25);
+}
+
+/* Wide extended accent — Syncopate */
+.text-wide {
+  font-family: var(--font-display-wide);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--color-sage-dark);
+}
+
+/* Bold geometric accent — Syne */
+.text-bold {
+  font-family: var(--font-display-bold);
+  font-weight: 800;
+  letter-spacing: -0.04em;
 }
 
 /* --------------------------------------------------------------------------
@@ -343,10 +375,10 @@ p {
 }
 
 .site-logo {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: 1.25rem;
-  letter-spacing: 0.01em;
+  font-family: var(--font-display-bold);
+  font-weight: 800;
+  font-size: 1.125rem;
+  letter-spacing: -0.03em;
   color: var(--color-text);
 }
 
@@ -357,9 +389,11 @@ p {
 }
 
 .site-nav a {
-  font-size: 0.8125rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-family: var(--font-display-wide);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--color-text-muted);
 }
 
@@ -389,10 +423,10 @@ p {
   align-items: center;
   gap: var(--space-xs);
   padding: 0.875rem 1.75rem;
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-family: var(--font-display-wide);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   border-radius: 999px;
   border: 1px solid transparent;
@@ -428,9 +462,10 @@ p {
 
 .text-link {
   font-size: 0.875rem;
-  font-weight: 400;
-  font-family: var(--font-serif);
+  font-weight: 600;
+  font-family: var(--font-display-soft);
   font-style: italic;
+  font-variation-settings: "SOFT" 50;
   color: var(--color-mauve);
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, var(--color-mauve) 35%, transparent);
@@ -491,8 +526,23 @@ p {
 }
 
 .hero__title {
-  max-width: 14ch;
+  max-width: 13ch;
   margin-bottom: var(--space-md);
+  text-shadow: 0 0 48px rgba(255, 220, 160, 0.18);
+}
+
+.hero__title-line {
+  display: block;
+}
+
+.hero__title-line--wide {
+  font-family: var(--font-display-wide);
+  font-weight: 700;
+  font-size: 0.72em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-sage-dark);
+  margin-block: 0.05em;
 }
 
 .hero__subtitle {
@@ -591,11 +641,12 @@ p {
 }
 
 .tag {
-  font-size: 0.625rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
+  font-family: var(--font-display-wide);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 0.3rem 0.65rem;
+  padding: 0.35rem 0.7rem;
   background: color-mix(in srgb, var(--color-sage) 15%, var(--color-bg));
   border: 1px solid color-mix(in srgb, var(--color-sage) 25%, transparent);
   border-radius: 999px;
@@ -609,9 +660,10 @@ p {
 }
 
 .work-card__title {
-  font-family: var(--font-serif);
-  font-size: 1.375rem;
-  font-weight: 500;
+  font-family: var(--font-display-bold);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   margin-bottom: var(--space-xs);
 }
 
@@ -625,9 +677,11 @@ p {
 }
 
 .work-card__link {
-  font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-family: var(--font-display-soft);
+  font-size: 1rem;
   font-style: italic;
+  font-weight: 600;
+  font-variation-settings: "SOFT" 50;
   color: var(--color-mauve);
   transition: color var(--transition);
 }
@@ -660,9 +714,11 @@ p {
 }
 
 .contact-links a {
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-family: var(--font-display-soft);
+  font-size: 1.125rem;
   font-style: italic;
+  font-weight: 600;
+  font-variation-settings: "SOFT" 50;
   color: var(--color-mauve);
   border-bottom: 1px solid color-mix(in srgb, var(--color-mauve) 30%, transparent);
   padding-bottom: 2px;
@@ -683,8 +739,12 @@ p {
 }
 
 .case-hero__title {
-  max-width: 18ch;
+  max-width: 16ch;
   margin-bottom: var(--space-sm);
+  font-family: var(--font-display-soft);
+  font-weight: 800;
+  font-variation-settings: "SOFT" 45, "WONK" 1;
+  text-shadow: 0 0 40px rgba(255, 220, 160, 0.15);
 }
 
 .case-hero__summary {
@@ -711,9 +771,10 @@ p {
 }
 
 .case-meta dt {
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-family: var(--font-display-wide);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-mauve);
   margin-bottom: 0.35rem;
@@ -731,7 +792,10 @@ p {
 }
 
 .case-section__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display-bold);
+  font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--color-border);
@@ -814,19 +878,23 @@ p {
 
 .case-result__value {
   display: block;
-  font-family: var(--font-serif);
-  font-size: 2.25rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display-soft);
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variation-settings: "SOFT" 40, "WONK" 1;
   color: var(--color-plum);
   margin-bottom: 0.35rem;
+  text-shadow: 0 0 28px rgba(107, 77, 87, 0.12);
 }
 
 .case-result__label {
-  font-size: 0.8125rem;
-  font-weight: 300;
+  font-family: var(--font-display-wide);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--color-text-muted);
-  letter-spacing: 0.02em;
 }
 
 .case-nav {
@@ -860,8 +928,9 @@ p {
 }
 
 .site-footer a {
-  font-family: var(--font-serif);
+  font-family: var(--font-display-soft);
   font-style: italic;
+  font-weight: 600;
   color: var(--color-mauve);
 }
 
