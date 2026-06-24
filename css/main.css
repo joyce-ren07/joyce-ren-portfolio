@@ -11,8 +11,8 @@
   --color-sage-glow: rgba(180, 200, 170, 0.12);
 
   --color-bg-base: #ffffff;
-  --color-surface: rgba(255, 255, 255, 0.05);
-  --color-surface-solid: rgba(255, 255, 255, 0.08);
+  --color-surface: rgba(255, 255, 255, 0.02);
+  --color-surface-solid: rgba(255, 255, 255, 0.04);
 
   /* Typography — warm-tinted dark on white */
   --color-text: #1a1410;
@@ -40,49 +40,49 @@
   --radius-xl: 28px;
   --radius-pill: 999px;
 
-  /* visionOS liquid glass — ultra-clear */
-  --glass-blur: 24px;
-  --glass-blur-sm: 24px;
+  /* visionOS liquid glass — near-invisible */
+  --glass-blur: 28px;
+  --glass-blur-sm: 28px;
   --glass-saturate: 200%;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-bg-hover: rgba(255, 255, 255, 0.08);
-  --glass-bg-strong: rgba(255, 255, 255, 0.07);
-  --glass-bg-subtle: rgba(255, 255, 255, 0.03);
-  --glass-bg-btn: rgba(255, 255, 255, 0.04);
-  --glass-bg-btn-hover: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-border-bright: rgba(255, 210, 190, 0.45);
-  --glass-border-subtle: rgba(255, 255, 255, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-bg-hover: rgba(255, 255, 255, 0.04);
+  --glass-bg-strong: rgba(255, 255, 255, 0.03);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.015);
+  --glass-bg-btn: rgba(255, 255, 255, 0.02);
+  --glass-bg-btn-hover: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-border-bright: rgba(255, 210, 190, 0.35);
+  --glass-border-subtle: rgba(255, 255, 255, 0.1);
   --glass-highlight:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, transparent 42%),
-    radial-gradient(ellipse at 15% 15%, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, transparent 38%),
+    radial-gradient(ellipse at 15% 15%, rgba(255, 255, 255, 0.06) 0%, transparent 55%);
   --glass-iridescent: linear-gradient(
     135deg,
-    rgba(255, 210, 190, 0.45) 0%,
-    rgba(210, 220, 255, 0.3) 50%,
-    rgba(190, 255, 210, 0.22) 100%
+    rgba(255, 210, 190, 0.32) 0%,
+    rgba(210, 220, 255, 0.22) 50%,
+    rgba(190, 255, 210, 0.16) 100%
   );
   --glass-shadow:
-    0 8px 32px rgba(180, 150, 130, 0.12),
-    0 2px 8px rgba(180, 150, 130, 0.06);
+    0 8px 32px rgba(180, 150, 130, 0.08),
+    0 2px 8px rgba(180, 150, 130, 0.04);
   --glass-inset:
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    inset 1px 0 0 rgba(255, 255, 255, 0.15);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 1px 0 0 rgba(255, 255, 255, 0.08);
   --glass-inset-strong: var(--glass-inset);
 
   --glow-card: var(--glass-shadow);
   --glow-card-hover:
-    0 10px 36px rgba(180, 150, 130, 0.14),
-    0 2px 8px rgba(180, 150, 130, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    inset 1px 0 0 rgba(255, 255, 255, 0.2);
+    0 10px 36px rgba(180, 150, 130, 0.1),
+    0 2px 8px rgba(180, 150, 130, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 1px 0 0 rgba(255, 255, 255, 0.1);
   --glow-card-hover-warm: var(--glow-card-hover);
   --glow-button: var(--glass-shadow), var(--glass-inset);
   --glow-button-hover:
-    0 8px 32px rgba(180, 150, 130, 0.14),
-    0 0 16px rgba(255, 210, 190, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45),
-    inset 1px 0 0 rgba(255, 255, 255, 0.22);
+    0 8px 32px rgba(180, 150, 130, 0.1),
+    0 0 12px rgba(255, 210, 190, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 1px 0 0 rgba(255, 255, 255, 0.12);
 
   --transition: 600ms ease-in-out;
   --transition-glow: 600ms ease-in-out;
@@ -629,12 +629,12 @@ p {
 }
 
 .site-nav a:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
   color: var(--color-text);
 }
 
 .site-nav a[aria-current="page"] {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--color-text);
   box-shadow: var(--glass-inset);
 }
