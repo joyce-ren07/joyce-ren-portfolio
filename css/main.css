@@ -2,6 +2,8 @@
    Portfolio — shared styles
    ========================================================================== */
 
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap");
+
 :root {
   --color-bg: #ffffff;
   --color-surface: #ffffff;
@@ -750,11 +752,12 @@ p {
 
 .case-study-page {
   --case-bg: #ffffff;
-  --case-text: #a1a1a1;
-  --case-text-active: #a1a1a1;
-  --case-text-faint: #a1a1a1;
-  --case-heading: #a1a1a1;
+  --case-text: rgba(42, 36, 32, 0.45);
+  --case-text-active: rgba(42, 36, 32, 0.65);
+  --case-text-faint: rgba(42, 36, 32, 0.3);
+  --case-heading: rgba(42, 36, 32, 0.55);
   --nav-padding-inline: clamp(2.5rem, 10vw, 8rem);
+  font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--case-bg);
   color: var(--case-text);
 }
@@ -841,34 +844,33 @@ p {
 }
 
 .case-sidebar {
-  position: sticky;
-  top: calc(var(--case-topbar-height) + 1.5rem);
-  align-self: start;
-  grid-column: 1;
-  justify-self: end;
+  position: fixed;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  padding-top: 0.25rem;
-  padding-right: clamp(1.5rem, 4vw, 3rem);
-  width: var(--case-sidebar-width);
+  width: auto;
+  padding: 0;
 }
 
 .case-sidebar__link {
-  font-size: 0.9375rem;
+  font-size: 13px;
   font-weight: 400;
   line-height: 1.5;
-  color: rgba(161, 161, 161, 0.45);
+  color: rgba(0, 0, 0, 0.3);
   transition: color 0.25s ease;
 }
 
 .case-sidebar__link:hover {
-  color: rgba(161, 161, 161, 0.72);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .case-sidebar__link.is-active {
-  color: #a1a1a1;
-  font-weight: 500;
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: 600;
 }
 
 .case-content {
@@ -881,7 +883,7 @@ p {
 
 .case-block {
   scroll-margin-top: calc(var(--case-topbar-height) + 1rem);
-  padding-bottom: clamp(4rem, 12vh, 7rem);
+  padding-bottom: 10rem;
 }
 
 .case-block--intro {
@@ -1113,36 +1115,41 @@ p {
 }
 
 .case-section-heading {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 500;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
   letter-spacing: -0.03em;
-  color: var(--case-heading);
-  margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
+  color: rgba(42, 36, 32, 0.28);
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
   line-height: 1.05;
 }
 
 .case-callout {
-  margin: clamp(2rem, 5vw, 3rem) 0;
-  padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.75rem, 4vw, 2.5rem);
-  border: 1px solid #1a1a1a;
-  border-radius: 999px;
-  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
-  font-weight: 500;
+  margin: 3rem 0;
+  padding: 3rem 3.5rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.375rem;
+  font-weight: 400;
   font-style: italic;
   line-height: 1.45;
-  color: var(--case-text-active);
+  color: #fff;
   text-align: center;
   max-width: 100%;
   width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(100, 140, 145, 0.75) 0%,
+    rgba(180, 210, 215, 0.15) 100%
+  );
 }
 
 .case-body {
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.8;
   color: var(--case-text);
   max-width: 100%;
-  margin: 0 0 1.5rem;
+  margin: 0 0 28px;
 }
 
 .case-body:last-child {
@@ -1202,21 +1209,7 @@ p {
   }
 
   .case-sidebar {
-    position: sticky;
-    top: var(--case-topbar-height);
-    z-index: 50;
-    grid-column: 1;
-    justify-self: start;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.25rem;
-    width: auto;
-    padding: 0.75rem 0 1.25rem;
-    padding-right: 0;
-    margin-bottom: 0.5rem;
-    background: color-mix(in srgb, var(--case-bg) 94%, transparent);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    display: none;
   }
 
   .case-content {
@@ -1245,7 +1238,16 @@ p {
 
 @media (max-width: 600px) {
   .case-callout {
-    border-radius: 1.25rem;
+    border-radius: 24px;
+    padding: 2rem 1.75rem;
+    font-size: 1.125rem;
+  }
+
+  .case-callout--gradient {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem 1.75rem;
+    font-size: 1.125rem;
   }
 }
 
@@ -2072,35 +2074,30 @@ p {
   text-align: center;
   max-width: min(50rem, 100%);
   margin: clamp(2rem, 4vw, 2.75rem) auto 0;
-  line-height: 1.65;
+  line-height: 1.8;
 }
 
 .case-emphasis {
-  color: #4e7b80;
+  color: rgba(42, 36, 32, 0.75);
   font-weight: 600;
 }
 
 .case-callout--gradient {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  padding: 48px 56px;
+  border: none;
+  border-radius: 32px;
   background: linear-gradient(
     90deg,
-    #6f9396 0%,
-    #87adb0 28%,
-    #aabebf 55%,
-    #dce8ea 78%,
-    #fafefd 100%
+    rgba(100, 140, 145, 0.75) 0%,
+    rgba(180, 210, 215, 0.15) 100%
   );
-  border: none;
-  border-radius: 1.25rem;
   color: #fff;
   font-style: italic;
-  font-weight: 500;
-  font-size: clamp(1.2rem, 2.6vw, 1.65rem);
+  font-weight: 400;
+  font-size: 22px;
   letter-spacing: -0.01em;
-  padding: clamp(1.75rem, 4.5vw, 2.5rem) clamp(2rem, 5vw, 3rem);
-}
-
-#problem .case-section-heading {
-  margin-bottom: clamp(2rem, 5vw, 3rem);
 }
 
 #problem .case-body {
