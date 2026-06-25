@@ -230,40 +230,80 @@
   }
 
   /* --------------------------------------------------------------------------
-     Light source dial — sun angle drives ambient glow zones
+     Light source dial — sun angle drives refraction zone positions
      -------------------------------------------------------------------------- */
 
   const lightDialRing = document.getElementById("light-dial-ring");
   const lightDialSun = document.getElementById("light-dial-sun");
   const lightDialLabel = document.getElementById("light-dial-label");
+  const lightWarmthInput = document.getElementById("light-warmth");
+  const lightIntensityInput = document.getElementById("light-intensity");
 
   if (lightDialRing && lightDialSun && glowPoints.length) {
     const DEG_PER_MS = 360 / 30000;
     const LIGHT_LERP = reducedMotion ? 1 : 0.08;
-    const PRIMARY_SHIFT = 150;
-    const SECONDARY_SHIFT = 95;
+    const ANCHOR_RADIUS_X = 44;
+    const ANCHOR_RADIUS_Y = 38;
 
     const GLOW_LIGHT_OFFSETS = {
       gold: 0,
-      peach: 52,
-      sage: 108,
-      mauve: 168,
-      lavender: 228,
-      blush: 288,
+      peach: 48,
+      sage: 102,
+      mauve: 158,
+      lavender: 214,
+      blush: 268,
     };
 
     const GLOW_LIGHT_WEIGHTS = {
       gold: 1,
-      peach: 0.72,
-      sage: 0.65,
-      mauve: 0.68,
-      lavender: 0.6,
-      blush: 0.62,
+      peach: 0.78,
+      sage: 0.68,
+      mauve: 0.72,
+      lavender: 0.62,
+      blush: 0.66,
+    };
+
+    const GLOW_PALETTES = {
+      peach: {
+        cool: [205, 195, 190, 0.26],
+        warm: [225, 185, 165, 0.35],
+      },
+      sage: {
+        cool: [185, 195, 205, 0.24],
+        warm: [195, 200, 185, 0.3],
+      },
+      gold: {
+        cool: [210, 215, 225, 0.28],
+        warm: [235, 215, 175, 0.38],
+      },
+      mauve: {
+        cool: [195, 190, 205, 0.22],
+        warm: [210, 175, 170, 0.28],
+      },
+      lavender: {
+        cool: [175, 185, 210, 0.18],
+        warm: [185, 185, 205, 0.22],
+      },
+      blush: {
+        cool: [205, 195, 200, 0.2],
+        warm: [220, 190, 185, 0.25],
+      },
+    };
+
+    const GLOW_COLOR_VARS = {
+      peach: "--color-peach-blush",
+      sage: "--color-sage-gray",
+      gold: "--color-golden-warm",
+      mauve: "--color-rose-mauve",
+      lavender: "--color-lavender-gray",
+      blush: "--color-blush-pink",
     };
 
     const lightState = {
-      sunAngle: 45,
-      displayAngle: 45,
+      sunAngle: 150,
+      displayAngle: 150,
+      warmth: 0.72,
+      intensity: 0.78,
       isDragging: false,
       lastTime: performance.now(),
       glows: {},
@@ -274,8 +314,8 @@
       if (!id) return;
       lightState.glows[id] = {
         el: point,
-        current: { shiftX: 0, shiftY: 0, opacityScale: 1 },
-        target: { shiftX: 0, shiftY: 0, opacityScale: 1 },
+        current: { posX: 50, posY: 50 },
+        target: { posX: 50, posY: 50 },
       };
     });
 
@@ -289,7 +329,17 @@
       };
     };
 
-    const getTimeLabel = (angle) => {
+    const anchorFromAngle = (degrees, weight = 1) => {
+      const vec = angleToVector(degrees);
+      return {
+        x: 50 + vec.x * ANCHOR_RADIUS_X * weight,
+        y: 50 + vec.y * ANCHOR_RADIUS_Y * weight,
+      };
+    };
+
+    const capitalize = (value) => value.charAt(0).toUpperCase() + value.slice(1);
+
+    const getTimeName = (angle) => {
       const a = normalizeAngle(angle);
       if (a >= 337.5 || a < 22.5) return "midday";
       if (a < 67.5) return "morning";
@@ -301,52 +351,57 @@
       return "dawn";
     };
 
+    const angleToClock = (angle) => {
+      const hoursFloat = (12 + normalizeAngle(angle) / 30) % 24;
+      const hours = Math.floor(hoursFloat);
+      const minutes = Math.round((hoursFloat - hours) * 60) % 60;
+      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+    };
+
+    const mixChannel = (cool, warm, t) => Math.round(lerp(cool, warm, t));
+
+    const applyWarmthPalette = (warmth) => {
+      Object.entries(GLOW_PALETTES).forEach(([id, palette]) => {
+        const r = mixChannel(palette.cool[0], palette.warm[0], warmth);
+        const g = mixChannel(palette.cool[1], palette.warm[1], warmth);
+        const b = mixChannel(palette.cool[2], palette.warm[2], warmth);
+        const a = lerp(palette.cool[3], palette.warm[3], warmth).toFixed(3);
+        root.style.setProperty(GLOW_COLOR_VARS[id], `rgba(${r}, ${g}, ${b}, ${a})`);
+      });
+    };
+
     const pointerToAngle = (clientX, clientY) => {
       const rect = lightDialRing.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const dx = clientX - cx;
       const dy = clientY - cy;
-      let angle = (Math.atan2(dx, -dy) * 180) / Math.PI;
+      const angle = (Math.atan2(dx, -dy) * 180) / Math.PI;
       return normalizeAngle(angle);
     };
 
     const computeLightTargets = (angle) => {
-      const sun = angleToVector(angle);
-      const sunHeight = -sun.y;
-      const sideWarmth = Math.abs(sun.x);
-
-      const intensity = lerp(0.52, 1.05, (sunHeight + 1) / 2);
-      const saturate = lerp(0.82, 1.18, sideWarmth * 0.65 + (sunHeight + 1) * 0.2);
-      const warmthHue = lerp(-6, 18, sideWarmth);
-
-      root.style.setProperty("--light-brightness", intensity.toFixed(3));
-      root.style.setProperty("--light-saturate", saturate.toFixed(3));
-      root.style.setProperty("--light-warmth-hue", `${warmthHue.toFixed(2)}deg`);
       root.style.setProperty("--light-angle", `${angle.toFixed(2)}deg`);
+      root.style.setProperty("--light-intensity", lightState.intensity.toFixed(3));
+      root.style.setProperty("--light-warmth", lightState.warmth.toFixed(3));
+      applyWarmthPalette(lightState.warmth);
 
       Object.entries(lightState.glows).forEach(([id, glow]) => {
         const offset = GLOW_LIGHT_OFFSETS[id] ?? 0;
-        const weight = GLOW_LIGHT_WEIGHTS[id] ?? 0.6;
-        const radius = id === "gold" ? PRIMARY_SHIFT : SECONDARY_SHIFT;
-        const vec = angleToVector(angle + offset);
-        const heightBias = lerp(0.55, 1, (angleToVector(angle + offset).y * -1 + 1) / 2);
-
-        glow.target.shiftX = vec.x * radius * weight;
-        glow.target.shiftY = vec.y * radius * weight;
-        glow.target.opacityScale = lerp(0.62, 1.08, heightBias * intensity);
+        const weight = GLOW_LIGHT_WEIGHTS[id] ?? 0.65;
+        const anchor = anchorFromAngle(angle + offset, weight);
+        glow.target.posX = anchor.x;
+        glow.target.posY = anchor.y;
       });
     };
 
     const applyLightState = () => {
       Object.values(lightState.glows).forEach((glow) => {
-        glow.current.shiftX = lerp(glow.current.shiftX, glow.target.shiftX, LIGHT_LERP);
-        glow.current.shiftY = lerp(glow.current.shiftY, glow.target.shiftY, LIGHT_LERP);
-        glow.current.opacityScale = lerp(glow.current.opacityScale, glow.target.opacityScale, LIGHT_LERP);
+        glow.current.posX = lerp(glow.current.posX, glow.target.posX, LIGHT_LERP);
+        glow.current.posY = lerp(glow.current.posY, glow.target.posY, LIGHT_LERP);
 
-        glow.el.style.setProperty("--light-shift-x", `${glow.current.shiftX.toFixed(2)}px`);
-        glow.el.style.setProperty("--light-shift-y", `${glow.current.shiftY.toFixed(2)}px`);
-        glow.el.style.setProperty("--light-opacity-scale", glow.current.opacityScale.toFixed(3));
+        glow.el.style.setProperty("--light-pos-x", `${glow.current.posX.toFixed(2)}%`);
+        glow.el.style.setProperty("--light-pos-y", `${glow.current.posY.toFixed(2)}%`);
       });
     };
 
@@ -354,12 +409,22 @@
       lightDialRing.style.setProperty("--dial-angle", `${angle.toFixed(2)}deg`);
       lightDialSun.setAttribute("aria-valuenow", String(Math.round(angle)));
       if (lightDialLabel) {
-        lightDialLabel.textContent = getTimeLabel(angle);
+        lightDialLabel.textContent = `${capitalize(getTimeName(angle))} · ${angleToClock(angle)}`;
       }
     };
 
     const setSunAngle = (angle) => {
       lightState.sunAngle = normalizeAngle(angle);
+      computeLightTargets(lightState.sunAngle);
+    };
+
+    const setWarmth = (value) => {
+      lightState.warmth = Math.max(0, Math.min(1, value));
+      computeLightTargets(lightState.sunAngle);
+    };
+
+    const setIntensity = (value) => {
+      lightState.intensity = Math.max(0.25, Math.min(1, value));
       computeLightTargets(lightState.sunAngle);
     };
 
@@ -400,6 +465,21 @@
         setSunAngle(lightState.sunAngle - step);
       }
     });
+
+    if (lightWarmthInput) {
+      lightWarmthInput.addEventListener("input", (e) => {
+        setWarmth(Number(e.target.value) / 100);
+      });
+    }
+
+    if (lightIntensityInput) {
+      lightIntensityInput.addEventListener("input", (e) => {
+        setIntensity(lerp(0.3, 1, Number(e.target.value) / 100));
+      });
+    }
+
+    if (lightWarmthInput) setWarmth(Number(lightWarmthInput.value) / 100);
+    if (lightIntensityInput) setIntensity(lerp(0.3, 1, Number(lightIntensityInput.value) / 100));
 
     computeLightTargets(lightState.sunAngle);
     updateDialVisuals(lightState.displayAngle);

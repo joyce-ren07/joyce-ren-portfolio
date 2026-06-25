@@ -95,11 +95,10 @@
   --glow-duration: 28s;
   --iridescent-duration: 8s;
 
-  /* Light dial — sun-driven ambient shifts */
-  --light-angle: 45deg;
-  --light-brightness: 1;
-  --light-saturate: 1;
-  --light-warmth-hue: 0deg;
+  /* Light dial — sun-driven refraction zones */
+  --light-angle: 150deg;
+  --light-intensity: 0.78;
+  --light-warmth: 0.72;
 }
 
 *,
@@ -145,10 +144,6 @@ main,
   pointer-events: none;
   z-index: 0;
   background: var(--color-bg-base);
-  filter:
-    brightness(var(--light-brightness, 1))
-    saturate(var(--light-saturate, 1))
-    hue-rotate(var(--light-warmth-hue, 0deg));
 }
 
 .light-mesh {
@@ -160,15 +155,18 @@ main,
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
+  top: var(--light-pos-y, 50%);
+  left: var(--light-pos-x, 50%);
+  right: auto;
+  bottom: auto;
   --glow-offset-x: 0px;
   --glow-offset-y: 0px;
   --scroll-shift-x: 0px;
   --scroll-shift-y: 0px;
   --light-shift-x: 0px;
   --light-shift-y: 0px;
-  --light-opacity-scale: 1;
-  opacity: calc(var(--glow-scroll-opacity, 0.3) * var(--light-opacity-scale, 1));
-  transform: translate(
+  opacity: calc(var(--glow-scroll-opacity, 0.3) * var(--light-intensity, 1));
+  transform: translate(-50%, -50%) translate(
     calc(var(--glow-offset-x) + var(--scroll-shift-x) + var(--light-shift-x)),
     calc(var(--glow-offset-y) + var(--scroll-shift-y) + var(--light-shift-y))
   );
@@ -176,10 +174,8 @@ main,
   transition: opacity 1.2s ease-out;
 }
 
-/* Warm peach-blush — large, left */
+/* Warm peach-blush */
 .glow-point--1 {
-  top: 18%;
-  left: -4%;
   width: clamp(22rem, 52vw, 42rem);
   height: clamp(22rem, 52vw, 42rem);
   background: radial-gradient(circle, var(--color-peach-blush) 0%, transparent 72%);
@@ -187,10 +183,8 @@ main,
   animation-duration: 30s;
 }
 
-/* Soft sage-gray — upper middle */
+/* Soft sage-gray */
 .glow-point--2 {
-  top: 8%;
-  left: 32%;
   width: clamp(20rem, 46vw, 36rem);
   height: clamp(20rem, 46vw, 36rem);
   background: radial-gradient(circle, var(--color-sage-gray) 0%, transparent 70%);
@@ -198,10 +192,8 @@ main,
   animation-duration: 28s;
 }
 
-/* Golden warm white — top bright zone */
+/* Golden warm — primary refraction */
 .glow-point--3 {
-  top: -6%;
-  left: 22%;
   width: clamp(24rem, 56vw, 44rem);
   height: clamp(20rem, 44vw, 36rem);
   background: radial-gradient(ellipse 80% 70%, var(--color-golden-warm) 0%, transparent 68%);
@@ -209,10 +201,8 @@ main,
   animation-duration: 32s;
 }
 
-/* Dusty rose-mauve — right */
+/* Dusty rose-mauve */
 .glow-point--4 {
-  top: 22%;
-  right: -6%;
   width: clamp(20rem, 44vw, 38rem);
   height: clamp(20rem, 44vw, 38rem);
   background: radial-gradient(circle, var(--color-rose-mauve) 0%, transparent 70%);
@@ -220,10 +210,8 @@ main,
   animation-duration: 29s;
 }
 
-/* Cool lavender-gray — subtle edges */
+/* Cool lavender-gray */
 .glow-point--5 {
-  top: 42%;
-  left: -8%;
   width: clamp(16rem, 34vw, 28rem);
   height: clamp(16rem, 34vw, 28rem);
   background: radial-gradient(circle, var(--color-lavender-gray) 0%, transparent 74%);
@@ -231,10 +219,8 @@ main,
   animation-duration: 27s;
 }
 
-/* Muted blush pink — lower right */
+/* Muted blush pink */
 .glow-point--6 {
-  bottom: 6%;
-  right: 4%;
   width: clamp(18rem, 40vw, 34rem);
   height: clamp(18rem, 40vw, 34rem);
   background: radial-gradient(circle, var(--color-blush-pink) 0%, transparent 72%);
@@ -244,19 +230,19 @@ main,
 
 @keyframes glow-drift {
   0%, 100% {
-    transform: translate(
+    transform: translate(-50%, -50%) translate(
       calc(var(--glow-offset-x) + var(--scroll-shift-x) + var(--light-shift-x, 0px)),
       calc(var(--glow-offset-y) + var(--scroll-shift-y) + var(--light-shift-y, 0px))
     ) scale(1);
   }
   33% {
-    transform: translate(
+    transform: translate(-50%, -50%) translate(
       calc(var(--glow-offset-x) + var(--scroll-shift-x) + var(--light-shift-x, 0px) + 28px),
       calc(var(--glow-offset-y) + var(--scroll-shift-y) + var(--light-shift-y, 0px) - 20px)
     ) scale(1.03);
   }
   66% {
-    transform: translate(
+    transform: translate(-50%, -50%) translate(
       calc(var(--glow-offset-x) + var(--scroll-shift-x) + var(--light-shift-x, 0px) - 22px),
       calc(var(--glow-offset-y) + var(--scroll-shift-y) + var(--light-shift-y, 0px) + 24px)
     ) scale(0.97);
@@ -819,6 +805,13 @@ p {
   padding-block: calc(var(--space-2xl) + 2rem) var(--space-xl);
 }
 
+.hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(var(--space-md), 4vw, var(--space-xl));
+  align-items: center;
+}
+
 .hero .glass--hero {
   max-width: 42rem;
 }
@@ -844,14 +837,10 @@ p {
   line-height: 1.65;
 }
 
-/* Light source dial — floating glass sundial */
+/* Light source panel — glass sundial + sliders */
 .light-dial {
-  position: absolute;
-  right: 0;
-  bottom: var(--space-md);
-  z-index: 2;
-  width: 120px;
-  padding: 16px;
+  width: min(100%, 13.5rem);
+  padding: 1.25rem 1.125rem 1.125rem;
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 20px;
@@ -859,21 +848,33 @@ p {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  align-items: stretch;
+  gap: 0.875rem;
   user-select: none;
   -webkit-user-select: none;
   touch-action: none;
+  flex-shrink: 0;
 }
 
 .light-dial:hover {
   background: rgba(255, 255, 255, 0.09);
 }
 
+.light-dial__heading {
+  margin: 0;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(160, 120, 90, 0.7);
+  line-height: 1;
+}
+
 .light-dial__ring {
   position: relative;
-  width: 88px;
-  height: 88px;
+  width: 7.5rem;
+  height: 7.5rem;
+  margin: 0.125rem auto 0;
   border: 1px solid rgba(200, 160, 120, 0.25);
   border-radius: 50%;
   cursor: grab;
@@ -881,6 +882,14 @@ p {
 
 .light-dial__ring.is-dragging {
   cursor: grabbing;
+}
+
+.light-dial__ring-inner {
+  position: absolute;
+  inset: 1.125rem;
+  border: 1px solid rgba(200, 160, 120, 0.14);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .light-dial__ticks {
@@ -898,17 +907,17 @@ p {
   margin-left: -0.5px;
   margin-top: -2px;
   background: rgba(200, 160, 120, 0.22);
-  transform-origin: center 40px;
+  transform-origin: center 2.375rem;
 }
 
-.light-dial__tick:nth-child(1) { transform: rotate(0deg) translateY(-40px); }
-.light-dial__tick:nth-child(2) { transform: rotate(45deg) translateY(-40px); }
-.light-dial__tick:nth-child(3) { transform: rotate(90deg) translateY(-40px); }
-.light-dial__tick:nth-child(4) { transform: rotate(135deg) translateY(-40px); }
-.light-dial__tick:nth-child(5) { transform: rotate(180deg) translateY(-40px); }
-.light-dial__tick:nth-child(6) { transform: rotate(225deg) translateY(-40px); }
-.light-dial__tick:nth-child(7) { transform: rotate(270deg) translateY(-40px); }
-.light-dial__tick:nth-child(8) { transform: rotate(315deg) translateY(-40px); }
+.light-dial__tick:nth-child(1) { transform: rotate(0deg) translateY(-2.375rem); }
+.light-dial__tick:nth-child(2) { transform: rotate(45deg) translateY(-2.375rem); }
+.light-dial__tick:nth-child(3) { transform: rotate(90deg) translateY(-2.375rem); }
+.light-dial__tick:nth-child(4) { transform: rotate(135deg) translateY(-2.375rem); }
+.light-dial__tick:nth-child(5) { transform: rotate(180deg) translateY(-2.375rem); }
+.light-dial__tick:nth-child(6) { transform: rotate(225deg) translateY(-2.375rem); }
+.light-dial__tick:nth-child(7) { transform: rotate(270deg) translateY(-2.375rem); }
+.light-dial__tick:nth-child(8) { transform: rotate(315deg) translateY(-2.375rem); }
 
 .light-dial__center {
   position: absolute;
@@ -926,20 +935,19 @@ p {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 12px;
-  height: 12px;
-  margin: -6px 0 0 -6px;
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: rgba(240, 200, 100, 0.85);
+  background: rgba(240, 200, 100, 0.9);
   box-shadow:
     0 0 8px rgba(240, 200, 100, 0.55),
     0 0 16px rgba(240, 180, 80, 0.25);
   cursor: grab;
-  transform: rotate(var(--dial-angle, 45deg)) translateY(-40px);
+  transform: rotate(var(--dial-angle, 150deg)) translateY(-2.375rem);
   transform-origin: center center;
-  transition: box-shadow 0.3s ease;
 }
 
 .light-dial__sun:hover {
@@ -958,21 +966,107 @@ p {
 }
 
 .light-dial__label {
+  margin: 0;
   font-size: 0.6875rem;
   font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: lowercase;
-  color: rgba(160, 120, 90, 0.75);
+  letter-spacing: 0.02em;
+  color: rgba(160, 120, 90, 0.8);
+  line-height: 1.3;
+  text-align: center;
+}
+
+.light-dial__control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.light-dial__control-label {
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(160, 120, 90, 0.65);
   line-height: 1;
 }
 
-@media (max-width: 40rem) {
+.light-dial__range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.light-dial__range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+}
+
+.light-dial__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgba(160, 120, 90, 0.18);
+}
+
+.light-dial__range::-moz-range-track {
+  height: 4px;
+  border: none;
+  border-radius: 999px;
+}
+
+.light-dial__range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgba(160, 120, 90, 0.18);
+}
+
+.light-dial__range--warmth::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, rgba(190, 205, 225, 0.55), rgba(240, 200, 120, 0.75));
+}
+
+.light-dial__range--warmth::-moz-range-track {
+  background: linear-gradient(90deg, rgba(190, 205, 225, 0.55), rgba(240, 200, 120, 0.75));
+}
+
+.light-dial__range--intensity::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, rgba(220, 210, 195, 0.45), rgba(245, 220, 160, 0.8));
+}
+
+.light-dial__range--intensity::-moz-range-track {
+  background: linear-gradient(90deg, rgba(220, 210, 195, 0.45), rgba(245, 220, 160, 0.8));
+}
+
+.light-dial__range-hints {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.5625rem;
+  letter-spacing: 0.04em;
+  color: rgba(160, 120, 90, 0.5);
+  line-height: 1;
+}
+
+@media (max-width: 52rem) {
+  .hero__layout {
+    grid-template-columns: 1fr;
+  }
+
   .light-dial {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    margin-top: var(--space-md);
-    margin-left: auto;
+    margin-inline: auto;
+    max-width: 14rem;
   }
 }
 
