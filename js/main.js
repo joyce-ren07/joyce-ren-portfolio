@@ -238,6 +238,7 @@
   const lightDialLabel = document.getElementById("light-dial-label");
   const lightWarmthInput = document.getElementById("light-warmth");
   const lightIntensityInput = document.getElementById("light-intensity");
+  const lightStreaks = document.querySelector(".light-streaks");
 
   if (lightDialRing && lightDialSun && glowPoints.length) {
     const DEG_PER_MS = 360 / 30000;
@@ -307,6 +308,7 @@
       isDragging: false,
       lastTime: performance.now(),
       glows: {},
+      streak: { currentX: 0, currentY: 0, targetX: 0, targetY: 0 },
     };
 
     glowPoints.forEach((point) => {
@@ -426,6 +428,29 @@
         caustic.target.posX = anchor.x + (caustic.config.jitterX ?? 0);
         caustic.target.posY = anchor.y + (caustic.config.jitterY ?? 0);
       });
+
+      if (lightStreaks) {
+        const streakAnchor = anchorFromAngle(angle, 0.68);
+        lightState.streak.targetX = (streakAnchor.x - 50) * (window.innerWidth * 0.013);
+        lightState.streak.targetY = (streakAnchor.y - 50) * (window.innerHeight * 0.01);
+      }
+    };
+
+    const updateLightStreaks = (now) => {
+      if (!lightStreaks) return;
+
+      const t = now * 0.001;
+      const autoX = Math.sin(t * 0.13) * 26 + Math.sin(t * 0.21 + 1.8) * 14;
+      const autoY = Math.cos(t * 0.1 + 0.6) * 18 + Math.sin(t * 0.16 + 2.4) * 11;
+
+      lightState.streak.currentX = lerp(lightState.streak.currentX, lightState.streak.targetX, 0.035);
+      lightState.streak.currentY = lerp(lightState.streak.currentY, lightState.streak.targetY, 0.035);
+
+      const shiftX = lightState.streak.currentX + (reducedMotion ? 0 : autoX);
+      const shiftY = lightState.streak.currentY + (reducedMotion ? 0 : autoY);
+
+      lightStreaks.style.setProperty("--streak-shift-x", `${shiftX.toFixed(2)}px`);
+      lightStreaks.style.setProperty("--streak-shift-y", `${shiftY.toFixed(2)}px`);
     };
 
     const applyLightState = () => {
@@ -538,6 +563,7 @@
       lightState.displayAngle = lightState.sunAngle;
       applyLightState();
       updateDialVisuals(lightState.displayAngle);
+      updateLightStreaks(performance.now());
     } else {
       updateLightDial = () => {
         const now = performance.now();
@@ -552,7 +578,20 @@
         lightState.displayAngle = lerp(lightState.displayAngle, lightState.sunAngle, LIGHT_LERP);
         applyLightState();
         updateDialVisuals(lightState.displayAngle);
+        updateLightStreaks(now);
       };
     }
+  } else if (lightStreaks) {
+    const streakTick = (now) => {
+      if (!reducedMotion) {
+        const t = now * 0.001;
+        const autoX = Math.sin(t * 0.13) * 26 + Math.sin(t * 0.21 + 1.8) * 14;
+        const autoY = Math.cos(t * 0.1 + 0.6) * 18 + Math.sin(t * 0.16 + 2.4) * 11;
+        lightStreaks.style.setProperty("--streak-shift-x", `${autoX.toFixed(2)}px`);
+        lightStreaks.style.setProperty("--streak-shift-y", `${autoY.toFixed(2)}px`);
+      }
+      requestAnimationFrame(streakTick);
+    };
+    requestAnimationFrame(streakTick);
   }
 })();

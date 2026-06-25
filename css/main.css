@@ -405,6 +405,313 @@ main,
 }
 
 /* --------------------------------------------------------------------------
+   Iridescent horizontal light streaks — pearlescent brushed refraction
+   -------------------------------------------------------------------------- */
+
+.light-streaks {
+  position: absolute;
+  inset: -8% -12%;
+  opacity: calc(0.78 + var(--light-intensity, 1) * 0.18);
+  transform: translate(var(--streak-shift-x, 0px), var(--streak-shift-y, 0px));
+  pointer-events: none;
+}
+
+.light-streak {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(1.5rem, 4vh, 3.5rem);
+  pointer-events: none;
+}
+
+.light-streak__band {
+  position: absolute;
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  mix-blend-mode: screen;
+  filter: blur(6px);
+  --streak-brush: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 2px,
+    transparent 5px
+  );
+  mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  animation:
+    streak-drift var(--streak-drift-duration, 18s) ease-in-out infinite,
+    streak-shimmer var(--streak-shimmer-duration, 12s) ease-in-out infinite,
+    streak-texture 4s linear infinite;
+}
+
+/* Top — cool mint / cyan whispers */
+.light-streak--1 {
+  top: 14%;
+  height: clamp(0.9rem, 2.2vh, 1.6rem);
+}
+
+.light-streak--1 .light-streak__band--a {
+  top: 0;
+  left: 8%;
+  width: 42%;
+  --streak-drift-duration: 22s;
+  --streak-shimmer-duration: 14s;
+  animation-delay: 0s, -3s, 0s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(195, 225, 220, 0.22) 30%, rgba(210, 235, 230, 0.32) 55%, transparent);
+}
+
+.light-streak--1 .light-streak__band--b {
+  top: 35%;
+  left: 38%;
+  width: 36%;
+  height: 70%;
+  --streak-drift-duration: 26s;
+  animation-delay: -8s, -5s, -1s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(200, 218, 235, 0.18) 40%, rgba(185, 210, 228, 0.26) 65%, transparent);
+}
+
+/* Upper-middle — defined brushed band */
+.light-streak--2 {
+  top: 28%;
+  height: clamp(1.8rem, 4.5vh, 3.2rem);
+}
+
+.light-streak--2 .light-streak__band--a {
+  top: 0;
+  left: -4%;
+  width: 58%;
+  filter: blur(5px);
+  --streak-drift-duration: 20s;
+  animation-delay: -2s, -6s, -0.5s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent 5%, rgba(230, 220, 245, 0.2) 25%, rgba(255, 235, 215, 0.28) 50%, rgba(220, 230, 248, 0.16) 75%, transparent);
+}
+
+.light-streak--2 .light-streak__band--b {
+  top: 28%;
+  left: 22%;
+  width: 48%;
+  height: 55%;
+  --streak-drift-duration: 24s;
+  animation-delay: -11s, -4s, -2s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(255, 228, 205, 0.24) 35%, rgba(240, 210, 230, 0.2) 60%, transparent);
+}
+
+.light-streak--2 .light-streak__band--c {
+  top: 10%;
+  left: 62%;
+  width: 34%;
+  height: 45%;
+  --streak-drift-duration: 17s;
+  animation-delay: -15s, -9s, -3s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(210, 228, 218, 0.18) 45%, transparent);
+}
+
+/* Mid — lavender / rose wash */
+.light-streak--3 {
+  top: 44%;
+  height: clamp(1.4rem, 3.5vh, 2.6rem);
+}
+
+.light-streak--3 .light-streak__band--a {
+  top: 0;
+  left: 12%;
+  width: 52%;
+  --streak-drift-duration: 19s;
+  animation-delay: -4s, -7s, -1.5s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(235, 210, 220, 0.22) 30%, rgba(225, 200, 215, 0.3) 55%, transparent);
+}
+
+.light-streak--3 .light-streak__band--b {
+  top: 40%;
+  left: 48%;
+  width: 40%;
+  height: 60%;
+  --streak-drift-duration: 23s;
+  animation-delay: -13s, -2s, -2.5s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(215, 205, 235, 0.2) 40%, rgba(255, 225, 210, 0.18) 70%, transparent);
+}
+
+/* Lower-middle hotspot — luminous gold / pink stack */
+.light-streak--4 {
+  top: 58%;
+  height: clamp(2.4rem, 6vh, 4.5rem);
+}
+
+.light-streak--hot .light-streak__band {
+  filter: blur(5px);
+}
+
+.light-streak--4 .light-streak__band--a {
+  top: 0;
+  left: 6%;
+  width: 62%;
+  --streak-drift-duration: 16s;
+  animation-delay: -1s, -3s, 0s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(255, 245, 225, 0.35) 20%, rgba(255, 252, 248, 0.55) 45%, rgba(255, 235, 210, 0.38) 70%, transparent);
+}
+
+.light-streak--4 .light-streak__band--b {
+  top: 18%;
+  left: 28%;
+  width: 44%;
+  height: 50%;
+  --streak-drift-duration: 21s;
+  animation-delay: -9s, -6s, -1s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(255, 230, 200, 0.42) 35%, rgba(255, 248, 238, 0.62) 52%, transparent);
+}
+
+.light-streak--4 .light-streak__band--c {
+  top: 42%;
+  left: 14%;
+  width: 38%;
+  height: 42%;
+  --streak-drift-duration: 25s;
+  animation-delay: -17s, -11s, -2s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(255, 215, 195, 0.32) 40%, rgba(240, 200, 210, 0.22) 65%, transparent);
+}
+
+.light-streak--4 .light-streak__band--d {
+  top: 8%;
+  left: 58%;
+  width: 36%;
+  height: 38%;
+  --streak-drift-duration: 14s;
+  animation-delay: -5s, -8s, -3s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(255, 240, 220, 0.38) 50%, transparent);
+}
+
+/* Lower — soft gold / sage fade */
+.light-streak--5 {
+  top: 72%;
+  height: clamp(1.6rem, 4vh, 3rem);
+}
+
+.light-streak--5 .light-streak__band--a {
+  top: 0;
+  left: 18%;
+  width: 50%;
+  --streak-drift-duration: 27s;
+  animation-delay: -6s, -4s, -0.5s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(255, 238, 215, 0.24) 35%, rgba(220, 225, 205, 0.2) 60%, transparent);
+}
+
+.light-streak--5 .light-streak__band--b {
+  top: 35%;
+  left: 52%;
+  width: 32%;
+  height: 55%;
+  --streak-drift-duration: 20s;
+  animation-delay: -12s, -9s, -2s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(235, 220, 200, 0.18) 45%, transparent);
+}
+
+/* Bottom whisper */
+.light-streak--6 {
+  top: 86%;
+  height: clamp(1rem, 2.5vh, 2rem);
+}
+
+.light-streak--6 .light-streak__band--a {
+  top: 0;
+  left: 24%;
+  width: 46%;
+  --streak-drift-duration: 30s;
+  animation-delay: -10s, -5s, -1s;
+  background:
+    var(--streak-brush),
+    linear-gradient(90deg, transparent, rgba(230, 225, 240, 0.16) 40%, rgba(255, 235, 225, 0.14) 65%, transparent);
+}
+
+@keyframes streak-drift {
+  0%, 100% {
+    transform: translateX(0) scaleX(1);
+    opacity: 0.38;
+  }
+  25% {
+    transform: translateX(28px) scaleX(1.04);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateX(-18px) scaleX(0.97);
+    opacity: 0.72;
+  }
+  75% {
+    transform: translateX(14px) scaleX(1.02);
+    opacity: 0.48;
+  }
+}
+
+@keyframes streak-shimmer {
+  0%, 100% {
+    filter: blur(6px) hue-rotate(0deg) brightness(1);
+  }
+  33% {
+    filter: blur(7px) hue-rotate(8deg) brightness(1.08);
+  }
+  66% {
+    filter: blur(5px) hue-rotate(-6deg) brightness(1.04);
+  }
+}
+
+@keyframes streak-texture {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 12px 0, 0 0;
+  }
+}
+
+.light-streak--hot .light-streak__band--a,
+.light-streak--hot .light-streak__band--b {
+  animation:
+    streak-drift var(--streak-drift-duration, 16s) ease-in-out infinite,
+    streak-shimmer var(--streak-shimmer-duration, 10s) ease-in-out infinite,
+    streak-texture 3.5s linear infinite,
+    streak-hotspot 8s ease-in-out infinite;
+}
+
+@keyframes streak-hotspot {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.88; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .light-streak__band {
+    animation: none !important;
+    opacity: 0.45;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Liquid glass — visionOS-style panes
    -------------------------------------------------------------------------- */
 
