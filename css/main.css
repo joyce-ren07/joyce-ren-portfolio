@@ -1115,8 +1115,8 @@ p {
 }
 
 .case-callout {
-  margin: 0 0 1.75rem;
-  padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.5rem, 4vw, 2.25rem);
+  margin: clamp(2rem, 5vw, 3rem) 0;
+  padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.75rem, 4vw, 2.5rem);
   border: 1px solid #1a1a1a;
   border-radius: 999px;
   font-size: clamp(1.05rem, 2.4vw, 1.35rem);
@@ -1126,6 +1126,7 @@ p {
   color: var(--case-text-active);
   text-align: center;
   max-width: 100%;
+  width: 100%;
 }
 
 .case-body {
@@ -1133,8 +1134,12 @@ p {
   font-weight: 400;
   line-height: 1.65;
   color: var(--case-text);
-  max-width: 36rem;
-  margin: 0;
+  max-width: 100%;
+  margin: 0 0 1.5rem;
+}
+
+.case-body:last-child {
+  margin-bottom: 0;
 }
 
 .case-body--lead {
@@ -2043,17 +2048,35 @@ p {
 }
 
 .case-emphasis {
-  color: #2d6a6a;
+  color: #4e7b80;
   font-weight: 600;
 }
 
 .case-callout--gradient {
-  background: linear-gradient(90deg, #5a8a8a 0%, #8ab0b0 45%, #d8e8e8 100%);
+  background: linear-gradient(
+    90deg,
+    #6f9396 0%,
+    #87adb0 28%,
+    #aabebf 55%,
+    #dce8ea 78%,
+    #fafefd 100%
+  );
   border: none;
+  border-radius: 1.25rem;
   color: #fff;
   font-style: italic;
-  font-weight: 600;
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 500;
+  font-size: clamp(1.2rem, 2.6vw, 1.65rem);
+  letter-spacing: -0.01em;
+  padding: clamp(1.75rem, 4.5vw, 2.5rem) clamp(2rem, 5vw, 3rem);
+}
+
+#problem .case-section-heading {
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+#problem .case-body {
+  max-width: 52rem;
 }
 
 .case-pillar {
