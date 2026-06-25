@@ -151,15 +151,16 @@ main,
   display: none;
 }
 
-/* Drifting glow pools — chalky, muted, bleeding into white */
+/* Drifting glow pools — concentrated refraction with luminous cores */
 .glow-point {
   position: absolute;
   border-radius: 50%;
-  filter: blur(72px);
+  filter: blur(46px);
   top: var(--light-pos-y, 50%);
   left: var(--light-pos-x, 50%);
   right: auto;
   bottom: auto;
+  overflow: visible;
   --glow-offset-x: 0px;
   --glow-offset-y: 0px;
   --scroll-shift-x: 0px;
@@ -175,57 +176,97 @@ main,
   transition: opacity 1.2s ease-out;
 }
 
+.glow-point--luminous::after {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 88% 72% at 50% 46%,
+    rgba(255, 253, 248, 0.92) 0%,
+    rgba(255, 244, 220, 0.45) 20%,
+    transparent 52%
+  );
+  mix-blend-mode: screen;
+  filter: blur(10px);
+  pointer-events: none;
+}
+
 /* Warm peach-blush */
 .glow-point--1 {
-  width: clamp(24rem, 58vw, 48rem);
-  height: clamp(24rem, 58vw, 48rem);
-  background: radial-gradient(circle, var(--color-peach-blush) 0%, transparent 62%);
+  width: clamp(13rem, 32vw, 26rem);
+  height: clamp(11rem, 26vw, 22rem);
+  background:
+    radial-gradient(ellipse 38% 30% at 46% 44%, rgba(255, 250, 245, 0.75) 0%, transparent 100%),
+    radial-gradient(ellipse 62% 48% at 52% 50%, rgba(255, 225, 195, 0.5) 0%, rgba(200, 210, 230, 0.12) 38%, transparent 50%),
+    radial-gradient(ellipse 88% 72% at 50% 50%, var(--color-peach-blush) 0%, transparent 46%);
   animation-delay: 0s;
   animation-duration: 30s;
 }
 
 /* Soft sage-gray */
 .glow-point--2 {
-  width: clamp(22rem, 52vw, 42rem);
-  height: clamp(22rem, 52vw, 42rem);
-  background: radial-gradient(circle, var(--color-sage-gray) 0%, transparent 60%);
+  width: clamp(12rem, 28vw, 24rem);
+  height: clamp(10rem, 24vw, 20rem);
+  background:
+    radial-gradient(ellipse 55% 42% at 48% 48%, rgba(255, 252, 248, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 82% 68% at 50% 50%, var(--color-sage-gray) 0%, transparent 44%);
   animation-delay: -6s;
   animation-duration: 28s;
 }
 
 /* Golden warm — primary refraction */
 .glow-point--3 {
-  width: clamp(28rem, 64vw, 52rem);
-  height: clamp(24rem, 52vw, 44rem);
-  background: radial-gradient(ellipse 80% 70%, var(--color-golden-warm) 0%, transparent 58%);
+  width: clamp(15rem, 36vw, 30rem);
+  height: clamp(12rem, 28vw, 24rem);
+  background:
+    radial-gradient(ellipse 40% 32% at 48% 42%, rgba(255, 255, 252, 0.95) 0%, rgba(255, 248, 230, 0.4) 18%, transparent 50%),
+    radial-gradient(ellipse 58% 46% at 52% 50%, rgba(255, 232, 190, 0.62) 0%, rgba(230, 200, 220, 0.14) 32%, transparent 48%),
+    radial-gradient(ellipse 90% 72% at 50% 50%, var(--color-golden-warm) 0%, rgba(235, 210, 170, 0.15) 26%, transparent 44%);
   animation-delay: -12s;
   animation-duration: 32s;
-  filter: blur(64px);
+  filter: blur(38px);
+}
+
+.glow-point--3.glow-point--luminous::after {
+  inset: 18%;
+  background: radial-gradient(
+    ellipse 92% 78% at 50% 44%,
+    rgba(255, 255, 252, 0.98) 0%,
+    rgba(255, 246, 225, 0.55) 16%,
+    transparent 46%
+  );
+  filter: blur(8px);
 }
 
 /* Dusty rose-mauve */
 .glow-point--4 {
-  width: clamp(22rem, 50vw, 44rem);
-  height: clamp(22rem, 50vw, 44rem);
-  background: radial-gradient(circle, var(--color-rose-mauve) 0%, transparent 60%);
+  width: clamp(12rem, 28vw, 24rem);
+  height: clamp(10rem, 24vw, 20rem);
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 48%, rgba(255, 248, 246, 0.4) 0%, transparent 54%),
+    radial-gradient(ellipse 82% 68% at 50% 50%, var(--color-rose-mauve) 0%, rgba(210, 195, 220, 0.1) 30%, transparent 46%);
   animation-delay: -9s;
   animation-duration: 29s;
 }
 
 /* Cool lavender-gray */
 .glow-point--5 {
-  width: clamp(18rem, 40vw, 34rem);
-  height: clamp(18rem, 40vw, 34rem);
-  background: radial-gradient(circle, var(--color-lavender-gray) 0%, transparent 64%);
+  width: clamp(10rem, 22vw, 20rem);
+  height: clamp(9rem, 20vw, 18rem);
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 50%, var(--color-lavender-gray) 0%, rgba(195, 205, 225, 0.12) 28%, transparent 44%);
   animation-delay: -18s;
   animation-duration: 27s;
 }
 
 /* Muted blush pink */
 .glow-point--6 {
-  width: clamp(20rem, 46vw, 40rem);
-  height: clamp(20rem, 46vw, 40rem);
-  background: radial-gradient(circle, var(--color-blush-pink) 0%, transparent 62%);
+  width: clamp(11rem, 26vw, 22rem);
+  height: clamp(9rem, 22vw, 20rem);
+  background:
+    radial-gradient(ellipse 48% 38% at 50% 46%, rgba(255, 250, 248, 0.38) 0%, transparent 52%),
+    radial-gradient(ellipse 84% 70% at 50% 50%, var(--color-blush-pink) 0%, transparent 46%);
   animation-delay: -15s;
   animation-duration: 31s;
 }
@@ -251,66 +292,61 @@ main,
   }
 }
 
-/* Soft caustic flecks on the wall */
+/* Luminous caustic flecks — concentrated glass refraction */
 .caustic {
   position: absolute;
+  top: var(--light-pos-y, 50%);
+  left: var(--light-pos-x, 50%);
   border-radius: 50%;
-  filter: blur(24px);
-  mix-blend-mode: soft-light;
+  filter: blur(14px);
+  mix-blend-mode: screen;
+  opacity: calc(0.55 * var(--light-intensity, 1));
+  transform: translate(-50%, -50%) rotate(var(--caustic-rotate, 0deg));
   animation: caustic-drift 26s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .caustic--1 {
-  top: 24%;
-  left: 40%;
-  width: clamp(5rem, 12vw, 8rem);
-  height: clamp(2.5rem, 6vw, 4rem);
-  background: radial-gradient(ellipse, rgba(255, 230, 190, 0.4) 0%, rgba(237, 224, 176, 0.2) 40%, transparent 72%);
+  width: clamp(3.5rem, 8vw, 5.5rem);
+  height: clamp(1.6rem, 4vw, 2.6rem);
+  background:
+    radial-gradient(ellipse 70% 90% at 45% 50%, rgba(255, 255, 252, 0.9) 0%, rgba(255, 238, 200, 0.45) 28%, transparent 68%),
+    radial-gradient(ellipse 100% 80% at 55% 50%, rgba(255, 225, 185, 0.35) 0%, rgba(190, 210, 235, 0.1) 40%, transparent 72%);
   animation-delay: -2s;
 }
 
 .caustic--2 {
-  top: 50%;
-  left: 70%;
-  width: clamp(4rem, 9vw, 6rem);
-  height: clamp(2rem, 5vw, 3rem);
-  background: radial-gradient(ellipse, rgba(255, 220, 180, 0.35) 0%, rgba(212, 176, 168, 0.18) 42%, transparent 74%);
+  width: clamp(2.8rem, 6.5vw, 4.5rem);
+  height: clamp(2.2rem, 5vw, 3.5rem);
+  background:
+    radial-gradient(ellipse 65% 85% at 50% 48%, rgba(255, 252, 248, 0.85) 0%, rgba(255, 220, 195, 0.4) 25%, transparent 65%),
+    radial-gradient(ellipse 95% 75% at 52% 52%, rgba(255, 210, 180, 0.3) 0%, rgba(220, 195, 210, 0.12) 38%, transparent 70%);
   animation-delay: -8s;
   animation-duration: 30s;
 }
 
 .caustic--3 {
-  top: 74%;
-  left: 18%;
-  width: clamp(6rem, 14vw, 9rem);
-  height: clamp(3rem, 7vw, 4.5rem);
-  background: radial-gradient(ellipse, rgba(255, 225, 185, 0.32) 0%, rgba(242, 201, 184, 0.16) 38%, transparent 70%);
+  width: clamp(4rem, 9vw, 6rem);
+  height: clamp(1.4rem, 3.5vw, 2.2rem);
+  background:
+    radial-gradient(ellipse 75% 95% at 48% 50%, rgba(255, 254, 250, 0.88) 0%, rgba(255, 235, 205, 0.42) 22%, transparent 62%),
+    radial-gradient(ellipse 100% 70% at 50% 50%, rgba(245, 220, 185, 0.32) 0%, rgba(200, 215, 235, 0.08) 42%, transparent 74%);
   animation-delay: -14s;
   animation-duration: 22s;
 }
 
-.caustic--4 {
-  top: 62%;
-  left: 44%;
-  width: clamp(3rem, 7vw, 5rem);
-  height: clamp(3.5rem, 8vw, 5.5rem);
-  background: radial-gradient(ellipse, rgba(255, 235, 200, 0.38) 0%, rgba(200, 203, 168, 0.16) 36%, transparent 68%);
-  animation-delay: -18s;
-  animation-duration: 28s;
-}
-
 @keyframes caustic-drift {
   0%, 100% {
-    opacity: 0.35;
-    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: calc(0.5 * var(--light-intensity, 1));
+    transform: translate(-50%, -50%) rotate(var(--caustic-rotate, 0deg)) translate(0, 0) scale(1);
   }
   33% {
-    opacity: 0.55;
-    transform: translate(20px, -14px) rotate(6deg) scale(1.1);
+    opacity: calc(0.72 * var(--light-intensity, 1));
+    transform: translate(-50%, -50%) rotate(var(--caustic-rotate, 0deg)) translate(12px, -8px) scale(1.06);
   }
   66% {
-    opacity: 0.4;
-    transform: translate(-16px, 18px) rotate(-4deg) scale(0.94);
+    opacity: calc(0.58 * var(--light-intensity, 1));
+    transform: translate(-50%, -50%) rotate(var(--caustic-rotate, 0deg)) translate(-10px, 10px) scale(0.96);
   }
 }
 

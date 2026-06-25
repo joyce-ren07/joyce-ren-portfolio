@@ -242,8 +242,8 @@
   if (lightDialRing && lightDialSun && glowPoints.length) {
     const DEG_PER_MS = 360 / 30000;
     const LIGHT_LERP = reducedMotion ? 1 : 0.08;
-    const ANCHOR_RADIUS_X = 50;
-    const ANCHOR_RADIUS_Y = 44;
+    const ANCHOR_RADIUS_X = 46;
+    const ANCHOR_RADIUS_Y = 40;
 
     const GLOW_LIGHT_OFFSETS = {
       gold: 0,
@@ -317,6 +317,23 @@
         current: { posX: 50, posY: 50 },
         target: { posX: 50, posY: 50 },
       };
+    });
+
+    const CAUSTIC_OFFSETS = [
+      { angle: 6, weight: 0.52, rotate: -14 },
+      { angle: -28, weight: 0.58, rotate: 22 },
+      { angle: 42, weight: 0.46, rotate: -6 },
+    ];
+
+    lightState.caustics = [];
+    document.querySelectorAll("[data-caustic]").forEach((el, index) => {
+      const config = CAUSTIC_OFFSETS[index] ?? { angle: 0, weight: 0.5, rotate: 0 };
+      lightState.caustics.push({
+        el,
+        config,
+        current: { posX: 50, posY: 50 },
+        target: { posX: 50, posY: 50 },
+      });
     });
 
     const normalizeAngle = (angle) => ((angle % 360) + 360) % 360;
@@ -393,6 +410,12 @@
         glow.target.posX = anchor.x;
         glow.target.posY = anchor.y;
       });
+
+      lightState.caustics.forEach((caustic) => {
+        const anchor = anchorFromAngle(angle + caustic.config.angle, caustic.config.weight);
+        caustic.target.posX = anchor.x;
+        caustic.target.posY = anchor.y;
+      });
     };
 
     const applyLightState = () => {
@@ -402,6 +425,18 @@
 
         glow.el.style.setProperty("--light-pos-x", `${glow.current.posX.toFixed(2)}%`);
         glow.el.style.setProperty("--light-pos-y", `${glow.current.posY.toFixed(2)}%`);
+      });
+
+      lightState.caustics.forEach((caustic) => {
+        caustic.current.posX = lerp(caustic.current.posX, caustic.target.posX, LIGHT_LERP);
+        caustic.current.posY = lerp(caustic.current.posY, caustic.target.posY, LIGHT_LERP);
+
+        caustic.el.style.setProperty("--light-pos-x", `${caustic.current.posX.toFixed(2)}%`);
+        caustic.el.style.setProperty("--light-pos-y", `${caustic.current.posY.toFixed(2)}%`);
+        caustic.el.style.setProperty(
+          "--caustic-rotate",
+          `${(lightState.displayAngle + caustic.config.rotate).toFixed(2)}deg`
+        );
       });
     };
 
