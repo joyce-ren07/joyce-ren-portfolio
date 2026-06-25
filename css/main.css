@@ -2,8 +2,6 @@
    Portfolio — shared styles
    ========================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap");
-
 :root {
   --color-bg: #ffffff;
   --color-surface: #ffffff;
@@ -757,7 +755,7 @@ p {
   --case-text-faint: rgba(42, 36, 32, 0.3);
   --case-heading: rgba(42, 36, 32, 0.55);
   --nav-padding-inline: clamp(2.5rem, 10vw, 8rem);
-  font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
   background: var(--case-bg);
   color: var(--case-text);
 }
@@ -857,7 +855,7 @@ p {
 }
 
 .case-sidebar__link {
-  font-size: 13px;
+  font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.5;
   color: rgba(0, 0, 0, 0.3);
@@ -1115,8 +1113,8 @@ p {
 }
 
 .case-section-heading {
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 500;
   letter-spacing: -0.03em;
   color: rgba(42, 36, 32, 0.28);
   margin: 0 0 clamp(2rem, 4vw, 3rem);
@@ -1128,8 +1126,8 @@ p {
   padding: 3rem 3.5rem;
   border: none;
   border-radius: 2rem;
-  font-size: 1.375rem;
-  font-weight: 400;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 500;
   font-style: italic;
   line-height: 1.45;
   color: #fff;
@@ -1144,9 +1142,9 @@ p {
 }
 
 .case-body {
-  font-size: 15px;
+  font-size: clamp(1rem, 2vw, 1.125rem);
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 1.65;
   color: var(--case-text);
   max-width: 100%;
   margin: 0 0 28px;
@@ -1240,14 +1238,12 @@ p {
   .case-callout {
     border-radius: 24px;
     padding: 2rem 1.75rem;
-    font-size: 1.125rem;
   }
 
   .case-callout--gradient {
     margin-top: 2rem;
     margin-bottom: 2rem;
     padding: 2rem 1.75rem;
-    font-size: 1.125rem;
   }
 }
 
@@ -2074,7 +2070,7 @@ p {
   text-align: center;
   max-width: min(50rem, 100%);
   margin: clamp(2rem, 4vw, 2.75rem) auto 0;
-  line-height: 1.8;
+  line-height: 1.65;
 }
 
 .case-emphasis {
@@ -2095,8 +2091,8 @@ p {
   );
   color: #fff;
   font-style: italic;
-  font-weight: 400;
-  font-size: 22px;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 2.6vw, 1.65rem);
   letter-spacing: -0.01em;
 }
 
