@@ -45,14 +45,47 @@
   const lampLanding = document.querySelector(".lamp-landing");
   const lampPull = document.getElementById("lamp-pull");
   const lightStreaks = document.querySelector(".light-streaks");
+  const causticPoints = document.querySelectorAll("[data-caustic]");
   const lampState = { targetPower: 0, currentPower: 0 };
 
-  const getLampScrollPower = () => {
-    if (!lampLanding) return 0;
-    const scrollRange = lampLanding.offsetHeight - window.innerHeight;
-    if (scrollRange <= 0) return 0;
-    return Math.min(1, Math.max(0, window.scrollY / (scrollRange * 0.88)));
+  const GLOW_LIGHT_OFFSETS = {
+    gold: 0,
+    peach: 48,
+    sage: 102,
+    mauve: 158,
+    lavender: 214,
+    blush: 268,
   };
+
+  const GLOW_LIGHT_WEIGHTS = {
+    gold: 1,
+    peach: 0.86,
+    sage: 0.78,
+    mauve: 0.82,
+    lavender: 0.74,
+    blush: 0.78,
+  };
+
+  const CAUSTIC_LAMP_ANCHORS = [
+    { angle: 152, farX: 62, farY: 28 },
+    { angle: 198, farX: 38, farY: 62 },
+    { angle: 128, farX: 72, farY: 44 },
+    { angle: 172, farX: 44, farY: 58 },
+  ];
+
+  const getLampScrollRange = () => {
+    if (!lampLanding) return 0;
+    return Math.max(0, lampLanding.offsetHeight - window.innerHeight);
+  };
+
+  const getLampScrollPower = () => {
+    const scrollRange = getLampScrollRange();
+    if (!lampLanding || scrollRange <= 0) return 0;
+    const scrolled = Math.min(scrollRange, Math.max(0, -lampLanding.getBoundingClientRect().top));
+    return Math.min(1, scrolled / (scrollRange * 0.88));
+  };
+
+  const isLampLighting = () => lampLanding && lampState.currentPower < 0.98;
 
   const updateLampTargets = () => {
     lampState.targetPower = getLampScrollPower();
@@ -62,29 +95,32 @@
     const ease = reducedMotion ? 1 : 0.07;
     lampState.currentPower = lerp(lampState.currentPower, lampState.targetPower, ease);
     const power = lampState.currentPower;
+    const lampX = 50;
+    const lampY = 36;
 
     root.style.setProperty("--lamp-power", power.toFixed(3));
     root.style.setProperty("--light-intensity", lerp(0.2, 1.12, power).toFixed(3));
+    root.style.setProperty("--light-warmth", lerp(0.42, 0.84, power).toFixed(3));
+    root.style.setProperty("--lamp-pull-y", (power * 14).toFixed(2));
     document.body.classList.toggle("lamp-is-lit", power > 0.1);
 
-    if (glowPoints.length) {
-      const lampX = 50;
-      const lampY = 36;
-      const offsets = { gold: 0, peach: 48, sage: 102, mauve: 158, lavender: 214, blush: 268 };
-      const weights = { gold: 1, peach: 0.86, sage: 0.78, mauve: 0.82, lavender: 0.74, blush: 0.78 };
+    if (glowPoints.length && isLampLighting()) {
       const spread = 46 * (1 - power * 0.55);
 
       glowPoints.forEach((point) => {
         const id = point.getAttribute("data-glow");
         if (!id) return;
-        const angle = ((150 + (offsets[id] ?? 0)) * Math.PI) / 180;
-        const weight = weights[id] ?? 0.7;
+        const angle = ((150 + (GLOW_LIGHT_OFFSETS[id] ?? 0)) * Math.PI) / 180;
+        const weight = GLOW_LIGHT_WEIGHTS[id] ?? 0.7;
         const farX = 50 + Math.sin(angle) * spread * weight;
         const farY = 50 - Math.cos(angle) * 40 * weight;
         const x = lerp(farX, lampX + Math.sin(angle) * 8, power);
         const y = lerp(farY, lampY + Math.cos(angle) * 4, power);
         point.style.setProperty("--light-pos-x", `${x.toFixed(2)}%`);
         point.style.setProperty("--light-pos-y", `${y.toFixed(2)}%`);
+        point.style.setProperty("--glow-scroll-opacity", lerp(0.34, 0.58, power).toFixed(3));
+        point.style.setProperty("--scroll-shift-x", "0px");
+        point.style.setProperty("--scroll-shift-y", "0px");
       });
 
       if (lightStreaks) {
@@ -97,14 +133,34 @@
         lightStreaks.style.setProperty("--streak-shift-y", `${shiftY.toFixed(2)}px`);
       }
     }
+
+    if (causticPoints.length && isLampLighting()) {
+      causticPoints.forEach((point, index) => {
+        const anchor = CAUSTIC_LAMP_ANCHORS[index] ?? CAUSTIC_LAMP_ANCHORS[0];
+        const rad = (anchor.angle * Math.PI) / 180;
+        const x = lerp(anchor.farX, lampX + Math.sin(rad) * 7, power);
+        const y = lerp(anchor.farY, lampY + Math.cos(rad) * 5, power);
+        point.style.setProperty("--light-pos-x", `${x.toFixed(2)}%`);
+        point.style.setProperty("--light-pos-y", `${y.toFixed(2)}%`);
+        point.style.setProperty("--caustic-rotate", `${(power * 28).toFixed(2)}deg`);
+      });
+    }
   };
 
   if (lampLanding) {
     updateLampTargets();
     applyLampPower();
 
-    window.addEventListener("scroll", updateLampTargets, { passive: true });
-    window.addEventListener("resize", updateLampTargets, { passive: true });
+    const onLampScroll = () => {
+      updateLampTargets();
+      if (reducedMotion) applyLampPower();
+    };
+
+    window.addEventListener("scroll", onLampScroll, { passive: true });
+    window.addEventListener("resize", () => {
+      updateLampTargets();
+      applyLampPower();
+    }, { passive: true });
 
     if (!reducedMotion) {
       const lampTick = () => {
@@ -117,7 +173,7 @@
     if (lampPull) {
       lampPull.addEventListener("click", () => {
         lampPull.classList.add("is-pulled");
-        const scrollRange = lampLanding.offsetHeight - window.innerHeight;
+        const scrollRange = getLampScrollRange();
         window.scrollTo({
           top: Math.max(0, scrollRange * 0.58),
           behavior: reducedMotion ? "auto" : "smooth",
@@ -276,11 +332,14 @@
 
   const applyScrollState = () => {
     const ease = reducedMotion ? 1 : 0.06;
+    const lampBlend = isLampLighting() ? 1 - Math.min(1, lampState.currentPower) : 1;
 
     scrollState.currentProgress = lerp(scrollState.currentProgress, scrollState.targetProgress, ease);
     scrollState.currentHue = lerp(scrollState.currentHue, scrollState.targetHue, ease);
 
-    root.style.setProperty("--scroll-hue-rotate", `${scrollState.currentHue.toFixed(2)}deg`);
+    root.style.setProperty("--scroll-hue-rotate", `${(scrollState.currentHue * lampBlend).toFixed(2)}deg`);
+
+    if (isLampLighting()) return;
 
     Object.values(scrollState.glows).forEach((glow) => {
       glow.current.shiftX = lerp(glow.current.shiftX, glow.target.shiftX, ease);
