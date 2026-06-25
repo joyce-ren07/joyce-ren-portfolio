@@ -1,5 +1,5 @@
 /**
- * Portfolio — interactions + scroll light refraction
+ * Portfolio — shared interactions + scroll light refraction
  */
 
 (function () {
@@ -33,10 +33,8 @@
   }
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const root = document.documentElement;
-  const ambient = document.querySelector(".ambient-light");
   const glowPoints = document.querySelectorAll("[data-glow]");
-  const refractionLayers = document.querySelectorAll("[data-refraction]");
+  const root = document.documentElement;
 
   const lerp = (a, b, t) => a + (b - a) * t;
 
@@ -48,85 +46,58 @@
     const from = track[index];
     const to = track[index + 1];
 
-    const out = {};
-    Object.keys(from).forEach((key) => {
-      out[key] = lerp(from[key], to[key], t);
-    });
-    return out;
+    return {
+      shiftX: lerp(from.shiftX, to.shiftX, t),
+      shiftY: lerp(from.shiftY, to.shiftY, t),
+      opacity: lerp(from.opacity, to.opacity, t),
+    };
   };
 
-  /* Scroll morphing — forms shift like light through frosted glass */
+  /* 0% peach/gold top-heavy → 33% sage/lavender → 66% rose/mauve → 100% golden return */
   const GLOW_TRACKS = {
     peach: [
-      { shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.78 },
-      { shiftX: 48, shiftY: 120, scaleX: 1.18, scaleY: 0.88, rotate: 4, opacity: 0.58 },
-      { shiftX: 72, shiftY: 220, scaleX: 0.92, scaleY: 1.22, rotate: -3, opacity: 0.48 },
-      { shiftX: 24, shiftY: 60, scaleX: 1.08, scaleY: 1.02, rotate: 2, opacity: 0.72 },
+      { shiftX: 0, shiftY: 0, opacity: 0.38 },
+      { shiftX: 18, shiftY: 48, opacity: 0.28 },
+      { shiftX: 32, shiftY: 96, opacity: 0.22 },
+      { shiftX: 8, shiftY: 24, opacity: 0.36 },
     ],
     sage: [
-      { shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.42 },
-      { shiftX: -36, shiftY: 90, scaleX: 1.28, scaleY: 1.1, rotate: -5, opacity: 0.72 },
-      { shiftX: 24, shiftY: 180, scaleX: 1.05, scaleY: 0.95, rotate: 3, opacity: 0.62 },
-      { shiftX: -12, shiftY: 48, scaleX: 1.12, scaleY: 1.04, rotate: -2, opacity: 0.5 },
+      { shiftX: 0, shiftY: 0, opacity: 0.18 },
+      { shiftX: -12, shiftY: 36, opacity: 0.36 },
+      { shiftX: 8, shiftY: 72, opacity: 0.3 },
+      { shiftX: -4, shiftY: 20, opacity: 0.22 },
     ],
     gold: [
-      { shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.85 },
-      { shiftX: 32, shiftY: 72, scaleX: 1.15, scaleY: 0.82, rotate: 3, opacity: 0.65 },
-      { shiftX: 56, shiftY: 140, scaleX: 0.88, scaleY: 1.18, rotate: -4, opacity: 0.55 },
-      { shiftX: 18, shiftY: 36, scaleX: 1.1, scaleY: 0.95, rotate: 2, opacity: 0.8 },
+      { shiftX: 0, shiftY: 0, opacity: 0.38 },
+      { shiftX: 10, shiftY: 28, opacity: 0.28 },
+      { shiftX: 16, shiftY: 56, opacity: 0.24 },
+      { shiftX: 6, shiftY: 12, opacity: 0.36 },
     ],
     mauve: [
-      { shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.52 },
-      { shiftX: -56, shiftY: 80, scaleX: 1.2, scaleY: 1.08, rotate: 5, opacity: 0.58 },
-      { shiftX: -96, shiftY: 160, scaleX: 1.35, scaleY: 0.9, rotate: -6, opacity: 0.78 },
-      { shiftX: -40, shiftY: 64, scaleX: 1.1, scaleY: 1.02, rotate: 3, opacity: 0.6 },
+      { shiftX: 0, shiftY: 0, opacity: 0.22 },
+      { shiftX: -20, shiftY: 32, opacity: 0.24 },
+      { shiftX: -36, shiftY: 64, opacity: 0.36 },
+      { shiftX: -14, shiftY: 28, opacity: 0.26 },
     ],
     lavender: [
-      { shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.38 },
-      { shiftX: 64, shiftY: -48, scaleX: 1.3, scaleY: 1.15, rotate: -4, opacity: 0.68 },
-      { shiftX: 110, shiftY: 72, scaleX: 0.95, scaleY: 1.25, rotate: 6, opacity: 0.52 },
-      { shiftX: 44, shiftY: -20, scaleX: 1.15, scaleY: 1.05, rotate: -2, opacity: 0.42 },
+      { shiftX: 0, shiftY: 0, opacity: 0.16 },
+      { shiftX: 28, shiftY: -24, opacity: 0.32 },
+      { shiftX: 48, shiftY: 40, opacity: 0.24 },
+      { shiftX: 20, shiftY: -8, opacity: 0.18 },
     ],
     blush: [
-      { shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.48 },
-      { shiftX: -40, shiftY: -72, scaleX: 1.12, scaleY: 1.2, rotate: 4, opacity: 0.55 },
-      { shiftX: -72, shiftY: -140, scaleX: 1.28, scaleY: 0.88, rotate: -5, opacity: 0.75 },
-      { shiftX: -28, shiftY: -48, scaleX: 1.06, scaleY: 1.1, rotate: 2, opacity: 0.58 },
-    ],
-  };
-
-  const LAYER_TRACKS = {
-    mesh: [
-      { x: 0, y: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.82 },
-      { x: -40, y: 80, scaleX: 1.12, scaleY: 0.94, rotate: -2, opacity: 0.9 },
-      { x: 30, y: 160, scaleX: 0.92, scaleY: 1.14, rotate: 3, opacity: 0.88 },
-      { x: -10, y: 40, scaleX: 1.06, scaleY: 1.02, rotate: -1, opacity: 0.85 },
-    ],
-    bands: [
-      { y: 0, scaleY: 1, skew: 0, opacity: 0.7 },
-      { y: 60, scaleY: 1.18, skew: -2, opacity: 0.82 },
-      { y: 130, scaleY: 0.88, skew: 3, opacity: 0.78 },
-      { y: 30, scaleY: 1.05, skew: -1, opacity: 0.74 },
-    ],
-    columns: [
-      { x: 0, y: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.75 },
-      { x: 80, y: -40, scaleX: 1.22, scaleY: 1.08, rotate: 3, opacity: 0.88 },
-      { x: -60, y: 90, scaleX: 0.9, scaleY: 1.2, rotate: -4, opacity: 0.92 },
-      { x: 30, y: 20, scaleX: 1.1, scaleY: 0.95, rotate: 2, opacity: 0.8 },
-    ],
-    shimmer: [
-      { x: 0, y: 0, scale: 1, opacity: 0.45 },
-      { x: 50, y: 30, scale: 1.08, opacity: 0.58 },
-      { x: -40, y: 70, scale: 0.95, opacity: 0.62 },
-      { x: 20, y: 15, scale: 1.04, opacity: 0.5 },
+      { shiftX: 0, shiftY: 0, opacity: 0.2 },
+      { shiftX: -16, shiftY: -32, opacity: 0.24 },
+      { shiftX: -28, shiftY: -56, opacity: 0.34 },
+      { shiftX: -10, shiftY: -20, opacity: 0.28 },
     ],
   };
 
   const HUE_TRACK = [
     { progress: 0, hue: 0 },
-    { progress: 0.33, hue: 42 },
-    { progress: 0.66, hue: 78 },
-    { progress: 1, hue: 22 },
+    { progress: 0.33, hue: 38 },
+    { progress: 0.66, hue: 72 },
+    { progress: 1, hue: 18 },
   ];
 
   const sampleHue = (progress) => {
@@ -153,7 +124,6 @@
     targetHue: 0,
     currentHue: 0,
     glows: {},
-    layers: {},
   };
 
   glowPoints.forEach((point) => {
@@ -161,19 +131,8 @@
     if (!id || !GLOW_TRACKS[id]) return;
     scrollState.glows[id] = {
       el: point,
-      current: { shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.65 },
-      target: { shiftX: 0, shiftY: 0, scaleX: 1, scaleY: 1, rotate: 0, opacity: 0.65 },
-    };
-  });
-
-  refractionLayers.forEach((layer) => {
-    const id = layer.getAttribute("data-refraction");
-    if (!id || !LAYER_TRACKS[id]) return;
-    const defaults = LAYER_TRACKS[id][0];
-    scrollState.layers[id] = {
-      el: layer,
-      current: { ...defaults },
-      target: { ...defaults },
+      current: { shiftX: 0, shiftY: 0, opacity: 0.3 },
+      target: { shiftX: 0, shiftY: 0, opacity: 0.3 },
     };
   });
 
@@ -191,77 +150,24 @@
     Object.entries(scrollState.glows).forEach(([id, glow]) => {
       glow.target = sampleTrack(GLOW_TRACKS[id], progress);
     });
-
-    Object.entries(scrollState.layers).forEach(([id, layer]) => {
-      layer.target = sampleTrack(LAYER_TRACKS[id], progress);
-    });
-  };
-
-  const applyLayer = (layer, current) => {
-    const { el } = layer;
-    const id = el.getAttribute("data-refraction");
-
-    if (id === "mesh") {
-      el.style.setProperty("--mesh-x", `${current.x.toFixed(1)}px`);
-      el.style.setProperty("--mesh-y", `${current.y.toFixed(1)}px`);
-      el.style.setProperty("--mesh-scale-x", current.scaleX.toFixed(3));
-      el.style.setProperty("--mesh-scale-y", current.scaleY.toFixed(3));
-      el.style.setProperty("--mesh-rotate", `${current.rotate.toFixed(2)}deg`);
-      el.style.setProperty("--mesh-opacity", current.opacity.toFixed(3));
-    } else if (id === "bands") {
-      el.style.setProperty("--bands-y", `${current.y.toFixed(1)}px`);
-      el.style.setProperty("--bands-scale-y", current.scaleY.toFixed(3));
-      el.style.setProperty("--bands-skew", `${current.skew.toFixed(2)}deg`);
-      el.style.setProperty("--bands-opacity", current.opacity.toFixed(3));
-    } else if (id === "columns") {
-      el.style.setProperty("--columns-x", `${current.x.toFixed(1)}px`);
-      el.style.setProperty("--columns-y", `${current.y.toFixed(1)}px`);
-      el.style.setProperty("--columns-scale-x", current.scaleX.toFixed(3));
-      el.style.setProperty("--columns-scale-y", current.scaleY.toFixed(3));
-      el.style.setProperty("--columns-rotate", `${current.rotate.toFixed(2)}deg`);
-      el.style.setProperty("--columns-opacity", current.opacity.toFixed(3));
-    } else if (id === "shimmer") {
-      el.style.setProperty("--shimmer-x", `${current.x.toFixed(1)}px`);
-      el.style.setProperty("--shimmer-y", `${current.y.toFixed(1)}px`);
-      el.style.setProperty("--shimmer-scale", current.scale.toFixed(3));
-      el.style.setProperty("--shimmer-opacity", current.opacity.toFixed(3));
-    }
   };
 
   const applyScrollState = () => {
-    const ease = reducedMotion ? 1 : 0.08;
+    const ease = reducedMotion ? 1 : 0.06;
 
+    scrollState.currentProgress = lerp(scrollState.currentProgress, scrollState.targetProgress, ease);
     scrollState.currentHue = lerp(scrollState.currentHue, scrollState.targetHue, ease);
+
     root.style.setProperty("--scroll-hue-rotate", `${scrollState.currentHue.toFixed(2)}deg`);
 
     Object.values(scrollState.glows).forEach((glow) => {
-      const c = glow.current;
-      const t = glow.target;
+      glow.current.shiftX = lerp(glow.current.shiftX, glow.target.shiftX, ease);
+      glow.current.shiftY = lerp(glow.current.shiftY, glow.target.shiftY, ease);
+      glow.current.opacity = lerp(glow.current.opacity, glow.target.opacity, ease);
 
-      c.shiftX = lerp(c.shiftX, t.shiftX, ease);
-      c.shiftY = lerp(c.shiftY, t.shiftY, ease);
-      c.scaleX = lerp(c.scaleX, t.scaleX, ease);
-      c.scaleY = lerp(c.scaleY, t.scaleY, ease);
-      c.rotate = lerp(c.rotate, t.rotate, ease);
-      c.opacity = lerp(c.opacity, t.opacity, ease);
-
-      glow.el.style.setProperty("--scroll-shift-x", `${c.shiftX.toFixed(1)}px`);
-      glow.el.style.setProperty("--scroll-shift-y", `${c.shiftY.toFixed(1)}px`);
-      glow.el.style.setProperty("--glow-scale-x", c.scaleX.toFixed(3));
-      glow.el.style.setProperty("--glow-scale-y", c.scaleY.toFixed(3));
-      glow.el.style.setProperty("--glow-rotate", `${c.rotate.toFixed(2)}deg`);
-      glow.el.style.setProperty("--glow-scroll-opacity", c.opacity.toFixed(3));
-    });
-
-    Object.values(scrollState.layers).forEach((layer) => {
-      const c = layer.current;
-      const t = layer.target;
-
-      Object.keys(t).forEach((key) => {
-        c[key] = lerp(c[key], t[key], ease);
-      });
-
-      applyLayer(layer, c);
+      glow.el.style.setProperty("--scroll-shift-x", `${glow.current.shiftX.toFixed(2)}px`);
+      glow.el.style.setProperty("--scroll-shift-y", `${glow.current.shiftY.toFixed(2)}px`);
+      glow.el.style.setProperty("--glow-scroll-opacity", glow.current.opacity.toFixed(3));
     });
   };
 
@@ -287,8 +193,8 @@
 
     glowPoints.forEach((point) => {
       if (nearest && point === nearest.point) {
-        const dx = (mouseX - nearest.cx) * 0.045;
-        const dy = (mouseY - nearest.cy) * 0.045;
+        const dx = (mouseX - nearest.cx) * 0.035;
+        const dy = (mouseY - nearest.cy) * 0.035;
         point.style.setProperty("--glow-offset-x", `${dx}px`);
         point.style.setProperty("--glow-offset-y", `${dy}px`);
       } else {
@@ -298,7 +204,7 @@
     });
   };
 
-  if (ambient && (glowPoints.length || refractionLayers.length)) {
+  if (glowPoints.length) {
     updateScrollTargets();
 
     if (reducedMotion) {
