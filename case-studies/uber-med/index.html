@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Uber Med — case study by Joyce Ren.">
+  <meta name="description" content="Uber Med — case study by Joyce Ren. Reducing missed medical appointments by integrating healthcare scheduling with reliable transportation.">
   <title>Uber Med — Joyce Ren</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/main.css">
 </head>
 <body class="case-study-page">
@@ -109,11 +109,6 @@
       </section>
 
       <section id="solution" class="case-block" data-section="solution">
-        <p class="case-body case-body--lead">
-          This is due to a lack of reliable transportation, delays in arrival time, poor location accuracy,
-          and limited coordination between healthcare systems and rides. So, to tackle this gap:
-        </p>
-
         <h2 class="case-section-heading">The Solution</h2>
 
         <p class="case-pullquote">
@@ -122,55 +117,220 @@
         </p>
 
         <p class="case-body">
-          My concept: Uber Med introduces three core changes to the existing Uber Health experience —
-          personalized ride preparation, proactive appointment reminders tied to transit time, and clearer
-          handoff between clinic and driver.
+          My concept: Uber Med introduces three core changes to how Uber handles medical rides, each targeting
+          a distinct point of friction in the patient's journey to care.
         </p>
 
-        <div class="case-hero-media case-hero-media--compact">
-          <div class="case-phones case-phones--single" aria-hidden="true">
-            <div class="case-phone case-phone--detail">
-              <div class="case-phone__screen">
-                <p class="case-phone__heading">Your ride is on the way</p>
-                <p class="case-phone__sub">Driver prepared for wheelchair access</p>
-              </div>
-            </div>
+        <div class="case-features">
+          <div class="case-feature">
+            <h3 class="case-feature__title">Clinic-Level Drop-off</h3>
+            <p class="case-feature__desc">
+              Pinpoints the exact entrance or department, rather than a generic address or main entrance.
+            </p>
           </div>
+          <div class="case-feature">
+            <h3 class="case-feature__title">Appointment Sync Timing</h3>
+            <p class="case-feature__desc">
+              Calculates departure time based on appointment start, factoring in travel and check-in.
+            </p>
+          </div>
+          <div class="case-feature">
+            <h3 class="case-feature__title">Ride Accommodations</h3>
+            <p class="case-feature__desc">
+              Surfaces accessibility and medical preferences at the point of booking.
+            </p>
+          </div>
+        </div>
+
+        <div class="case-hero-media case-hero-media--compact">
+          <div class="case-placeholder" aria-hidden="true">Solution screens</div>
         </div>
       </section>
 
       <section id="research" class="case-block" data-section="research">
         <h2 class="case-section-heading">Research</h2>
 
+        <h3 class="case-subheading">Surveys &amp; Interviews</h3>
         <p class="case-body">
-          I interviewed patients who rely on non-emergency medical transport, reviewed NEMT complaint
-          data, and mapped the full journey from appointment booking to clinic arrival. Key insight:
-          anxiety spikes in the 24 hours before an appointment when ride details are unclear.
+          To understand the real friction patients face, I surveyed and interviewed 30 people about their
+          experiences getting to medical appointments:
         </p>
 
-        <div class="case-placeholder" aria-hidden="true">Research synthesis</div>
+        <div class="case-stats">
+          <div class="case-stat case-stat--highlight">
+            <span class="case-stat__value">60%</span>
+            <p class="case-stat__label">
+              of respondents have missed, been late to, or rescheduled a medical appointment due to
+              transportation issues
+            </p>
+          </div>
+          <div class="case-stat">
+            <span class="case-stat__value case-stat__fraction">21<span class="case-stat__denominator">/30</span></span>
+            <p class="case-stat__label">were uncertain about their arrival time</p>
+          </div>
+          <div class="case-stat">
+            <span class="case-stat__value case-stat__fraction">19<span class="case-stat__denominator">/30</span></span>
+            <p class="case-stat__label">struggled to find the correct entrance or building</p>
+          </div>
+          <div class="case-stat">
+            <span class="case-stat__value case-stat__fraction">16<span class="case-stat__denominator">/30</span></span>
+            <p class="case-stat__label">struggled to communicate with a driver</p>
+          </div>
+        </div>
+
+        <h3 class="case-subheading">Social Listening</h3>
+        <p class="case-body">
+          To supplement the above, I conducted secondary research by analyzing Reddit threads and App Store
+          reviews to understand how real Uber Health users describe their experiences. Here's what stood out:
+        </p>
+
+        <div class="case-quotes">
+          <figure class="case-quote">
+            <figcaption class="case-quote__source">Uber Health User</figcaption>
+            <blockquote class="case-quote__text">
+              When drivers try to reach the rider, it just goes to the 3rd party coordinator
+            </blockquote>
+            <time class="case-quote__time" datetime="2026">now</time>
+          </figure>
+          <figure class="case-quote">
+            <figcaption class="case-quote__source">Uber User</figcaption>
+            <blockquote class="case-quote__text">
+              My relative had trouble fitting his wheelchair into the car
+            </blockquote>
+            <time class="case-quote__time" datetime="2026">now</time>
+          </figure>
+          <figure class="case-quote">
+            <figcaption class="case-quote__source">Lyft User</figcaption>
+            <blockquote class="case-quote__text">
+              The ride defaults to the main entrance, not specific clinics
+            </blockquote>
+            <time class="case-quote__time" datetime="2026">now</time>
+          </figure>
+        </div>
+
+        <h3 class="case-subheading">Market Analysis</h3>
+        <p class="case-body">
+          Overall, we see that the current market lacks a patient-facing solution that balances on-demand
+          rides with medical context. This gap becomes the opportunity! Now, to synthesize data into designs…
+        </p>
+
+        <div class="case-market">
+          <div class="case-market__grid" aria-label="Market comparison">
+            <div class="case-market__item">Uber (General)</div>
+            <div class="case-market__item">NEMT Services</div>
+            <div class="case-market__item">Lyft Healthcare</div>
+            <div class="case-market__item">Uber Health</div>
+          </div>
+          <div class="case-placeholder case-placeholder--wide case-placeholder--stacked" aria-hidden="true">Market analysis chart</div>
+        </div>
       </section>
 
       <section id="process" class="case-block" data-section="process">
-        <h2 class="case-section-heading">Process</h2>
+        <h2 class="case-section-heading">Design Process</h2>
 
+        <h3 class="case-subheading">Key Insights</h3>
+        <ul class="case-insights">
+          <li>Patients need clear handoffs with drivers</li>
+          <li>Timing and accessibility needs are often unmet.</li>
+          <li>Correct arrival location is critical.</li>
+        </ul>
+
+        <h3 class="case-subheading">Core Design</h3>
+        <ul class="case-insights">
+          <li>Direct patient-facing flow</li>
+          <li>Clinic-specific drop off &amp; time estimation</li>
+          <li>Personalized ride accessibility</li>
+        </ul>
+
+        <h3 class="case-subheading">Constraints &amp; Tradeoffs</h3>
+        <div class="case-table-wrap">
+          <table class="case-table">
+            <thead>
+              <tr>
+                <th scope="col">Considered</th>
+                <th scope="col">Decision</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">EHR integration vs. manual appointment entry</th>
+                <td>Manual entry to ship without hospital API dependency</td>
+              </tr>
+              <tr>
+                <th scope="row">Full accessibility vs. simplified ride preferences</th>
+                <td>Key accommodations without requiring medical history</td>
+              </tr>
+              <tr>
+                <th scope="row">Provider-side HIPAA vs. patient-facing access</th>
+                <td>Extended existing infrastructure to put patients in control</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="case-subheading">Hi-fi Flow Adjustments</h3>
         <p class="case-body">
-          I prototyped three flows in Figma — ride preparation, live trip coordination, and post-visit
-          feedback — and tested them with five participants who use mobility aids or caregivers. Iterations
-          focused on reducing cognitive load during high-stress moments.
+          I decided to keep Uber Med within the existing ride selection flow rather than a standalone product,
+          triggered by destination type and appointment time (not a separate entry point). This distinguishes
+          timing from accommodation needs, while also reducing decision fatigue at the start of the flow.
         </p>
 
-        <div class="case-placeholder" aria-hidden="true">Process artifacts</div>
+        <div class="case-placeholder" aria-hidden="true">Users select hospital and appointment date &amp; time</div>
+
+        <div class="case-placeholder case-placeholder--stacked" aria-hidden="true">Uber Med surfaces as the recommended ride</div>
+
+        <h3 class="case-subheading">User Feedback &amp; Iterations</h3>
+
+        <div class="case-feedback">
+          <div class="case-feedback__col">
+            <h4 class="case-feedback__title">Feedback received</h4>
+            <ul class="case-feedback__list">
+              <li>Needs a confirmation or review page</li>
+              <li>Circles seem more like a single-selection format</li>
+              <li>Needs more visual unity between options</li>
+              <li>Missing "back" or "return" option</li>
+              <li>The purpose of this step-by-step is unclear</li>
+            </ul>
+          </div>
+          <div class="case-feedback__col">
+            <h4 class="case-feedback__title">Iterations made</h4>
+            <ul class="case-feedback__list">
+              <li>Clear step-by-step segmentation for organized decision making</li>
+              <li>Review screen for appointment time, pickup info, accommodations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="case-image-grid">
+          <div class="case-placeholder" aria-hidden="true">Before iteration</div>
+          <div class="case-placeholder" aria-hidden="true">After iteration</div>
+        </div>
       </section>
 
       <section id="takeaways" class="case-block case-block--last" data-section="takeaways">
-        <h2 class="case-section-heading">Takeaways</h2>
+        <h2 class="case-section-heading">Key Takeaways!</h2>
 
         <p class="case-body">
-          Healthcare transportation is not just a logistics problem — it is an equity problem. Designing
-          for patients with barriers means building confidence into every touchpoint, not bolting
-          accessibility on at the end.
+          This project reinforced the importance of grounding product decisions in research. It also highlighted
+          the value of designing within Uber's existing constraints, leveraging existing ride and scheduling
+          flows rather than reinventing them.
         </p>
+
+        <h3 class="case-subheading">What's Next</h3>
+        <p class="case-body">
+          With more time, I'd extend usability testing across broader patient groups and explore pushing the
+          design beyond the ride, particularly the post-arrival experience—guiding patients from drop-off to
+          the correct entrance or department!
+        </p>
+
+        <p class="case-disclaimer">
+          Disclaimer: This was a concept project (not affiliated with Uber)!
+        </p>
+
+        <footer class="case-footer-note">
+          <a href="mailto:joren@ucsd.edu">joren@ucsd.edu</a>
+          <span class="case-footer-note__copy">© 2026 Joyce Ren</span>
+        </footer>
       </section>
     </article>
   </div>
