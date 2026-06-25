@@ -150,6 +150,15 @@ main,
 
 .has-lamp-landing .ambient-light {
   opacity: var(--lamp-power, 0);
+  transition: opacity 0.12s linear;
+}
+
+.has-lamp-landing .light-streaks {
+  opacity: calc(var(--lamp-power, 0) * (0.62 + var(--light-intensity, 1) * 0.34));
+}
+
+body.lamp-is-lit {
+  background-color: color-mix(in srgb, var(--color-bg-base) 90%, #fff3e4);
 }
 
 .light-mesh {
@@ -1298,13 +1307,14 @@ p {
   transform: translateX(-50%);
   background: radial-gradient(
     ellipse 72% 58% at 50% 42%,
-    rgba(255, 205, 145, calc(0.62 * var(--lamp-power))) 0%,
-    rgba(255, 225, 185, calc(0.32 * var(--lamp-power))) 32%,
-    rgba(255, 240, 220, calc(0.12 * var(--lamp-power))) 52%,
+    rgba(255, 205, 145, calc(0.78 * var(--lamp-power))) 0%,
+    rgba(255, 225, 185, calc(0.42 * var(--lamp-power))) 32%,
+    rgba(255, 240, 220, calc(0.18 * var(--lamp-power))) 52%,
     transparent 72%
   );
   filter: blur(18px);
   pointer-events: none;
+  transition: background 0.15s ease-out;
 }
 
 .lamp-assembly {
@@ -1336,13 +1346,14 @@ p {
     ),
     linear-gradient(
       180deg,
-      color-mix(in srgb, #f9f5ef calc(100% - var(--lamp-power) * 8%), #fff4e4) 0%,
-      color-mix(in srgb, #ebe3d6 calc(100% - var(--lamp-power) * 12%), #f5dcc0) 100%
+      color-mix(in srgb, #f9f5ef calc(100% - var(--lamp-power) * 14%), #fff4e4) 0%,
+      color-mix(in srgb, #ebe3d6 calc(100% - var(--lamp-power) * 20%), #f5dcc0) 100%
     );
   box-shadow:
-    0 28px 60px rgba(180, 150, 120, calc(0.06 + var(--lamp-power) * 0.14)),
-    inset 0 -18px 36px rgba(255, 200, 140, calc(var(--lamp-power) * 0.22)),
-    inset 0 12px 24px rgba(255, 255, 255, calc(0.35 + var(--lamp-power) * 0.2));
+    0 28px 60px rgba(180, 150, 120, calc(0.06 + var(--lamp-power) * 0.2)),
+    0 0 80px rgba(255, 210, 150, calc(var(--lamp-power) * 0.28)),
+    inset 0 -18px 36px rgba(255, 200, 140, calc(var(--lamp-power) * 0.34)),
+    inset 0 12px 24px rgba(255, 255, 255, calc(0.35 + var(--lamp-power) * 0.28));
   transform: translateY(calc(var(--lamp-power) * -4px));
   transition: box-shadow 0.2s ease-out, transform 0.2s ease-out;
 }
@@ -1367,9 +1378,9 @@ p {
   border-radius: 50%;
   background: radial-gradient(
     ellipse 88% 72% at 50% 42%,
-    rgba(255, 248, 235, calc(var(--lamp-power) * 0.95)) 0%,
-    rgba(255, 220, 160, calc(var(--lamp-power) * 0.72)) 28%,
-    rgba(255, 190, 120, calc(var(--lamp-power) * 0.35)) 52%,
+    rgba(255, 248, 235, calc(var(--lamp-power) * 1)) 0%,
+    rgba(255, 220, 160, calc(var(--lamp-power) * 0.84)) 28%,
+    rgba(255, 190, 120, calc(var(--lamp-power) * 0.48)) 52%,
     transparent 74%
   );
   mix-blend-mode: screen;
