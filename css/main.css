@@ -24,6 +24,14 @@
   --max-width: 72rem;
   --radius: 0.5rem;
   --transition: 200ms ease;
+
+  --case-content-max: 52rem;
+  --case-sidebar-width: 7.5rem;
+  --nav-max-width: calc(var(--case-content-max) + var(--case-sidebar-width) + 8rem);
+  --nav-padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  --nav-link-gap: 1.5rem;
+  --nav-logo-gap: 1.75rem;
+  --case-topbar-height: 4.5rem;
 }
 
 *,
@@ -385,7 +393,6 @@ p {
   --case-bg: #ffffff;
   --case-text: #a1a1a1;
   --case-heading: #a1a1a1;
-  --case-topbar-height: 4.5rem;
   background: var(--case-bg);
   color: var(--case-text);
   min-height: 100vh;
@@ -393,12 +400,7 @@ p {
 
 .portfolio-page {
   --case-bg: #ffffff;
-  --case-topbar-height: 4.5rem;
   background: var(--case-bg);
-}
-
-.portfolio-page .case-topbar__inner {
-  max-width: var(--max-width);
 }
 
 .portfolio-page main {
@@ -406,11 +408,11 @@ p {
 }
 
 .about-main {
-  max-width: 56rem;
+  max-width: var(--nav-max-width);
   margin-inline: auto;
   padding:
     calc(var(--case-topbar-height) + clamp(3rem, 8vw, 5rem))
-    clamp(1.5rem, 5vw, 2.5rem)
+    var(--nav-padding-inline)
     clamp(4rem, 10vw, 6rem);
 }
 
@@ -478,15 +480,13 @@ p {
 }
 
 .case-topbar__nav a[aria-current="page"] {
-  position: relative;
   color: #a1a1a1;
-  z-index: 0;
 }
 
 .case-topbar__nav a[aria-current="page"]::before {
   content: "";
   position: absolute;
-  inset: -0.4rem -1rem;
+  inset: 0;
   border-radius: 999px;
   background: radial-gradient(
     ellipse at 50% 50%,
@@ -670,10 +670,10 @@ p {
     font: inherit;
     cursor: pointer;
     margin-left: auto;
+    flex-shrink: 0;
   }
 
-  .portfolio-page .case-topbar__nav,
-  .about-page .case-topbar__nav {
+  .case-topbar__nav {
     display: none;
     position: absolute;
     top: 100%;
@@ -687,24 +687,20 @@ p {
     border-bottom: 1px solid var(--color-border);
   }
 
-  .portfolio-page .case-topbar__nav.is-open,
-  .about-page .case-topbar__nav.is-open {
+  .case-topbar__nav.is-open {
     display: flex;
   }
 
-  .portfolio-page .case-topbar__nav a,
-  .about-page .case-topbar__nav a {
+  .case-topbar__nav a {
     padding: var(--space-sm);
   }
 
-  .portfolio-page .case-topbar__inner,
-  .about-page .case-topbar__inner {
+  .case-topbar__inner {
     position: relative;
     flex-wrap: wrap;
   }
 
-  .portfolio-page .case-topbar__resume,
-  .about-page .case-topbar__resume {
+  .case-topbar__resume {
     display: none;
   }
 
@@ -754,9 +750,6 @@ p {
   --case-text-active: #a1a1a1;
   --case-text-faint: #a1a1a1;
   --case-heading: #a1a1a1;
-  --case-sidebar-width: 7.5rem;
-  --case-content-max: 52rem;
-  --case-topbar-height: 4.5rem;
   background: var(--case-bg);
   color: var(--case-text);
 }
@@ -777,15 +770,16 @@ p {
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  max-width: calc(var(--case-content-max) + var(--case-sidebar-width) + 8rem);
+  max-width: var(--nav-max-width);
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  padding-inline: var(--nav-padding-inline);
 }
 
 .case-topbar__left {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: var(--nav-logo-gap);
+  min-width: 0;
 }
 
 .case-topbar__logo {
@@ -801,15 +795,27 @@ p {
 .case-topbar__nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: var(--nav-link-gap);
 }
 
 .case-topbar__nav a,
 .case-topbar__resume {
   font-size: 0.9375rem;
   font-weight: 400;
+  line-height: 1.2;
   color: #a1a1a1;
   transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.case-topbar__nav a {
+  position: relative;
+  z-index: 0;
+  padding: 0.35rem 0.85rem;
+}
+
+.case-topbar__resume {
+  flex-shrink: 0;
 }
 
 .case-topbar__nav a:hover,
@@ -821,11 +827,11 @@ p {
   display: grid;
   grid-template-columns: var(--case-sidebar-width) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 3rem);
-  max-width: calc(var(--case-content-max) + var(--case-sidebar-width) + 8rem);
+  max-width: var(--nav-max-width);
   margin-inline: auto;
   padding:
     calc(var(--case-topbar-height) + 2rem)
-    clamp(1.25rem, 4vw, 2.5rem)
+    var(--nav-padding-inline)
     5rem;
 }
 
@@ -1117,7 +1123,7 @@ p {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #aaa;
+  color: #a1a1a1;
 }
 
 .case-placeholder--wide {
@@ -1164,10 +1170,6 @@ p {
 }
 
 @media (max-width: 600px) {
-  .case-topbar__nav {
-    display: none;
-  }
-
   .case-callout {
     border-radius: 1.25rem;
   }
@@ -2155,7 +2157,7 @@ p {
 
 .case-hs-ui__hint {
   font-size: 0.5rem;
-  color: #aaa;
+  color: #a1a1a1;
   margin: 0 0.75rem 0.75rem;
   line-height: 1.4;
 }
@@ -2326,7 +2328,7 @@ p {
 
 .case-hs-web__filters {
   font-size: 0.4rem;
-  color: #aaa;
+  color: #a1a1a1;
   margin-bottom: 0.4rem;
   padding-bottom: 0.3rem;
   border-bottom: 1px solid #eee;
