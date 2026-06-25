@@ -265,16 +265,16 @@
 
     const GLOW_PALETTES = {
       peach: {
-        cool: [205, 195, 190, 0.38],
-        warm: [225, 185, 165, 0.55],
+        cool: [205, 195, 190, 0.42],
+        warm: [225, 185, 165, 0.58],
       },
       sage: {
         cool: [185, 195, 205, 0.34],
         warm: [195, 200, 185, 0.46],
       },
       gold: {
-        cool: [210, 215, 225, 0.4],
-        warm: [235, 215, 175, 0.62],
+        cool: [210, 215, 225, 0.44],
+        warm: [235, 215, 175, 0.66],
       },
       mauve: {
         cool: [195, 190, 205, 0.32],
@@ -319,15 +319,25 @@
       };
     });
 
+    const GLOW_SUN_ROTATE = {
+      peach: 0.09,
+      sage: -0.06,
+      gold: 0.05,
+      mauve: -0.08,
+      lavender: 0.07,
+      blush: -0.05,
+    };
+
     const CAUSTIC_OFFSETS = [
-      { angle: 6, weight: 0.52, rotate: -14 },
-      { angle: -28, weight: 0.58, rotate: 22 },
-      { angle: 42, weight: 0.46, rotate: -6 },
+      { angle: 2, weight: 0.46, rotate: -22, jitterX: -2.8, jitterY: 1.6, scale: 1.06 },
+      { angle: -26, weight: 0.54, rotate: 32, jitterX: 2.4, jitterY: -2.6, scale: 0.9 },
+      { angle: 44, weight: 0.4, rotate: -8, jitterX: -1.6, jitterY: 3, scale: 1.1 },
+      { angle: 16, weight: 0.3, rotate: 18, jitterX: 3.2, jitterY: -1.4, scale: 0.86 },
     ];
 
     lightState.caustics = [];
     document.querySelectorAll("[data-caustic]").forEach((el, index) => {
-      const config = CAUSTIC_OFFSETS[index] ?? { angle: 0, weight: 0.5, rotate: 0 };
+      const config = CAUSTIC_OFFSETS[index] ?? { angle: 0, weight: 0.5, rotate: 0, jitterX: 0, jitterY: 0, scale: 1 };
       lightState.caustics.push({
         el,
         config,
@@ -413,18 +423,22 @@
 
       lightState.caustics.forEach((caustic) => {
         const anchor = anchorFromAngle(angle + caustic.config.angle, caustic.config.weight);
-        caustic.target.posX = anchor.x;
-        caustic.target.posY = anchor.y;
+        caustic.target.posX = anchor.x + (caustic.config.jitterX ?? 0);
+        caustic.target.posY = anchor.y + (caustic.config.jitterY ?? 0);
       });
     };
 
     const applyLightState = () => {
-      Object.values(lightState.glows).forEach((glow) => {
+      Object.entries(lightState.glows).forEach(([id, glow]) => {
         glow.current.posX = lerp(glow.current.posX, glow.target.posX, LIGHT_LERP);
         glow.current.posY = lerp(glow.current.posY, glow.target.posY, LIGHT_LERP);
 
         glow.el.style.setProperty("--light-pos-x", `${glow.current.posX.toFixed(2)}%`);
         glow.el.style.setProperty("--light-pos-y", `${glow.current.posY.toFixed(2)}%`);
+        glow.el.style.setProperty(
+          "--glow-sun-rotate",
+          `${((GLOW_SUN_ROTATE[id] ?? 0) * lightState.displayAngle * 0.12).toFixed(2)}deg`
+        );
       });
 
       lightState.caustics.forEach((caustic) => {
@@ -437,6 +451,7 @@
           "--caustic-rotate",
           `${(lightState.displayAngle + caustic.config.rotate).toFixed(2)}deg`
         );
+        caustic.el.style.setProperty("--caustic-scale", String(caustic.config.scale ?? 1));
       });
     };
 
