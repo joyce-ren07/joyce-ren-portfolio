@@ -754,6 +754,7 @@ p {
   --case-text-active: #a1a1a1;
   --case-text-faint: #a1a1a1;
   --case-heading: #a1a1a1;
+  --nav-padding-inline: clamp(2.5rem, 10vw, 8rem);
   background: var(--case-bg);
   color: var(--case-text);
 }
@@ -829,9 +830,9 @@ p {
 
 .case-layout {
   display: grid;
-  grid-template-columns: var(--case-sidebar-width) minmax(0, 1fr);
-  gap: clamp(1.25rem, 2.5vw, 2.5rem);
-  max-width: var(--nav-max-width);
+  grid-template-columns: 1fr minmax(0, var(--case-content-max)) 1fr;
+  gap: 0;
+  max-width: 100%;
   margin-inline: auto;
   padding:
     calc(var(--case-topbar-height) + 2rem)
@@ -843,10 +844,14 @@ p {
   position: sticky;
   top: calc(var(--case-topbar-height) + 1.5rem);
   align-self: start;
+  grid-column: 1;
+  justify-self: end;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   padding-top: 0.25rem;
+  padding-right: clamp(1.5rem, 4vw, 3rem);
+  width: var(--case-sidebar-width);
 }
 
 .case-sidebar__link {
@@ -867,10 +872,11 @@ p {
 }
 
 .case-content {
+  grid-column: 2;
   min-width: 0;
-  max-width: var(--case-content-max);
+  max-width: 100%;
   width: 100%;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .case-block {
@@ -880,6 +886,7 @@ p {
 
 .case-block--intro {
   padding-top: clamp(1rem, 3vw, 2rem);
+  padding-bottom: clamp(6rem, 18vh, 12rem);
   text-align: center;
 }
 
@@ -914,7 +921,7 @@ p {
   position: relative;
   max-width: 44rem;
   margin-inline: auto;
-  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
   padding: 0;
   background: transparent;
   border: none;
@@ -1185,6 +1192,10 @@ p {
 }
 
 @media (max-width: 900px) {
+  .case-study-page {
+    --nav-padding-inline: 1.25rem;
+  }
+
   .case-layout {
     grid-template-columns: 1fr;
     gap: 0;
@@ -1194,14 +1205,22 @@ p {
     position: sticky;
     top: var(--case-topbar-height);
     z-index: 50;
+    grid-column: 1;
+    justify-self: start;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5rem 1.25rem;
+    width: auto;
     padding: 0.75rem 0 1.25rem;
+    padding-right: 0;
     margin-bottom: 0.5rem;
     background: color-mix(in srgb, var(--case-bg) 94%, transparent);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .case-content {
+    grid-column: 1;
   }
 
   .case-phones {
@@ -2037,13 +2056,22 @@ p {
 }
 
 .case-details--wide {
-  gap: clamp(2.5rem, 8vw, 5rem);
+  gap: clamp(3.5rem, 10vw, 7rem);
+}
+
+.case-details--wide .case-details__col {
+  gap: 1.75rem;
+}
+
+.case-block--intro .case-details {
+  width: max-content;
+  max-width: 100%;
 }
 
 .case-body--centered {
   text-align: center;
-  max-width: 36rem;
-  margin: clamp(2.5rem, 6vw, 3.5rem) auto 0;
+  max-width: min(50rem, 100%);
+  margin: clamp(2rem, 4vw, 2.75rem) auto 0;
   line-height: 1.65;
 }
 
