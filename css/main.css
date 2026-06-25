@@ -902,11 +902,28 @@ p {
 .case-hero-media {
   position: relative;
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
-  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem) clamp(3rem, 8vw, 5rem);
+  padding: 0;
   background: #ffffff;
-  border: 1px solid var(--color-border);
+  border: none;
   border-radius: clamp(1.75rem, 4vw, 2.75rem);
   overflow: hidden;
+}
+
+.case-hero-media:has(.case-hero-image) {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.case-hero-media:has(.case-hero-image)::after {
+  display: none;
+}
+
+.case-hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: clamp(1.75rem, 4vw, 2.75rem);
 }
 
 .case-hero-media::after {
