@@ -51,6 +51,33 @@
         </p>
         <a href="#work" class="btn btn--primary">See my work</a>
       </div>
+
+      <div class="light-dial glass" role="group" aria-label="Light direction">
+        <div class="light-dial__ring" id="light-dial-ring">
+          <div class="light-dial__ticks" aria-hidden="true">
+            <span class="light-dial__tick"></span>
+            <span class="light-dial__tick"></span>
+            <span class="light-dial__tick"></span>
+            <span class="light-dial__tick"></span>
+            <span class="light-dial__tick"></span>
+            <span class="light-dial__tick"></span>
+            <span class="light-dial__tick"></span>
+            <span class="light-dial__tick"></span>
+          </div>
+          <span class="light-dial__center" aria-hidden="true"></span>
+          <button
+            type="button"
+            class="light-dial__sun"
+            id="light-dial-sun"
+            role="slider"
+            aria-valuemin="0"
+            aria-valuemax="360"
+            aria-valuenow="45"
+            aria-label="Sun position"
+          ></button>
+        </div>
+        <span class="light-dial__label" id="light-dial-label" aria-live="polite">morning</span>
+      </div>
     </section>
 
     <section id="work" class="section section--tight">

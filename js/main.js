@@ -204,6 +204,8 @@
     });
   };
 
+  let updateLightDial = () => {};
+
   if (glowPoints.length) {
     updateScrollTargets();
 
@@ -213,6 +215,7 @@
       const tick = () => {
         applyScrollState();
         updatePointerGlow();
+        updateLightDial();
         requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -223,6 +226,203 @@
         mouseX = e.clientX;
         mouseY = e.clientY;
       }, { passive: true });
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Light source dial — sun angle drives ambient glow zones
+     -------------------------------------------------------------------------- */
+
+  const lightDialRing = document.getElementById("light-dial-ring");
+  const lightDialSun = document.getElementById("light-dial-sun");
+  const lightDialLabel = document.getElementById("light-dial-label");
+
+  if (lightDialRing && lightDialSun && glowPoints.length) {
+    const DEG_PER_MS = 360 / 30000;
+    const LIGHT_LERP = reducedMotion ? 1 : 0.08;
+    const PRIMARY_SHIFT = 150;
+    const SECONDARY_SHIFT = 95;
+
+    const GLOW_LIGHT_OFFSETS = {
+      gold: 0,
+      peach: 52,
+      sage: 108,
+      mauve: 168,
+      lavender: 228,
+      blush: 288,
+    };
+
+    const GLOW_LIGHT_WEIGHTS = {
+      gold: 1,
+      peach: 0.72,
+      sage: 0.65,
+      mauve: 0.68,
+      lavender: 0.6,
+      blush: 0.62,
+    };
+
+    const lightState = {
+      sunAngle: 45,
+      displayAngle: 45,
+      isDragging: false,
+      lastTime: performance.now(),
+      glows: {},
+    };
+
+    glowPoints.forEach((point) => {
+      const id = point.getAttribute("data-glow");
+      if (!id) return;
+      lightState.glows[id] = {
+        el: point,
+        current: { shiftX: 0, shiftY: 0, opacityScale: 1 },
+        target: { shiftX: 0, shiftY: 0, opacityScale: 1 },
+      };
+    });
+
+    const normalizeAngle = (angle) => ((angle % 360) + 360) % 360;
+
+    const angleToVector = (degrees) => {
+      const rad = (degrees * Math.PI) / 180;
+      return {
+        x: Math.sin(rad),
+        y: -Math.cos(rad),
+      };
+    };
+
+    const getTimeLabel = (angle) => {
+      const a = normalizeAngle(angle);
+      if (a >= 337.5 || a < 22.5) return "midday";
+      if (a < 67.5) return "morning";
+      if (a < 112.5) return "golden hour";
+      if (a < 157.5) return "afternoon";
+      if (a < 202.5) return "dusk";
+      if (a < 247.5) return "evening";
+      if (a < 292.5) return "golden hour";
+      return "dawn";
+    };
+
+    const pointerToAngle = (clientX, clientY) => {
+      const rect = lightDialRing.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = clientX - cx;
+      const dy = clientY - cy;
+      let angle = (Math.atan2(dx, -dy) * 180) / Math.PI;
+      return normalizeAngle(angle);
+    };
+
+    const computeLightTargets = (angle) => {
+      const sun = angleToVector(angle);
+      const sunHeight = -sun.y;
+      const sideWarmth = Math.abs(sun.x);
+
+      const intensity = lerp(0.52, 1.05, (sunHeight + 1) / 2);
+      const saturate = lerp(0.82, 1.18, sideWarmth * 0.65 + (sunHeight + 1) * 0.2);
+      const warmthHue = lerp(-6, 18, sideWarmth);
+
+      root.style.setProperty("--light-brightness", intensity.toFixed(3));
+      root.style.setProperty("--light-saturate", saturate.toFixed(3));
+      root.style.setProperty("--light-warmth-hue", `${warmthHue.toFixed(2)}deg`);
+      root.style.setProperty("--light-angle", `${angle.toFixed(2)}deg`);
+
+      Object.entries(lightState.glows).forEach(([id, glow]) => {
+        const offset = GLOW_LIGHT_OFFSETS[id] ?? 0;
+        const weight = GLOW_LIGHT_WEIGHTS[id] ?? 0.6;
+        const radius = id === "gold" ? PRIMARY_SHIFT : SECONDARY_SHIFT;
+        const vec = angleToVector(angle + offset);
+        const heightBias = lerp(0.55, 1, (angleToVector(angle + offset).y * -1 + 1) / 2);
+
+        glow.target.shiftX = vec.x * radius * weight;
+        glow.target.shiftY = vec.y * radius * weight;
+        glow.target.opacityScale = lerp(0.62, 1.08, heightBias * intensity);
+      });
+    };
+
+    const applyLightState = () => {
+      Object.values(lightState.glows).forEach((glow) => {
+        glow.current.shiftX = lerp(glow.current.shiftX, glow.target.shiftX, LIGHT_LERP);
+        glow.current.shiftY = lerp(glow.current.shiftY, glow.target.shiftY, LIGHT_LERP);
+        glow.current.opacityScale = lerp(glow.current.opacityScale, glow.target.opacityScale, LIGHT_LERP);
+
+        glow.el.style.setProperty("--light-shift-x", `${glow.current.shiftX.toFixed(2)}px`);
+        glow.el.style.setProperty("--light-shift-y", `${glow.current.shiftY.toFixed(2)}px`);
+        glow.el.style.setProperty("--light-opacity-scale", glow.current.opacityScale.toFixed(3));
+      });
+    };
+
+    const updateDialVisuals = (angle) => {
+      lightDialRing.style.setProperty("--dial-angle", `${angle.toFixed(2)}deg`);
+      lightDialSun.setAttribute("aria-valuenow", String(Math.round(angle)));
+      if (lightDialLabel) {
+        lightDialLabel.textContent = getTimeLabel(angle);
+      }
+    };
+
+    const setSunAngle = (angle) => {
+      lightState.sunAngle = normalizeAngle(angle);
+      computeLightTargets(lightState.sunAngle);
+    };
+
+    const startDrag = () => {
+      lightState.isDragging = true;
+      lightDialRing.classList.add("is-dragging");
+    };
+
+    const endDrag = () => {
+      lightState.isDragging = false;
+      lightDialRing.classList.remove("is-dragging");
+    };
+
+    const onPointerMove = (e) => {
+      if (!lightState.isDragging) return;
+      setSunAngle(pointerToAngle(e.clientX, e.clientY));
+    };
+
+    lightDialRing.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0 && e.pointerType === "mouse") return;
+      e.preventDefault();
+      lightDialRing.setPointerCapture(e.pointerId);
+      startDrag();
+      setSunAngle(pointerToAngle(e.clientX, e.clientY));
+    });
+
+    lightDialRing.addEventListener("pointermove", onPointerMove);
+    lightDialRing.addEventListener("pointerup", endDrag);
+    lightDialRing.addEventListener("pointercancel", endDrag);
+
+    lightDialSun.addEventListener("keydown", (e) => {
+      const step = e.shiftKey ? 15 : 5;
+      if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+        e.preventDefault();
+        setSunAngle(lightState.sunAngle + step);
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+        e.preventDefault();
+        setSunAngle(lightState.sunAngle - step);
+      }
+    });
+
+    computeLightTargets(lightState.sunAngle);
+    updateDialVisuals(lightState.displayAngle);
+
+    if (reducedMotion) {
+      lightState.displayAngle = lightState.sunAngle;
+      applyLightState();
+      updateDialVisuals(lightState.displayAngle);
+    } else {
+      updateLightDial = () => {
+        const now = performance.now();
+        const dt = now - lightState.lastTime;
+        lightState.lastTime = now;
+
+        if (!lightState.isDragging) {
+          lightState.sunAngle = normalizeAngle(lightState.sunAngle + DEG_PER_MS * dt);
+          computeLightTargets(lightState.sunAngle);
+        }
+
+        lightState.displayAngle = lerp(lightState.displayAngle, lightState.sunAngle, LIGHT_LERP);
+        applyLightState();
+        updateDialVisuals(lightState.displayAngle);
+      };
     }
   }
 })();
