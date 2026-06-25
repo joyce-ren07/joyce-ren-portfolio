@@ -3,7 +3,7 @@
    ========================================================================== */
 
 :root {
-  --color-bg: #faf9f7;
+  --color-bg: #ffffff;
   --color-surface: #ffffff;
   --color-text: #1a1a1a;
   --color-text-muted: #5c5c5c;
@@ -291,7 +291,8 @@ p {
 
 .work-card__image {
   aspect-ratio: 16 / 10;
-  background: linear-gradient(135deg, #e8e6e1 0%, #d4d0c8 100%);
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -329,7 +330,8 @@ p {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 0.25rem 0.5rem;
-  background: var(--color-bg);
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   color: var(--color-text-muted);
 }
@@ -380,7 +382,7 @@ p {
    -------------------------------------------------------------------------- */
 
 .about-page {
-  --case-bg: #f3f3f3;
+  --case-bg: #ffffff;
   --case-text: #8a8a8a;
   --case-heading: #b5b5b5;
   --case-topbar-height: 4.5rem;
@@ -390,7 +392,7 @@ p {
 }
 
 .portfolio-page {
-  --case-bg: #f3f3f3;
+  --case-bg: #ffffff;
   --case-topbar-height: 4.5rem;
   background: var(--case-bg);
 }
@@ -447,7 +449,7 @@ p {
   margin: 0;
   border-radius: clamp(1.5rem, 3vw, 2.25rem);
   overflow: hidden;
-  background: linear-gradient(160deg, #ebe6e1 0%, #d9d2cb 100%);
+  background: linear-gradient(160deg, #ffffff 0%, #ffffff 100%);
   min-height: clamp(18rem, 40vw, 28rem);
   box-shadow:
     0 0 0 10px rgba(255, 248, 238, 0.75),
@@ -572,7 +574,8 @@ p {
 
 .case-image {
   aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, #e8e6e1 0%, #d4d0c8 100%);
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   display: flex;
   align-items: center;
@@ -746,7 +749,7 @@ p {
    -------------------------------------------------------------------------- */
 
 .case-study-page {
-  --case-bg: #f3f3f3;
+  --case-bg: #ffffff;
   --case-text: #8a8a8a;
   --case-text-active: #2a2a2a;
   --case-text-faint: #c8c8c8;
@@ -894,7 +897,8 @@ p {
   position: relative;
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
   padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem) clamp(3rem, 8vw, 5rem);
-  background: #ececec;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   border-radius: clamp(1.75rem, 4vw, 2.75rem);
   overflow: hidden;
 }
@@ -1012,7 +1016,8 @@ p {
 }
 
 .case-phone__btn--ghost {
-  background: #e8e8e8;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   color: #666;
 }
 
@@ -1104,7 +1109,8 @@ p {
   margin-top: 2rem;
   aspect-ratio: 16 / 9;
   border-radius: 1.25rem;
-  background: #e8e8e8;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1315,7 +1321,8 @@ p {
 }
 
 .case-ui-locations__item.is-selected {
-  background: #ececec;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   font-weight: 600;
 }
 
@@ -1416,7 +1423,8 @@ p {
 
 .case-feature {
   padding: 1.5rem 1.25rem;
-  background: #ececec;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   border-radius: 1.25rem;
 }
 
@@ -1606,7 +1614,8 @@ p {
 
 .case-quote {
   padding: 1.25rem;
-  background: #ececec;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   border-radius: 1.25rem;
   display: flex;
   flex-direction: column;
@@ -1796,7 +1805,8 @@ p {
   margin-top: 1.5rem;
   overflow-x: auto;
   border-radius: 1.25rem;
-  background: #ececec;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
 }
 
 .case-table {
@@ -1837,7 +1847,8 @@ p {
 
 .case-feedback__col {
   padding: 1.5rem;
-  background: #ececec;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   border-radius: 1.25rem;
 }
 
@@ -2068,7 +2079,8 @@ p {
   display: block;
   margin: 0.75rem;
   padding: 0.55rem;
-  background: #e8e8e8;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
   color: #666;
   text-align: center;
   font-size: 0.62rem;
