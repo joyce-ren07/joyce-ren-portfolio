@@ -1278,8 +1278,7 @@ p {
   line-height: 1.05;
 }
 
-.case-body + .case-subheading--large,
-.case-process-competitive .case-subheading--large {
+.case-body + .case-subheading--large {
   margin-top: clamp(6rem, 14vh, 10rem);
 }
 
@@ -2104,12 +2103,38 @@ p {
   letter-spacing: -0.01em;
 }
 
-#process .case-subheading--large:first-child {
-  margin-top: 0;
+#process .case-section-heading {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 500;
+  color: #a1a1a1;
+  margin: 0;
+  line-height: 1.05;
+}
+
+#process .case-section-heading + .case-process-key {
+  margin-top: clamp(4rem, 10vh, 7rem);
+}
+
+#process .case-subheading--large {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 500;
+  color: #a1a1a1;
+  margin: 0 0 1.75rem;
+  line-height: 1.1;
 }
 
 #process .case-process-key + .case-process-competitive {
   margin-top: clamp(6rem, 14vh, 10rem);
+}
+
+#process .case-body--process {
+  max-width: 100%;
+  margin: 0;
+  line-height: 1.8;
+}
+
+#process .case-insight-cards {
+  margin-top: clamp(3rem, 6vw, 4rem);
 }
 
 #problem .case-body {
@@ -2463,14 +2488,12 @@ p {
 
 .case-body--process {
   max-width: 100%;
-  margin-bottom: clamp(2rem, 5vw, 3rem);
 }
 
 .case-insight-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1rem, 2.2vw, 1.5rem);
-  margin-top: clamp(2rem, 5vw, 3rem);
   width: 100%;
 }
 
@@ -2521,7 +2544,7 @@ p {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(1.25rem, 3vw, 2rem);
-  margin-top: clamp(2rem, 5vw, 3rem);
+  margin-top: 0;
   margin-bottom: clamp(3rem, 8vw, 5rem);
   width: 100%;
 }
