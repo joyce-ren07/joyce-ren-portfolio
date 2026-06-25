@@ -21,14 +21,14 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
-  --max-width: 72rem;
+  --max-width: 74.625rem;
   --radius: 0.5rem;
   --transition: 200ms ease;
 
-  --case-content-max: 52rem;
-  --case-sidebar-width: 7.5rem;
-  --nav-max-width: calc(var(--case-content-max) + var(--case-sidebar-width) + 8rem);
-  --nav-padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  --case-content-max: 55rem;
+  --case-sidebar-width: 10.5625rem;
+  --nav-max-width: 74.625rem;
+  --nav-padding-inline: 1.25rem;
   --nav-link-gap: 1.5rem;
   --nav-logo-gap: 1.75rem;
   --case-topbar-height: 4.5rem;
@@ -74,8 +74,9 @@ a:hover {
    -------------------------------------------------------------------------- */
 
 .container {
-  width: min(100% - 2rem, var(--max-width));
+  width: min(100% - 2.5rem, var(--nav-max-width));
   margin-inline: auto;
+  padding-inline: var(--nav-padding-inline);
 }
 
 .section {
@@ -829,7 +830,7 @@ p {
 .case-layout {
   display: grid;
   grid-template-columns: var(--case-sidebar-width) minmax(0, 1fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
   max-width: var(--nav-max-width);
   margin-inline: auto;
   padding:
