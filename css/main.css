@@ -305,6 +305,10 @@ p {
   background: linear-gradient(135deg, #d4e4f0 0%, #b8d0e8 100%);
 }
 
+.work-card__image--current {
+  background: linear-gradient(135deg, #e8f0fe 0%, #c2d9f5 50%, #a8c8f0 100%);
+}
+
 .work-card__body {
   padding: var(--space-md);
   flex: 1;
