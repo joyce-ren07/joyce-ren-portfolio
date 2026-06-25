@@ -7,117 +7,38 @@
   <title>Joyce Ren — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="has-lamp-landing">
+<body>
 
-  <div class="ambient-light" aria-hidden="true">
-    <div class="light-mesh"></div>
-    <div class="light-streaks">
-      <div class="light-streak light-streak--1">
-        <span class="light-streak__band light-streak__band--a"></span>
-        <span class="light-streak__band light-streak__band--b"></span>
-      </div>
-      <div class="light-streak light-streak--2">
-        <span class="light-streak__band light-streak__band--a"></span>
-        <span class="light-streak__band light-streak__band--b"></span>
-        <span class="light-streak__band light-streak__band--c"></span>
-      </div>
-      <div class="light-streak light-streak--3">
-        <span class="light-streak__band light-streak__band--a"></span>
-        <span class="light-streak__band light-streak__band--b"></span>
-      </div>
-      <div class="light-streak light-streak--4 light-streak--hot">
-        <span class="light-streak__band light-streak__band--a"></span>
-        <span class="light-streak__band light-streak__band--b"></span>
-        <span class="light-streak__band light-streak__band--c"></span>
-        <span class="light-streak__band light-streak__band--d"></span>
-      </div>
-      <div class="light-streak light-streak--5">
-        <span class="light-streak__band light-streak__band--a"></span>
-        <span class="light-streak__band light-streak__band--b"></span>
-      </div>
-      <div class="light-streak light-streak--6">
-        <span class="light-streak__band light-streak__band--a"></span>
-      </div>
-    </div>
-    <span class="glow-point glow-point--1 glow-point--luminous" data-glow="peach"></span>
-    <span class="glow-point glow-point--2" data-glow="sage"></span>
-    <span class="glow-point glow-point--3 glow-point--luminous" data-glow="gold"></span>
-    <span class="glow-point glow-point--4" data-glow="mauve"></span>
-    <span class="glow-point glow-point--5" data-glow="lavender"></span>
-    <span class="glow-point glow-point--6" data-glow="blush"></span>
-    <span class="caustic caustic--1" data-caustic="1"></span>
-    <span class="caustic caustic--2" data-caustic="2"></span>
-    <span class="caustic caustic--3" data-caustic="3"></span>
-    <span class="caustic caustic--4" data-caustic="4"></span>
-  </div>
-
-  <header class="landing-header">
-    <div class="landing-header__inner container">
-      <div class="landing-header__left">
-        <span class="landing-logo" aria-hidden="true"></span>
-        <nav class="landing-nav" aria-label="Main">
-          <a href="#work">Work</a>
-          <a href="#canvas">Canvas</a>
-          <a href="#about">About</a>
-        </nav>
-      </div>
-      <a href="#resume" class="landing-header__resume">Resume</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-logo">Joyce Ren</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        Menu
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="#work" aria-current="page">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
   <main>
-    <section class="lamp-landing" id="top">
-      <div class="lamp-scene">
-        <div class="lamp-scene__stage">
-          <div class="lamp-halo" aria-hidden="true"></div>
-
-          <div class="lamp-assembly">
-            <div class="lamp-cord" aria-hidden="true"></div>
-            <div class="lamp-shade">
-              <div class="lamp-shade__inner" aria-hidden="true"></div>
-              <div class="lamp-shade__glow" aria-hidden="true"></div>
-              <div class="lamp-shade__bottom" aria-hidden="true"></div>
-            </div>
-          </div>
-
-          <button type="button" class="lamp-pull" id="lamp-pull" aria-label="Pull to light the lamp">
-            <span class="lamp-pull__mount" aria-hidden="true"></span>
-            <span class="lamp-pull__chain" aria-hidden="true"></span>
-            <span class="lamp-pull__tip" aria-hidden="true"></span>
-            <span class="lamp-pull__hint">hey, click this!</span>
-          </button>
-        </div>
-
-        <div class="lamp-intro">
-          <h1 class="lamp-intro__name">Joyce Ren</h1>
-          <p class="lamp-intro__tagline">designs to illuminate the human experience.</p>
-        </div>
-      </div>
-      <div class="lamp-landing__scroll" aria-hidden="true"></div>
-    </section>
-
-    <section id="canvas" class="section section--tight lamp-hidden-section">
-      <div class="container reveal">
-        <p class="eyebrow">Canvas</p>
-        <h2>Experiments &amp; explorations</h2>
-        <p class="lead">Visual studies in light, material, and interaction — including the refraction system on this site.</p>
-      </div>
-    </section>
-
-    <section id="resume" class="section section--wash lamp-hidden-section">
-      <div class="container reveal">
-        <p class="eyebrow">Resume</p>
-        <h2>Experience</h2>
-        <p class="lead">Product designer focused on clarity, craft, and impact across web and mobile.</p>
-        <a href="mailto:hello@example.com" class="btn btn--primary">Get in touch</a>
-      </div>
+    <section class="hero container">
+      <p class="eyebrow">Product Design</p>
+      <h1 class="hero__title">Designing thoughtful digital experiences</h1>
+      <p class="hero__subtitle">
+        I'm a product designer focused on clarity, craft, and impact.
+        I help teams turn complex problems into intuitive products people love to use.
+      </p>
+      <a href="#work" class="btn btn--primary">View selected work</a>
     </section>
 
     <section id="work" class="section section--tight">
-      <div class="container reveal">
+      <div class="container">
         <p class="eyebrow">Selected work</p>
         <h2>Case studies</h2>
         <p class="lead">A few projects that highlight my process, collaboration, and outcomes.</p>
@@ -147,8 +68,8 @@
       </div>
     </section>
 
-    <section id="about" class="section section--wash">
-      <div class="container about-grid reveal">
+    <section id="about" class="section">
+      <div class="container about-grid">
         <div>
           <p class="eyebrow">About</p>
           <h2>Hi, I'm Joyce</h2>
@@ -168,27 +89,23 @@
     </section>
 
     <section id="contact" class="section section--tight">
-      <div class="container reveal">
-        <div class="glass glass--panel">
-          <p class="eyebrow">Contact</p>
-          <h2>Let's work together</h2>
-          <p class="lead">Open to full-time roles, contract work, and interesting collaborations.</p>
-          <div class="contact-links">
-            <a href="mailto:hello@example.com" class="glass-pill">hello@example.com</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="glass-pill">LinkedIn</a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="glass-pill">GitHub</a>
-          </div>
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's work together</h2>
+        <p class="lead">Open to full-time roles, contract work, and interesting collaborations.</p>
+        <div class="contact-links">
+          <a href="mailto:hello@example.com">hello@example.com</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer site-footer--landing">
-    <div class="container">
-      <div class="site-footer__inner site-footer__inner--minimal">
-        <span>© 2026 Joyce Ren</span>
-        <a href="#top">Back to top</a>
-      </div>
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© 2026 Joyce Ren</span>
+      <a href="#work">Back to top</a>
     </div>
   </footer>
 

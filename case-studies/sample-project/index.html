@@ -7,42 +7,28 @@
   <title>Sample Project — Joyce Ren</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
 
-  <div class="ambient-light" aria-hidden="true">
-    <div class="light-mesh"></div>
-    <span class="glow-point glow-point--1" data-glow="peach"></span>
-    <span class="glow-point glow-point--2" data-glow="sage"></span>
-    <span class="glow-point glow-point--3" data-glow="gold"></span>
-    <span class="glow-point glow-point--4" data-glow="mauve"></span>
-    <span class="glow-point glow-point--5" data-glow="lavender"></span>
-    <span class="glow-point glow-point--6" data-glow="blush"></span>
-  </div>
-
   <header class="site-header">
-    <div class="container">
-      <div class="glass glass--nav">
-        <div class="site-header__inner">
-          <a href="../../index.html" class="site-logo">Joyce Ren</a>
-          <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-            Menu
-          </button>
-          <nav id="site-nav" class="site-nav" aria-label="Main">
-            <a href="../../index.html#work">Work</a>
-            <a href="../../index.html#about">About</a>
-            <a href="../../index.html#contact">Contact</a>
-          </nav>
-        </div>
-      </div>
+    <div class="container site-header__inner">
+      <a href="../../index.html" class="site-logo">Joyce Ren</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        Menu
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="../../index.html#work">Work</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
   <main>
     <article>
-      <header class="case-hero container reveal">
+      <header class="case-hero container">
         <p class="eyebrow">Case study</p>
         <h1 class="case-hero__title">Sample Project</h1>
         <p class="case-hero__summary">
@@ -56,7 +42,7 @@
       </header>
 
       <div class="container">
-        <dl class="case-meta reveal">
+        <dl class="case-meta">
           <div>
             <dt>Role</dt>
             <dd>Lead Product Designer</dd>
@@ -77,7 +63,7 @@
 
         <div class="case-image case-image--wide" aria-hidden="true">Hero image</div>
 
-        <section class="case-section reveal">
+        <section class="case-section">
           <h2 class="case-section__title">Overview</h2>
           <div class="prose">
             <p>
@@ -175,11 +161,9 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <div class="glass glass--footer site-footer__inner">
-        <span>© 2026 Joyce Ren</span>
-        <a href="../../index.html#contact">Get in touch</a>
-      </div>
+    <div class="container site-footer__inner">
+      <span>© 2026 Joyce Ren</span>
+      <a href="../../index.html#contact">Get in touch</a>
     </div>
   </footer>
 
