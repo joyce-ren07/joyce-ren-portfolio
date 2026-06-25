@@ -113,7 +113,7 @@
 
         <p class="case-pullquote">
           How might we enable Uber patients with physical and cognitive <strong>barriers</strong> to reach
-          their healthcare appointments <strong>on time with personalized support</strong>?
+          their healthcare appointments <strong>on time</strong> with <strong>personalized support</strong>?
         </p>
 
         <p class="case-body">
@@ -121,36 +121,92 @@
           a distinct point of friction in the patient's journey to care.
         </p>
 
-        <div class="case-features">
-          <div class="case-feature">
-            <h3 class="case-feature__title">Clinic-Level Drop-off</h3>
-            <p class="case-feature__desc">
-              Pinpoints the exact entrance or department, rather than a generic address or main entrance.
-            </p>
+        <div class="case-feature-rows">
+          <div class="case-feature-row">
+            <div class="case-feature-row__text">
+              <h3 class="case-feature-row__title">Clinic-Level Drop-off</h3>
+              <p class="case-feature-row__desc">
+                Pinpoints the exact entrance or department, rather than a generic address or main entrance.
+              </p>
+            </div>
+            <div class="case-feature-row__media" aria-hidden="true">
+              <div class="case-phone case-phone--flow">
+                <div class="case-phone__screen case-phone__screen--flow">
+                  <div class="case-ui-map"></div>
+                  <div class="case-ui-sheet">
+                    <p class="case-ui-sheet__search">Search specific destination</p>
+                    <ul class="case-ui-locations">
+                      <li class="case-ui-locations__item is-selected">Hospital Main Entrance <span>1.2 mi</span></li>
+                      <li class="case-ui-locations__item">Shiley Eye Institute <span>1.3 mi</span></li>
+                      <li class="case-ui-locations__item">Sulpizio Cardiovascular <span>1.3 mi</span></li>
+                      <li class="case-ui-locations__item">Perlman Arthritis Center <span>1.3 mi</span></li>
+                      <li class="case-ui-locations__item">Perlman Ambulatory <span>1.4 mi</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="case-feature">
-            <h3 class="case-feature__title">Appointment Sync Timing</h3>
-            <p class="case-feature__desc">
-              Calculates departure time based on appointment start, factoring in travel and check-in.
-            </p>
-          </div>
-          <div class="case-feature">
-            <h3 class="case-feature__title">Ride Accommodations</h3>
-            <p class="case-feature__desc">
-              Surfaces accessibility and medical preferences at the point of booking.
-            </p>
-          </div>
-        </div>
 
-        <div class="case-hero-media case-hero-media--compact">
-          <div class="case-placeholder" aria-hidden="true">Solution screens</div>
+          <div class="case-feature-row">
+            <div class="case-feature-row__text">
+              <h3 class="case-feature-row__title">Appointment Sync Timing</h3>
+              <p class="case-feature-row__desc">
+                Calculates departure time based on appointment start, factoring in travel and check-in.
+              </p>
+            </div>
+            <div class="case-feature-row__media" aria-hidden="true">
+              <div class="case-phone case-phone--flow">
+                <div class="case-phone__screen case-phone__screen--flow case-phone__screen--fade">
+                  <p class="case-ui-calendar__title">Choose another date</p>
+                  <p class="case-ui-calendar__month">March 2026</p>
+                  <div class="case-ui-calendar">
+                    <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                    <span class="is-muted">1</span><span class="is-muted">2</span><span class="is-muted">3</span><span class="is-muted">4</span><span>5</span><span>6</span><span>7</span>
+                    <span>8</span><span>9</span><span>10</span><span class="is-selected">11</span><span>12</span><span>13</span><span>14</span>
+                    <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+                    <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                    <span>29</span><span>30</span><span>31</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-feature-row">
+            <div class="case-feature-row__text">
+              <h3 class="case-feature-row__title">Ride Accommodations</h3>
+              <p class="case-feature-row__desc">
+                Surfaces accessibility and medical preferences at the point of booking.
+              </p>
+            </div>
+            <div class="case-feature-row__media" aria-hidden="true">
+              <div class="case-phone case-phone--flow">
+                <div class="case-phone__screen case-phone__screen--flow">
+                  <div class="case-ui-map case-ui-map--route"></div>
+                  <div class="case-ui-sheet">
+                    <p class="case-ui-rides__title">Choose a Ride</p>
+                    <div class="case-ui-rides__item is-selected">
+                      <span class="case-ui-rides__name">Uber Med</span>
+                      <span class="case-ui-rides__badge">Recommended</span>
+                      <span class="case-ui-rides__meta">$9.95 · Pickup at 5:45 PM</span>
+                    </div>
+                    <div class="case-ui-rides__item"><span class="case-ui-rides__name">UberXL</span><span class="case-ui-rides__meta">$12.98 · Pickup at 5:45 PM</span></div>
+                    <div class="case-ui-rides__item"><span class="case-ui-rides__name">Electric</span><span class="case-ui-rides__meta">$9.98 · Pickup at 5:45 PM</span></div>
+                    <div class="case-ui-rides__item"><span class="case-ui-rides__name">Comfort</span><span class="case-ui-rides__meta">$10.82 · Pickup at 5:45 PM</span></div>
+                    <span class="case-ui-rides__cta">Choose Uber Health</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="research" class="case-block" data-section="research">
         <h2 class="case-section-heading">Research</h2>
 
-        <h3 class="case-subheading">Surveys &amp; Interviews</h3>
+        <h3 class="case-subheading case-subheading--large">Surveys &amp; Interviews</h3>
         <p class="case-body">
           To understand the real friction patients face, I surveyed and interviewed 30 people about their
           experiences getting to medical appointments:
@@ -160,69 +216,149 @@
           <div class="case-stat case-stat--highlight">
             <span class="case-stat__value">60%</span>
             <p class="case-stat__label">
-              of respondents have missed, been late to, or rescheduled a medical appointment due to
+              of respondents have <em>missed, been late to, or rescheduled</em> a medical appointment due to
               transportation issues
             </p>
           </div>
-          <div class="case-stat">
-            <span class="case-stat__value case-stat__fraction">21<span class="case-stat__denominator">/30</span></span>
-            <p class="case-stat__label">were uncertain about their arrival time</p>
-          </div>
-          <div class="case-stat">
-            <span class="case-stat__value case-stat__fraction">19<span class="case-stat__denominator">/30</span></span>
-            <p class="case-stat__label">struggled to find the correct entrance or building</p>
-          </div>
-          <div class="case-stat">
-            <span class="case-stat__value case-stat__fraction">16<span class="case-stat__denominator">/30</span></span>
-            <p class="case-stat__label">struggled to communicate with a driver</p>
+          <div class="case-stats__row">
+            <div class="case-stat case-stat--bordered">
+              <span class="case-stat__value case-stat__fraction">21<span class="case-stat__denominator">/30</span></span>
+              <p class="case-stat__label">were uncertain about their arrival time</p>
+            </div>
+            <div class="case-stat case-stat--bordered">
+              <span class="case-stat__value case-stat__fraction">19<span class="case-stat__denominator">/30</span></span>
+              <p class="case-stat__label">struggled to find the correct entrance or building</p>
+            </div>
+            <div class="case-stat case-stat--bordered">
+              <span class="case-stat__value case-stat__fraction">16<span class="case-stat__denominator">/30</span></span>
+              <p class="case-stat__label">struggled to communicate with a driver</p>
+            </div>
           </div>
         </div>
 
-        <h3 class="case-subheading">Social Listening</h3>
+        <h3 class="case-subheading case-subheading--large">Social Listening</h3>
         <p class="case-body">
           To supplement the above, I conducted secondary research by analyzing Reddit threads and App Store
           reviews to understand how real Uber Health users describe their experiences. Here's what stood out:
         </p>
 
-        <div class="case-quotes">
-          <figure class="case-quote">
-            <figcaption class="case-quote__source">Uber Health User</figcaption>
+        <div class="case-quotes case-quotes--staggered">
+          <figure class="case-quote case-quote--notification case-quote--offset-1">
+            <div class="case-quote__header">
+              <span class="case-quote__icon case-quote__icon--appstore" aria-hidden="true">A</span>
+              <figcaption class="case-quote__source">Uber Health User</figcaption>
+              <time class="case-quote__time" datetime="2026">now</time>
+            </div>
             <blockquote class="case-quote__text">
               When drivers try to reach the rider, it just goes to the 3rd party coordinator
             </blockquote>
-            <time class="case-quote__time" datetime="2026">now</time>
           </figure>
-          <figure class="case-quote">
-            <figcaption class="case-quote__source">Uber User</figcaption>
+          <figure class="case-quote case-quote--notification case-quote--offset-2">
+            <div class="case-quote__header">
+              <span class="case-quote__icon case-quote__icon--reddit" aria-hidden="true">r</span>
+              <figcaption class="case-quote__source">Uber User</figcaption>
+              <time class="case-quote__time" datetime="2026">now</time>
+            </div>
             <blockquote class="case-quote__text">
               My relative had trouble fitting his wheelchair into the car
             </blockquote>
-            <time class="case-quote__time" datetime="2026">now</time>
           </figure>
-          <figure class="case-quote">
-            <figcaption class="case-quote__source">Lyft User</figcaption>
+          <figure class="case-quote case-quote--notification case-quote--offset-3">
+            <div class="case-quote__header">
+              <span class="case-quote__icon case-quote__icon--reddit" aria-hidden="true">r</span>
+              <figcaption class="case-quote__source">Lyft User</figcaption>
+              <time class="case-quote__time" datetime="2026">now</time>
+            </div>
             <blockquote class="case-quote__text">
               The ride defaults to the main entrance, not specific clinics
             </blockquote>
-            <time class="case-quote__time" datetime="2026">now</time>
           </figure>
         </div>
 
-        <h3 class="case-subheading">Market Analysis</h3>
-        <p class="case-body">
+        <h3 class="case-subheading case-subheading--large">Market Analysis</h3>
+
+        <div class="case-market">
+          <div class="case-market__icons" aria-label="Compared services">
+            <div class="case-market__icon">
+              <span class="case-market__logo case-market__logo--uber" aria-hidden="true">U</span>
+              <span class="case-market__label">Uber (General)</span>
+            </div>
+            <div class="case-market__icon">
+              <span class="case-market__logo case-market__logo--nemt" aria-hidden="true">✚</span>
+              <span class="case-market__label">NEMT Services</span>
+            </div>
+            <div class="case-market__icon">
+              <span class="case-market__logo case-market__logo--lyft" aria-hidden="true">L</span>
+              <span class="case-market__label">Lyft Healthcare</span>
+            </div>
+            <div class="case-market__icon">
+              <span class="case-market__logo case-market__logo--health" aria-hidden="true">U</span>
+              <span class="case-market__label">Uber Health</span>
+            </div>
+          </div>
+
+          <div class="case-table-wrap case-table-wrap--market">
+            <table class="case-table case-table--market">
+              <thead>
+                <tr>
+                  <th scope="col">Option</th>
+                  <th scope="col">Strengths</th>
+                  <th scope="col">Limitations</th>
+                  <th scope="col">Key Capabilities</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Traditional Rideshare (Uber / Lyft)</th>
+                  <td>Fast, on-demand; Familiar UX.</td>
+                  <td>No healthcare context; Generic drop-off; Manual return rides.</td>
+                  <td>
+                    <ul class="case-capabilities">
+                      <li class="case-capabilities__no">HIPAA-compliant</li>
+                      <li class="case-capabilities__no">Clinical drop-off</li>
+                      <li class="case-capabilities__no">Patient-controlled</li>
+                      <li class="case-capabilities__yes">On-demand</li>
+                      <li class="case-capabilities__no">Auto return ride</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Uber Health (Existing B2B Platform)</th>
+                  <td>HIPAA-compliant; Hospital partnerships.</td>
+                  <td>Booked by staff, not patient; No patient control; Advance notice required.</td>
+                  <td>
+                    <ul class="case-capabilities">
+                      <li class="case-capabilities__yes">HIPAA-compliant</li>
+                      <li class="case-capabilities__no">Clinical drop-off</li>
+                      <li class="case-capabilities__no">Patient-controlled</li>
+                      <li class="case-capabilities__no">On-demand</li>
+                      <li class="case-capabilities__no">Auto return ride</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">NEMT (Non-Emergency Medical Transport)</th>
+                  <td>ADA accessible; Insurance covered.</td>
+                  <td>1–5 day lead time; Inflexible scheduling; Outdated dispatch.</td>
+                  <td>
+                    <ul class="case-capabilities">
+                      <li class="case-capabilities__yes">HIPAA-compliant</li>
+                      <li class="case-capabilities__yes">Clinical drop-off</li>
+                      <li class="case-capabilities__no">Patient-controlled</li>
+                      <li class="case-capabilities__no">On-demand</li>
+                      <li class="case-capabilities__no">Auto return ride</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="case-body case-body--summary">
           Overall, we see that the current market lacks a patient-facing solution that balances on-demand
           rides with medical context. This gap becomes the opportunity! Now, to synthesize data into designs…
         </p>
-
-        <div class="case-market">
-          <div class="case-market__grid" aria-label="Market comparison">
-            <div class="case-market__item">Uber (General)</div>
-            <div class="case-market__item">NEMT Services</div>
-            <div class="case-market__item">Lyft Healthcare</div>
-            <div class="case-market__item">Uber Health</div>
-          </div>
-          <div class="case-placeholder case-placeholder--wide case-placeholder--stacked" aria-hidden="true">Market analysis chart</div>
-        </div>
       </section>
 
       <section id="process" class="case-block" data-section="process">
