@@ -5,12 +5,12 @@
 
 :root {
   /* Palette — chalky diffused light zones (reference accents) */
-  --color-peach-blush: rgba(225, 185, 165, 0.35);
-  --color-sage-gray: rgba(195, 200, 185, 0.3);
-  --color-golden-warm: rgba(235, 215, 175, 0.35);
-  --color-rose-mauve: rgba(210, 175, 170, 0.28);
-  --color-lavender-gray: rgba(185, 185, 205, 0.2);
-  --color-blush-pink: rgba(220, 190, 185, 0.25);
+  --color-peach-blush: rgba(225, 185, 165, 0.52);
+  --color-sage-gray: rgba(195, 200, 185, 0.44);
+  --color-golden-warm: rgba(235, 215, 175, 0.58);
+  --color-rose-mauve: rgba(210, 175, 170, 0.42);
+  --color-lavender-gray: rgba(185, 185, 205, 0.34);
+  --color-blush-pink: rgba(220, 190, 185, 0.4);
 
   --scroll-hue-rotate: 0deg;
 
@@ -97,8 +97,9 @@
 
   /* Light dial — sun-driven refraction zones */
   --light-angle: 150deg;
-  --light-intensity: 0.78;
+  --light-intensity: 1;
   --light-warmth: 0.72;
+  --refraction-strength: 1.4;
 }
 
 *,
@@ -154,7 +155,7 @@ main,
 .glow-point {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(72px);
   top: var(--light-pos-y, 50%);
   left: var(--light-pos-x, 50%);
   right: auto;
@@ -165,7 +166,7 @@ main,
   --scroll-shift-y: 0px;
   --light-shift-x: 0px;
   --light-shift-y: 0px;
-  opacity: calc(var(--glow-scroll-opacity, 0.3) * var(--light-intensity, 1));
+  opacity: calc(var(--glow-scroll-opacity, 0.48) * var(--light-intensity, 1) * var(--refraction-strength, 1.4));
   transform: translate(-50%, -50%) translate(
     calc(var(--glow-offset-x) + var(--scroll-shift-x) + var(--light-shift-x)),
     calc(var(--glow-offset-y) + var(--scroll-shift-y) + var(--light-shift-y))
@@ -176,54 +177,55 @@ main,
 
 /* Warm peach-blush */
 .glow-point--1 {
-  width: clamp(22rem, 52vw, 42rem);
-  height: clamp(22rem, 52vw, 42rem);
-  background: radial-gradient(circle, var(--color-peach-blush) 0%, transparent 72%);
+  width: clamp(24rem, 58vw, 48rem);
+  height: clamp(24rem, 58vw, 48rem);
+  background: radial-gradient(circle, var(--color-peach-blush) 0%, transparent 62%);
   animation-delay: 0s;
   animation-duration: 30s;
 }
 
 /* Soft sage-gray */
 .glow-point--2 {
-  width: clamp(20rem, 46vw, 36rem);
-  height: clamp(20rem, 46vw, 36rem);
-  background: radial-gradient(circle, var(--color-sage-gray) 0%, transparent 70%);
+  width: clamp(22rem, 52vw, 42rem);
+  height: clamp(22rem, 52vw, 42rem);
+  background: radial-gradient(circle, var(--color-sage-gray) 0%, transparent 60%);
   animation-delay: -6s;
   animation-duration: 28s;
 }
 
 /* Golden warm — primary refraction */
 .glow-point--3 {
-  width: clamp(24rem, 56vw, 44rem);
-  height: clamp(20rem, 44vw, 36rem);
-  background: radial-gradient(ellipse 80% 70%, var(--color-golden-warm) 0%, transparent 68%);
+  width: clamp(28rem, 64vw, 52rem);
+  height: clamp(24rem, 52vw, 44rem);
+  background: radial-gradient(ellipse 80% 70%, var(--color-golden-warm) 0%, transparent 58%);
   animation-delay: -12s;
   animation-duration: 32s;
+  filter: blur(64px);
 }
 
 /* Dusty rose-mauve */
 .glow-point--4 {
-  width: clamp(20rem, 44vw, 38rem);
-  height: clamp(20rem, 44vw, 38rem);
-  background: radial-gradient(circle, var(--color-rose-mauve) 0%, transparent 70%);
+  width: clamp(22rem, 50vw, 44rem);
+  height: clamp(22rem, 50vw, 44rem);
+  background: radial-gradient(circle, var(--color-rose-mauve) 0%, transparent 60%);
   animation-delay: -9s;
   animation-duration: 29s;
 }
 
 /* Cool lavender-gray */
 .glow-point--5 {
-  width: clamp(16rem, 34vw, 28rem);
-  height: clamp(16rem, 34vw, 28rem);
-  background: radial-gradient(circle, var(--color-lavender-gray) 0%, transparent 74%);
+  width: clamp(18rem, 40vw, 34rem);
+  height: clamp(18rem, 40vw, 34rem);
+  background: radial-gradient(circle, var(--color-lavender-gray) 0%, transparent 64%);
   animation-delay: -18s;
   animation-duration: 27s;
 }
 
 /* Muted blush pink */
 .glow-point--6 {
-  width: clamp(18rem, 40vw, 34rem);
-  height: clamp(18rem, 40vw, 34rem);
-  background: radial-gradient(circle, var(--color-blush-pink) 0%, transparent 72%);
+  width: clamp(20rem, 46vw, 40rem);
+  height: clamp(20rem, 46vw, 40rem);
+  background: radial-gradient(circle, var(--color-blush-pink) 0%, transparent 62%);
   animation-delay: -15s;
   animation-duration: 31s;
 }

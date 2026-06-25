@@ -56,40 +56,40 @@
   /* 0% peach/gold top-heavy → 33% sage/lavender → 66% rose/mauve → 100% golden return */
   const GLOW_TRACKS = {
     peach: [
-      { shiftX: 0, shiftY: 0, opacity: 0.38 },
-      { shiftX: 18, shiftY: 48, opacity: 0.28 },
-      { shiftX: 32, shiftY: 96, opacity: 0.22 },
-      { shiftX: 8, shiftY: 24, opacity: 0.36 },
+      { shiftX: 0, shiftY: 0, opacity: 0.52 },
+      { shiftX: 18, shiftY: 48, opacity: 0.4 },
+      { shiftX: 32, shiftY: 96, opacity: 0.34 },
+      { shiftX: 8, shiftY: 24, opacity: 0.5 },
     ],
     sage: [
-      { shiftX: 0, shiftY: 0, opacity: 0.18 },
-      { shiftX: -12, shiftY: 36, opacity: 0.36 },
-      { shiftX: 8, shiftY: 72, opacity: 0.3 },
-      { shiftX: -4, shiftY: 20, opacity: 0.22 },
+      { shiftX: 0, shiftY: 0, opacity: 0.28 },
+      { shiftX: -12, shiftY: 36, opacity: 0.48 },
+      { shiftX: 8, shiftY: 72, opacity: 0.42 },
+      { shiftX: -4, shiftY: 20, opacity: 0.32 },
     ],
     gold: [
-      { shiftX: 0, shiftY: 0, opacity: 0.38 },
-      { shiftX: 10, shiftY: 28, opacity: 0.28 },
-      { shiftX: 16, shiftY: 56, opacity: 0.24 },
-      { shiftX: 6, shiftY: 12, opacity: 0.36 },
+      { shiftX: 0, shiftY: 0, opacity: 0.56 },
+      { shiftX: 10, shiftY: 28, opacity: 0.42 },
+      { shiftX: 16, shiftY: 56, opacity: 0.38 },
+      { shiftX: 6, shiftY: 12, opacity: 0.54 },
     ],
     mauve: [
-      { shiftX: 0, shiftY: 0, opacity: 0.22 },
-      { shiftX: -20, shiftY: 32, opacity: 0.24 },
-      { shiftX: -36, shiftY: 64, opacity: 0.36 },
-      { shiftX: -14, shiftY: 28, opacity: 0.26 },
+      { shiftX: 0, shiftY: 0, opacity: 0.34 },
+      { shiftX: -20, shiftY: 32, opacity: 0.38 },
+      { shiftX: -36, shiftY: 64, opacity: 0.5 },
+      { shiftX: -14, shiftY: 28, opacity: 0.4 },
     ],
     lavender: [
-      { shiftX: 0, shiftY: 0, opacity: 0.16 },
-      { shiftX: 28, shiftY: -24, opacity: 0.32 },
-      { shiftX: 48, shiftY: 40, opacity: 0.24 },
-      { shiftX: 20, shiftY: -8, opacity: 0.18 },
+      { shiftX: 0, shiftY: 0, opacity: 0.26 },
+      { shiftX: 28, shiftY: -24, opacity: 0.44 },
+      { shiftX: 48, shiftY: 40, opacity: 0.36 },
+      { shiftX: 20, shiftY: -8, opacity: 0.3 },
     ],
     blush: [
-      { shiftX: 0, shiftY: 0, opacity: 0.2 },
-      { shiftX: -16, shiftY: -32, opacity: 0.24 },
-      { shiftX: -28, shiftY: -56, opacity: 0.34 },
-      { shiftX: -10, shiftY: -20, opacity: 0.28 },
+      { shiftX: 0, shiftY: 0, opacity: 0.32 },
+      { shiftX: -16, shiftY: -32, opacity: 0.38 },
+      { shiftX: -28, shiftY: -56, opacity: 0.48 },
+      { shiftX: -10, shiftY: -20, opacity: 0.4 },
     ],
   };
 
@@ -242,8 +242,8 @@
   if (lightDialRing && lightDialSun && glowPoints.length) {
     const DEG_PER_MS = 360 / 30000;
     const LIGHT_LERP = reducedMotion ? 1 : 0.08;
-    const ANCHOR_RADIUS_X = 44;
-    const ANCHOR_RADIUS_Y = 38;
+    const ANCHOR_RADIUS_X = 50;
+    const ANCHOR_RADIUS_Y = 44;
 
     const GLOW_LIGHT_OFFSETS = {
       gold: 0,
@@ -256,37 +256,37 @@
 
     const GLOW_LIGHT_WEIGHTS = {
       gold: 1,
-      peach: 0.78,
-      sage: 0.68,
-      mauve: 0.72,
-      lavender: 0.62,
-      blush: 0.66,
+      peach: 0.86,
+      sage: 0.78,
+      mauve: 0.82,
+      lavender: 0.74,
+      blush: 0.78,
     };
 
     const GLOW_PALETTES = {
       peach: {
-        cool: [205, 195, 190, 0.26],
-        warm: [225, 185, 165, 0.35],
+        cool: [205, 195, 190, 0.38],
+        warm: [225, 185, 165, 0.55],
       },
       sage: {
-        cool: [185, 195, 205, 0.24],
-        warm: [195, 200, 185, 0.3],
+        cool: [185, 195, 205, 0.34],
+        warm: [195, 200, 185, 0.46],
       },
       gold: {
-        cool: [210, 215, 225, 0.28],
-        warm: [235, 215, 175, 0.38],
+        cool: [210, 215, 225, 0.4],
+        warm: [235, 215, 175, 0.62],
       },
       mauve: {
-        cool: [195, 190, 205, 0.22],
-        warm: [210, 175, 170, 0.28],
+        cool: [195, 190, 205, 0.32],
+        warm: [210, 175, 170, 0.44],
       },
       lavender: {
-        cool: [175, 185, 210, 0.18],
-        warm: [185, 185, 205, 0.22],
+        cool: [175, 185, 210, 0.28],
+        warm: [185, 185, 205, 0.36],
       },
       blush: {
-        cool: [205, 195, 200, 0.2],
-        warm: [220, 190, 185, 0.25],
+        cool: [205, 195, 200, 0.3],
+        warm: [220, 190, 185, 0.42],
       },
     };
 
@@ -303,7 +303,7 @@
       sunAngle: 150,
       displayAngle: 150,
       warmth: 0.72,
-      intensity: 0.78,
+      intensity: 1,
       isDragging: false,
       lastTime: performance.now(),
       glows: {},
@@ -424,7 +424,7 @@
     };
 
     const setIntensity = (value) => {
-      lightState.intensity = Math.max(0.25, Math.min(1, value));
+      lightState.intensity = Math.max(0.55, Math.min(1.35, value));
       computeLightTargets(lightState.sunAngle);
     };
 
@@ -474,12 +474,12 @@
 
     if (lightIntensityInput) {
       lightIntensityInput.addEventListener("input", (e) => {
-        setIntensity(lerp(0.3, 1, Number(e.target.value) / 100));
+        setIntensity(lerp(0.55, 1.35, Number(e.target.value) / 100));
       });
     }
 
     if (lightWarmthInput) setWarmth(Number(lightWarmthInput.value) / 100);
-    if (lightIntensityInput) setIntensity(lerp(0.3, 1, Number(lightIntensityInput.value) / 100));
+    if (lightIntensityInput) setIntensity(lerp(0.55, 1.35, Number(lightIntensityInput.value) / 100));
 
     computeLightTargets(lightState.sunAngle);
     updateDialVisuals(lightState.displayAngle);
