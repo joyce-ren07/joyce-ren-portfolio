@@ -705,7 +705,7 @@
   } else {
     if (glowPoints.length) initDefaultGlowPositions();
 
-    if (lightStreaks) {
+    if (lightStreaks && !lampLanding) {
       const streakTick = (now) => {
         if (!reducedMotion) {
           const t = now * 0.001;
