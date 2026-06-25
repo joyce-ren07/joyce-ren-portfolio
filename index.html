@@ -7,10 +7,10 @@
   <title>Joyce Ren — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body class="has-lamp-landing">
 
   <div class="ambient-light" aria-hidden="true">
     <div class="light-mesh"></div>
@@ -54,101 +54,65 @@
     <span class="caustic caustic--4" data-caustic="4"></span>
   </div>
 
-  <header class="site-header">
-    <div class="container">
-      <div class="glass glass--nav">
-        <div class="site-header__inner">
-          <a href="index.html" class="site-logo">Joyce Ren</a>
-          <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-            Menu
-          </button>
-          <nav id="site-nav" class="site-nav" aria-label="Main">
-            <a href="#work" aria-current="page">Work</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
+  <header class="landing-header">
+    <div class="landing-header__inner container">
+      <div class="landing-header__left">
+        <span class="landing-logo" aria-hidden="true"></span>
+        <nav class="landing-nav" aria-label="Main">
+          <a href="#work">Work</a>
+          <a href="#canvas">Canvas</a>
+          <a href="#about">About</a>
+        </nav>
       </div>
+      <a href="#resume" class="landing-header__resume">Resume</a>
     </div>
   </header>
 
   <main>
-    <section class="hero container reveal">
-      <div class="hero__layout">
-        <div class="glass glass--hero">
-          <p class="eyebrow">Product Design</p>
-          <h1 class="hero__title">Designing <span class="accent-italic">thoughtful</span> digital experiences</h1>
-          <p class="hero__subtitle">
-            I'm a product designer focused on clarity, craft, and impact.
-            I help teams turn complex problems into intuitive products people love to use.
-          </p>
-          <a href="#work" class="btn btn--primary">See my work</a>
+    <section class="lamp-landing" id="top">
+      <div class="lamp-scene">
+        <div class="lamp-scene__stage">
+          <div class="lamp-halo" aria-hidden="true"></div>
+
+          <div class="lamp-assembly">
+            <div class="lamp-cord" aria-hidden="true"></div>
+            <div class="lamp-shade">
+              <div class="lamp-shade__inner" aria-hidden="true"></div>
+              <div class="lamp-shade__glow" aria-hidden="true"></div>
+              <div class="lamp-shade__bottom" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <button type="button" class="lamp-pull" id="lamp-pull" aria-label="Pull to light the lamp">
+            <span class="lamp-pull__mount" aria-hidden="true"></span>
+            <span class="lamp-pull__chain" aria-hidden="true"></span>
+            <span class="lamp-pull__tip" aria-hidden="true"></span>
+            <span class="lamp-pull__hint">hey, click this!</span>
+          </button>
         </div>
 
-        <aside class="light-dial glass" role="group" aria-label="Light source controls">
-          <p class="light-dial__heading">Light source</p>
+        <div class="lamp-intro">
+          <h1 class="lamp-intro__name">Joyce Ren</h1>
+          <p class="lamp-intro__tagline">designs to illuminate the human experience.</p>
+        </div>
+      </div>
+      <div class="lamp-landing__scroll" aria-hidden="true"></div>
+    </section>
 
-          <div class="light-dial__ring" id="light-dial-ring">
-            <div class="light-dial__ring-inner" aria-hidden="true"></div>
-            <div class="light-dial__ticks" aria-hidden="true">
-              <span class="light-dial__tick"></span>
-              <span class="light-dial__tick"></span>
-              <span class="light-dial__tick"></span>
-              <span class="light-dial__tick"></span>
-              <span class="light-dial__tick"></span>
-              <span class="light-dial__tick"></span>
-              <span class="light-dial__tick"></span>
-              <span class="light-dial__tick"></span>
-            </div>
-            <span class="light-dial__center" aria-hidden="true"></span>
-            <button
-              type="button"
-              class="light-dial__sun"
-              id="light-dial-sun"
-              role="slider"
-              aria-valuemin="0"
-              aria-valuemax="360"
-              aria-valuenow="150"
-              aria-label="Sun position"
-            ></button>
-          </div>
+    <section id="canvas" class="section section--tight lamp-hidden-section">
+      <div class="container reveal">
+        <p class="eyebrow">Canvas</p>
+        <h2>Experiments &amp; explorations</h2>
+        <p class="lead">Visual studies in light, material, and interaction — including the refraction system on this site.</p>
+      </div>
+    </section>
 
-          <p class="light-dial__label" id="light-dial-label" aria-live="polite">Golden hour · 17:00</p>
-
-          <div class="light-dial__control">
-            <span class="light-dial__control-label">Warmth</span>
-            <input
-              type="range"
-              class="light-dial__range light-dial__range--warmth"
-              id="light-warmth"
-              min="0"
-              max="100"
-              value="72"
-              aria-label="Light warmth"
-            >
-            <div class="light-dial__range-hints">
-              <span>cool</span>
-              <span>warm</span>
-            </div>
-          </div>
-
-          <div class="light-dial__control">
-            <span class="light-dial__control-label">Intensity</span>
-            <input
-              type="range"
-              class="light-dial__range light-dial__range--intensity"
-              id="light-intensity"
-              min="0"
-              max="100"
-              value="88"
-              aria-label="Light intensity"
-            >
-            <div class="light-dial__range-hints">
-              <span>soft</span>
-              <span>bright</span>
-            </div>
-          </div>
-        </aside>
+    <section id="resume" class="section section--wash lamp-hidden-section">
+      <div class="container reveal">
+        <p class="eyebrow">Resume</p>
+        <h2>Experience</h2>
+        <p class="lead">Product designer focused on clarity, craft, and impact across web and mobile.</p>
+        <a href="mailto:hello@example.com" class="btn btn--primary">Get in touch</a>
       </div>
     </section>
 
@@ -219,11 +183,11 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer site-footer--landing">
     <div class="container">
-      <div class="glass glass--footer site-footer__inner">
+      <div class="site-footer__inner site-footer__inner--minimal">
         <span>© 2026 Joyce Ren</span>
-        <a href="#work">Back to top</a>
+        <a href="#top">Back to top</a>
       </div>
     </div>
   </footer>

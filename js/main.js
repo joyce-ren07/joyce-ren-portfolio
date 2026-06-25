@@ -38,6 +38,128 @@
 
   const lerp = (a, b, t) => a + (b - a) * t;
 
+  /* --------------------------------------------------------------------------
+     Lamp landing — scroll lights the pendant
+     -------------------------------------------------------------------------- */
+
+  const lampLanding = document.querySelector(".lamp-landing");
+  const lampPull = document.getElementById("lamp-pull");
+  const lightStreaks = document.querySelector(".light-streaks");
+  const lampState = { targetPower: 0, currentPower: 0 };
+
+  const getLampScrollPower = () => {
+    if (!lampLanding) return 0;
+    const scrollRange = lampLanding.offsetHeight - window.innerHeight;
+    if (scrollRange <= 0) return 0;
+    return Math.min(1, Math.max(0, window.scrollY / (scrollRange * 0.88)));
+  };
+
+  const updateLampTargets = () => {
+    lampState.targetPower = getLampScrollPower();
+  };
+
+  const applyLampPower = () => {
+    const ease = reducedMotion ? 1 : 0.07;
+    lampState.currentPower = lerp(lampState.currentPower, lampState.targetPower, ease);
+    const power = lampState.currentPower;
+
+    root.style.setProperty("--lamp-power", power.toFixed(3));
+    root.style.setProperty("--light-intensity", lerp(0.2, 1.12, power).toFixed(3));
+    document.body.classList.toggle("lamp-is-lit", power > 0.1);
+
+    if (glowPoints.length) {
+      const lampX = 50;
+      const lampY = 36;
+      const offsets = { gold: 0, peach: 48, sage: 102, mauve: 158, lavender: 214, blush: 268 };
+      const weights = { gold: 1, peach: 0.86, sage: 0.78, mauve: 0.82, lavender: 0.74, blush: 0.78 };
+      const spread = 46 * (1 - power * 0.55);
+
+      glowPoints.forEach((point) => {
+        const id = point.getAttribute("data-glow");
+        if (!id) return;
+        const angle = ((150 + (offsets[id] ?? 0)) * Math.PI) / 180;
+        const weight = weights[id] ?? 0.7;
+        const farX = 50 + Math.sin(angle) * spread * weight;
+        const farY = 50 - Math.cos(angle) * 40 * weight;
+        const x = lerp(farX, lampX + Math.sin(angle) * 8, power);
+        const y = lerp(farY, lampY + Math.cos(angle) * 4, power);
+        point.style.setProperty("--light-pos-x", `${x.toFixed(2)}%`);
+        point.style.setProperty("--light-pos-y", `${y.toFixed(2)}%`);
+      });
+
+      if (lightStreaks) {
+        const t = performance.now() * 0.001;
+        const autoX = Math.sin(t * 0.13) * 26 * power + Math.sin(t * 0.21 + 1.8) * 14 * power;
+        const autoY = Math.cos(t * 0.1 + 0.6) * 18 * power + Math.sin(t * 0.16 + 2.4) * 11 * power;
+        const shiftX = (lampX - 50) * (window.innerWidth * 0.01) * power + autoX;
+        const shiftY = (lampY - 50) * (window.innerHeight * 0.01) * power + autoY;
+        lightStreaks.style.setProperty("--streak-shift-x", `${shiftX.toFixed(2)}px`);
+        lightStreaks.style.setProperty("--streak-shift-y", `${shiftY.toFixed(2)}px`);
+      }
+    }
+  };
+
+  if (lampLanding) {
+    updateLampTargets();
+    applyLampPower();
+
+    window.addEventListener("scroll", updateLampTargets, { passive: true });
+    window.addEventListener("resize", updateLampTargets, { passive: true });
+
+    if (!reducedMotion) {
+      const lampTick = () => {
+        applyLampPower();
+        requestAnimationFrame(lampTick);
+      };
+      requestAnimationFrame(lampTick);
+    }
+
+    if (lampPull) {
+      lampPull.addEventListener("click", () => {
+        lampPull.classList.add("is-pulled");
+        const scrollRange = lampLanding.offsetHeight - window.innerHeight;
+        window.scrollTo({
+          top: Math.max(0, scrollRange * 0.58),
+          behavior: reducedMotion ? "auto" : "smooth",
+        });
+        window.setTimeout(() => lampPull.classList.remove("is-pulled"), 450);
+      });
+    }
+  }
+
+  const initDefaultGlowPositions = () => {
+    const ANCHOR_RADIUS_X = 46;
+    const ANCHOR_RADIUS_Y = 40;
+    const startAngle = 150;
+    const offsets = {
+      gold: 0,
+      peach: 48,
+      sage: 102,
+      mauve: 158,
+      lavender: 214,
+      blush: 268,
+    };
+    const weights = {
+      gold: 1,
+      peach: 0.86,
+      sage: 0.78,
+      mauve: 0.82,
+      lavender: 0.74,
+      blush: 0.78,
+    };
+
+    glowPoints.forEach((point) => {
+      const id = point.getAttribute("data-glow");
+      if (!id) return;
+      const angle = ((startAngle + (offsets[id] ?? 0)) * Math.PI) / 180;
+      const weight = weights[id] ?? 0.7;
+      const x = 50 + Math.sin(angle) * ANCHOR_RADIUS_X * weight;
+      const y = 50 - Math.cos(angle) * ANCHOR_RADIUS_Y * weight;
+      point.style.setProperty("--light-pos-x", `${x.toFixed(2)}%`);
+      point.style.setProperty("--light-pos-y", `${y.toFixed(2)}%`);
+    });
+  };
+
   const sampleTrack = (track, progress) => {
     const clamped = Math.max(0, Math.min(1, progress));
     const scaled = clamped * (track.length - 1);
@@ -238,7 +360,6 @@
   const lightDialLabel = document.getElementById("light-dial-label");
   const lightWarmthInput = document.getElementById("light-warmth");
   const lightIntensityInput = document.getElementById("light-intensity");
-  const lightStreaks = document.querySelector(".light-streaks");
 
   if (lightDialRing && lightDialSun && glowPoints.length) {
     const DEG_PER_MS = 360 / 30000;
@@ -581,17 +702,21 @@
         updateLightStreaks(now);
       };
     }
-  } else if (lightStreaks) {
-    const streakTick = (now) => {
-      if (!reducedMotion) {
-        const t = now * 0.001;
-        const autoX = Math.sin(t * 0.13) * 26 + Math.sin(t * 0.21 + 1.8) * 14;
-        const autoY = Math.cos(t * 0.1 + 0.6) * 18 + Math.sin(t * 0.16 + 2.4) * 11;
-        lightStreaks.style.setProperty("--streak-shift-x", `${autoX.toFixed(2)}px`);
-        lightStreaks.style.setProperty("--streak-shift-y", `${autoY.toFixed(2)}px`);
-      }
+  } else {
+    if (glowPoints.length) initDefaultGlowPositions();
+
+    if (lightStreaks) {
+      const streakTick = (now) => {
+        if (!reducedMotion) {
+          const t = now * 0.001;
+          const autoX = Math.sin(t * 0.13) * 26 + Math.sin(t * 0.21 + 1.8) * 14;
+          const autoY = Math.cos(t * 0.1 + 0.6) * 18 + Math.sin(t * 0.16 + 2.4) * 11;
+          lightStreaks.style.setProperty("--streak-shift-x", `${autoX.toFixed(2)}px`);
+          lightStreaks.style.setProperty("--streak-shift-y", `${autoY.toFixed(2)}px`);
+        }
+        requestAnimationFrame(streakTick);
+      };
       requestAnimationFrame(streakTick);
-    };
-    requestAnimationFrame(streakTick);
+    }
   }
 })();
