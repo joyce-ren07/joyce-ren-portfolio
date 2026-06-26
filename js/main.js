@@ -28,6 +28,20 @@
     let activeLink = null;
     let travelTimer = null;
 
+    const hashSections = links
+      .map((link) => {
+        const href = link.getAttribute("href") || "";
+        const hashIndex = href.indexOf("#");
+        if (hashIndex === -1) return null;
+        const id = href.slice(hashIndex + 1);
+        const section = document.getElementById(id);
+        return section ? { link, section, id } : null;
+      })
+      .filter(Boolean);
+
+    const isHomePage = hashSections.length > 0;
+    const travelDuration = reducedMotion ? 0 : 920;
+
     const getLinkRect = (link) => {
       const navRect = topNav.getBoundingClientRect();
       const linkRect = link.getBoundingClientRect();
@@ -77,8 +91,37 @@
       }
     };
 
+    const hideLight = ({ animate = true } = {}) => {
+      clearTimeout(travelTimer);
+      logo?.classList.remove("is-pulsing");
+      light.classList.remove("is-traveling");
+
+      if (!animate || reducedMotion) {
+        light.style.transition = "none";
+      }
+
+      light.classList.remove("is-visible");
+
+      if (!animate || reducedMotion) {
+        requestAnimationFrame(() => {
+          light.style.transition = "";
+        });
+      }
+    };
+
+    const clearActive = ({ animate = true } = {}) => {
+      links.forEach((item) => {
+        item.classList.remove("is-active");
+        item.removeAttribute("aria-current");
+      });
+      activeLink = null;
+      hideLight({ animate });
+    };
+
     const setActiveLink = (link, { fromLogo = false, animate = true } = {}) => {
       if (!link || !links.includes(link)) return;
+
+      const wasInactive = activeLink === null;
 
       links.forEach((item) => {
         const isActive = item === link;
@@ -90,7 +133,9 @@
       activeLink = link;
       clearTimeout(travelTimer);
 
-      if (fromLogo && logo && animate && !reducedMotion) {
+      const borrowFromLogo = fromLogo && wasInactive && logo && animate && !reducedMotion;
+
+      if (borrowFromLogo) {
         logo.classList.add("is-pulsing");
         const logoRect = getLogoRect();
         placeLight(logoRect, { animate: false });
@@ -104,7 +149,7 @@
         travelTimer = setTimeout(() => {
           light.classList.remove("is-traveling");
           logo.classList.remove("is-pulsing");
-        }, 680);
+        }, travelDuration);
       } else {
         logo?.classList.remove("is-pulsing");
         light.classList.remove("is-traveling");
@@ -128,26 +173,12 @@
         if (hashLink) return hashLink;
       }
 
-      return (
-        links.find((link) => link.hasAttribute("aria-current")) ||
-        links.find((link) => {
-          const href = link.getAttribute("href") || "";
-          return href === "index.html" || href.endsWith("/index.html#work") || href === "#work";
-        }) ||
-        links[0]
-      );
-    };
+      if (isHomePage) {
+        return null;
+      }
 
-    const hashSections = links
-      .map((link) => {
-        const href = link.getAttribute("href") || "";
-        const hashIndex = href.indexOf("#");
-        if (hashIndex === -1) return null;
-        const id = href.slice(hashIndex + 1);
-        const section = document.getElementById(id);
-        return section ? { link, section, id } : null;
-      })
-      .filter(Boolean);
+      return links.find((link) => link.hasAttribute("aria-current")) || null;
+    };
 
     links.forEach((link) => {
       link.addEventListener("click", (event) => {
@@ -166,8 +197,9 @@
           }
         }
 
-        const shouldTravel = activeLink !== link;
-        setActiveLink(link, { fromLogo: shouldTravel, animate: true });
+        if (activeLink === link) return;
+
+        setActiveLink(link, { fromLogo: activeLink === null, animate: true });
       });
     });
 
@@ -176,10 +208,15 @@
     });
 
     const initial = resolveLinkFromLocation();
-    setActiveLink(initial, { fromLogo: false, animate: false });
+    if (initial) {
+      setActiveLink(initial, { fromLogo: false, animate: false });
+    } else {
+      clearActive({ animate: false });
+    }
 
     if (hashSections.length && "IntersectionObserver" in window) {
       const visible = new Map();
+      const sectionThreshold = 0.12;
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -187,8 +224,8 @@
             visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
           });
 
-          let best = hashSections[0];
-          let bestRatio = -1;
+          let best = null;
+          let bestRatio = 0;
 
           hashSections.forEach(({ section, link }) => {
             const ratio = visible.get(section.id) ?? 0;
@@ -198,13 +235,23 @@
             }
           });
 
-          if (bestRatio > 0 && best.link !== activeLink) {
-            setActiveLink(best.link, { fromLogo: false, animate: true });
+          if (bestRatio >= sectionThreshold && best) {
+            if (best.link !== activeLink) {
+              setActiveLink(best.link, {
+                fromLogo: activeLink === null,
+                animate: true,
+              });
+            }
+            return;
+          }
+
+          if (activeLink && isHomePage) {
+            clearActive({ animate: true });
           }
         },
         {
-          rootMargin: "-25% 0px -55% 0px",
-          threshold: [0, 0.15, 0.35, 0.55, 0.75, 1],
+          rootMargin: "-22% 0px -52% 0px",
+          threshold: [0, 0.08, 0.15, 0.25, 0.4, 0.55, 0.75, 1],
         }
       );
 

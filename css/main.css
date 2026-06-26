@@ -36,8 +36,8 @@
   --nav-glow-core: rgba(255, 190, 120, 0.65);
   --nav-glow-mid: rgba(255, 160, 80, 0.38);
   --nav-glow-soft: rgba(255, 175, 100, 0.22);
-  --nav-glow-hover: #c97a38;
-  --nav-glow-travel: 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+  --nav-glow-hover: #e8a85a;
+  --nav-glow-travel: 0.9s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 *,
@@ -827,7 +827,7 @@ p {
     top var(--nav-glow-travel),
     width var(--nav-glow-travel),
     height var(--nav-glow-travel),
-    opacity 0.38s ease;
+    opacity 0.5s ease;
   will-change: left, top, width, height, opacity;
 }
 
@@ -836,25 +836,19 @@ p {
 }
 
 .case-topbar__nav-light.is-traveling {
-  filter: blur(12px);
-  transition:
-    left var(--nav-glow-travel),
-    top var(--nav-glow-travel),
-    width calc(var(--nav-glow-travel) * 0.85),
-    height calc(var(--nav-glow-travel) * 0.85),
-    opacity 0.28s ease;
+  filter: blur(11px);
 }
 
 .case-topbar__nav a,
 .case-topbar__resume {
   font-size: 0.9375rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.2;
   color: #a1a1a1;
   transition:
     color 0.32s ease,
-    text-shadow 0.45s ease,
-    font-weight 0.25s ease;
+    text-shadow 0.5s ease,
+    opacity 0.45s ease;
   white-space: nowrap;
 }
 
@@ -874,7 +868,7 @@ p {
 
 .case-topbar__nav a.is-active {
   color: #fff;
-  font-weight: 500;
+  font-weight: 600;
   text-shadow:
     0 0 10px rgba(255, 220, 175, 0.95),
     0 0 22px rgba(255, 185, 120, 0.65),
