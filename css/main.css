@@ -1396,7 +1396,8 @@ p {
   --device-screen-right: 7.28%;
   --device-screen-bottom: 4.2%;
   --device-screen-left: 7.28%;
-  --device-screen-radius: 10.5%;
+  --device-screen-radius-x: 11%;
+  --device-screen-radius-y: 5.15%;
   position: relative;
   display: inline-block;
   width: clamp(13rem, 30vw, 18.75rem);
@@ -1414,7 +1415,7 @@ p {
   left: var(--device-screen-left);
   z-index: 2;
   overflow: hidden;
-  border-radius: var(--device-screen-radius);
+  border-radius: var(--device-screen-radius-x) / var(--device-screen-radius-y);
   background: #fff;
 }
 
