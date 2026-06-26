@@ -43,19 +43,18 @@
     const travelDuration = reducedMotion ? 0 : 920;
     const hero = document.querySelector(".portfolio-page .hero");
     const NAV_LIGHT_FROM_KEY = "portfolio-nav-light-from";
+    const NAV_ITEM_IDS = ["work", "canvas", "about"];
 
     const getNavItemId = (link) => {
       if (!link) return "main";
-      const href = (link.getAttribute("href") || "").toLowerCase();
-      if (href.includes("about")) return "about";
-      const hashIndex = href.indexOf("#");
-      if (hashIndex !== -1) return href.slice(hashIndex + 1);
-      return "main";
+      const index = links.indexOf(link);
+      return index >= 0 ? NAV_ITEM_IDS[index] || "main" : "main";
     };
 
     const findLinkByNavId = (id) => {
       if (!id || id === "main") return null;
-      return links.find((link) => getNavItemId(link) === id) || null;
+      const index = NAV_ITEM_IDS.indexOf(id);
+      return index >= 0 ? links[index] || null : null;
     };
 
     const rememberNavLightOrigin = () => {
