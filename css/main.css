@@ -1425,7 +1425,7 @@ p {
   border: 0;
   object-fit: contain;
   object-position: center center;
-  transform: translateY(-4%) scale(1.06);
+  transform: translateY(-4%) scale(1.03);
   background: #fff;
 }
 
@@ -1435,7 +1435,7 @@ p {
   display: block;
   width: 100%;
   height: auto;
-  transform: scale(0.97);
+  transform: scale(0.955);
   transform-origin: center center;
   pointer-events: none;
   user-select: none;
