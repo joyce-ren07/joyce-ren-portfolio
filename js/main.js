@@ -123,14 +123,13 @@
       if (!logo) return null;
       const navRect = topNav.getBoundingClientRect();
       const logoRect = logo.getBoundingClientRect();
-      const leftGroup = logo.closest(".case-topbar__left");
-      const groupRect = leftGroup ? leftGroup.getBoundingClientRect() : navRect;
+      const size = logoRect.width;
+
       return {
-        left: logoRect.left - navRect.left + logoRect.width * 0.5 - 14,
-        top: logoRect.top - navRect.top + logoRect.height * 0.5 - 10,
-        width: 28,
-        height: 20,
-        groupLeft: groupRect.left,
+        left: logoRect.left - navRect.left + logoRect.width / 2 - size / 2,
+        top: logoRect.top - navRect.top + logoRect.height / 2 - size / 2,
+        width: size,
+        height: size,
       };
     };
 

@@ -39,6 +39,16 @@
   --nav-glow-soft: rgba(255, 175, 100, 0.22);
   --nav-glow-hover: var(--nav-glow-color);
   --nav-glow-travel: 0.9s cubic-bezier(0.33, 1, 0.68, 1);
+  --nav-glow-pad-x: 10px;
+  --nav-glow-pad-y: 6px;
+  --nav-glow-logo-size: calc(0.9375rem * 1.2 + 0.7rem + 2 * var(--nav-glow-pad-y));
+  --nav-glow-fill: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 195, 130, 0.92) 0%,
+    rgba(255, 170, 95, 0.55) 42%,
+    rgba(255, 150, 75, 0.18) 72%,
+    transparent 100%
+  );
 }
 
 *,
@@ -783,17 +793,17 @@ p {
 
 .case-topbar__logo {
   display: block;
-  width: 2.75rem;
-  height: 1.35rem;
-  border-radius: 999px;
-  background: radial-gradient(ellipse at 50% 50%, var(--nav-glow-core) 0%, var(--nav-glow-mid) 55%, transparent 100%);
-  filter: blur(5px);
+  width: var(--nav-glow-logo-size);
+  height: var(--nav-glow-logo-size);
+  border-radius: 50%;
+  background: var(--nav-glow-fill);
+  filter: blur(10px);
   flex-shrink: 0;
   transition: filter 0.45s ease, opacity 0.45s ease;
 }
 
 .case-topbar__logo.is-pulsing {
-  filter: blur(6px);
+  filter: blur(11px);
   opacity: 1;
 }
 
@@ -814,13 +824,7 @@ p {
   pointer-events: none;
   z-index: 0;
   opacity: 0;
-  background: radial-gradient(
-    ellipse 120% 100% at 50% 50%,
-    rgba(255, 195, 130, 0.92) 0%,
-    rgba(255, 170, 95, 0.55) 42%,
-    rgba(255, 150, 75, 0.18) 72%,
-    transparent 100%
-  );
+  background: var(--nav-glow-fill);
   filter: blur(10px);
   transform: translate3d(0, 0, 0);
   transition:
