@@ -40,12 +40,31 @@
       .filter(Boolean);
 
     const isHomePage = hashSections.length > 0;
-    const travelDuration = reducedMotion ? 0 : 920;
+    const travelDuration = reducedMotion ? 0 : 900;
     const hero = document.querySelector(".portfolio-page .hero");
     const NAV_LIGHT_FROM_KEY = "portfolio-nav-light-from";
     const NAV_LIGHT_TO_KEY = "portfolio-nav-light-to";
     const NAV_ITEM_IDS = ["work", "canvas", "about"];
     let suppressObserver = false;
+    let observerReleaseTimer = null;
+    let scrollRaf = null;
+
+    const releaseObserverAfter = (ms) => {
+      clearTimeout(observerReleaseTimer);
+      suppressObserver = true;
+      observerReleaseTimer = setTimeout(() => {
+        suppressObserver = false;
+        updateActiveFromScroll();
+      }, ms);
+    };
+
+    const scrollToSection = (section, { behavior } = {}) => {
+      if (!section) return;
+      section.scrollIntoView({
+        behavior: behavior ?? (reducedMotion ? "auto" : "smooth"),
+        block: "start",
+      });
+    };
 
     const getNavItemId = (link) => {
       if (!link) return "main";
@@ -348,8 +367,13 @@
           const target = document.getElementById(id);
           if (target) {
             event.preventDefault();
-            target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+            releaseObserverAfter(reducedMotion ? 50 : travelDuration + 700);
+            if (activeLink !== link) {
+              setActiveLink(link, { animate: true });
+            }
+            scrollToSection(target);
             history.replaceState(null, "", `#${id}`);
+            return;
           }
         }
 
@@ -389,19 +413,68 @@
         }
 
         if (isHomePage) {
-          suppressObserver = true;
+          releaseObserverAfter(reducedMotion ? 50 : travelDuration + 700);
           clearActive({ animate: true });
           if (hero) {
-            hero.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+            scrollToSection(hero);
           } else {
             window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
           }
           history.replaceState(null, "", window.location.pathname + window.location.search);
-          window.setTimeout(() => {
-            suppressObserver = false;
-          }, reducedMotion ? 0 : travelDuration + 250);
         }
       });
+    }
+
+    const getSectionFromScroll = () => {
+      const activationLine = window.innerHeight * 0.28;
+      let best = null;
+
+      hashSections.forEach(({ section, link }) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= activationLine) {
+          best = { section, link };
+        }
+      });
+
+      return best;
+    };
+
+    const updateActiveFromScroll = () => {
+      if (suppressObserver || !hashSections.length) return;
+
+      if (activeLink && isHomePage && isAtMain()) {
+        clearActive({ animate: true });
+        return;
+      }
+
+      const best = getSectionFromScroll();
+      if (!best) return;
+
+      if (best.link !== activeLink) {
+        if (light.classList.contains("is-traveling")) return;
+        setActiveLink(best.link, { animate: true });
+      }
+    };
+
+    const hadCrossPageTransition = (() => {
+      try {
+        return Boolean(sessionStorage.getItem(NAV_LIGHT_TO_KEY));
+      } catch (_) {
+        return false;
+      }
+    })();
+
+    const initialHash = isHomePage ? window.location.hash.slice(1) : "";
+    const initialHashTarget = initialHash ? document.getElementById(initialHash) : null;
+
+    if (initialHashTarget) {
+      suppressObserver = true;
+      if (hadCrossPageTransition) {
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual";
+        }
+        window.scrollTo(0, 0);
+      }
     }
 
     const bootstrapNavLight = () => {
@@ -412,14 +485,14 @@
       const previousLink = fromId && fromId !== "main" ? findLinkByNavId(fromId) : null;
       const destinationMatches =
         !toId || toId === "main" || (initial && getNavItemId(initial) === toId);
-
-      if (
+      const crossPageSlide =
         initial &&
         previousLink &&
         previousLink !== initial &&
         destinationMatches &&
-        !reducedMotion
-      ) {
+        !reducedMotion;
+
+      if (crossPageSlide) {
         applyLinkState(initial);
         activeLink = initial;
         slideBetweenRects(getLinkRect(previousLink), getLinkRect(initial));
@@ -435,53 +508,36 @@
       } else {
         clearActive({ animate: false });
       }
+
+      if (initialHashTarget) {
+        if (hadCrossPageTransition) {
+          requestAnimationFrame(() => {
+            scrollToSection(initialHashTarget);
+          });
+        }
+        const scrollDelay = crossPageSlide ? travelDuration + 700 : 400;
+        releaseObserverAfter(reducedMotion ? 100 : scrollDelay);
+      }
     };
 
     requestAnimationFrame(() => {
       requestAnimationFrame(bootstrapNavLight);
     });
 
-    if (hashSections.length && "IntersectionObserver" in window) {
-      const visible = new Map();
-      const sectionThreshold = 0.12;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (suppressObserver) return;
-
-          entries.forEach((entry) => {
-            visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+    if (hashSections.length) {
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (scrollRaf) return;
+          scrollRaf = requestAnimationFrame(() => {
+            scrollRaf = null;
+            updateActiveFromScroll();
           });
-
-          let best = null;
-          let bestRatio = 0;
-
-          hashSections.forEach(({ section, link }) => {
-            const ratio = visible.get(section.id) ?? 0;
-            if (ratio > bestRatio) {
-              bestRatio = ratio;
-              best = { section, link };
-            }
-          });
-
-          if (bestRatio >= sectionThreshold && best) {
-            if (best.link !== activeLink) {
-              setActiveLink(best.link, { animate: true });
-            }
-            return;
-          }
-
-          if (activeLink && isHomePage && isAtMain()) {
-            clearActive({ animate: true });
-          }
         },
-        {
-          rootMargin: "-22% 0px -52% 0px",
-          threshold: [0, 0.08, 0.15, 0.25, 0.4, 0.55, 0.75, 1],
-        }
+        { passive: true }
       );
 
-      hashSections.forEach(({ section }) => observer.observe(section));
+      updateActiveFromScroll();
     }
   }
 
