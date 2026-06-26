@@ -1423,9 +1423,9 @@ p {
   width: 100%;
   height: 100%;
   border: 0;
-  object-fit: contain;
-  object-position: center center;
-  transform: translateY(-4%) scale(1.01);
+  object-fit: cover;
+  object-position: center top;
+  transform: translateY(-4%);
   background: #fff;
 }
 
@@ -1435,7 +1435,7 @@ p {
   display: block;
   width: 100%;
   height: auto;
-  transform: scale(0.955);
+  transform: scale(1);
   transform-origin: center center;
   pointer-events: none;
   user-select: none;
