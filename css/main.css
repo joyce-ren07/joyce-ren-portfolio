@@ -1396,8 +1396,8 @@ p {
   --device-screen-right: 7.28%;
   --device-screen-bottom: 4.2%;
   --device-screen-left: 7.28%;
-  --device-screen-radius-x: 8.1%;
-  --device-screen-radius-y: 3.82%;
+  --device-screen-radius-x: 8.85%;
+  --device-screen-radius-y: 4.17%;
   position: relative;
   display: inline-block;
   width: clamp(13rem, 30vw, 18.75rem);
@@ -1428,6 +1428,7 @@ p {
   border: 0;
   object-fit: cover;
   object-position: center 36%;
+  border-radius: inherit;
   background: #fff;
 }
 
