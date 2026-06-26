@@ -1392,9 +1392,9 @@ p {
 }
 
 .case-device-video {
-  --device-screen-top: 6.4%;
+  --device-screen-top: 5.0%;
   --device-screen-right: 7.28%;
-  --device-screen-bottom: 2.6%;
+  --device-screen-bottom: 4.2%;
   --device-screen-left: 7.28%;
   --device-screen-radius: 10.5%;
   position: relative;
@@ -1425,7 +1425,6 @@ p {
   border: 0;
   object-fit: cover;
   object-position: center 36%;
-  transform: translateY(-4%);
   background: #fff;
 }
 
