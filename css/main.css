@@ -1392,29 +1392,40 @@ p {
 }
 
 .case-device-video {
-  --device-screen-top: 1.77%;
-  --device-screen-left: 4.24%;
-  --device-screen-width: 91.47%;
-  --device-screen-height: 96.44%;
-  --device-screen-radius: 9.6%;
+  --device-screen-top: 6.85%;
+  --device-screen-right: 7.28%;
+  --device-screen-bottom: 3.32%;
+  --device-screen-left: 7.28%;
+  --device-screen-radius: 10.5%;
   position: relative;
-  width: clamp(11rem, 28vw, 16.5rem);
+  display: inline-block;
+  width: clamp(13rem, 30vw, 18.75rem);
   flex-shrink: 0;
-  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.14));
+  line-height: 0;
+  isolation: isolate;
+  filter: drop-shadow(0 32px 64px rgba(0, 0, 0, 0.12));
+}
+
+.case-device-video__screen {
+  position: absolute;
+  top: var(--device-screen-top);
+  right: var(--device-screen-right);
+  bottom: var(--device-screen-bottom);
+  left: var(--device-screen-left);
+  z-index: 0;
+  overflow: hidden;
+  border-radius: var(--device-screen-radius);
+  background: #fff;
 }
 
 .case-device-video__media {
-  position: absolute;
-  top: var(--device-screen-top);
-  left: var(--device-screen-left);
-  width: var(--device-screen-width);
-  height: var(--device-screen-height);
+  display: block;
+  width: 100%;
+  height: 100%;
   border: 0;
-  border-radius: var(--device-screen-radius);
   object-fit: cover;
   object-position: center top;
-  z-index: 0;
-  background: #000;
+  background: #fff;
 }
 
 .case-device-video__frame {
