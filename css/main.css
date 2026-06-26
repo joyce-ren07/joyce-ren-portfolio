@@ -1392,11 +1392,11 @@ p {
 }
 
 .case-device-video {
-  --device-screen-top: 5.1%;
-  --device-screen-left: 4.87%;
-  --device-screen-width: 90.13%;
-  --device-screen-height: 93.42%;
-  --device-screen-radius: 9.2%;
+  --device-screen-top: 1.77%;
+  --device-screen-left: 4.24%;
+  --device-screen-width: 91.47%;
+  --device-screen-height: 96.44%;
+  --device-screen-radius: 9.6%;
   position: relative;
   width: clamp(11rem, 28vw, 16.5rem);
   flex-shrink: 0;
