@@ -1396,8 +1396,6 @@ p {
   --device-screen-right: 7.28%;
   --device-screen-bottom: 0.5%;
   --device-screen-left: 7.28%;
-  --device-screen-radius-x: 12.5%;
-  --device-screen-radius-y: 5.65%;
   position: relative;
   display: inline-block;
   width: clamp(11.25rem, 27vw, 17rem);
@@ -1415,7 +1413,7 @@ p {
   left: var(--device-screen-left);
   z-index: 2;
   overflow: hidden;
-  border-radius: var(--device-screen-radius-x) / var(--device-screen-radius-y);
+  border-radius: 0;
   background: #111;
 }
 
@@ -1424,11 +1422,8 @@ p {
   width: 100%;
   height: 100%;
   border: 0;
-  object-fit: cover;
-  object-position: 50% 0%;
-  border-radius: inherit;
-  transform: scale(1.06) translateY(-8%);
-  transform-origin: center center;
+  object-fit: contain;
+  object-position: center center;
   background: #111;
 }
 
