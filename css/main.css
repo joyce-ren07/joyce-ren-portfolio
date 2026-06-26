@@ -1396,8 +1396,8 @@ p {
   --device-screen-right: 7.28%;
   --device-screen-bottom: 4.2%;
   --device-screen-left: 7.28%;
-  --device-screen-radius-x: 7.75%;
-  --device-screen-radius-y: 3.65%;
+  --device-screen-radius-x: 8.1%;
+  --device-screen-radius-y: 3.82%;
   position: relative;
   display: inline-block;
   width: clamp(13rem, 30vw, 18.75rem);
