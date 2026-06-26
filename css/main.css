@@ -1426,6 +1426,8 @@ p {
   border: 0;
   object-fit: cover;
   object-position: center 36%;
+  transform: scale(0.985);
+  transform-origin: center center;
   background: #fff;
 }
 
