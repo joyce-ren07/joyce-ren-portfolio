@@ -1437,7 +1437,7 @@ p {
   display: block;
   width: 100%;
   height: auto;
-  transform: scale(0.965);
+  transform: scale(0.962) translateY(0.4%);
   transform-origin: center center;
   pointer-events: none;
   user-select: none;
