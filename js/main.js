@@ -42,6 +42,52 @@
     const isHomePage = hashSections.length > 0;
     const travelDuration = reducedMotion ? 0 : 920;
     const hero = document.querySelector(".portfolio-page .hero");
+    const NAV_LIGHT_FROM_KEY = "portfolio-nav-light-from";
+
+    const getNavItemId = (link) => {
+      if (!link) return "main";
+      const href = (link.getAttribute("href") || "").toLowerCase();
+      if (href.includes("about")) return "about";
+      const hashIndex = href.indexOf("#");
+      if (hashIndex !== -1) return href.slice(hashIndex + 1);
+      return "main";
+    };
+
+    const findLinkByNavId = (id) => {
+      if (!id || id === "main") return null;
+      return links.find((link) => getNavItemId(link) === id) || null;
+    };
+
+    const rememberNavLightOrigin = () => {
+      try {
+        sessionStorage.setItem(NAV_LIGHT_FROM_KEY, getNavItemId(activeLink));
+      } catch (_) {
+        /* ignore storage errors */
+      }
+    };
+
+    const consumeNavLightOrigin = () => {
+      try {
+        const value = sessionStorage.getItem(NAV_LIGHT_FROM_KEY);
+        sessionStorage.removeItem(NAV_LIGHT_FROM_KEY);
+        return value;
+      } catch (_) {
+        return null;
+      }
+    };
+
+    const leavesCurrentPage = (href) => {
+      const onAboutPage = /\/about(\/|$)/.test(window.location.pathname);
+      const pathOnly = href.split("#")[0];
+
+      if (onAboutPage) {
+        if (pathOnly === "index.html" || pathOnly === "./index.html") return false;
+        return pathOnly.includes("index.html") || pathOnly.startsWith("../");
+      }
+
+      const targetsAbout = /about(\/index\.html)?$/i.test(pathOnly) || pathOnly.includes("about/");
+      return isHomePage && targetsAbout;
+    };
 
     const isAtMain = () => {
       if (!isHomePage) return false;
@@ -170,7 +216,7 @@
       }
     };
 
-    const setActiveLink = (link, { animate = true } = {}) => {
+    const setActiveLink = (link, { animate = true, fromLink = null } = {}) => {
       if (!link || !links.includes(link) || link === activeLink) return;
 
       links.forEach((item) => {
@@ -186,10 +232,25 @@
       const targetRect = getLinkRect(link);
       const wasVisible = light.classList.contains("is-visible");
       const shouldAnimate = animate && !reducedMotion;
+      const originLink = fromLink && links.includes(fromLink) ? fromLink : null;
 
       if (!wasVisible) {
+        if (originLink && originLink !== link && shouldAnimate) {
+          finishTravel();
+          placeLight(getLinkRect(originLink), { animate: false });
+          light.classList.add("is-visible");
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              placeLight(targetRect, { animate: true, traveling: true });
+              scheduleTravelEnd();
+            });
+          });
+          return;
+        }
+
         const logoRect = getLogoRect();
-        if (logoRect && shouldAnimate) {
+        if (logoRect && shouldAnimate && !originLink) {
           logo.classList.add("is-pulsing");
           placeLight(logoRect, { animate: false });
           light.classList.add("is-visible");
@@ -242,6 +303,11 @@
         const isHashOnly = href.startsWith("#");
         const hashIndex = href.indexOf("#");
         const isSamePageHash = hashIndex !== -1 && !href.startsWith("http");
+        const navigatesAway = leavesCurrentPage(href);
+
+        if (navigatesAway) {
+          rememberNavLightOrigin();
+        }
 
         if (isHashOnly || (isSamePageHash && !href.includes("about"))) {
           const id = isHashOnly ? href.slice(1) : href.slice(hashIndex + 1);
@@ -253,7 +319,7 @@
           }
         }
 
-        if (activeLink === link) return;
+        if (activeLink === link || navigatesAway) return;
 
         setActiveLink(link, { animate: true });
       });
@@ -268,7 +334,12 @@
     });
 
     const initial = resolveLinkFromLocation();
-    if (initial) {
+    const previousNavId = consumeNavLightOrigin();
+    const previousLink = previousNavId ? findLinkByNavId(previousNavId) : null;
+
+    if (initial && previousLink && previousLink !== initial && !reducedMotion) {
+      setActiveLink(initial, { animate: true, fromLink: previousLink });
+    } else if (initial) {
       setActiveLink(initial, { animate: false });
     } else {
       parkLightAtLogo();
