@@ -1427,7 +1427,7 @@ p {
   object-fit: cover;
   object-position: 50% 0%;
   border-radius: inherit;
-  transform: scale(1.06) translateY(-4%);
+  transform: scale(1.06) translateY(-8%);
   transform-origin: center center;
   background: #111;
 }
