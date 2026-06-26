@@ -41,6 +41,25 @@
 
     const isHomePage = hashSections.length > 0;
     const travelDuration = reducedMotion ? 0 : 920;
+    const hero = document.querySelector(".portfolio-page .hero");
+
+    const isAtMain = () => {
+      if (!isHomePage) return false;
+      if (window.scrollY < 48) return true;
+      if (!hero) return window.scrollY < 120;
+      const rect = hero.getBoundingClientRect();
+      return rect.top <= 80 && rect.bottom >= window.innerHeight * 0.42;
+    };
+
+    const finishTravel = () => {
+      light.classList.remove("is-traveling");
+      logo?.classList.remove("is-pulsing");
+    };
+
+    const scheduleTravelEnd = () => {
+      clearTimeout(travelTimer);
+      travelTimer = setTimeout(finishTravel, travelDuration);
+    };
 
     const getLinkRect = (link) => {
       const navRect = topNav.getBoundingClientRect();
@@ -91,10 +110,22 @@
       }
     };
 
+    const parkLightAtLogo = () => {
+      const logoRect = getLogoRect();
+      if (!logoRect) return;
+      light.style.transition = "none";
+      light.style.left = `${logoRect.left}px`;
+      light.style.top = `${logoRect.top}px`;
+      light.style.width = `${logoRect.width}px`;
+      light.style.height = `${logoRect.height}px`;
+      requestAnimationFrame(() => {
+        light.style.transition = "";
+      });
+    };
+
     const hideLight = ({ animate = true } = {}) => {
       clearTimeout(travelTimer);
-      logo?.classList.remove("is-pulsing");
-      light.classList.remove("is-traveling");
+      finishTravel();
 
       if (!animate || reducedMotion) {
         light.style.transition = "none";
@@ -115,13 +146,32 @@
         item.removeAttribute("aria-current");
       });
       activeLink = null;
-      hideLight({ animate });
+
+      const logoRect = getLogoRect();
+      if (!logoRect) {
+        hideLight({ animate });
+        return;
+      }
+
+      const wasVisible = light.classList.contains("is-visible");
+
+      if (animate && !reducedMotion && wasVisible) {
+        logo.classList.add("is-pulsing");
+        placeLight(logoRect, { animate: true, traveling: true });
+        clearTimeout(travelTimer);
+        travelTimer = setTimeout(() => {
+          finishTravel();
+          hideLight({ animate: true });
+          parkLightAtLogo();
+        }, travelDuration);
+      } else {
+        parkLightAtLogo();
+        hideLight({ animate: false });
+      }
     };
 
-    const setActiveLink = (link, { fromLogo = false, animate = true } = {}) => {
-      if (!link || !links.includes(link)) return;
-
-      const wasInactive = activeLink === null;
+    const setActiveLink = (link, { animate = true } = {}) => {
+      if (!link || !links.includes(link) || link === activeLink) return;
 
       links.forEach((item) => {
         const isActive = item === link;
@@ -133,28 +183,34 @@
       activeLink = link;
       clearTimeout(travelTimer);
 
-      const borrowFromLogo = fromLogo && wasInactive && logo && animate && !reducedMotion;
+      const targetRect = getLinkRect(link);
+      const wasVisible = light.classList.contains("is-visible");
+      const shouldAnimate = animate && !reducedMotion;
 
-      if (borrowFromLogo) {
-        logo.classList.add("is-pulsing");
+      if (!wasVisible) {
         const logoRect = getLogoRect();
-        placeLight(logoRect, { animate: false });
+        if (logoRect && shouldAnimate) {
+          logo.classList.add("is-pulsing");
+          placeLight(logoRect, { animate: false });
+          light.classList.add("is-visible");
 
-        requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            placeLight(getLinkRect(link), { animate: true, traveling: true });
+            requestAnimationFrame(() => {
+              placeLight(targetRect, { animate: true, traveling: true });
+              scheduleTravelEnd();
+            });
           });
-        });
-
-        travelTimer = setTimeout(() => {
-          light.classList.remove("is-traveling");
-          logo.classList.remove("is-pulsing");
-        }, travelDuration);
-      } else {
-        logo?.classList.remove("is-pulsing");
-        light.classList.remove("is-traveling");
-        placeLight(getLinkRect(link), { animate: animate && !reducedMotion });
+        } else {
+          finishTravel();
+          placeLight(targetRect, { animate: false });
+          light.classList.add("is-visible");
+        }
+        return;
       }
+
+      finishTravel();
+      placeLight(targetRect, { animate: shouldAnimate, traveling: shouldAnimate });
+      if (shouldAnimate) scheduleTravelEnd();
     };
 
     const resolveLinkFromLocation = () => {
@@ -199,18 +255,23 @@
 
         if (activeLink === link) return;
 
-        setActiveLink(link, { fromLogo: activeLink === null, animate: true });
+        setActiveLink(link, { animate: true });
       });
     });
 
     window.addEventListener("resize", () => {
-      if (activeLink) setActiveLink(activeLink, { animate: false });
+      if (activeLink) {
+        setActiveLink(activeLink, { animate: false });
+      } else {
+        parkLightAtLogo();
+      }
     });
 
     const initial = resolveLinkFromLocation();
     if (initial) {
-      setActiveLink(initial, { fromLogo: false, animate: false });
+      setActiveLink(initial, { animate: false });
     } else {
+      parkLightAtLogo();
       clearActive({ animate: false });
     }
 
@@ -237,15 +298,12 @@
 
           if (bestRatio >= sectionThreshold && best) {
             if (best.link !== activeLink) {
-              setActiveLink(best.link, {
-                fromLogo: activeLink === null,
-                animate: true,
-              });
+              setActiveLink(best.link, { animate: true });
             }
             return;
           }
 
-          if (activeLink && isHomePage) {
+          if (activeLink && isHomePage && isAtMain()) {
             clearActive({ animate: true });
           }
         },
