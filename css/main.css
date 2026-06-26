@@ -799,6 +799,7 @@ p {
   background: var(--nav-glow-fill);
   filter: blur(10px);
   flex-shrink: 0;
+  cursor: pointer;
   transition: filter 0.45s ease, opacity 0.45s ease;
 }
 

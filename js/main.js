@@ -43,7 +43,9 @@
     const travelDuration = reducedMotion ? 0 : 920;
     const hero = document.querySelector(".portfolio-page .hero");
     const NAV_LIGHT_FROM_KEY = "portfolio-nav-light-from";
+    const NAV_LIGHT_TO_KEY = "portfolio-nav-light-to";
     const NAV_ITEM_IDS = ["work", "canvas", "about"];
+    let suppressObserver = false;
 
     const getNavItemId = (link) => {
       if (!link) return "main";
@@ -57,21 +59,29 @@
       return index >= 0 ? links[index] || null : null;
     };
 
-    const rememberNavLightOrigin = () => {
+    const getLitLink = () => {
+      if (activeLink) return activeLink;
+      return links.find((item) => item.classList.contains("is-active")) || null;
+    };
+
+    const rememberNavTransition = (toLink) => {
       try {
-        sessionStorage.setItem(NAV_LIGHT_FROM_KEY, getNavItemId(activeLink));
+        sessionStorage.setItem(NAV_LIGHT_FROM_KEY, getNavItemId(getLitLink()));
+        sessionStorage.setItem(NAV_LIGHT_TO_KEY, toLink ? getNavItemId(toLink) : "main");
       } catch (_) {
         /* ignore storage errors */
       }
     };
 
-    const consumeNavLightOrigin = () => {
+    const consumeNavTransition = () => {
       try {
-        const value = sessionStorage.getItem(NAV_LIGHT_FROM_KEY);
+        const fromId = sessionStorage.getItem(NAV_LIGHT_FROM_KEY);
+        const toId = sessionStorage.getItem(NAV_LIGHT_TO_KEY);
         sessionStorage.removeItem(NAV_LIGHT_FROM_KEY);
-        return value;
+        sessionStorage.removeItem(NAV_LIGHT_TO_KEY);
+        return { fromId, toId };
       } catch (_) {
-        return null;
+        return { fromId: null, toId: null };
       }
     };
 
@@ -138,6 +148,8 @@
 
       if (!animate || reducedMotion) {
         light.style.transition = "none";
+      } else {
+        light.style.transition = "";
       }
 
       light.classList.toggle("is-traveling", traveling);
@@ -152,6 +164,48 @@
           light.style.transition = "";
         });
       }
+    };
+
+    const slideBetweenRects = (fromRect, toRect, { hideAfter = false } = {}) => {
+      if (!fromRect || !toRect) return;
+
+      if (reducedMotion) {
+        if (hideAfter) {
+          parkLightAtLogo();
+          hideLight({ animate: false });
+        } else {
+          placeLight(toRect, { animate: false });
+        }
+        return;
+      }
+
+      clearTimeout(travelTimer);
+      finishTravel();
+      light.style.transition = "none";
+      placeLight(fromRect, { animate: false });
+      light.classList.add("is-visible");
+      void light.offsetWidth;
+      light.style.transition = "";
+      placeLight(toRect, { animate: true, traveling: true });
+      scheduleTravelEnd();
+
+      if (hideAfter) {
+        clearTimeout(travelTimer);
+        travelTimer = setTimeout(() => {
+          finishTravel();
+          hideLight({ animate: true });
+          parkLightAtLogo();
+        }, travelDuration);
+      }
+    };
+
+    const applyLinkState = (link) => {
+      links.forEach((item) => {
+        const isActive = item === link;
+        item.classList.toggle("is-active", isActive);
+        if (isActive) item.setAttribute("aria-current", "page");
+        else item.removeAttribute("aria-current");
+      });
     };
 
     const parkLightAtLogo = () => {
@@ -185,6 +239,9 @@
     };
 
     const clearActive = ({ animate = true } = {}) => {
+      const lit = getLitLink();
+      const fromRect = lit ? getLinkRect(lit) : null;
+
       links.forEach((item) => {
         item.classList.remove("is-active");
         item.removeAttribute("aria-current");
@@ -199,15 +256,9 @@
 
       const wasVisible = light.classList.contains("is-visible");
 
-      if (animate && !reducedMotion && wasVisible) {
+      if (animate && !reducedMotion && wasVisible && fromRect) {
         logo.classList.add("is-pulsing");
-        placeLight(logoRect, { animate: true, traveling: true });
-        clearTimeout(travelTimer);
-        travelTimer = setTimeout(() => {
-          finishTravel();
-          hideLight({ animate: true });
-          parkLightAtLogo();
-        }, travelDuration);
+        slideBetweenRects(fromRect, logoRect, { hideAfter: true });
       } else {
         parkLightAtLogo();
         hideLight({ animate: false });
@@ -217,53 +268,38 @@
     const setActiveLink = (link, { animate = true, fromLink = null } = {}) => {
       if (!link || !links.includes(link) || link === activeLink) return;
 
-      links.forEach((item) => {
-        const isActive = item === link;
-        item.classList.toggle("is-active", isActive);
-        if (isActive) item.setAttribute("aria-current", "page");
-        else item.removeAttribute("aria-current");
-      });
+      const previousActive = activeLink;
+      const wasVisible = light.classList.contains("is-visible");
+      const shouldAnimate = animate && !reducedMotion;
+      const targetRect = getLinkRect(link);
+      const originLink = fromLink && links.includes(fromLink) ? fromLink : null;
 
+      applyLinkState(link);
       activeLink = link;
       clearTimeout(travelTimer);
 
-      const targetRect = getLinkRect(link);
-      const wasVisible = light.classList.contains("is-visible");
-      const shouldAnimate = animate && !reducedMotion;
-      const originLink = fromLink && links.includes(fromLink) ? fromLink : null;
+      if (wasVisible && previousActive && shouldAnimate) {
+        finishTravel();
+        slideBetweenRects(getLinkRect(previousActive), targetRect);
+        return;
+      }
 
       if (!wasVisible) {
         if (originLink && originLink !== link && shouldAnimate) {
           finishTravel();
-          placeLight(getLinkRect(originLink), { animate: false });
-          light.classList.add("is-visible");
-
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              placeLight(targetRect, { animate: true, traveling: true });
-              scheduleTravelEnd();
-            });
-          });
+          slideBetweenRects(getLinkRect(originLink), targetRect);
           return;
         }
 
         const logoRect = getLogoRect();
         if (logoRect && shouldAnimate && !originLink) {
           logo.classList.add("is-pulsing");
-          placeLight(logoRect, { animate: false });
-          light.classList.add("is-visible");
-
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              placeLight(targetRect, { animate: true, traveling: true });
-              scheduleTravelEnd();
-            });
-          });
-        } else {
-          finishTravel();
-          placeLight(targetRect, { animate: false });
-          light.classList.add("is-visible");
+          slideBetweenRects(logoRect, targetRect);
+          return;
         }
+
+        finishTravel();
+        placeLight(targetRect, { animate: false });
         return;
       }
 
@@ -304,7 +340,7 @@
         const navigatesAway = leavesCurrentPage(href);
 
         if (navigatesAway) {
-          rememberNavLightOrigin();
+          rememberNavTransition(link);
         }
 
         if (isHashOnly || (isSamePageHash && !href.includes("about"))) {
@@ -331,18 +367,79 @@
       }
     });
 
-    const initial = resolveLinkFromLocation();
-    const previousNavId = consumeNavLightOrigin();
-    const previousLink = previousNavId ? findLinkByNavId(previousNavId) : null;
+    if (logo) {
+      logo.addEventListener("click", (event) => {
+        const lit = getLitLink();
+        const hasGlow = Boolean(lit) || light.classList.contains("is-visible");
+        if (!hasGlow) return;
 
-    if (initial && previousLink && previousLink !== initial && !reducedMotion) {
-      setActiveLink(initial, { animate: true, fromLink: previousLink });
-    } else if (initial) {
-      setActiveLink(initial, { animate: false });
-    } else {
-      parkLightAtLogo();
-      clearActive({ animate: false });
+        const onAboutPage = /\/about(\/|$)/.test(window.location.pathname);
+        const homeHref = logo.getAttribute("href");
+        if (!homeHref) return;
+
+        event.preventDefault();
+
+        if (onAboutPage) {
+          rememberNavTransition(null);
+          clearActive({ animate: true });
+          window.setTimeout(() => {
+            window.location.href = homeHref;
+          }, reducedMotion ? 0 : travelDuration);
+          return;
+        }
+
+        if (isHomePage) {
+          suppressObserver = true;
+          clearActive({ animate: true });
+          if (hero) {
+            hero.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+          } else {
+            window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+          }
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+          window.setTimeout(() => {
+            suppressObserver = false;
+          }, reducedMotion ? 0 : travelDuration + 250);
+        }
+      });
     }
+
+    const bootstrapNavLight = () => {
+      parkLightAtLogo();
+
+      const initial = resolveLinkFromLocation();
+      const { fromId, toId } = consumeNavTransition();
+      const previousLink = fromId && fromId !== "main" ? findLinkByNavId(fromId) : null;
+      const destinationMatches =
+        !toId || toId === "main" || (initial && getNavItemId(initial) === toId);
+
+      if (
+        initial &&
+        previousLink &&
+        previousLink !== initial &&
+        destinationMatches &&
+        !reducedMotion
+      ) {
+        applyLinkState(initial);
+        activeLink = initial;
+        slideBetweenRects(getLinkRect(previousLink), getLinkRect(initial));
+      } else if (!initial && previousLink && toId === "main" && !reducedMotion) {
+        const logoRect = getLogoRect();
+        if (logoRect) {
+          slideBetweenRects(getLinkRect(previousLink), logoRect, { hideAfter: true });
+        } else {
+          clearActive({ animate: false });
+        }
+      } else if (initial) {
+        setActiveLink(initial, { animate: false });
+      } else {
+        clearActive({ animate: false });
+      }
+    };
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(bootstrapNavLight);
+    });
 
     if (hashSections.length && "IntersectionObserver" in window) {
       const visible = new Map();
@@ -350,6 +447,8 @@
 
       const observer = new IntersectionObserver(
         (entries) => {
+          if (suppressObserver) return;
+
           entries.forEach((entry) => {
             visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
           });
