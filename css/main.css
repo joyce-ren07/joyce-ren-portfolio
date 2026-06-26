@@ -1423,7 +1423,8 @@ p {
   height: 100%;
   border: 0;
   object-fit: contain;
-  object-position: center center;
+  object-position: center top;
+  transform: translateY(-6%);
   background: #111;
 }
 
