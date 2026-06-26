@@ -1412,7 +1412,7 @@ p {
   right: var(--device-screen-right);
   bottom: var(--device-screen-bottom);
   left: var(--device-screen-left);
-  z-index: 0;
+  z-index: 2;
   overflow: hidden;
   border-radius: var(--device-screen-radius);
   background: #111;
@@ -1425,8 +1425,8 @@ p {
   border: 0;
   object-fit: cover;
   object-position: 50% 0%;
-  transform: scale(0.94) translateY(-16%);
-  transform-origin: center top;
+  transform: scale(1.06);
+  transform-origin: center center;
   background: #111;
 }
 
