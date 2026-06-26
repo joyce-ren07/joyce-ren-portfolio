@@ -1425,6 +1425,7 @@ p {
   border: 0;
   object-fit: contain;
   object-position: center center;
+  transform: translateY(-4%);
   background: #fff;
 }
 
