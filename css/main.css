@@ -1392,17 +1392,18 @@ p {
 }
 
 .case-device-video {
-  --device-screen-top: 5.4%;
+  --device-screen-top: 6.85%;
   --device-screen-right: 7.28%;
-  --device-screen-bottom: 0%;
+  --device-screen-bottom: 3.32%;
   --device-screen-left: 7.28%;
+  --device-screen-radius: 10.5%;
   position: relative;
   display: inline-block;
-  width: clamp(11.25rem, 27vw, 17rem);
+  width: clamp(13rem, 30vw, 18.75rem);
   flex-shrink: 0;
   line-height: 0;
   isolation: isolate;
-  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.11));
+  filter: drop-shadow(0 32px 64px rgba(0, 0, 0, 0.12));
 }
 
 .case-device-video__screen {
@@ -1411,9 +1412,9 @@ p {
   right: var(--device-screen-right);
   bottom: var(--device-screen-bottom);
   left: var(--device-screen-left);
-  z-index: 2;
+  z-index: 0;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: var(--device-screen-radius);
   background: #fff;
 }
 
@@ -1424,7 +1425,7 @@ p {
   border: 0;
   object-fit: cover;
   object-position: center top;
-  transform: translateY(-12%) scale(1.08);
+  transform: translateY(-10%);
   transform-origin: center top;
   background: #fff;
 }
