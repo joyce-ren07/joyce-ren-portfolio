@@ -1412,7 +1412,7 @@ p {
   right: var(--device-screen-right);
   bottom: var(--device-screen-bottom);
   left: var(--device-screen-left);
-  z-index: 0;
+  z-index: 2;
   overflow: hidden;
   border-radius: var(--device-screen-radius);
   background: #fff;
@@ -1431,10 +1431,12 @@ p {
 
 .case-device-video__frame {
   position: relative;
-  z-index: 1;
+  z-index: 0;
   display: block;
   width: 100%;
   height: auto;
+  transform: scale(0.96);
+  transform-origin: center center;
   pointer-events: none;
   user-select: none;
 }
