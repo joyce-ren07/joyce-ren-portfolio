@@ -432,6 +432,10 @@ p {
   scroll-margin-top: calc(var(--case-topbar-height) + 1rem);
 }
 
+.portfolio-page #canvas {
+  min-height: 55vh;
+}
+
 .about-main {
   max-width: var(--nav-max-width);
   margin-inline: auto;

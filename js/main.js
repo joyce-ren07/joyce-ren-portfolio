@@ -44,12 +44,14 @@
     const hero = document.querySelector(".portfolio-page .hero");
     const NAV_LIGHT_FROM_KEY = "portfolio-nav-light-from";
     const NAV_LIGHT_TO_KEY = "portfolio-nav-light-to";
+    const NAV_LIGHT_DEPARTED_KEY = "portfolio-nav-light-departed";
     const NAV_ITEM_IDS = ["work", "canvas", "about"];
     let suppressObserver = false;
     let observerReleaseTimer = null;
     let scrollRaf = null;
+    let travelLock = false;
 
-    const releaseObserverAfter = (ms) => {
+    const lockObserver = (ms) => {
       clearTimeout(observerReleaseTimer);
       suppressObserver = true;
       observerReleaseTimer = setTimeout(() => {
@@ -58,12 +60,38 @@
       }, ms);
     };
 
+    const releaseObserverAfter = (ms) => {
+      lockObserver(ms);
+      if ("onscrollend" in window) {
+        window.addEventListener(
+          "scrollend",
+          () => {
+            clearTimeout(observerReleaseTimer);
+            suppressObserver = false;
+            updateActiveFromScroll();
+          },
+          { once: true }
+        );
+      }
+    };
+
     const scrollToSection = (section, { behavior } = {}) => {
       if (!section) return;
       section.scrollIntoView({
         behavior: behavior ?? (reducedMotion ? "auto" : "smooth"),
         block: "start",
       });
+    };
+
+    const peekNavTransition = () => {
+      try {
+        return {
+          has: Boolean(sessionStorage.getItem(NAV_LIGHT_TO_KEY)),
+          departed: sessionStorage.getItem(NAV_LIGHT_DEPARTED_KEY) === "1",
+        };
+      } catch (_) {
+        return { has: false, departed: false };
+      }
     };
 
     const getNavItemId = (link) => {
@@ -83,10 +111,11 @@
       return links.find((item) => item.classList.contains("is-active")) || null;
     };
 
-    const rememberNavTransition = (toLink) => {
+    const rememberNavTransition = (toLink, { departed = false } = {}) => {
       try {
         sessionStorage.setItem(NAV_LIGHT_FROM_KEY, getNavItemId(getLitLink()));
         sessionStorage.setItem(NAV_LIGHT_TO_KEY, toLink ? getNavItemId(toLink) : "main");
+        sessionStorage.setItem(NAV_LIGHT_DEPARTED_KEY, departed ? "1" : "0");
       } catch (_) {
         /* ignore storage errors */
       }
@@ -96,42 +125,69 @@
       try {
         const fromId = sessionStorage.getItem(NAV_LIGHT_FROM_KEY);
         const toId = sessionStorage.getItem(NAV_LIGHT_TO_KEY);
+        const departed = sessionStorage.getItem(NAV_LIGHT_DEPARTED_KEY) === "1";
         sessionStorage.removeItem(NAV_LIGHT_FROM_KEY);
         sessionStorage.removeItem(NAV_LIGHT_TO_KEY);
-        return { fromId, toId };
+        sessionStorage.removeItem(NAV_LIGHT_DEPARTED_KEY);
+        return { fromId, toId, departed };
       } catch (_) {
-        return { fromId: null, toId: null };
+        return { fromId: null, toId: null, departed: false };
       }
     };
 
     const leavesCurrentPage = (href) => {
-      const onAboutPage = /\/about(\/|$)/.test(window.location.pathname);
+      const path = window.location.pathname;
+      const onAboutPage = /\/about(\/|$)/.test(path);
       const pathOnly = href.split("#")[0];
+      const targetsAbout =
+        /about(\/index\.html)?$/i.test(pathOnly) || /\/about(\/|$)/.test(pathOnly);
 
       if (onAboutPage) {
-        if (pathOnly === "index.html" || pathOnly === "./index.html") return false;
         return pathOnly.includes("index.html") || pathOnly.startsWith("../");
       }
 
-      const targetsAbout = /about(\/index\.html)?$/i.test(pathOnly) || pathOnly.includes("about/");
-      return isHomePage && targetsAbout;
+      if (isHomePage && targetsAbout) return true;
+
+      if (!isHomePage && !onAboutPage) {
+        if (pathOnly.includes("index.html") && !pathOnly.includes("about")) return true;
+        if (targetsAbout) return true;
+      }
+
+      return false;
+    };
+
+    const getSectionFromScroll = () => {
+      const activationLine = window.innerHeight * 0.28;
+      let best = null;
+
+      hashSections.forEach(({ section, link }) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= activationLine) {
+          best = { section, link };
+        }
+      });
+
+      return best;
     };
 
     const isAtMain = () => {
       if (!isHomePage) return false;
+      if (getSectionFromScroll()) return false;
       if (window.scrollY < 48) return true;
       if (!hero) return window.scrollY < 120;
       const rect = hero.getBoundingClientRect();
-      return rect.top <= 80 && rect.bottom >= window.innerHeight * 0.42;
+      return rect.top <= 80;
     };
 
     const finishTravel = () => {
       light.classList.remove("is-traveling");
       logo?.classList.remove("is-pulsing");
+      travelLock = false;
     };
 
     const scheduleTravelEnd = () => {
       clearTimeout(travelTimer);
+      travelLock = true;
       travelTimer = setTimeout(finishTravel, travelDuration);
     };
 
@@ -311,7 +367,7 @@
         }
 
         const logoRect = getLogoRect();
-        if (logoRect && shouldAnimate && !originLink) {
+        if (logoRect && shouldAnimate) {
           logo.classList.add("is-pulsing");
           slideBetweenRects(logoRect, targetRect);
           return;
@@ -325,6 +381,32 @@
       finishTravel();
       placeLight(targetRect, { animate: shouldAnimate, traveling: shouldAnimate });
       if (shouldAnimate) scheduleTravelEnd();
+    };
+
+    const placeActiveLink = (link) => {
+      if (!link) return;
+      applyLinkState(link);
+      activeLink = link;
+      finishTravel();
+      placeLight(getLinkRect(link), { animate: false });
+    };
+
+    const navigateAwayWithGlow = (href, targetLink) => {
+      const shouldAnimate = !reducedMotion;
+      rememberNavTransition(targetLink, { departed: shouldAnimate });
+      lockObserver(shouldAnimate ? travelDuration + 200 : 50);
+
+      if (shouldAnimate && targetLink && activeLink !== targetLink) {
+        setActiveLink(targetLink, { animate: true });
+      } else if (shouldAnimate && targetLink && !activeLink) {
+        setActiveLink(targetLink, { animate: true });
+      } else if (targetLink) {
+        placeActiveLink(targetLink);
+      }
+
+      window.setTimeout(() => {
+        window.location.href = href;
+      }, shouldAnimate ? travelDuration : 0);
     };
 
     const resolveLinkFromLocation = () => {
@@ -359,7 +441,9 @@
         const navigatesAway = leavesCurrentPage(href);
 
         if (navigatesAway) {
-          rememberNavTransition(link);
+          event.preventDefault();
+          navigateAwayWithGlow(href, link);
+          return;
         }
 
         if (isHashOnly || (isSamePageHash && !href.includes("about"))) {
@@ -367,7 +451,7 @@
           const target = document.getElementById(id);
           if (target) {
             event.preventDefault();
-            releaseObserverAfter(reducedMotion ? 50 : travelDuration + 700);
+            releaseObserverAfter(reducedMotion ? 50 : travelDuration + 800);
             if (activeLink !== link) {
               setActiveLink(link, { animate: true });
             }
@@ -377,7 +461,7 @@
           }
         }
 
-        if (activeLink === link || navigatesAway) return;
+        if (activeLink === link) return;
 
         setActiveLink(link, { animate: true });
       });
@@ -404,7 +488,8 @@
         event.preventDefault();
 
         if (onAboutPage) {
-          rememberNavTransition(null);
+          rememberNavTransition(null, { departed: !reducedMotion });
+          lockObserver(reducedMotion ? 50 : travelDuration + 200);
           clearActive({ animate: true });
           window.setTimeout(() => {
             window.location.href = homeHref;
@@ -413,7 +498,7 @@
         }
 
         if (isHomePage) {
-          releaseObserverAfter(reducedMotion ? 50 : travelDuration + 700);
+          releaseObserverAfter(reducedMotion ? 50 : travelDuration + 800);
           clearActive({ animate: true });
           if (hero) {
             scrollToSection(hero);
@@ -425,22 +510,8 @@
       });
     }
 
-    const getSectionFromScroll = () => {
-      const activationLine = window.innerHeight * 0.28;
-      let best = null;
-
-      hashSections.forEach(({ section, link }) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= activationLine) {
-          best = { section, link };
-        }
-      });
-
-      return best;
-    };
-
     const updateActiveFromScroll = () => {
-      if (suppressObserver || !hashSections.length) return;
+      if (suppressObserver || travelLock || !hashSections.length) return;
 
       if (activeLink && isHomePage && isAtMain()) {
         clearActive({ animate: true });
@@ -451,72 +522,80 @@
       if (!best) return;
 
       if (best.link !== activeLink) {
-        if (light.classList.contains("is-traveling")) return;
         setActiveLink(best.link, { animate: true });
       }
     };
 
-    const hadCrossPageTransition = (() => {
-      try {
-        return Boolean(sessionStorage.getItem(NAV_LIGHT_TO_KEY));
-      } catch (_) {
-        return false;
-      }
-    })();
+    const pendingTransition = peekNavTransition();
 
     const initialHash = isHomePage ? window.location.hash.slice(1) : "";
     const initialHashTarget = initialHash ? document.getElementById(initialHash) : null;
 
-    if (initialHashTarget) {
+    if (initialHashTarget && pendingTransition.has && !pendingTransition.departed) {
       suppressObserver = true;
-      if (hadCrossPageTransition) {
-        if ("scrollRestoration" in history) {
-          history.scrollRestoration = "manual";
-        }
-        window.scrollTo(0, 0);
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
       }
+      window.scrollTo(0, 0);
+    } else if (initialHashTarget) {
+      suppressObserver = true;
     }
 
     const bootstrapNavLight = () => {
-      parkLightAtLogo();
-
       const initial = resolveLinkFromLocation();
-      const { fromId, toId } = consumeNavTransition();
+      const { fromId, toId, departed } = consumeNavTransition();
       const previousLink = fromId && fromId !== "main" ? findLinkByNavId(fromId) : null;
       const destinationMatches =
         !toId || toId === "main" || (initial && getNavItemId(initial) === toId);
-      const crossPageSlide =
+      const arrivalSlide =
         initial &&
         previousLink &&
         previousLink !== initial &&
         destinationMatches &&
+        !departed &&
         !reducedMotion;
+      const returnHomeSlide =
+        !initial && previousLink && toId === "main" && !departed && !reducedMotion;
+      const skipPark =
+        arrivalSlide ||
+        returnHomeSlide ||
+        (departed && initial) ||
+        (departed && toId === "main") ||
+        (initial && !previousLink);
 
-      if (crossPageSlide) {
+      if (!skipPark) {
+        parkLightAtLogo();
+      }
+
+      if (arrivalSlide) {
         applyLinkState(initial);
         activeLink = initial;
         slideBetweenRects(getLinkRect(previousLink), getLinkRect(initial));
-      } else if (!initial && previousLink && toId === "main" && !reducedMotion) {
+      } else if (returnHomeSlide) {
         const logoRect = getLogoRect();
         if (logoRect) {
           slideBetweenRects(getLinkRect(previousLink), logoRect, { hideAfter: true });
         } else {
           clearActive({ animate: false });
         }
+      } else if (departed && toId === "main") {
+        clearActive({ animate: false });
+      } else if (departed && initial) {
+        placeActiveLink(initial);
       } else if (initial) {
-        setActiveLink(initial, { animate: false });
+        placeActiveLink(initial);
       } else {
         clearActive({ animate: false });
       }
 
       if (initialHashTarget) {
-        if (hadCrossPageTransition) {
-          requestAnimationFrame(() => {
-            scrollToSection(initialHashTarget);
-          });
-        }
-        const scrollDelay = crossPageSlide ? travelDuration + 700 : 400;
+        requestAnimationFrame(() => {
+          scrollToSection(initialHashTarget);
+        });
+        const scrollDelay = arrivalSlide ? travelDuration + 800 : departed ? 500 : 400;
         releaseObserverAfter(reducedMotion ? 100 : scrollDelay);
+      } else if (arrivalSlide || returnHomeSlide) {
+        releaseObserverAfter(reducedMotion ? 100 : travelDuration + 200);
       }
     };
 
