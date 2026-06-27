@@ -449,9 +449,10 @@ p {
 
 .about-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
+  justify-content: center;
 }
 
 .about-body {
@@ -470,21 +471,23 @@ p {
 
 .about-portrait {
   margin: 0;
-  border-radius: clamp(1.5rem, 3vw, 2.25rem);
+  width: 100%;
+  max-width: clamp(11rem, 22vw, 15rem);
+  justify-self: center;
+  border-radius: clamp(1.25rem, 2.5vw, 1.75rem);
   overflow: hidden;
   background: linear-gradient(160deg, #ffffff 0%, #ffffff 100%);
-  min-height: clamp(18rem, 40vw, 28rem);
   box-shadow:
-    0 0 0 10px rgba(255, 248, 238, 0.75),
-    0 0 48px rgba(255, 210, 160, 0.28);
+    0 0 0 8px rgba(255, 248, 238, 0.75),
+    0 0 36px rgba(255, 210, 160, 0.28);
   transition: box-shadow 0.55s ease;
 }
 
 .about-portrait:hover {
   box-shadow:
-    0 0 0 10px rgba(255, 248, 238, 0.95),
-    0 0 64px rgba(255, 195, 130, 0.48),
-    0 0 96px rgba(255, 175, 100, 0.22);
+    0 0 0 8px rgba(255, 248, 238, 0.95),
+    0 0 48px rgba(255, 195, 130, 0.48),
+    0 0 72px rgba(255, 175, 100, 0.22);
 }
 
 .about-portrait__frame {
@@ -495,9 +498,9 @@ p {
 
 .about-portrait__img {
   width: 100%;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   display: block;
 }
 
@@ -526,7 +529,7 @@ p {
   }
 
   .about-portrait {
-    max-width: 22rem;
+    max-width: 14rem;
     margin-inline: auto;
   }
 
