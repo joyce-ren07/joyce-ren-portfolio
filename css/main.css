@@ -1416,7 +1416,7 @@ p {
   z-index: 2;
   overflow: hidden;
   border-radius: var(--device-screen-radius-x) / var(--device-screen-radius-y);
-  transform: scale(0.978) translateY(-0.35%);
+  transform: scale(0.967) translateY(-0.35%);
   transform-origin: center center;
   background: #fff;
 }
@@ -1438,7 +1438,7 @@ p {
   display: block;
   width: 100%;
   height: auto;
-  transform: scale(0.958) translateY(0.4%);
+  transform: scale(0.937) translateY(0.4%);
   transform-origin: center center;
   pointer-events: none;
   user-select: none;
