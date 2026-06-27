@@ -449,10 +449,15 @@ p {
 
 .about-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
-  justify-content: center;
+  max-width: min(52rem, 100%);
+  margin-inline: auto;
+}
+
+.about-copy {
+  max-width: 22rem;
 }
 
 .about-body {
@@ -472,9 +477,9 @@ p {
 .about-portrait {
   margin: 0;
   width: 100%;
-  max-width: clamp(14rem, 28vw, 20rem);
-  justify-self: center;
-  border-radius: clamp(1.25rem, 2.5vw, 1.75rem);
+  max-width: none;
+  justify-self: stretch;
+  border-radius: clamp(1.5rem, 3vw, 2.25rem);
   overflow: hidden;
   background: linear-gradient(160deg, #ffffff 0%, #ffffff 100%);
   box-shadow:
@@ -502,7 +507,7 @@ p {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center center;
+  object-position: 58% center;
   display: block;
 }
 
@@ -528,11 +533,17 @@ p {
 @media (max-width: 768px) {
   .about-layout {
     grid-template-columns: 1fr;
+    max-width: 24rem;
+  }
+
+  .about-copy {
+    max-width: none;
   }
 
   .about-portrait {
     max-width: 18rem;
     margin-inline: auto;
+    justify-self: center;
   }
 
   .about-copy {
