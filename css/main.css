@@ -1395,7 +1395,7 @@ p {
   --device-screen-top: 5.0%;
   --device-screen-right: 7.28%;
   --device-screen-bottom: 4.2%;
-  --device-screen-left: 7.05%;
+  --device-screen-left: 7.28%;
   --device-screen-radius-x: 10%;
   --device-screen-radius-y: 4.72%;
   position: relative;
@@ -1416,15 +1416,14 @@ p {
   z-index: 2;
   overflow: hidden;
   border-radius: var(--device-screen-radius-x) / var(--device-screen-radius-y);
-  transform: scale(0.985) translateY(-0.35%) translateX(-0.55%);
+  transform: scale(0.978) translateY(-0.35%);
   transform-origin: center center;
   background: #fff;
 }
 
 .case-device-video__media {
   display: block;
-  width: 100.4%;
-  margin-left: -0.2%;
+  width: 100%;
   height: 100%;
   border: 0;
   object-fit: cover;
