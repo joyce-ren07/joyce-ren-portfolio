@@ -1416,7 +1416,7 @@ p {
   z-index: 2;
   overflow: hidden;
   border-radius: var(--device-screen-radius-x) / var(--device-screen-radius-y);
-  transform: scale(0.845) translateY(-0.45%);
+  transform: scale(0.845) translateY(-0.5%);
   transform-origin: center center;
   background: #fff;
 }
