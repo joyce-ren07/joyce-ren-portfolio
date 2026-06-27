@@ -472,28 +472,30 @@ p {
 .about-portrait {
   margin: 0;
   width: 100%;
-  max-width: clamp(11rem, 22vw, 15rem);
+  max-width: clamp(14rem, 28vw, 20rem);
   justify-self: center;
-  border-radius: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-radius: var(--radius);
   overflow: hidden;
   background: linear-gradient(160deg, #ffffff 0%, #ffffff 100%);
   box-shadow:
-    0 0 0 8px rgba(255, 248, 238, 0.75),
-    0 0 36px rgba(255, 210, 160, 0.28);
+    0 0 0 10px rgba(255, 248, 238, 0.75),
+    0 0 48px rgba(255, 210, 160, 0.28);
   transition: box-shadow 0.55s ease;
 }
 
 .about-portrait:hover {
   box-shadow:
-    0 0 0 8px rgba(255, 248, 238, 0.95),
-    0 0 48px rgba(255, 195, 130, 0.48),
-    0 0 72px rgba(255, 175, 100, 0.22);
+    0 0 0 10px rgba(255, 248, 238, 0.95),
+    0 0 64px rgba(255, 195, 130, 0.48),
+    0 0 96px rgba(255, 175, 100, 0.22);
 }
 
 .about-portrait__frame {
   position: relative;
   width: 100%;
   height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
 }
 
 .about-portrait__img {
@@ -529,7 +531,7 @@ p {
   }
 
   .about-portrait {
-    max-width: 14rem;
+    max-width: 18rem;
     margin-inline: auto;
   }
 
