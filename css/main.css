@@ -758,6 +758,11 @@ p {
   --case-text-faint: #a1a1a1;
   --case-heading: #a1a1a1;
   --nav-padding-inline: clamp(2.5rem, 10vw, 8rem);
+  --case-body-leading: 1.58;
+  --case-heading-leading: 1.12;
+  --case-heading-to-body: clamp(1.125rem, 2.2vw, 1.625rem);
+  --case-block-gap: clamp(4.5rem, 12vh, 8rem);
+  --case-sidebar-gap: 0.7rem;
   font-family: var(--font-sans);
   background: var(--case-bg);
   color: var(--case-text);
@@ -915,7 +920,7 @@ p {
   z-index: 100;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: var(--case-sidebar-gap, 0.7rem);
   width: auto;
   padding: 0;
 }
@@ -923,7 +928,8 @@ p {
 .case-sidebar__link {
   font-size: 0.9375rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
   color: #a1a1a1;
   transition: color 0.25s ease;
 }
@@ -1181,10 +1187,10 @@ p {
 .case-section-heading {
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 500;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: #a1a1a1;
-  margin: 0 0 clamp(2rem, 4vw, 3rem);
-  line-height: 1.05;
+  margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.08;
 }
 
 .case-callout {
@@ -1210,10 +1216,10 @@ p {
 .case-body {
   font-size: clamp(1rem, 2vw, 1.125rem);
   font-weight: 400;
-  line-height: 1.65;
+  line-height: var(--case-body-leading, 1.58);
   color: var(--case-text);
   max-width: 100%;
-  margin: 0 0 28px;
+  margin: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
 .case-body:last-child {
@@ -1228,11 +1234,11 @@ p {
   font-size: clamp(1.35rem, 3.2vw, 2rem);
   font-weight: 400;
   font-style: italic;
-  line-height: 1.45;
+  line-height: 1.5;
   color: #a1a1a1;
   max-width: 100%;
   width: 100%;
-  margin: 0 0 1.75rem;
+  margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
 }
 
 .case-pullquote strong {
@@ -1358,8 +1364,8 @@ p {
 .case-feature-rows {
   display: flex;
   flex-direction: column;
-  gap: clamp(4rem, 10vw, 7rem);
-  margin-top: clamp(3rem, 8vw, 5rem);
+  gap: var(--case-block-gap, clamp(4.5rem, 12vh, 8rem));
+  margin-top: var(--case-block-gap, clamp(4.5rem, 12vh, 8rem));
 }
 
 .case-feature-row {
@@ -1369,21 +1375,25 @@ p {
   align-items: center;
 }
 
+.case-feature-row__text {
+  text-align: center;
+}
+
 .case-feature-row__title {
   font-size: clamp(1.375rem, 2.8vw, 1.75rem);
   font-weight: 500;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--case-heading);
-  margin: 0 0 0.625rem;
-  line-height: 1.15;
+  margin: 0 0 var(--case-heading-to-body, clamp(1.125rem, 2.2vw, 1.625rem));
+  line-height: var(--case-heading-leading, 1.12);
 }
 
 .case-feature-row__desc {
   font-size: clamp(0.875rem, 1.5vw, 1rem);
-  line-height: 1.55;
+  line-height: var(--case-body-leading, 1.58);
   color: var(--case-text);
-  margin: 0;
-  max-width: 18rem;
+  margin: 0 auto;
+  max-width: 20rem;
 }
 
 .case-feature-row__media {
@@ -2351,19 +2361,21 @@ p {
 }
 
 .case-pillar {
-  margin-top: clamp(3rem, 8vw, 5rem);
+  margin-top: var(--case-block-gap, clamp(4.5rem, 12vh, 8rem));
 }
 
 .case-pillar__title {
   font-size: clamp(1.5rem, 3.5vw, 2rem);
   font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--case-heading);
-  margin: 0 0 1rem;
-  line-height: 1.2;
+  margin: 0 0 var(--case-heading-to-body, clamp(1.125rem, 2.2vw, 1.625rem));
+  line-height: var(--case-heading-leading, 1.12);
 }
 
 .case-pillar .case-body {
   max-width: 40rem;
+  margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
 }
 
 /* Home Start mobile UI mockups */
