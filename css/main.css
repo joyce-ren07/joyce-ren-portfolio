@@ -1400,7 +1400,7 @@ p {
   --device-screen-radius-y: 4.72%;
   position: relative;
   display: inline-block;
-  width: clamp(10.1rem, 23.4vw, 14.6rem);
+  width: clamp(10.8rem, 25vw, 15.6rem);
   flex-shrink: 0;
   line-height: 0;
   isolation: isolate;
@@ -1416,7 +1416,7 @@ p {
   z-index: 2;
   overflow: hidden;
   border-radius: var(--device-screen-radius-x) / var(--device-screen-radius-y);
-  transform: scale(0.75) translateY(-0.35%);
+  transform: scale(0.80) translateY(-0.35%);
   transform-origin: center center;
   background: #fff;
 }
@@ -1438,7 +1438,7 @@ p {
   display: block;
   width: 100%;
   height: auto;
-  transform: scale(0.73) translateY(0.4%);
+  transform: scale(0.78) translateY(0.4%);
   transform-origin: center center;
   pointer-events: none;
   user-select: none;
