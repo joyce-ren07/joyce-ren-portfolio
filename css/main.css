@@ -1376,7 +1376,7 @@ p {
 }
 
 .case-feature-row__text {
-  text-align: center;
+  text-align: left;
 }
 
 .case-feature-row__title {
@@ -1392,7 +1392,7 @@ p {
   font-size: clamp(0.875rem, 1.5vw, 1rem);
   line-height: var(--case-body-leading, 1.58);
   color: var(--case-text);
-  margin: 0 auto;
+  margin: 0;
   max-width: 20rem;
 }
 
