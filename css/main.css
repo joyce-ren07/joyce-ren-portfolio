@@ -474,7 +474,7 @@ p {
   width: 100%;
   max-width: clamp(14rem, 28vw, 20rem);
   justify-self: center;
-  border-radius: var(--radius);
+  border-radius: clamp(1.25rem, 2.5vw, 1.75rem);
   overflow: hidden;
   background: linear-gradient(160deg, #ffffff 0%, #ffffff 100%);
   box-shadow:
