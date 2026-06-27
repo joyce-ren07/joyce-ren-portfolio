@@ -507,7 +507,7 @@ p {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 58% center;
+  object-position: 58% 38%;
   display: block;
 }
 
@@ -517,16 +517,13 @@ p {
   width: 100%;
   height: 100%;
   aspect-ratio: auto;
+  object-position: 58% 38%;
   opacity: 0;
-  filter: brightness(0.92);
-  transition:
-    opacity 0.55s ease,
-    filter 0.55s ease;
+  transition: opacity 0.55s ease;
 }
 
 .about-portrait:hover .about-portrait__img--color {
   opacity: 1;
-  filter: brightness(1);
 }
 
 
