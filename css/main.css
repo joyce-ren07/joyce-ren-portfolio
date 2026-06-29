@@ -2357,6 +2357,12 @@ p {
   line-height: var(--case-heading-leading, 1.12);
 }
 
+#takeaways .case-body {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: var(--case-tertiary-weight, 600);
+  line-height: var(--case-body-leading, 1.58);
+}
+
 #process .case-process-key + .case-process-competitive {
   margin-top: clamp(6rem, 14vh, 10rem);
 }
