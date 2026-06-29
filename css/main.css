@@ -1023,16 +1023,6 @@ p {
   margin: 0 auto;
 }
 
-.case-intro-header--split .case-intro-header__title {
-  line-height: 1;
-  margin-bottom: clamp(1rem, 2.5vw, 1.25rem);
-}
-
-.case-intro-header--split .case-intro-header__subtitle {
-  line-height: 1.5;
-  max-width: 32rem;
-}
-
 .case-hero-media {
   position: relative;
   max-width: 44rem;
