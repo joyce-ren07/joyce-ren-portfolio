@@ -1437,7 +1437,7 @@ p {
 }
 
 .case-feature-row:has(.case-device-video--laptop) {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.35fr);
 }
 
 .case-device-video {
@@ -1501,7 +1501,7 @@ p {
   --device-screen-radius-x: 2.6%;
   --device-screen-radius-y: 4.2%;
   width: 100%;
-  max-width: clamp(18rem, 42vw, 30rem);
+  max-width: clamp(20rem, 50vw, 36rem);
   filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.14));
 }
 
