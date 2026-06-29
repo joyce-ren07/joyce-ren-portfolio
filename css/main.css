@@ -1454,6 +1454,31 @@ p {
   user-select: none;
 }
 
+.case-device-video--laptop {
+  --device-screen-top: 14.22%;
+  --device-screen-right: 11.67%;
+  --device-screen-bottom: 11.71%;
+  --device-screen-left: 11.67%;
+  --device-screen-radius-x: 2.6%;
+  --device-screen-radius-y: 4.2%;
+  width: clamp(20rem, 48vw, 32rem);
+  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.14));
+}
+
+.case-device-video--laptop .case-device-video__screen {
+  transform: none;
+  border-radius: var(--device-screen-radius-x) / var(--device-screen-radius-y);
+}
+
+.case-device-video--laptop .case-device-video__frame {
+  transform: none;
+}
+
+.case-device-video--laptop .case-device-video__media {
+  object-fit: cover;
+  object-position: center top;
+}
+
 .case-phone--flow {
   width: clamp(11rem, 28vw, 16rem);
   transform: none;
