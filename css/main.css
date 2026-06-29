@@ -2358,9 +2358,10 @@ p {
 }
 
 #process .case-body--process {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
   max-width: 100%;
   margin: 0;
-  line-height: 1.65;
+  line-height: var(--case-body-leading, 1.58);
 }
 
 #process .case-insight-cards {
