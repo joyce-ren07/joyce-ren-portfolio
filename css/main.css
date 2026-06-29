@@ -2329,7 +2329,7 @@ p {
 .case-block--intro .case-intro-meta .case-details__item dd {
   margin: 0;
   font-size: 0.9375rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.5;
   color: var(--case-text);
   text-align: left;
@@ -2338,7 +2338,7 @@ p {
 .case-intro-meta__summary {
   margin: 0;
   font-size: 0.9375rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.35;
   color: var(--case-text);
   text-align: center;
