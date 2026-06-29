@@ -1023,6 +1023,25 @@ p {
   margin: 0 auto;
 }
 
+.case-intro-header--home-start .case-intro-header__title {
+  font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+  margin-bottom: clamp(1.5rem, 3.5vw, 2.25rem);
+  white-space: nowrap;
+}
+
+.case-intro-header--home-start .case-intro-header__subtitle {
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.45;
+  max-width: min(56rem, 92vw);
+}
+
+@media (max-width: 600px) {
+  .case-intro-header--home-start .case-intro-header__title {
+    white-space: normal;
+  }
+}
+
 .case-hero-media {
   position: relative;
   max-width: 44rem;
