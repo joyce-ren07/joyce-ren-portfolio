@@ -2329,11 +2329,7 @@ p {
 }
 
 #process .case-section-heading {
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 500;
-  color: #a1a1a1;
-  margin: clamp(5rem, 14vh, 9rem) 0 0;
-  line-height: 1.05;
+  margin: clamp(5rem, 14vh, 9rem) 0 clamp(2.5rem, 5vw, 3.5rem);
 }
 
 #process .case-section-heading + .case-process-key {
