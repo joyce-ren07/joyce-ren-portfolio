@@ -2467,6 +2467,9 @@ p {
 
 .case-pillar {
   margin-top: var(--case-block-gap, clamp(4.5rem, 12vh, 8rem));
+  display: grid;
+  width: max-content;
+  max-width: min(52rem, 100%);
 }
 
 .case-pillar__title {
@@ -2482,7 +2485,8 @@ p {
   font-size: clamp(0.875rem, 1.5vw, 1rem);
   font-weight: var(--case-tertiary-weight, 600);
   line-height: var(--case-body-leading, 1.58);
-  max-width: 20rem;
+  max-width: none;
+  width: 100%;
   margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
 }
 
