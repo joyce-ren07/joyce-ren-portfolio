@@ -2329,15 +2329,24 @@ p {
 }
 
 #process .case-section-heading {
-  margin: clamp(5rem, 14vh, 9rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+  margin: clamp(5rem, 14vh, 9rem) 0 clamp(1.75rem, 3.5vw, 2.5rem);
 }
 
 #process .case-section-heading + .case-process-key {
-  margin-top: clamp(4rem, 10vh, 7rem);
+  margin-top: 0;
+}
+
+#process .case-process-key > .case-subheading--large {
+  font-size: clamp(1.375rem, 2.8vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #a1a1a1;
+  margin: 0 0 clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.15;
 }
 
 #process .case-subheading--large {
-  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 500;
   color: #a1a1a1;
   margin: 0 0 1.75rem;
@@ -2351,11 +2360,11 @@ p {
 #process .case-body--process {
   max-width: 100%;
   margin: 0;
-  line-height: 1.8;
+  line-height: 1.65;
 }
 
 #process .case-insight-cards {
-  margin-top: clamp(3rem, 6vw, 4rem);
+  margin-top: clamp(2rem, 4vw, 2.75rem);
 }
 
 #process .case-process-competitive .case-subheading--large {
