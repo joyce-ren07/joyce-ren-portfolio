@@ -2990,6 +2990,15 @@ p {
   flex-shrink: 0;
 }
 
+.case-competitive__tile-wrap--white {
+  background: #fff;
+}
+
+.case-competitive__tile-wrap--white .case-competitive__tile {
+  object-fit: contain;
+  padding: clamp(0.65rem, 1.5vw, 0.9rem);
+}
+
 .case-competitive__tile {
   display: block;
   width: 100%;
