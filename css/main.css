@@ -2296,7 +2296,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1rem;
   width: max-content;
   max-width: 100%;
   margin-inline: auto;
@@ -2304,24 +2304,38 @@ p {
 
 .case-block--intro .case-intro-meta .case-details {
   margin: 0;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-.case-block--intro .case-details__item dt {
-  font-weight: 400;
+.case-block--intro .case-intro-meta .case-details__col {
+  gap: 0.75rem;
+}
+
+.case-block--intro .case-intro-meta .case-details__item {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.case-block--intro .case-intro-meta .case-details__item dt {
+  font-weight: 600;
   color: #a1a1a1;
+  text-align: center;
 }
 
-.case-block--intro .case-details__item dd,
+.case-block--intro .case-intro-meta .case-details__item dd,
 .case-intro-meta__summary {
   font-size: 0.9375rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.5;
   color: var(--case-text);
 }
 
-.case-block--intro .case-details__item dd {
+.case-block--intro .case-intro-meta .case-details__item dd {
   margin: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .case-intro-meta__summary {
