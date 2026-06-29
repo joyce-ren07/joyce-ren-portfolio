@@ -796,6 +796,7 @@ p {
   --case-feature-heading-to-body: clamp(0.75rem, 1.5vw, 1rem);
   --case-block-gap: clamp(4.5rem, 12vh, 8rem);
   --case-sidebar-gap: 0.7rem;
+  --case-tertiary-weight: 600;
   font-family: var(--font-sans);
   background: var(--case-bg);
   color: var(--case-text);
