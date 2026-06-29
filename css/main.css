@@ -1432,6 +1432,12 @@ p {
 .case-feature-row__media {
   display: flex;
   justify-content: center;
+  min-width: 0;
+  overflow: visible;
+}
+
+.case-feature-row:has(.case-device-video--laptop) {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
 }
 
 .case-device-video {
@@ -1494,22 +1500,27 @@ p {
   --device-screen-left: 11.67%;
   --device-screen-radius-x: 2.6%;
   --device-screen-radius-y: 4.2%;
-  width: clamp(20rem, 48vw, 32rem);
+  width: 100%;
+  max-width: clamp(18rem, 42vw, 30rem);
   filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.14));
 }
 
 .case-device-video--laptop .case-device-video__screen {
   transform: none;
   border-radius: var(--device-screen-radius-x) / var(--device-screen-radius-y);
+  overflow: hidden;
 }
 
 .case-device-video--laptop .case-device-video__frame {
   transform: none;
+  width: 100%;
+  height: auto;
 }
 
 .case-device-video--laptop .case-device-video__media {
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center center;
+  background: #fff;
 }
 
 .case-phone--flow {
