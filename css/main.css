@@ -1437,11 +1437,26 @@ p {
 }
 
 .case-feature-row:has(.case-device-video--laptop) {
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.35fr);
+  grid-template-columns: minmax(0, 0.68fr) minmax(0, 1.65fr);
+  gap: clamp(3rem, 8vw, 6rem);
+  align-items: center;
+}
+
+.case-feature-row:has(.case-device-video--laptop) .case-feature-row__text {
+  max-width: 17rem;
+}
+
+.case-feature-row:has(.case-device-video--laptop) .case-feature-row__desc {
+  max-width: 16rem;
+}
+
+.case-feature-row:has(.case-device-video--laptop) .case-feature-row__media {
+  justify-content: flex-end;
 }
 
 .case-feature-row:has(.case-device-video--laptop) .case-device-video--laptop {
-  margin-left: clamp(1rem, 2.5vw, 2rem);
+  margin-left: clamp(1.5rem, 4vw, 3rem);
+  margin-right: clamp(-0.5rem, -1.5vw, 0);
 }
 
 .case-device-video {
@@ -2305,11 +2320,19 @@ p {
   letter-spacing: -0.01em;
 }
 
+#solution.case-block {
+  padding-bottom: clamp(4rem, 10vh, 7rem);
+}
+
+#solution .case-feature-rows--laptop {
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+}
+
 #process .case-section-heading {
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 500;
   color: #a1a1a1;
-  margin: 0;
+  margin: clamp(5rem, 14vh, 9rem) 0 0;
   line-height: 1.05;
 }
 
