@@ -2309,21 +2309,22 @@ p {
 
 .case-block--intro .case-intro-meta .case-details__col {
   gap: 0.35rem;
+  align-items: center;
 }
 
 .case-block--intro .case-intro-meta .case-details__item {
-  display: grid;
-  grid-template-columns: minmax(4.5rem, auto) minmax(0, max-content);
-  gap: 0.35rem 1rem;
+  display: flex;
+  justify-content: center;
   align-items: baseline;
-  text-align: left;
+  gap: 0.35rem;
+  text-align: center;
 }
 
 .case-block--intro .case-intro-meta .case-details__item dt {
   font-size: 0.9375rem;
   font-weight: 600;
   color: #a1a1a1;
-  text-align: right;
+  text-align: center;
 }
 
 .case-block--intro .case-intro-meta .case-details__item dd {
@@ -2332,7 +2333,7 @@ p {
   font-weight: 600;
   line-height: 1.5;
   color: var(--case-text);
-  text-align: left;
+  text-align: center;
 }
 
 .case-intro-meta__summary {
