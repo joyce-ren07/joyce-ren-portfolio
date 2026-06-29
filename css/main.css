@@ -2451,7 +2451,7 @@ p {
 
 #process .case-process-competitive .case-competitive__logos {
   margin-top: 1.75rem;
-  gap: 16px;
+  gap: 12px;
 }
 
 #process .case-process-competitive + .case-subheading--large {
@@ -2951,7 +2951,7 @@ p {
 .case-competitive__logos {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 16px;
+  gap: 12px;
   margin-top: 0;
   margin-bottom: clamp(3rem, 8vw, 5rem);
   width: 100%;
