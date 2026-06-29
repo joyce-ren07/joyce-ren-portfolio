@@ -1424,6 +1424,7 @@ p {
 
 .case-feature-row__desc {
   font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: var(--case-tertiary-weight, 600);
   line-height: var(--case-body-leading, 1.58);
   color: var(--case-text);
   margin: 0;
@@ -2360,6 +2361,7 @@ p {
 
 #process .case-body--process {
   font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: var(--case-tertiary-weight, 600);
   max-width: 100%;
   margin: 0;
   line-height: var(--case-body-leading, 1.58);
