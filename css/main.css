@@ -1440,6 +1440,10 @@ p {
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.35fr);
 }
 
+.case-feature-row:has(.case-device-video--laptop) .case-device-video--laptop {
+  margin-left: clamp(1rem, 2.5vw, 2rem);
+}
+
 .case-device-video {
   --device-screen-top: 5.0%;
   --device-screen-right: 7.28%;
