@@ -2451,7 +2451,7 @@ p {
 
 #process .case-process-competitive .case-competitive__logos {
   margin-top: 1.75rem;
-  gap: clamp(1rem, 2.5vw, 1.75rem);
+  gap: 20px;
 }
 
 #process .case-process-competitive + .case-subheading--large {
@@ -2951,10 +2951,11 @@ p {
 .case-competitive__logos {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(1.25rem, 3vw, 2rem);
+  gap: 20px;
   margin-top: 0;
   margin-bottom: clamp(3rem, 8vw, 5rem);
   width: 100%;
+  max-width: 100%;
   align-items: start;
 }
 
@@ -2978,8 +2979,10 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(5rem, 11vw, 6.5rem);
-  height: clamp(5rem, 11vw, 6.5rem);
+  width: 100%;
+  max-width: 8.5rem;
+  aspect-ratio: 1;
+  margin-inline: auto;
   border-radius: 1.35rem;
   background: #f0f0f0;
   border: 1px solid rgba(160, 190, 195, 0.55);
