@@ -2429,6 +2429,10 @@ p {
   line-height: var(--case-body-leading, 1.58);
 }
 
+#takeaways .case-body + .case-subheading--large {
+  margin-top: clamp(6rem, 14vh, 10rem);
+}
+
 #process .case-process-key + .case-process-competitive {
   margin-top: clamp(6rem, 14vh, 10rem);
 }
