@@ -2430,7 +2430,7 @@ p {
 }
 
 #takeaways .case-body + .case-subheading--large {
-  margin-top: clamp(6rem, 14vh, 10rem);
+  margin-top: var(--case-block-gap, clamp(4.5rem, 12vh, 8rem));
 }
 
 #process .case-process-key + .case-process-competitive {
