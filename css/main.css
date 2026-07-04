@@ -2472,14 +2472,14 @@ p {
 #process .case-competitive__box {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   min-height: clamp(14rem, 28vw, 17.5rem);
   padding: clamp(3rem, 6vw, 4.25rem) clamp(2rem, 4.5vw, 3rem);
   border: 1px solid rgba(160, 190, 195, 0.55);
   border-radius: 3.75rem;
   background: #fff;
-  text-align: center;
+  text-align: left;
 }
 
 #process .case-competitive__box h4 {
@@ -2487,14 +2487,15 @@ p {
   font-weight: 600;
   color: #a1a1a1;
   margin: 0 0 clamp(0.875rem, 2vw, 1.125rem);
-  text-align: center;
+  text-align: left;
+  align-self: flex-start;
 }
 
 #process .case-competitive__box ul {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  align-self: center;
+  align-self: flex-start;
   gap: 0.35rem;
   width: fit-content;
   max-width: 100%;
