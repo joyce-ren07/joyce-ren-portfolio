@@ -2493,26 +2493,31 @@ p {
 #process .case-competitive__box ul {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: clamp(0.5rem, 1.1vw, 0.7rem);
-  width: 100%;
+  align-items: flex-start;
+  align-self: center;
+  gap: 0.35rem;
+  width: fit-content;
+  max-width: 100%;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 #process .case-competitive__box li {
   display: block;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  font-weight: 400;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: var(--case-tertiary-weight, 600);
   color: #a1a1a1;
-  line-height: 1.6;
-  padding-left: 0;
-  text-align: center;
+  line-height: 1.45;
+  padding-left: 0.75rem;
+  position: relative;
+  text-align: left;
 }
 
 #process .case-competitive__box li::before {
-  content: "• ";
-  position: static;
+  content: "•";
+  position: absolute;
+  left: 0;
   color: #a1a1a1;
 }
 
