@@ -2472,30 +2472,36 @@ p {
 #process .case-competitive__box {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   min-height: clamp(14rem, 28vw, 17.5rem);
   padding: clamp(3rem, 6vw, 4.25rem) clamp(2rem, 4.5vw, 3rem);
   border: 1px solid rgba(160, 190, 195, 0.55);
   border-radius: 3.75rem;
   background: #fff;
+}
+
+#process .case-competitive__box-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  max-width: 100%;
   text-align: left;
 }
 
 #process .case-competitive__box h4 {
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  font-weight: 600;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: var(--case-tertiary-weight, 600);
   color: #a1a1a1;
-  margin: 0 0 clamp(0.875rem, 2vw, 1.125rem);
+  margin: 0 0 0.35rem;
   text-align: left;
-  align-self: flex-start;
 }
 
 #process .case-competitive__box ul {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  align-self: flex-start;
   gap: 0.35rem;
   width: fit-content;
   max-width: 100%;
@@ -2507,7 +2513,7 @@ p {
 #process .case-competitive__box li {
   display: block;
   font-size: clamp(0.875rem, 1.5vw, 1rem);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: 400;
   color: #a1a1a1;
   line-height: 1.45;
   padding-left: 0.75rem;
