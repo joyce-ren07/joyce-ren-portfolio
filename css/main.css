@@ -2455,6 +2455,7 @@ p {
 
 #process .case-process-competitive .case-competitive__logos {
   margin-top: 1.75rem;
+  margin-bottom: clamp(1.5rem, 3.5vw, 2.25rem);
   gap: 4px;
 }
 
@@ -2463,12 +2464,18 @@ p {
 }
 
 #process .case-competitive__compare {
-  gap: clamp(1.5rem, 3vw, 2rem);
-  margin-top: clamp(3rem, 8vw, 5rem);
+  gap: clamp(0.875rem, 1.75vw, 1.125rem);
+  margin-top: 0;
+  align-items: stretch;
 }
 
 #process .case-competitive__box {
-  padding: clamp(2.75rem, 6vw, 4rem) clamp(2.25rem, 5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(14rem, 28vw, 17.5rem);
+  padding: clamp(3rem, 6vw, 4.25rem) clamp(2rem, 4.5vw, 3rem);
   border: 1px solid rgba(160, 190, 195, 0.55);
   border-radius: 3.75rem;
   background: #fff;
@@ -2479,32 +2486,34 @@ p {
   font-size: clamp(1rem, 2vw, 1.125rem);
   font-weight: 600;
   color: #a1a1a1;
-  margin: 0 0 1.25rem;
+  margin: 0 0 clamp(0.875rem, 2vw, 1.125rem);
   text-align: center;
 }
 
 #process .case-competitive__box ul {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.65rem;
+  gap: clamp(0.5rem, 1.1vw, 0.7rem);
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #process .case-competitive__box li {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  gap: 0.35rem;
+  display: block;
   font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 400;
   color: #a1a1a1;
-  line-height: 1.7;
+  line-height: 1.6;
   padding-left: 0;
   text-align: center;
 }
 
 #process .case-competitive__box li::before {
-  content: "•";
+  content: "• ";
   position: static;
   color: #a1a1a1;
-  flex-shrink: 0;
 }
 
 #process .case-subheading--large + .case-tradeoffs {
