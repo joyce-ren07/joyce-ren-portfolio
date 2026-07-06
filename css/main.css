@@ -3474,10 +3474,10 @@ p {
 
 .case-hmw-transition__arrow-icon {
   display: block;
-  width: clamp(7.5rem, 22vw, 12rem);
+  width: clamp(9rem, 26vw, 14rem);
   height: auto;
   opacity: 0.55;
-  transform: rotate(45deg) scaleX(-1);
+  transform: rotate(45deg) scaleX(-1) scaleY(-1) scale(1.4);
   transform-origin: center;
 }
 
