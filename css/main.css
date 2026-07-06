@@ -3465,12 +3465,15 @@ p {
 .case-hmw-transition__arrow {
   display: flex;
   justify-content: center;
-  color: #a1a1a1;
 }
 
 .case-hmw-transition__arrow-icon {
-  width: clamp(2.5rem, 5vw, 3.5rem);
+  display: block;
+  width: clamp(5rem, 14vw, 8.5rem);
   height: auto;
+  opacity: 0.55;
+  transform: rotate(45deg);
+  transform-origin: center;
 }
 
 .case-hmw-video {
