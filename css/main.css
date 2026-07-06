@@ -2267,6 +2267,23 @@ p {
   aspect-ratio: 4 / 3;
 }
 
+.case-image-grid--personas {
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.case-persona-card {
+  margin: 0;
+}
+
+.case-persona-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
 @media (max-width: 900px) {
   .case-features,
   .case-market__icons {
