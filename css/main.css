@@ -3296,8 +3296,6 @@ p {
   --case-text-active: var(--md-sys-color-on-surface);
   --case-text-faint: #80868b;
   --case-heading: var(--md-sys-color-on-surface);
-
-  font-family: "Roboto", system-ui, -apple-system, sans-serif;
 }
 
 .case-study-page--current .case-sidebar__link.is-active {
