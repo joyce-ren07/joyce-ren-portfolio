@@ -3432,6 +3432,19 @@ p {
   background: var(--md-sys-color-surface-container, #f8f9fa);
 }
 
+.case-hmw-video {
+  margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
+  width: 100%;
+  max-width: 100%;
+}
+
+.case-hmw-video__media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
 @media (max-width: 600px) {
   .case-manifesto__quote {
     font-size: clamp(1.5rem, 6vw, 1.875rem);

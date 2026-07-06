@@ -549,32 +549,30 @@
     });
   }
 
-  /* Manifesto video — replay from start each time it scrolls into view */
-  const manifestoVideo = document.querySelector(".case-manifesto-video__media");
-  if (manifestoVideo && "IntersectionObserver" in window) {
+  /* Scroll-triggered videos — replay from start each time they enter view */
+  const scrollVideos = document.querySelectorAll(".case-scroll-video__media");
+  if (scrollVideos.length && "IntersectionObserver" in window) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (!reducedMotion) {
-      const replayVideo = () => {
-        manifestoVideo.currentTime = 0;
-        manifestoVideo.play().catch(() => {});
-      };
+      scrollVideos.forEach((video) => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                video.currentTime = 0;
+                video.play().catch(() => {});
+              } else {
+                video.pause();
+                video.currentTime = 0;
+              }
+            });
+          },
+          { threshold: 0.35 }
+        );
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              replayVideo();
-            } else {
-              manifestoVideo.pause();
-              manifestoVideo.currentTime = 0;
-            }
-          });
-        },
-        { threshold: 0.35 }
-      );
-
-      observer.observe(manifestoVideo);
+        observer.observe(video);
+      });
     }
   }
 })();
