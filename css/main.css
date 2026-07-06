@@ -336,7 +336,7 @@ p {
 }
 
 .work-card__image--current {
-  background: linear-gradient(135deg, #e8f0fe 0%, #c2d9f5 50%, #a8c8f0 100%);
+  background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 50%, #aecbfa 100%);
 }
 
 .work-card__body {
@@ -381,6 +381,10 @@ p {
   font-size: 0.875rem;
   font-weight: 500;
   color: #a1a1a1;
+}
+
+.work-card__link--current {
+  color: #1a73e8;
 }
 
 /* --------------------------------------------------------------------------
@@ -3258,8 +3262,126 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   Case study — problem manifesto (Current)
+   Google Design System — tokens & components (Current case study)
    -------------------------------------------------------------------------- */
+
+.case-study-page--current {
+  --gds-brand-blue: #4285f4;
+  --gds-blue-600: #1a73e8;
+  --gds-blue-700: #1967d2;
+  --gds-blue-800: #174ea6;
+  --gds-blue-50: #e8f0fe;
+  --gds-blue-100: #d2e3fc;
+
+  --md-sys-color-primary: var(--gds-blue-600);
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: var(--gds-blue-50);
+  --md-sys-color-on-primary-container: var(--gds-blue-700);
+  --md-sys-color-surface: #ffffff;
+  --md-sys-color-on-surface: #3c4043;
+  --md-sys-color-on-surface-variant: #5f6368;
+  --md-sys-color-outline: #dadce0;
+  --md-sys-color-outline-variant: #e8eaed;
+  --md-sys-color-surface-container: #f8f9fa;
+  --md-sys-color-surface-container-high: #f1f3f4;
+
+  --gds-green: #34a853;
+  --gds-yellow: #fbbc04;
+  --gds-red: #ea4335;
+
+  --case-text: var(--md-sys-color-on-surface-variant);
+  --case-text-active: var(--md-sys-color-on-surface);
+  --case-text-faint: #80868b;
+  --case-heading: var(--md-sys-color-on-surface);
+
+  font-family: "Roboto", system-ui, -apple-system, sans-serif;
+}
+
+.case-study-page--current .case-sidebar__link.is-active {
+  color: var(--md-sys-color-primary);
+  font-weight: 500;
+}
+
+.case-study-page--current .case-sidebar__link:hover {
+  color: var(--md-sys-color-on-surface);
+}
+
+.case-study-page--current .case-emphasis {
+  color: var(--md-sys-color-primary);
+  font-weight: 500;
+}
+
+.case-study-page--current .case-footer-note a {
+  color: var(--md-sys-color-primary);
+}
+
+.case-study-page--current .case-footer-note a:hover {
+  color: var(--gds-blue-800);
+}
+
+.case-study-page--current .case-topbar__nav a:hover,
+.case-study-page--current .case-topbar__resume:hover {
+  color: var(--md-sys-color-primary);
+}
+
+.case-study-page--current .case-placeholder {
+  border-color: var(--md-sys-color-outline);
+  color: var(--md-sys-color-on-surface-variant);
+  background: var(--md-sys-color-surface-container);
+}
+
+.case-study-page--current .case-competitive__icon--sf {
+  background: var(--gds-brand-blue);
+  color: var(--md-sys-color-on-primary);
+}
+
+.case-study-page--current .case-callout--gradient {
+  background: linear-gradient(
+    90deg,
+    var(--gds-brand-blue) 0%,
+    color-mix(in srgb, var(--gds-blue-50) 85%, transparent) 100%
+  );
+  color: var(--md-sys-color-on-primary);
+}
+
+.gds-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.375rem 1rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  letter-spacing: 0.00625rem;
+  white-space: nowrap;
+}
+
+.gds-chip--assistive {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.gds-chip--filter {
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  border: 1px solid var(--md-sys-color-outline);
+}
+
+.gds-text-button {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  letter-spacing: 0.00625rem;
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.gds-text-button:hover {
+  color: var(--gds-blue-800);
+}
 
 .case-manifesto {
   margin: clamp(3rem, 8vh, 5rem) auto;
@@ -3276,7 +3398,7 @@ p {
   font-style: normal;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #5b8fd9;
+  color: var(--gds-brand-blue);
 }
 
 .case-manifesto__quote em {
@@ -3292,25 +3414,12 @@ p {
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
 }
 
-.case-manifesto__pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.7rem 1.5rem;
-  border-radius: 999px;
-  background: #e8f1fc;
-  color: #4a7ec8;
-  font-size: clamp(0.95rem, 2vw, 1.125rem);
-  font-weight: 500;
-  line-height: 1;
-  white-space: nowrap;
-}
-
 @media (max-width: 600px) {
   .case-manifesto__quote {
     max-width: 22rem;
   }
 
-  .case-manifesto__pill {
+  .gds-chip {
     white-space: normal;
     text-align: center;
   }
