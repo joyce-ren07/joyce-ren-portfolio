@@ -3448,8 +3448,8 @@ p {
 .case-hmw-transition {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   padding: clamp(2rem, 5vh, 3.5rem) clamp(1.5rem, 4vw, 3rem) clamp(7rem, 20vh, 15rem);
   margin: 0 auto;
   width: 100%;
@@ -3468,7 +3468,7 @@ p {
 
 .case-hmw-transition__arrow {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 0 clamp(3.25rem, 8vh, 5.5rem);
 }
 
@@ -3477,7 +3477,7 @@ p {
   width: clamp(7.5rem, 22vw, 12rem);
   height: auto;
   opacity: 0.55;
-  transform: rotate(45deg);
+  transform: rotate(45deg) scaleX(-1);
   transform-origin: center;
 }
 
