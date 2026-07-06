@@ -3450,7 +3450,7 @@ p {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: clamp(6rem, 18vh, 13rem) clamp(1.5rem, 4vw, 3rem) clamp(7rem, 20vh, 15rem);
+  padding: clamp(2rem, 5vh, 3.5rem) clamp(1.5rem, 4vw, 3rem) clamp(7rem, 20vh, 15rem);
   margin: 0 auto;
   width: 100%;
   max-width: 52rem;
@@ -3516,8 +3516,7 @@ p {
   flex-direction: column;
   gap: clamp(1.25rem, 2.5vw, 1.75rem);
   margin-top: clamp(0.5rem, 1.5vw, 1rem);
-  margin-bottom: clamp(3rem, 8vh, 5.5rem);
-  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: clamp(1rem, 3vw, 1.75rem);
   width: 100%;
   max-width: 52rem;
 }
