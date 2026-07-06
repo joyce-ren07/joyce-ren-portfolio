@@ -3256,3 +3256,62 @@ p {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* --------------------------------------------------------------------------
+   Case study — problem manifesto (Current)
+   -------------------------------------------------------------------------- */
+
+.case-manifesto {
+  margin: clamp(3rem, 8vh, 5rem) auto;
+  padding: clamp(2.5rem, 6vh, 4rem) clamp(1.5rem, 4vw, 2.5rem);
+  text-align: center;
+  max-width: 44rem;
+}
+
+.case-manifesto__quote {
+  margin: 0 auto;
+  max-width: 34rem;
+  font-size: clamp(1.85rem, 4.5vw, 3rem);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #5b8fd9;
+}
+
+.case-manifesto__quote em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.case-manifesto__pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.case-manifesto__pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  background: #e8f1fc;
+  color: #4a7ec8;
+  font-size: clamp(0.95rem, 2vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .case-manifesto__quote {
+    max-width: 22rem;
+  }
+
+  .case-manifesto__pill {
+    white-space: normal;
+    text-align: center;
+  }
+}
