@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import subprocess
 import sys
 from pathlib import Path
 
@@ -11,42 +12,43 @@ import numpy as np
 from PIL import Image, ImageFilter
 
 BG_COLOR = np.array([237, 240, 247], dtype=np.float32)
-BG_THRESHOLD = 18.0
-SHADOW_BLUR = 10
-SHADOW_OFFSET_Y = 4
-SHADOW_OPACITY = 0.18
+BG_THRESHOLD = 14.0
+BG_FEATHER = 10.0
+SHADOW_BLUR = 12
+SHADOW_OFFSET_Y = 5
+SHADOW_OPACITY = 0.16
+ENCODE_CRF = 16
+ENCODE_PRESET = "slow"
+
+
+def build_alpha_mask(arr: np.ndarray) -> np.ndarray:
+    dist = np.sqrt(((arr - BG_COLOR) ** 2).sum(axis=2))
+    return np.clip((dist - BG_THRESHOLD) / BG_FEATHER, 0.0, 1.0)
 
 
 def process_frame_bgr(frame_bgr: np.ndarray) -> np.ndarray:
     rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
     arr = rgb.astype(np.float32)
     h, w = arr.shape[:2]
+    alpha = build_alpha_mask(arr)
 
-    dist = np.sqrt(((arr - BG_COLOR) ** 2).sum(axis=2))
-    mask = (dist > BG_THRESHOLD).astype(np.uint8) * 255
-
-    mask_img = Image.fromarray(mask, mode="L")
+    hard_mask = (alpha > 0.02).astype(np.uint8) * 255
+    mask_img = Image.fromarray(hard_mask, mode="L")
     blurred = np.array(mask_img.filter(ImageFilter.GaussianBlur(radius=SHADOW_BLUR)))
 
     shadow = np.zeros_like(blurred, dtype=np.float32)
     if SHADOW_OFFSET_Y < h:
         shadow[SHADOW_OFFSET_Y:, :] = blurred[:-SHADOW_OFFSET_Y, :]
-    shadow = (shadow * SHADOW_OPACITY).astype(np.uint8)
-
-    alpha = mask.astype(np.float32) / 255.0
-    shadow_alpha = shadow.astype(np.float32) / 255.0
+    shadow_alpha = (shadow / 255.0) * SHADOW_OPACITY
 
     out = np.full((h, w, 3), 255, dtype=np.float32)
-    shadow_rgb = np.zeros((h, w, 3), dtype=np.float32)
-
-    for c in range(3):
-        out[:, :, c] = (
-            out[:, :, c] * (1 - shadow_alpha)
-            + shadow_rgb[:, :, c] * shadow_alpha
+    for channel in range(3):
+        out[:, :, channel] = out[:, :, channel] * (1.0 - shadow_alpha)
+        out[:, :, channel] = (
+            out[:, :, channel] * (1.0 - alpha) + arr[:, :, channel] * alpha
         )
-        out[:, :, c] = out[:, :, c] * (1 - alpha) + arr[:, :, c] * alpha
 
-    return cv2.cvtColor(out.astype(np.uint8), cv2.COLOR_RGB2BGR)
+    return cv2.cvtColor(np.clip(out, 0, 255).astype(np.uint8), cv2.COLOR_RGB2BGR)
 
 
 def render_video(source: Path, destination: Path) -> None:
@@ -60,25 +62,53 @@ def render_video(source: Path, destination: Path) -> None:
     frame_count = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
 
     destination.parent.mkdir(parents=True, exist_ok=True)
-    writer = cv2.VideoWriter(
-        str(destination),
-        cv2.VideoWriter_fourcc(*"mp4v"),
-        fps,
-        (width, height),
-    )
+    temp_path = destination.with_suffix(".tmp.mp4")
+
+    command = [
+        "ffmpeg",
+        "-y",
+        "-f",
+        "rawvideo",
+        "-pix_fmt",
+        "bgr24",
+        "-s",
+        f"{width}x{height}",
+        "-r",
+        str(fps),
+        "-i",
+        "pipe:0",
+        "-an",
+        "-c:v",
+        "libx264",
+        "-pix_fmt",
+        "yuv420p",
+        "-crf",
+        str(ENCODE_CRF),
+        "-preset",
+        ENCODE_PRESET,
+        "-movflags",
+        "+faststart",
+        str(temp_path),
+    ]
+    encoder = subprocess.Popen(command, stdin=subprocess.PIPE)
+    assert encoder.stdin is not None
 
     index = 0
     while True:
         ok, frame = capture.read()
         if not ok:
             break
-        writer.write(process_frame_bgr(frame))
+        encoder.stdin.write(process_frame_bgr(frame).tobytes())
         index += 1
         if index % 60 == 0:
             print(f"Processed {index}/{frame_count} frames", flush=True)
 
     capture.release()
-    writer.release()
+    encoder.stdin.close()
+    if encoder.wait() != 0:
+        raise RuntimeError("ffmpeg failed to encode video")
+
+    temp_path.replace(destination)
     print(f"Wrote {destination}")
 
 
@@ -95,7 +125,7 @@ def main() -> int:
     if not source.exists():
         print(
             "Source video not found. Extract the pre-shadow version from git:\n"
-            "  git show HEAD~1:assets/videos/current/gcal-how-might-we.mp4 "
+            "  git show aae8337:assets/videos/current/gcal-how-might-we.mp4 "
             "> assets/videos/current/gcal-how-might-we-source.mp4",
             file=sys.stderr,
         )
