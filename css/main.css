@@ -3450,7 +3450,7 @@ p {
   flex-direction: column;
   align-items: stretch;
   text-align: left;
-  padding: clamp(2rem, 5vh, 3.5rem) 0 clamp(1rem, 3vh, 1.75rem);
+  padding: clamp(2rem, 5vh, 3.5rem) 0 clamp(1.25rem, 4vh, 2.25rem);
   margin: 0;
   width: 100%;
   max-width: 52rem;
@@ -3472,7 +3472,7 @@ p {
   justify-content: center;
   align-self: center;
   width: 100%;
-  margin: 0 0 clamp(0.75rem, 2vw, 1.25rem);
+  margin: 0 0 clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .case-hmw-transition__arrow-icon {
@@ -3488,13 +3488,20 @@ p {
   margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
   width: 100%;
   max-width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: none;
 }
 
 .case-hmw-video__media {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 1rem;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  clip-path: inset(0 0 1px 0);
 }
 
 @media (max-width: 600px) {
