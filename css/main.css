@@ -3414,6 +3414,19 @@ p {
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
 }
 
+.case-manifesto-video {
+  margin: clamp(2rem, 5vw, 3rem) auto clamp(2.5rem, 6vw, 3.5rem);
+  max-width: 44rem;
+}
+
+.case-manifesto-video__media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.25rem;
+  background: var(--md-sys-color-surface-container, #f8f9fa);
+}
+
 @media (max-width: 600px) {
   .case-manifesto__quote {
     max-width: 22rem;
