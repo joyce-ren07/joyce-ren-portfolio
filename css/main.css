@@ -3600,6 +3600,7 @@ p {
 .current-cover__gcal-icon {
   display: block;
   flex-shrink: 0;
+  object-fit: contain;
 }
 
 .current-cover__title {
