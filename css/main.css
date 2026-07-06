@@ -3430,7 +3430,7 @@ p {
 }
 
 .case-hmw-video {
-  margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
   width: 100%;
   max-width: 100%;
 }
