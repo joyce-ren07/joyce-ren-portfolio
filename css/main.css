@@ -3427,7 +3427,6 @@ p {
   width: 100%;
   height: auto;
   border-radius: 1rem;
-  background: var(--md-sys-color-surface-container, #f8f9fa);
 }
 
 .case-hmw-video {
