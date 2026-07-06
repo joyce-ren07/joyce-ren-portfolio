@@ -3384,20 +3384,21 @@ p {
 }
 
 .case-manifesto {
-  margin: clamp(3rem, 8vh, 5rem) auto;
-  padding: clamp(2.5rem, 6vh, 4rem) clamp(1.5rem, 4vw, 2.5rem);
+  margin: clamp(2rem, 5vh, 3rem) 0;
+  padding: clamp(1.5rem, 4vh, 2.5rem) 0;
   text-align: center;
-  max-width: 44rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .case-manifesto__quote {
-  margin: 0 auto;
-  max-width: 34rem;
-  font-size: clamp(1.85rem, 4.5vw, 3rem);
+  margin: 0;
+  max-width: 100%;
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
   font-weight: 500;
   font-style: normal;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
   color: var(--gds-brand-blue);
 }
 
@@ -3415,21 +3416,23 @@ p {
 }
 
 .case-manifesto-video {
-  margin: clamp(2rem, 5vw, 3rem) auto clamp(2.5rem, 6vw, 3.5rem);
-  max-width: 44rem;
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(2.5rem, 6vw, 3.5rem);
+  width: 100%;
+  max-width: 100%;
 }
 
 .case-manifesto-video__media {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 1.25rem;
+  border-radius: 1rem;
   background: var(--md-sys-color-surface-container, #f8f9fa);
 }
 
 @media (max-width: 600px) {
   .case-manifesto__quote {
-    max-width: 22rem;
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+    line-height: 1.2;
   }
 
   .gds-chip {
