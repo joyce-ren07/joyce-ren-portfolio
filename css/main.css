@@ -3450,7 +3450,7 @@ p {
   flex-direction: column;
   align-items: stretch;
   text-align: left;
-  padding: clamp(2rem, 5vh, 3.5rem) 0 clamp(1.5rem, 4vh, 2.5rem);
+  padding: clamp(2rem, 5vh, 3.5rem) 0 clamp(0.75rem, 2vh, 1.25rem);
   margin: 0;
   width: 100%;
   max-width: 52rem;
@@ -3472,7 +3472,7 @@ p {
   justify-content: center;
   align-self: center;
   width: 100%;
-  margin: 0 0 clamp(1rem, 3vw, 1.75rem);
+  margin: 0 0 clamp(0.5rem, 1.5vw, 1rem);
 }
 
 .case-hmw-transition__arrow-icon {
