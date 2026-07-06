@@ -3447,29 +3447,31 @@ p {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: clamp(3.5rem, 10vh, 7rem) 0 clamp(4rem, 12vh, 8rem);
+  padding: clamp(6rem, 18vh, 13rem) clamp(1.5rem, 4vw, 3rem) clamp(7rem, 20vh, 15rem);
   margin: 0 auto;
   width: 100%;
   max-width: 52rem;
 }
 
 .case-hmw-transition__text {
-  margin: 0 0 clamp(2rem, 5vh, 3.5rem);
-  font-size: clamp(1.125rem, 2.2vw, 1.375rem);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--md-sys-color-on-surface-variant, #5f6368);
+  margin: 0 0 clamp(3.25rem, 8vh, 5.5rem);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: var(--case-tertiary-weight, 600);
+  font-style: normal;
+  line-height: var(--case-body-leading, 1.58);
+  color: var(--case-text);
+  letter-spacing: 0.01em;
 }
 
 .case-hmw-transition__arrow {
   display: flex;
   justify-content: center;
+  margin: 0 0 clamp(3.25rem, 8vh, 5.5rem);
 }
 
 .case-hmw-transition__arrow-icon {
   display: block;
-  width: clamp(5rem, 14vw, 8.5rem);
+  width: clamp(7.5rem, 22vw, 12rem);
   height: auto;
   opacity: 0.55;
   transform: rotate(45deg);
