@@ -2416,14 +2416,18 @@ p {
   margin-bottom: clamp(2rem, 5vh, 3rem);
 }
 
+#research .case-section-heading,
 #process .case-section-heading {
   margin: clamp(5rem, 14vh, 9rem) 0 clamp(1.75rem, 3.5vw, 2.5rem);
 }
 
-#process .case-section-heading + .case-process-key {
+#research .case-section-heading + .case-process-key,
+#process .case-section-heading + .case-process-key,
+#process .case-section-heading + .case-process-competitive {
   margin-top: 0;
 }
 
+#research .case-subheading--large,
 #process .case-subheading--large {
   font-size: clamp(1.375rem, 2.8vw, 1.75rem);
   font-weight: 500;
@@ -2457,6 +2461,7 @@ p {
   margin-top: clamp(6rem, 14vh, 10rem);
 }
 
+#research .case-body--process,
 #process .case-body--process {
   font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 600);
@@ -2465,6 +2470,8 @@ p {
   line-height: var(--case-body-leading, 1.58);
 }
 
+#research .case-stats,
+#research .case-insight-cards,
 #process .case-insight-cards {
   margin-top: clamp(2rem, 4vw, 2.75rem);
 }
@@ -2479,6 +2486,7 @@ p {
   gap: 4px;
 }
 
+#research .case-callout--gradient + .case-subheading--large,
 #process .case-process-competitive + .case-subheading--large {
   margin-top: clamp(10rem, 18vh, 12.5rem);
 }
@@ -3775,4 +3783,58 @@ p {
   .current-cover--card .current-cover__logo {
     justify-content: flex-start;
   }
+}
+
+/* Current — post-demo sections match Home Start typography & spacing */
+
+.case-study-page--current #research,
+.case-study-page--current #process,
+.case-study-page--current #takeaways {
+  --case-text: #a1a1a1;
+  --case-text-active: #a1a1a1;
+  --case-text-faint: #a1a1a1;
+  --case-heading: #a1a1a1;
+}
+
+.case-study-page--current #research .case-emphasis,
+.case-study-page--current #process .case-emphasis,
+.case-study-page--current #takeaways .case-emphasis {
+  color: #a1a1a1;
+  font-weight: 600;
+}
+
+.case-study-page--current #research .case-callout--gradient,
+.case-study-page--current #process .case-callout--gradient,
+.case-study-page--current #takeaways .case-callout--gradient {
+  background: linear-gradient(
+    90deg,
+    rgba(100, 140, 145, 0.75) 0%,
+    rgba(180, 210, 215, 0.15) 100%
+  );
+  color: #fff;
+}
+
+.case-study-page--current #research .case-placeholder,
+.case-study-page--current #process .case-placeholder,
+.case-study-page--current #takeaways .case-placeholder {
+  border-color: var(--color-border);
+  color: #a1a1a1;
+  background: #ffffff;
+}
+
+.case-study-page--current #process .case-competitive__logos {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#process .case-process-competitive .case-body--process + .case-competitive {
+  margin-top: 1.75rem;
+}
+
+.case-study-page--current #process .case-competitive__icon--sf {
+  background: #00a1e0;
+  color: #fff;
+}
+
+#research .case-process-key + .case-callout--gradient {
+  margin-top: clamp(3rem, 8vh, 5rem);
 }
