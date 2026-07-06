@@ -25,6 +25,8 @@
   --radius: 0.5rem;
   --transition: 200ms ease;
 
+  --text-tertiary-size: clamp(0.875rem, 1.5vw, 1rem);
+
   --case-content-max: 55rem;
   --case-sidebar-width: 10.5625rem;
   --nav-max-width: 74.625rem;
@@ -109,7 +111,7 @@ a:hover {
    -------------------------------------------------------------------------- */
 
 .eyebrow {
-  font-size: 0.75rem;
+  font-size: var(--text-tertiary-size);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -176,7 +178,7 @@ p {
 }
 
 .site-header__resume {
-  font-size: 0.875rem;
+  font-size: var(--text-tertiary-size);
   color: var(--color-text-muted);
   margin-left: auto;
 }
@@ -198,7 +200,7 @@ p {
 }
 
 .site-nav a {
-  font-size: 0.875rem;
+  font-size: var(--text-tertiary-size);
   color: var(--color-text-muted);
   transition: color var(--transition);
 }
@@ -227,7 +229,7 @@ p {
   align-items: center;
   gap: var(--space-xs);
   padding: 0.75rem 1.25rem;
-  font-size: 0.875rem;
+  font-size: var(--text-tertiary-size);
   font-weight: 500;
   border-radius: var(--radius);
   border: 1px solid transparent;
@@ -256,7 +258,7 @@ p {
 }
 
 .text-link {
-  font-size: 0.875rem;
+  font-size: var(--text-tertiary-size);
   font-weight: 500;
   color: #a1a1a1;
   text-decoration: underline;
@@ -323,7 +325,7 @@ p {
   align-items: center;
   justify-content: center;
   color: var(--color-text-muted);
-  font-size: 0.75rem;
+  font-size: var(--text-tertiary-size);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -367,7 +369,7 @@ p {
 }
 
 .tag {
-  font-size: 0.6875rem;
+  font-size: var(--text-tertiary-size);
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -384,14 +386,14 @@ p {
 }
 
 .work-card__desc {
-  font-size: 0.875rem;
+  font-size: var(--text-tertiary-size);
   color: var(--color-text-muted);
   margin-bottom: var(--space-md);
   flex: 1;
 }
 
 .work-card__link {
-  font-size: 0.875rem;
+  font-size: var(--text-tertiary-size);
   font-weight: 500;
   color: #a1a1a1;
 }
@@ -419,7 +421,7 @@ p {
 }
 
 .contact-links a {
-  font-size: 0.875rem;
+  font-size: var(--text-tertiary-size);
   color: var(--color-text-muted);
 }
 
@@ -486,7 +488,7 @@ p {
 
 .about-hint {
   margin: clamp(1.25rem, 3vw, 1.75rem) 0 0;
-  font-size: 0.9375rem;
+  font-size: var(--text-tertiary-size);
   font-style: italic;
   color: #a1a1a1;
 }
@@ -601,7 +603,7 @@ p {
 }
 
 .case-meta dt {
-  font-size: 0.6875rem;
+  font-size: var(--text-tertiary-size);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -611,7 +613,7 @@ p {
 
 .case-meta dd {
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: var(--text-tertiary-size);
 }
 
 .case-section {
@@ -633,7 +635,7 @@ p {
   align-items: center;
   justify-content: center;
   color: var(--color-text-muted);
-  font-size: 0.75rem;
+  font-size: var(--text-tertiary-size);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: var(--space-md);
@@ -675,7 +677,7 @@ p {
 }
 
 .case-result__label {
-  font-size: 0.8125rem;
+  font-size: var(--text-tertiary-size);
   color: var(--color-text-muted);
 }
 
@@ -704,7 +706,7 @@ p {
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-sm);
-  font-size: 0.8125rem;
+  font-size: var(--text-tertiary-size);
   color: var(--color-text-muted);
 }
 
@@ -813,6 +815,7 @@ p {
   --case-feature-heading-to-body: clamp(0.75rem, 1.5vw, 1rem);
   --case-block-gap: clamp(4.5rem, 12vh, 8rem);
   --case-sidebar-gap: 0.7rem;
+  --case-tertiary-size: var(--text-tertiary-size);
   --case-tertiary-weight: 600;
   font-family: var(--font-sans);
   background: var(--case-bg);
@@ -903,7 +906,7 @@ p {
 
 .case-topbar__nav a,
 .case-topbar__resume {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 600;
   line-height: 1.2;
   color: #a1a1a1;
@@ -977,7 +980,7 @@ p {
 }
 
 .case-sidebar__link {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 400;
   line-height: 1.6;
   letter-spacing: 0.01em;
@@ -1234,7 +1237,7 @@ p {
 }
 
 .case-details__item dt {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 400;
   color: #a1a1a1;
   margin: 0;
@@ -1248,7 +1251,7 @@ p {
 
 .case-details__item dd {
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 400;
   color: var(--case-text);
   text-align: left;
@@ -1326,7 +1329,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: var(--case-tertiary-size);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #a1a1a1;
@@ -1459,7 +1462,7 @@ p {
 }
 
 .case-feature-row__desc {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 600);
   line-height: var(--case-body-leading, 1.58);
   color: var(--case-text);
@@ -1773,7 +1776,7 @@ p {
 }
 
 .case-feature__desc {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   line-height: 1.55;
   color: var(--case-text);
   margin: 0;
@@ -1822,7 +1825,7 @@ p {
 
 .case-stat--highlight .case-stat__label {
   color: rgba(255, 255, 255, 0.85);
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-size: var(--case-tertiary-size);
   line-height: 1.5;
 }
 
@@ -1856,7 +1859,7 @@ p {
 }
 
 .case-stat__label {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   line-height: 1.45;
   color: var(--case-text);
   margin: 0;
@@ -1921,7 +1924,7 @@ p {
 }
 
 .case-quote--notification .case-quote__source {
-  font-size: 0.8125rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 600;
   letter-spacing: 0;
   text-transform: none;
@@ -1930,12 +1933,12 @@ p {
 }
 
 .case-quote--notification .case-quote__time {
-  font-size: 0.75rem;
+  font-size: var(--case-tertiary-size);
   color: var(--case-text-faint);
 }
 
 .case-quote--notification .case-quote__text {
-  font-size: 0.875rem;
+  font-size: var(--case-tertiary-size);
   font-style: normal;
   line-height: 1.45;
   color: var(--case-text-active);
@@ -1959,7 +1962,7 @@ p {
 }
 
 .case-quote__source {
-  font-size: 0.75rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1967,7 +1970,7 @@ p {
 }
 
 .case-quote__text {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-style: italic;
   line-height: 1.5;
   color: var(--case-text-active);
@@ -1976,7 +1979,7 @@ p {
 }
 
 .case-quote__time {
-  font-size: 0.75rem;
+  font-size: var(--case-tertiary-size);
   color: var(--case-text-faint);
 }
 
@@ -2025,7 +2028,7 @@ p {
 }
 
 .case-market__label {
-  font-size: 0.8125rem;
+  font-size: var(--case-tertiary-size);
   color: var(--case-text);
 }
 
@@ -2036,13 +2039,13 @@ p {
 
 .case-table--market th,
 .case-table--market td {
-  font-size: 0.8125rem;
+  font-size: var(--case-tertiary-size);
   padding: 1rem;
   border-bottom: 1px solid #eee;
 }
 
 .case-table--market thead th {
-  font-size: 0.6875rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -2052,7 +2055,7 @@ p {
 
 .case-table--market tbody th {
   font-weight: 600;
-  font-size: 0.8125rem;
+  font-size: var(--case-tertiary-size);
   width: 14%;
   min-width: 8rem;
 }
@@ -2067,7 +2070,7 @@ p {
 }
 
 .case-capabilities li {
-  font-size: 0.75rem;
+  font-size: var(--case-tertiary-size);
   padding-left: 1.1rem;
   position: relative;
 }
@@ -2099,7 +2102,7 @@ p {
   background: #f8f8f8;
   border-radius: 0.75rem;
   text-align: center;
-  font-size: 0.8125rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 500;
   color: var(--case-text);
 }
@@ -2148,7 +2151,7 @@ p {
 .case-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
 }
 
 .case-table th,
@@ -2189,7 +2192,7 @@ p {
 }
 
 .case-feedback__title {
-  font-size: 0.8125rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -2207,7 +2210,7 @@ p {
 }
 
 .case-feedback__list li {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   line-height: 1.45;
   color: var(--case-text);
   padding-left: 1rem;
@@ -2225,7 +2228,7 @@ p {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
-  font-size: 0.875rem;
+  font-size: var(--case-tertiary-size);
   font-style: italic;
   color: var(--case-text-faint);
 }
@@ -2236,7 +2239,7 @@ p {
 }
 
 .case-footer-note a {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   color: var(--case-text);
   transition: color 0.2s ease;
 }
@@ -2248,7 +2251,7 @@ p {
 .case-footer-note__copy {
   display: block;
   margin-top: 0.75rem;
-  font-size: 0.8125rem;
+  font-size: var(--case-tertiary-size);
   color: var(--case-text-faint);
 }
 
@@ -2357,7 +2360,7 @@ p {
 }
 
 .case-block--intro .case-intro-meta .case-details__item dt {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 600;
   color: #a1a1a1;
   text-align: center;
@@ -2365,7 +2368,7 @@ p {
 
 .case-block--intro .case-intro-meta .case-details__item dd {
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 600;
   line-height: 1.5;
   color: var(--case-text);
@@ -2374,7 +2377,7 @@ p {
 
 .case-intro-meta__summary {
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 600;
   line-height: 1.35;
   color: var(--case-text);
@@ -2441,7 +2444,7 @@ p {
 }
 
 #takeaways .case-body {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 600);
   line-height: var(--case-body-leading, 1.58);
 }
@@ -2455,7 +2458,7 @@ p {
 }
 
 #process .case-body--process {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 600);
   max-width: 100%;
   margin: 0;
@@ -2508,7 +2511,7 @@ p {
 }
 
 #process .case-competitive__box h4 {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 600);
   color: #a1a1a1;
   margin: 0 0 0.65rem;
@@ -2529,7 +2532,7 @@ p {
 
 #process .case-competitive__box li {
   display: block;
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: var(--case-tertiary-size);
   font-weight: 400;
   color: #a1a1a1;
   line-height: 1.4;
@@ -2559,7 +2562,7 @@ p {
 }
 
 #process .case-tradeoffs li {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: var(--case-tertiary-size);
   line-height: var(--case-body-leading, 1.58);
   color: #a1a1a1;
 }
@@ -2599,7 +2602,7 @@ p {
 }
 
 .case-pillar .case-body {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 600);
   line-height: var(--case-body-leading, 1.58);
   max-width: none;
@@ -2972,7 +2975,7 @@ p {
 }
 
 .case-insight-card__text {
-  font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
+  font-size: var(--case-tertiary-size);
   line-height: 1.5;
   color: #3d6a6f;
   margin: 0;
@@ -3006,7 +3009,7 @@ p {
   flex-direction: column;
   align-items: center;
   gap: 0.85rem;
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 400;
   color: #a1a1a1;
   text-align: center;
@@ -3137,7 +3140,7 @@ p {
 }
 
 .case-competitive__box h4 {
-  font-size: 0.9375rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 600;
   color: var(--case-text-active);
   margin: 0 0 0.75rem;
@@ -3153,7 +3156,7 @@ p {
 }
 
 .case-competitive__box li {
-  font-size: 0.875rem;
+  font-size: var(--case-tertiary-size);
   color: var(--case-text);
   padding-left: 0.75rem;
   position: relative;
@@ -3179,7 +3182,7 @@ p {
 }
 
 .case-tradeoffs li {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: var(--case-tertiary-size);
   line-height: var(--case-body-leading, 1.58);
   color: var(--case-text);
 }
@@ -3365,7 +3368,7 @@ p {
   min-height: 2rem;
   padding: 0.375rem 1rem;
   border-radius: 999px;
-  font-size: 0.875rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 500;
   line-height: 1.25rem;
   letter-spacing: 0.00625rem;
@@ -3384,7 +3387,7 @@ p {
 }
 
 .gds-text-button {
-  font-size: 0.875rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 500;
   line-height: 1.25rem;
   letter-spacing: 0.00625rem;
@@ -3455,7 +3458,7 @@ p {
 
 .case-hmw-transition__text {
   margin: 0 0 clamp(3.25rem, 8vh, 5.5rem);
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 600);
   font-style: normal;
   line-height: var(--case-body-leading, 1.58);
@@ -3596,7 +3599,7 @@ p {
 }
 
 .current-cover__badge-label {
-  font-size: 0.8125rem;
+  font-size: var(--case-tertiary-size);
   font-weight: 500;
   color: var(--md-sys-color-on-surface-variant, #5f6368);
   line-height: 1;
@@ -3620,7 +3623,7 @@ p {
 .current-cover__tagline {
   margin: 0;
   max-width: 28rem;
-  font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
+  font-size: var(--case-tertiary-size);
   font-weight: 400;
   line-height: 1.5;
   color: var(--gds-primary, #0b57d0);
