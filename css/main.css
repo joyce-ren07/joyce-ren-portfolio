@@ -3297,68 +3297,12 @@ p {
   --case-text-faint: #80868b;
   --case-heading: var(--md-sys-color-on-surface);
 
-  --font-google-sans: "Google Sans", system-ui, -apple-system, sans-serif;
-  --case-tertiary-weight: 500;
-
-  font-family: var(--font-google-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.case-study-page--current .case-topbar__nav a,
-.case-study-page--current .case-topbar__resume,
-.case-study-page--current .nav-toggle {
-  font-family: var(--font-google-sans);
-  font-weight: 500;
-}
-
-.case-study-page--current .case-intro-header__title {
-  font-weight: 700;
-}
-
-.case-study-page--current .case-section-heading,
-.case-study-page--current .case-pillar__title,
-.case-study-page--current .case-feature-row__title,
-.case-study-page--current .case-subheading,
-.case-study-page--current .case-subheading--large {
-  font-weight: 500;
-}
-
-.case-study-page--current .case-manifesto__quote,
-.case-study-page--current .case-problem-insight__text,
-.case-study-page--current .gds-chip,
-.case-study-page--current .case-stat__value {
-  font-weight: 500;
-}
-
-.case-study-page--current .case-details__item dt,
-.case-study-page--current .case-competitive__box h4 {
-  font-weight: 500;
-}
-
-.case-study-page--current strong,
-.case-study-page--current .case-emphasis,
-.case-study-page--current b {
-  font-weight: 700;
-}
-
-.case-study-page--current .case-stat--highlight .case-stat__value,
-.case-study-page--current .case-insight-card__num {
-  font-weight: 700;
-}
-
-.case-study-page--current .case-callout--gradient {
-  font-weight: 500;
-}
-
-.case-study-page--current .case-manifesto__quote em {
-  font-weight: 500;
-  font-style: italic;
+  font-family: "Roboto", system-ui, -apple-system, sans-serif;
 }
 
 .case-study-page--current .case-sidebar__link.is-active {
   color: var(--md-sys-color-primary);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .case-study-page--current .case-sidebar__link:hover {
@@ -3367,7 +3311,7 @@ p {
 
 .case-study-page--current .case-emphasis {
   color: var(--md-sys-color-primary);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .case-study-page--current .case-footer-note a {
