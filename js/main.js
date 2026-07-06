@@ -548,4 +548,33 @@
       });
     });
   }
+
+  /* Manifesto video — replay from start each time it scrolls into view */
+  const manifestoVideo = document.querySelector(".case-manifesto-video__media");
+  if (manifestoVideo && "IntersectionObserver" in window) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reducedMotion) {
+      const replayVideo = () => {
+        manifestoVideo.currentTime = 0;
+        manifestoVideo.play().catch(() => {});
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              replayVideo();
+            } else {
+              manifestoVideo.pause();
+              manifestoVideo.currentTime = 0;
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+
+      observer.observe(manifestoVideo);
+    }
+  }
 })();
