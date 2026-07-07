@@ -1860,6 +1860,9 @@ p {
   background: #e8eef6;
   border: none;
   text-align: left;
+  box-shadow:
+    0 8px 24px rgba(37, 99, 235, 0.08),
+    0 2px 8px rgba(60, 64, 67, 0.05);
 }
 
 .case-stat--bubble .case-stat__value {
@@ -1878,6 +1881,9 @@ p {
 
 .case-study-page--current .case-stat--bubble {
   background: var(--gds-primary-container, #e8eef6);
+  box-shadow:
+    0 8px 24px color-mix(in srgb, var(--gds-primary, #0b57d0) 8%, transparent),
+    0 2px 8px rgba(60, 64, 67, 0.05);
 }
 
 .case-study-page--current .case-stat--bubble .case-stat__value,
