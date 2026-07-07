@@ -1892,7 +1892,7 @@ p {
 }
 
 .case-study-page--current #research .case-stats__row {
-  gap: 1.1rem;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
 .case-stat--highlight {
