@@ -1786,7 +1786,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.95rem;
+  gap: 1.1rem;
   width: 100%;
   max-width: 100%;
   margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
@@ -1797,8 +1797,8 @@ p {
   width: fit-content;
   max-width: 100%;
   margin: 0;
-  padding: 1rem 1.9rem;
-  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  padding: 1.15rem 2.15rem;
+  font-size: clamp(1.3rem, 2.4vw, 1.65rem);
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.01em;
@@ -1813,11 +1813,11 @@ p {
 
 .case-research-chat__bubble--outgoing {
   align-self: flex-end;
-  margin-top: 0.5rem;
-  border-radius: 1.6rem;
+  margin-top: 0.6rem;
+  border-radius: 1.75rem;
   background: #2563eb;
   color: #fff;
-  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.28);
+  box-shadow: 0 12px 34px rgba(37, 99, 235, 0.28);
 }
 
 .case-study-page--current .case-research-chat__bubble--incoming {
@@ -1827,7 +1827,7 @@ p {
 
 .case-study-page--current .case-research-chat__bubble--outgoing {
   background: var(--gds-primary, #2563eb);
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--gds-primary, #2563eb) 28%, transparent);
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--gds-primary, #2563eb) 28%, transparent);
 }
 
 .case-stats {
