@@ -3405,10 +3405,10 @@ p {
   --gds-yellow: #fbbc04;
   --gds-red: #ea4335;
 
-  --case-text: var(--md-sys-color-on-surface-variant);
-  --case-text-active: var(--md-sys-color-on-surface);
-  --case-text-faint: #80868b;
-  --case-heading: var(--md-sys-color-on-surface);
+  --case-text: #a1a1a1;
+  --case-text-active: #a1a1a1;
+  --case-text-faint: #a1a1a1;
+  --case-heading: #a1a1a1;
 }
 
 .case-study-page--current .case-sidebar__link.is-active {
