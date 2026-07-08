@@ -3594,6 +3594,10 @@ p {
   border: none;
 }
 
+.case-research-video {
+  border-radius: 1.25rem;
+}
+
 .case-hmw-video__media {
   display: block;
   width: 100%;
