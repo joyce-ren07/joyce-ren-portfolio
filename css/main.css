@@ -3932,6 +3932,6 @@ p {
   color: #fff;
 }
 
-#research .case-process-key + .case-callout--gradient {
-  margin-top: clamp(3rem, 8vh, 5rem);
+#research .case-process-key + .case-body {
+  margin-top: clamp(5rem, 12vh, 8rem);
 }
