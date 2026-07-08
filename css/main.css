@@ -3595,6 +3595,9 @@ p {
 }
 
 .case-research-video {
+  width: min(100%, 46rem);
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 1.25rem;
 }
 
