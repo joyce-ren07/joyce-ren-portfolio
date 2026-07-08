@@ -1295,6 +1295,10 @@ p {
   margin: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
+.case-body--tertiary {
+  font-size: var(--case-tertiary-size);
+}
+
 .case-body:last-child {
   margin-bottom: 0;
 }
