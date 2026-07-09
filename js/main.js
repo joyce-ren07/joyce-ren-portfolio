@@ -40,12 +40,59 @@
       .filter(Boolean);
 
     const isHomePage = hashSections.length > 0;
-    const travelDuration = reducedMotion ? 0 : 920;
+    const travelDuration = reducedMotion ? 0 : 900;
     const hero = document.querySelector(".portfolio-page .hero");
     const NAV_LIGHT_FROM_KEY = "portfolio-nav-light-from";
     const NAV_LIGHT_TO_KEY = "portfolio-nav-light-to";
+    const NAV_LIGHT_DEPARTED_KEY = "portfolio-nav-light-departed";
     const NAV_ITEM_IDS = ["work", "canvas", "about"];
     let suppressObserver = false;
+    let observerReleaseTimer = null;
+    let scrollRaf = null;
+    let travelLock = false;
+
+    const lockObserver = (ms) => {
+      clearTimeout(observerReleaseTimer);
+      suppressObserver = true;
+      observerReleaseTimer = setTimeout(() => {
+        suppressObserver = false;
+        updateActiveFromScroll();
+      }, ms);
+    };
+
+    const releaseObserverAfter = (ms) => {
+      lockObserver(ms);
+      if ("onscrollend" in window) {
+        window.addEventListener(
+          "scrollend",
+          () => {
+            clearTimeout(observerReleaseTimer);
+            suppressObserver = false;
+            updateActiveFromScroll();
+          },
+          { once: true }
+        );
+      }
+    };
+
+    const scrollToSection = (section, { behavior } = {}) => {
+      if (!section) return;
+      section.scrollIntoView({
+        behavior: behavior ?? (reducedMotion ? "auto" : "smooth"),
+        block: "start",
+      });
+    };
+
+    const peekNavTransition = () => {
+      try {
+        return {
+          has: Boolean(sessionStorage.getItem(NAV_LIGHT_TO_KEY)),
+          departed: sessionStorage.getItem(NAV_LIGHT_DEPARTED_KEY) === "1",
+        };
+      } catch (_) {
+        return { has: false, departed: false };
+      }
+    };
 
     const getNavItemId = (link) => {
       if (!link) return "main";
@@ -64,55 +111,110 @@
       return links.find((item) => item.classList.contains("is-active")) || null;
     };
 
-    const rememberNavTransition = (toLink) => {
+    const rememberNavTransition = (toLink, { departed = false, fromLink = null } = {}) => {
       try {
-        sessionStorage.setItem(NAV_LIGHT_FROM_KEY, getNavItemId(getLitLink()));
+        const from = fromLink ? getNavItemId(fromLink) : getNavItemId(getOriginLink());
+        sessionStorage.setItem(NAV_LIGHT_FROM_KEY, from);
         sessionStorage.setItem(NAV_LIGHT_TO_KEY, toLink ? getNavItemId(toLink) : "main");
+        sessionStorage.setItem(NAV_LIGHT_DEPARTED_KEY, departed ? "1" : "0");
       } catch (_) {
         /* ignore storage errors */
       }
+    };
+
+    const getTravelDuration = (fromLink, toLink) => {
+      if (reducedMotion) return 0;
+      const fromIdx = fromLink ? links.indexOf(fromLink) : -1;
+      const toIdx = toLink ? links.indexOf(toLink) : -1;
+      if (fromIdx >= 0 && toIdx >= 0 && Math.abs(fromIdx - toIdx) > 1) return 420;
+      return travelDuration;
     };
 
     const consumeNavTransition = () => {
       try {
         const fromId = sessionStorage.getItem(NAV_LIGHT_FROM_KEY);
         const toId = sessionStorage.getItem(NAV_LIGHT_TO_KEY);
+        const departed = sessionStorage.getItem(NAV_LIGHT_DEPARTED_KEY) === "1";
         sessionStorage.removeItem(NAV_LIGHT_FROM_KEY);
         sessionStorage.removeItem(NAV_LIGHT_TO_KEY);
-        return { fromId, toId };
+        sessionStorage.removeItem(NAV_LIGHT_DEPARTED_KEY);
+        return { fromId, toId, departed };
       } catch (_) {
-        return { fromId: null, toId: null };
+        return { fromId: null, toId: null, departed: false };
       }
     };
 
     const leavesCurrentPage = (href) => {
-      const onAboutPage = /\/about(\/|$)/.test(window.location.pathname);
+      const path = window.location.pathname;
+      const onAboutPage = /\/about(\/|$)/.test(path);
       const pathOnly = href.split("#")[0];
+      const targetsAbout =
+        /about(\/index\.html)?$/i.test(pathOnly) || /\/about(\/|$)/.test(pathOnly);
 
       if (onAboutPage) {
-        if (pathOnly === "index.html" || pathOnly === "./index.html") return false;
         return pathOnly.includes("index.html") || pathOnly.startsWith("../");
       }
 
-      const targetsAbout = /about(\/index\.html)?$/i.test(pathOnly) || pathOnly.includes("about/");
-      return isHomePage && targetsAbout;
+      if (isHomePage && targetsAbout) return true;
+
+      if (!isHomePage && !onAboutPage) {
+        if (pathOnly.includes("index.html") && !pathOnly.includes("about")) return true;
+        if (targetsAbout) return true;
+      }
+
+      return false;
+    };
+
+    const getSectionFromScroll = () => {
+      const activationLine = window.innerHeight * 0.28;
+      let best = null;
+
+      hashSections.forEach(({ section, link }) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= activationLine) {
+          best = { section, link };
+        }
+      });
+
+      return best;
     };
 
     const isAtMain = () => {
       if (!isHomePage) return false;
+      if (getSectionFromScroll()) return false;
       if (window.scrollY < 48) return true;
       if (!hero) return window.scrollY < 120;
       const rect = hero.getBoundingClientRect();
-      return rect.top <= 80 && rect.bottom >= window.innerHeight * 0.42;
+      return rect.top <= 80;
+    };
+
+    const getOriginLink = () => {
+      if (activeLink) return activeLink;
+
+      const lit = links.find((item) => item.classList.contains("is-active"));
+      if (lit) return lit;
+
+      if (isHomePage) {
+        const fromScroll = getSectionFromScroll();
+        if (fromScroll) return fromScroll.link;
+      }
+
+      if (/\/about(\/|$)/.test(window.location.pathname)) {
+        return links[links.length - 1];
+      }
+
+      return null;
     };
 
     const finishTravel = () => {
       light.classList.remove("is-traveling");
       logo?.classList.remove("is-pulsing");
+      travelLock = false;
     };
 
     const scheduleTravelEnd = () => {
       clearTimeout(travelTimer);
+      travelLock = true;
       travelTimer = setTimeout(finishTravel, travelDuration);
     };
 
@@ -199,6 +301,59 @@
       }
     };
 
+    const slideWithFade = (fromRect, toRect, { hideAfter = false } = {}) => {
+      if (!fromRect || !toRect) return;
+
+      if (reducedMotion) {
+        if (hideAfter) {
+          parkLightAtLogo();
+          hideLight({ animate: false });
+        } else {
+          placeLight(toRect, { animate: false });
+        }
+        return;
+      }
+
+      clearTimeout(travelTimer);
+      finishTravel();
+      travelLock = true;
+      light.style.transition = "opacity 0.18s ease";
+      light.classList.remove("is-visible");
+
+      travelTimer = window.setTimeout(() => {
+        light.style.transition = "none";
+        placeLight(toRect, { animate: false });
+        void light.offsetWidth;
+        light.style.transition = "opacity 0.22s ease";
+        light.classList.add("is-visible");
+
+        travelTimer = window.setTimeout(() => {
+          light.style.transition = "";
+          if (hideAfter) {
+            hideLight({ animate: true });
+            parkLightAtLogo();
+          }
+          finishTravel();
+        }, 220);
+      }, 180);
+    };
+
+    const slideBetweenLinks = (fromLink, toLink, { hideAfter = false } = {}) => {
+      const fromIdx = fromLink ? links.indexOf(fromLink) : -1;
+      const toIdx = toLink ? links.indexOf(toLink) : -1;
+      const fromRect = fromLink ? getLinkRect(fromLink) : getLogoRect();
+      const toRect = toLink ? getLinkRect(toLink) : getLogoRect();
+      const skipsNavItem = fromIdx >= 0 && toIdx >= 0 && Math.abs(fromIdx - toIdx) > 1;
+
+      if (!fromRect || !toRect) return;
+
+      if (skipsNavItem) {
+        slideWithFade(fromRect, toRect, { hideAfter });
+      } else {
+        slideBetweenRects(fromRect, toRect, { hideAfter });
+      }
+    };
+
     const applyLinkState = (link) => {
       links.forEach((item) => {
         const isActive = item === link;
@@ -239,8 +394,8 @@
     };
 
     const clearActive = ({ animate = true } = {}) => {
-      const lit = getLitLink();
-      const fromRect = lit ? getLinkRect(lit) : null;
+      const origin = getOriginLink();
+      const fromRect = origin ? getLinkRect(origin) : null;
 
       links.forEach((item) => {
         item.classList.remove("is-active");
@@ -257,7 +412,7 @@
       const wasVisible = light.classList.contains("is-visible");
 
       if (animate && !reducedMotion && wasVisible && fromRect) {
-        logo.classList.add("is-pulsing");
+        logo?.classList.add("is-pulsing");
         slideBetweenRects(fromRect, logoRect, { hideAfter: true });
       } else {
         parkLightAtLogo();
@@ -268,44 +423,49 @@
     const setActiveLink = (link, { animate = true, fromLink = null } = {}) => {
       if (!link || !links.includes(link) || link === activeLink) return;
 
-      const previousActive = activeLink;
-      const wasVisible = light.classList.contains("is-visible");
+      const origin =
+        fromLink && links.includes(fromLink) ? fromLink : getOriginLink();
       const shouldAnimate = animate && !reducedMotion;
-      const targetRect = getLinkRect(link);
-      const originLink = fromLink && links.includes(fromLink) ? fromLink : null;
 
       applyLinkState(link);
       activeLink = link;
       clearTimeout(travelTimer);
 
-      if (wasVisible && previousActive && shouldAnimate) {
-        finishTravel();
-        slideBetweenRects(getLinkRect(previousActive), targetRect);
-        return;
-      }
-
-      if (!wasVisible) {
-        if (originLink && originLink !== link && shouldAnimate) {
-          finishTravel();
-          slideBetweenRects(getLinkRect(originLink), targetRect);
-          return;
-        }
-
-        const logoRect = getLogoRect();
-        if (logoRect && shouldAnimate && !originLink) {
-          logo.classList.add("is-pulsing");
-          slideBetweenRects(logoRect, targetRect);
-          return;
-        }
-
-        finishTravel();
-        placeLight(targetRect, { animate: false });
+      if (shouldAnimate && origin !== link) {
+        slideBetweenLinks(origin, link);
         return;
       }
 
       finishTravel();
-      placeLight(targetRect, { animate: shouldAnimate, traveling: shouldAnimate });
-      if (shouldAnimate) scheduleTravelEnd();
+      placeLight(getLinkRect(link), { animate: false });
+    };
+
+    const placeActiveLink = (link) => {
+      if (!link) return;
+      applyLinkState(link);
+      activeLink = link;
+      finishTravel();
+      placeLight(getLinkRect(link), { animate: false });
+    };
+
+    const navigateAwayWithGlow = (href, targetLink) => {
+      const shouldAnimate = !reducedMotion;
+      const origin = getOriginLink();
+      const duration = getTravelDuration(origin, targetLink);
+      rememberNavTransition(targetLink, { departed: shouldAnimate, fromLink: origin });
+      lockObserver(shouldAnimate ? duration + 200 : 50);
+
+      if (shouldAnimate && targetLink && origin !== targetLink) {
+        applyLinkState(targetLink);
+        activeLink = targetLink;
+        slideBetweenLinks(origin, targetLink);
+      } else if (targetLink) {
+        placeActiveLink(targetLink);
+      }
+
+      window.setTimeout(() => {
+        window.location.href = href;
+      }, duration);
     };
 
     const resolveLinkFromLocation = () => {
@@ -340,7 +500,9 @@
         const navigatesAway = leavesCurrentPage(href);
 
         if (navigatesAway) {
-          rememberNavTransition(link);
+          event.preventDefault();
+          navigateAwayWithGlow(href, link);
+          return;
         }
 
         if (isHashOnly || (isSamePageHash && !href.includes("about"))) {
@@ -348,12 +510,19 @@
           const target = document.getElementById(id);
           if (target) {
             event.preventDefault();
-            target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+            const origin = getOriginLink();
+            const duration = getTravelDuration(origin, link);
+            releaseObserverAfter(reducedMotion ? 50 : duration + 800);
+            if (origin !== link) {
+              setActiveLink(link, { animate: true, fromLink: origin });
+            }
+            scrollToSection(target);
             history.replaceState(null, "", `#${id}`);
+            return;
           }
         }
 
-        if (activeLink === link || navigatesAway) return;
+        if (activeLink === link) return;
 
         setActiveLink(link, { animate: true });
       });
@@ -380,7 +549,8 @@
         event.preventDefault();
 
         if (onAboutPage) {
-          rememberNavTransition(null);
+          rememberNavTransition(null, { departed: !reducedMotion });
+          lockObserver(reducedMotion ? 50 : travelDuration + 200);
           clearActive({ animate: true });
           window.setTimeout(() => {
             window.location.href = homeHref;
@@ -389,51 +559,99 @@
         }
 
         if (isHomePage) {
-          suppressObserver = true;
+          releaseObserverAfter(reducedMotion ? 50 : travelDuration + 800);
           clearActive({ animate: true });
           if (hero) {
-            hero.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+            scrollToSection(hero);
           } else {
             window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
           }
           history.replaceState(null, "", window.location.pathname + window.location.search);
-          window.setTimeout(() => {
-            suppressObserver = false;
-          }, reducedMotion ? 0 : travelDuration + 250);
         }
       });
     }
 
-    const bootstrapNavLight = () => {
-      parkLightAtLogo();
+    const updateActiveFromScroll = () => {
+      if (suppressObserver || travelLock || !hashSections.length) return;
 
+      if (activeLink && isHomePage && isAtMain()) {
+        clearActive({ animate: true });
+        return;
+      }
+
+      const best = getSectionFromScroll();
+      if (!best) return;
+
+      if (best.link !== activeLink) {
+        setActiveLink(best.link, { animate: true });
+      }
+    };
+
+    const pendingTransition = peekNavTransition();
+
+    const initialHash = isHomePage ? window.location.hash.slice(1) : "";
+    const initialHashTarget = initialHash ? document.getElementById(initialHash) : null;
+
+    if (initialHashTarget && pendingTransition.has && !pendingTransition.departed) {
+      suppressObserver = true;
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    } else if (initialHashTarget) {
+      suppressObserver = true;
+    }
+
+    const bootstrapNavLight = () => {
       const initial = resolveLinkFromLocation();
-      const { fromId, toId } = consumeNavTransition();
+      const { fromId, toId, departed } = consumeNavTransition();
       const previousLink = fromId && fromId !== "main" ? findLinkByNavId(fromId) : null;
       const destinationMatches =
         !toId || toId === "main" || (initial && getNavItemId(initial) === toId);
-
-      if (
+      const arrivalSlide =
         initial &&
         previousLink &&
         previousLink !== initial &&
         destinationMatches &&
-        !reducedMotion
-      ) {
+        !departed &&
+        !reducedMotion;
+      const returnHomeSlide =
+        !initial && previousLink && toId === "main" && !departed && !reducedMotion;
+      const skipPark =
+        arrivalSlide ||
+        returnHomeSlide ||
+        (departed && initial) ||
+        (departed && toId === "main") ||
+        (initial && !previousLink);
+
+      if (!skipPark) {
+        parkLightAtLogo();
+      }
+
+      if (arrivalSlide) {
         applyLinkState(initial);
         activeLink = initial;
-        slideBetweenRects(getLinkRect(previousLink), getLinkRect(initial));
-      } else if (!initial && previousLink && toId === "main" && !reducedMotion) {
-        const logoRect = getLogoRect();
-        if (logoRect) {
-          slideBetweenRects(getLinkRect(previousLink), logoRect, { hideAfter: true });
-        } else {
-          clearActive({ animate: false });
-        }
+        slideBetweenLinks(previousLink, initial);
+      } else if (returnHomeSlide) {
+        slideBetweenLinks(previousLink, null, { hideAfter: true });
+      } else if (departed && toId === "main") {
+        clearActive({ animate: false });
+      } else if (departed && initial) {
+        placeActiveLink(initial);
       } else if (initial) {
-        setActiveLink(initial, { animate: false });
+        placeActiveLink(initial);
       } else {
         clearActive({ animate: false });
+      }
+
+      if (initialHashTarget) {
+        requestAnimationFrame(() => {
+          scrollToSection(initialHashTarget);
+        });
+        const scrollDelay = arrivalSlide ? travelDuration + 800 : departed ? 500 : 400;
+        releaseObserverAfter(reducedMotion ? 100 : scrollDelay);
+      } else if (arrivalSlide || returnHomeSlide) {
+        releaseObserverAfter(reducedMotion ? 100 : travelDuration + 200);
       }
     };
 
@@ -441,47 +659,20 @@
       requestAnimationFrame(bootstrapNavLight);
     });
 
-    if (hashSections.length && "IntersectionObserver" in window) {
-      const visible = new Map();
-      const sectionThreshold = 0.12;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (suppressObserver) return;
-
-          entries.forEach((entry) => {
-            visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+    if (hashSections.length) {
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (scrollRaf) return;
+          scrollRaf = requestAnimationFrame(() => {
+            scrollRaf = null;
+            updateActiveFromScroll();
           });
-
-          let best = null;
-          let bestRatio = 0;
-
-          hashSections.forEach(({ section, link }) => {
-            const ratio = visible.get(section.id) ?? 0;
-            if (ratio > bestRatio) {
-              bestRatio = ratio;
-              best = { section, link };
-            }
-          });
-
-          if (bestRatio >= sectionThreshold && best) {
-            if (best.link !== activeLink) {
-              setActiveLink(best.link, { animate: true });
-            }
-            return;
-          }
-
-          if (activeLink && isHomePage && isAtMain()) {
-            clearActive({ animate: true });
-          }
         },
-        {
-          rootMargin: "-22% 0px -52% 0px",
-          threshold: [0, 0.08, 0.15, 0.25, 0.4, 0.55, 0.75, 1],
-        }
+        { passive: true }
       );
 
-      hashSections.forEach(({ section }) => observer.observe(section));
+      updateActiveFromScroll();
     }
   }
 
