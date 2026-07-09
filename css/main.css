@@ -2369,6 +2369,21 @@ p {
   aspect-ratio: 4 / 3;
 }
 
+.case-image-grid--stacked {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.75rem, 3.5vw, 2.5rem);
+  width: 100%;
+  max-width: 100%;
+  margin-top: 2rem;
+}
+
+.case-image-grid--stacked .case-image-grid__img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 @media (max-width: 900px) {
   .case-features,
   .case-market__icons {
