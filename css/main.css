@@ -4245,7 +4245,7 @@ p {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-#process .case-process-competitive .case-body--process + .case-competitive {
+#process .case-process-competitive .case-body--process + .case-competitive__logos {
   margin-top: 1.75rem;
 }
 
