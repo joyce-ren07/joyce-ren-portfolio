@@ -380,7 +380,7 @@ p {
 .lamp-hero__pull {
   /* Small gold pull in the top-right of the lamp composition. */
   position: absolute;
-  top: clamp(0.2rem, 1vh, 0.55rem);
+  top: clamp(1.35rem, 4vh, 2.35rem);
   left: calc(50% + clamp(16.75rem, 33vw, 23.5rem));
   z-index: 3;
   display: flex;
@@ -494,7 +494,7 @@ p {
   }
 
   .lamp-hero__pull {
-    top: calc(var(--case-topbar-height) + 0.2rem);
+    top: calc(var(--case-topbar-height) + 1.15rem);
     left: calc(50% + min(11.75rem, 52vw));
     width: clamp(1.2rem, 5.6vw, 1.5rem);
   }
