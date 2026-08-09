@@ -4289,8 +4289,14 @@ p {
   background: #ffffff;
 }
 
+/* Keep logos → analysis → compare gaps aligned with Home Start logos → compare */
 .case-study-page--current #process .case-competitive__logos {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+
+.case-study-page--current #process .case-market-table {
+  margin: 0 0 clamp(1.5rem, 3.5vw, 2.25rem);
 }
 
 #process .case-process-competitive .case-body--process + .case-competitive__logos {
