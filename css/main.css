@@ -377,14 +377,15 @@ p {
 }
 
 .lamp-hero__pull {
+  /* Hang from the ceiling, clearly to the right of the pendant like Framer. */
   position: absolute;
-  top: clamp(8.5rem, 24vh, 13.5rem);
-  left: calc(50% + clamp(7.75rem, 15.5vw, 12rem));
+  top: 0;
+  left: calc(50% + clamp(10.5rem, 20vw, 15.5rem));
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: clamp(2.25rem, 5vw, 3.15rem);
+  width: clamp(2.6rem, 5.6vw, 3.6rem);
   padding: 0;
   margin: 0;
   border: 0;
@@ -408,6 +409,7 @@ p {
 .lamp-hero__pull-img {
   display: block;
   width: 100%;
+  max-width: none;
   height: auto;
   user-select: none;
   -webkit-user-drag: none;
@@ -487,9 +489,9 @@ p {
   }
 
   .lamp-hero__pull {
-    top: calc(var(--case-topbar-height) + 8.25rem);
-    left: calc(50% + min(6.25rem, 32vw));
-    width: clamp(2.1rem, 10vw, 2.7rem);
+    top: 0;
+    left: calc(50% + min(7.75rem, 36vw));
+    width: clamp(2.35rem, 11vw, 3rem);
   }
 
   .lamp-hero__hint {
