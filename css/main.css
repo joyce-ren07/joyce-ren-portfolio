@@ -312,11 +312,11 @@ p {
 
 .lamp-hero__halo {
   position: absolute;
-  top: 14%;
+  top: 12%;
   left: 50%;
   z-index: 0;
-  width: clamp(18rem, 42vw, 30rem);
-  height: clamp(14rem, 36vh, 22rem);
+  width: clamp(22rem, 50vw, 36rem);
+  height: clamp(16rem, 40vh, 26rem);
   transform: translateX(-50%);
   background: radial-gradient(
     ellipse 72% 58% at 50% 48%,
@@ -325,17 +325,17 @@ p {
     rgba(255, 235, 200, calc(0.16 * var(--lamp-power))) 56%,
     transparent 74%
   );
-  filter: blur(20px);
+  filter: blur(22px);
   pointer-events: none;
   transition: opacity 0.18s ease;
 }
 
 .lamp-hero__lamp {
   position: absolute;
-  top: clamp(3.5rem, 10vh, 6rem);
+  top: clamp(2.75rem, 8vh, 5rem);
   left: 50%;
   z-index: 2;
-  width: clamp(13rem, 26vw, 20rem);
+  width: clamp(15rem, 30vw, 22rem);
   aspect-ratio: 459 / 432;
   transform: translateX(-50%);
   pointer-events: none;
@@ -369,13 +369,13 @@ p {
 
 .lamp-hero__pull {
   position: absolute;
-  top: clamp(7.5rem, 22vh, 12rem);
-  left: calc(50% + clamp(6.75rem, 13.5vw, 10.5rem));
+  top: clamp(8.5rem, 24vh, 13.5rem);
+  left: calc(50% + clamp(7.75rem, 15.5vw, 12rem));
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: clamp(2.15rem, 4.8vw, 3rem);
+  width: clamp(2.25rem, 5vw, 3.15rem);
   padding: 0;
   margin: 0;
   border: 0;
@@ -465,20 +465,20 @@ p {
 
 @media (max-width: 768px) {
   .lamp-hero__lamp {
-    top: calc(var(--case-topbar-height) + 1.5rem);
-    width: clamp(11rem, 62vw, 16rem);
+    top: calc(var(--case-topbar-height) + 1.25rem);
+    width: clamp(12.5rem, 68vw, 17.5rem);
   }
 
   .lamp-hero__halo {
-    top: calc(var(--case-topbar-height) + 3rem);
-    width: clamp(16rem, 78vw, 22rem);
-    height: clamp(12rem, 36vh, 18rem);
+    top: calc(var(--case-topbar-height) + 2.5rem);
+    width: clamp(18rem, 84vw, 24rem);
+    height: clamp(13rem, 38vh, 19rem);
   }
 
   .lamp-hero__pull {
-    top: calc(var(--case-topbar-height) + 7.5rem);
-    left: calc(50% + min(5.5rem, 28vw));
-    width: clamp(2rem, 9.5vw, 2.55rem);
+    top: calc(var(--case-topbar-height) + 8.25rem);
+    left: calc(50% + min(6.25rem, 32vw));
+    width: clamp(2.1rem, 10vw, 2.7rem);
   }
 
   .lamp-hero__hint {
