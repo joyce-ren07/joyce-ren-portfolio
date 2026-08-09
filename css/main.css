@@ -312,22 +312,27 @@ p {
 
 .lamp-hero__halo {
   position: absolute;
-  top: 12%;
+  top: 0;
   left: 50%;
   z-index: 0;
-  width: clamp(22rem, 50vw, 36rem);
-  height: clamp(16rem, 40vh, 26rem);
-  transform: translateX(-50%);
-  background: radial-gradient(
-    ellipse 72% 58% at 50% 48%,
-    rgba(255, 190, 120, calc(0.72 * var(--lamp-power))) 0%,
-    rgba(255, 210, 150, calc(0.4 * var(--lamp-power))) 34%,
-    rgba(255, 235, 200, calc(0.16 * var(--lamp-power))) 56%,
-    transparent 74%
-  );
-  filter: blur(22px);
+  width: clamp(42rem, 92vw, 68rem);
+  height: clamp(20rem, 52vh, 36rem);
+  transform: translateX(-50%) scaleX(1.18);
+  transform-origin: center center;
+  opacity: var(--lamp-power);
   pointer-events: none;
   transition: opacity 0.18s ease;
+}
+
+.lamp-hero__glow {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: fill;
+  object-position: center center;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .lamp-hero__lamp {
@@ -445,22 +450,25 @@ p {
   pointer-events: none;
 }
 
-.lamp-hero__name {
-  margin: 0 0 0.35rem;
-  font-size: clamp(2.25rem, 6vw, 3.75rem);
-  font-weight: 500;
+.lamp-hero__intro .lamp-hero__name {
+  margin: 0 0 0.4rem;
+  font-family: "Inclusive Sans", var(--font-sans);
+  font-size: 64px;
+  font-style: italic;
+  font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  color: color-mix(in srgb, #d9a07a calc(55% + var(--lamp-power) * 45%), #c48962);
+  color: #f0bfa1;
 }
 
-.lamp-hero__tagline {
+.lamp-hero__intro .lamp-hero__tagline {
   margin: 0;
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-family: "Funnel Sans", var(--font-sans);
+  font-size: 24px;
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.4;
-  color: color-mix(in srgb, #d4a488 calc(45% + var(--lamp-power) * 55%), #b8896e);
+  color: #e3d4ca;
 }
 
 @media (max-width: 768px) {
@@ -470,9 +478,10 @@ p {
   }
 
   .lamp-hero__halo {
-    top: calc(var(--case-topbar-height) + 2.5rem);
-    width: clamp(18rem, 84vw, 24rem);
-    height: clamp(13rem, 38vh, 19rem);
+    top: calc(var(--case-topbar-height) + 0.25rem);
+    width: min(140vw, 42rem);
+    height: clamp(16rem, 44vh, 24rem);
+    transform: translateX(-50%) scaleX(1.12);
   }
 
   .lamp-hero__pull {
@@ -487,6 +496,14 @@ p {
 
   .lamp-hero__intro {
     top: clamp(52%, 58vh, 64%);
+  }
+
+  .lamp-hero__intro .lamp-hero__name {
+    font-size: clamp(2.75rem, 11vw, 4rem);
+  }
+
+  .lamp-hero__intro .lamp-hero__tagline {
+    font-size: clamp(1.125rem, 4.5vw, 1.5rem);
   }
 }
 
