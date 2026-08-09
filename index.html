@@ -30,14 +30,55 @@
   </header>
 
   <main>
-    <section class="hero container">
-      <p class="eyebrow">Product Design</p>
-      <h1 class="hero__title">Designing thoughtful digital experiences</h1>
-      <p class="hero__subtitle">
-        I'm a product designer focused on clarity, craft, and impact.
-        I help teams turn complex problems into intuitive products people love to use.
-      </p>
-      <a href="#work" class="btn btn--primary">View selected work</a>
+    <section class="hero lamp-hero" id="intro" aria-label="Introduction">
+      <div class="lamp-hero__sticky">
+        <div class="lamp-hero__stage">
+          <div class="lamp-hero__halo" aria-hidden="true"></div>
+
+          <div class="lamp-hero__lamp" aria-hidden="true">
+            <img
+              class="lamp-hero__lamp-img lamp-hero__lamp-img--unlit"
+              src="assets/images/hero/lamp-unlit.png"
+              alt=""
+              width="235"
+              height="255"
+              decoding="async"
+            >
+            <img
+              class="lamp-hero__lamp-img lamp-hero__lamp-img--lit"
+              src="assets/images/hero/lamp-lit.png"
+              alt=""
+              width="402"
+              height="441"
+              decoding="async"
+            >
+          </div>
+
+          <button
+            type="button"
+            class="lamp-hero__pull"
+            id="lamp-pull"
+            aria-label="Pull to light the lamp"
+            aria-pressed="false"
+          >
+            <img
+              class="lamp-hero__pull-img"
+              src="assets/images/hero/pull-chain.png"
+              alt=""
+              width="140"
+              height="494"
+              decoding="async"
+            >
+            <span class="lamp-hero__hint">hey, click this!</span>
+          </button>
+
+          <div class="lamp-hero__intro">
+            <h1 class="lamp-hero__name">Joyce Ren</h1>
+            <p class="lamp-hero__tagline">designs to illuminate the human experience.</p>
+          </div>
+        </div>
+      </div>
+      <div class="lamp-hero__scroll" aria-hidden="true"></div>
     </section>
 
     <section id="work" class="section section--tight">
