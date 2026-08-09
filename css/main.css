@@ -3788,6 +3788,10 @@ p {
   font-weight: 500;
 }
 
+.case-study-page--current #research .case-emphasis {
+  font-weight: inherit;
+}
+
 .case-study-page--current .case-footer-note a {
   color: var(--md-sys-color-primary);
 }
