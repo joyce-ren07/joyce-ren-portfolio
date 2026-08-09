@@ -378,9 +378,9 @@ p {
 }
 
 .lamp-hero__pull {
-  /* Hang beside the lantern; top of chain lines up with the cord. */
+  /* Hang beside the lantern; chain top matches the cord top in the lamp art. */
   position: absolute;
-  top: var(--lamp-top);
+  top: calc(var(--lamp-top) + var(--lamp-height) * 0.055);
   left: calc(50% + clamp(16.75rem, 33vw, 23.5rem));
   z-index: 3;
   display: flex;
@@ -494,7 +494,7 @@ p {
   }
 
   .lamp-hero__pull {
-    top: var(--lamp-top);
+    top: calc(var(--lamp-top) + var(--lamp-height) * 0.055);
     left: calc(50% + min(11.75rem, 52vw));
     width: clamp(1.4rem, 6.4vw, 1.85rem);
   }
