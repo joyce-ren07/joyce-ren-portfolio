@@ -321,8 +321,8 @@ p {
   top: var(--lamp-body-y);
   left: 50%;
   z-index: 0;
-  width: clamp(36rem, 82vw, 58rem);
-  height: clamp(21rem, 56vh, 38rem);
+  width: clamp(44rem, 96vw, 70rem);
+  height: clamp(25rem, 66vh, 46rem);
   transform: translate(-50%, -50%);
   opacity: var(--lamp-power);
   pointer-events: none;
@@ -381,7 +381,7 @@ p {
   /* Small gold pull in the top-right of the lamp composition. */
   position: absolute;
   top: clamp(0.2rem, 1vh, 0.55rem);
-  left: calc(50% + clamp(12.25rem, 24vw, 17.25rem));
+  left: calc(50% + clamp(15.25rem, 30vw, 21.5rem));
   z-index: 3;
   display: flex;
   flex-direction: column;
@@ -488,13 +488,13 @@ p {
   }
 
   .lamp-hero__halo {
-    width: min(125vw, 36rem);
-    height: clamp(17rem, 48vh, 26rem);
+    width: min(145vw, 44rem);
+    height: clamp(21rem, 56vh, 32rem);
   }
 
   .lamp-hero__pull {
     top: calc(var(--case-topbar-height) + 0.2rem);
-    left: calc(50% + min(8.75rem, 40vw));
+    left: calc(50% + min(10.75rem, 48vw));
     width: clamp(1.05rem, 5vw, 1.35rem);
   }
 
