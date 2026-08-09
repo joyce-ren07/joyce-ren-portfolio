@@ -461,7 +461,7 @@ p {
 .lamp-hero__intro {
   position: absolute;
   left: 50%;
-  top: clamp(62%, 69vh, 75%);
+  top: clamp(59%, 66vh, 72%);
   z-index: 2;
   width: min(100% - 2rem, 36rem);
   text-align: center;
@@ -519,7 +519,7 @@ p {
   }
 
   .lamp-hero__intro {
-    top: clamp(60%, 66vh, 72%);
+    top: clamp(57%, 63vh, 69%);
   }
 
   .lamp-hero__intro .lamp-hero__name {
