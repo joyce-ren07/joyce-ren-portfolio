@@ -379,13 +379,13 @@ p {
 .lamp-hero__pull {
   /* Small gold pull in the top-right of the lamp composition. */
   position: absolute;
-  top: clamp(0.35rem, 1.5vh, 0.75rem);
-  left: calc(50% + clamp(8.25rem, 16.5vw, 12rem));
+  top: clamp(0.2rem, 1vh, 0.55rem);
+  left: calc(50% + clamp(9.25rem, 18.5vw, 13.25rem));
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: clamp(1.05rem, 2.1vw, 1.35rem);
+  width: clamp(0.85rem, 1.7vw, 1.1rem);
   padding: 0;
   margin: 0;
   border: 0;
@@ -411,7 +411,7 @@ p {
   width: 100%;
   max-width: none;
   height: auto;
-  max-height: clamp(7.5rem, 22vh, 10.5rem);
+  max-height: clamp(5.75rem, 17vh, 8rem);
   object-fit: contain;
   object-position: top center;
   user-select: none;
@@ -492,13 +492,13 @@ p {
   }
 
   .lamp-hero__pull {
-    top: calc(var(--case-topbar-height) + 0.35rem);
-    left: calc(50% + min(6.25rem, 30vw));
-    width: clamp(1rem, 4.8vw, 1.25rem);
+    top: calc(var(--case-topbar-height) + 0.2rem);
+    left: calc(50% + min(6.75rem, 32vw));
+    width: clamp(0.8rem, 3.8vw, 1.05rem);
   }
 
   .lamp-hero__pull-img {
-    max-height: clamp(6.5rem, 20vh, 8.5rem);
+    max-height: clamp(5.25rem, 16vh, 7rem);
   }
 
   .lamp-hero__hint {
