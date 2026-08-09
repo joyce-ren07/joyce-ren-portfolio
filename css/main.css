@@ -2208,7 +2208,7 @@ p {
   align-items: center;
   gap: clamp(1.5rem, 4vw, 2.5rem);
   padding: clamp(1.75rem, 4vw, 2.5rem) clamp(2rem, 5vw, 3rem);
-  background: #1a1a1a;
+  background: #000000;
   border-radius: 1.5rem;
   text-align: left;
 }
