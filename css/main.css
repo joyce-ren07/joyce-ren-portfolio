@@ -328,35 +328,15 @@ p {
   pointer-events: none;
   transition: opacity 0.1s ease;
   overflow: hidden;
-  /* Soften the hard bottom edge of the glow art. */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 70%,
-    rgba(0, 0, 0, 0.5) 88%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 70%,
-    rgba(0, 0, 0, 0.5) 88%,
-    transparent 100%
-  );
-}
-
-.lamp-hero__halo::after {
-  content: "";
-  position: absolute;
-  left: -4%;
-  right: -4%;
-  bottom: 0;
-  height: 34%;
-  pointer-events: none;
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%, #000 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 45%, #000 100%);
+  /* Soften every edge of the glow art. */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 10%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 10%, #000 86%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .lamp-hero__glow {
@@ -368,6 +348,7 @@ p {
   object-position: center center;
   user-select: none;
   -webkit-user-drag: none;
+  filter: blur(2.5px);
 }
 
 .lamp-hero__lamp {
