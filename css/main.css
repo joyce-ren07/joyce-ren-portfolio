@@ -307,8 +307,8 @@ p {
   --lamp-top: clamp(3.75rem, 10vh, 6rem);
   --lamp-width: clamp(13.5rem, 27vw, 19.5rem);
   --lamp-height: calc(var(--lamp-width) * 432 / 459);
-  /* Keep glow centered on the shade as the hero shifts down. */
-  --lamp-body-y: calc(var(--lamp-top) + var(--lamp-height) * 0.58);
+  /* Keep glow near the shade center, nudged slightly upward. */
+  --lamp-body-y: calc(var(--lamp-top) + var(--lamp-height) * 0.52);
   position: relative;
   width: min(100%, 56rem);
   min-height: 100vh;
