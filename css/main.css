@@ -303,6 +303,11 @@ p {
 }
 
 .lamp-hero__stage {
+  /* Shared lamp geometry so the glow can center on the shade. */
+  --lamp-top: clamp(2.75rem, 8vh, 5rem);
+  --lamp-width: clamp(15rem, 30vw, 22rem);
+  --lamp-height: calc(var(--lamp-width) * 432 / 459);
+  --lamp-body-y: calc(var(--lamp-top) + var(--lamp-height) * 0.72);
   position: relative;
   width: min(100%, 56rem);
   min-height: 100vh;
@@ -312,13 +317,12 @@ p {
 
 .lamp-hero__halo {
   position: absolute;
-  top: 0;
+  top: var(--lamp-body-y);
   left: 50%;
   z-index: 0;
   width: clamp(42rem, 92vw, 68rem);
   height: clamp(20rem, 52vh, 36rem);
-  transform: translateX(-50%) scaleX(1.18);
-  transform-origin: center center;
+  transform: translate(-50%, -50%);
   opacity: var(--lamp-power);
   pointer-events: none;
   transition: opacity 0.18s ease;
@@ -337,10 +341,10 @@ p {
 
 .lamp-hero__lamp {
   position: absolute;
-  top: clamp(2.75rem, 8vh, 5rem);
+  top: var(--lamp-top);
   left: 50%;
   z-index: 2;
-  width: clamp(15rem, 30vw, 22rem);
+  width: var(--lamp-width);
   aspect-ratio: 459 / 432;
   transform: translateX(-50%);
   pointer-events: none;
@@ -472,16 +476,14 @@ p {
 }
 
 @media (max-width: 768px) {
-  .lamp-hero__lamp {
-    top: calc(var(--case-topbar-height) + 1.25rem);
-    width: clamp(12.5rem, 68vw, 17.5rem);
+  .lamp-hero__stage {
+    --lamp-top: calc(var(--case-topbar-height) + 1.25rem);
+    --lamp-width: clamp(12.5rem, 68vw, 17.5rem);
   }
 
   .lamp-hero__halo {
-    top: calc(var(--case-topbar-height) + 0.25rem);
     width: min(140vw, 42rem);
     height: clamp(16rem, 44vh, 24rem);
-    transform: translateX(-50%) scaleX(1.12);
   }
 
   .lamp-hero__pull {
