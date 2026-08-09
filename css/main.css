@@ -378,9 +378,9 @@ p {
 }
 
 .lamp-hero__pull {
-  /* Align with the lantern shade; chain + hint sit beside the visual. */
+  /* Hang beside the lantern; top of chain lines up with the cord. */
   position: absolute;
-  top: calc(var(--lamp-top) + var(--lamp-height) * 0.2);
+  top: var(--lamp-top);
   left: calc(50% + clamp(16.75rem, 33vw, 23.5rem));
   z-index: 3;
   display: flex;
@@ -412,7 +412,7 @@ p {
   width: 100%;
   max-width: none;
   height: auto;
-  max-height: clamp(9.75rem, 28vh, 13.5rem);
+  max-height: clamp(8.25rem, 24vh, 11.25rem);
   object-fit: contain;
   object-position: top center;
   user-select: none;
@@ -494,13 +494,13 @@ p {
   }
 
   .lamp-hero__pull {
-    top: calc(var(--lamp-top) + var(--lamp-height) * 0.18);
+    top: var(--lamp-top);
     left: calc(50% + min(11.75rem, 52vw));
     width: clamp(1.4rem, 6.4vw, 1.85rem);
   }
 
   .lamp-hero__pull-img {
-    max-height: clamp(8.75rem, 26vh, 12rem);
+    max-height: clamp(7.5rem, 22vh, 10.25rem);
   }
 
   .lamp-hero__hint {
