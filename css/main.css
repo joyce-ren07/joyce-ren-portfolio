@@ -324,7 +324,7 @@ p {
   width: clamp(36rem, 80vw, 58rem);
   height: clamp(29rem, 76vh, 53rem);
   transform: translate(-50%, -50%);
-  opacity: var(--lamp-power);
+  opacity: calc(var(--lamp-power) * 0.9);
   pointer-events: none;
   transition: opacity 0.1s ease;
   overflow: hidden;
