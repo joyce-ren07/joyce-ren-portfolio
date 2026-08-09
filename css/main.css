@@ -382,8 +382,13 @@ p {
   border: 0;
   background: transparent;
   cursor: pointer;
+  pointer-events: none;
   transform: translateY(calc(var(--lamp-power) * 10px));
   transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.lamp-hero__pull-img {
+  pointer-events: auto;
 }
 
 .lamp-hero__pull:focus-visible {
@@ -418,9 +423,14 @@ p {
   letter-spacing: -0.04em;
   color: rgb(153, 153, 153);
   white-space: nowrap;
-  opacity: calc(1 - var(--lamp-power) * 0.95);
-  transition: opacity 0.4s ease;
+  opacity: calc(1 - var(--lamp-power));
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
   pointer-events: none;
+}
+
+.portfolio-page.lamp-is-lit .lamp-hero__hint {
+  visibility: hidden;
 }
 
 .lamp-hero__intro {
@@ -454,14 +464,15 @@ p {
   color: color-mix(in srgb, #d4a488 calc(45% + var(--lamp-power) * 55%), #b8896e);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .lamp-hero__lamp {
     width: clamp(12rem, 68vw, 18rem);
   }
 
   .lamp-hero__pull {
-    left: calc(50% + clamp(5rem, 28vw, 7.5rem));
-    width: clamp(2rem, 9vw, 2.6rem);
+    top: calc(var(--case-topbar-height) + 1.1rem);
+    left: calc(50% + min(3.35rem, 16vw));
+    width: clamp(2.35rem, 11vw, 2.85rem);
   }
 
   .lamp-hero__hint {
@@ -1041,6 +1052,16 @@ p {
   height: var(--case-topbar-height);
   background: color-mix(in srgb, var(--case-bg) 92%, transparent);
   backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.case-topbar a,
+.case-topbar button,
+.case-topbar__logo,
+.case-topbar__nav,
+.case-topbar__resume,
+.nav-toggle {
+  pointer-events: auto;
 }
 
 .case-topbar__inner {

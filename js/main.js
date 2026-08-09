@@ -650,7 +650,7 @@
         lampPull.classList.add("is-pulled");
         window.setTimeout(() => lampPull.classList.remove("is-pulled"), reducedMotion ? 0 : 420);
 
-        if (!lit) {
+        if (!lit && window.matchMedia("(min-width: 769px)").matches) {
           const range = getScrollRange();
           if (range > 0 && window.scrollY < range * 0.35) {
             window.scrollTo({
