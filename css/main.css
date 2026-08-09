@@ -4246,6 +4246,11 @@ p {
 
 /* Current — post-demo sections match Home Start typography & spacing */
 
+/* Match #solution section gap so Research → Process isn't oversized */
+.case-study-page--current #research.case-block {
+  padding-bottom: clamp(4rem, 10vh, 7rem);
+}
+
 .case-study-page--current #research,
 .case-study-page--current #process,
 .case-study-page--current #takeaways {
