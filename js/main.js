@@ -589,8 +589,8 @@
     };
 
     /* Flip lit after a short scroll — no long progressive blend */
-    const SCROLL_ON_PX = 56;
-    const SCROLL_OFF_PX = 24;
+    const SCROLL_ON_PX = 32;
+    const SCROLL_OFF_PX = 12;
 
     const getScrollRange = () => Math.max(0, lampHero.offsetHeight - window.innerHeight);
 
@@ -622,7 +622,7 @@
 
     const tick = () => {
       syncTarget();
-      const ease = reducedMotion ? 1 : 0.55;
+      const ease = reducedMotion ? 1 : 0.78;
       state.current += (state.target - state.current) * ease;
       if (Math.abs(state.target - state.current) < 0.01) {
         state.current = state.target;

@@ -326,7 +326,7 @@ p {
   transform: translate(-50%, -50%);
   opacity: var(--lamp-power);
   pointer-events: none;
-  transition: opacity 0.18s ease;
+  transition: opacity 0.1s ease;
 }
 
 .lamp-hero__glow {
@@ -366,7 +366,7 @@ p {
 
 .lamp-hero__lamp-img--unlit {
   opacity: calc(1 - var(--lamp-power));
-  transition: opacity 0.16s ease;
+  transition: opacity 0.1s ease;
 }
 
 .lamp-hero__lamp-img--lit {
@@ -374,7 +374,7 @@ p {
   filter:
     drop-shadow(0 0 calc(16px * var(--lamp-power)) rgba(255, 190, 120, 0.42))
     drop-shadow(0 0 calc(40px * var(--lamp-power)) rgba(255, 170, 100, 0.26));
-  transition: opacity 0.16s ease, filter 0.16s ease;
+  transition: opacity 0.1s ease, filter 0.1s ease;
 }
 
 .lamp-hero__pull {
@@ -439,7 +439,7 @@ p {
   white-space: nowrap;
   opacity: calc(1 - var(--lamp-power));
   visibility: visible;
-  transition: opacity 0.14s ease, visibility 0.14s ease;
+  transition: opacity 0.1s ease, visibility 0.1s ease;
   pointer-events: none;
 }
 
@@ -456,7 +456,7 @@ p {
   text-align: center;
   transform: translate(-50%, calc((1 - var(--lamp-power)) * 0.75rem));
   opacity: var(--lamp-power);
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  transition: opacity 0.1s ease, transform 0.1s ease;
   pointer-events: none;
 }
 
