@@ -327,6 +327,36 @@ p {
   opacity: var(--lamp-power);
   pointer-events: none;
   transition: opacity 0.1s ease;
+  overflow: hidden;
+  /* Soften the hard bottom edge of the glow art. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 70%,
+    rgba(0, 0, 0, 0.5) 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 70%,
+    rgba(0, 0, 0, 0.5) 88%,
+    transparent 100%
+  );
+}
+
+.lamp-hero__halo::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: 0;
+  height: 34%;
+  pointer-events: none;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 45%, #000 100%);
 }
 
 .lamp-hero__glow {
@@ -450,7 +480,7 @@ p {
 .lamp-hero__intro {
   position: absolute;
   left: 50%;
-  top: clamp(65%, 72vh, 78%);
+  top: clamp(62%, 69vh, 75%);
   z-index: 2;
   width: min(100% - 2rem, 36rem);
   text-align: center;
@@ -508,7 +538,7 @@ p {
   }
 
   .lamp-hero__intro {
-    top: clamp(63%, 69vh, 75%);
+    top: clamp(60%, 66vh, 72%);
   }
 
   .lamp-hero__intro .lamp-hero__name {
