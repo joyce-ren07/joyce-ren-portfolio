@@ -576,7 +576,7 @@
     }
   }
 
-  /* Home lamp hero — pull chain toggle + scroll lighting */
+  /* Home lamp hero — pull chain toggle + near-instant scroll lighting */
   const lampHero = document.querySelector(".lamp-hero");
   const lampPull = document.getElementById("lamp-pull");
   if (lampHero) {
@@ -586,23 +586,27 @@
       target: 0,
       current: 0,
       forced: null,
-      pulling: false,
     };
 
-    const clamp01 = (value) => Math.min(1, Math.max(0, value));
+    /* Flip lit after a short scroll — no long progressive blend */
+    const SCROLL_ON_PX = 56;
+    const SCROLL_OFF_PX = 24;
 
     const getScrollRange = () => Math.max(0, lampHero.offsetHeight - window.innerHeight);
 
+    const getScrolledPx = () => Math.max(0, -lampHero.getBoundingClientRect().top);
+
     const getScrollPower = () => {
-      const range = getScrollRange();
-      if (range <= 0) return 0;
-      const scrolled = Math.min(range, Math.max(0, -lampHero.getBoundingClientRect().top));
-      return clamp01(scrolled / (range * 0.72));
+      const scrolled = getScrolledPx();
+      if (state.current >= 0.5) {
+        return scrolled > SCROLL_OFF_PX ? 1 : 0;
+      }
+      return scrolled > SCROLL_ON_PX ? 1 : 0;
     };
 
     const applyPower = (power) => {
       root.style.setProperty("--lamp-power", power.toFixed(3));
-      root.classList.toggle("lamp-is-lit", power > 0.12);
+      root.classList.toggle("lamp-is-lit", power > 0.5);
       if (lampPull) {
         lampPull.setAttribute("aria-pressed", power > 0.5 ? "true" : "false");
       }
@@ -618,9 +622,9 @@
 
     const tick = () => {
       syncTarget();
-      const ease = reducedMotion ? 1 : 0.1;
+      const ease = reducedMotion ? 1 : 0.55;
       state.current += (state.target - state.current) * ease;
-      if (Math.abs(state.target - state.current) < 0.001) {
+      if (Math.abs(state.target - state.current) < 0.01) {
         state.current = state.target;
       }
       applyPower(state.current);
@@ -630,8 +634,13 @@
     };
 
     const onScrollOrResize = () => {
-      if (state.forced !== null && getScrollPower() > 0.92 && state.forced === 1) {
-        state.forced = null;
+      if (state.forced !== null) {
+        const scrolled = getScrolledPx();
+        if (state.forced === 1 && scrolled > SCROLL_ON_PX) {
+          state.forced = null;
+        } else if (state.forced === 0 && scrolled <= SCROLL_OFF_PX) {
+          state.forced = null;
+        }
       }
       syncTarget();
       if (reducedMotion) {
@@ -648,16 +657,22 @@
         const lit = (state.forced !== null ? state.forced : state.current) > 0.5;
         state.forced = lit ? 0 : 1;
         lampPull.classList.add("is-pulled");
-        window.setTimeout(() => lampPull.classList.remove("is-pulled"), reducedMotion ? 0 : 420);
+        window.setTimeout(() => lampPull.classList.remove("is-pulled"), reducedMotion ? 0 : 280);
 
-        if (!lit && window.matchMedia("(min-width: 769px)").matches) {
+        if (!lit) {
           const range = getScrollRange();
-          if (range > 0 && window.scrollY < range * 0.35) {
+          const targetTop = Math.min(Math.max(SCROLL_ON_PX + 8, range * 0.35), Math.max(range, SCROLL_ON_PX + 8));
+          if (getScrolledPx() < SCROLL_ON_PX) {
             window.scrollTo({
-              top: range * 0.42,
+              top: targetTop,
               behavior: reducedMotion ? "auto" : "smooth",
             });
           }
+        } else if (getScrolledPx() > SCROLL_OFF_PX) {
+          window.scrollTo({
+            top: 0,
+            behavior: reducedMotion ? "auto" : "smooth",
+          });
         }
 
         syncTarget();
