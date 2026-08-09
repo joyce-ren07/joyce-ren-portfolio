@@ -2399,7 +2399,7 @@ p {
   width: 3.5rem;
   height: 3.5rem;
   margin: 0 auto 0.5rem;
-  border-radius: 0.85rem;
+  border-radius: 40px;
   font-size: 1.1rem;
   font-weight: 700;
   color: #fff;
@@ -3475,7 +3475,7 @@ p {
   max-width: 10rem;
   aspect-ratio: 1;
   margin-inline: auto;
-  border-radius: 1.35rem;
+  border-radius: 40px;
   background: #f0f0f0;
   border: 1px solid rgba(160, 190, 195, 0.55);
   overflow: hidden;
@@ -3510,7 +3510,7 @@ p {
   width: clamp(4.75rem, 11vw, 6.25rem);
   height: clamp(4.75rem, 11vw, 6.25rem);
   margin: 0;
-  border-radius: 1.35rem;
+  border-radius: 40px;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: none;
