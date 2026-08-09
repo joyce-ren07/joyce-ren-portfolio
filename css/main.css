@@ -307,7 +307,8 @@ p {
   --lamp-top: clamp(2.5rem, 7.5vh, 4.5rem);
   --lamp-width: clamp(13.5rem, 27vw, 19.5rem);
   --lamp-height: calc(var(--lamp-width) * 432 / 459);
-  --lamp-body-y: calc(var(--lamp-top) + var(--lamp-height) * 0.72);
+  /* Align glow to the visual center of the shade (above the widest rim). */
+  --lamp-body-y: calc(var(--lamp-top) + var(--lamp-height) * 0.58);
   position: relative;
   width: min(100%, 56rem);
   min-height: 100vh;
@@ -380,12 +381,12 @@ p {
   /* Small gold pull in the top-right of the lamp composition. */
   position: absolute;
   top: clamp(0.2rem, 1vh, 0.55rem);
-  left: calc(50% + clamp(10.75rem, 21.5vw, 15.25rem));
+  left: calc(50% + clamp(12.25rem, 24vw, 17.25rem));
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: clamp(1rem, 2vw, 1.3rem);
+  width: clamp(1.15rem, 2.3vw, 1.5rem);
   padding: 0;
   margin: 0;
   border: 0;
@@ -411,7 +412,7 @@ p {
   width: 100%;
   max-width: none;
   height: auto;
-  max-height: clamp(6.5rem, 19vh, 9rem);
+  max-height: clamp(7.25rem, 21vh, 10rem);
   object-fit: contain;
   object-position: top center;
   user-select: none;
@@ -493,12 +494,12 @@ p {
 
   .lamp-hero__pull {
     top: calc(var(--case-topbar-height) + 0.2rem);
-    left: calc(50% + min(7.75rem, 36vw));
-    width: clamp(0.95rem, 4.4vw, 1.2rem);
+    left: calc(50% + min(8.75rem, 40vw));
+    width: clamp(1.05rem, 5vw, 1.35rem);
   }
 
   .lamp-hero__pull-img {
-    max-height: clamp(6rem, 18vh, 8rem);
+    max-height: clamp(6.75rem, 20vh, 9rem);
   }
 
   .lamp-hero__hint {
