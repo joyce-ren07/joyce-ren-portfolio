@@ -7,7 +7,7 @@
   <title>Canvas — Joyce Ren</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body class="canvas-page">
@@ -29,108 +29,139 @@
     </div>
   </header>
 
-  <main class="canvas-main" aria-label="Canvas">
-    <header class="canvas-intro">
-      <h1 class="canvas-intro__title">Canvas</h1>
-      <p class="canvas-intro__lede">Art, studies, and occasional writing.</p>
-    </header>
+  <main class="canvas-stage" aria-label="Canvas">
+    <div class="canvas-toolbar" data-canvas-toolbar>
+      <span class="canvas-toolbar__hint">Scroll to zoom · drag to pan</span>
+      <div class="canvas-toolbar__controls" role="group" aria-label="Zoom controls">
+        <button type="button" class="canvas-toolbar__btn" data-canvas-zoom-out aria-label="Zoom out">−</button>
+        <span class="canvas-toolbar__level" data-canvas-zoom-level>100%</span>
+        <button type="button" class="canvas-toolbar__btn" data-canvas-zoom-in aria-label="Zoom in">+</button>
+        <button type="button" class="canvas-toolbar__btn canvas-toolbar__btn--reset" data-canvas-zoom-reset>Reset</button>
+      </div>
+    </div>
 
-    <div class="canvas-gallery" data-canvas-gallery>
-      <button
-        type="button"
-        class="canvas-piece canvas-piece--tall canvas-piece--pos-a"
-        data-canvas-piece
-        data-title="Untitled study I"
-        data-caption="Placeholder for a tall work — painting, photo, or print."
-        aria-haspopup="dialog"
-      >
-        <span class="canvas-piece__frame" aria-hidden="true"></span>
-        <span class="canvas-piece__caption">Untitled study I</span>
-      </button>
+    <div class="canvas-viewport" data-canvas-viewport>
+      <div class="canvas-world" data-canvas-world data-canvas-gallery>
+        <div class="canvas-spread" aria-hidden="false">
+          <div class="canvas-page-sheet canvas-page-sheet--left">
+            <span class="canvas-page-sheet__mark">01 / 02</span>
+            <p class="canvas-spread__spine-label">Canvas</p>
 
-      <button
-        type="button"
-        class="canvas-piece canvas-piece--wide canvas-piece--pos-b"
-        data-canvas-piece
-        data-title="Field notes"
-        data-caption="Placeholder for a landscape piece or short writing excerpt."
-        aria-haspopup="dialog"
-      >
-        <span class="canvas-piece__frame" aria-hidden="true"></span>
-        <span class="canvas-piece__caption">Field notes</span>
-      </button>
+            <p class="canvas-note canvas-note--vertical">Studies in progress</p>
 
-      <button
-        type="button"
-        class="canvas-piece canvas-piece--square canvas-piece--pos-c"
-        data-canvas-piece
-        data-title="Small frame"
-        data-caption="Placeholder for a square study or detail crop."
-        aria-haspopup="dialog"
-      >
-        <span class="canvas-piece__frame" aria-hidden="true"></span>
-        <span class="canvas-piece__caption">Small frame</span>
-      </button>
+            <aside class="canvas-copy canvas-copy--lede">
+              <p>
+                A place for art, mostly — and some writing. Placeholders for now;
+                click any piece to open it.
+              </p>
+            </aside>
 
-      <button
-        type="button"
-        class="canvas-piece canvas-piece--portrait canvas-piece--pos-d"
-        data-canvas-piece
-        data-title="Vertical study"
-        data-caption="Placeholder for a portrait-oriented work."
-        aria-haspopup="dialog"
-      >
-        <span class="canvas-piece__frame" aria-hidden="true"></span>
-        <span class="canvas-piece__caption">Vertical study</span>
-      </button>
+            <button
+              type="button"
+              class="canvas-piece canvas-piece--a"
+              data-canvas-piece
+              data-title="Untitled study I"
+              data-caption="Placeholder for a tall work — painting, photo, or print."
+              aria-haspopup="dialog"
+            >
+              <span class="canvas-piece__frame" aria-hidden="true"></span>
+              <span class="canvas-piece__meta">Fig. 01 · Untitled study I</span>
+            </button>
 
-      <button
-        type="button"
-        class="canvas-piece canvas-piece--wide canvas-piece--pos-e"
-        data-canvas-piece
-        data-title="Spread II"
-        data-caption="Placeholder for a wide composition or page study."
-        aria-haspopup="dialog"
-      >
-        <span class="canvas-piece__frame" aria-hidden="true"></span>
-        <span class="canvas-piece__caption">Spread II</span>
-      </button>
+            <div class="canvas-copy canvas-copy--overlap">
+              <p>
+                Negative space holds as much as the object. Overlap is a way of
+                letting two thoughts share a margin.
+              </p>
+            </div>
 
-      <button
-        type="button"
-        class="canvas-piece canvas-piece--square canvas-piece--pos-f"
-        data-canvas-piece
-        data-title="Object"
-        data-caption="Placeholder for a still life or object photograph."
-        aria-haspopup="dialog"
-      >
-        <span class="canvas-piece__frame" aria-hidden="true"></span>
-        <span class="canvas-piece__caption">Object</span>
-      </button>
+            <button
+              type="button"
+              class="canvas-piece canvas-piece--b"
+              data-canvas-piece
+              data-title="Field notes"
+              data-caption="Placeholder for a landscape piece or short writing excerpt."
+              aria-haspopup="dialog"
+            >
+              <span class="canvas-piece__frame" aria-hidden="true"></span>
+              <span class="canvas-piece__meta">Fig. 02 · Field notes</span>
+            </button>
 
-      <button
-        type="button"
-        class="canvas-piece canvas-piece--tall canvas-piece--pos-g"
-        data-canvas-piece
-        data-title="Untitled study II"
-        data-caption="Placeholder for another tall work in the series."
-        aria-haspopup="dialog"
-      >
-        <span class="canvas-piece__frame" aria-hidden="true"></span>
-        <span class="canvas-piece__caption">Untitled study II</span>
-      </button>
+            <ul class="canvas-index">
+              <li><span>IMG 01</span> Tall study, unfinished</li>
+              <li><span>IMG 02</span> Landscape fragment</li>
+              <li><span>IMG 03</span> Object / still</li>
+            </ul>
+          </div>
 
-      <button
-        type="button"
-        class="canvas-piece canvas-piece--wide canvas-piece--pos-h"
-        data-canvas-piece
-        data-title="Writing fragment"
-        data-caption="Placeholder for a short essay or captioned piece."
-        aria-haspopup="dialog"
-      >
-        <span class="canvas-piece__frame" aria-hidden="true"></span>
-        <span class="canvas-piece__caption">Writing fragment</span>
-      </button>
+          <div class="canvas-gutter" aria-hidden="true"></div>
+
+          <div class="canvas-page-sheet canvas-page-sheet--right">
+            <span class="canvas-page-sheet__mark">02 / 02</span>
+            <div class="canvas-veil" aria-hidden="true"></div>
+
+            <button
+              type="button"
+              class="canvas-piece canvas-piece--c"
+              data-canvas-piece
+              data-title="Spread II"
+              data-caption="Placeholder for a wide composition or page study."
+              aria-haspopup="dialog"
+            >
+              <span class="canvas-piece__frame" aria-hidden="true"></span>
+              <span class="canvas-piece__meta">Fig. 03 · Spread II</span>
+            </button>
+
+            <div class="canvas-copy canvas-copy--caption-block">
+              <p><strong>Fig. 03</strong> Wide composition — room for a photograph or a short essay pull.</p>
+              <p><strong>Fig. 04</strong> Vertical study overlapping the caption plane.</p>
+            </div>
+
+            <button
+              type="button"
+              class="canvas-piece canvas-piece--d"
+              data-canvas-piece
+              data-title="Vertical study"
+              data-caption="Placeholder for a portrait-oriented work."
+              aria-haspopup="dialog"
+            >
+              <span class="canvas-piece__frame" aria-hidden="true"></span>
+              <span class="canvas-piece__meta">Fig. 04 · Vertical study</span>
+            </button>
+
+            <button
+              type="button"
+              class="canvas-piece canvas-piece--e"
+              data-canvas-piece
+              data-title="Object"
+              data-caption="Placeholder for a still life or object photograph."
+              aria-haspopup="dialog"
+            >
+              <span class="canvas-piece__frame" aria-hidden="true"></span>
+              <span class="canvas-piece__meta">Fig. 05 · Object</span>
+            </button>
+
+            <button
+              type="button"
+              class="canvas-piece canvas-piece--f"
+              data-canvas-piece
+              data-title="Writing fragment"
+              data-caption="Placeholder for a short essay or captioned piece."
+              aria-haspopup="dialog"
+            >
+              <span class="canvas-piece__frame" aria-hidden="true"></span>
+              <span class="canvas-piece__meta">Fig. 06 · Writing fragment</span>
+            </button>
+
+            <aside class="canvas-copy canvas-copy--footnote">
+              <p>
+                Drag the spread. Zoom with the wheel or buttons. Each frame
+                expands on click.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 

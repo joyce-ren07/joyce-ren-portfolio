@@ -691,79 +691,204 @@
     }
   }
 
-  /* Canvas gallery — reveal + lightbox */
-  const canvasGallery = document.querySelector("[data-canvas-gallery]");
+  /* Canvas magazine spread — zoom/pan + lightbox */
+  const canvasViewport = document.querySelector("[data-canvas-viewport]");
+  const canvasWorld = document.querySelector("[data-canvas-world]");
   const canvasLightbox = document.querySelector("[data-canvas-lightbox]");
-  if (canvasGallery && canvasLightbox) {
-    const pieces = Array.from(canvasGallery.querySelectorAll("[data-canvas-piece]"));
-    const closeBtn = canvasLightbox.querySelector("[data-canvas-lightbox-close]");
-    const titleEl = canvasLightbox.querySelector("[data-canvas-lightbox-title]");
-    const captionEl = canvasLightbox.querySelector("[data-canvas-lightbox-caption]");
-    const visualEl = canvasLightbox.querySelector("[data-canvas-lightbox-visual]");
+  if (canvasViewport && canvasWorld) {
+    const pieces = Array.from(canvasWorld.querySelectorAll("[data-canvas-piece]"));
+    const zoomInBtn = document.querySelector("[data-canvas-zoom-in]");
+    const zoomOutBtn = document.querySelector("[data-canvas-zoom-out]");
+    const zoomResetBtn = document.querySelector("[data-canvas-zoom-reset]");
+    const zoomLevelEl = document.querySelector("[data-canvas-zoom-level]");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let lastTrigger = null;
 
-    const openPiece = (piece) => {
-      if (!piece) return;
-      lastTrigger = piece;
-      if (titleEl) titleEl.textContent = piece.dataset.title || "";
-      if (captionEl) captionEl.textContent = piece.dataset.caption || "";
-      if (visualEl) {
-        const frame = piece.querySelector(".canvas-piece__frame");
-        visualEl.style.background = frame
-          ? getComputedStyle(frame).background
-          : "";
-        const ratio = frame ? getComputedStyle(frame).aspectRatio : "4 / 3";
-        visualEl.style.aspectRatio = ratio || "4 / 3";
-      }
-      if (typeof canvasLightbox.showModal === "function") {
-        canvasLightbox.showModal();
-      } else {
-        canvasLightbox.setAttribute("open", "");
-      }
+    const MIN_SCALE = 0.45;
+    const MAX_SCALE = 2.4;
+    const state = {
+      scale: 1,
+      x: 0,
+      y: 0,
+      dragging: false,
+      pointerId: null,
+      startX: 0,
+      startY: 0,
+      originX: 0,
+      originY: 0,
+      moved: false,
     };
 
-    const closeLightbox = () => {
-      if (typeof canvasLightbox.close === "function") {
-        canvasLightbox.close();
-      } else {
-        canvasLightbox.removeAttribute("open");
-      }
-      if (lastTrigger) {
-        lastTrigger.focus();
-        lastTrigger = null;
-      }
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+    const fitScale = () => {
+      const pad = 72;
+      const vw = canvasViewport.clientWidth;
+      const vh = canvasViewport.clientHeight;
+      const worldW = canvasWorld.offsetWidth || 1480;
+      const worldH = canvasWorld.offsetHeight || 920;
+      return clamp(Math.min((vw - pad) / worldW, (vh - pad) / worldH), MIN_SCALE, 1);
     };
 
-    pieces.forEach((piece, index) => {
-      piece.style.transitionDelay = reducedMotion ? "0ms" : `${Math.min(index * 70, 420)}ms`;
-      piece.addEventListener("click", () => openPiece(piece));
+    const applyTransform = () => {
+      canvasWorld.style.transform = `translate(-50%, -50%) translate(${state.x}px, ${state.y}px) scale(${state.scale})`;
+      if (zoomLevelEl) zoomLevelEl.textContent = `${Math.round(state.scale * 100)}%`;
+    };
+
+    const setScale = (nextScale, originClientX, originClientY) => {
+      const prev = state.scale;
+      const scale = clamp(nextScale, MIN_SCALE, MAX_SCALE);
+      if (scale === prev) return;
+
+      if (typeof originClientX === "number" && typeof originClientY === "number") {
+        const rect = canvasViewport.getBoundingClientRect();
+        const cx = originClientX - rect.left - rect.width / 2;
+        const cy = originClientY - rect.top - rect.height / 2;
+        const ratio = scale / prev;
+        state.x = cx - (cx - state.x) * ratio;
+        state.y = cy - (cy - state.y) * ratio;
+      }
+
+      state.scale = scale;
+      applyTransform();
+    };
+
+    const resetView = () => {
+      state.scale = fitScale();
+      state.x = 0;
+      state.y = 0;
+      applyTransform();
+    };
+
+    resetView();
+    window.addEventListener("resize", () => {
+      if (!state.dragging) resetView();
     });
 
-    if ("IntersectionObserver" in window && !reducedMotion) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
-      );
-      pieces.forEach((piece) => observer.observe(piece));
-    } else {
-      pieces.forEach((piece) => piece.classList.add("is-visible"));
+    canvasViewport.addEventListener(
+      "wheel",
+      (event) => {
+        event.preventDefault();
+        const direction = event.deltaY > 0 ? -1 : 1;
+        const factor = direction > 0 ? 1.08 : 1 / 1.08;
+        setScale(state.scale * factor, event.clientX, event.clientY);
+      },
+      { passive: false }
+    );
+
+    canvasViewport.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0 && event.pointerType === "mouse") return;
+      if (event.target.closest("[data-canvas-piece]")) return;
+      state.dragging = true;
+      state.moved = false;
+      state.pointerId = event.pointerId;
+      state.startX = event.clientX;
+      state.startY = event.clientY;
+      state.originX = state.x;
+      state.originY = state.y;
+      canvasViewport.classList.add("is-dragging");
+      canvasViewport.setPointerCapture(event.pointerId);
+    });
+
+    canvasViewport.addEventListener("pointermove", (event) => {
+      if (!state.dragging || event.pointerId !== state.pointerId) return;
+      const dx = event.clientX - state.startX;
+      const dy = event.clientY - state.startY;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) state.moved = true;
+      state.x = state.originX + dx;
+      state.y = state.originY + dy;
+      applyTransform();
+    });
+
+    const endDrag = (event) => {
+      if (!state.dragging || event.pointerId !== state.pointerId) return;
+      state.dragging = false;
+      state.pointerId = null;
+      canvasViewport.classList.remove("is-dragging");
+    };
+
+    canvasViewport.addEventListener("pointerup", endDrag);
+    canvasViewport.addEventListener("pointercancel", endDrag);
+
+    zoomInBtn?.addEventListener("click", () => setScale(state.scale * 1.15));
+    zoomOutBtn?.addEventListener("click", () => setScale(state.scale / 1.15));
+    zoomResetBtn?.addEventListener("click", resetView);
+
+    if (canvasLightbox) {
+      const closeBtn = canvasLightbox.querySelector("[data-canvas-lightbox-close]");
+      const titleEl = canvasLightbox.querySelector("[data-canvas-lightbox-title]");
+      const captionEl = canvasLightbox.querySelector("[data-canvas-lightbox-caption]");
+      const visualEl = canvasLightbox.querySelector("[data-canvas-lightbox-visual]");
+      let lastTrigger = null;
+
+      const openPiece = (piece) => {
+        if (!piece || state.moved) return;
+        lastTrigger = piece;
+        if (titleEl) titleEl.textContent = piece.dataset.title || "";
+        if (captionEl) captionEl.textContent = piece.dataset.caption || "";
+        if (visualEl) {
+          const frame = piece.querySelector(".canvas-piece__frame");
+          visualEl.style.background = frame ? getComputedStyle(frame).background : "";
+          const ratio = frame ? getComputedStyle(frame).aspectRatio : "4 / 3";
+          visualEl.style.aspectRatio = ratio && ratio !== "auto" ? ratio : "4 / 3";
+        }
+        if (typeof canvasLightbox.showModal === "function") {
+          canvasLightbox.showModal();
+        } else {
+          canvasLightbox.setAttribute("open", "");
+        }
+      };
+
+      const closeLightbox = () => {
+        if (typeof canvasLightbox.close === "function") {
+          canvasLightbox.close();
+        } else {
+          canvasLightbox.removeAttribute("open");
+        }
+        if (lastTrigger) {
+          lastTrigger.focus();
+          lastTrigger = null;
+        }
+      };
+
+      pieces.forEach((piece) => {
+        piece.addEventListener("pointerdown", (event) => {
+          state.moved = false;
+          state.startX = event.clientX;
+          state.startY = event.clientY;
+        });
+        piece.addEventListener("pointerup", (event) => {
+          const dx = event.clientX - state.startX;
+          const dy = event.clientY - state.startY;
+          if (Math.hypot(dx, dy) < 6) openPiece(piece);
+        });
+      });
+
+      closeBtn?.addEventListener("click", closeLightbox);
+      canvasLightbox.addEventListener("click", (event) => {
+        if (event.target === canvasLightbox) closeLightbox();
+      });
+      canvasLightbox.addEventListener("cancel", (event) => {
+        event.preventDefault();
+        closeLightbox();
+      });
     }
 
-    closeBtn?.addEventListener("click", closeLightbox);
-    canvasLightbox.addEventListener("click", (event) => {
-      if (event.target === canvasLightbox) closeLightbox();
-    });
-    canvasLightbox.addEventListener("cancel", (event) => {
-      event.preventDefault();
-      closeLightbox();
-    });
+    if (!reducedMotion) {
+      const intro = canvasWorld.animate(
+        [
+          { opacity: 0 },
+          { opacity: 1 },
+        ],
+        { duration: 650, easing: "ease", fill: "both" }
+      );
+      intro.finished.finally(() => {
+        try {
+          intro.cancel();
+          canvasWorld.style.opacity = "1";
+        } catch (_) {
+          /* ignore */
+        }
+      });
+    }
   }
 })();
