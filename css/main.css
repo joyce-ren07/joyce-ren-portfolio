@@ -4169,6 +4169,34 @@ p {
   display: none;
 }
 
+/* Uploaded cover art with animated wave GIF over the static circle */
+.current-cover--photo {
+  position: relative;
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.current-cover__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.current-cover__wave-gif {
+  position: absolute;
+  /* Matched to the 600×600 wave circle in the 1584×600 cover */
+  left: calc(984 / 1584 * 100%);
+  top: 0;
+  width: calc(600 / 1584 * 100%);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
 .current-cover__wave-group,
 .current-cover__wave-line {
   transform-box: fill-box;
