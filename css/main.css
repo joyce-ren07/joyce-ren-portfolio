@@ -698,6 +698,25 @@ p {
   min-height: 100vh;
 }
 
+.canvas-page {
+  --case-bg: #ffffff;
+  --case-text: #a1a1a1;
+  --case-heading: #a1a1a1;
+  background: var(--case-bg);
+  color: var(--case-text);
+  min-height: 100vh;
+}
+
+.canvas-main {
+  max-width: var(--nav-max-width);
+  margin-inline: auto;
+  padding:
+    calc(var(--case-topbar-height) + clamp(3rem, 8vw, 5rem))
+    var(--nav-padding-inline)
+    clamp(4rem, 10vw, 6rem);
+  min-height: calc(100vh - var(--case-topbar-height));
+}
+
 .portfolio-page {
   --case-bg: #ffffff;
   --lamp-power: 0;
