@@ -4316,6 +4316,16 @@ p {
   margin: 0 0 clamp(1.5rem, 3.5vw, 2.25rem);
 }
 
+/* SWOT sits bare on the page background (image already has card shadows) */
+.case-market-table--flush {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
 #process .case-process-competitive .case-body--process + .case-competitive__logos {
   margin-top: 1.75rem;
 }
