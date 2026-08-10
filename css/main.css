@@ -4169,6 +4169,50 @@ p {
   display: none;
 }
 
+/* Intro role meta — centered inline rows, bold labels, lighter values */
+.case-study-page--current .case-block--intro .case-intro-meta {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  align-items: center;
+}
+
+.case-study-page--current .case-block--intro .case-intro-meta .case-details {
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  gap: clamp(3.5rem, 10vw, 7rem);
+}
+
+.case-study-page--current .case-block--intro .case-intro-meta .case-details__col {
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.case-study-page--current .case-block--intro .case-intro-meta .case-details__item {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.case-study-page--current .case-block--intro .case-intro-meta .case-details__item dt {
+  font-size: var(--case-tertiary-size);
+  font-weight: 600;
+  color: #a1a1a1;
+  text-align: center;
+}
+
+.case-study-page--current .case-block--intro .case-intro-meta .case-details__item dd {
+  margin: 0;
+  font-size: var(--case-tertiary-size);
+  font-weight: 600;
+  line-height: 1.5;
+  color: #c8c8c8;
+  text-align: center;
+}
+
 /* Uploaded cover art with animated wave GIF over the static circle */
 .current-cover--photo {
   position: relative;
