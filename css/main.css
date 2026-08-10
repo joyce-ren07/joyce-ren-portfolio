@@ -4178,6 +4178,8 @@ p {
   padding: 0;
   overflow: hidden;
   background: transparent;
+  border: none;
+  border-radius: 0;
 }
 
 .current-cover__photo {
