@@ -4310,7 +4310,9 @@ p {
   }
 }
 
-.case-study-page--current #process .case-market-table {
+/* Keep logos / analysis / SWOT / copy gaps consistent */
+.case-study-page--current #process .case-market-table,
+.case-study-page--current #process .case-process-competitive > .case-body--process {
   margin: 0 0 clamp(1.5rem, 3.5vw, 2.25rem);
 }
 
