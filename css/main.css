@@ -4289,9 +4289,9 @@ p {
   background: #ffffff;
 }
 
-/* Current Market Landscape logos: 48px gaps, centered */
+/* Current Market Landscape logos: 5-up like Home Start, 48px gaps, centered */
 .case-study-page--current #process .case-competitive__logos {
-  grid-template-columns: repeat(4, minmax(0, 10rem));
+  grid-template-columns: repeat(5, minmax(0, 10rem));
   justify-content: center;
   gap: 48px;
   margin-bottom: clamp(1.5rem, 3.5vw, 2.25rem);
@@ -4304,7 +4304,7 @@ p {
 
 @media (max-width: 900px) {
   .case-study-page--current #process .case-competitive__logos {
-    grid-template-columns: repeat(2, minmax(0, 10rem));
+    grid-template-columns: repeat(3, minmax(0, 10rem));
     gap: 48px;
     justify-content: center;
   }
