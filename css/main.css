@@ -4324,6 +4324,15 @@ p {
   background: transparent;
   box-shadow: none;
   overflow: visible;
+  width: 82%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.case-study-page--current #process .case-market-table--flush {
+  width: 82%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #process .case-process-competitive .case-body--process + .case-competitive__logos {
