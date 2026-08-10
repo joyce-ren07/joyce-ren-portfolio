@@ -1785,6 +1785,23 @@ p {
   overflow: visible;
 }
 
+.case-feature-video-card {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  line-height: 0;
+}
+
+.case-feature-video-card__media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+}
+
 .case-feature-row:has(.case-device-video--laptop) {
   grid-template-columns: minmax(0, 0.68fr) minmax(0, 1.65fr);
   gap: clamp(3rem, 8vw, 6rem);
