@@ -30,7 +30,122 @@
   </header>
 
   <main class="canvas-main" aria-label="Canvas">
+    <header class="canvas-intro">
+      <h1 class="canvas-intro__title">Canvas</h1>
+      <p class="canvas-intro__lede">Art, studies, and occasional writing.</p>
+    </header>
+
+    <div class="canvas-gallery" data-canvas-gallery>
+      <button
+        type="button"
+        class="canvas-piece canvas-piece--tall canvas-piece--pos-a"
+        data-canvas-piece
+        data-title="Untitled study I"
+        data-caption="Placeholder for a tall work — painting, photo, or print."
+        aria-haspopup="dialog"
+      >
+        <span class="canvas-piece__frame" aria-hidden="true"></span>
+        <span class="canvas-piece__caption">Untitled study I</span>
+      </button>
+
+      <button
+        type="button"
+        class="canvas-piece canvas-piece--wide canvas-piece--pos-b"
+        data-canvas-piece
+        data-title="Field notes"
+        data-caption="Placeholder for a landscape piece or short writing excerpt."
+        aria-haspopup="dialog"
+      >
+        <span class="canvas-piece__frame" aria-hidden="true"></span>
+        <span class="canvas-piece__caption">Field notes</span>
+      </button>
+
+      <button
+        type="button"
+        class="canvas-piece canvas-piece--square canvas-piece--pos-c"
+        data-canvas-piece
+        data-title="Small frame"
+        data-caption="Placeholder for a square study or detail crop."
+        aria-haspopup="dialog"
+      >
+        <span class="canvas-piece__frame" aria-hidden="true"></span>
+        <span class="canvas-piece__caption">Small frame</span>
+      </button>
+
+      <button
+        type="button"
+        class="canvas-piece canvas-piece--portrait canvas-piece--pos-d"
+        data-canvas-piece
+        data-title="Vertical study"
+        data-caption="Placeholder for a portrait-oriented work."
+        aria-haspopup="dialog"
+      >
+        <span class="canvas-piece__frame" aria-hidden="true"></span>
+        <span class="canvas-piece__caption">Vertical study</span>
+      </button>
+
+      <button
+        type="button"
+        class="canvas-piece canvas-piece--wide canvas-piece--pos-e"
+        data-canvas-piece
+        data-title="Spread II"
+        data-caption="Placeholder for a wide composition or page study."
+        aria-haspopup="dialog"
+      >
+        <span class="canvas-piece__frame" aria-hidden="true"></span>
+        <span class="canvas-piece__caption">Spread II</span>
+      </button>
+
+      <button
+        type="button"
+        class="canvas-piece canvas-piece--square canvas-piece--pos-f"
+        data-canvas-piece
+        data-title="Object"
+        data-caption="Placeholder for a still life or object photograph."
+        aria-haspopup="dialog"
+      >
+        <span class="canvas-piece__frame" aria-hidden="true"></span>
+        <span class="canvas-piece__caption">Object</span>
+      </button>
+
+      <button
+        type="button"
+        class="canvas-piece canvas-piece--tall canvas-piece--pos-g"
+        data-canvas-piece
+        data-title="Untitled study II"
+        data-caption="Placeholder for another tall work in the series."
+        aria-haspopup="dialog"
+      >
+        <span class="canvas-piece__frame" aria-hidden="true"></span>
+        <span class="canvas-piece__caption">Untitled study II</span>
+      </button>
+
+      <button
+        type="button"
+        class="canvas-piece canvas-piece--wide canvas-piece--pos-h"
+        data-canvas-piece
+        data-title="Writing fragment"
+        data-caption="Placeholder for a short essay or captioned piece."
+        aria-haspopup="dialog"
+      >
+        <span class="canvas-piece__frame" aria-hidden="true"></span>
+        <span class="canvas-piece__caption">Writing fragment</span>
+      </button>
+    </div>
   </main>
+
+  <dialog class="canvas-lightbox" data-canvas-lightbox aria-label="Artwork detail">
+    <div class="canvas-lightbox__panel">
+      <button type="button" class="canvas-lightbox__close" data-canvas-lightbox-close aria-label="Close">
+        Close
+      </button>
+      <div class="canvas-lightbox__visual" data-canvas-lightbox-visual aria-hidden="true"></div>
+      <div class="canvas-lightbox__copy">
+        <h2 class="canvas-lightbox__title" data-canvas-lightbox-title></h2>
+        <p class="canvas-lightbox__caption" data-canvas-lightbox-caption></p>
+      </div>
+    </div>
+  </dialog>
 
   <script src="../js/main.js"></script>
 </body>
