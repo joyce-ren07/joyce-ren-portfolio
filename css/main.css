@@ -4289,9 +4289,9 @@ p {
   background: #ffffff;
 }
 
-/* Keep logos → analysis → compare gaps aligned with Home Start logos → compare */
+/* Match Home Start logo column sizing (5-col grid) so gaps stay tight */
 .case-study-page--current #process .case-competitive__logos {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-bottom: clamp(1.5rem, 3.5vw, 2.25rem);
 }
 
