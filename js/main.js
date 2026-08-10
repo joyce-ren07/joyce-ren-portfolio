@@ -690,4 +690,80 @@
       requestAnimationFrame(tick);
     }
   }
+
+  /* Canvas gallery — reveal + lightbox */
+  const canvasGallery = document.querySelector("[data-canvas-gallery]");
+  const canvasLightbox = document.querySelector("[data-canvas-lightbox]");
+  if (canvasGallery && canvasLightbox) {
+    const pieces = Array.from(canvasGallery.querySelectorAll("[data-canvas-piece]"));
+    const closeBtn = canvasLightbox.querySelector("[data-canvas-lightbox-close]");
+    const titleEl = canvasLightbox.querySelector("[data-canvas-lightbox-title]");
+    const captionEl = canvasLightbox.querySelector("[data-canvas-lightbox-caption]");
+    const visualEl = canvasLightbox.querySelector("[data-canvas-lightbox-visual]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let lastTrigger = null;
+
+    const openPiece = (piece) => {
+      if (!piece) return;
+      lastTrigger = piece;
+      if (titleEl) titleEl.textContent = piece.dataset.title || "";
+      if (captionEl) captionEl.textContent = piece.dataset.caption || "";
+      if (visualEl) {
+        const frame = piece.querySelector(".canvas-piece__frame");
+        visualEl.style.background = frame
+          ? getComputedStyle(frame).background
+          : "";
+        const ratio = frame ? getComputedStyle(frame).aspectRatio : "4 / 3";
+        visualEl.style.aspectRatio = ratio || "4 / 3";
+      }
+      if (typeof canvasLightbox.showModal === "function") {
+        canvasLightbox.showModal();
+      } else {
+        canvasLightbox.setAttribute("open", "");
+      }
+    };
+
+    const closeLightbox = () => {
+      if (typeof canvasLightbox.close === "function") {
+        canvasLightbox.close();
+      } else {
+        canvasLightbox.removeAttribute("open");
+      }
+      if (lastTrigger) {
+        lastTrigger.focus();
+        lastTrigger = null;
+      }
+    };
+
+    pieces.forEach((piece, index) => {
+      piece.style.transitionDelay = reducedMotion ? "0ms" : `${Math.min(index * 70, 420)}ms`;
+      piece.addEventListener("click", () => openPiece(piece));
+    });
+
+    if ("IntersectionObserver" in window && !reducedMotion) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+      );
+      pieces.forEach((piece) => observer.observe(piece));
+    } else {
+      pieces.forEach((piece) => piece.classList.add("is-visible"));
+    }
+
+    closeBtn?.addEventListener("click", closeLightbox);
+    canvasLightbox.addEventListener("click", (event) => {
+      if (event.target === canvasLightbox) closeLightbox();
+    });
+    canvasLightbox.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeLightbox();
+    });
+  }
 })();
