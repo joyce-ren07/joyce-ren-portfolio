@@ -620,6 +620,8 @@ p {
 
 .work-card__cover-video--cueturn {
   object-position: right center;
+  transform: scale(1.12);
+  transform-origin: right center;
 }
 
 .work-card__body {
