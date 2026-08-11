@@ -591,7 +591,8 @@ p {
   color: transparent;
 }
 
-.work-card__image--current {
+.work-card__image--current,
+.work-card__image--video {
   background: #ffffff;
   padding: 0;
   color: inherit;
