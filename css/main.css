@@ -1207,6 +1207,342 @@ p {
   color: var(--case-text);
 }
 
+/* --------------------------------------------------------------------------
+   Canvas — foreword envelope
+   -------------------------------------------------------------------------- */
+
+.canvas-envelope {
+  --envelope-w: 7.25rem;
+  --envelope-h: 4.85rem;
+  appearance: none;
+  position: absolute;
+  right: 3.25rem;
+  bottom: 5.75rem;
+  z-index: 7;
+  width: var(--envelope-w);
+  height: calc(var(--envelope-h) + 1.65rem);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transform: rotate(-6deg);
+  transform-origin: center bottom;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.canvas-envelope:hover,
+.canvas-envelope:focus-visible {
+  transform: rotate(-3deg) translateY(-0.15rem);
+}
+
+.canvas-envelope:focus-visible {
+  outline: 2px solid color-mix(in srgb, #c9a8a0 55%, #a1a1a1);
+  outline-offset: 6px;
+}
+
+.canvas-envelope__paper {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: calc(1.55rem + var(--envelope-h) * 0.42);
+  height: 2.15rem;
+  background:
+    linear-gradient(180deg, #fffcf7 0%, #f4efe7 100%);
+  border: 1px solid rgba(120, 100, 80, 0.1);
+  box-shadow: 0 4px 10px rgba(70, 50, 30, 0.06);
+  transform-origin: center bottom;
+  transform: translateY(0.15rem);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.canvas-envelope__paper-lines {
+  display: block;
+  width: 72%;
+  height: 100%;
+  margin: 0.45rem auto 0;
+  background:
+    repeating-linear-gradient(
+      transparent 0 0.28rem,
+      rgba(160, 140, 120, 0.18) 0.28rem 0.3rem
+    );
+  opacity: 0.7;
+}
+
+.canvas-envelope:hover .canvas-envelope__paper,
+.canvas-envelope:focus-visible .canvas-envelope__paper {
+  height: 3.1rem;
+  transform: translateY(-0.55rem);
+}
+
+.canvas-envelope__body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.55rem;
+  height: var(--envelope-h);
+  z-index: 2;
+  filter: drop-shadow(0 10px 18px rgba(70, 55, 40, 0.1));
+}
+
+.canvas-envelope__face {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.55), transparent 42%),
+    linear-gradient(180deg, #efe7dc 0%, #e4d9cb 100%);
+  border: 1px solid rgba(120, 100, 80, 0.14);
+  clip-path: polygon(0 28%, 50% 62%, 100% 28%, 100% 100%, 0 100%);
+}
+
+.canvas-envelope__flap {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, #f7f1e8 0%, #ebdfd1 100%);
+  border: 1px solid rgba(120, 100, 80, 0.12);
+  clip-path: polygon(0 28%, 50% 0, 100% 28%, 50% 58%);
+  z-index: 3;
+}
+
+.canvas-envelope__face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, transparent 48%, rgba(120, 100, 80, 0.08) 50%, transparent 52%),
+    linear-gradient(225deg, transparent 48%, rgba(120, 100, 80, 0.08) 50%, transparent 52%);
+  clip-path: polygon(0 28%, 50% 62%, 100% 28%, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+
+.canvas-envelope__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #b39a90;
+}
+
+/* --------------------------------------------------------------------------
+   Foreword letter dialog
+   -------------------------------------------------------------------------- */
+
+.foreword-letter {
+  width: min(44rem, calc(100vw - 1.5rem));
+  max-width: calc(100vw - 1.5rem);
+  max-height: calc(100vh - 1.5rem);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  color: #4a4540;
+}
+
+.foreword-letter::backdrop {
+  background: rgba(246, 242, 236, 0.82);
+  backdrop-filter: blur(12px);
+}
+
+.foreword-letter__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: min(38rem, calc(100vh - 2rem));
+  padding: 1rem;
+}
+
+.foreword-letter__close {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  z-index: 8;
+  appearance: none;
+  margin: 0;
+  padding: 0.4rem 0.65rem;
+  border: 0;
+  background: transparent;
+  color: #a1a1a1;
+  font: inherit;
+  font-size: var(--text-tertiary-size);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.foreword-letter__close:hover,
+.foreword-letter__close:focus-visible {
+  color: #6f6f6f;
+}
+
+.foreword-letter__scene {
+  position: relative;
+  width: min(36rem, 92vw);
+  min-height: 16rem;
+  display: grid;
+  place-items: center;
+  perspective: 1400px;
+}
+
+.foreword-letter__envelope {
+  position: relative;
+  width: min(20rem, 78vw);
+  height: 12.5rem;
+  transform-style: preserve-3d;
+  transition:
+    width 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.foreword-letter.is-reading .foreword-letter__envelope {
+  width: min(36rem, 92vw);
+  height: auto;
+  min-height: 0;
+}
+
+.foreword-letter__envelope-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #efe6da 0%, #e3d7c8 100%);
+  border: 1px solid rgba(120, 100, 80, 0.14);
+  box-shadow: 0 18px 40px rgba(70, 50, 30, 0.1);
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+.foreword-letter__pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.35), transparent 42%),
+    linear-gradient(180deg, transparent 36%, #ebe1d4 36%, #e0d4c4 100%);
+  clip-path: polygon(0 36%, 50% 72%, 100% 36%, 100% 100%, 0 100%);
+  border: 1px solid rgba(120, 100, 80, 0.12);
+  border-top: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.foreword-letter__flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 58%;
+  z-index: 4;
+  background: linear-gradient(180deg, #f8f2ea 0%, #ebdfd1 100%);
+  border: 1px solid rgba(120, 100, 80, 0.12);
+  clip-path: polygon(0 64%, 50% 0, 100% 64%);
+  transform-origin: 50% 64%;
+  transform: rotateX(0deg);
+  transition:
+    transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease;
+  backface-visibility: hidden;
+}
+
+.foreword-letter.is-open .foreword-letter__flap {
+  transform: rotateX(172deg);
+}
+
+.foreword-letter.is-reading .foreword-letter__envelope-back,
+.foreword-letter.is-reading .foreword-letter__pocket,
+.foreword-letter.is-reading .foreword-letter__flap {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.foreword-letter__paper {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  bottom: 22%;
+  z-index: 2;
+  height: 2.4rem;
+  overflow: hidden;
+  transform-origin: center bottom;
+  transition:
+    height 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+    bottom 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+    left 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    right 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.foreword-letter.is-open .foreword-letter__paper {
+  height: 11rem;
+  bottom: 38%;
+}
+
+.foreword-letter.is-reading .foreword-letter__paper {
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  height: auto;
+  max-height: min(70vh, 42rem);
+  overflow: auto;
+  z-index: 5;
+  box-shadow: 0 24px 64px rgba(60, 45, 30, 0.12);
+}
+
+.foreword-letter__fold {
+  transform-origin: top center;
+  transform: rotateX(-82deg);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.28s;
+}
+
+.foreword-letter.is-open .foreword-letter__fold,
+.foreword-letter.is-reading .foreword-letter__fold {
+  transform: rotateX(0deg);
+}
+
+.foreword-letter__panel {
+  background: linear-gradient(180deg, #fffcf8 0%, #f7f1ea 100%);
+  border: 1px solid rgba(120, 100, 80, 0.1);
+  padding: clamp(1.35rem, 3.5vw, 2.25rem) clamp(1.25rem, 3.5vw, 2.5rem);
+  box-shadow: 0 10px 28px rgba(60, 45, 30, 0.08);
+  min-height: 18rem;
+}
+
+.foreword-letter__kicker {
+  margin: 0 0 1.15rem;
+  font-family: "DM Sans", var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b39a90;
+}
+
+.foreword-letter__body {
+  font-family: "DM Sans", var(--font-sans);
+  font-size: clamp(0.92rem, 1.5vw, 1.02rem);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.005em;
+  color: #4f4a45;
+}
+
+.foreword-letter__body p {
+  margin: 0;
+}
+
+.foreword-letter__body p + p {
+  margin-top: 1rem;
+}
+
 @media (min-width: 900px) {
   .canvas-toolbar__hint {
     display: inline;
@@ -1254,11 +1590,22 @@ p {
     right: 2rem;
     width: 12rem;
   }
+
+  .canvas-envelope {
+    right: 2.5rem;
+    bottom: 4.75rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .canvas-piece__frame,
-  .canvas-lightbox__panel {
+  .canvas-lightbox__panel,
+  .canvas-envelope,
+  .canvas-envelope__paper,
+  .foreword-letter__flap,
+  .foreword-letter__paper,
+  .foreword-letter__fold,
+  .foreword-letter__envelope {
     transition: none;
   }
 }
