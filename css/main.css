@@ -1246,17 +1246,19 @@ p {
 
 .canvas-envelope__paper {
   position: absolute;
-  left: 14%;
-  right: 14%;
+  left: 16%;
+  right: 10%;
   /* Sit mostly inside the body; top edge must clear the envelope crest. */
-  bottom: calc(1.55rem + var(--envelope-h) * 0.52);
-  height: 3.35rem;
+  bottom: calc(1.55rem + var(--envelope-h) * 0.48);
+  height: 3.7rem;
   background:
-    linear-gradient(180deg, #fffcf7 0%, #f4efe7 100%);
-  border: 1px solid rgba(120, 100, 80, 0.1);
-  box-shadow: 0 4px 10px rgba(70, 50, 30, 0.06);
+    linear-gradient(180deg, #fff8ef 0%, #f3e8da 100%);
+  border: 1px solid rgba(120, 100, 80, 0.16);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.65) inset,
+    0 6px 14px rgba(70, 50, 30, 0.1);
   transform-origin: center bottom;
-  transform: translateY(0);
+  transform: rotate(3deg) translateY(0);
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 1;
   overflow: hidden;
@@ -1270,15 +1272,15 @@ p {
   background:
     repeating-linear-gradient(
       transparent 0 0.28rem,
-      rgba(160, 140, 120, 0.18) 0.28rem 0.3rem
+      rgba(160, 140, 120, 0.22) 0.28rem 0.3rem
     );
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 .canvas-envelope:hover .canvas-envelope__paper,
 .canvas-envelope:focus-visible .canvas-envelope__paper {
-  height: 4.35rem;
-  transform: translateY(-0.85rem);
+  height: 4.75rem;
+  transform: rotate(2deg) translateY(-1rem);
 }
 
 .canvas-envelope__body {
