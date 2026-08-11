@@ -557,6 +557,7 @@ p {
 }
 
 .work-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--color-surface);
@@ -566,9 +567,20 @@ p {
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.work-card:hover {
+.work-card:hover,
+.work-card:focus-within {
   border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.work-card:hover .work-card__link,
+.work-card:focus-within .work-card__link {
+  color: color-mix(in srgb, #a1a1a1 70%, #000000);
+}
+
+.work-card:hover .work-card__link--current,
+.work-card:focus-within .work-card__link--current {
+  color: #0842a0;
 }
 
 .work-card__image {
@@ -666,6 +678,16 @@ p {
   font-size: var(--text-tertiary-size);
   font-weight: 500;
   color: #a1a1a1;
+  transition: color var(--transition);
+}
+
+.work-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  cursor: pointer;
 }
 
 .work-card__link--current {
