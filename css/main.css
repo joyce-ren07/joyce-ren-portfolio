@@ -1523,7 +1523,7 @@ p {
 
 .foreword-letter__kicker {
   margin: 0 0 1.15rem;
-  font-family: "DM Sans", var(--font-sans);
+  font-family: "Funnel Sans", "DM Sans", var(--font-sans);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -1531,8 +1531,10 @@ p {
   color: #b39a90;
 }
 
-.foreword-letter__body {
-  font-family: "DM Sans", "Funnel Sans", var(--font-sans);
+.foreword-letter__body,
+.foreword-letter__body p {
+  margin: 0;
+  font-family: "Funnel Sans", "DM Sans", var(--font-sans);
   font-size: clamp(0.95rem, 1.55vw, 1.05rem);
   font-weight: 400;
   font-style: normal;
@@ -1540,10 +1542,6 @@ p {
   letter-spacing: 0.01em;
   color: #4f4a45;
   -webkit-font-smoothing: antialiased;
-}
-
-.foreword-letter__body p {
-  margin: 0;
 }
 
 .foreword-letter__body p + p {
