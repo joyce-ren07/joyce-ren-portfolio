@@ -1246,16 +1246,16 @@ p {
 
 .canvas-envelope__paper {
   position: absolute;
-  left: 12%;
-  right: 12%;
-  bottom: calc(1.55rem + var(--envelope-h) * 0.42);
-  height: 2.15rem;
+  left: 14%;
+  right: 14%;
+  bottom: calc(1.55rem + var(--envelope-h) * 0.38);
+  height: 2.65rem;
   background:
     linear-gradient(180deg, #fffcf7 0%, #f4efe7 100%);
   border: 1px solid rgba(120, 100, 80, 0.1);
   box-shadow: 0 4px 10px rgba(70, 50, 30, 0.06);
   transform-origin: center bottom;
-  transform: translateY(0.15rem);
+  transform: translateY(0);
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 1;
   overflow: hidden;
@@ -1265,7 +1265,7 @@ p {
   display: block;
   width: 72%;
   height: 100%;
-  margin: 0.45rem auto 0;
+  margin: 0.4rem auto 0;
   background:
     repeating-linear-gradient(
       transparent 0 0.28rem,
@@ -1276,8 +1276,8 @@ p {
 
 .canvas-envelope:hover .canvas-envelope__paper,
 .canvas-envelope:focus-visible .canvas-envelope__paper {
-  height: 3.1rem;
-  transform: translateY(-0.55rem);
+  height: 3.55rem;
+  transform: translateY(-0.7rem);
 }
 
 .canvas-envelope__body {
@@ -1481,8 +1481,8 @@ p {
 }
 
 .foreword-letter.is-open .foreword-letter__paper {
-  height: 11rem;
-  bottom: 38%;
+  height: 12.5rem;
+  bottom: 44%;
 }
 
 .foreword-letter.is-reading .foreword-letter__paper {
@@ -1500,7 +1500,7 @@ p {
 .foreword-letter__fold {
   transform-origin: top center;
   transform: rotateX(-82deg);
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.28s;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
 }
 
 .foreword-letter.is-open .foreword-letter__fold,

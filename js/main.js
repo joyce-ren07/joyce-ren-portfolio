@@ -925,13 +925,14 @@
           return;
         }
 
-        requestAnimationFrame(() => {
+        // Beat with the closed envelope, then unfold, then expand to reading size.
+        forewordTimer = window.setTimeout(() => {
           forewordLetter.classList.add("is-open");
           forewordTimer = window.setTimeout(() => {
             forewordLetter.classList.add("is-reading");
             forewordTimer = null;
-          }, 720);
-        });
+          }, 980);
+        }, 90);
       };
 
       const closeForeword = () => {
