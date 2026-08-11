@@ -618,6 +618,10 @@ p {
   border: 0;
 }
 
+.work-card__cover-video--cueturn {
+  object-position: right center;
+}
+
 .work-card__body {
   padding: var(--space-md);
   flex: 1;
