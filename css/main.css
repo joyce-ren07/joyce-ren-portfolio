@@ -1248,8 +1248,9 @@ p {
   position: absolute;
   left: 14%;
   right: 14%;
-  bottom: calc(1.55rem + var(--envelope-h) * 0.38);
-  height: 2.65rem;
+  /* Sit mostly inside the body; top edge must clear the envelope crest. */
+  bottom: calc(1.55rem + var(--envelope-h) * 0.52);
+  height: 3.35rem;
   background:
     linear-gradient(180deg, #fffcf7 0%, #f4efe7 100%);
   border: 1px solid rgba(120, 100, 80, 0.1);
@@ -1265,7 +1266,7 @@ p {
   display: block;
   width: 72%;
   height: 100%;
-  margin: 0.4rem auto 0;
+  margin: 0.35rem auto 0;
   background:
     repeating-linear-gradient(
       transparent 0 0.28rem,
@@ -1276,8 +1277,8 @@ p {
 
 .canvas-envelope:hover .canvas-envelope__paper,
 .canvas-envelope:focus-visible .canvas-envelope__paper {
-  height: 3.55rem;
-  transform: translateY(-0.7rem);
+  height: 4.35rem;
+  transform: translateY(-0.85rem);
 }
 
 .canvas-envelope__body {
@@ -1398,7 +1399,8 @@ p {
   position: relative;
   width: min(20rem, 78vw);
   height: 12.5rem;
-  transform-style: preserve-3d;
+  /* Flat stacking so pocket/flap z-index reliably covers the rising paper. */
+  transform-style: flat;
   transition:
     width 0.65s cubic-bezier(0.22, 1, 0.36, 1),
     height 0.65s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1432,6 +1434,7 @@ p {
   border-top: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
+  isolation: isolate;
 }
 
 .foreword-letter__flap {
@@ -1445,7 +1448,7 @@ p {
   border: 1px solid rgba(120, 100, 80, 0.12);
   clip-path: polygon(0 64%, 50% 0, 100% 64%);
   transform-origin: 50% 64%;
-  transform: rotateX(0deg);
+  transform: perspective(900px) rotateX(0deg);
   transition:
     transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.4s ease;
@@ -1453,7 +1456,7 @@ p {
 }
 
 .foreword-letter.is-open .foreword-letter__flap {
-  transform: rotateX(172deg);
+  transform: perspective(900px) rotateX(172deg);
 }
 
 .foreword-letter.is-reading .foreword-letter__envelope-back,
@@ -1499,13 +1502,13 @@ p {
 
 .foreword-letter__fold {
   transform-origin: top center;
-  transform: rotateX(-82deg);
+  transform: perspective(1200px) rotateX(-82deg);
   transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
 }
 
 .foreword-letter.is-open .foreword-letter__fold,
 .foreword-letter.is-reading .foreword-letter__fold {
-  transform: rotateX(0deg);
+  transform: perspective(1200px) rotateX(0deg);
 }
 
 .foreword-letter__panel {
@@ -1527,12 +1530,14 @@ p {
 }
 
 .foreword-letter__body {
-  font-family: "DM Sans", var(--font-sans);
-  font-size: clamp(0.92rem, 1.5vw, 1.02rem);
+  font-family: "DM Sans", "Funnel Sans", var(--font-sans);
+  font-size: clamp(0.95rem, 1.55vw, 1.05rem);
   font-weight: 400;
-  line-height: 1.7;
-  letter-spacing: 0.005em;
+  font-style: normal;
+  line-height: 1.72;
+  letter-spacing: 0.01em;
   color: #4f4a45;
+  -webkit-font-smoothing: antialiased;
 }
 
 .foreword-letter__body p {
