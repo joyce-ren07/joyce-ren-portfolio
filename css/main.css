@@ -1208,16 +1208,14 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   Canvas — foreword envelope
+   Foreword envelope
    -------------------------------------------------------------------------- */
 
-.canvas-envelope {
+.foreword-envelope {
   --envelope-w: 7.25rem;
   --envelope-h: 4.85rem;
   appearance: none;
-  position: absolute;
-  right: 3.25rem;
-  bottom: 5.75rem;
+  position: relative;
   z-index: 7;
   width: var(--envelope-w);
   height: calc(var(--envelope-h) + 1.65rem);
@@ -1229,22 +1227,22 @@ p {
   font: inherit;
   text-align: left;
   cursor: pointer;
-  transform: rotate(-6deg);
+  transform: rotate(-7deg);
   transform-origin: center bottom;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.canvas-envelope:hover,
-.canvas-envelope:focus-visible {
+.foreword-envelope:hover,
+.foreword-envelope:focus-visible {
   transform: rotate(-3deg) translateY(-0.15rem);
 }
 
-.canvas-envelope:focus-visible {
+.foreword-envelope:focus-visible {
   outline: 2px solid color-mix(in srgb, #c9a8a0 55%, #a1a1a1);
   outline-offset: 6px;
 }
 
-.canvas-envelope__paper {
+.foreword-envelope__paper {
   position: absolute;
   left: 16%;
   right: 10%;
@@ -1264,7 +1262,7 @@ p {
   overflow: hidden;
 }
 
-.canvas-envelope__paper-lines {
+.foreword-envelope__paper-lines {
   display: block;
   width: 72%;
   height: 100%;
@@ -1277,13 +1275,13 @@ p {
   opacity: 0.85;
 }
 
-.canvas-envelope:hover .canvas-envelope__paper,
-.canvas-envelope:focus-visible .canvas-envelope__paper {
+.foreword-envelope:hover .foreword-envelope__paper,
+.foreword-envelope:focus-visible .foreword-envelope__paper {
   height: 4.75rem;
   transform: rotate(2deg) translateY(-1rem);
 }
 
-.canvas-envelope__body {
+.foreword-envelope__body {
   position: absolute;
   left: 0;
   right: 0;
@@ -1293,7 +1291,7 @@ p {
   filter: drop-shadow(0 10px 18px rgba(70, 55, 40, 0.1));
 }
 
-.canvas-envelope__face {
+.foreword-envelope__face {
   position: absolute;
   inset: 0;
   background:
@@ -1303,7 +1301,7 @@ p {
   clip-path: polygon(0 28%, 50% 62%, 100% 28%, 100% 100%, 0 100%);
 }
 
-.canvas-envelope__flap {
+.foreword-envelope__flap {
   position: absolute;
   inset: 0;
   background:
@@ -1313,7 +1311,7 @@ p {
   z-index: 3;
 }
 
-.canvas-envelope__face::after {
+.foreword-envelope__face::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -1324,7 +1322,7 @@ p {
   pointer-events: none;
 }
 
-.canvas-envelope__label {
+.foreword-envelope__label {
   position: absolute;
   left: 0;
   right: 0;
@@ -1617,18 +1615,13 @@ p {
     right: 2rem;
     width: 12rem;
   }
-
-  .canvas-envelope {
-    right: 2.5rem;
-    bottom: 4.75rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .canvas-piece__frame,
   .canvas-lightbox__panel,
-  .canvas-envelope,
-  .canvas-envelope__paper,
+  .foreword-envelope,
+  .foreword-envelope__paper,
   .foreword-letter__flap,
   .foreword-letter__paper,
   .foreword-letter__fold,
@@ -1657,7 +1650,7 @@ p {
   padding:
     calc(var(--case-topbar-height) + clamp(3rem, 8vw, 5rem))
     var(--nav-padding-inline)
-    clamp(4rem, 10vw, 6rem);
+    clamp(5.5rem, 12vw, 8rem);
 }
 
 .about-title {
@@ -1703,6 +1696,13 @@ p {
   font-size: var(--text-tertiary-size);
   font-style: italic;
   color: #a1a1a1;
+}
+
+.about-portrait-stack {
+  position: relative;
+  width: 100%;
+  justify-self: stretch;
+  overflow: visible;
 }
 
 .about-portrait {
@@ -1757,6 +1757,23 @@ p {
   opacity: 1;
 }
 
+.about-foreword-envelope {
+  position: absolute;
+  left: -1.25rem;
+  bottom: -1.1rem;
+  z-index: 4;
+  filter: drop-shadow(0 14px 22px rgba(120, 80, 40, 0.12));
+}
+
+.about-foreword-envelope:hover,
+.about-foreword-envelope:focus-visible {
+  transform: rotate(-3deg) translateY(-0.2rem);
+}
+
+.about-foreword-envelope .foreword-envelope__label {
+  color: #c4a090;
+}
+
 
 @media (max-width: 768px) {
   .about-layout {
@@ -1766,20 +1783,31 @@ p {
 
   .about-copy {
     max-width: none;
-  }
-
-  .about-portrait {
-    max-width: 18rem;
-    margin-inline: auto;
-    justify-self: center;
-  }
-
-  .about-copy {
     order: 2;
   }
 
-  .about-portrait {
+  .about-portrait-stack {
+    max-width: 18rem;
+    margin-inline: auto;
+    justify-self: center;
     order: 1;
+  }
+
+  .about-portrait {
+    max-width: none;
+    margin-inline: 0;
+    justify-self: stretch;
+  }
+
+  .about-foreword-envelope {
+    left: -0.35rem;
+    bottom: -0.85rem;
+    transform: rotate(-5deg) scale(0.92);
+  }
+
+  .about-foreword-envelope:hover,
+  .about-foreword-envelope:focus-visible {
+    transform: rotate(-2deg) translateY(-0.15rem) scale(0.92);
   }
 }
 

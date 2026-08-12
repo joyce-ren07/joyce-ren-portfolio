@@ -777,7 +777,7 @@
 
     canvasViewport.addEventListener("pointerdown", (event) => {
       if (event.button !== 0 && event.pointerType === "mouse") return;
-      if (event.target.closest("[data-canvas-piece], [data-canvas-envelope]")) return;
+      if (event.target.closest("[data-canvas-piece]")) return;
       state.dragging = true;
       state.moved = false;
       state.pointerId = event.pointerId;
@@ -890,88 +890,87 @@
         }
       });
     }
+  }
 
-    const envelopeTrigger = canvasWorld.querySelector("[data-canvas-envelope]");
-    const forewordLetter = document.querySelector("[data-foreword-letter]");
-    if (envelopeTrigger && forewordLetter) {
-      const closeForewordBtn = forewordLetter.querySelector("[data-foreword-close]");
-      let forewordTimer = null;
-      let envelopePointer = { x: 0, y: 0 };
+  const envelopeTrigger = document.querySelector("[data-foreword-envelope]");
+  const forewordLetter = document.querySelector("[data-foreword-letter]");
+  if (envelopeTrigger && forewordLetter) {
+    const closeForewordBtn = forewordLetter.querySelector("[data-foreword-close]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let forewordTimer = null;
+    let envelopePointer = { x: 0, y: 0 };
 
-      const clearForewordTimer = () => {
-        if (forewordTimer) {
-          window.clearTimeout(forewordTimer);
-          forewordTimer = null;
-        }
-      };
+    const clearForewordTimer = () => {
+      if (forewordTimer) {
+        window.clearTimeout(forewordTimer);
+        forewordTimer = null;
+      }
+    };
 
-      const resetForewordClasses = () => {
-        forewordLetter.classList.remove("is-open", "is-reading");
-      };
+    const resetForewordClasses = () => {
+      forewordLetter.classList.remove("is-open", "is-reading");
+    };
 
-      const openForeword = () => {
-        if (state.moved) return;
-        clearForewordTimer();
-        resetForewordClasses();
+    const openForeword = () => {
+      clearForewordTimer();
+      resetForewordClasses();
 
-        if (typeof forewordLetter.showModal === "function") {
-          forewordLetter.showModal();
-        } else {
-          forewordLetter.setAttribute("open", "");
-        }
+      if (typeof forewordLetter.showModal === "function") {
+        forewordLetter.showModal();
+      } else {
+        forewordLetter.setAttribute("open", "");
+      }
 
-        if (reducedMotion) {
-          forewordLetter.classList.add("is-open", "is-reading");
-          return;
-        }
+      if (reducedMotion) {
+        forewordLetter.classList.add("is-open", "is-reading");
+        return;
+      }
 
-        // Beat with the closed envelope, then unfold, then expand to reading size.
+      // Beat with the closed envelope, then unfold, then expand to reading size.
+      forewordTimer = window.setTimeout(() => {
+        forewordLetter.classList.add("is-open");
         forewordTimer = window.setTimeout(() => {
-          forewordLetter.classList.add("is-open");
-          forewordTimer = window.setTimeout(() => {
-            forewordLetter.classList.add("is-reading");
-            forewordTimer = null;
-          }, 980);
-        }, 90);
-      };
+          forewordLetter.classList.add("is-reading");
+          forewordTimer = null;
+        }, 980);
+      }, 90);
+    };
 
-      const closeForeword = () => {
-        clearForewordTimer();
-        resetForewordClasses();
-        if (typeof forewordLetter.close === "function") {
-          forewordLetter.close();
-        } else {
-          forewordLetter.removeAttribute("open");
-        }
-        envelopeTrigger.focus();
-      };
+    const closeForeword = () => {
+      clearForewordTimer();
+      resetForewordClasses();
+      if (typeof forewordLetter.close === "function") {
+        forewordLetter.close();
+      } else {
+        forewordLetter.removeAttribute("open");
+      }
+      envelopeTrigger.focus();
+    };
 
-      envelopeTrigger.addEventListener("pointerdown", (event) => {
-        state.moved = false;
-        envelopePointer = { x: event.clientX, y: event.clientY };
-      });
+    envelopeTrigger.addEventListener("pointerdown", (event) => {
+      envelopePointer = { x: event.clientX, y: event.clientY };
+    });
 
-      envelopeTrigger.addEventListener("pointerup", (event) => {
-        const dx = event.clientX - envelopePointer.x;
-        const dy = event.clientY - envelopePointer.y;
-        if (Math.hypot(dx, dy) < 6) openForeword();
-      });
+    envelopeTrigger.addEventListener("pointerup", (event) => {
+      const dx = event.clientX - envelopePointer.x;
+      const dy = event.clientY - envelopePointer.y;
+      if (Math.hypot(dx, dy) < 6) openForeword();
+    });
 
-      envelopeTrigger.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          openForeword();
-        }
-      });
-
-      closeForewordBtn?.addEventListener("click", closeForeword);
-      forewordLetter.addEventListener("click", (event) => {
-        if (event.target === forewordLetter) closeForeword();
-      });
-      forewordLetter.addEventListener("cancel", (event) => {
+    envelopeTrigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        closeForeword();
-      });
-    }
+        openForeword();
+      }
+    });
+
+    closeForewordBtn?.addEventListener("click", closeForeword);
+    forewordLetter.addEventListener("click", (event) => {
+      if (event.target === forewordLetter) closeForeword();
+    });
+    forewordLetter.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeForeword();
+    });
   }
 })();
