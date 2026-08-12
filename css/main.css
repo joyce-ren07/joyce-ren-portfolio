@@ -1546,23 +1546,23 @@ p {
 
 .foreword-letter__texture {
   z-index: 1;
-  opacity: 0.42;
+  opacity: 0.55;
   mix-blend-mode: multiply;
   filter: url(#foreword-paper-grain);
   background:
-    radial-gradient(circle at 22% 30%, rgba(120, 100, 80, 0.08), transparent 28%),
-    radial-gradient(circle at 78% 62%, rgba(90, 80, 70, 0.06), transparent 32%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 40%, rgba(90, 75, 60, 0.05));
+    radial-gradient(circle at 22% 30%, rgba(120, 100, 80, 0.1), transparent 28%),
+    radial-gradient(circle at 78% 62%, rgba(90, 80, 70, 0.08), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 40%, rgba(90, 75, 60, 0.07));
 }
 
 .foreword-letter__texture::after {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.28;
+  opacity: 0.4;
   mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.65'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
 }
 
 .foreword-letter__creases {
@@ -1571,54 +1571,82 @@ p {
     /* vertical unfolded crease */
     linear-gradient(
       90deg,
-      transparent calc(50% - 5px),
-      rgba(70, 55, 40, 0.035) calc(50% - 2.5px),
-      rgba(70, 55, 40, 0.09) calc(50% - 0.6px),
-      rgba(255, 252, 246, 0.55) 50%,
-      rgba(70, 55, 40, 0.1) calc(50% + 0.7px),
-      rgba(70, 55, 40, 0.04) calc(50% + 3px),
-      transparent calc(50% + 6px)
+      transparent calc(50% - 7px),
+      rgba(70, 55, 40, 0.045) calc(50% - 3.5px),
+      rgba(70, 55, 40, 0.14) calc(50% - 0.8px),
+      rgba(255, 252, 246, 0.72) 50%,
+      rgba(70, 55, 40, 0.16) calc(50% + 0.9px),
+      rgba(70, 55, 40, 0.06) calc(50% + 4px),
+      transparent calc(50% + 8px)
     ),
     /* primary horizontal crease */
     linear-gradient(
       180deg,
-      transparent calc(50% - 6px),
-      rgba(70, 55, 40, 0.04) calc(50% - 3px),
-      rgba(70, 55, 40, 0.11) calc(50% - 0.7px),
-      rgba(255, 252, 246, 0.5) 50%,
-      rgba(70, 55, 40, 0.12) calc(50% + 0.9px),
-      rgba(70, 55, 40, 0.045) calc(50% + 3.5px),
-      transparent calc(50% + 7px)
+      transparent calc(50% - 8px),
+      rgba(70, 55, 40, 0.05) calc(50% - 4px),
+      rgba(70, 55, 40, 0.16) calc(50% - 0.9px),
+      rgba(255, 252, 246, 0.68) 50%,
+      rgba(70, 55, 40, 0.18) calc(50% + 1.1px),
+      rgba(70, 55, 40, 0.06) calc(50% + 4.5px),
+      transparent calc(50% + 9px)
     ),
     /* softer secondary fold from being tucked in the envelope */
     linear-gradient(
       180deg,
-      transparent calc(72% - 5px),
-      rgba(70, 55, 40, 0.03) calc(72% - 2px),
-      rgba(70, 55, 40, 0.07) calc(72% - 0.5px),
-      rgba(255, 252, 246, 0.35) 72%,
-      rgba(70, 55, 40, 0.08) calc(72% + 0.8px),
-      rgba(70, 55, 40, 0.03) calc(72% + 3px),
-      transparent calc(72% + 6px)
+      transparent calc(72% - 6px),
+      rgba(70, 55, 40, 0.035) calc(72% - 2.5px),
+      rgba(70, 55, 40, 0.1) calc(72% - 0.6px),
+      rgba(255, 252, 246, 0.45) 72%,
+      rgba(70, 55, 40, 0.11) calc(72% + 0.9px),
+      rgba(70, 55, 40, 0.04) calc(72% + 3.5px),
+      transparent calc(72% + 7px)
     );
 }
 
 .foreword-letter__creases::before {
   content: "";
   position: absolute;
-  left: calc(50% - 7px);
-  top: calc(50% - 7px);
-  width: 14px;
-  height: 14px;
+  left: calc(50% - 10px);
+  top: calc(50% - 10px);
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background:
     radial-gradient(
       circle,
-      rgba(70, 55, 40, 0.1) 0%,
-      rgba(70, 55, 40, 0.04) 42%,
-      transparent 72%
+      rgba(70, 55, 40, 0.14) 0%,
+      rgba(70, 55, 40, 0.06) 40%,
+      transparent 70%
     );
-  transform: scaleY(0.85);
+  transform: scaleY(0.8);
+}
+
+.foreword-letter__creases::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    /* faint irregular handling wrinkles */
+    linear-gradient(
+      112deg,
+      transparent 18%,
+      rgba(70, 55, 40, 0.025) 19%,
+      transparent 20.5%
+    ),
+    linear-gradient(
+      68deg,
+      transparent 61%,
+      rgba(255, 252, 246, 0.18) 62%,
+      rgba(70, 55, 40, 0.03) 62.6%,
+      transparent 64%
+    ),
+    linear-gradient(
+      98deg,
+      transparent 34%,
+      rgba(70, 55, 40, 0.02) 35%,
+      transparent 36.5%
+    );
+  opacity: 0.9;
 }
 
 .foreword-letter__kicker,
