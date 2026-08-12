@@ -1543,10 +1543,10 @@ p {
   position: relative;
   z-index: 1;
   margin: 0 0 1.5rem;
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-family: "IBM Plex Sans", "Funnel Sans", var(--font-sans);
   font-size: 0.68rem;
   font-weight: 300;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: #6e6a64;
 }
@@ -1556,18 +1556,18 @@ p {
   position: relative;
   z-index: 1;
   margin: 0;
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: clamp(0.84rem, 1.35vw, 0.95rem);
+  font-family: "IBM Plex Sans", "Funnel Sans", var(--font-sans);
+  font-size: clamp(0.88rem, 1.4vw, 0.98rem);
   font-weight: 300;
   font-style: normal;
-  line-height: 1.85;
-  letter-spacing: 0.04em;
+  line-height: 1.9;
+  letter-spacing: 0.055em;
   color: #3d3b38;
   -webkit-font-smoothing: antialiased;
 }
 
 .foreword-letter__body p + p {
-  margin-top: 1.25rem;
+  margin-top: 1.35rem;
 }
 
 @media (min-width: 900px) {
