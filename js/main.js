@@ -13,6 +13,14 @@
     });
   }
 
+  /* Sticky bottom liquid-glass blur edge */
+  if (!document.querySelector(".viewport-bottom-blur")) {
+    const bottomBlur = document.createElement("div");
+    bottomBlur.className = "viewport-bottom-blur";
+    bottomBlur.setAttribute("aria-hidden", "true");
+    document.body.appendChild(bottomBlur);
+  }
+
   /* Top bar — sliding glow from logo to active nav item */
   const topNav = document.querySelector(".case-topbar__nav");
   if (topNav) {
