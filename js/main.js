@@ -626,6 +626,69 @@
     }
   }
 
+  /* Scroll-triggered Lottie — slide in and play when entering view */
+  const scrollLotties = document.querySelectorAll("[data-scroll-lottie]");
+  if (scrollLotties.length) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const loadLottie = () =>
+      new Promise((resolve, reject) => {
+        if (window.lottie) {
+          resolve(window.lottie);
+          return;
+        }
+        const script = document.createElement("script");
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js";
+        script.async = true;
+        script.onload = () => resolve(window.lottie);
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+
+    loadLottie()
+      .then((lottie) => {
+        scrollLotties.forEach((host) => {
+          const stage = host.querySelector(".case-lottie-break__stage");
+          const src = host.getAttribute("data-lottie-src");
+          if (!stage || !src) return;
+
+          const animation = lottie.loadAnimation({
+            container: stage,
+            renderer: "svg",
+            loop: true,
+            autoplay: false,
+            path: src,
+          });
+
+          const reveal = () => {
+            host.classList.add("is-inview");
+            animation.play();
+          };
+
+          if (reducedMotion || !("IntersectionObserver" in window)) {
+            reveal();
+            return;
+          }
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                reveal();
+                observer.unobserve(host);
+              });
+            },
+            { threshold: 0.4, rootMargin: "0px 0px -8% 0px" }
+          );
+
+          observer.observe(host);
+        });
+      })
+      .catch(() => {
+        scrollLotties.forEach((host) => host.classList.add("is-inview"));
+      });
+  }
+
   /* Home lamp hero — pull chain toggle + near-instant scroll lighting */
   const lampHero = document.querySelector(".lamp-hero");
   const lampPull = document.getElementById("lamp-pull");
