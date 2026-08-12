@@ -1354,8 +1354,8 @@ p {
 }
 
 .foreword-letter::backdrop {
-  background: rgba(246, 242, 236, 0.82);
-  backdrop-filter: blur(12px);
+  background: rgba(242, 239, 234, 0.88);
+  backdrop-filter: blur(10px);
 }
 
 .foreword-letter__stage {
