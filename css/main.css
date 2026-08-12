@@ -2963,6 +2963,32 @@ p {
   user-select: none;
 }
 
+/* Modern silver pill/Dynamic Island phone frame (Uber Med demos) */
+.case-device-video--modern {
+  --device-screen-top: 2.24%;
+  --device-screen-right: 5.5%;
+  --device-screen-bottom: 2.47%;
+  --device-screen-left: 5.26%;
+  --device-screen-radius-x: 11.53%;
+  --device-screen-radius-y: 5.31%;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.16));
+}
+
+.case-device-video--modern .case-device-video__screen {
+  transform: none;
+  background: #000;
+}
+
+.case-device-video--modern .case-device-video__frame {
+  transform: none;
+}
+
+.case-device-video--modern .case-device-video__media {
+  object-fit: cover;
+  object-position: center center;
+  background: #000;
+}
+
 .case-device-video--laptop {
   --device-screen-top: 14.22%;
   --device-screen-right: 11.67%;
