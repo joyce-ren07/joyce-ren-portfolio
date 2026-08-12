@@ -3954,8 +3954,8 @@ p {
 }
 
 .case-lottie-break__stage {
-  width: clamp(7rem, 16vw, 10rem);
-  height: clamp(7rem, 16vw, 10rem);
+  width: clamp(8.25rem, 19vw, 12rem);
+  height: clamp(8.25rem, 19vw, 12rem);
   opacity: 0;
   transform: translateX(-2.75rem);
   transition:
