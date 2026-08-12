@@ -3963,14 +3963,15 @@ p {
     opacity 0.65s ease,
     transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
+  overflow: visible;
 }
 
 .case-lottie-break__stage svg {
   display: block;
-  width: 100%;
-  height: 100%;
-  transform: scale(1.55);
-  transform-origin: center center;
+  width: 100% !important;
+  height: 100% !important;
+  transform: scale(1.55) !important;
+  transform-origin: center center !important;
 }
 
 .case-lottie-break.is-inview .case-lottie-break__stage {
