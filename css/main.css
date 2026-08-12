@@ -2670,6 +2670,8 @@ p {
 
 .case-body--tertiary {
   font-size: var(--case-tertiary-size);
+  font-weight: var(--case-tertiary-weight, 600);
+  line-height: var(--case-body-leading, 1.58);
 }
 
 .case-body:last-child {
@@ -3794,6 +3796,25 @@ p {
   color: var(--case-text);
   padding-left: 1.25rem;
   position: relative;
+}
+
+.case-study-page--uber .case-insights li,
+.case-study-page--uber .case-hifi-flow__caption,
+.case-study-page--uber .case-feedback__list li,
+.case-study-page--uber .case-stat__label,
+.case-study-page--uber .case-table th,
+.case-study-page--uber .case-table td,
+.case-study-page--uber .case-details__item dt,
+.case-study-page--uber .case-details__item dd,
+.case-study-page--uber .case-disclaimer,
+.case-study-page--uber .case-competitive__name {
+  font-size: var(--case-tertiary-size);
+  font-weight: var(--case-tertiary-weight, 600);
+  line-height: var(--case-body-leading, 1.58);
+}
+
+.case-study-page--uber .case-details__item dt {
+  font-weight: var(--case-tertiary-weight, 600);
 }
 
 .case-insights li::before {
