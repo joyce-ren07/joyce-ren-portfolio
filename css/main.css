@@ -4876,6 +4876,11 @@ p {
   object-fit: cover;
 }
 
+.case-competitive__tile--uber-general {
+  transform: scale(1.12);
+  transform-origin: center center;
+}
+
 .case-competitive__icon {
   display: flex;
   align-items: center;
