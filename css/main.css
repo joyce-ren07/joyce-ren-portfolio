@@ -1514,11 +1514,117 @@ p {
 }
 
 .foreword-letter__panel {
-  background: linear-gradient(180deg, #fffcf8 0%, #f7f1ea 100%);
-  border: 1px solid rgba(120, 100, 80, 0.1);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 18% 12%, rgba(255, 255, 255, 0.55), transparent 52%),
+    radial-gradient(90% 70% at 88% 78%, rgba(170, 155, 135, 0.12), transparent 58%),
+    linear-gradient(165deg, #f7f4ef 0%, #efebe4 46%, #e8e3da 100%);
+  border: 1px solid rgba(120, 100, 80, 0.14);
   padding: clamp(1.35rem, 3.5vw, 2.25rem) clamp(1.25rem, 3.5vw, 2.5rem);
-  box-shadow: 0 10px 28px rgba(60, 45, 30, 0.08);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 10px 28px rgba(60, 45, 30, 0.08);
   min-height: 18rem;
+  color: #4a4540;
+}
+
+.foreword-letter__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.foreword-letter__texture,
+.foreword-letter__creases {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.foreword-letter__texture {
+  z-index: 1;
+  opacity: 0.42;
+  mix-blend-mode: multiply;
+  filter: url(#foreword-paper-grain);
+  background:
+    radial-gradient(circle at 22% 30%, rgba(120, 100, 80, 0.08), transparent 28%),
+    radial-gradient(circle at 78% 62%, rgba(90, 80, 70, 0.06), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 40%, rgba(90, 75, 60, 0.05));
+}
+
+.foreword-letter__texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+.foreword-letter__creases {
+  z-index: 2;
+  background:
+    /* vertical unfolded crease */
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 5px),
+      rgba(70, 55, 40, 0.035) calc(50% - 2.5px),
+      rgba(70, 55, 40, 0.09) calc(50% - 0.6px),
+      rgba(255, 252, 246, 0.55) 50%,
+      rgba(70, 55, 40, 0.1) calc(50% + 0.7px),
+      rgba(70, 55, 40, 0.04) calc(50% + 3px),
+      transparent calc(50% + 6px)
+    ),
+    /* primary horizontal crease */
+    linear-gradient(
+      180deg,
+      transparent calc(50% - 6px),
+      rgba(70, 55, 40, 0.04) calc(50% - 3px),
+      rgba(70, 55, 40, 0.11) calc(50% - 0.7px),
+      rgba(255, 252, 246, 0.5) 50%,
+      rgba(70, 55, 40, 0.12) calc(50% + 0.9px),
+      rgba(70, 55, 40, 0.045) calc(50% + 3.5px),
+      transparent calc(50% + 7px)
+    ),
+    /* softer secondary fold from being tucked in the envelope */
+    linear-gradient(
+      180deg,
+      transparent calc(72% - 5px),
+      rgba(70, 55, 40, 0.03) calc(72% - 2px),
+      rgba(70, 55, 40, 0.07) calc(72% - 0.5px),
+      rgba(255, 252, 246, 0.35) 72%,
+      rgba(70, 55, 40, 0.08) calc(72% + 0.8px),
+      rgba(70, 55, 40, 0.03) calc(72% + 3px),
+      transparent calc(72% + 6px)
+    );
+}
+
+.foreword-letter__creases::before {
+  content: "";
+  position: absolute;
+  left: calc(50% - 7px);
+  top: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(70, 55, 40, 0.1) 0%,
+      rgba(70, 55, 40, 0.04) 42%,
+      transparent 72%
+    );
+  transform: scaleY(0.85);
+}
+
+.foreword-letter__kicker,
+.foreword-letter__body {
+  position: relative;
+  z-index: 3;
 }
 
 .foreword-letter__kicker {

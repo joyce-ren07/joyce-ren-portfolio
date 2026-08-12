@@ -202,6 +202,25 @@
     data-foreword-letter
     aria-labelledby="foreword-letter-title"
   >
+    <svg class="foreword-letter__defs" aria-hidden="true" width="0" height="0" focusable="false">
+      <filter id="foreword-paper-grain" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.9"
+          numOctaves="4"
+          stitchTiles="stitch"
+          result="noise"
+        ></feTurbulence>
+        <feColorMatrix
+          in="noise"
+          type="matrix"
+          values="0 0 0 0 0.42
+                  0 0 0 0 0.39
+                  0 0 0 0 0.34
+                  0 0 0 0.55 0"
+        ></feColorMatrix>
+      </filter>
+    </svg>
     <div class="foreword-letter__stage">
       <button
         type="button"
@@ -219,6 +238,8 @@
           <article class="foreword-letter__paper">
             <div class="foreword-letter__fold">
               <div class="foreword-letter__panel">
+                <span class="foreword-letter__texture" aria-hidden="true"></span>
+                <span class="foreword-letter__creases" aria-hidden="true"></span>
                 <p class="foreword-letter__kicker" id="foreword-letter-title">Foreword</p>
                 <div class="foreword-letter__body">
                   <p>
