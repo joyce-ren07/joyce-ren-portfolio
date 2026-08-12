@@ -373,13 +373,14 @@
         const hasGlow = Boolean(lit) || light.classList.contains("is-visible");
         if (!hasGlow) return;
 
-        const onAboutPage = /\/about(\/|$)/.test(window.location.pathname);
         const homeHref = logo.getAttribute("href");
         if (!homeHref) return;
 
         event.preventDefault();
 
-        if (onAboutPage) {
+        // Any non-home page with an active glow (Canvas, About, case studies, …)
+        // should clear the glow, then actually go home.
+        if (!isHomePage) {
           rememberNavTransition(null);
           clearActive({ animate: true });
           window.setTimeout(() => {
@@ -388,19 +389,17 @@
           return;
         }
 
-        if (isHomePage) {
-          suppressObserver = true;
-          clearActive({ animate: true });
-          if (hero) {
-            hero.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
-          } else {
-            window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
-          }
-          history.replaceState(null, "", window.location.pathname + window.location.search);
-          window.setTimeout(() => {
-            suppressObserver = false;
-          }, reducedMotion ? 0 : travelDuration + 250);
+        suppressObserver = true;
+        clearActive({ animate: true });
+        if (hero) {
+          hero.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
         }
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+        window.setTimeout(() => {
+          suppressObserver = false;
+        }, reducedMotion ? 0 : travelDuration + 250);
       });
     }
 
