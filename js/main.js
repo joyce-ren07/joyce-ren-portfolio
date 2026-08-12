@@ -86,16 +86,16 @@
     };
 
     const leavesCurrentPage = (href) => {
-      const onAboutPage = /\/about(\/|$)/.test(window.location.pathname);
-      const pathOnly = href.split("#")[0];
-
-      if (onAboutPage) {
-        if (pathOnly === "index.html" || pathOnly === "./index.html") return false;
-        return pathOnly.includes("index.html") || pathOnly.startsWith("../");
+      try {
+        const nextUrl = new URL(href, window.location.href);
+        const normalize = (path) => {
+          const cleaned = path.replace(/\/index\.html$/i, "").replace(/\/$/, "");
+          return cleaned || "/";
+        };
+        return normalize(nextUrl.pathname) !== normalize(window.location.pathname);
+      } catch (_) {
+        return Boolean(href) && !href.startsWith("#");
       }
-
-      const targetsAbout = /about(\/index\.html)?$/i.test(pathOnly) || pathOnly.includes("about/");
-      return isHomePage && targetsAbout;
     };
 
     const isAtMain = () => {
@@ -103,7 +103,49 @@
       if (window.scrollY < 48) return true;
       if (!hero) return window.scrollY < 120;
       const rect = hero.getBoundingClientRect();
-      return rect.top <= 80 && rect.bottom >= window.innerHeight * 0.42;
+      // Stay on "main" while the lamp hero still owns most of the viewport.
+      return rect.bottom >= window.innerHeight * 0.55;
+    };
+
+    const getWorkLink = () => links.find((link) => getNavItemId(link) === "work") || links[0] || null;
+    const getCanvasLink = () => links.find((link) => getNavItemId(link) === "canvas") || null;
+    const getAboutLink = () => links.find((link) => getNavItemId(link) === "about") || links[links.length - 1] || null;
+
+    const findBestHashSectionLink = () => {
+      if (!hashSections.length) return null;
+
+      const focusY = window.innerHeight * 0.32;
+      let best = null;
+      let bestDistance = Infinity;
+
+      hashSections.forEach(({ section, link }) => {
+        const rect = section.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight * 0.72 && rect.bottom > window.innerHeight * 0.18;
+        if (!inView) return;
+
+        const anchor = Math.min(Math.max(rect.top, 0), window.innerHeight);
+        const distance = Math.abs(anchor - focusY);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          best = link;
+        }
+      });
+
+      return best;
+    };
+
+    const syncHomeNavFromScroll = ({ animate = true } = {}) => {
+      if (!isHomePage || suppressObserver) return;
+
+      if (isAtMain()) {
+        if (activeLink) clearActive({ animate });
+        return;
+      }
+
+      const bestLink = findBestHashSectionLink() || getWorkLink();
+      if (bestLink && bestLink !== activeLink) {
+        setActiveLink(bestLink, { animate });
+      }
     };
 
     const finishTravel = () => {
@@ -266,7 +308,14 @@
     };
 
     const setActiveLink = (link, { animate = true, fromLink = null } = {}) => {
-      if (!link || !links.includes(link) || link === activeLink) return;
+      if (!link || !links.includes(link)) return;
+
+      // Same link: keep styles/glow geometry in sync (e.g. on resize).
+      if (link === activeLink) {
+        applyLinkState(link);
+        placeLight(getLinkRect(link), { animate: false });
+        return;
+      }
 
       const previousActive = activeLink;
       const wasVisible = light.classList.contains("is-visible");
@@ -313,7 +362,16 @@
       const hash = window.location.hash;
 
       if (/\/about(\/|$)/.test(path)) {
-        return links[links.length - 1];
+        return getAboutLink();
+      }
+
+      if (/\/canvas(\/|$)/.test(path)) {
+        return getCanvasLink() || links.find((link) => link.hasAttribute("aria-current")) || null;
+      }
+
+      // Case studies and other work detail pages always illuminate Work.
+      if (/\/case-studies(\/|$)/.test(path)) {
+        return getWorkLink();
       }
 
       if (hash) {
@@ -325,10 +383,14 @@
       }
 
       if (isHomePage) {
-        return null;
+        if (isAtMain()) return null;
+        return findBestHashSectionLink() || getWorkLink();
       }
 
-      return links.find((link) => link.hasAttribute("aria-current")) || null;
+      return (
+        links.find((link) => link.hasAttribute("aria-current")) ||
+        getWorkLink()
+      );
     };
 
     links.forEach((link) => {
@@ -440,47 +502,36 @@
       requestAnimationFrame(bootstrapNavLight);
     });
 
-    if (hashSections.length && "IntersectionObserver" in window) {
-      const visible = new Map();
-      const sectionThreshold = 0.12;
+    // Home page: keep the moving glow locked to the section in view.
+    // Scroll-based detection is used because tall sections make IntersectionObserver
+    // ratios too small to cross a fixed threshold reliably.
+    if (isHomePage && hashSections.length) {
+      let scrollRaf = 0;
+      const onScrollOrResize = () => {
+        if (scrollRaf) return;
+        scrollRaf = requestAnimationFrame(() => {
+          scrollRaf = 0;
+          syncHomeNavFromScroll({ animate: true });
+        });
+      };
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (suppressObserver) return;
+      window.addEventListener("scroll", onScrollOrResize, { passive: true });
+      window.addEventListener("resize", onScrollOrResize);
 
-          entries.forEach((entry) => {
-            visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
-          });
-
-          let best = null;
-          let bestRatio = 0;
-
-          hashSections.forEach(({ section, link }) => {
-            const ratio = visible.get(section.id) ?? 0;
-            if (ratio > bestRatio) {
-              bestRatio = ratio;
-              best = { section, link };
-            }
-          });
-
-          if (bestRatio >= sectionThreshold && best) {
-            if (best.link !== activeLink) {
-              setActiveLink(best.link, { animate: true });
-            }
-            return;
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          () => syncHomeNavFromScroll({ animate: true }),
+          {
+            rootMargin: "-18% 0px -45% 0px",
+            threshold: [0, 0.01, 0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1],
           }
+        );
+        hashSections.forEach(({ section }) => observer.observe(section));
+        if (hero) observer.observe(hero);
+      }
 
-          if (activeLink && isHomePage && isAtMain()) {
-            clearActive({ animate: true });
-          }
-        },
-        {
-          rootMargin: "-22% 0px -52% 0px",
-          threshold: [0, 0.08, 0.15, 0.25, 0.4, 0.55, 0.75, 1],
-        }
-      );
-
-      hashSections.forEach(({ section }) => observer.observe(section));
+      // Reconcile once after layout settles (images/fonts can shift scroll position).
+      window.setTimeout(() => syncHomeNavFromScroll({ animate: false }), 120);
     }
   }
 
