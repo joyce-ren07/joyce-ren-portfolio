@@ -2741,8 +2741,8 @@ p {
 
 .case-hifi-flow__device {
   width: 100%;
-  padding: 0.2rem;
-  border-radius: 1.7rem;
+  padding: 0.38rem;
+  border-radius: 1.85rem;
   background: #111;
   box-shadow: 0 22px 44px rgba(0, 0, 0, 0.1);
 }
@@ -3043,12 +3043,12 @@ p {
 
 /* Modern silver pill/Dynamic Island phone frame (Uber Med demos) */
 .case-device-video--modern {
-  --device-screen-top: 1.06%;
-  --device-screen-right: 3.11%;
-  --device-screen-bottom: 1.29%;
-  --device-screen-left: 2.87%;
-  --device-screen-radius-x: 13.49%;
-  --device-screen-radius-y: 6.39%;
+  --device-screen-top: 2.24%;
+  --device-screen-right: 5.5%;
+  --device-screen-bottom: 2.47%;
+  --device-screen-left: 5.26%;
+  --device-screen-radius-x: 11.53%;
+  --device-screen-radius-y: 5.31%;
   filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.16));
 }
 
