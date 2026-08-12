@@ -2932,7 +2932,7 @@ p {
   right: var(--device-screen-right);
   bottom: var(--device-screen-bottom);
   left: var(--device-screen-left);
-  z-index: 2;
+  z-index: 0;
   overflow: hidden;
   border-radius: var(--device-screen-radius-x) / var(--device-screen-radius-y);
   transform: scale(0.845) translateY(-0.5%);
@@ -2953,7 +2953,7 @@ p {
 
 .case-device-video__frame {
   position: relative;
-  z-index: 0;
+  z-index: 1;
   display: block;
   width: 100%;
   height: auto;
