@@ -1517,6 +1517,7 @@ p {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  border-radius: 0;
   background:
     radial-gradient(120% 80% at 18% 12%, rgba(255, 255, 255, 0.55), transparent 52%),
     radial-gradient(90% 70% at 88% 78%, rgba(170, 155, 135, 0.12), transparent 58%),
