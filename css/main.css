@@ -2744,7 +2744,7 @@ p {
 .case-hifi-flow__device {
   width: 100%;
   padding: 0;
-  border: 1.5px solid #111;
+  border: 2px solid #111;
   border-radius: 1.55rem;
   background: #fff;
   box-shadow: none;
