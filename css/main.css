@@ -3970,8 +3970,8 @@ p {
   display: block;
   width: 100% !important;
   height: 100% !important;
-  transform: scale(1.55) !important;
-  transform-origin: center center !important;
+  transform: scale(2.55) translateY(-6%) !important;
+  transform-origin: center 58% !important;
 }
 
 .case-lottie-break.is-inview .case-lottie-break__stage {
