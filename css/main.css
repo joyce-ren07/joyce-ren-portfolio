@@ -3817,6 +3817,33 @@ p {
   font-weight: var(--case-tertiary-weight, 600);
 }
 
+/* Uber research subsections — open up space between Surveys / Social Listening / Market */
+.case-study-page--uber #research .case-stats + .case-subheading--large,
+.case-study-page--uber #research .case-quotes + .case-subheading--large {
+  margin-top: clamp(5.5rem, 12vh, 8.5rem);
+}
+
+.case-study-page--uber #research .case-subheading--large + .case-body--tertiary {
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.case-study-page--uber #research .case-quotes.case-quotes--staggered {
+  margin-top: clamp(2.75rem, 5.5vw, 3.75rem);
+  gap: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.case-study-page--uber #research .case-subheading--large + .case-process-competitive--market {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.case-study-page--uber #research .case-process-competitive--market .case-competitive__logos {
+  margin-bottom: clamp(2.25rem, 5vw, 3.25rem);
+}
+
+.case-study-page--uber #research .case-body--summary {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
 .case-insights li::before {
   content: "";
   position: absolute;
