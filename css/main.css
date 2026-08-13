@@ -600,16 +600,6 @@ p {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
-.work-card:hover .work-card__link,
-.work-card:focus-within .work-card__link {
-  color: color-mix(in srgb, #a1a1a1 70%, #000000);
-}
-
-.work-card:hover .work-card__link--current,
-.work-card:focus-within .work-card__link--current {
-  color: #0842a0;
-}
-
 .work-card__image {
   aspect-ratio: 16 / 10;
   background: #ffffff;
@@ -697,15 +687,17 @@ p {
 .work-card__desc {
   font-size: var(--text-tertiary-size);
   color: var(--color-text-muted);
-  margin-bottom: var(--space-md);
+  margin-bottom: 0;
   flex: 1;
 }
 
 .work-card__link {
-  font-size: var(--text-tertiary-size);
-  font-weight: 500;
-  color: #a1a1a1;
-  transition: color var(--transition);
+  display: block;
+  height: 0;
+  overflow: visible;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
 }
 
 .work-card__link::after {
@@ -718,7 +710,7 @@ p {
 }
 
 .work-card__link--current {
-  color: #0b57d0;
+  color: transparent;
 }
 
 @media (max-width: 768px) {
