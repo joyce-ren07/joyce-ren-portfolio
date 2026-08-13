@@ -2859,7 +2859,7 @@ p {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: clamp(0.75rem, 2.5vw, 1.75rem);
+  gap: clamp(0.35rem, 1.25vw, 0.85rem);
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
