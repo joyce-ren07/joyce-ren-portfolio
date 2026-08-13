@@ -2065,8 +2065,8 @@ p {
     gap: 0;
     padding: var(--space-sm);
     background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(100%);
+    -webkit-backdrop-filter: blur(16px) saturate(100%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   }
 
@@ -2157,7 +2157,7 @@ p {
 
 .case-topbar {
   --topbar-glass-blur: 20px;
-  --topbar-glass-saturate: 155%;
+  --topbar-glass-saturate: 100%;
   --topbar-glass-bg: rgba(255, 255, 255, 0.14);
   --topbar-glass-border: rgba(255, 255, 255, 0.3);
   --topbar-glass-edge: rgba(0, 0, 0, 0.035);
@@ -2219,8 +2219,8 @@ p {
   top: 100%;
   height: 1.1rem;
   pointer-events: none;
-  backdrop-filter: blur(8px) saturate(130%);
-  -webkit-backdrop-filter: blur(8px) saturate(130%);
+  backdrop-filter: blur(8px) saturate(100%);
+  -webkit-backdrop-filter: blur(8px) saturate(100%);
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.06), transparent);
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
@@ -2262,6 +2262,8 @@ p {
 
 .viewport-top-blur {
   top: 0;
+  backdrop-filter: blur(18px) saturate(100%);
+  -webkit-backdrop-filter: blur(18px) saturate(100%);
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.34) 0%,
@@ -2444,8 +2446,8 @@ p {
     gap: 0;
     padding: var(--space-sm);
     background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(100%);
+    -webkit-backdrop-filter: blur(16px) saturate(100%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   }
 
