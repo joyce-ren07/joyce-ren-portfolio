@@ -2179,6 +2179,24 @@ p {
     0 1px 0 var(--topbar-glass-edge);
   pointer-events: none;
   isolation: isolate;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+  will-change: transform;
+}
+
+.case-topbar.is-hidden {
+  transform: translate3d(0, calc(-100% - 1.25rem), 0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.case-topbar.is-hidden a,
+.case-topbar.is-hidden button,
+.case-topbar.is-hidden .case-topbar__logo,
+.case-topbar.is-hidden .case-topbar__nav,
+.case-topbar.is-hidden .case-topbar__resume,
+.case-topbar.is-hidden .nav-toggle {
+  pointer-events: none;
 }
 
 .case-topbar::before {
@@ -2252,6 +2270,17 @@ p {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.28),
     inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-topbar {
+    transition: none;
+  }
+
+  .case-topbar.is-hidden {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-transparency: reduce) {

@@ -10,6 +10,10 @@
     toggle.addEventListener("click", () => {
       const isOpen = nav.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", String(isOpen));
+      const topbarEl = document.querySelector(".case-topbar");
+      if (topbarEl && isOpen) {
+        topbarEl.classList.remove("is-hidden");
+      }
     });
   }
 
@@ -19,6 +23,51 @@
     bottomBlur.className = "viewport-bottom-blur";
     bottomBlur.setAttribute("aria-hidden", "true");
     document.body.appendChild(bottomBlur);
+  }
+
+  /* Topbar — hide on scroll down, reveal on scroll up */
+  const topbar = document.querySelector(".case-topbar");
+  if (topbar) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let lastY = window.scrollY || 0;
+    let hidden = false;
+    let raf = 0;
+
+    const setHidden = (next) => {
+      if (hidden === next) return;
+      hidden = next;
+      topbar.classList.toggle("is-hidden", hidden);
+    };
+
+    const menuOpen = () => {
+      const openNav =
+        document.querySelector(".case-topbar__nav.is-open") ||
+        document.querySelector(".site-nav.is-open");
+      return Boolean(openNav);
+    };
+
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY || 0;
+        const delta = y - lastY;
+
+        if (menuOpen() || y < 24) {
+          setHidden(false);
+        } else if (delta > 6 && y > 64) {
+          setHidden(true);
+        } else if (delta < -6) {
+          setHidden(false);
+        }
+
+        lastY = y;
+      });
+    };
+
+    if (!reducedMotion) {
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
   }
 
   /* Top bar — sliding glow from logo to active nav item */
