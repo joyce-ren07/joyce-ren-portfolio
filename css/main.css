@@ -3933,6 +3933,192 @@ p {
   position: relative;
 }
 
+/* Uber Med — Key Insights → Core Design */
+.case-process-duo {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(3.5rem, 8vw, 5.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 46rem;
+}
+
+.case-process-duo__insights {
+  width: 100%;
+}
+
+.case-process-duo__heading {
+  margin: 0 0 1.1rem;
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #d3d3d3;
+  line-height: 1.15;
+}
+
+.case-process-duo__heading--insights {
+  text-align: left;
+}
+
+.case-process-duo__heading--core {
+  text-align: center;
+  margin-bottom: 1.15rem;
+}
+
+.case-process-duo__panel {
+  box-sizing: border-box;
+}
+
+.case-process-duo__panel--light {
+  width: 100%;
+  min-height: clamp(13rem, 26vw, 16.5rem);
+  padding: clamp(2rem, 4vw, 2.75rem) clamp(2rem, 4vw, 2.85rem) clamp(2.5rem, 5vw, 3.5rem);
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 2.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.case-process-duo__panel--dark {
+  width: min(100%, 21.5rem);
+  margin-inline: auto;
+  min-height: clamp(15rem, 30vw, 18.5rem);
+  padding: clamp(2.5rem, 4.5vw, 3.25rem) clamp(1.85rem, 3.5vw, 2.5rem);
+  background: #000000;
+  border-radius: 3.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+}
+
+.case-process-duo__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: duo-item;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.case-process-duo__list li {
+  counter-increment: duo-item;
+  position: relative;
+  padding-left: 1.65rem;
+  font-size: var(--case-tertiary-size);
+  line-height: 1.55;
+}
+
+.case-process-duo__list li::before {
+  content: counter(duo-item) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+.case-process-duo__list--light li {
+  font-style: italic;
+  font-weight: 400;
+  color: #8e8e8e;
+}
+
+.case-process-duo__list--light em {
+  font-style: italic;
+  font-weight: 400;
+  color: inherit;
+}
+
+.case-process-duo__list--dark {
+  width: max-content;
+  max-width: 100%;
+  gap: 1.05rem;
+}
+
+.case-process-duo__list--dark li {
+  font-style: italic;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.case-process-duo__list--dark strong,
+.case-process-duo__list--dark em {
+  font-style: italic;
+  font-weight: 700;
+  color: inherit;
+}
+
+.case-process-duo__bridge {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: clamp(2.75rem, 6vw, 4.25rem);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+}
+
+.case-process-duo__arrow {
+  position: absolute;
+  left: clamp(0rem, 4vw, 2.5rem);
+  top: clamp(-0.5rem, 1vw, 0.5rem);
+  width: clamp(5.5rem, 14vw, 8rem);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.case-process-duo__arrow-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-process-duo__core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 24rem;
+  position: relative;
+  z-index: 0;
+}
+
+.case-study-page--uber .case-process-duo__list li {
+  font-size: var(--case-tertiary-size);
+  line-height: var(--case-body-leading, 1.58);
+}
+
+.case-study-page--uber .case-process-duo__list--dark li {
+  font-weight: 700;
+}
+
+.case-process-duo + .case-subheading {
+  margin-top: clamp(3rem, 7vw, 4.5rem);
+}
+
+@media (max-width: 700px) {
+  .case-process-duo__bridge {
+    margin-top: 2rem;
+    padding-top: 3.25rem;
+  }
+
+  .case-process-duo__arrow {
+    left: 50%;
+    top: 0;
+    width: 4.75rem;
+    transform: translateX(-50%) rotate(90deg);
+  }
+
+  .case-process-duo__panel--dark {
+    width: 100%;
+    border-radius: 2.75rem;
+  }
+}
+
 .case-study-page--uber .case-insights li,
 .case-study-page--uber .case-hifi-flow__caption,
 .case-study-page--uber .case-feedback__list li,
