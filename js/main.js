@@ -26,9 +26,9 @@
     document.body.appendChild(edge);
   });
 
-  /* Topbar — hide on scroll down, reveal on scroll up */
+  /* Topbar — hide on scroll down, reveal on scroll up (skip homepage) */
   const topbar = document.querySelector(".case-topbar");
-  if (topbar) {
+  if (topbar && !document.body.classList.contains("portfolio-page")) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let lastY = window.scrollY || 0;
     let hidden = false;
