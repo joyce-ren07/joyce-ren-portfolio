@@ -3936,6 +3936,8 @@ p {
 .case-study-page--uber .case-insights li,
 .case-study-page--uber .case-hifi-flow__caption,
 .case-study-page--uber .case-feedback__list li,
+.case-study-page--uber .case-critique__note,
+.case-study-page--uber .case-iterations__caption,
 .case-study-page--uber .case-stat__label,
 .case-study-page--uber .case-table th,
 .case-study-page--uber .case-table td,
@@ -4072,6 +4074,244 @@ p {
   position: absolute;
   left: 0;
   color: var(--case-text-faint);
+}
+
+/* Uber Med — annotated feedback + iteration phones */
+.case-critique {
+  margin-top: clamp(2.5rem, 5vw, 3.75rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.case-critique__stage {
+  position: relative;
+  width: min(100%, 46rem);
+  margin-inline: auto;
+  min-height: 36rem;
+  padding: clamp(2.5rem, 5vw, 3.5rem) clamp(0.5rem, 2vw, 1rem);
+}
+
+.case-critique__phone {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  width: min(100%, 13.75rem);
+  margin-inline: auto;
+}
+
+.case-critique__device {
+  width: 100%;
+  padding: 0.14rem 0.2rem 0.24rem;
+  border: 2.5px solid #111;
+  border-radius: 1.6rem;
+  background: #fff;
+  overflow: hidden;
+  line-height: 0;
+  box-sizing: border-box;
+}
+
+.case-critique__screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.28rem;
+  background: #fff;
+}
+
+.case-critique__note {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  max-width: 10.5rem;
+  padding: 0.55rem 0.7rem;
+  background: #fff;
+  border: 1px solid #d8d8d8;
+  border-radius: 0.55rem;
+  font-size: var(--case-tertiary-size);
+  font-weight: 500;
+  line-height: 1.35;
+  color: #6e6e6e;
+  box-shadow: none;
+}
+
+.case-critique__line {
+  position: absolute;
+  pointer-events: none;
+  background: #bdbdbd;
+}
+
+.case-critique__note--progress {
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 13rem;
+  text-align: center;
+}
+
+.case-critique__line--progress {
+  left: 50%;
+  bottom: -1.65rem;
+  width: 1px;
+  height: 1.5rem;
+  transform: translateX(-50%);
+}
+
+.case-critique__note--unity {
+  top: 38%;
+  left: 0;
+  max-width: 9.75rem;
+}
+
+.case-critique__line--unity {
+  top: 50%;
+  right: -2.15rem;
+  width: 2rem;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.case-critique__note--back {
+  bottom: 14%;
+  left: 0;
+  max-width: 9.75rem;
+}
+
+.case-critique__line--back {
+  top: 50%;
+  right: -2.15rem;
+  width: 2rem;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.case-critique__note--confirm {
+  top: 28%;
+  right: 0;
+  max-width: 10rem;
+}
+
+.case-critique__line--confirm {
+  top: 50%;
+  left: -2.15rem;
+  width: 2rem;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.case-critique__note--circles {
+  bottom: 22%;
+  right: 0;
+  max-width: 10.25rem;
+}
+
+.case-critique__line--circles {
+  top: 50%;
+  left: -2.15rem;
+  width: 2rem;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.case-iterations {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.case-iterations__arrow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  color: #c4c4c4;
+}
+
+.case-iterations__arrow-svg {
+  display: block;
+  width: clamp(4.5rem, 10vw, 6.25rem);
+  height: auto;
+}
+
+.case-iterations__phones {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(1.75rem, 5vw, 3.5rem);
+  flex-wrap: wrap;
+}
+
+.case-iterations__step {
+  margin: 0;
+  flex: 0 1 auto;
+  width: min(100%, 13.75rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.95rem;
+}
+
+.case-iterations__device {
+  width: 100%;
+  padding: 0.14rem 0.2rem 0.24rem;
+  border: 2.5px solid #111;
+  border-radius: 1.6rem;
+  background: #fff;
+  overflow: hidden;
+  line-height: 0;
+  box-sizing: border-box;
+}
+
+.case-iterations__screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.28rem;
+  background: #fff;
+}
+
+.case-iterations__caption {
+  margin: 0;
+  max-width: 14.5rem;
+  text-align: center;
+  font-size: var(--case-tertiary-size);
+  font-weight: 400;
+  line-height: 1.45;
+  color: #a1a1a1;
+}
+
+@media (max-width: 900px) {
+  .case-critique__stage {
+    min-height: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .case-critique__phone {
+    order: -1;
+    width: min(100%, 14.5rem);
+  }
+
+  .case-critique__note {
+    position: static;
+    transform: none;
+    max-width: 22rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  .case-critique__line {
+    display: none;
+  }
+
+  .case-iterations__phones {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .case-iterations__step {
+    width: min(100%, 14.5rem);
+  }
 }
 
 .case-block:has(+ .case-lottie-break) {

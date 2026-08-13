@@ -481,29 +481,100 @@
 
         <h3 class="case-subheading">User Feedback &amp; Iterations</h3>
 
-        <div class="case-feedback">
-          <div class="case-feedback__col">
-            <h4 class="case-feedback__title">Feedback received</h4>
-            <ul class="case-feedback__list">
-              <li>Needs a confirmation or review page</li>
-              <li>Circles seem more like a single-selection format</li>
-              <li>Needs more visual unity between options</li>
-              <li>Missing "back" or "return" option</li>
-              <li>The purpose of this step-by-step is unclear</li>
-            </ul>
-          </div>
-          <div class="case-feedback__col">
-            <h4 class="case-feedback__title">Iterations made</h4>
-            <ul class="case-feedback__list">
-              <li>Clear step-by-step segmentation for organized decision making</li>
-              <li>Review screen for appointment time, pickup info, accommodations</li>
-            </ul>
+        <div class="case-critique" aria-label="Initial design with user feedback annotations">
+          <div class="case-critique__stage">
+            <figure class="case-critique__phone">
+              <div class="case-critique__device">
+                <img
+                  class="case-critique__screen"
+                  src="../../assets/images/uber-med/user-feedback-0.png"
+                  alt="Early wireframe asking how we can help, with three identical walking aid options and a confirm selection button."
+                  width="686"
+                  height="1381"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+            </figure>
+
+            <p class="case-critique__note case-critique__note--progress">
+              <span class="case-critique__line case-critique__line--progress" aria-hidden="true"></span>
+              The purpose of this step-by-step is unclear
+            </p>
+            <p class="case-critique__note case-critique__note--unity">
+              <span class="case-critique__line case-critique__line--unity" aria-hidden="true"></span>
+              Needs more visual unity between options
+            </p>
+            <p class="case-critique__note case-critique__note--back">
+              <span class="case-critique__line case-critique__line--back" aria-hidden="true"></span>
+              Missing &ldquo;back&rdquo; or &ldquo;return&rdquo; option
+            </p>
+            <p class="case-critique__note case-critique__note--confirm">
+              <span class="case-critique__line case-critique__line--confirm" aria-hidden="true"></span>
+              Needs a confirmation or review page
+            </p>
+            <p class="case-critique__note case-critique__note--circles">
+              <span class="case-critique__line case-critique__line--circles" aria-hidden="true"></span>
+              Circles seem more like a single-selection format
+            </p>
           </div>
         </div>
 
-        <div class="case-image-grid">
-          <div class="case-placeholder" aria-hidden="true">Before iteration</div>
-          <div class="case-placeholder" aria-hidden="true">After iteration</div>
+        <div class="case-iterations" aria-label="Revised mobility and confirm screens">
+          <div class="case-iterations__arrow" aria-hidden="true">
+            <svg class="case-iterations__arrow-svg" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M18 12 C 38 8, 72 10, 88 28 C 98 40, 92 58, 70 62 C 52 65, 48 48, 62 42 C 78 34, 96 48, 102 72"
+                stroke="currentColor"
+                stroke-width="2.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M92 68 L102 74 L96 82"
+                stroke="currentColor"
+                stroke-width="2.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div class="case-iterations__phones">
+            <figure class="case-iterations__step">
+              <div class="case-iterations__device">
+                <img
+                  class="case-iterations__screen"
+                  src="../../assets/images/uber-med/uber-iterations-1.png"
+                  alt="Mobility step with numbered progress, multi-select accommodation options, and Back and Next buttons."
+                  width="662"
+                  height="1337"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+              <figcaption class="case-iterations__caption">
+                Clear step-by-step segmentation for organized decision making
+              </figcaption>
+            </figure>
+
+            <figure class="case-iterations__step">
+              <div class="case-iterations__device">
+                <img
+                  class="case-iterations__screen"
+                  src="../../assets/images/uber-med/uber-iterations-2.png"
+                  alt="Confirm step reviewing appointment details and accommodations before Confirm and Pay."
+                  width="592"
+                  height="1193"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+              <figcaption class="case-iterations__caption">
+                Review screen for appointment time, pickup info, accommodations
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
