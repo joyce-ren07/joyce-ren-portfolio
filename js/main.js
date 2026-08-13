@@ -17,13 +17,14 @@
     });
   }
 
-  /* Sticky bottom liquid-glass blur edge */
-  if (!document.querySelector(".viewport-bottom-blur")) {
-    const bottomBlur = document.createElement("div");
-    bottomBlur.className = "viewport-bottom-blur";
-    bottomBlur.setAttribute("aria-hidden", "true");
-    document.body.appendChild(bottomBlur);
-  }
+  /* Sticky top/bottom liquid-glass blur edges */
+  ["viewport-top-blur", "viewport-bottom-blur"].forEach((className) => {
+    if (document.querySelector(`.${className}`)) return;
+    const edge = document.createElement("div");
+    edge.className = className;
+    edge.setAttribute("aria-hidden", "true");
+    document.body.appendChild(edge);
+  });
 
   /* Topbar — hide on scroll down, reveal on scroll up */
   const topbar = document.querySelector(".case-topbar");

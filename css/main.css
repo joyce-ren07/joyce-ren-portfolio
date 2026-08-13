@@ -2156,11 +2156,11 @@ p {
 }
 
 .case-topbar {
-  --topbar-glass-blur: 16px;
-  --topbar-glass-saturate: 140%;
-  --topbar-glass-bg: rgba(255, 255, 255, 0.08);
-  --topbar-glass-border: rgba(255, 255, 255, 0.22);
-  --topbar-glass-edge: rgba(0, 0, 0, 0.03);
+  --topbar-glass-blur: 20px;
+  --topbar-glass-saturate: 155%;
+  --topbar-glass-bg: rgba(255, 255, 255, 0.14);
+  --topbar-glass-border: rgba(255, 255, 255, 0.3);
+  --topbar-glass-edge: rgba(0, 0, 0, 0.035);
   position: fixed;
   top: 0;
   left: 0;
@@ -2168,14 +2168,14 @@ p {
   z-index: 200;
   height: var(--case-topbar-height);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.05) 100%),
     var(--topbar-glass-bg);
   backdrop-filter: blur(var(--topbar-glass-blur)) saturate(var(--topbar-glass-saturate));
   -webkit-backdrop-filter: blur(var(--topbar-glass-blur)) saturate(var(--topbar-glass-saturate));
   border-bottom: 1px solid var(--topbar-glass-border);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
     0 1px 0 var(--topbar-glass-edge);
   pointer-events: none;
   isolation: isolate;
@@ -2205,9 +2205,9 @@ p {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, transparent 42%),
-    radial-gradient(ellipse at 12% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 55%);
-  opacity: 0.55;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, transparent 42%),
+    radial-gradient(ellipse at 12% 0%, rgba(255, 255, 255, 0.16) 0%, transparent 55%);
+  opacity: 0.65;
 }
 
 /* Soft blur fade just below the topbar bottom border */
@@ -2247,23 +2247,43 @@ p {
   padding-inline: var(--nav-padding-inline);
 }
 
-/* Sticky bottom liquid-glass edge — blurs content as it scrolls under */
+/* Sticky top/bottom liquid-glass edges — persist even when the nav hides */
+.viewport-top-blur,
 .viewport-bottom-blur {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
   z-index: 180;
   height: clamp(3.25rem, 8vh, 4.75rem);
   pointer-events: none;
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+}
+
+.viewport-top-blur {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.34) 0%,
+    rgba(255, 255, 255, 0.12) 48%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 28%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 28%, transparent 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    inset 0 -1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.viewport-bottom-blur {
+  bottom: 0;
   background: linear-gradient(
     to top,
     rgba(255, 255, 255, 0.34) 0%,
     rgba(255, 255, 255, 0.12) 48%,
     transparent 100%
   );
-  backdrop-filter: blur(18px) saturate(170%);
-  -webkit-backdrop-filter: blur(18px) saturate(170%);
   -webkit-mask-image: linear-gradient(to top, #000 0%, #000 28%, transparent 100%);
   mask-image: linear-gradient(to top, #000 0%, #000 28%, transparent 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -2292,6 +2312,7 @@ p {
 
   .case-topbar::before,
   .case-topbar::after,
+  .viewport-top-blur,
   .viewport-bottom-blur {
     display: none;
   }
