@@ -4079,23 +4079,43 @@ p {
 /* Uber Med — annotated feedback + iteration phones */
 .case-critique {
   margin-top: clamp(2.5rem, 5vw, 3.75rem);
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .case-critique__stage {
   position: relative;
-  width: min(100%, 46rem);
+  width: min(100%, 42rem);
   margin-inline: auto;
-  min-height: 36rem;
-  padding: clamp(2.5rem, 5vw, 3.5rem) clamp(0.5rem, 2vw, 1rem);
+  aspect-ratio: 900 / 760;
+  max-height: min(44rem, 78vh);
+}
+
+.case-critique__connectors {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.case-critique__connectors path {
+  fill: none;
+  stroke: #9a9a9a;
+  stroke-width: 1.5;
+  stroke-linecap: round;
 }
 
 .case-critique__phone {
   margin: 0;
-  position: relative;
+  position: absolute;
   z-index: 1;
-  width: min(100%, 13.75rem);
-  margin-inline: auto;
+  left: 50%;
+  top: 11%;
+  transform: translateX(-50%);
+  width: 28%;
+  max-width: 13.5rem;
 }
 
 .case-critique__device {
@@ -4121,98 +4141,51 @@ p {
   position: absolute;
   z-index: 2;
   margin: 0;
-  max-width: 10.5rem;
-  padding: 0.55rem 0.7rem;
+  max-width: 10.75rem;
+  padding: 0.5rem 0.65rem;
   background: #fff;
-  border: 1px solid #d8d8d8;
-  border-radius: 0.55rem;
+  border: 1px solid #d6d6d6;
+  border-radius: 0.5rem;
   font-size: var(--case-tertiary-size);
   font-weight: 500;
   line-height: 1.35;
   color: #6e6e6e;
-  box-shadow: none;
-}
-
-.case-critique__line {
-  position: absolute;
-  pointer-events: none;
-  background: #bdbdbd;
 }
 
 .case-critique__note--progress {
-  top: 4%;
+  top: 1.5%;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 13rem;
+  max-width: 13.5rem;
   text-align: center;
 }
 
-.case-critique__line--progress {
-  left: 50%;
-  bottom: -1.65rem;
-  width: 1px;
-  height: 1.5rem;
-  transform: translateX(-50%);
-}
-
 .case-critique__note--unity {
-  top: 38%;
-  left: 0;
-  max-width: 9.75rem;
-}
-
-.case-critique__line--unity {
-  top: 50%;
-  right: -2.15rem;
-  width: 2rem;
-  height: 1px;
-  transform: translateY(-50%);
-}
-
-.case-critique__note--back {
-  bottom: 14%;
-  left: 0;
-  max-width: 9.75rem;
-}
-
-.case-critique__line--back {
-  top: 50%;
-  right: -2.15rem;
-  width: 2rem;
-  height: 1px;
-  transform: translateY(-50%);
-}
-
-.case-critique__note--confirm {
-  top: 28%;
-  right: 0;
+  top: 39%;
+  left: 2%;
   max-width: 10rem;
 }
 
-.case-critique__line--confirm {
-  top: 50%;
-  left: -2.15rem;
-  width: 2rem;
-  height: 1px;
-  transform: translateY(-50%);
+.case-critique__note--back {
+  top: 68%;
+  left: 2%;
+  max-width: 10rem;
 }
 
-.case-critique__note--circles {
-  bottom: 22%;
-  right: 0;
+.case-critique__note--confirm {
+  top: 30%;
+  right: 2%;
   max-width: 10.25rem;
 }
 
-.case-critique__line--circles {
-  top: 50%;
-  left: -2.15rem;
-  width: 2rem;
-  height: 1px;
-  transform: translateY(-50%);
+.case-critique__note--circles {
+  top: 56%;
+  right: 2%;
+  max-width: 10.5rem;
 }
 
 .case-iterations {
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(0.75rem, 2vw, 1.25rem);
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
@@ -4225,26 +4198,27 @@ p {
 
 .case-iterations__arrow-svg {
   display: block;
-  width: clamp(4.5rem, 10vw, 6.25rem);
+  width: clamp(4.75rem, 11vw, 6.75rem);
   height: auto;
+  transform: translateX(1.25rem);
 }
 
 .case-iterations__phones {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: clamp(1.75rem, 5vw, 3.5rem);
+  gap: clamp(2.25rem, 6vw, 4.25rem);
   flex-wrap: wrap;
 }
 
 .case-iterations__step {
   margin: 0;
   flex: 0 1 auto;
-  width: min(100%, 13.75rem);
+  width: min(100%, 15rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.95rem;
+  gap: 1rem;
 }
 
 .case-iterations__device {
@@ -4268,7 +4242,7 @@ p {
 
 .case-iterations__caption {
   margin: 0;
-  max-width: 14.5rem;
+  max-width: 15rem;
   text-align: center;
   font-size: var(--case-tertiary-size);
   font-weight: 400;
@@ -4278,17 +4252,25 @@ p {
 
 @media (max-width: 900px) {
   .case-critique__stage {
+    aspect-ratio: auto;
+    max-height: none;
     min-height: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.85rem;
   }
 
+  .case-critique__connectors {
+    display: none;
+  }
+
   .case-critique__phone {
+    position: static;
+    transform: none;
     order: -1;
     width: min(100%, 14.5rem);
+    max-width: 14.5rem;
   }
 
   .case-critique__note {
@@ -4297,10 +4279,6 @@ p {
     max-width: 22rem;
     width: 100%;
     text-align: left;
-  }
-
-  .case-critique__line {
-    display: none;
   }
 
   .case-iterations__phones {
