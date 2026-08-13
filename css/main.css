@@ -4428,6 +4428,136 @@ p {
   background: #fff;
 }
 
+/* Early wireframe screen (HTML recreation for exact layout/color control) */
+.wire-screen {
+  --wire-fs: clamp(0.72rem, 1.55vw, 0.92rem);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  aspect-ratio: 686 / 1381;
+  padding: 7% 8.4% 8.5%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 1.28rem;
+  line-height: normal;
+  overflow: hidden;
+  font-size: var(--wire-fs);
+}
+
+.wire-screen__progress {
+  display: flex;
+  gap: 0.28em;
+  margin-bottom: 1.35em;
+}
+
+.wire-screen__seg {
+  flex: 1 1 0;
+  height: 0.32em;
+  border-radius: 999px;
+  background: #d0d0d0;
+}
+
+.wire-screen__seg.is-active {
+  background: #6e6e6e;
+}
+
+.wire-screen__title {
+  margin: 0 0 0.4em;
+  font-size: 1.55em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: #000000;
+  text-align: left;
+}
+
+.wire-screen__sub {
+  margin: 0 0 1.35em;
+  font-size: 0.78em;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #c8c8c8;
+  text-align: left;
+}
+
+.wire-screen__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+  flex: 0 0 auto;
+}
+
+.wire-screen__card {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  min-height: 3.15em;
+  padding: 0.7em 0.75em;
+  background: #bcbcbc;
+  border-radius: 0.95em;
+  box-sizing: border-box;
+}
+
+.wire-screen__icon {
+  flex: 0 0 auto;
+  width: 1.55em;
+  height: 1.55em;
+  border-radius: 0.4em;
+  background: #5a5a5a;
+}
+
+.wire-screen__copy {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.12em;
+  text-align: left;
+}
+
+.wire-screen__label {
+  font-size: 0.82em;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.wire-screen__desc {
+  font-size: 0.62em;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ececec;
+}
+
+.wire-screen__radio {
+  flex: 0 0 auto;
+  width: 1.05em;
+  height: 1.05em;
+  border-radius: 50%;
+  border: 0.14em solid #4a4a4a;
+  background:
+    radial-gradient(circle at center, #4a4a4a 0 34%, transparent 35%),
+    #bcbcbc;
+  box-sizing: border-box;
+}
+
+.wire-screen__btn {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.55em;
+  padding: 0.7em 0.85em;
+  border-radius: 999px;
+  background: #6e6e6e;
+  color: #ffffff;
+  font-size: 0.82em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
 .case-critique__note {
   position: absolute;
   z-index: 2;
