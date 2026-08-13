@@ -400,29 +400,28 @@
         </ul>
 
         <h3 class="case-subheading">Constraints &amp; Tradeoffs</h3>
-        <div class="case-table-wrap">
-          <table class="case-table">
-            <thead>
-              <tr>
-                <th scope="col">Considered</th>
-                <th scope="col">Decision</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">EHR integration vs. manual appointment entry</th>
-                <td>Manual entry to ship without hospital API dependency</td>
-              </tr>
-              <tr>
-                <th scope="row">Full accessibility vs. simplified ride preferences</th>
-                <td>Key accommodations without requiring medical history</td>
-              </tr>
-              <tr>
-                <th scope="row">Provider-side HIPAA vs. patient-facing access</th>
-                <td>Extended existing infrastructure to put patients in control</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="case-constraints">
+          <div class="case-constraints__heads" aria-hidden="true">
+            <span class="case-constraints__head case-constraints__head--left">Considered</span>
+            <span class="case-constraints__head case-constraints__head--right">Decision</span>
+          </div>
+          <ul class="case-constraints__list">
+            <li class="case-constraints__item">
+              <span class="case-constraints__considered">EHR integration vs. manual appointment entry</span>
+              <span class="case-constraints__arrow" aria-hidden="true">→</span>
+              <strong class="case-constraints__decision">manual entry to ship without hospital API dependency</strong>
+            </li>
+            <li class="case-constraints__item">
+              <span class="case-constraints__considered">Full accessibility vs. simplified ride preferences</span>
+              <span class="case-constraints__arrow" aria-hidden="true">→</span>
+              <strong class="case-constraints__decision">key accommodations without requiring medical history</strong>
+            </li>
+            <li class="case-constraints__item">
+              <span class="case-constraints__considered">Provider-side HIPAA vs. patient-facing access</span>
+              <span class="case-constraints__arrow" aria-hidden="true">→</span>
+              <strong class="case-constraints__decision">extended existing infrastructure to put patients in control</strong>
+            </li>
+          </ul>
         </div>
 
         <h3 class="case-subheading">Hi-fi Flow Adjustments</h3>
