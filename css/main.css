@@ -2922,7 +2922,7 @@ p {
 
 .case-hifi-flow__arrow-icon {
   display: block;
-  width: clamp(4.5rem, 11vw, 6.5rem);
+  width: clamp(5.75rem, 14vw, 8.25rem);
   height: auto;
 }
 
