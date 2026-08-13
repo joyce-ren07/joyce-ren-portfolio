@@ -2064,10 +2064,10 @@ p {
     align-items: stretch;
     gap: 0;
     padding: var(--space-sm);
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   }
 
   .case-topbar__nav.is-open {
@@ -2156,11 +2156,11 @@ p {
 }
 
 .case-topbar {
-  --topbar-glass-blur: 28px;
-  --topbar-glass-saturate: 185%;
-  --topbar-glass-bg: rgba(255, 255, 255, 0.38);
-  --topbar-glass-border: rgba(255, 255, 255, 0.55);
-  --topbar-glass-edge: rgba(0, 0, 0, 0.06);
+  --topbar-glass-blur: 16px;
+  --topbar-glass-saturate: 140%;
+  --topbar-glass-bg: rgba(255, 255, 255, 0.08);
+  --topbar-glass-border: rgba(255, 255, 255, 0.22);
+  --topbar-glass-edge: rgba(0, 0, 0, 0.03);
   position: fixed;
   top: 0;
   left: 0;
@@ -2168,14 +2168,14 @@ p {
   z-index: 200;
   height: var(--case-topbar-height);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.22) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%),
     var(--topbar-glass-bg);
   backdrop-filter: blur(var(--topbar-glass-blur)) saturate(var(--topbar-glass-saturate));
   -webkit-backdrop-filter: blur(var(--topbar-glass-blur)) saturate(var(--topbar-glass-saturate));
   border-bottom: 1px solid var(--topbar-glass-border);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.65),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
     0 1px 0 var(--topbar-glass-edge);
   pointer-events: none;
   isolation: isolate;
@@ -2187,9 +2187,9 @@ p {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, transparent 42%),
-    radial-gradient(ellipse at 12% 0%, rgba(255, 255, 255, 0.35) 0%, transparent 55%);
-  opacity: 0.9;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, transparent 42%),
+    radial-gradient(ellipse at 12% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 55%);
+  opacity: 0.55;
 }
 
 /* Soft blur fade just below the topbar bottom border */
@@ -2199,11 +2199,11 @@ p {
   left: 0;
   right: 0;
   top: 100%;
-  height: 1.35rem;
+  height: 1.1rem;
   pointer-events: none;
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.18), transparent);
+  backdrop-filter: blur(8px) saturate(130%);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.06), transparent);
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
 }
@@ -2390,10 +2390,10 @@ p {
     align-items: stretch;
     gap: 0;
     padding: var(--space-sm);
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   }
 
   .case-topbar__nav.is-open {
