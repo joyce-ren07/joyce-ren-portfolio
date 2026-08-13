@@ -2876,20 +2876,21 @@ p {
 
 .case-hifi-flow__device {
   width: 100%;
-  padding: 0;
-  border: 2px solid #111;
-  border-radius: 1.55rem;
+  padding: 0.14rem 0.2rem 0.24rem;
+  border: 2.5px solid #111;
+  border-radius: 1.6rem;
   background: #fff;
   box-shadow: none;
   overflow: hidden;
   line-height: 0;
+  box-sizing: border-box;
 }
 
 .case-hifi-flow__screen {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0;
+  border-radius: 1.28rem;
   background: #fff;
 }
 
