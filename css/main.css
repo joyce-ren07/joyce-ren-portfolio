@@ -4535,11 +4535,19 @@ p {
   width: 1.05em;
   height: 1.05em;
   border-radius: 50%;
-  border: 0.14em solid #4a4a4a;
-  background:
-    radial-gradient(circle at center, #4a4a4a 0 34%, transparent 35%),
-    #bcbcbc;
+  border: 0.13em solid #4a4a4a;
+  background: transparent;
   box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wire-screen__radio-dot {
+  width: 0.48em;
+  height: 0.48em;
+  border-radius: 50%;
+  background: #4a4a4a;
 }
 
 .wire-screen__btn {
