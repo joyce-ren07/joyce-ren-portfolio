@@ -3933,9 +3933,197 @@ p {
   position: relative;
 }
 
+/* Uber Med — Key Insights → Core Design */
+.case-process-duo {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(3.5rem, 8vw, 5.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 46rem;
+}
+
+.case-process-duo__insights {
+  width: 100%;
+}
+
+.case-process-duo__heading {
+  margin: 0 0 1.1rem;
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #d3d3d3;
+  line-height: 1.15;
+}
+
+.case-process-duo__heading--insights {
+  text-align: left;
+}
+
+.case-process-duo__heading--core {
+  text-align: center;
+  margin-bottom: 1.15rem;
+}
+
+.case-process-duo__panel {
+  box-sizing: border-box;
+}
+
+.case-process-duo__panel--light {
+  width: 100%;
+  min-height: clamp(13rem, 26vw, 16.5rem);
+  padding: clamp(2rem, 4vw, 2.75rem) clamp(2rem, 4vw, 2.85rem) clamp(2.5rem, 5vw, 3.5rem);
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 2.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.case-process-duo__panel--dark {
+  width: min(100%, 21.5rem);
+  margin-inline: auto;
+  min-height: clamp(15rem, 30vw, 18.5rem);
+  padding: clamp(2.5rem, 4.5vw, 3.25rem) clamp(1.85rem, 3.5vw, 2.5rem);
+  background: #000000;
+  border-radius: 3.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+}
+
+.case-process-duo__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: duo-item;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.case-process-duo__list li {
+  counter-increment: duo-item;
+  position: relative;
+  padding-left: 1.65rem;
+  font-size: var(--case-tertiary-size);
+  line-height: 1.55;
+}
+
+.case-process-duo__list li::before {
+  content: counter(duo-item) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+.case-process-duo__list--light li {
+  font-style: italic;
+  font-weight: 400;
+  color: #8e8e8e;
+}
+
+.case-process-duo__list--light em {
+  font-style: italic;
+  font-weight: 400;
+  color: inherit;
+}
+
+.case-process-duo__list--dark {
+  width: max-content;
+  max-width: 100%;
+  gap: 1.05rem;
+}
+
+.case-process-duo__list--dark li {
+  font-style: italic;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.case-process-duo__list--dark strong,
+.case-process-duo__list--dark em {
+  font-style: italic;
+  font-weight: 700;
+  color: inherit;
+}
+
+.case-process-duo__bridge {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: clamp(2.75rem, 6vw, 4.25rem);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+}
+
+.case-process-duo__arrow {
+  position: absolute;
+  left: clamp(0rem, 4vw, 2.5rem);
+  top: clamp(-0.5rem, 1vw, 0.5rem);
+  width: clamp(5.5rem, 14vw, 8rem);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.case-process-duo__arrow-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-process-duo__core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 24rem;
+  position: relative;
+  z-index: 0;
+}
+
+.case-study-page--uber .case-process-duo__list li {
+  font-size: var(--case-tertiary-size);
+  line-height: var(--case-body-leading, 1.58);
+}
+
+.case-study-page--uber .case-process-duo__list--dark li {
+  font-weight: 700;
+}
+
+.case-process-duo + .case-subheading {
+  margin-top: clamp(3rem, 7vw, 4.5rem);
+}
+
+@media (max-width: 700px) {
+  .case-process-duo__bridge {
+    margin-top: 2rem;
+    padding-top: 3.25rem;
+  }
+
+  .case-process-duo__arrow {
+    left: 50%;
+    top: 0;
+    width: 4.75rem;
+    transform: translateX(-50%) rotate(90deg);
+  }
+
+  .case-process-duo__panel--dark {
+    width: 100%;
+    border-radius: 2.75rem;
+  }
+}
+
 .case-study-page--uber .case-insights li,
 .case-study-page--uber .case-hifi-flow__caption,
 .case-study-page--uber .case-feedback__list li,
+.case-study-page--uber .case-critique__note,
+.case-study-page--uber .case-iterations__caption,
 .case-study-page--uber .case-stat__label,
 .case-study-page--uber .case-table th,
 .case-study-page--uber .case-table td,
@@ -4027,6 +4215,111 @@ p {
   border-bottom: none;
 }
 
+/* Uber Med — Constraints & Tradeoffs cards */
+.case-constraints {
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  width: 100%;
+  max-width: 54rem;
+}
+
+.case-constraints__heads {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 1.75rem;
+  margin-bottom: 0.95rem;
+}
+
+.case-constraints__head {
+  font-size: var(--case-tertiary-size);
+  font-weight: 600;
+  line-height: 1.4;
+  color: #a1a1a1;
+}
+
+.case-constraints__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.case-constraints__item {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 1.65rem 2rem;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 2.25rem;
+  text-align: center;
+}
+
+.case-constraints__considered {
+  font-size: var(--case-tertiary-size);
+  font-weight: 400;
+  line-height: 1.45;
+  color: #d1d1d1;
+  white-space: nowrap;
+}
+
+.case-constraints__arrow {
+  flex: 0 0 auto;
+  font-size: var(--case-tertiary-size);
+  font-weight: 400;
+  line-height: 1.45;
+  color: #d1d1d1;
+}
+
+.case-constraints__decision {
+  font-size: var(--case-tertiary-size);
+  font-weight: 600;
+  line-height: 1.45;
+  color: #8e8e8e;
+  white-space: nowrap;
+}
+
+.case-study-page--uber .case-constraints__head,
+.case-study-page--uber .case-constraints__considered,
+.case-study-page--uber .case-constraints__arrow,
+.case-study-page--uber .case-constraints__decision {
+  font-size: var(--case-tertiary-size);
+  line-height: var(--case-body-leading, 1.58);
+}
+
+@media (max-width: 900px) {
+  .case-constraints__heads {
+    padding: 0 1rem;
+  }
+
+  .case-constraints__item {
+    flex-wrap: wrap;
+    padding: 1.25rem 1.15rem;
+    border-radius: 1.35rem;
+  }
+
+  .case-constraints__considered,
+  .case-constraints__decision {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 700px) {
+  .case-constraints__item {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .case-constraints__arrow {
+    transform: rotate(90deg);
+  }
+}
+
 .case-feedback {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -4072,6 +4365,222 @@ p {
   position: absolute;
   left: 0;
   color: var(--case-text-faint);
+}
+
+/* Uber Med — annotated feedback + iteration phones */
+.case-critique {
+  margin-top: clamp(2.5rem, 5vw, 3.75rem);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.case-critique__stage {
+  position: relative;
+  width: min(100%, 42rem);
+  margin-inline: auto;
+  aspect-ratio: 900 / 760;
+  max-height: min(44rem, 78vh);
+}
+
+.case-critique__connectors {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.case-critique__connectors path {
+  fill: none;
+  stroke: #9a9a9a;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.case-critique__phone {
+  margin: 0;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 11%;
+  transform: translateX(-50%);
+  width: 28%;
+  max-width: 13.5rem;
+}
+
+.case-critique__device {
+  width: 100%;
+  padding: 0.14rem 0.2rem 0.24rem;
+  border: 2.5px solid #111;
+  border-radius: 1.6rem;
+  background: #fff;
+  overflow: hidden;
+  line-height: 0;
+  box-sizing: border-box;
+}
+
+.case-critique__screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.28rem;
+  background: #fff;
+}
+
+.case-critique__note {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  max-width: 10.75rem;
+  padding: 0.5rem 0.65rem;
+  background: #fff;
+  border: 1px solid #d6d6d6;
+  border-radius: 0.5rem;
+  font-size: var(--case-tertiary-size);
+  font-weight: 500;
+  line-height: 1.35;
+  color: #6e6e6e;
+}
+
+.case-critique__note--progress {
+  top: 1.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 13.5rem;
+  text-align: center;
+}
+
+.case-critique__note--unity {
+  top: 39%;
+  left: 2%;
+  max-width: 10rem;
+}
+
+.case-critique__note--back {
+  top: 68%;
+  left: 2%;
+  max-width: 10rem;
+}
+
+.case-critique__note--confirm {
+  top: 30%;
+  right: 2%;
+  max-width: 10.25rem;
+}
+
+.case-critique__note--circles {
+  top: 56%;
+  right: 2%;
+  max-width: 10.5rem;
+}
+
+.case-iterations {
+  margin-top: clamp(0.75rem, 2vw, 1.25rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.case-iterations__arrow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  color: #c4c4c4;
+}
+
+.case-iterations__arrow-svg {
+  display: block;
+  width: clamp(4.75rem, 11vw, 6.75rem);
+  height: auto;
+  transform: translateX(1.25rem);
+}
+
+.case-iterations__phones {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(2.25rem, 6vw, 4.25rem);
+  flex-wrap: wrap;
+}
+
+.case-iterations__step {
+  margin: 0;
+  flex: 0 1 auto;
+  width: min(100%, 15rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.case-iterations__device {
+  width: 100%;
+  padding: 0.14rem 0.2rem 0.24rem;
+  border: 2.5px solid #111;
+  border-radius: 1.6rem;
+  background: #fff;
+  overflow: hidden;
+  line-height: 0;
+  box-sizing: border-box;
+}
+
+.case-iterations__screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.28rem;
+  background: #fff;
+}
+
+.case-iterations__caption {
+  margin: 0;
+  max-width: 15rem;
+  text-align: center;
+  font-size: var(--case-tertiary-size);
+  font-weight: 400;
+  line-height: 1.45;
+  color: #a1a1a1;
+}
+
+@media (max-width: 900px) {
+  .case-critique__stage {
+    aspect-ratio: auto;
+    max-height: none;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .case-critique__connectors {
+    display: none;
+  }
+
+  .case-critique__phone {
+    position: static;
+    transform: none;
+    order: -1;
+    width: min(100%, 14.5rem);
+    max-width: 14.5rem;
+  }
+
+  .case-critique__note {
+    position: static;
+    transform: none;
+    max-width: 22rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  .case-iterations__phones {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .case-iterations__step {
+    width: min(100%, 14.5rem);
+  }
 }
 
 .case-block:has(+ .case-lottie-break) {

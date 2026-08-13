@@ -7,7 +7,7 @@
   <title>Uber Med — Joyce Ren</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/main.css">
 </head>
 <body class="case-study-page case-study-page--uber">
@@ -385,44 +385,66 @@
       <section id="process" class="case-block" data-section="process">
         <h2 class="case-section-heading">Design Process</h2>
 
-        <h3 class="case-subheading">Key Insights</h3>
-        <ul class="case-insights">
-          <li>Patients need clear handoffs with drivers</li>
-          <li>Timing and accessibility needs are often unmet.</li>
-          <li>Correct arrival location is critical.</li>
-        </ul>
+        <div class="case-process-duo">
+          <div class="case-process-duo__insights">
+            <h3 class="case-process-duo__heading case-process-duo__heading--insights">Key Insights</h3>
+            <div class="case-process-duo__panel case-process-duo__panel--light">
+              <ol class="case-process-duo__list case-process-duo__list--light">
+                <li><em>Patients need clear handoffs with drivers</em></li>
+                <li><em>Timing and accessibility needs are often unmet.</em></li>
+                <li><em>Correct arrival location is critical.</em></li>
+              </ol>
+            </div>
+          </div>
 
-        <h3 class="case-subheading">Core Design</h3>
-        <ul class="case-insights">
-          <li>Direct patient-facing flow</li>
-          <li>Clinic-specific drop off &amp; time estimation</li>
-          <li>Personalized ride accessibility</li>
-        </ul>
+          <div class="case-process-duo__bridge">
+            <div class="case-process-duo__arrow" aria-hidden="true">
+              <img
+                class="case-process-duo__arrow-img"
+                src="../../assets/images/uber-med/hifi-flow-arrow.png"
+                alt=""
+                width="646"
+                height="386"
+                decoding="async"
+              >
+            </div>
+
+            <div class="case-process-duo__core">
+              <h3 class="case-process-duo__heading case-process-duo__heading--core">Core Design</h3>
+              <div class="case-process-duo__panel case-process-duo__panel--dark">
+              <ol class="case-process-duo__list case-process-duo__list--dark">
+                <li><strong><em>Direct patient-facing flow</em></strong></li>
+                <li><strong><em>Clinic-specific drop off &amp; time estimation</em></strong></li>
+                <li><strong><em>Personalized ride accessibility</em></strong></li>
+              </ol>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <h3 class="case-subheading">Constraints &amp; Tradeoffs</h3>
-        <div class="case-table-wrap">
-          <table class="case-table">
-            <thead>
-              <tr>
-                <th scope="col">Considered</th>
-                <th scope="col">Decision</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">EHR integration vs. manual appointment entry</th>
-                <td>Manual entry to ship without hospital API dependency</td>
-              </tr>
-              <tr>
-                <th scope="row">Full accessibility vs. simplified ride preferences</th>
-                <td>Key accommodations without requiring medical history</td>
-              </tr>
-              <tr>
-                <th scope="row">Provider-side HIPAA vs. patient-facing access</th>
-                <td>Extended existing infrastructure to put patients in control</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="case-constraints">
+          <div class="case-constraints__heads" aria-hidden="true">
+            <span class="case-constraints__head case-constraints__head--left">Considered</span>
+            <span class="case-constraints__head case-constraints__head--right">Decision</span>
+          </div>
+          <ul class="case-constraints__list">
+            <li class="case-constraints__item">
+              <span class="case-constraints__considered">EHR integration vs. manual appointment entry</span>
+              <span class="case-constraints__arrow" aria-hidden="true">→</span>
+              <strong class="case-constraints__decision">manual entry to ship without hospital API dependency</strong>
+            </li>
+            <li class="case-constraints__item">
+              <span class="case-constraints__considered">Full accessibility vs. simplified ride preferences</span>
+              <span class="case-constraints__arrow" aria-hidden="true">→</span>
+              <strong class="case-constraints__decision">key accommodations without requiring medical history</strong>
+            </li>
+            <li class="case-constraints__item">
+              <span class="case-constraints__considered">Provider-side HIPAA vs. patient-facing access</span>
+              <span class="case-constraints__arrow" aria-hidden="true">→</span>
+              <strong class="case-constraints__decision">extended existing infrastructure to put patients in control</strong>
+            </li>
+          </ul>
         </div>
 
         <h3 class="case-subheading">Hi-fi Flow Adjustments</h3>
@@ -481,29 +503,108 @@
 
         <h3 class="case-subheading">User Feedback &amp; Iterations</h3>
 
-        <div class="case-feedback">
-          <div class="case-feedback__col">
-            <h4 class="case-feedback__title">Feedback received</h4>
-            <ul class="case-feedback__list">
-              <li>Needs a confirmation or review page</li>
-              <li>Circles seem more like a single-selection format</li>
-              <li>Needs more visual unity between options</li>
-              <li>Missing "back" or "return" option</li>
-              <li>The purpose of this step-by-step is unclear</li>
-            </ul>
-          </div>
-          <div class="case-feedback__col">
-            <h4 class="case-feedback__title">Iterations made</h4>
-            <ul class="case-feedback__list">
-              <li>Clear step-by-step segmentation for organized decision making</li>
-              <li>Review screen for appointment time, pickup info, accommodations</li>
-            </ul>
+        <div class="case-critique" aria-label="Initial design with user feedback annotations">
+          <div class="case-critique__stage">
+            <svg class="case-critique__connectors" viewBox="0 0 900 760" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <!-- progress (top) → progress bar -->
+              <path d="M450 72 L450 115" />
+              <!-- unity (left) → options -->
+              <path d="M275 335 L355 335" />
+              <!-- back (left) → lower screen / missing back -->
+              <path d="M275 555 L355 555" />
+              <!-- confirm (right) → mid/lower screen -->
+              <path d="M625 285 L545 285" />
+              <!-- circles (right) → radio buttons -->
+              <path d="M625 475 L545 475" />
+            </svg>
+
+            <figure class="case-critique__phone">
+              <div class="case-critique__device">
+                <img
+                  class="case-critique__screen"
+                  src="../../assets/images/uber-med/user-feedback-0.png"
+                  alt="Early wireframe asking how we can help, with three identical walking aid options and a confirm selection button."
+                  width="686"
+                  height="1381"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+            </figure>
+
+            <p class="case-critique__note case-critique__note--progress">
+              The purpose of this step-by-step is unclear
+            </p>
+            <p class="case-critique__note case-critique__note--unity">
+              Needs more visual unity between options
+            </p>
+            <p class="case-critique__note case-critique__note--back">
+              Missing &ldquo;back&rdquo; or &ldquo;return&rdquo; option
+            </p>
+            <p class="case-critique__note case-critique__note--confirm">
+              Needs a confirmation or review page
+            </p>
+            <p class="case-critique__note case-critique__note--circles">
+              Circles seem more like a single-selection format
+            </p>
           </div>
         </div>
 
-        <div class="case-image-grid">
-          <div class="case-placeholder" aria-hidden="true">Before iteration</div>
-          <div class="case-placeholder" aria-hidden="true">After iteration</div>
+        <div class="case-iterations" aria-label="Revised mobility and confirm screens">
+          <div class="case-iterations__arrow" aria-hidden="true">
+            <svg class="case-iterations__arrow-svg" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M28 18 C 48 14, 78 22, 92 42 C 102 56, 98 70, 78 74 C 62 77, 58 62, 72 56 C 88 48, 108 62, 116 88"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M104 82 L116 90 L108 98"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div class="case-iterations__phones">
+            <figure class="case-iterations__step">
+              <div class="case-iterations__device">
+                <img
+                  class="case-iterations__screen"
+                  src="../../assets/images/uber-med/uber-iterations-1.png"
+                  alt="Mobility step with numbered progress, multi-select accommodation options, and Back and Next buttons."
+                  width="662"
+                  height="1337"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+              <figcaption class="case-iterations__caption">
+                Clear step-by-step segmentation for organized decision making
+              </figcaption>
+            </figure>
+
+            <figure class="case-iterations__step">
+              <div class="case-iterations__device">
+                <img
+                  class="case-iterations__screen"
+                  src="../../assets/images/uber-med/uber-iterations-2.png"
+                  alt="Confirm step reviewing appointment details and accommodations before Confirm and Pay."
+                  width="592"
+                  height="1193"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+              <figcaption class="case-iterations__caption">
+                Review screen for appointment time, pickup info, accommodations
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
