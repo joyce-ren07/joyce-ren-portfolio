@@ -4140,6 +4140,12 @@ p {
   font-weight: var(--case-tertiary-weight, 600);
 }
 
+.case-study-page--uber .case-critique__note {
+  font-weight: 500;
+  color: #9a9a9a;
+}
+
+
 /* Uber research subsections — open up space between Surveys / Social Listening / Market */
 .case-study-page--uber #research .case-stats + .case-subheading--large,
 .case-study-page--uber #research .case-quotes + .case-subheading--large {
@@ -4367,35 +4373,19 @@ p {
   color: var(--case-text-faint);
 }
 
-/* Uber Med — annotated feedback + iteration phones */
+/* Uber Med — annotated feedback mockup + callout cards */
 .case-critique {
   margin-top: clamp(2.5rem, 5vw, 3.75rem);
   margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .case-critique__stage {
+  --critique-phone-half: 16%;
+  --critique-gap: 1.65rem;
   position: relative;
-  width: min(100%, 42rem);
+  width: min(100%, 46rem);
   margin-inline: auto;
-  aspect-ratio: 900 / 760;
-  max-height: min(44rem, 78vh);
-}
-
-.case-critique__connectors {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  overflow: visible;
-}
-
-.case-critique__connectors path {
-  fill: none;
-  stroke: #9a9a9a;
-  stroke-width: 1.5;
-  stroke-linecap: round;
+  min-height: clamp(36rem, 74vh, 44rem);
 }
 
 .case-critique__phone {
@@ -4403,10 +4393,9 @@ p {
   position: absolute;
   z-index: 1;
   left: 50%;
-  top: 11%;
-  transform: translateX(-50%);
-  width: 28%;
-  max-width: 13.5rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(32%, 12.5rem);
 }
 
 .case-critique__device {
@@ -4428,189 +4417,107 @@ p {
   background: #fff;
 }
 
-/* Early wireframe screen (HTML recreation for exact layout/color control) */
-.wire-screen {
-  --wire-fs: clamp(0.72rem, 1.55vw, 0.92rem);
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  aspect-ratio: 686 / 1381;
-  padding: 7% 8.4% 8.5%;
-  box-sizing: border-box;
-  background: #ffffff;
-  border-radius: 1.28rem;
-  line-height: normal;
-  overflow: hidden;
-  font-size: var(--wire-fs);
-}
-
-.wire-screen__progress {
-  display: flex;
-  gap: 0.28em;
-  margin-bottom: 1.35em;
-}
-
-.wire-screen__seg {
-  flex: 1 1 0;
-  height: 0.32em;
-  border-radius: 999px;
-  background: #d0d0d0;
-}
-
-.wire-screen__seg.is-active {
-  background: #6e6e6e;
-}
-
-.wire-screen__title {
-  margin: 0 0 0.4em;
-  font-size: 1.55em;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.12;
-  color: #000000;
-  text-align: left;
-}
-
-.wire-screen__sub {
-  margin: 0 0 1.35em;
-  font-size: 0.78em;
-  font-weight: 400;
-  line-height: 1.35;
-  color: #c8c8c8;
-  text-align: left;
-}
-
-.wire-screen__cards {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55em;
-  flex: 0 0 auto;
-}
-
-.wire-screen__card {
-  display: flex;
-  align-items: center;
-  gap: 0.55em;
-  min-height: 3.15em;
-  padding: 0.7em 0.75em;
-  background: #bcbcbc;
-  border-radius: 0.95em;
-  box-sizing: border-box;
-}
-
-.wire-screen__icon {
-  flex: 0 0 auto;
-  width: 1.55em;
-  height: 1.55em;
-  border-radius: 0.4em;
-  background: #5a5a5a;
-}
-
-.wire-screen__copy {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.12em;
-  text-align: left;
-}
-
-.wire-screen__label {
-  font-size: 0.82em;
-  font-weight: 700;
-  line-height: 1.15;
-  color: #ffffff;
-}
-
-.wire-screen__desc {
-  font-size: 0.62em;
-  font-weight: 400;
-  line-height: 1.2;
-  color: #ececec;
-}
-
-.wire-screen__radio {
-  flex: 0 0 auto;
-  width: 1.05em;
-  height: 1.05em;
-  border-radius: 50%;
-  border: 0.13em solid #4a4a4a;
-  background: transparent;
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.wire-screen__radio-dot {
-  width: 0.48em;
-  height: 0.48em;
-  border-radius: 50%;
-  background: #4a4a4a;
-}
-
-.wire-screen__btn {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.55em;
-  padding: 0.7em 0.85em;
-  border-radius: 999px;
-  background: #6e6e6e;
-  color: #ffffff;
-  font-size: 0.82em;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-}
-
 .case-critique__note {
   position: absolute;
   z-index: 2;
   margin: 0;
-  max-width: 10.75rem;
-  padding: 0.5rem 0.65rem;
-  background: #fff;
-  border: 1px solid #d6d6d6;
-  border-radius: 0.5rem;
+  max-width: 11rem;
+  padding: 0.55rem 0.7rem;
+  background: #ffffff;
+  border: 1px solid #d4d4d4;
+  border-radius: 0.55rem;
   font-size: var(--case-tertiary-size);
   font-weight: 500;
   line-height: 1.35;
-  color: #6e6e6e;
+  color: #9a9a9a;
+  box-sizing: border-box;
 }
 
+.case-critique__note::after {
+  content: "";
+  position: absolute;
+  background: #cfcfcf;
+  pointer-events: none;
+}
+
+/* Top callout sits over the phone crown and points to progress */
 .case-critique__note--progress {
-  top: 1.5%;
+  top: 5.5%;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 13.5rem;
+  max-width: 13.75rem;
   text-align: center;
+  z-index: 3;
 }
 
+.case-critique__note--progress::after {
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: 1.35rem;
+  transform: translateX(-50%);
+}
+
+/* Left cards hug the phone */
 .case-critique__note--unity {
-  top: 39%;
-  left: 2%;
-  max-width: 10rem;
-}
-
-.case-critique__note--back {
-  top: 68%;
-  left: 2%;
-  max-width: 10rem;
-}
-
-.case-critique__note--confirm {
-  top: 30%;
-  right: 2%;
+  top: 37%;
+  left: auto;
+  right: calc(50% + var(--critique-phone-half) + var(--critique-gap));
   max-width: 10.25rem;
 }
 
-.case-critique__note--circles {
-  top: 56%;
-  right: 2%;
+.case-critique__note--unity::after {
+  top: 50%;
+  left: 100%;
+  width: var(--critique-gap);
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.case-critique__note--back {
+  top: 67%;
+  left: auto;
+  right: calc(50% + var(--critique-phone-half) + var(--critique-gap));
+  max-width: 10.25rem;
+}
+
+.case-critique__note--back::after {
+  top: 50%;
+  left: 100%;
+  width: var(--critique-gap);
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+/* Right cards hug the phone */
+.case-critique__note--confirm {
+  top: 27%;
+  right: auto;
+  left: calc(50% + var(--critique-phone-half) + var(--critique-gap));
   max-width: 10.5rem;
+}
+
+.case-critique__note--confirm::after {
+  top: 50%;
+  right: 100%;
+  width: var(--critique-gap);
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.case-critique__note--circles {
+  top: 57%;
+  right: auto;
+  left: calc(50% + var(--critique-phone-half) + var(--critique-gap));
+  max-width: 10.75rem;
+}
+
+.case-critique__note--circles::after {
+  top: 50%;
+  right: 100%;
+  width: var(--critique-gap);
+  height: 1px;
+  transform: translateY(-50%);
 }
 
 .case-iterations {
@@ -4911,10 +4818,6 @@ p {
     gap: 0.85rem;
   }
 
-  .case-critique__connectors {
-    display: none;
-  }
-
   .case-critique__phone {
     position: static;
     transform: none;
@@ -4929,6 +4832,10 @@ p {
     max-width: 22rem;
     width: 100%;
     text-align: left;
+  }
+
+  .case-critique__note::after {
+    display: none;
   }
 
   .case-iterations__phones {
