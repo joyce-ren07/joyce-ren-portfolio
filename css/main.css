@@ -4376,7 +4376,7 @@ p {
 /* Uber Med — annotated feedback mockup + callout cards */
 .case-critique {
   margin-top: clamp(2.5rem, 5vw, 3.75rem);
-  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+  margin-bottom: 0;
 }
 
 .case-critique__stage {
@@ -4521,21 +4521,21 @@ p {
 }
 
 .case-iterations {
-  margin-top: clamp(0.75rem, 2vw, 1.25rem);
+  margin-top: clamp(-5.5rem, -11vh, -3.25rem);
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .case-iterations__arrow {
   display: flex;
   justify-content: center;
-  margin-bottom: clamp(1rem, 2.5vw, 1.75rem);
+  margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .case-iterations__arrow-img {
   display: block;
-  width: clamp(5.5rem, 13vw, 7.75rem);
+  width: clamp(7.75rem, 18vw, 11rem);
   height: auto;
-  transform: rotate(18deg);
+  transform: rotate(30deg);
 }
 
 .case-iterations__phones {
@@ -4616,6 +4616,10 @@ p {
     display: none;
   }
 
+  .case-iterations {
+    margin-top: clamp(1rem, 3vw, 1.75rem);
+  }
+
   .case-iterations__phones {
     flex-direction: column;
     align-items: center;
@@ -4627,8 +4631,8 @@ p {
   }
 
   .case-iterations__arrow-img {
-    transform: rotate(18deg);
-    width: clamp(4.5rem, 22vw, 6rem);
+    transform: rotate(30deg);
+    width: clamp(6.5rem, 28vw, 8.5rem);
   }
 }
 
