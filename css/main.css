@@ -3955,8 +3955,7 @@ p {
 
 /* Uber Med — Key Insights → Core Design */
 .case-process-duo {
-  margin-top: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 0;
+  margin-block: var(--case-subsection-gap, 120px);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -3994,7 +3993,8 @@ p {
 .case-process-duo__panel--light {
   width: 100%;
   min-height: 10.5rem;
-  padding: 2.65rem 2.5rem;
+  padding-block: 2.65rem;
+  padding-inline: 2.5rem;
   background: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 2.35rem;
@@ -4007,7 +4007,8 @@ p {
   width: 100%;
   margin-inline: 0;
   min-height: 10.5rem;
-  padding: 2.65rem 2.5rem;
+  padding-block: 2.65rem;
+  padding-inline: 2.5rem;
   background: #000000;
   border-radius: 2.75rem;
   display: flex;
@@ -4124,7 +4125,15 @@ p {
 }
 
 .case-process-duo + .case-subheading {
+  margin-top: 0;
+}
+
+#process .case-section-heading + .case-process-duo {
   margin-top: var(--case-subsection-gap, 120px);
+}
+
+#process .case-section-heading:has(+ .case-process-duo) {
+  margin-bottom: 0;
 }
 
 @media (max-width: 700px) {
