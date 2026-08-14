@@ -44,4 +44,7 @@ Then visit `http://localhost:8000`.
   - Title **64px** (`--text-title-size`)
   - Subheading / secondary **32px** (`--text-secondary-size`)
   - Tertiary / body **16px** (`--text-tertiary-size`)
+- Spacing scale (also in `DESIGN.md`):
+  - Section gap **180px** (`--case-section-gap`)
+  - Subsection gap **120px** (`--case-subsection-gap`)
 - Remove the Reflection section from the template if you don't need it

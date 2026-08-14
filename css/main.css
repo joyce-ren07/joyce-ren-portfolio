@@ -2141,7 +2141,9 @@ p {
   --case-heading-leading: 1.12;
   --case-heading-to-body: clamp(1.125rem, 2.2vw, 1.625rem);
   --case-feature-heading-to-body: clamp(0.75rem, 1.5vw, 1rem);
-  --case-block-gap: clamp(4.5rem, 12vh, 8rem);
+  --case-section-gap: 180px; /* space between sidebar sections */
+  --case-subsection-gap: 120px; /* space between subsections */
+  --case-block-gap: var(--case-subsection-gap);
   --case-sidebar-gap: 0.7rem;
   --case-title-size: var(--text-title-size);
   --case-secondary-size: var(--text-secondary-size);
@@ -2506,12 +2508,12 @@ p {
 
 .case-block {
   scroll-margin-top: calc(var(--case-topbar-height) + 1rem);
-  padding-bottom: 10rem;
+  padding-bottom: var(--case-section-gap, 180px);
 }
 
 .case-block--intro {
   padding-top: clamp(1rem, 3vw, 2rem);
-  padding-bottom: clamp(6rem, 18vh, 12rem);
+  padding-bottom: var(--case-section-gap, 180px);
   text-align: center;
 }
 
@@ -2999,11 +3001,11 @@ p {
   }
 
   .case-block {
-    padding-bottom: clamp(4.5rem, 12vh, 8rem);
+    padding-bottom: var(--case-section-gap, 180px);
   }
 
   .case-block--intro {
-    padding-bottom: clamp(4rem, 12vh, 8rem);
+    padding-bottom: var(--case-section-gap, 180px);
   }
 
   .case-device-video--laptop {
@@ -3033,7 +3035,7 @@ p {
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--case-heading, var(--case-text-active));
-  margin: clamp(2.5rem, 6vw, 3.5rem) 0 1rem;
+  margin: var(--case-subsection-gap, 120px) 0 1rem;
   line-height: var(--case-heading-leading, 1.12);
 }
 
@@ -3041,8 +3043,12 @@ p {
   margin-top: 0;
 }
 
+.case-section-heading + .case-subheading {
+  margin-top: 0;
+}
+
 .case-body + .case-subheading {
-  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  margin-top: var(--case-subsection-gap, 120px);
 }
 
 .case-subheading--large {
@@ -3050,12 +3056,16 @@ p {
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--case-heading, #a1a1a1);
-  margin: 0 0 clamp(1.5rem, 4vw, 2rem);
+  margin: var(--case-subsection-gap, 120px) 0 var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
   line-height: var(--case-heading-leading, 1.12);
 }
 
+.case-section-heading + .case-subheading--large {
+  margin-top: 0;
+}
+
 .case-body + .case-subheading--large {
-  margin-top: clamp(6rem, 14vh, 10rem);
+  margin-top: var(--case-subsection-gap, 120px);
 }
 
 .case-body--summary {
@@ -3068,8 +3078,8 @@ p {
 .case-feature-rows {
   display: flex;
   flex-direction: column;
-  gap: var(--case-block-gap, clamp(4.5rem, 12vh, 8rem));
-  margin-top: var(--case-block-gap, clamp(4.5rem, 12vh, 8rem));
+  gap: var(--case-subsection-gap, 120px);
+  margin-top: var(--case-subsection-gap, 120px);
 }
 
 .case-feature-row {
@@ -3945,7 +3955,7 @@ p {
 /* Uber Med — Key Insights → Core Design */
 .case-process-duo {
   margin-top: clamp(2rem, 4vw, 3rem);
-  margin-bottom: clamp(3.5rem, 8vw, 5.5rem);
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -4106,7 +4116,7 @@ p {
 }
 
 .case-process-duo + .case-subheading {
-  margin-top: clamp(3rem, 7vw, 4.5rem);
+  margin-top: var(--case-subsection-gap, 120px);
 }
 
 @media (max-width: 700px) {
@@ -4155,10 +4165,10 @@ p {
 }
 
 
-/* Uber research subsections — open up space between Surveys / Social Listening / Market */
+/* Uber research subsections — 120px between Surveys / Social Listening / Market */
 .case-study-page--uber #research .case-stats + .case-subheading--large,
 .case-study-page--uber #research .case-quotes + .case-subheading--large {
-  margin-top: clamp(5.5rem, 12vh, 8.5rem);
+  margin-top: var(--case-subsection-gap, 120px);
 }
 
 .case-study-page--uber #research .case-subheading--large + .case-body--tertiary {
@@ -4649,7 +4659,7 @@ p {
 }
 
 .case-block:has(+ .case-lottie-break) {
-  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+  padding-bottom: 0;
 }
 
 .case-lottie-break {
@@ -4657,7 +4667,8 @@ p {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: clamp(2rem, 5vw, 3.5rem) 0;
+  /* Decorative break between Process and Takeaways — keep equal breath above/below */
+  padding: calc(var(--case-section-gap, 180px) / 2) 0;
   overflow: visible;
 }
 
@@ -4925,7 +4936,7 @@ p {
 }
 
 #solution.case-block {
-  padding-bottom: clamp(4rem, 10vh, 7rem);
+  padding-bottom: var(--case-section-gap, 180px);
 }
 
 #solution .case-feature-rows--laptop {
@@ -4934,7 +4945,7 @@ p {
 
 #research .case-section-heading,
 #process .case-section-heading {
-  margin: clamp(5rem, 14vh, 9rem) 0 clamp(1.75rem, 3.5vw, 2.5rem);
+  margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem);
 }
 
 #research .case-section-heading + .case-process-key,
@@ -4949,8 +4960,14 @@ p {
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--case-heading);
-  margin: 0 0 var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
+  margin-top: var(--case-subsection-gap, 120px);
+  margin-bottom: var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
   line-height: var(--case-heading-leading, 1.12);
+}
+
+#research .case-section-heading + .case-subheading--large,
+#process .case-section-heading + .case-subheading--large {
+  margin-top: 0;
 }
 
 #takeaways .case-section-heading {
@@ -4967,7 +4984,8 @@ p {
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--case-heading);
-  margin: 0 0 var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
+  margin-top: var(--case-subsection-gap, 120px);
+  margin-bottom: var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
   line-height: var(--case-heading-leading, 1.12);
 }
 
@@ -4978,11 +4996,11 @@ p {
 }
 
 #takeaways .case-body + .case-subheading--large {
-  margin-top: var(--case-block-gap, clamp(4.5rem, 12vh, 8rem));
+  margin-top: var(--case-subsection-gap, 120px);
 }
 
 #process .case-process-key + .case-process-competitive {
-  margin-top: clamp(6rem, 14vh, 10rem);
+  margin-top: var(--case-subsection-gap, 120px);
 }
 
 #research .case-body--process,
@@ -5012,7 +5030,7 @@ p {
 
 #research .case-callout--gradient + .case-subheading--large,
 #process .case-process-competitive + .case-subheading--large {
-  margin-top: clamp(10rem, 18vh, 12.5rem);
+  margin-top: var(--case-subsection-gap, 120px);
 }
 
 #process .case-competitive__compare {
@@ -5110,7 +5128,7 @@ p {
 }
 
 #process .case-tradeoffs + .case-principle-blocks {
-  margin-top: clamp(10rem, 18vh, 12.5rem);
+  margin-top: var(--case-subsection-gap, 120px);
 }
 
 #problem .case-body {
@@ -5118,7 +5136,7 @@ p {
 }
 
 .case-pillar {
-  margin-top: var(--case-block-gap, clamp(4.5rem, 12vh, 8rem));
+  margin-top: var(--case-subsection-gap, 120px);
   display: grid;
   width: max-content;
   max-width: min(52rem, 100%);
@@ -5734,8 +5752,8 @@ p {
 .case-principle-blocks {
   display: flex;
   flex-direction: column;
-  gap: clamp(3rem, 8vw, 5rem);
-  margin-top: clamp(3rem, 8vw, 5rem);
+  gap: var(--case-subsection-gap, 120px);
+  margin-top: var(--case-subsection-gap, 120px);
   position: relative;
 }
 
@@ -6453,9 +6471,9 @@ p {
 
 /* Current — post-demo sections match Home Start typography & spacing */
 
-/* Match #solution section gap so Research → Process isn't oversized */
+/* Match standard section gap so Research → Process stays consistent */
 .case-study-page--current #research.case-block {
-  padding-bottom: clamp(4rem, 10vh, 7rem);
+  padding-bottom: var(--case-section-gap, 180px);
 }
 
 .case-study-page--current #research,
@@ -6562,5 +6580,5 @@ p {
 }
 
 #research .case-process-key + .case-body {
-  margin-top: clamp(5.5rem, 13vh, 8.5rem);
+  margin-top: var(--case-subsection-gap, 120px);
 }
