@@ -11,4 +11,9 @@ Fixed sizes — source of truth in `css/main.css` (`:root`) and `DESIGN.md`:
 - **Subheading / secondary:** 32px weight 500 (`--text-secondary-size` / `--case-secondary-size`) — section subtitles (Key Takeaways!, What's Next, research/process subheads, feature-row titles, Key Insights / Core Design, etc.)
 - **Tertiary / body:** 16px (`--text-tertiary-size` / `--case-tertiary-size`)
 
+## Spacing scale
+
+- **Section gap:** 180px (`--case-section-gap`) — between sidebar sections
+- **Subsection gap:** 120px (`--case-subsection-gap`) — between subsections within a section
+
 Use these roles for case-study and portfolio text. Do not invent alternate heading sizes.

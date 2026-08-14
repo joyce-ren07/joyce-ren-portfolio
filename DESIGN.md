@@ -25,4 +25,14 @@ On `.case-study-page`:
 - **Secondary (32px, weight 500):** section subtitles — e.g. Surveys & Interviews, Social Listening, Market Analysis, Key Insights, Core Design, Constraints & Tradeoffs, Hi-fi Flow Adjustments, User Feedback & Iterations, Clinic-Level Drop-off, Ride Accommodations, Key Takeaways!, What's Next
 - **Tertiary / body (16px):** body copy, tertiary body, captions that use the tertiary token
 
-Do not invent new heading sizes for case studies — use these three roles.
+## Spacing scale (fixed)
+
+| Role | Token | Size |
+| --- | --- | --- |
+| Section gap | `--case-section-gap` | **180px** |
+| Subsection gap | `--case-subsection-gap` | **120px** |
+
+- **Section gap (180px):** space between sidebar sections (Intro, Problem, Solution, Research, Process, Takeaways) via `.case-block` padding-bottom
+- **Subsection gap (120px):** space between subsections within a section (e.g. Surveys & Interviews → Social Listening → Market Analysis; feature rows; process subheads)
+
+Defined on `.case-study-page` in `css/main.css`.
