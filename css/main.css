@@ -4534,7 +4534,7 @@ p {
 .case-iterations__arrow {
   display: flex;
   justify-content: center;
-  margin: 0 0 clamp(2rem, 4.5vw, 3rem);
+  margin: 0.4rem 0 clamp(2rem, 4.5vw, 3rem);
 }
 
 .case-iterations__arrow-img {
