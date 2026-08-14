@@ -29,6 +29,7 @@
   --text-title-size: 64px; /* titles */
   --text-secondary-size: 32px; /* subheading / secondary */
   --text-tertiary-size: 16px; /* tertiary / body */
+  --text-tertiary-weight: 500; /* tertiary / body weight */
 
   --case-content-max: 55rem;
   --case-sidebar-width: 10.5625rem;
@@ -2148,7 +2149,7 @@ p {
   --case-title-size: var(--text-title-size);
   --case-secondary-size: var(--text-secondary-size);
   --case-tertiary-size: var(--text-tertiary-size);
-  --case-tertiary-weight: 600;
+  --case-tertiary-weight: var(--text-tertiary-weight);
   font-family: var(--font-sans);
   background: var(--case-bg);
   color: var(--case-text);
@@ -2810,7 +2811,7 @@ p {
 
 .case-body--tertiary {
   font-size: var(--case-tertiary-size);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: var(--case-body-leading, 1.58);
 }
 
@@ -3104,7 +3105,7 @@ p {
 
 .case-feature-row__desc {
   font-size: var(--case-tertiary-size);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: var(--case-body-leading, 1.58);
   color: var(--case-text);
   margin: 0;
@@ -3558,7 +3559,7 @@ p {
 
 .case-stat--bubble .case-stat__label {
   font-size: var(--case-tertiary-size);
-  font-weight: 600;
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: 1.4;
   letter-spacing: -0.01em;
   color: #2b59c3;
@@ -4151,12 +4152,12 @@ p {
 .case-study-page--uber .case-disclaimer,
 .case-study-page--uber .case-competitive__name {
   font-size: var(--case-tertiary-size);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: var(--case-body-leading, 1.58);
 }
 
 .case-study-page--uber .case-details__item dt {
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
 }
 
 .case-study-page--uber .case-critique__note {
@@ -4257,7 +4258,7 @@ p {
 
 .case-constraints__head {
   font-size: var(--case-tertiary-size);
-  font-weight: 600;
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: 1.4;
   color: #a1a1a1;
 }
@@ -4303,7 +4304,7 @@ p {
 
 .case-constraints__decision {
   font-size: var(--case-tertiary-size);
-  font-weight: 600;
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: 1.45;
   color: #8e8e8e;
   white-space: nowrap;
@@ -4888,7 +4889,7 @@ p {
 
 .case-block--intro .case-intro-meta .case-details__item dt {
   font-size: var(--case-tertiary-size);
-  font-weight: 600;
+  font-weight: var(--case-tertiary-weight, 500);
   color: #a1a1a1;
   text-align: center;
 }
@@ -4896,7 +4897,7 @@ p {
 .case-block--intro .case-intro-meta .case-details__item dd {
   margin: 0;
   font-size: var(--case-tertiary-size);
-  font-weight: 600;
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: 1.5;
   color: var(--case-text);
   text-align: center;
@@ -4905,7 +4906,7 @@ p {
 .case-intro-meta__summary {
   margin: 0;
   font-size: var(--case-tertiary-size);
-  font-weight: 600;
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: 1.35;
   color: var(--case-text);
   text-align: center;
@@ -4991,7 +4992,7 @@ p {
 
 #takeaways .case-body {
   font-size: var(--case-tertiary-size);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: var(--case-body-leading, 1.58);
 }
 
@@ -5006,7 +5007,7 @@ p {
 #research .case-body--process,
 #process .case-body--process {
   font-size: var(--case-tertiary-size);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
   max-width: 100%;
   margin: 0;
   line-height: var(--case-body-leading, 1.58);
@@ -5062,7 +5063,7 @@ p {
 
 #process .case-competitive__box h4 {
   font-size: var(--case-tertiary-size);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
   color: #a1a1a1;
   margin: 0 0 0.65rem;
   text-align: left;
@@ -5124,7 +5125,7 @@ p {
 
 #process .case-tradeoffs strong {
   color: #a1a1a1;
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
 }
 
 #process .case-tradeoffs + .case-principle-blocks {
@@ -5153,7 +5154,7 @@ p {
 
 .case-pillar .case-body {
   font-size: var(--case-tertiary-size);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: var(--case-body-leading, 1.58);
   max-width: none;
   width: 100%;
@@ -5696,7 +5697,7 @@ p {
 
 .case-competitive__box h4 {
   font-size: var(--case-tertiary-size);
-  font-weight: 600;
+  font-weight: var(--case-tertiary-weight, 500);
   color: var(--case-text-active);
   margin: 0 0 0.75rem;
 }
@@ -5744,7 +5745,7 @@ p {
 
 .case-tradeoffs strong {
   color: var(--case-text-active);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
 }
 
 /* Design principles / core model blocks */
@@ -6032,7 +6033,7 @@ p {
   margin: 0 0 clamp(3.25rem, 8vh, 5.5rem);
   width: 100%;
   font-size: var(--case-tertiary-size);
-  font-weight: var(--case-tertiary-weight, 600);
+  font-weight: var(--case-tertiary-weight, 500);
   font-style: normal;
   line-height: var(--case-body-leading, 1.58);
   color: var(--case-text);
@@ -6325,7 +6326,7 @@ p {
 
 .case-study-page--current .case-block--intro .case-intro-meta .case-details__item dt {
   font-size: var(--case-tertiary-size);
-  font-weight: 600;
+  font-weight: var(--case-tertiary-weight, 500);
   color: #a1a1a1;
   text-align: center;
 }
@@ -6333,7 +6334,7 @@ p {
 .case-study-page--current .case-block--intro .case-intro-meta .case-details__item dd {
   margin: 0;
   font-size: var(--case-tertiary-size);
-  font-weight: 600;
+  font-weight: var(--case-tertiary-weight, 500);
   line-height: 1.5;
   color: #c8c8c8;
   text-align: center;

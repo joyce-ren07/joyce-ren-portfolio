@@ -9,7 +9,7 @@ Fixed sizes — source of truth in `css/main.css` (`:root`) and `DESIGN.md`:
 
 - **Title:** 64px (`--text-title-size` / `--case-title-size`) — major section headings, intro/page titles
 - **Subheading / secondary:** 32px weight 500 (`--text-secondary-size` / `--case-secondary-size`) — section subtitles (Key Takeaways!, What's Next, research/process subheads, feature-row titles, Key Insights / Core Design, etc.)
-- **Tertiary / body:** 16px (`--text-tertiary-size` / `--case-tertiary-size`)
+- **Tertiary / body:** 16px weight 500 (`--text-tertiary-size` / `--case-tertiary-size`, `--text-tertiary-weight` / `--case-tertiary-weight`) — body copy, tertiary body, feature-row descriptions, process/takeaways body
 
 ## Spacing scale
 
