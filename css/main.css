@@ -4403,7 +4403,7 @@ p {
   --critique-phone-width: min(34%, 13.25rem);
   --critique-phone-half: calc(var(--critique-phone-width) / 2);
   --critique-phone-height: calc(var(--critique-phone-width) * 2.02 + 0.5rem);
-  --critique-gap: 1.65rem;
+  --critique-gap: 1.95rem; /* slightly longer connector lines */
   position: relative;
   width: min(100%, 46rem);
   margin-inline: auto;
