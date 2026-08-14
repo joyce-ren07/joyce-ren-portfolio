@@ -1,0 +1,14 @@
+---
+description: Portfolio type scale tokens
+alwaysApply: true
+---
+
+# Type scale
+
+Fixed sizes — source of truth in `css/main.css` (`:root`) and `DESIGN.md`:
+
+- **Title:** 64px (`--text-title-size` / `--case-title-size`)
+- **Subheading / secondary:** 32px (`--text-secondary-size` / `--case-secondary-size`)
+- **Tertiary / body:** 16px (`--text-tertiary-size` / `--case-tertiary-size`)
+
+Use these roles for case-study and portfolio text. Do not invent alternate heading sizes.
