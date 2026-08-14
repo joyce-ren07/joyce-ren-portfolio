@@ -4444,8 +4444,9 @@ p {
   position: absolute;
   z-index: 2;
   margin: 0;
-  max-width: 11rem;
-  padding: 0.55rem 0.7rem;
+  width: max-content;
+  max-width: 13.75rem;
+  padding: 0.55rem 0.95rem;
   background: #ffffff;
   border: 1px solid #d4d4d4;
   border-radius: 0.55rem;
@@ -4453,6 +4454,7 @@ p {
   font-weight: 500;
   line-height: 1.35;
   color: #9a9a9a;
+  text-align: center;
   box-sizing: border-box;
 }
 
@@ -4469,7 +4471,7 @@ p {
   bottom: calc(50% + (var(--critique-phone-height) / 2) + var(--critique-gap));
   left: 50%;
   transform: translateX(-50%);
-  max-width: 10.25rem;
+  max-width: 13.25rem;
   z-index: 2;
 }
 
@@ -4486,7 +4488,7 @@ p {
   top: 37%;
   left: auto;
   right: calc(50% + var(--critique-phone-half) + var(--critique-gap));
-  max-width: 10.25rem;
+  max-width: 13.5rem;
 }
 
 .case-critique__note--unity::after {
@@ -4501,7 +4503,7 @@ p {
   top: 67%;
   left: auto;
   right: calc(50% + var(--critique-phone-half) + var(--critique-gap));
-  max-width: 10.25rem;
+  max-width: 13.25rem;
 }
 
 .case-critique__note--back::after {
@@ -4517,7 +4519,7 @@ p {
   top: 27%;
   right: auto;
   left: calc(50% + var(--critique-phone-half) + var(--critique-gap));
-  max-width: 10.5rem;
+  max-width: 13.25rem;
 }
 
 .case-critique__note--confirm::after {
@@ -4532,7 +4534,7 @@ p {
   top: 57%;
   right: auto;
   left: calc(50% + var(--critique-phone-half) + var(--critique-gap));
-  max-width: 10.75rem;
+  max-width: 13.75rem;
 }
 
 .case-critique__note--circles::after {
@@ -4632,7 +4634,7 @@ p {
     transform: none;
     max-width: 22rem;
     width: 100%;
-    text-align: left;
+    text-align: center;
   }
 
   .case-critique__note::after {
