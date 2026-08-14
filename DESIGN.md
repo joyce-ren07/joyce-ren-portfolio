@@ -21,8 +21,8 @@ On `.case-study-page`:
 
 ### Where they apply
 
-- **Title (64px):** section headings, intro titles, page titles (e.g. About, lamp hero name)
-- **Secondary (32px):** subheadings (including `.case-subheading` and `.case-subheading--large`)
+- **Title (64px):** major section headings (e.g. The Problem, The Solution, Research, Design Process), intro titles, page titles
+- **Secondary (32px, weight 500):** section subtitles — e.g. Surveys & Interviews, Social Listening, Market Analysis, Key Insights, Core Design, Constraints & Tradeoffs, Hi-fi Flow Adjustments, User Feedback & Iterations, Clinic-Level Drop-off, Ride Accommodations, Key Takeaways!, What's Next
 - **Tertiary / body (16px):** body copy, tertiary body, captions that use the tertiary token
 
 Do not invent new heading sizes for case studies — use these three roles.
