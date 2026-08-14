@@ -3641,30 +3641,82 @@ p {
 }
 
 .case-quotes--staggered {
+  --ios-notif-width: 22.5625rem; /* ~361pt banner content width */
+  --ios-notif-radius: 2.125rem; /* ~34pt continuous glass radius */
+  --ios-notif-icon: 2.375rem; /* 38pt */
+  --ios-notif-pad: 0.75rem; /* 12pt */
+  --ios-notif-gap: 0.75rem; /* 12pt */
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: clamp(1.35rem, 3vw, 1.85rem);
+  gap: 0.875rem; /* ~14pt between stacked banners */
   margin-top: 2rem;
   max-width: 40rem;
   width: 100%;
+  padding: 1.75rem 1rem 2rem;
+  box-sizing: border-box;
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* Soft “wallpaper” so liquid glass has something to refract */
+.case-quotes--staggered::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 2rem;
+  background:
+    radial-gradient(ellipse 70% 55% at 18% 22%, rgba(120, 170, 255, 0.28), transparent 60%),
+    radial-gradient(ellipse 65% 50% at 82% 38%, rgba(255, 150, 180, 0.22), transparent 58%),
+    radial-gradient(ellipse 70% 60% at 48% 88%, rgba(130, 220, 190, 0.2), transparent 62%),
+    linear-gradient(180deg, #f4f5f8 0%, #eef0f5 100%);
+  pointer-events: none;
+}
+
+.case-quotes--staggered > .case-quote {
+  position: relative;
+  z-index: 1;
 }
 
 .case-quote.case-quote--notification {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.95rem 1.05rem 1rem;
-  background: #f2f2f7;
-  border: none;
-  border-radius: 1.45rem;
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 10px 28px rgba(0, 0, 0, 0.08);
-  max-width: min(24.5rem, 100%);
-  width: fit-content;
+  gap: var(--ios-notif-gap);
+  width: min(var(--ios-notif-width), 100%);
+  max-width: min(var(--ios-notif-width), 100%);
+  padding: var(--ios-notif-pad);
   margin: 0;
   box-sizing: border-box;
+  border-radius: var(--ios-notif-radius);
+  border: 0.5px solid rgba(255, 255, 255, 0.62);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.28) 100%),
+    rgba(245, 245, 247, 0.55);
+  -apple-visual-effect: -apple-system-glass-material;
+  backdrop-filter: blur(40px) saturate(190%);
+  -webkit-backdrop-filter: blur(40px) saturate(190%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.78),
+    inset 0 -0.5px 0 rgba(255, 255, 255, 0.28),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 10px 28px rgba(0, 0, 0, 0.1),
+    0 28px 48px rgba(0, 0, 0, 0.06);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.case-quote.case-quote--notification::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, transparent 38%),
+    radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.35) 0%, transparent 55%);
+  opacity: 0.85;
 }
 
 .case-quote--offset-1 {
@@ -3676,35 +3728,34 @@ p {
   margin-left: auto;
   margin-right: 0;
   align-self: flex-end;
-  max-width: min(22.5rem, 100%);
 }
 
 .case-quote--offset-3 {
-  margin-left: clamp(1.5rem, 6vw, 4rem);
+  margin-left: clamp(1.25rem, 5vw, 3.25rem);
   align-self: flex-start;
-  max-width: min(23.5rem, 100%);
 }
 
 .case-quote.case-quote--notification .case-quote__header {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.125rem;
   width: 100%;
 }
 
 .case-quote.case-quote--notification .case-quote__icon {
-  width: 2.35rem;
-  height: 2.35rem;
-  border-radius: 0.55rem;
+  width: var(--ios-notif-icon);
+  height: var(--ios-notif-icon);
+  border-radius: 0.55rem; /* ~8.8pt app-icon squircle approx */
   flex-shrink: 0;
   display: block;
   object-fit: cover;
-  margin-top: 0.1rem;
+  margin-top: 0.05rem;
   font-size: 0;
   font-weight: 400;
   color: transparent;
   background: none;
+  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.12);
 }
 
 .case-quote.case-quote--notification .case-quote__icon--appstore {
@@ -3720,26 +3771,31 @@ p {
   min-width: 0;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
+  padding-top: 0.05rem;
 }
 
 .case-quote.case-quote--notification .case-quote__source {
-  font-size: 0.9375rem;
-  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  font-size: 0.9375rem; /* 15pt */
+  font-weight: 600;
   letter-spacing: -0.01em;
   text-transform: none;
-  color: #1c1c1e;
+  color: rgba(0, 0, 0, 0.92);
   flex: 1 1 auto;
   min-width: 0;
   margin: 0;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .case-quote.case-quote--notification .case-quote__time {
-  font-size: 0.8125rem;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  font-size: 0.8125rem; /* 13pt */
   font-weight: 400;
-  color: #8e8e93;
+  color: rgba(60, 60, 67, 0.6);
   flex: 0 0 auto;
-  line-height: 1.25;
+  line-height: 1.2;
   text-transform: none;
   letter-spacing: 0;
 }
@@ -3748,11 +3804,12 @@ p {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 0.9375rem;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  font-size: 0.9375rem; /* 15pt */
   font-weight: 400;
   font-style: normal;
-  line-height: 1.35;
-  color: #1c1c1e;
+  line-height: 1.28;
+  color: rgba(0, 0, 0, 0.92);
   quotes: none;
 }
 
@@ -3771,13 +3828,13 @@ p {
   flex-direction: column;
   align-items: stretch;
   grid-template-columns: none;
-  gap: clamp(1.35rem, 3vw, 1.85rem);
+  gap: 0.875rem;
   max-width: min(40rem, 100%);
 }
 
 .case-quotes.case-quotes--staggered .case-quote {
-  width: fit-content;
-  max-width: 100%;
+  width: min(var(--ios-notif-width, 22.5625rem), 100%);
+  max-width: min(var(--ios-notif-width, 22.5625rem), 100%);
 }
 
 .case-quote {
@@ -4238,7 +4295,7 @@ p {
 
 .case-study-page--uber #research .case-quotes.case-quotes--staggered {
   margin-top: clamp(2.75rem, 5.5vw, 3.75rem);
-  gap: clamp(1.5rem, 3.25vw, 2.15rem);
+  gap: 0.875rem;
 }
 
 .case-study-page--uber #research .case-subheading--large + .case-process-competitive--market {
@@ -4870,9 +4927,13 @@ p {
   .case-quote--offset-3 {
     margin-left: 0;
     margin-right: 0;
-    align-self: stretch;
-    max-width: 100%;
-    width: 100%;
+    align-self: center;
+    width: min(var(--ios-notif-width, 22.5625rem), 100%);
+    max-width: min(var(--ios-notif-width, 22.5625rem), 100%);
+  }
+
+  .case-quotes--staggered {
+    padding-inline: 0.5rem;
   }
 
   .case-feedback {
