@@ -3643,82 +3643,117 @@ p {
 .case-quotes--staggered {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(1.35rem, 3vw, 1.85rem);
   margin-top: 2rem;
-  max-width: 36rem;
+  max-width: 40rem;
   width: 100%;
 }
 
-.case-quote--notification {
-  padding: 1rem 1.15rem;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 1.15rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  max-width: min(22rem, 100%);
+.case-quote.case-quote--notification {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.95rem 1.05rem 1rem;
+  background: #f2f2f7;
+  border: none;
+  border-radius: 1.45rem;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 10px 28px rgba(0, 0, 0, 0.08);
+  max-width: min(24.5rem, 100%);
+  width: fit-content;
   margin: 0;
+  box-sizing: border-box;
 }
 
 .case-quote--offset-1 {
   margin-left: 0;
+  align-self: flex-start;
 }
 
 .case-quote--offset-2 {
-  margin-left: clamp(2rem, 8vw, 5rem);
+  margin-left: auto;
+  margin-right: 0;
+  align-self: flex-end;
+  max-width: min(22.5rem, 100%);
 }
 
 .case-quote--offset-3 {
-  margin-left: clamp(4rem, 16vw, 10rem);
+  margin-left: clamp(1.5rem, 6vw, 4rem);
+  align-self: flex-start;
+  max-width: min(23.5rem, 100%);
 }
 
-.case-quote__header {
+.case-quote.case-quote--notification .case-quote__header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
+  width: 100%;
 }
 
-.case-quote__icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 0.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #fff;
+.case-quote.case-quote--notification .case-quote__icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.55rem;
   flex-shrink: 0;
+  display: block;
+  object-fit: cover;
+  margin-top: 0.1rem;
+  font-size: 0;
+  font-weight: 400;
+  color: transparent;
+  background: none;
 }
 
-.case-quote__icon--appstore {
-  background: linear-gradient(180deg, #4da3ff 0%, #007aff 100%);
+.case-quote.case-quote--notification .case-quote__icon--appstore {
+  border-radius: 0.55rem;
 }
 
-.case-quote__icon--reddit {
-  background: #ff4500;
+.case-quote.case-quote--notification .case-quote__icon--reddit {
   border-radius: 999px;
 }
 
-.case-quote--notification .case-quote__source {
-  font-size: var(--case-tertiary-size);
-  font-weight: 600;
-  letter-spacing: 0;
+.case-quote__content {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-quote.case-quote--notification .case-quote__source {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   text-transform: none;
-  color: var(--case-text-active);
-  flex: 1;
+  color: #1c1c1e;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  line-height: 1.25;
 }
 
-.case-quote--notification .case-quote__time {
-  font-size: var(--case-tertiary-size);
-  color: var(--case-text-faint);
+.case-quote.case-quote--notification .case-quote__time {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #8e8e93;
+  flex: 0 0 auto;
+  line-height: 1.25;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
-.case-quote--notification .case-quote__text {
-  font-size: var(--case-tertiary-size);
+.case-quote.case-quote--notification .case-quote__text {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 0.9375rem;
+  font-weight: 400;
   font-style: normal;
-  line-height: 1.45;
-  color: var(--case-text-active);
+  line-height: 1.35;
+  color: #1c1c1e;
+  quotes: none;
 }
 
 .case-quotes {
@@ -3736,8 +3771,8 @@ p {
   flex-direction: column;
   align-items: stretch;
   grid-template-columns: none;
-  gap: 1rem;
-  max-width: min(36rem, 100%);
+  gap: clamp(1.35rem, 3vw, 1.85rem);
+  max-width: min(40rem, 100%);
 }
 
 .case-quotes.case-quotes--staggered .case-quote {
@@ -4203,7 +4238,7 @@ p {
 
 .case-study-page--uber #research .case-quotes.case-quotes--staggered {
   margin-top: clamp(2.75rem, 5.5vw, 3.75rem);
-  gap: clamp(1.75rem, 3.5vw, 2.5rem);
+  gap: clamp(1.5rem, 3.25vw, 2.15rem);
 }
 
 .case-study-page--uber #research .case-subheading--large + .case-process-competitive--market {
@@ -4830,9 +4865,14 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .case-quote--offset-1,
   .case-quote--offset-2,
   .case-quote--offset-3 {
     margin-left: 0;
+    margin-right: 0;
+    align-self: stretch;
+    max-width: 100%;
+    width: 100%;
   }
 
   .case-feedback {
