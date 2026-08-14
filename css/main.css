@@ -4391,7 +4391,7 @@ p {
 .case-critique__phone {
   margin: 0;
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -4521,14 +4521,14 @@ p {
 }
 
 .case-iterations {
-  margin-top: clamp(-6.75rem, -12.5vh, -4.25rem);
+  margin-top: clamp(-3rem, -6vh, -1.5rem);
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .case-iterations__arrow {
   display: flex;
   justify-content: center;
-  margin: 0 0 clamp(1.75rem, 4vw, 2.75rem);
+  margin: 0 0 clamp(2rem, 4.5vw, 3rem);
 }
 
 .case-iterations__arrow-img {
