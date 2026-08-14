@@ -4446,7 +4446,7 @@ p {
 
 /* Top callout sits over the phone crown and points to progress */
 .case-critique__note--progress {
-  top: 5.5%;
+  top: 9.75%;
   left: 50%;
   transform: translateX(-50%);
   max-width: 13.75rem;
@@ -4458,7 +4458,7 @@ p {
   left: 50%;
   top: 100%;
   width: 1px;
-  height: clamp(1.85rem, 4.5vw, 2.35rem);
+  height: clamp(1.35rem, 3.25vw, 1.75rem);
   transform: translateX(-50%);
 }
 
