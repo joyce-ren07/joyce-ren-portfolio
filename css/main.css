@@ -4082,14 +4082,14 @@ p {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  margin-top: clamp(2.25rem, 5vw, 3.5rem);
-  padding-top: clamp(0.5rem, 1.5vw, 1rem);
+  margin-top: clamp(1rem, 2.5vw, 1.75rem);
+  padding-top: clamp(0.15rem, 0.75vw, 0.45rem);
 }
 
 .case-process-duo__arrow {
   position: absolute;
   left: clamp(0.25rem, 3vw, 1.75rem);
-  top: clamp(-2.35rem, -3vw, -0.85rem);
+  top: clamp(-1.35rem, -1.5vw, -0.35rem);
   width: clamp(10.5rem, 25vw, 15.5rem);
   pointer-events: none;
   z-index: 1;
@@ -4137,8 +4137,8 @@ p {
   }
 
   .case-process-duo__bridge {
-    margin-top: 2rem;
-    padding-top: 3.25rem;
+    margin-top: 1.25rem;
+    padding-top: 2.5rem;
     justify-content: center;
   }
 
