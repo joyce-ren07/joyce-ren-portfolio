@@ -40,4 +40,8 @@ Then visit `http://localhost:8000`.
 
 - Update contact links and bio copy on the home page
 - Adjust colors and spacing via CSS variables in `css/main.css`
+- Type scale is fixed in `css/main.css` and documented in `DESIGN.md`:
+  - Title **64px** (`--text-title-size`)
+  - Subheading / secondary **32px** (`--text-secondary-size`)
+  - Tertiary / body **16px** (`--text-tertiary-size`)
 - Remove the Reflection section from the template if you don't need it
