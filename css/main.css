@@ -4538,7 +4538,7 @@ p {
   display: block;
   width: clamp(7.5rem, 18vw, 10.5rem);
   height: auto;
-  transform: rotate(50deg);
+  transform: rotate(54deg);
 }
 
 .case-iterations__phones {
@@ -4634,7 +4634,7 @@ p {
   }
 
   .case-iterations__arrow-img {
-    transform: rotate(50deg);
+    transform: rotate(54deg);
     width: clamp(6.5rem, 27vw, 8.5rem);
   }
 }
