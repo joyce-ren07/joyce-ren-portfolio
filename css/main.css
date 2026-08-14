@@ -4383,7 +4383,8 @@ p {
 }
 
 .case-critique__stage {
-  --critique-phone-half: 16%;
+  --critique-phone-width: min(34%, 13.25rem);
+  --critique-phone-half: calc(var(--critique-phone-width) / 2);
   --critique-gap: 1.65rem;
   position: relative;
   width: min(100%, 46rem);
@@ -4398,7 +4399,7 @@ p {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: min(32%, 12.5rem);
+  width: var(--critique-phone-width);
 }
 
 .case-critique__device {
@@ -4450,14 +4451,14 @@ p {
   transform: translateX(-50%);
   max-width: 13.75rem;
   text-align: center;
-  z-index: 3;
+  z-index: 2;
 }
 
 .case-critique__note--progress::after {
   left: 50%;
   top: 100%;
   width: 1px;
-  height: 1.35rem;
+  height: clamp(1.85rem, 4.5vw, 2.35rem);
   transform: translateX(-50%);
 }
 
