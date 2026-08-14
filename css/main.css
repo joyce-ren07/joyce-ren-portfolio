@@ -4089,8 +4089,8 @@ p {
 .case-process-duo__arrow {
   position: absolute;
   left: clamp(0.25rem, 3vw, 1.75rem);
-  top: clamp(-2rem, -2.5vw, -0.65rem);
-  width: clamp(8.75rem, 21vw, 13rem);
+  top: clamp(-2.35rem, -3vw, -0.85rem);
+  width: clamp(10.5rem, 25vw, 15.5rem);
   pointer-events: none;
   z-index: 1;
 }
@@ -4145,7 +4145,7 @@ p {
   .case-process-duo__arrow {
     left: 50%;
     top: 0;
-    width: 5.25rem;
+    width: 7.25rem;
     transform: translateX(-50%) rotate(90deg);
   }
 
