@@ -3873,6 +3873,44 @@ p {
   quotes: none;
 }
 
+/* Social Listening — notification slide-fade entrance */
+.case-quotes--staggered .case-quote.case-quote--notification {
+  opacity: 0;
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.case-quotes--staggered .case-quote.case-quote--notification.case-quote--offset-1 {
+  transform: translateX(2.75rem);
+  transition-delay: 0s;
+}
+
+.case-quotes--staggered .case-quote.case-quote--notification.case-quote--offset-2 {
+  transform: translateX(-2.75rem);
+  transition-delay: 0.14s;
+}
+
+.case-quotes--staggered .case-quote.case-quote--notification.case-quote--offset-3 {
+  transform: translateX(2.75rem);
+  transition-delay: 0.28s;
+}
+
+.case-quotes--staggered.is-inview .case-quote.case-quote--notification {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-quotes--staggered .case-quote.case-quote--notification {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
 .case-quotes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

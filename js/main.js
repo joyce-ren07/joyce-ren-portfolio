@@ -684,6 +684,34 @@
     }
   }
 
+  /* Social Listening notifications — staggered slide-fade on scroll */
+  const notifStacks = document.querySelectorAll(".case-quotes--staggered");
+  if (notifStacks.length) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    notifStacks.forEach((stack) => {
+      const reveal = () => stack.classList.add("is-inview");
+
+      if (reducedMotion || !("IntersectionObserver" in window)) {
+        reveal();
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            reveal();
+            observer.unobserve(stack);
+          });
+        },
+        { threshold: 0.25, rootMargin: "0px 0px -6% 0px" }
+      );
+
+      observer.observe(stack);
+    });
+  }
+
   /* Scroll-triggered Lottie — slide in and play when entering view */
   const scrollLotties = document.querySelectorAll("[data-scroll-lottie]");
   if (scrollLotties.length) {
