@@ -1,0 +1,121 @@
+/* AutoInvent portfolio visuals — style tokens
+   Source: Figma variables from the AutoInvent design system.
+   Drop this in your project and import it once. */
+
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+  /* Surfaces */
+  --page-bg:        #EAE8E4;  /* warm grey page background */
+  --card-bg:        #FAF9F7;  /* card / panel */
+  --card-bg-alt:    #F5F3F1;
+  --white:          #FFFFFF;
+
+  /* Text */
+  --text:           #191919;
+  --text-strong:    #303030;
+  --text-muted:     #606060;
+  --text-subtle:    rgba(25,25,25,0.55);
+  --text-faint:     rgba(25,25,25,0.40);
+
+  /* Primary accent (orange) */
+  --accent:         #F0774C;
+  --accent-hover:   #FE6C38;
+  --accent-tint:    rgba(240,119,76,0.08);
+  --accent-border:  rgba(240,119,76,0.60);
+  --accent-deep:    #B7831F;  /* amber, for text on tinted fills */
+
+  /* Status */
+  --green:          #239B6E;
+  --red:            #D9594C;
+
+  /* Lines */
+  --line:           rgba(166,165,164,0.35);
+  --line-strong:    rgba(166,165,164,0.60);
+
+  /* Type — TT Norms Pro is the brand face; Hanken Grotesk is the web fallback */
+  --font: "TT Norms Pro", "Hanken Grotesk", -apple-system, sans-serif;
+
+  --fs-eyebrow: 13px;   /* uppercase, 500, letter-spacing 1.3px, accent color */
+  --fs-body:    15px;
+  --fs-card:    20px;   /* card titles, 700 */
+  --fs-section: 28px;   /* section headline, 500, letter-spacing -0.5px */
+  --fs-display: 56px;
+
+  /* Radius + spacing */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-pill: 1000px;
+  --sp-1: 8px;  --sp-2: 16px;  --sp-3: 24px;
+  --sp-4: 32px; --sp-5: 48px;  --sp-6: 64px;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+/* --- Recurring patterns in the portfolio figures --- */
+
+.figure {                      /* outer frame for any diagram/graphic */
+  width: 1200px;
+  box-sizing: border-box;
+  padding: var(--sp-6);
+  background: var(--page-bg);
+}
+
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.headline {
+  font-size: var(--fs-section);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  max-width: 760px;
+  text-wrap: pretty;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 28px 26px;
+}
+
+.card--accent { border-top: 3px solid var(--accent); }
+.card__title  { font-size: var(--fs-card); font-weight: 700; line-height: 1.25; letter-spacing: -0.3px; }
+.card__body   { font-size: var(--fs-body); line-height: 1.5; color: var(--text-muted); text-wrap: pretty; }
+
+.numeral {                     /* filled circle number badge */
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: #fff;
+  font-size: var(--fs-body); font-weight: 700;
+}
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-2); }
+
+.band {                        /* tinted callout that spans a row */
+  display: flex; align-items: center; gap: 20px;
+  background: var(--accent-tint);
+  border: 1px dashed var(--accent-border);
+  border-radius: var(--r-md);
+  padding: 22px 26px;
+}
