@@ -3585,6 +3585,7 @@ p {
   --ai-accent: #f0774c;
   --ai-font: "TT Norms Pro", "Hanken Grotesk", -apple-system, sans-serif;
   --ai-fs-section: 28px;
+  --ai-fs-body: 15px;
 }
 
 .case-study-page--autoinvent .case-callout--outline {
@@ -3596,6 +3597,54 @@ p {
   font-style: normal;
   letter-spacing: -0.5px;
   line-height: 1.2;
+}
+
+/* AutoInvent problem tensions — design-system cards, unsquished text */
+.case-study-page--autoinvent .case-insight-cards {
+  gap: 16px;
+}
+
+.case-study-page--autoinvent .case-insight-card {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  min-height: 0;
+  padding: 28px 26px;
+  background: #faf9f7;
+  border: 1px solid rgba(166, 165, 164, 0.35);
+  border-top: 3px solid var(--ai-accent);
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+.case-study-page--autoinvent .case-insight-card__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  font-family: var(--ai-font);
+  font-size: var(--ai-fs-body);
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  background: var(--ai-accent);
+  border-radius: 1000px;
+}
+
+.case-study-page--autoinvent .case-insight-card__text,
+.case-study-page--autoinvent .case-insight-card__text em {
+  font-family: var(--ai-font);
+  font-size: var(--ai-fs-body);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--ai-accent);
+  text-wrap: pretty;
+  max-width: none;
+  width: 100%;
 }
 
 .case-hero-image--video {
