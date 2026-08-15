@@ -3838,7 +3838,7 @@ p {
 
 .case-quote.case-quote--notification .case-quote__source {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 1.0625rem; /* 17pt */
+  font-size: 1.125rem; /* 18pt */
   font-weight: 700;
   letter-spacing: -0.015em;
   text-transform: none;
@@ -3851,7 +3851,7 @@ p {
 
 .case-quote.case-quote--notification .case-quote__time {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 0.9375rem; /* 15pt */
+  font-size: 1rem; /* 16pt */
   font-weight: 400;
   color: #8e8e93;
   flex: 0 0 auto;
@@ -3865,7 +3865,7 @@ p {
   padding: 0;
   border: 0;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 1.0625rem; /* 17pt */
+  font-size: 1.125rem; /* 18pt */
   font-weight: 400;
   font-style: normal;
   line-height: 1.32;
