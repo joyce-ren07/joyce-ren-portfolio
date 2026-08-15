@@ -3709,15 +3709,15 @@ p {
 
 .case-quotes--staggered {
   /* Formation framed like the Framer Social Listening stack */
-  --ios-notif-width: 34rem;
-  --ios-notif-radius: 1.75rem;
-  --ios-notif-icon: 3rem;
-  --ios-notif-pad: 1.4rem;
-  --ios-notif-gap: 1rem;
+  --ios-notif-width: 36rem;
+  --ios-notif-radius: 1.8rem;
+  --ios-notif-icon: 3.1rem;
+  --ios-notif-pad: 1.45rem;
+  --ios-notif-gap: 1.05rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2.65rem;
+  gap: 2.7rem;
   margin-top: 2rem;
   max-width: min(var(--case-content-max, 55rem), 100%);
   width: 100%;
@@ -3739,7 +3739,7 @@ p {
   gap: var(--ios-notif-gap);
   width: min(var(--ios-notif-width), 100%);
   max-width: min(var(--ios-notif-width), 100%);
-  min-height: 6.5rem;
+  min-height: 6.65rem;
   padding: var(--ios-notif-pad);
   margin-top: 0;
   margin-right: 0;
@@ -3780,14 +3780,15 @@ p {
 }
 
 .case-quote.case-quote--notification.case-quote--offset-2 {
-  /* Right stagger — left edge near mid of card 1 */
-  margin-left: 17rem; /* half of 34rem */
-  align-self: flex-start;
+  /* Flush to the right edge of the formation */
+  margin-left: auto;
+  margin-right: 0;
+  align-self: flex-end;
 }
 
 .case-quote.case-quote--notification.case-quote--offset-3 {
   /* Center-left — between card 1 and card 2 */
-  margin-left: 9rem;
+  margin-left: 9.5rem;
   align-self: flex-start;
 }
 
@@ -3887,14 +3888,14 @@ p {
   flex-direction: column;
   align-items: stretch;
   grid-template-columns: none;
-  gap: 2.65rem;
+  gap: 2.7rem;
   max-width: min(var(--case-content-max, 55rem), 100%);
   width: 100%;
 }
 
 .case-quotes.case-quotes--staggered .case-quote {
-  width: min(var(--ios-notif-width, 34rem), 100%);
-  max-width: min(var(--ios-notif-width, 34rem), 100%);
+  width: min(var(--ios-notif-width, 36rem), 100%);
+  max-width: min(var(--ios-notif-width, 36rem), 100%);
 }
 
 .case-quote {
@@ -4355,7 +4356,7 @@ p {
 
 .case-study-page--uber #research .case-quotes.case-quotes--staggered {
   margin-top: clamp(2.75rem, 5.5vw, 3.75rem);
-  gap: 2.65rem;
+  gap: 2.7rem;
   max-width: min(var(--case-content-max, 55rem), 100%);
   width: 100%;
   padding: 0;
