@@ -2547,12 +2547,17 @@ p {
 
 .case-intro-header__subtitle--uber {
   font-size: var(--case-secondary-size, var(--text-secondary-size));
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.02em;
   line-height: var(--case-heading-leading, 1.12);
   color: #c8c8c8;
   max-width: min(48rem, 94vw);
   text-align: center;
+}
+
+.case-intro-header__subtitle--uber strong {
+  font-weight: 700;
+  color: inherit;
 }
 
 .case-intro-header--home-start .case-intro-header__title {
@@ -2608,11 +2613,21 @@ p {
 }
 
 .case-hero-media--uber-cover {
+  --uber-cover-radius: 2.5rem;
   max-width: min(52rem, 100%);
+  overflow: hidden;
+  border-radius: var(--uber-cover-radius);
 }
 
 .case-hero-media--uber-cover::after {
   display: none;
+}
+
+.case-hero-media--uber-cover .case-hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--uber-cover-radius);
 }
 
 .case-hero-image {
@@ -2819,10 +2834,11 @@ p {
 }
 
 .case-callout--outline {
+  --uber-cover-radius: 2.5rem;
   margin: 2rem 0 2.5rem;
   padding: 1.35rem 2.75rem 1.35rem 3.25rem;
   border: 1.5px solid #2a2a2a;
-  border-radius: 999px;
+  border-radius: var(--uber-cover-radius);
   background: #ffffff;
   color: #8e8e8e;
   font-size: var(--case-secondary-size, var(--text-secondary-size));
@@ -3055,7 +3071,7 @@ p {
   }
 
   .case-callout--outline {
-    border-radius: 1.75rem;
+    border-radius: var(--uber-cover-radius, 2.5rem);
     padding: 1.15rem 1.5rem;
     font-size: clamp(1.15rem, 5vw, 1.75rem);
     text-align: left;
