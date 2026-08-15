@@ -6114,6 +6114,44 @@ p {
   font-weight: var(--case-tertiary-weight, 500);
 }
 
+.case-process-methods {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 42rem;
+}
+
+.case-process-methods li {
+  position: relative;
+  padding-left: 1.15rem;
+  font-size: var(--case-tertiary-size);
+  font-weight: var(--case-tertiary-weight, 500);
+  line-height: var(--case-body-leading, 1.58);
+  color: var(--case-text);
+}
+
+.case-process-methods li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--case-text-active, #303030);
+}
+
+.case-study-page--autoinvent .case-process-methods li::before {
+  background: var(--ai-accent, #f0774c);
+}
+
+#process .case-process-methods + .case-body--summary {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
 /* Design principles / core model blocks */
 
 .case-principle-blocks {
