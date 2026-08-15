@@ -2597,6 +2597,14 @@ p {
   display: none;
 }
 
+.case-hero-media--uber-cover {
+  max-width: min(52rem, 100%);
+}
+
+.case-hero-media--uber-cover::after {
+  display: none;
+}
+
 .case-hero-image {
   display: block;
   width: 100%;
