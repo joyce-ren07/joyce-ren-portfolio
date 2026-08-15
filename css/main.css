@@ -3709,17 +3709,17 @@ p {
 
 .case-quotes--staggered {
   /* Formation framed like the Framer Social Listening stack */
-  --ios-notif-width: 25rem; /* slightly larger than before */
-  --ios-notif-radius: 1.55rem;
-  --ios-notif-icon: 2.5rem;
-  --ios-notif-pad: 1.1rem;
-  --ios-notif-gap: 0.8rem;
+  --ios-notif-width: 29rem;
+  --ios-notif-radius: 1.65rem;
+  --ios-notif-icon: 2.75rem;
+  --ios-notif-pad: 1.25rem;
+  --ios-notif-gap: 0.9rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2.35rem;
+  gap: 2.5rem;
   margin-top: 2rem;
-  max-width: min(48rem, 100%);
+  max-width: min(54rem, 100%);
   width: 100%;
   padding: 0;
   box-sizing: border-box;
@@ -3739,7 +3739,7 @@ p {
   gap: var(--ios-notif-gap);
   width: min(var(--ios-notif-width), 100%);
   max-width: min(var(--ios-notif-width), 100%);
-  min-height: 5.35rem;
+  min-height: 5.85rem;
   padding: var(--ios-notif-pad);
   margin-top: 0;
   margin-right: 0;
@@ -3781,13 +3781,13 @@ p {
 
 .case-quote.case-quote--notification.case-quote--offset-2 {
   /* Right stagger — left edge near mid of card 1 */
-  margin-left: 12.5rem; /* half of 25rem */
+  margin-left: 14.5rem; /* half of 29rem */
   align-self: flex-start;
 }
 
 .case-quote.case-quote--notification.case-quote--offset-3 {
   /* Center-left — between card 1 and card 2 */
-  margin-left: 6.75rem;
+  margin-left: 7.75rem;
   align-self: flex-start;
 }
 
@@ -3837,7 +3837,7 @@ p {
 
 .case-quote.case-quote--notification .case-quote__source {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 0.9375rem; /* 15pt */
+  font-size: 1rem; /* 16pt */
   font-weight: 700;
   letter-spacing: -0.015em;
   text-transform: none;
@@ -3850,7 +3850,7 @@ p {
 
 .case-quote.case-quote--notification .case-quote__time {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 0.8125rem; /* 13pt */
+  font-size: 0.875rem; /* 14pt */
   font-weight: 400;
   color: #8e8e93;
   flex: 0 0 auto;
@@ -3864,7 +3864,7 @@ p {
   padding: 0;
   border: 0;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 0.9375rem; /* 15pt */
+  font-size: 1rem; /* 16pt */
   font-weight: 400;
   font-style: normal;
   line-height: 1.3;
@@ -3887,14 +3887,14 @@ p {
   flex-direction: column;
   align-items: stretch;
   grid-template-columns: none;
-  gap: 2.55rem;
-  max-width: min(46rem, 100%);
+  gap: 2.5rem;
+  max-width: min(54rem, 100%);
   width: 100%;
 }
 
 .case-quotes.case-quotes--staggered .case-quote {
-  width: min(var(--ios-notif-width, 22.75rem), 100%);
-  max-width: min(var(--ios-notif-width, 22.75rem), 100%);
+  width: min(var(--ios-notif-width, 29rem), 100%);
+  max-width: min(var(--ios-notif-width, 29rem), 100%);
 }
 
 .case-quote {
@@ -4355,8 +4355,8 @@ p {
 
 .case-study-page--uber #research .case-quotes.case-quotes--staggered {
   margin-top: clamp(2.75rem, 5.5vw, 3.75rem);
-  gap: 2.55rem;
-  max-width: min(46rem, 100%);
+  gap: 2.5rem;
+  max-width: min(54rem, 100%);
   width: 100%;
   padding: 0;
 }
