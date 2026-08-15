@@ -1,0 +1,351 @@
+/* AutoInvent portfolio visuals — style tokens
+   Source: Figma variables from the AutoInvent design system / Prior Art Viewer handoff.
+   Loaded only on the AutoInvent case study. */
+
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&display=swap");
+
+:root {
+  /* Surfaces */
+  --page-bg: #eae8e4;
+  --card-bg: #faf9f7;
+  --card-bg-alt: #f5f3f1;
+  --white: #ffffff;
+
+  /* Text */
+  --text: #191919;
+  --text-strong: #303030;
+  --text-muted: #606060;
+  --text-subtle: rgba(25, 25, 25, 0.55);
+  --text-faint: rgba(25, 25, 25, 0.4);
+
+  /* Primary accent (orange) */
+  --accent: #f0774c;
+  --accent-hover: #fe6c38;
+  --accent-tint: rgba(240, 119, 76, 0.08);
+  --accent-border: rgba(240, 119, 76, 0.6);
+  --accent-deep: #b7831f;
+
+  /* Status */
+  --green: #239b6e;
+  --red: #d9594c;
+
+  /* Lines */
+  --line: rgba(166, 165, 164, 0.35);
+  --line-strong: rgba(166, 165, 164, 0.6);
+
+  /* Type — TT Norms Pro brand face; Hanken Grotesk web fallback */
+  --font: "TT Norms Pro", "Hanken Grotesk", -apple-system, sans-serif;
+
+  --fs-eyebrow: 13px;
+  --fs-body: 15px;
+  --fs-card: 20px;
+  --fs-section: 28px;
+  --fs-display: 56px;
+
+  /* Radius + spacing */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-pill: 1000px;
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-5: 48px;
+  --sp-6: 64px;
+}
+
+/* --- Page chrome: AutoInvent case study only --- */
+
+body.case-study-page--autoinvent {
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+
+  --case-bg: var(--page-bg);
+  --case-text: var(--text-muted);
+  --case-heading: var(--text);
+  --case-text-active: var(--text-strong);
+  --color-border: var(--line);
+  --color-text-muted: var(--text-muted);
+}
+
+body.case-study-page--autoinvent a:not(.case-topbar__logo):not(.case-sidebar__link):not(.work-card__link) {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+body.case-study-page--autoinvent a:not(.case-topbar__logo):not(.case-sidebar__link):not(.work-card__link):hover {
+  color: var(--accent-hover);
+}
+
+/* --- Recurring patterns in portfolio figures --- */
+
+.figure {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: var(--sp-5) var(--sp-4);
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  background: var(--page-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+
+.figure--flush {
+  padding: 0;
+  border: none;
+  background: transparent;
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+}
+
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+
+.headline {
+  font-size: var(--fs-section);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  max-width: 760px;
+  margin: var(--sp-1) 0 0;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.figure .headline + .grid-2,
+.figure .headline + .grid-3,
+.figure .headline + .grid-4,
+.figure .headline + .band {
+  margin-top: 40px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 28px 26px;
+  box-shadow: none;
+}
+
+.card--accent {
+  border-top: 3px solid var(--accent);
+}
+
+.card--media {
+  padding: 0;
+  overflow: hidden;
+  gap: 0;
+}
+
+.card__media {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-bg-alt);
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.card__title {
+  font-size: var(--fs-card);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  margin: 0;
+}
+
+.card--media .card__title,
+.card--media .card__body {
+  padding-inline: 26px;
+}
+
+.card--media .card__title {
+  margin-top: 22px;
+}
+
+.card--media .card__body {
+  padding-bottom: 26px;
+}
+
+.card__body {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.card__value {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.numeral {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: #fff;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-2);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-2);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-2);
+}
+
+.band {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--accent-tint);
+  border: 1px dashed var(--accent-border);
+  border-radius: var(--r-md);
+  padding: 22px 26px;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--text-strong);
+  text-wrap: pretty;
+}
+
+.band--after-grid {
+  margin-top: var(--sp-2);
+}
+
+/* --- Case-study component restyles (visual only) --- */
+
+.case-study-page--autoinvent .case-callout,
+.case-study-page--autoinvent .case-callout--outline,
+.case-study-page--autoinvent .case-callout--gradient {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: none;
+  color: var(--text);
+  font-family: var(--font);
+}
+
+.case-study-page--autoinvent .case-pullquote,
+.case-study-page--autoinvent .case-pullquote strong {
+  color: var(--text-muted);
+  font-family: var(--font);
+}
+
+.case-study-page--autoinvent .case-emphasis {
+  color: var(--text);
+}
+
+.case-study-page--autoinvent .case-placeholder {
+  margin-top: 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: none;
+  color: var(--text-faint);
+  font-family: var(--font);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 1.3px;
+}
+
+.case-study-page--autoinvent .case-image-grid .case-placeholder {
+  margin-top: 0;
+}
+
+.case-study-page--autoinvent .case-feedback {
+  gap: var(--sp-2);
+}
+
+.case-study-page--autoinvent .case-feedback__col {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 28px 26px;
+  box-shadow: none;
+}
+
+.case-study-page--autoinvent .case-feedback__title {
+  color: var(--accent);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.case-study-page--autoinvent .case-feedback__list li {
+  color: var(--text-muted);
+  font-size: var(--fs-body);
+}
+
+.case-study-page--autoinvent .case-tradeoffs {
+  border-color: var(--line);
+}
+
+.case-study-page--autoinvent .case-tradeoffs li {
+  color: var(--text-muted);
+  border-color: var(--line);
+}
+
+.case-study-page--autoinvent .case-hero-media--autoinvent {
+  border-radius: var(--r-md);
+}
+
+.case-study-page--autoinvent .case-next-project a {
+  color: var(--accent);
+}
+
+.case-study-page--autoinvent .case-footer-note a {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-2,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .figure {
+    padding: var(--sp-4) var(--sp-3);
+  }
+}
