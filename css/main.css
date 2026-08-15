@@ -2545,6 +2545,16 @@ p {
   margin: 0 auto;
 }
 
+.case-intro-header__subtitle--uber {
+  font-size: var(--case-secondary-size, var(--text-secondary-size));
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: var(--case-heading-leading, 1.12);
+  color: #c8c8c8;
+  max-width: min(48rem, 94vw);
+  text-align: center;
+}
+
 .case-intro-header--home-start .case-intro-header__title {
   font-size: var(--case-title-size, var(--text-title-size));
   margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
@@ -2808,6 +2818,22 @@ p {
   );
 }
 
+.case-callout--outline {
+  margin: 2rem 0 2.5rem;
+  padding: 1.35rem 2.75rem 1.35rem 3.25rem;
+  border: 1.5px solid #2a2a2a;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #8e8e8e;
+  font-size: var(--case-secondary-size, var(--text-secondary-size));
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  text-align: left;
+  box-sizing: border-box;
+}
+
 .case-body {
   font-size: var(--case-tertiary-size, var(--text-tertiary-size));
   font-weight: 400;
@@ -3028,10 +3054,21 @@ p {
     padding: 2rem 1.75rem;
   }
 
+  .case-callout--outline {
+    border-radius: 1.75rem;
+    padding: 1.15rem 1.5rem;
+    font-size: clamp(1.15rem, 5vw, 1.75rem);
+    text-align: left;
+  }
+
   .case-callout--gradient {
     margin-top: 2rem;
     margin-bottom: 2rem;
     padding: 2rem 1.75rem;
+  }
+
+  .case-intro-header__subtitle--uber {
+    font-size: clamp(1.25rem, 6vw, 2rem);
   }
 }
 
