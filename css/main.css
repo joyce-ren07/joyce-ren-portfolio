@@ -3580,6 +3580,16 @@ p {
   display: none;
 }
 
+/* AutoInvent — primary orange from design system base */
+.case-study-page--autoinvent {
+  --ai-accent: #f0774c;
+}
+
+.case-study-page--autoinvent .case-callout--outline {
+  border-color: var(--ai-accent);
+  color: var(--ai-accent);
+}
+
 .case-hero-image--video {
   display: block;
   width: 100%;
