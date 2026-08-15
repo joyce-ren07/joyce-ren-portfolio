@@ -3535,6 +3535,59 @@ p {
   margin: 0;
 }
 
+.case-features--thumbs .case-feature {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.case-features--thumbs .case-feature__media,
+.case-placeholder--feature {
+  margin-top: 0;
+  aspect-ratio: 4 / 3;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.7rem;
+}
+
+.case-features--thumbs .case-feature__title,
+.case-features--thumbs .case-feature__desc {
+  padding-inline: 1.25rem;
+}
+
+.case-features--thumbs .case-feature__title {
+  margin-top: 1.15rem;
+}
+
+.case-features--thumbs .case-feature__desc {
+  padding-bottom: 1.35rem;
+}
+
+.case-features--options {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: var(--case-subsection-gap, 120px);
+}
+
+.case-hero-media--autoinvent {
+  max-width: min(52rem, 100%);
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.case-hero-media--autoinvent::after {
+  display: none;
+}
+
+.case-hero-image--video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
 .case-research-chat {
   display: flex;
   flex-direction: column;
@@ -4986,6 +5039,10 @@ p {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .case-features--thumbs {
+    grid-template-columns: 1fr;
+  }
+
   .case-quotes:not(.case-quotes--staggered) {
     grid-template-columns: 1fr;
   }
@@ -5059,6 +5116,12 @@ p {
   .case-stat--highlight {
     flex-direction: column;
     text-align: center;
+  }
+
+  .case-features,
+  .case-features--options,
+  .case-features--thumbs {
+    grid-template-columns: 1fr;
   }
 
   .case-market__icons {
@@ -5188,7 +5251,8 @@ p {
 }
 
 #research .case-subheading--large,
-#process .case-subheading--large {
+#process .case-subheading--large,
+#solution .case-subheading--large {
   font-size: var(--case-secondary-size, var(--text-secondary-size));
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -5199,7 +5263,8 @@ p {
 }
 
 #research .case-section-heading + .case-subheading--large,
-#process .case-section-heading + .case-subheading--large {
+#process .case-section-heading + .case-subheading--large,
+#solution .case-section-heading + .case-subheading--large {
   margin-top: 0;
 }
 
@@ -5246,8 +5311,10 @@ p {
 }
 
 #research .case-stats,
+#solution .case-stats,
 #research .case-insight-cards,
-#process .case-insight-cards {
+#process .case-insight-cards,
+#problem .case-insight-cards {
   margin-top: clamp(2rem, 4vw, 2.75rem);
 }
 
