@@ -3599,6 +3599,10 @@ p {
   line-height: 1.2;
 }
 
+.case-study-page--autoinvent .case-pullquote strong {
+  color: var(--ai-accent);
+}
+
 /* AutoInvent problem tensions — design-system cards, unsquished text */
 .case-study-page--autoinvent .case-insight-cards {
   gap: 16px;
