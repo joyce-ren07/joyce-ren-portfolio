@@ -3708,17 +3708,22 @@ p {
 }
 
 .case-quotes--staggered {
-  --ios-notif-width: 27.5rem; /* wider banner like the Framer ref */
-  --ios-notif-radius: 1.75rem; /* ~28px */
-  --ios-notif-icon: 2.5rem; /* 40px */
-  --ios-notif-pad: 1.15rem; /* ~18–20px */
-  --ios-notif-gap: 0.85rem;
+  /* Formation framed like the Framer Social Listening stack */
+  --ios-notif-width: 22.75rem; /* ~41% of content column */
+  --ios-notif-radius: 1.5rem;
+  --ios-notif-icon: 2.35rem;
+  --ios-notif-pad: 1rem;
+  --ios-notif-gap: 0.75rem;
+  --ios-notif-stagger-2: calc(var(--ios-notif-width) * 0.5);
+  --ios-notif-stagger-3: calc(
+    var(--ios-notif-stagger-2) + var(--ios-notif-pad) + var(--ios-notif-icon) + var(--ios-notif-gap)
+  );
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem; /* ~20px between cards */
+  gap: 2.55rem; /* ~half a card height */
   margin-top: 2rem;
-  max-width: none;
+  max-width: min(42rem, 100%);
   width: 100%;
   padding: 0;
   box-sizing: border-box;
@@ -3738,7 +3743,7 @@ p {
   gap: var(--ios-notif-gap);
   width: min(var(--ios-notif-width), 100%);
   max-width: min(var(--ios-notif-width), 100%);
-  min-height: 5.25rem;
+  min-height: 5rem;
   padding: var(--ios-notif-pad);
   margin: 0;
   box-sizing: border-box;
@@ -3746,11 +3751,11 @@ p {
   border: none;
   background: #f2f2f7;
   -apple-visual-effect: -apple-system-glass-material;
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 10px 28px rgba(0, 0, 0, 0.08);
+    0 1px 2px rgba(0, 0, 0, 0.035),
+    0 8px 22px rgba(0, 0, 0, 0.07);
   isolation: isolate;
   overflow: hidden;
 }
@@ -3763,10 +3768,10 @@ p {
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(255, 255, 255, 0) 42%
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0) 40%
   );
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .case-quote--offset-1 {
@@ -3775,14 +3780,15 @@ p {
 }
 
 .case-quote--offset-2 {
-  margin-left: auto;
+  /* Significantly right — left edge at horizontal center of card 1 */
+  margin-left: min(var(--ios-notif-stagger-2), calc(100% - var(--ios-notif-width)));
   margin-right: 0;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .case-quote--offset-3 {
-  /* Bottom-left stagger, matching the Framer reference */
-  margin-left: clamp(1.5rem, 6vw, 4rem);
+  /* Center-left — left edge aligns with card 2 title text */
+  margin-left: min(var(--ios-notif-stagger-3), calc(100% - var(--ios-notif-width)));
   margin-right: 0;
   align-self: flex-start;
 }
@@ -3883,14 +3889,14 @@ p {
   flex-direction: column;
   align-items: stretch;
   grid-template-columns: none;
-  gap: 1.25rem;
-  max-width: none;
+  gap: 2.55rem;
+  max-width: min(46rem, 100%);
   width: 100%;
 }
 
 .case-quotes.case-quotes--staggered .case-quote {
-  width: min(var(--ios-notif-width, 27.5rem), 100%);
-  max-width: min(var(--ios-notif-width, 27.5rem), 100%);
+  width: min(var(--ios-notif-width, 22.75rem), 100%);
+  max-width: min(var(--ios-notif-width, 22.75rem), 100%);
 }
 
 .case-quote {
@@ -4351,8 +4357,8 @@ p {
 
 .case-study-page--uber #research .case-quotes.case-quotes--staggered {
   margin-top: clamp(2.75rem, 5.5vw, 3.75rem);
-  gap: 1.25rem;
-  max-width: none;
+  gap: 2.55rem;
+  max-width: min(46rem, 100%);
   width: 100%;
   padding: 0;
 }
