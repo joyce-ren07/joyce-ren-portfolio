@@ -3709,7 +3709,7 @@ p {
 
 .case-quotes--staggered {
   /* Formation framed like the Framer Social Listening stack */
-  --ios-notif-width: 36rem;
+  --ios-notif-width: 33rem;
   --ios-notif-radius: 1.8rem;
   --ios-notif-icon: 3.1rem;
   --ios-notif-pad: 1.45rem;
@@ -3748,7 +3748,7 @@ p {
   box-sizing: border-box;
   border-radius: var(--ios-notif-radius);
   border: none;
-  background: #f2f2f7;
+  background: #f7f7f7;
   -apple-visual-effect: -apple-system-glass-material;
   backdrop-filter: blur(20px) saturate(130%);
   -webkit-backdrop-filter: blur(20px) saturate(130%);
@@ -3838,7 +3838,7 @@ p {
 
 .case-quote.case-quote--notification .case-quote__source {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 1.125rem; /* 18pt */
+  font-size: 1.1875rem; /* 19pt */
   font-weight: 700;
   letter-spacing: -0.015em;
   text-transform: none;
@@ -3851,7 +3851,7 @@ p {
 
 .case-quote.case-quote--notification .case-quote__time {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 1rem; /* 16pt */
+  font-size: 1.0625rem; /* 17pt */
   font-weight: 400;
   color: #8e8e93;
   flex: 0 0 auto;
@@ -3865,7 +3865,7 @@ p {
   padding: 0;
   border: 0;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 1.125rem; /* 18pt */
+  font-size: 1.1875rem; /* 19pt */
   font-weight: 400;
   font-style: normal;
   line-height: 1.32;
@@ -3932,8 +3932,8 @@ p {
 }
 
 .case-quotes.case-quotes--staggered .case-quote {
-  width: min(var(--ios-notif-width, 36rem), 100%);
-  max-width: min(var(--ios-notif-width, 36rem), 100%);
+  width: min(var(--ios-notif-width, 33rem), 100%);
+  max-width: min(var(--ios-notif-width, 33rem), 100%);
 }
 
 .case-quote {
