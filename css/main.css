@@ -2836,7 +2836,7 @@ p {
 .case-callout--outline {
   --uber-cover-radius: 2.5rem;
   margin: 2rem 0 2.5rem;
-  padding: 1.35rem 2.75rem 1.35rem 3.25rem;
+  padding: 2.85rem 2.75rem 2.85rem 3.25rem;
   border: 1.5px solid #2a2a2a;
   border-radius: var(--uber-cover-radius);
   background: #ffffff;
@@ -2848,6 +2848,12 @@ p {
   line-height: 1.35;
   text-align: left;
   box-sizing: border-box;
+}
+
+.case-callout--outline strong {
+  font-weight: 700;
+  color: inherit;
+  font-style: inherit;
 }
 
 .case-body {
@@ -3072,7 +3078,7 @@ p {
 
   .case-callout--outline {
     border-radius: var(--uber-cover-radius, 2.5rem);
-    padding: 1.15rem 1.5rem;
+    padding: 2.25rem 1.5rem;
     font-size: clamp(1.15rem, 5vw, 1.75rem);
     text-align: left;
   }
