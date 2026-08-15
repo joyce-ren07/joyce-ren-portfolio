@@ -3186,6 +3186,11 @@ p {
   overflow: visible;
 }
 
+.case-feature-row__media > .case-placeholder {
+  width: 100%;
+  margin-top: 0;
+}
+
 .case-feature-video-card {
   width: 100%;
   max-width: 100%;
