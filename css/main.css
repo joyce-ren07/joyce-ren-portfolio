@@ -3594,7 +3594,7 @@ p {
   font-family: var(--ai-font);
   font-size: var(--ai-fs-section);
   font-weight: 500;
-  font-style: normal;
+  font-style: italic;
   letter-spacing: -0.5px;
   line-height: 1.2;
 }
