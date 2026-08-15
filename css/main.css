@@ -3580,14 +3580,22 @@ p {
   display: none;
 }
 
-/* AutoInvent — primary orange from design system base */
+/* AutoInvent — primary orange + headline type from design system base */
 .case-study-page--autoinvent {
   --ai-accent: #f0774c;
+  --ai-font: "TT Norms Pro", "Hanken Grotesk", -apple-system, sans-serif;
+  --ai-fs-section: 28px;
 }
 
 .case-study-page--autoinvent .case-callout--outline {
   border-color: var(--ai-accent);
   color: var(--ai-accent);
+  font-family: var(--ai-font);
+  font-size: var(--ai-fs-section);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
 }
 
 .case-hero-image--video {
