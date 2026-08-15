@@ -2896,6 +2896,14 @@ p {
   color: #a1a1a1;
 }
 
+.case-study-page--uber .case-pullquote {
+  font-weight: 500;
+}
+
+.case-study-page--uber .case-pullquote strong {
+  font-weight: 600;
+}
+
 .case-placeholder {
   margin-top: 2rem;
   aspect-ratio: 16 / 9;
