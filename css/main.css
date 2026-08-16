@@ -3661,16 +3661,13 @@ p {
   --ps-accent: var(--ai-accent, #f0774c);
   --ps-text: #191919;
   --ps-muted: #606060;
-  --ps-surface: #faf9f7;
-  --ps-line: rgba(166, 165, 164, 0.35);
   width: 100%;
   max-width: 100%;
   margin: 2rem 0 0;
   box-sizing: border-box;
-  padding: 64px;
-  background: var(--ps-surface);
-  border: 1px solid var(--ps-line);
-  border-radius: 16px;
+  padding: 0;
+  background: transparent;
+  border: none;
   color: var(--ps-text);
   font-family: var(--ai-font, "TT Norms Pro", "Hanken Grotesk", -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
@@ -3708,6 +3705,7 @@ p {
 
 .ps-hub__desc {
   font-size: 15px;
+  font-weight: 500;
   line-height: 1.5;
   color: var(--ps-muted);
   text-wrap: pretty;
@@ -3769,10 +3767,6 @@ p {
 }
 
 @media (max-width: 860px) {
-  .ps-hub {
-    padding: 40px 24px;
-  }
-
   .ps-hub__grid {
     grid-template-columns: 1fr;
     gap: 8px;
