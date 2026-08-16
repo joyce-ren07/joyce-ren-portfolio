@@ -3832,7 +3832,7 @@ p {
   --dp-line: rgba(166, 165, 164, 0.35);
   width: 100%;
   max-width: 100%;
-  margin: 2rem 0 0;
+  margin: 2rem 0 clamp(2rem, 4vw, 2.75rem);
   box-sizing: border-box;
   padding: 64px;
   background: var(--dp-surface);
