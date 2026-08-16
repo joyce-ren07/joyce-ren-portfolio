@@ -684,6 +684,18 @@
     }
   }
 
+  /* Optional playback-rate overrides for cover / demo videos */
+  document.querySelectorAll("video[data-playback-rate]").forEach((video) => {
+    const rate = Number(video.getAttribute("data-playback-rate"));
+    if (!Number.isFinite(rate) || rate <= 0) return;
+    const applyRate = () => {
+      video.playbackRate = rate;
+    };
+    applyRate();
+    video.addEventListener("loadedmetadata", applyRate);
+    video.addEventListener("play", applyRate);
+  });
+
   /* Social Listening notifications — staggered slide-fade on scroll */
   const notifStacks = document.querySelectorAll(".case-quotes--staggered");
   if (notifStacks.length) {
