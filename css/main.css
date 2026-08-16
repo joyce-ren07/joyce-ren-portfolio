@@ -665,8 +665,8 @@ p {
 .home-start-cover__phone {
   position: relative;
   z-index: 1;
-  /* Slightly smaller than Uber so the ~16° tilt still fits the card */
-  width: clamp(6.5rem, 30%, 9.5rem);
+  /* Zoomed out a touch so more of the tilted phone sits in frame */
+  width: clamp(5.85rem, 26.5%, 8.35rem);
   /* Match home-start-hero.png phone lean (~16° clockwise) */
   transform: rotate(16deg) translate(2%, 6%);
   filter: drop-shadow(0 22px 40px rgba(40, 80, 110, 0.2));
