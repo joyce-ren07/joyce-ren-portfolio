@@ -3730,6 +3730,20 @@ p {
   color: var(--ai-accent);
 }
 
+/* Solution “My answer” lead-in: pause after HMW, bind to numbered changes */
+.case-study-page--autoinvent #solution .case-pullquote {
+  margin-bottom: clamp(4rem, 9vw, 6rem);
+}
+
+.case-study-page--autoinvent #solution .case-body--solution-answer {
+  max-width: 42rem;
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.case-study-page--autoinvent #solution .case-body--solution-answer + .case-feature-rows {
+  margin-top: 0;
+}
+
 /* AutoInvent problem tensions — design-system cards, unsquished text */
 .case-study-page--autoinvent .case-insight-cards {
   gap: 16px;
