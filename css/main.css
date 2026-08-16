@@ -3663,7 +3663,7 @@ p {
   --ps-muted: #606060;
   width: 100%;
   max-width: 100%;
-  margin: 2rem 0 0;
+  margin: var(--case-subsection-gap, 120px) 0 0;
   box-sizing: border-box;
   padding: 0;
   background: transparent;
