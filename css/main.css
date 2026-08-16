@@ -3771,8 +3771,8 @@ p {
     background-size: 0% 100%, 0% 2px;
     opacity: 1;
   }
-  /* quick L→R glide (~0.07s), brief hold, then fade before next word */
-  5%,
+  /* slightly slower L→R glide (~0.14s); between-word beat unchanged */
+  9%,
   18% {
     background-size: 100% 100%, 100% 2px;
     opacity: 1;
@@ -3794,7 +3794,7 @@ p {
   1% {
     color: #191919;
   }
-  5%,
+  9%,
   18% {
     color: var(--ai-accent);
   }
