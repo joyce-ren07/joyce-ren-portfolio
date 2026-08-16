@@ -3705,6 +3705,7 @@ p {
 
 .ps-hub__desc {
   font-size: 15px;
+  font-weight: 500;
   line-height: 1.5;
   color: var(--ps-muted);
   text-wrap: pretty;
@@ -3766,10 +3767,6 @@ p {
 }
 
 @media (max-width: 860px) {
-  .ps-hub {
-    padding: 40px 24px;
-  }
-
   .ps-hub__grid {
     grid-template-columns: 1fr;
     gap: 8px;
