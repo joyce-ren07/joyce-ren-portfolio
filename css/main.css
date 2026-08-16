@@ -618,10 +618,57 @@ p {
 }
 
 .work-card__image--homestart {
-  background-image: url("../assets/images/home-start-hero.png");
-  background-size: cover;
-  background-position: center top;
-  color: transparent;
+  padding: 0;
+  color: inherit;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: inherit;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+  border-color: transparent;
+  background: transparent;
+}
+
+.home-start-cover {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse 88% 92% at 48% 44%,
+      #d7eefc 0%,
+      #e7f5fd 22%,
+      #f4fafd 48%,
+      #ffffff 72%,
+      #ffffff 100%
+    );
+}
+
+.home-start-cover::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background: radial-gradient(
+    circle at 46% 42%,
+    rgba(160, 210, 240, 0.32) 0%,
+    rgba(200, 230, 248, 0.12) 30%,
+    transparent 54%
+  );
+  pointer-events: none;
+}
+
+.home-start-cover__phone {
+  position: relative;
+  z-index: 1;
+  width: clamp(7.25rem, 34%, 10.75rem);
+  /* Match home-start-hero.png phone lean (~16° CCW) */
+  transform: rotate(-15.85deg) translate(4%, 2%);
+  filter: drop-shadow(0 22px 40px rgba(40, 80, 110, 0.2));
 }
 
 .work-card__image--current,
