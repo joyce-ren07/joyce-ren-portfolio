@@ -6329,6 +6329,10 @@ p {
   background: var(--ai-accent, #f0774c);
 }
 
+.case-study-page--autoinvent .case-process-methods .case-emphasis {
+  color: var(--ai-accent, #f0774c);
+}
+
 #process .case-process-methods + .case-body--summary {
   margin-top: clamp(1.5rem, 3vw, 2rem);
 }
