@@ -3729,7 +3729,8 @@ p {
 
 /* HMW emphasis: loop highlight clarity → ownership → momentum */
 .case-study-page--autoinvent .case-hmw-mark {
-  --hmw-cycle: 4.5s;
+  /* Short cycle so clarity → ownership → momentum hits bam-bam-bam */
+  --hmw-cycle: 1.8s;
   --hmw-i: 0;
   position: relative;
   isolation: isolate;
@@ -3770,19 +3771,18 @@ p {
     background-size: 0% 100%, 0% 2px;
     opacity: 1;
   }
-  /* faster L→R highlighter glide (~0.12s) */
-  3.5%,
-  20% {
+  /* quick L→R glide (~0.07s), brief hold, then fade before next word */
+  5%,
+  18% {
     background-size: 100% 100%, 100% 2px;
     opacity: 1;
   }
-  /* faster fade out in place (~0.18s) */
-  24% {
+  26% {
     background-size: 100% 100%, 100% 2px;
     opacity: 0;
   }
-  /* reset while invisible for the next loop */
-  25%,
+  /* reset while invisible; next word starts at ~33% */
+  27%,
   100% {
     background-size: 0% 100%, 0% 2px;
     opacity: 0;
@@ -3794,11 +3794,11 @@ p {
   1% {
     color: #191919;
   }
-  3.5%,
-  20% {
+  5%,
+  18% {
     color: var(--ai-accent);
   }
-  24%,
+  26%,
   100% {
     color: #191919;
   }
