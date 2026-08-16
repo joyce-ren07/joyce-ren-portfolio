@@ -665,9 +665,10 @@ p {
 .home-start-cover__phone {
   position: relative;
   z-index: 1;
-  width: clamp(7.25rem, 34%, 10.75rem);
-  /* Match home-start-hero.png phone lean (~16° CCW) */
-  transform: rotate(-15.85deg) translate(4%, 2%);
+  /* Slightly smaller than Uber so the ~16° tilt still fits the card */
+  width: clamp(6.5rem, 30%, 9.5rem);
+  /* Match home-start-hero.png phone lean (~16° clockwise) */
+  transform: rotate(16deg) translate(2%, 6%);
   filter: drop-shadow(0 22px 40px rgba(40, 80, 110, 0.2));
 }
 
