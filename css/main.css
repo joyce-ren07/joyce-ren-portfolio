@@ -3771,18 +3771,18 @@ p {
     background-size: 0% 100%, 0% 2px;
     opacity: 1;
   }
-  /* slightly slower L→R glide (~0.14s); between-word beat unchanged */
-  9%,
-  18% {
+  /* slower L→R glide (~0.25s); between-word beat unchanged at 1.8s */
+  15%,
+  20% {
     background-size: 100% 100%, 100% 2px;
     opacity: 1;
   }
-  26% {
+  27% {
     background-size: 100% 100%, 100% 2px;
     opacity: 0;
   }
   /* reset while invisible; next word starts at ~33% */
-  27%,
+  28%,
   100% {
     background-size: 0% 100%, 0% 2px;
     opacity: 0;
@@ -3794,11 +3794,11 @@ p {
   1% {
     color: #191919;
   }
-  9%,
-  18% {
+  15%,
+  20% {
     color: var(--ai-accent);
   }
-  26%,
+  27%,
   100% {
     color: #191919;
   }
