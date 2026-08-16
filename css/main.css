@@ -3731,7 +3731,7 @@ p {
 .case-study-page--autoinvent .case-hmw-mark {
   --hmw-cycle: 6s;
   --hmw-i: 0;
-  color: var(--case-heading, #1a1a1a);
+  color: #1a1a1a;
   font-weight: 600;
   font-style: italic;
   padding: 0.06em 0.14em;
@@ -3748,7 +3748,7 @@ p {
 @keyframes case-hmw-mark-cycle {
   0%,
   4% {
-    color: var(--case-heading, #1a1a1a);
+    color: #1a1a1a;
     background-color: transparent;
     box-shadow: inset 0 -2px 0 0 transparent;
   }
@@ -3760,7 +3760,7 @@ p {
   }
   34%,
   100% {
-    color: var(--case-heading, #1a1a1a);
+    color: #1a1a1a;
     background-color: transparent;
     box-shadow: inset 0 -2px 0 0 transparent;
   }
