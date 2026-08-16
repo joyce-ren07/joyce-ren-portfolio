@@ -682,9 +682,10 @@ p {
     radial-gradient(
       ellipse 90% 95% at 50% 42%,
       #ffd2cb 0%,
-      #ffe3d4 26%,
-      #fff0dc 48%,
-      #fff8ee 70%,
+      #ffe3d4 18%,
+      #fff3e6 36%,
+      #fffcf8 55%,
+      #ffffff 72%,
       #ffffff 100%
     );
 }
@@ -695,9 +696,9 @@ p {
   inset: -15%;
   background: radial-gradient(
     circle at 50% 40%,
-    rgba(255, 190, 175, 0.28) 0%,
-    rgba(255, 230, 200, 0.14) 38%,
-    transparent 66%
+    rgba(255, 190, 175, 0.24) 0%,
+    rgba(255, 230, 200, 0.1) 28%,
+    transparent 52%
   );
   pointer-events: none;
 }
