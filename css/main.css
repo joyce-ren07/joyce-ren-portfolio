@@ -3795,6 +3795,10 @@ p {
     order: 3;
   }
 
+  .ps-hub__bottom {
+    order: 4;
+  }
+
   .ps-hub__side--left .ps-hub__label,
   .ps-hub__label {
     align-items: center;
