@@ -699,6 +699,11 @@ p {
   border: 0;
 }
 
+.work-card__cover-video--cueturn {
+  transform: scale(1.14);
+  transform-origin: center center;
+}
+
 .work-card__image--uber-med {
   padding: 0;
   color: inherit;
