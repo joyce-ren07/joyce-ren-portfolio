@@ -617,6 +617,7 @@ p {
 }
 
 .edge-glow__ring {
+  z-index: 3;
   padding: 1px;
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
