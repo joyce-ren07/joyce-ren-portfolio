@@ -2218,7 +2218,7 @@ p {
 }
 
 .home-footer__email-ring {
-  padding: 1.5px;
+  padding: 1px;
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -2227,9 +2227,15 @@ p {
 }
 
 .home-footer__email-bloom {
-  inset: -4px;
-  filter: blur(7px);
+  inset: -2px;
+  filter: blur(4px);
   z-index: -1;
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 .home-footer__email:hover,
@@ -2243,7 +2249,7 @@ p {
 .home-footer__email:focus-visible .home-footer__email-ring,
 .home-footer__email:focus-visible .home-footer__email-bloom {
   opacity: 0.85;
-  animation: home-footer-glow-spin 1.7s linear infinite;
+  animation: home-footer-glow-spin 2.8s linear infinite;
 }
 
 .home-footer__links {
