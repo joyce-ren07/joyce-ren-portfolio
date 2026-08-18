@@ -622,6 +622,9 @@ p {
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
@@ -629,12 +632,16 @@ p {
 .edge-glow__bloom {
   inset: -10px;
   filter: blur(10px);
-  z-index: -1;
+  z-index: 0;
   padding: 10px;
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
-  -webkit-mask-composite: exclude;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 .edge-glow:hover .edge-glow__ring,
@@ -696,6 +703,16 @@ p {
   border: 1px solid var(--color-border);
   border-radius: 1.25rem;
   transition: border-color 0.32s ease;
+}
+
+.work-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: var(--color-surface);
+  pointer-events: none;
 }
 
 .work-card:hover,
@@ -867,6 +884,8 @@ p {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: var(--color-surface);
+  border-radius: 0 0 calc(1.25rem - 1px) calc(1.25rem - 1px);
 }
 
 .work-card__tags {
