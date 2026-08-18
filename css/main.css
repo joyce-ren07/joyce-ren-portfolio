@@ -702,7 +702,7 @@ p {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 1.25rem;
-  transition: border-color 0.32s ease;
+  transition: border-color 0.32s ease, transform 0.32s ease, box-shadow 0.32s ease;
 }
 
 .work-card::before {
@@ -718,6 +718,19 @@ p {
 .work-card:hover,
 .work-card:focus-within {
   border-color: rgba(255, 198, 145, 0.42);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.045);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card {
+    transition: border-color 0.32s ease, box-shadow 0.32s ease;
+  }
+
+  .work-card:hover,
+  .work-card:focus-within {
+    transform: none;
+  }
 }
 
 .work-card__image {
