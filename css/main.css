@@ -690,10 +690,12 @@ p {
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-md);
+  column-gap: var(--space-md);
+  row-gap: 4.75rem;
   list-style: none;
   padding: 0;
   margin: 0;
+  padding-bottom: 2.5rem;
 }
 
 .work-card {
@@ -730,6 +732,11 @@ p {
   .work-card:hover,
   .work-card:focus-within {
     transform: none;
+  }
+
+  .work-card__desc {
+    transform: none;
+    transition: opacity 0.38s ease;
   }
 }
 
@@ -922,14 +929,30 @@ p {
 
 .work-card__title {
   font-size: 1.125rem;
-  margin-bottom: var(--space-xs);
+  margin-bottom: 0;
 }
 
 .work-card__desc {
+  position: absolute;
+  left: var(--space-md);
+  right: var(--space-md);
+  top: 100%;
+  z-index: 2;
+  margin: 0;
+  padding-top: 0.7rem;
   font-size: var(--text-tertiary-size);
   color: var(--color-text-muted);
-  margin-bottom: 0;
-  flex: 1;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity 0.38s ease, transform 0.38s ease;
+}
+
+.work-card:hover .work-card__desc,
+.work-card:focus-within .work-card__desc {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .work-card__link {
