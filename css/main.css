@@ -691,7 +691,7 @@ p {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: var(--space-md);
-  row-gap: 3.25rem;
+  row-gap: 4.25rem;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -908,9 +908,6 @@ p {
   font-size: var(--text-tertiary-size);
   font-weight: 500;
   line-height: 1.4;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   opacity: 0;
   transform: translateY(-12px);
   pointer-events: none;
