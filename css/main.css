@@ -2120,6 +2120,184 @@ p {
   color: var(--color-text-muted);
 }
 
+/* Homepage contact footer — email pill + traveling edge glow */
+@property --home-footer-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.home-footer {
+  padding-block: clamp(3.5rem, 8vw, 5.5rem) clamp(2.5rem, 6vw, 4rem);
+  background: #ffffff;
+}
+
+.home-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-lg);
+}
+
+.home-footer__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+
+.home-footer__prompt {
+  margin: 0;
+  font-size: var(--text-tertiary-size);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-text-muted);
+}
+
+.home-footer__email {
+  --home-footer-angle: 0deg;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.72rem 1.15rem 0.72rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid #e8e6e1;
+  background: #ffffff;
+  color: #a1a1a1;
+  font-size: var(--text-tertiary-size);
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  overflow: visible;
+  transition: color 0.32s ease, border-color 0.32s ease;
+}
+
+.home-footer__email-text,
+.home-footer__email-arrow {
+  position: relative;
+  z-index: 1;
+}
+
+.home-footer__email-arrow {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.home-footer__email-ring,
+.home-footer__email-bloom {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: conic-gradient(
+    from var(--home-footer-angle),
+    transparent 0deg,
+    transparent 220deg,
+    rgba(255, 190, 120, 0.08) 260deg,
+    rgb(255, 190, 120) 300deg,
+    rgba(255, 160, 80, 0.95) 328deg,
+    transparent 360deg
+  );
+}
+
+.home-footer__email-ring {
+  padding: 1.5px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.home-footer__email-bloom {
+  inset: -14px -18px -18px;
+  filter: blur(16px);
+  z-index: -1;
+}
+
+.home-footer__email:hover,
+.home-footer__email:focus-visible {
+  color: #8a8a8a;
+  border-color: rgba(255, 190, 120, 0.45);
+}
+
+.home-footer__email:hover .home-footer__email-ring,
+.home-footer__email:hover .home-footer__email-bloom,
+.home-footer__email:focus-visible .home-footer__email-ring,
+.home-footer__email:focus-visible .home-footer__email-bloom {
+  opacity: 1;
+  animation: home-footer-glow-spin 1.7s linear infinite;
+}
+
+.home-footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.home-footer__links a {
+  font-size: var(--text-tertiary-size);
+  font-weight: 500;
+  color: #a1a1a1;
+  line-height: 1.45;
+  transition: color 0.32s ease;
+}
+
+.home-footer__links a:hover,
+.home-footer__links a:focus-visible {
+  color: #7a7a7a;
+}
+
+@keyframes home-footer-glow-spin {
+  to {
+    --home-footer-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-footer__email:hover .home-footer__email-ring,
+  .home-footer__email:hover .home-footer__email-bloom,
+  .home-footer__email:focus-visible .home-footer__email-ring,
+  .home-footer__email:focus-visible .home-footer__email-bloom {
+    animation: none;
+    background: radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 190, 120, 0.7) 0%,
+      rgba(255, 170, 95, 0.28) 42%,
+      transparent 72%
+    );
+  }
+
+  .home-footer__email-ring {
+    -webkit-mask: none;
+    mask: none;
+    inset: auto;
+    left: 12%;
+    right: 12%;
+    bottom: -6px;
+    height: 10px;
+    border-radius: 999px;
+    filter: blur(7px);
+  }
+}
+
+@media (max-width: 768px) {
+  .home-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .home-footer__links {
+    align-items: flex-start;
+  }
+}
+
 /* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
