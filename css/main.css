@@ -2227,10 +2227,10 @@ p {
 }
 
 .home-footer__email-bloom {
-  inset: -2px;
-  filter: blur(4px);
+  inset: -6px;
+  filter: blur(5px);
   z-index: -1;
-  padding: 1px;
+  padding: 6px;
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
