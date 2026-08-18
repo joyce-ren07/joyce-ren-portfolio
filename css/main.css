@@ -691,7 +691,7 @@ p {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: var(--space-md);
-  row-gap: 4.75rem;
+  row-gap: 3.25rem;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -903,7 +903,14 @@ p {
   right: 0.15rem;
   top: 100%;
   z-index: 2;
-  padding-top: 0.75rem;
+  margin: 0;
+  padding-top: 0.7rem;
+  font-size: var(--text-tertiary-size);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   opacity: 0;
   transform: translateY(-12px);
   pointer-events: none;
@@ -917,14 +924,14 @@ p {
   pointer-events: auto;
 }
 
-.work-card__title {
-  font-size: 1.125rem;
-  margin: 0 0 0.2rem;
+.work-card__title,
+.work-card__sep,
+.work-card__desc {
+  font-weight: 500;
 }
 
+.work-card__sep,
 .work-card__desc {
-  margin: 0;
-  font-size: var(--text-tertiary-size);
   color: var(--color-text-muted);
 }
 
