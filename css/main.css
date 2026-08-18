@@ -575,6 +575,107 @@ p {
 }
 
 /* --------------------------------------------------------------------------
+   Traveling edge glow (email pill, work cards, …)
+   -------------------------------------------------------------------------- */
+
+@property --edge-glow-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes edge-glow-spin {
+  to {
+    --edge-glow-angle: 360deg;
+  }
+}
+
+.edge-glow {
+  --edge-glow-angle: 0deg;
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+
+.edge-glow__ring,
+.edge-glow__bloom {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: conic-gradient(
+    from var(--edge-glow-angle),
+    transparent 0deg,
+    transparent 240deg,
+    rgba(255, 215, 155, 0.06) 276deg,
+    rgba(255, 210, 145, 0.62) 308deg,
+    rgba(255, 198, 120, 0.78) 330deg,
+    transparent 360deg
+  );
+}
+
+.edge-glow__ring {
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.edge-glow__bloom {
+  inset: -10px;
+  filter: blur(10px);
+  z-index: -1;
+  padding: 10px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: exclude;
+}
+
+.edge-glow:hover .edge-glow__ring,
+.edge-glow:hover .edge-glow__bloom,
+.edge-glow:focus-visible .edge-glow__ring,
+.edge-glow:focus-visible .edge-glow__bloom,
+.edge-glow:focus-within .edge-glow__ring,
+.edge-glow:focus-within .edge-glow__bloom {
+  opacity: 0.85;
+  animation: edge-glow-spin 2.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edge-glow:hover .edge-glow__ring,
+  .edge-glow:hover .edge-glow__bloom,
+  .edge-glow:focus-visible .edge-glow__ring,
+  .edge-glow:focus-visible .edge-glow__bloom,
+  .edge-glow:focus-within .edge-glow__ring,
+  .edge-glow:focus-within .edge-glow__bloom {
+    animation: none;
+    background: radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 190, 120, 0.7) 0%,
+      rgba(255, 170, 95, 0.28) 42%,
+      transparent 72%
+    );
+  }
+
+  .edge-glow__ring {
+    -webkit-mask: none;
+    mask: none;
+    inset: auto;
+    left: 12%;
+    right: 12%;
+    bottom: -6px;
+    height: 10px;
+    border-radius: 999px;
+    filter: blur(7px);
+  }
+}
+
+/* --------------------------------------------------------------------------
    Work grid
    -------------------------------------------------------------------------- */
 
@@ -588,26 +689,26 @@ p {
 }
 
 .work-card {
-  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 1.25rem;
-  overflow: hidden;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition: border-color 0.32s ease;
 }
 
 .work-card:hover,
 .work-card:focus-within {
-  border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border-color: rgba(255, 198, 145, 0.42);
 }
 
 .work-card__image {
+  position: relative;
+  z-index: 1;
   aspect-ratio: 16 / 10;
   background: #ffffff;
   border: 1px solid var(--color-border);
+  border-radius: calc(1.25rem - 1px) calc(1.25rem - 1px) 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -615,6 +716,7 @@ p {
   font-size: var(--text-tertiary-size);
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  overflow: hidden;
 }
 
 .work-card__image--homestart {
@@ -758,6 +860,8 @@ p {
 }
 
 .work-card__body {
+  position: relative;
+  z-index: 1;
   padding: var(--space-md);
   flex: 1;
   display: flex;
@@ -2121,12 +2225,6 @@ p {
 }
 
 /* Homepage contact footer — email pill + traveling edge glow */
-@property --home-footer-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
 .home-footer {
   padding-block: clamp(3.5rem, 8vw, 5.5rem) clamp(2.5rem, 6vw, 4rem);
   background: #ffffff;
@@ -2168,9 +2266,6 @@ p {
 }
 
 .home-footer__email {
-  --home-footer-angle: 0deg;
-  position: relative;
-  isolation: isolate;
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
@@ -2183,7 +2278,6 @@ p {
   font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
-  overflow: visible;
   transition: color 0.32s ease, border-color 0.32s ease;
 }
 
@@ -2198,58 +2292,10 @@ p {
   line-height: 1;
 }
 
-.home-footer__email-ring,
-.home-footer__email-bloom {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  background: conic-gradient(
-    from var(--home-footer-angle),
-    transparent 0deg,
-    transparent 240deg,
-    rgba(255, 215, 155, 0.06) 276deg,
-    rgba(255, 210, 145, 0.62) 308deg,
-    rgba(255, 198, 120, 0.78) 330deg,
-    transparent 360deg
-  );
-}
-
-.home-footer__email-ring {
-  padding: 1px;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
-.home-footer__email-bloom {
-  inset: -10px;
-  filter: blur(10px);
-  z-index: -1;
-  padding: 10px;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
 .home-footer__email:hover,
 .home-footer__email:focus-visible {
   color: #8a8a8a;
   border-color: rgba(255, 198, 145, 0.42);
-}
-
-.home-footer__email:hover .home-footer__email-ring,
-.home-footer__email:hover .home-footer__email-bloom,
-.home-footer__email:focus-visible .home-footer__email-ring,
-.home-footer__email:focus-visible .home-footer__email-bloom {
-  opacity: 0.85;
-  animation: home-footer-glow-spin 2.8s linear infinite;
 }
 
 .home-footer__links {
@@ -2270,39 +2316,6 @@ p {
 .home-footer__links a:hover,
 .home-footer__links a:focus-visible {
   color: #7a7a7a;
-}
-
-@keyframes home-footer-glow-spin {
-  to {
-    --home-footer-angle: 360deg;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .home-footer__email:hover .home-footer__email-ring,
-  .home-footer__email:hover .home-footer__email-bloom,
-  .home-footer__email:focus-visible .home-footer__email-ring,
-  .home-footer__email:focus-visible .home-footer__email-bloom {
-    animation: none;
-    background: radial-gradient(
-      circle at 50% 100%,
-      rgba(255, 190, 120, 0.7) 0%,
-      rgba(255, 170, 95, 0.28) 42%,
-      transparent 72%
-    );
-  }
-
-  .home-footer__email-ring {
-    -webkit-mask: none;
-    mask: none;
-    inset: auto;
-    left: 12%;
-    right: 12%;
-    bottom: -6px;
-    height: 10px;
-    border-radius: 999px;
-    filter: blur(7px);
-  }
 }
 
 @media (max-width: 768px) {
