@@ -2210,9 +2210,9 @@ p {
     from var(--home-footer-angle),
     transparent 0deg,
     transparent 240deg,
-    rgba(255, 205, 155, 0.06) 276deg,
-    rgba(255, 198, 145, 0.62) 308deg,
-    rgba(255, 182, 125, 0.78) 330deg,
+    rgba(255, 215, 155, 0.06) 276deg,
+    rgba(255, 210, 145, 0.62) 308deg,
+    rgba(255, 198, 120, 0.78) 330deg,
     transparent 360deg
   );
 }
