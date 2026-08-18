@@ -2139,6 +2139,19 @@ p {
   gap: var(--space-lg);
 }
 
+.home-footer__bottom {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  padding-top: clamp(1rem, 2.5vw, 1.5rem);
+  border-top: 1px solid #efede9;
+}
+
+.home-footer__copy {
+  display: inline-block;
+  font-size: var(--text-tertiary-size);
+  font-weight: 500;
+  color: #c0bdb7;
+}
+
 .home-footer__cta {
   display: flex;
   flex-direction: column;
@@ -2196,10 +2209,10 @@ p {
   background: conic-gradient(
     from var(--home-footer-angle),
     transparent 0deg,
-    transparent 220deg,
-    rgba(255, 190, 120, 0.08) 260deg,
-    rgb(255, 190, 120) 300deg,
-    rgba(255, 160, 80, 0.95) 328deg,
+    transparent 240deg,
+    rgba(255, 205, 155, 0.06) 276deg,
+    rgba(255, 198, 145, 0.62) 308deg,
+    rgba(255, 182, 125, 0.78) 330deg,
     transparent 360deg
   );
 }
@@ -2214,22 +2227,22 @@ p {
 }
 
 .home-footer__email-bloom {
-  inset: -14px -18px -18px;
-  filter: blur(16px);
+  inset: -4px;
+  filter: blur(7px);
   z-index: -1;
 }
 
 .home-footer__email:hover,
 .home-footer__email:focus-visible {
   color: #8a8a8a;
-  border-color: rgba(255, 190, 120, 0.45);
+  border-color: rgba(255, 198, 145, 0.42);
 }
 
 .home-footer__email:hover .home-footer__email-ring,
 .home-footer__email:hover .home-footer__email-bloom,
 .home-footer__email:focus-visible .home-footer__email-ring,
 .home-footer__email:focus-visible .home-footer__email-bloom {
-  opacity: 1;
+  opacity: 0.85;
   animation: home-footer-glow-spin 1.7s linear infinite;
 }
 
@@ -2295,6 +2308,10 @@ p {
 
   .home-footer__links {
     align-items: flex-start;
+  }
+
+  .home-footer__bottom {
+    margin-top: var(--space-lg);
   }
 }
 
