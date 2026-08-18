@@ -924,14 +924,18 @@ p {
   pointer-events: auto;
 }
 
-.work-card__title,
-.work-card__sep,
-.work-card__desc {
+.work-card__title {
   font-weight: 500;
 }
 
-.work-card__sep,
+.work-card__sep {
+  padding-inline: 0.55em;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
 .work-card__desc {
+  font-weight: 400;
   color: var(--color-text-muted);
 }
 
