@@ -734,7 +734,7 @@ p {
     transform: none;
   }
 
-  .work-card__desc {
+  .work-card__caption {
     transform: none;
     transition: opacity 0.38s ease;
   }
@@ -745,8 +745,8 @@ p {
   z-index: 1;
   aspect-ratio: 16 / 10;
   background: #ffffff;
-  border: 1px solid var(--color-border);
-  border-radius: calc(1.25rem - 1px) calc(1.25rem - 1px) 0 0;
+  border: 0;
+  border-radius: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -897,15 +897,35 @@ p {
   filter: drop-shadow(0 18px 36px rgba(120, 60, 40, 0.18));
 }
 
-.work-card__body {
-  position: relative;
-  z-index: 1;
-  padding: var(--space-md);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background: var(--color-surface);
-  border-radius: 0 0 calc(1.25rem - 1px) calc(1.25rem - 1px);
+.work-card__caption {
+  position: absolute;
+  left: 0.15rem;
+  right: 0.15rem;
+  top: 100%;
+  z-index: 2;
+  padding-top: 0.75rem;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity 0.38s ease, transform 0.38s ease;
+}
+
+.work-card:hover .work-card__caption,
+.work-card:focus-within .work-card__caption {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.work-card__title {
+  font-size: 1.125rem;
+  margin: 0 0 0.2rem;
+}
+
+.work-card__desc {
+  margin: 0;
+  font-size: var(--text-tertiary-size);
+  color: var(--color-text-muted);
 }
 
 .work-card__tags {
@@ -925,34 +945,6 @@ p {
   border: 1px solid var(--color-border);
   border-radius: 999px;
   color: var(--color-text-muted);
-}
-
-.work-card__title {
-  font-size: 1.125rem;
-  margin-bottom: 0;
-}
-
-.work-card__desc {
-  position: absolute;
-  left: var(--space-md);
-  right: var(--space-md);
-  top: 100%;
-  z-index: 2;
-  margin: 0;
-  padding-top: 0.7rem;
-  font-size: var(--text-tertiary-size);
-  color: var(--color-text-muted);
-  opacity: 0;
-  transform: translateY(-12px);
-  pointer-events: none;
-  transition: opacity 0.38s ease, transform 0.38s ease;
-}
-
-.work-card:hover .work-card__desc,
-.work-card:focus-within .work-card__desc {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
 }
 
 .work-card__link {
