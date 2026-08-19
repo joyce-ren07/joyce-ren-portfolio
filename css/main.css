@@ -700,7 +700,7 @@ p {
 
 .work-card {
   --work-card-radius: 1.25rem;
-  --work-card-glow-spread: 10px;
+  --work-card-glow-spread: 14px;
   display: flex;
   flex-direction: column;
   background: var(--color-surface);
@@ -718,6 +718,20 @@ p {
   inset: calc(-1 * var(--work-card-glow-spread));
   padding: var(--work-card-glow-spread);
   border-radius: calc(var(--work-card-radius) + var(--work-card-glow-spread));
+}
+
+.work-card.edge-glow:hover .edge-glow__ring,
+.work-card.edge-glow:focus-visible .edge-glow__ring,
+.work-card.edge-glow:focus-within .edge-glow__ring {
+  opacity: 0.65;
+  filter: blur(6px);
+}
+
+.work-card.edge-glow:hover .edge-glow__bloom,
+.work-card.edge-glow:focus-visible .edge-glow__bloom,
+.work-card.edge-glow:focus-within .edge-glow__bloom {
+  opacity: 0.95;
+  filter: blur(18px);
 }
 
 .work-card::before {
