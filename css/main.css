@@ -7071,6 +7071,7 @@ p {
 .hs-phone-iterations__phone {
   margin: 0;
   width: var(--hs-phone-w);
+  aspect-ratio: 333 / 750;
   border: 1px solid #8fb7be;
   border-radius: 2rem;
   overflow: hidden;
@@ -7080,7 +7081,9 @@ p {
 .hs-phone-iterations__img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 /* Home Start — desktop critique + iterations */
 .hs-critique {
