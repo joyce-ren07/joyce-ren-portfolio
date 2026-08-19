@@ -7046,7 +7046,7 @@ p {
   align-items: center;
   margin-top: clamp(1rem, 3vw, 1.75rem);
   margin-bottom: clamp(6rem, 12vw, 8rem);
-  --hs-phone-w: clamp(6.25rem, 10.5vw, 7.5rem);
+  --hs-phone-w: clamp(5.5rem, 9.25vw, 6.75rem);
 }
 
 .hs-phone-iterations__arrow {
