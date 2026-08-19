@@ -6302,7 +6302,8 @@ p {
   font-weight: var(--case-tertiary-weight, 500);
 }
 
-#process .case-tradeoffs + .case-principle-blocks {
+#process .case-tradeoffs + .case-principle-blocks,
+#process .case-tradeoffs + .case-process-duo--home-start {
   margin-top: var(--case-subsection-gap, 120px);
 }
 
@@ -6710,6 +6711,151 @@ p {
   font-style: italic;
   font-weight: 500;
   color: #3d6a6f;
+}
+
+/* Home Start — Key Insights cards (Research & Process) */
+#process .case-insight-cards {
+  gap: clamp(0.875rem, 1.6vw, 1.125rem);
+}
+
+#process .case-insight-card {
+  align-items: center;
+  gap: clamp(1.75rem, 3.2vw, 2.35rem);
+  padding: clamp(1.625rem, 3vw, 2rem) clamp(1.875rem, 3.8vw, 2.625rem);
+  min-height: clamp(5.75rem, 10vw, 6.75rem);
+  border-radius: 3.25rem;
+  background: linear-gradient(
+    to top right,
+    #aebec3 0%,
+    #d7e2e6 42%,
+    #f3f6f8 100%
+  );
+}
+
+#process .case-insight-card__num {
+  font-size: clamp(2.125rem, 3.4vw, 2.75rem);
+  font-weight: 600;
+  color: #4a6772;
+  line-height: 1;
+  min-width: 0.72em;
+}
+
+#process .case-insight-card__text {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: var(--case-tertiary-size);
+  line-height: 1.38;
+  color: #4a6772;
+}
+
+#process .case-insight-card__text em {
+  font-style: italic;
+  font-weight: 400;
+  color: #4a6772;
+}
+
+/* Home Start — Design Principles / Core System Model duo */
+#process .case-process-duo--home-start {
+  margin-block: 0;
+}
+
+#process .case-process-duo--home-start .case-process-duo__insights {
+  width: min(100%, 34rem);
+}
+
+#process .case-process-duo--home-start .case-subheading--large {
+  margin: 0 0 0.85rem;
+  color: #d0d0d0;
+}
+
+#process .case-process-duo--home-start .case-process-duo__panel--home-start {
+  width: 100%;
+  min-height: clamp(8.5rem, 14vw, 10.25rem);
+  padding: clamp(1.875rem, 3.5vw, 2.5rem) clamp(2.125rem, 4.2vw, 2.875rem);
+  background: linear-gradient(
+    to top right,
+    #aebec3 0%,
+    #d7e2e6 42%,
+    #f3f6f8 100%
+  );
+  border: none;
+  border-radius: 3.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: none;
+}
+
+#process .case-process-duo--home-start .case-process-duo__list--home-start {
+  gap: 0.42rem;
+  width: 100%;
+}
+
+#process .case-process-duo--home-start .case-process-duo__list--home-start li {
+  padding-left: 1.65rem;
+  font-size: var(--case-tertiary-size);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.38;
+  color: #4a6772;
+}
+
+#process .case-process-duo--home-start .case-process-duo__list--home-start li::before {
+  content: counter(duo-item) ".";
+  left: 0;
+  font-style: italic;
+  font-weight: 600;
+  color: #4a6772;
+}
+
+#process .case-process-duo--home-start .case-process-duo__list--home-start em {
+  font-style: italic;
+  font-weight: 600;
+  color: #4a6772;
+}
+
+#process .case-process-duo--home-start .case-process-duo__bridge {
+  margin-top: clamp(1rem, 2.5vw, 1.75rem);
+  padding-top: clamp(0.15rem, 0.75vw, 0.45rem);
+}
+
+#process .case-process-duo--home-start .case-process-duo__arrow {
+  left: clamp(0.25rem, 3vw, 1.75rem);
+  top: clamp(-1.35rem, -1.5vw, -0.35rem);
+  width: clamp(10.5rem, 25vw, 15.5rem);
+}
+
+#process .case-process-duo--home-start .case-process-duo__arrow-img {
+  opacity: 0.55;
+  filter: grayscale(1);
+}
+
+#process .case-process-duo--home-start .case-process-duo__core {
+  width: min(100%, 34rem);
+  max-width: 68%;
+}
+
+@media (max-width: 700px) {
+  #process .case-process-duo--home-start .case-process-duo__insights,
+  #process .case-process-duo--home-start .case-process-duo__core {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #process .case-process-duo--home-start .case-process-duo__bridge {
+    margin-top: 1.25rem;
+    padding-top: 2.5rem;
+    justify-content: center;
+  }
+
+  #process .case-process-duo--home-start .case-process-duo__arrow {
+    left: 50%;
+    top: 0.35rem;
+    width: min(11rem, 42vw);
+    transform: translateX(-50%) rotate(90deg);
+  }
 }
 
 /* Competitive positioning */
