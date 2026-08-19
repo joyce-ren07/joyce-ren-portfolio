@@ -736,10 +736,13 @@
           { passive: true }
         );
 
-        video.play().catch(() => {});
+        // If reduced motion is enabled, show the correct starting frame but don't auto-play.
+        if (!reducedMotion) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
       };
-
-      if (reducedMotion) return;
 
       // If metadata is already available, seek immediately.
       if (video.readyState >= 1) {
