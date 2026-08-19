@@ -572,7 +572,8 @@ p {
   .lamp-hero__pull,
   .lamp-hero__pull-img,
   .lamp-hero__hint,
-  .lamp-hero__intro {
+  .lamp-hero__intro,
+  .lamp-hero__intro .lamp-hero__name {
     transition: none;
   }
 }
