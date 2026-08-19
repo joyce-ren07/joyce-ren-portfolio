@@ -472,9 +472,9 @@ p {
   z-index: 2;
   width: min(100% - 2rem, 36rem);
   text-align: center;
-  transform: translate(-50%, calc((1 - var(--lamp-power)) * 0.75rem));
+  transform: translate(-50%, 0);
   opacity: var(--lamp-power);
-  transition: opacity 0.1s ease, transform 0.1s ease;
+  transition: opacity 0.1s ease;
   pointer-events: none;
 }
 
@@ -487,6 +487,9 @@ p {
   letter-spacing: -0.03em;
   line-height: 1.05;
   color: #f0bfa1;
+  display: inline-block;
+  transform: translateY(calc((1 - var(--lamp-power)) * -0.75rem));
+  transition: transform 0.1s ease;
 }
 
 .lamp-hero__intro .lamp-hero__tagline {
