@@ -6942,7 +6942,7 @@ p {
 }
 
 .hs-feedback-phones__note--top-left {
-  top: 1.5rem;
+  top: 1.25rem;
   left: calc(50% - (var(--hs-phone-w) / 2 + var(--hs-phone-gap) / 2));
   transform: translateX(-50%);
 }
@@ -6956,7 +6956,7 @@ p {
 }
 
 .hs-feedback-phones__note--top-center {
-  top: 0.55rem;
+  top: 0.35rem;
   left: calc(50% + (var(--hs-phone-w) / 2 + var(--hs-phone-gap) / 2));
   transform: translateX(-50%);
 }
@@ -6972,7 +6972,7 @@ p {
 .hs-feedback-phones__note--right-mid {
   /* Place just to the right of the right phone; connector line extends left into the phone */
   left: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2);
-  top: 44%;
+  top: 42.5%;
 }
 
 .hs-feedback-phones__note--right-mid::after {
@@ -6986,7 +6986,7 @@ p {
 .hs-feedback-phones__note--bottom-left {
   /* Connector should land at the right edge of the left phone */
   left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-note-w));
-  bottom: 9%;
+  bottom: 8%;
 }
 
 .hs-feedback-phones__note--bottom-left::after {
@@ -7000,7 +7000,7 @@ p {
 .hs-feedback-phones__note--bottom-right {
   /* Connector should land at the left edge of the right phone */
   left: calc(50% + var(--hs-phone-gap) / 2);
-  bottom: 6%;
+  bottom: 5%;
 }
 
 .hs-feedback-phones__note--bottom-right::after {
