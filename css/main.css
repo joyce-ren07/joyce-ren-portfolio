@@ -6900,7 +6900,7 @@ p {
 
 .hs-critique__device,
 .hs-iterations__device {
-  border: 1.5px solid #3d6a6f;
+  border: 1px solid #3d6a6f;
   border-radius: 0.85rem;
   overflow: hidden;
   line-height: 0;
@@ -6912,7 +6912,7 @@ p {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0.7rem;
+  border-radius: 0.85rem;
 }
 
 .hs-critique__note {
