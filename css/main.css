@@ -6733,13 +6733,13 @@ p {
   min-width: 0;
   font-size: var(--case-tertiary-size);
   line-height: 1.38;
-  color: #4a6772;
+  color: #4e7b80;
 }
 
 #process .case-insight-card__text em {
   font-style: italic;
   font-weight: 400;
-  color: #4a6772;
+  color: #4e7b80;
 }
 
 /* Home Start — Design Principles / Core System Model duo */
