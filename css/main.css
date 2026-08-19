@@ -6888,13 +6888,13 @@ p {
   position: relative;
   width: min(100%, 58rem);
   margin: clamp(2.25rem, 5vw, 3.25rem) auto 0;
-  min-height: clamp(26rem, 52vw, 32rem);
+  min-height: clamp(34rem, 66vw, 42rem);
   /* Phone + note geometry (synced to reference placement) */
-  --hs-phone-w: clamp(6.25rem, 10.5vw, 7.5rem);
+  --hs-phone-w: clamp(10.75rem, 19vw, 13rem);
   --hs-phone-h: calc(var(--hs-phone-w) * 2.25);
   --hs-phone-gap: clamp(0.65rem, 1.8vw, 1rem);
   --hs-note-w: clamp(11.25rem, 22vw, 13.2rem);
-  --hs-note-gap: clamp(1.25rem, 2.4vw, 1.85rem);
+  --hs-note-gap: clamp(1.5rem, 2.6vw, 2rem);
 }
 
 .hs-feedback-phones__screens {
@@ -7057,7 +7057,7 @@ p {
   align-items: center;
   margin-top: clamp(1rem, 3vw, 1.75rem);
   margin-bottom: clamp(6rem, 12vw, 8rem);
-  --hs-phone-w: clamp(5.5rem, 9.25vw, 6.75rem);
+  --hs-phone-w: clamp(10.75rem, 19vw, 13rem);
 }
 
 .hs-phone-iterations__arrow {
