@@ -6888,17 +6888,19 @@ p {
   position: relative;
   width: min(100%, 58rem);
   margin: clamp(2.25rem, 5vw, 3.25rem) auto 0;
-  min-height: clamp(38rem, 76vw, 46rem);
-  /* Keep bubble anchors synced to phone geometry */
+  min-height: clamp(26rem, 52vw, 32rem);
+  /* Phone + note geometry (synced to reference placement) */
   --hs-phone-w: clamp(6.25rem, 10.5vw, 7.5rem);
+  --hs-phone-h: calc(var(--hs-phone-w) * 2.25);
   --hs-phone-gap: clamp(0.65rem, 1.8vw, 1rem);
   --hs-note-w: clamp(11.25rem, 22vw, 13.2rem);
+  --hs-note-gap: clamp(1.25rem, 2.4vw, 1.85rem);
 }
 
 .hs-feedback-phones__screens {
   position: absolute;
   left: 50%;
-  top: 53%;
+  top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   gap: var(--hs-phone-gap);
@@ -6907,6 +6909,7 @@ p {
 .hs-feedback-phones__phone {
   margin: 0;
   width: var(--hs-phone-w);
+  aspect-ratio: 640 / 1440;
   border: 1px solid #8fb7be;
   border-radius: 2rem;
   overflow: hidden;
@@ -6916,7 +6919,9 @@ p {
 .hs-feedback-phones__img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .hs-feedback-phones__note {
@@ -6939,25 +6944,27 @@ p {
   content: "";
   position: absolute;
   background: #d2d2d2;
+  pointer-events: none;
 }
 
+/* Above-left of left phone → To field (horizontal) */
 .hs-feedback-phones__note--top-left {
-  top: 1.25rem;
-  left: calc(50% - (var(--hs-phone-w) / 2 + var(--hs-phone-gap) / 2));
-  transform: translateX(-50%);
+  top: calc(50% - var(--hs-phone-h) / 2 - 4.35rem);
+  right: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  left: auto;
 }
 
 .hs-feedback-phones__note--top-left::after {
-  left: 50%;
-  top: 100%;
-  width: 1px;
-  height: 2rem;
-  transform: translateX(-50%);
+  left: 100%;
+  top: 72%;
+  width: var(--hs-note-gap);
+  height: 1px;
 }
 
+/* Above right side of left phone → pencil icon (vertical) */
 .hs-feedback-phones__note--top-center {
-  top: 0.35rem;
-  left: calc(50% + (var(--hs-phone-w) / 2 + var(--hs-phone-gap) / 2));
+  top: calc(50% - var(--hs-phone-h) / 2 - 5.1rem);
+  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.18);
   transform: translateX(-50%);
 }
 
@@ -6965,48 +6972,52 @@ p {
   left: 50%;
   top: 100%;
   width: 1px;
-  height: 2.1rem;
+  height: 3.15rem;
   transform: translateX(-50%);
 }
 
+/* Right of right phone → filter popup (horizontal) */
 .hs-feedback-phones__note--right-mid {
-  /* Place just to the right of the right phone; connector line extends left into the phone */
-  left: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2);
-  top: 42.5%;
+  top: calc(50% - var(--hs-phone-h) * 0.17);
+  left: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  transform: translateY(-50%);
 }
 
 .hs-feedback-phones__note--right-mid::after {
   right: 100%;
   top: 50%;
-  width: 2.1rem;
+  width: var(--hs-note-gap);
   height: 1px;
   transform: translateY(-50%);
 }
 
+/* Left of left phone lower → Insert First Name area (horizontal) */
 .hs-feedback-phones__note--bottom-left {
-  /* Connector should land at the right edge of the left phone */
-  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-note-w));
-  bottom: 8%;
+  top: calc(50% + var(--hs-phone-h) * 0.1);
+  right: calc(50% + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  left: auto;
+  transform: translateY(-50%);
 }
 
 .hs-feedback-phones__note--bottom-left::after {
-  right: -1.2rem;
+  left: 100%;
   top: 50%;
-  width: 1.2rem;
+  width: var(--hs-note-gap);
   height: 1px;
   transform: translateY(-50%);
 }
 
+/* Right of right phone lower → recipient list (horizontal, aligned with right-mid) */
 .hs-feedback-phones__note--bottom-right {
-  /* Connector should land at the left edge of the right phone */
-  left: calc(50% + var(--hs-phone-gap) / 2);
-  bottom: 5%;
+  top: calc(50% + var(--hs-phone-h) * 0.14);
+  left: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  transform: translateY(-50%);
 }
 
 .hs-feedback-phones__note--bottom-right::after {
-  left: -1.15rem;
+  right: 100%;
   top: 50%;
-  width: 1.15rem;
+  width: var(--hs-note-gap);
   height: 1px;
   transform: translateY(-50%);
 }
