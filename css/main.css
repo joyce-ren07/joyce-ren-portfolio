@@ -6950,21 +6950,18 @@ p {
 /* Above-left of left phone → To field (horizontal) */
 .hs-feedback-phones__note--top-left {
   top: calc(50% - var(--hs-phone-h) / 2 - 4.9rem);
-  right: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap) - 1.85rem);
+  right: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap) - 3rem);
   left: auto;
 }
 
 .hs-feedback-phones__note--top-left::after {
-  left: 100%;
-  top: 72%;
-  width: var(--hs-note-gap);
-  height: 1px;
+  display: none;
 }
 
 /* Above right side of left phone → pencil icon (vertical) */
 .hs-feedback-phones__note--top-center {
-  top: calc(50% - var(--hs-phone-h) / 2 - 5.65rem);
-  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.11 - 0.85rem);
+  top: calc(50% - var(--hs-phone-h) / 2 - 5.15rem);
+  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.17 - 0.3rem);
   transform: translateX(-50%);
 }
 
