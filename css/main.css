@@ -6890,7 +6890,7 @@ p {
   margin: clamp(2.25rem, 5vw, 3.25rem) auto 0;
   min-height: clamp(38rem, 76vw, 46rem);
   /* Keep bubble anchors synced to phone geometry */
-  --hs-phone-w: clamp(13.5rem, 24vw, 15.5rem);
+  --hs-phone-w: clamp(11.25rem, 20vw, 13rem);
   --hs-phone-gap: clamp(0.65rem, 1.8vw, 1rem);
   --hs-note-w: clamp(11.25rem, 22vw, 13.2rem);
 }
