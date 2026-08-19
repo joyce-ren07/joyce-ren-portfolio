@@ -6947,29 +6947,33 @@ p {
   pointer-events: none;
 }
 
-/* Above-left of left phone → To field (horizontal) */
+/* Above-left of left phone → To field (vertical) */
 .hs-feedback-phones__note--top-left {
-  top: calc(50% - var(--hs-phone-h) / 2 - 4.9rem);
-  right: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap) - 3rem);
-  left: auto;
+  top: calc(50% - var(--hs-phone-h) / 2 - 4.1rem);
+  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) - 0.25rem);
+  right: auto;
 }
 
 .hs-feedback-phones__note--top-left::after {
-  display: none;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: 2.35rem;
+  transform: translateX(-50%);
 }
 
 /* Above right side of left phone → pencil icon (vertical) */
 .hs-feedback-phones__note--top-center {
-  top: calc(50% - var(--hs-phone-h) / 2 - 5.15rem);
-  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.17 - 0.3rem);
-  transform: translateX(-50%);
+  top: calc(50% - var(--hs-phone-h) / 2 - 5.6rem);
+  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) - 0.25rem + var(--hs-note-w) + 0.75rem);
+  transform: none;
 }
 
 .hs-feedback-phones__note--top-center::after {
   left: 50%;
   top: 100%;
   width: 1px;
-  height: 3.15rem;
+  height: 3.75rem;
   transform: translateX(-50%);
 }
 
