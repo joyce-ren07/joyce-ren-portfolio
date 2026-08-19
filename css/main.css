@@ -6888,13 +6888,13 @@ p {
   position: relative;
   width: min(100%, 58rem);
   margin: clamp(2.25rem, 5vw, 3.25rem) auto 0;
-  min-height: clamp(37rem, 74vw, 45rem);
+  min-height: clamp(38rem, 76vw, 46rem);
 }
 
 .hs-feedback-phones__screens {
   position: absolute;
   left: 50%;
-  top: 49%;
+  top: 53%;
   transform: translate(-50%, -50%);
   display: flex;
   gap: clamp(0.65rem, 1.8vw, 1rem);
@@ -6938,8 +6938,9 @@ p {
 }
 
 .hs-feedback-phones__note--top-left {
-  top: 0.35rem;
-  left: 4%;
+  top: 1.5rem;
+  left: 42%;
+  transform: translateX(-50%);
 }
 
 .hs-feedback-phones__note--top-left::after {
@@ -6951,8 +6952,9 @@ p {
 }
 
 .hs-feedback-phones__note--top-center {
-  top: -0.05rem;
-  left: 31.5%;
+  top: 0.55rem;
+  left: 58%;
+  transform: translateX(-50%);
 }
 
 .hs-feedback-phones__note--top-center::after {
@@ -6964,8 +6966,8 @@ p {
 }
 
 .hs-feedback-phones__note--right-mid {
-  right: -1.5%;
-  top: 42%;
+  right: 2.5%;
+  top: 44%;
 }
 
 .hs-feedback-phones__note--right-mid::after {
@@ -6977,8 +6979,8 @@ p {
 }
 
 .hs-feedback-phones__note--bottom-left {
-  left: -9%;
-  bottom: 4.5%;
+  left: 8%;
+  bottom: 9%;
 }
 
 .hs-feedback-phones__note--bottom-left::after {
@@ -6990,8 +6992,8 @@ p {
 }
 
 .hs-feedback-phones__note--bottom-right {
-  right: 1.5%;
-  bottom: 1.25%;
+  right: 5%;
+  bottom: 6%;
 }
 
 .hs-feedback-phones__note--bottom-right::after {
