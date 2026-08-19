@@ -699,12 +699,25 @@ p {
 }
 
 .work-card {
+  --work-card-radius: 1.25rem;
+  --work-card-glow-spread: 10px;
   display: flex;
   flex-direction: column;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 1.25rem;
+  border-radius: var(--work-card-radius);
   transition: border-color 0.32s ease, transform 0.32s ease, box-shadow 0.32s ease;
+}
+
+.work-card.edge-glow .edge-glow__ring {
+  inset: 0;
+  border-radius: var(--work-card-radius);
+}
+
+.work-card.edge-glow .edge-glow__bloom {
+  inset: calc(-1 * var(--work-card-glow-spread));
+  padding: var(--work-card-glow-spread);
+  border-radius: calc(var(--work-card-radius) + var(--work-card-glow-spread));
 }
 
 .work-card::before {
@@ -746,7 +759,7 @@ p {
   aspect-ratio: 16 / 10;
   background: #ffffff;
   border: 0;
-  border-radius: inherit;
+  border-radius: var(--work-card-radius);
   display: flex;
   align-items: center;
   justify-content: center;
