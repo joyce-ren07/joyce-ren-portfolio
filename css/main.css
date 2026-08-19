@@ -6890,7 +6890,7 @@ p {
   margin: clamp(2.25rem, 5vw, 3.25rem) auto 0;
   min-height: clamp(38rem, 76vw, 46rem);
   /* Keep bubble anchors synced to phone geometry */
-  --hs-phone-w: clamp(8.5rem, 14.5vw, 10rem);
+  --hs-phone-w: clamp(7.25rem, 12.5vw, 8.75rem);
   --hs-phone-gap: clamp(0.65rem, 1.8vw, 1rem);
   --hs-note-w: clamp(11.25rem, 22vw, 13.2rem);
 }
@@ -7046,7 +7046,7 @@ p {
   align-items: center;
   margin-top: clamp(1rem, 3vw, 1.75rem);
   margin-bottom: clamp(6rem, 12vw, 8rem);
-  --hs-phone-w: clamp(8.5rem, 14.5vw, 10rem);
+  --hs-phone-w: clamp(7.25rem, 12.5vw, 8.75rem);
 }
 
 .hs-phone-iterations__arrow {
