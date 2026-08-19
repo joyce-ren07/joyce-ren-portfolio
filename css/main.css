@@ -6950,7 +6950,7 @@ p {
 /* Above-left of left phone → To field (horizontal) */
 .hs-feedback-phones__note--top-left {
   top: calc(50% - var(--hs-phone-h) / 2 - 4.35rem);
-  right: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  right: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap) - 1.35rem);
   left: auto;
 }
 
@@ -6964,7 +6964,7 @@ p {
 /* Above right side of left phone → pencil icon (vertical) */
 .hs-feedback-phones__note--top-center {
   top: calc(50% - var(--hs-phone-h) / 2 - 5.1rem);
-  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.18);
+  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.05);
   transform: translateX(-50%);
 }
 
@@ -6994,7 +6994,7 @@ p {
 /* Left of left phone lower → Insert First Name area (horizontal) */
 .hs-feedback-phones__note--bottom-left {
   top: calc(50% + var(--hs-phone-h) * 0.1);
-  right: calc(50% + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  right: calc(50% + var(--hs-phone-gap) / 2 + var(--hs-phone-w) + var(--hs-note-gap));
   left: auto;
   transform: translateY(-50%);
 }
