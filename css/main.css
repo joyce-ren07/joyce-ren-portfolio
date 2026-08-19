@@ -6889,6 +6889,10 @@ p {
   width: min(100%, 58rem);
   margin: clamp(2.25rem, 5vw, 3.25rem) auto 0;
   min-height: clamp(38rem, 76vw, 46rem);
+  /* Keep bubble anchors synced to phone geometry */
+  --hs-phone-w: clamp(13.5rem, 24vw, 15.5rem);
+  --hs-phone-gap: clamp(0.65rem, 1.8vw, 1rem);
+  --hs-note-w: clamp(11.25rem, 22vw, 13.2rem);
 }
 
 .hs-feedback-phones__screens {
@@ -6897,12 +6901,12 @@ p {
   top: 53%;
   transform: translate(-50%, -50%);
   display: flex;
-  gap: clamp(0.65rem, 1.8vw, 1rem);
+  gap: var(--hs-phone-gap);
 }
 
 .hs-feedback-phones__phone {
   margin: 0;
-  width: clamp(13.5rem, 24vw, 15.5rem);
+  width: var(--hs-phone-w);
   border: 1px solid #8fb7be;
   border-radius: 2rem;
   overflow: hidden;
@@ -6919,7 +6923,7 @@ p {
   position: absolute;
   z-index: 1;
   margin: 0;
-  width: clamp(11.25rem, 22vw, 13.2rem);
+  width: var(--hs-note-w);
   padding: 0.95rem 1.05rem;
   border: 1px solid #bfd3d7;
   border-radius: 0.75rem;
@@ -6939,7 +6943,7 @@ p {
 
 .hs-feedback-phones__note--top-left {
   top: 1.5rem;
-  left: 42%;
+  left: calc(50% - (var(--hs-phone-w) / 2 + var(--hs-phone-gap) / 2));
   transform: translateX(-50%);
 }
 
@@ -6953,7 +6957,7 @@ p {
 
 .hs-feedback-phones__note--top-center {
   top: 0.55rem;
-  left: 58%;
+  left: calc(50% + (var(--hs-phone-w) / 2 + var(--hs-phone-gap) / 2));
   transform: translateX(-50%);
 }
 
@@ -6966,7 +6970,8 @@ p {
 }
 
 .hs-feedback-phones__note--right-mid {
-  right: 2.5%;
+  /* Place just to the right of the right phone; connector line extends left into the phone */
+  left: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2);
   top: 44%;
 }
 
@@ -6979,7 +6984,8 @@ p {
 }
 
 .hs-feedback-phones__note--bottom-left {
-  left: 8%;
+  /* Connector should land at the right edge of the left phone */
+  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-note-w));
   bottom: 9%;
 }
 
@@ -6992,7 +6998,8 @@ p {
 }
 
 .hs-feedback-phones__note--bottom-right {
-  right: 5%;
+  /* Connector should land at the left edge of the right phone */
+  left: calc(50% + var(--hs-phone-gap) / 2);
   bottom: 6%;
 }
 
