@@ -6883,6 +6883,19 @@ p {
   }
 }
 
+/* Home Start — thin dark-teal phone frames (critique + iterations) */
+.case-critique--home-start .case-critique__device,
+.case-iterations--home-start .case-iterations__device {
+  border: 1.5px solid #3d6a6f;
+  padding: 0;
+  border-radius: 1.35rem;
+}
+
+.case-critique--home-start .case-critique__screen,
+.case-iterations--home-start .case-iterations__screen {
+  border-radius: 1.2rem;
+}
+
 /* Competitive positioning */
 
 .case-competitive {
