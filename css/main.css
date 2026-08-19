@@ -6888,21 +6888,28 @@ p {
   position: relative;
   width: min(100%, 58rem);
   margin: clamp(2.25rem, 5vw, 3.25rem) auto 0;
-  min-height: clamp(38rem, 76vw, 46rem);
+  min-height: clamp(26rem, 52vw, 32rem);
+  /* Phone + note geometry (synced to reference placement) */
+  --hs-phone-w: clamp(6.25rem, 10.5vw, 7.5rem);
+  --hs-phone-h: calc(var(--hs-phone-w) * 2.25);
+  --hs-phone-gap: clamp(0.65rem, 1.8vw, 1rem);
+  --hs-note-w: clamp(11.25rem, 22vw, 13.2rem);
+  --hs-note-gap: clamp(1.25rem, 2.4vw, 1.85rem);
 }
 
 .hs-feedback-phones__screens {
   position: absolute;
   left: 50%;
-  top: 53%;
+  top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  gap: clamp(0.65rem, 1.8vw, 1rem);
+  gap: var(--hs-phone-gap);
 }
 
 .hs-feedback-phones__phone {
   margin: 0;
-  width: clamp(13.5rem, 24vw, 15.5rem);
+  width: var(--hs-phone-w);
+  aspect-ratio: 640 / 1440;
   border: 1px solid #8fb7be;
   border-radius: 2rem;
   overflow: hidden;
@@ -6912,14 +6919,16 @@ p {
 .hs-feedback-phones__img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .hs-feedback-phones__note {
   position: absolute;
   z-index: 1;
   margin: 0;
-  width: clamp(11.25rem, 22vw, 13.2rem);
+  width: var(--hs-note-w);
   padding: 0.95rem 1.05rem;
   border: 1px solid #bfd3d7;
   border-radius: 0.75rem;
@@ -6935,25 +6944,27 @@ p {
   content: "";
   position: absolute;
   background: #d2d2d2;
+  pointer-events: none;
 }
 
+/* Above-left of left phone → To field (horizontal) */
 .hs-feedback-phones__note--top-left {
-  top: 1.5rem;
-  left: 42%;
-  transform: translateX(-50%);
+  top: calc(50% - var(--hs-phone-h) / 2 - 4.35rem);
+  right: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  left: auto;
 }
 
 .hs-feedback-phones__note--top-left::after {
-  left: 50%;
-  top: 100%;
-  width: 1px;
-  height: 2rem;
-  transform: translateX(-50%);
+  left: 100%;
+  top: 72%;
+  width: var(--hs-note-gap);
+  height: 1px;
 }
 
+/* Above right side of left phone → pencil icon (vertical) */
 .hs-feedback-phones__note--top-center {
-  top: 0.55rem;
-  left: 58%;
+  top: calc(50% - var(--hs-phone-h) / 2 - 5.1rem);
+  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.18);
   transform: translateX(-50%);
 }
 
@@ -6961,45 +6972,52 @@ p {
   left: 50%;
   top: 100%;
   width: 1px;
-  height: 2.1rem;
+  height: 3.15rem;
   transform: translateX(-50%);
 }
 
+/* Right of right phone → filter popup (horizontal) */
 .hs-feedback-phones__note--right-mid {
-  right: 2.5%;
-  top: 44%;
+  top: calc(50% - var(--hs-phone-h) * 0.17);
+  left: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  transform: translateY(-50%);
 }
 
 .hs-feedback-phones__note--right-mid::after {
   right: 100%;
   top: 50%;
-  width: 2.1rem;
+  width: var(--hs-note-gap);
   height: 1px;
   transform: translateY(-50%);
 }
 
+/* Left of left phone lower → Insert First Name area (horizontal) */
 .hs-feedback-phones__note--bottom-left {
-  left: 8%;
-  bottom: 9%;
+  top: calc(50% + var(--hs-phone-h) * 0.1);
+  right: calc(50% + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  left: auto;
+  transform: translateY(-50%);
 }
 
 .hs-feedback-phones__note--bottom-left::after {
-  right: -1.2rem;
+  left: 100%;
   top: 50%;
-  width: 1.2rem;
+  width: var(--hs-note-gap);
   height: 1px;
   transform: translateY(-50%);
 }
 
+/* Right of right phone lower → recipient list (horizontal, aligned with right-mid) */
 .hs-feedback-phones__note--bottom-right {
-  right: 5%;
-  bottom: 6%;
+  top: calc(50% + var(--hs-phone-h) * 0.14);
+  left: calc(50% + var(--hs-phone-w) + var(--hs-phone-gap) / 2 + var(--hs-note-gap));
+  transform: translateY(-50%);
 }
 
 .hs-feedback-phones__note--bottom-right::after {
-  left: -1.15rem;
+  right: 100%;
   top: 50%;
-  width: 1.15rem;
+  width: var(--hs-note-gap);
   height: 1px;
   transform: translateY(-50%);
 }
@@ -7039,6 +7057,7 @@ p {
   align-items: center;
   margin-top: clamp(1rem, 3vw, 1.75rem);
   margin-bottom: clamp(6rem, 12vw, 8rem);
+  --hs-phone-w: clamp(5.5rem, 9.25vw, 6.75rem);
 }
 
 .hs-phone-iterations__arrow {
@@ -7062,7 +7081,8 @@ p {
 
 .hs-phone-iterations__phone {
   margin: 0;
-  width: clamp(13.5rem, 24vw, 15.5rem);
+  width: var(--hs-phone-w);
+  aspect-ratio: 333 / 750;
   border: 1px solid #8fb7be;
   border-radius: 2rem;
   overflow: hidden;
@@ -7072,7 +7092,9 @@ p {
 .hs-phone-iterations__img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 /* Home Start — desktop critique + iterations */
 .hs-critique {
