@@ -7076,13 +7076,13 @@ p {
 .hs-phone-iterations__screens {
   display: flex;
   justify-content: center;
-  gap: clamp(0.75rem, 2vw, 1rem);
+  gap: clamp(0.65rem, 1.8vw, 1rem);
 }
 
 .hs-phone-iterations__phone {
   margin: 0;
   width: var(--hs-phone-w);
-  aspect-ratio: 333 / 750;
+  aspect-ratio: 640 / 1440;
   border: 1px solid #8fb7be;
   border-radius: 2rem;
   overflow: hidden;
