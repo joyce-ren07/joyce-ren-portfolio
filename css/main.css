@@ -867,7 +867,12 @@ p {
 }
 
 .work-card__cover-video--cueturn {
-  transform: scale(1.14);
+  transform: scale(1.2);
+  transform-origin: center center;
+}
+
+.case-hero-image--cueturn-cover {
+  transform: scale(1.06);
   transform-origin: center center;
 }
 
