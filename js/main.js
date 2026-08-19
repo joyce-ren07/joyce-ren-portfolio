@@ -696,6 +696,60 @@
     video.addEventListener("play", applyRate);
   });
 
+  /* CueTurn demo — start from the countdown ("Holding for a turn") stage */
+  const cueTurnStartAt = 6.9; // seconds into cueturn-demo-vid.mp4
+  const cueTurnVideos = document.querySelectorAll(
+    "video.work-card__cover-video--cueturn, video.case-hero-image--cueturn-cover"
+  );
+
+  if (cueTurnVideos.length && Number.isFinite(cueTurnStartAt) && cueTurnStartAt > 0) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    cueTurnVideos.forEach((video) => {
+      if (!video || !("duration" in video)) return;
+
+      const setupSeekAndLoop = () => {
+        // Ensure the video is long enough before seeking.
+        if (!Number.isFinite(video.duration) || video.duration <= cueTurnStartAt + 0.2) return;
+
+        // Disable native loop so we can loop from the countdown moment.
+        video.loop = false;
+
+        // Jump to the countdown stage as soon as possible.
+        try {
+          video.currentTime = cueTurnStartAt;
+        } catch {
+          // Ignore seek failures (e.g. unsupported ranges).
+        }
+
+        const endEpsilon = 0.2;
+        video.addEventListener(
+          "timeupdate",
+          () => {
+            if (!Number.isFinite(video.duration)) return;
+            if (video.currentTime >= video.duration - endEpsilon) {
+              try {
+                video.currentTime = cueTurnStartAt;
+              } catch {}
+            }
+          },
+          { passive: true }
+        );
+
+        video.play().catch(() => {});
+      };
+
+      if (reducedMotion) return;
+
+      // If metadata is already available, seek immediately.
+      if (video.readyState >= 1) {
+        setupSeekAndLoop();
+      } else {
+        video.addEventListener("loadedmetadata", setupSeekAndLoop, { once: true });
+      }
+    });
+  }
+
   /* Social Listening notifications — staggered slide-fade on scroll */
   const notifStacks = document.querySelectorAll(".case-quotes--staggered");
   if (notifStacks.length) {
