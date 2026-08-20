@@ -7200,13 +7200,20 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: clamp(-1rem, -2vw, -0.5rem);
+  position: relative;
+  margin-top: clamp(1rem, 3vw, 1.75rem);
+  padding-top: clamp(2.75rem, 5.5vw, 3.75rem);
 }
 
 .hs-iterations__arrow {
+  position: absolute;
+  top: -1.75rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
-  margin: 0.4rem 0 clamp(1.5rem, 3.5vw, 2.25rem);
+  margin: 0;
+  z-index: 1;
 }
 
 .hs-iterations__arrow-img {
