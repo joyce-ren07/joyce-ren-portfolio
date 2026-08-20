@@ -7062,15 +7062,15 @@ p {
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-top: clamp(1rem, 3vw, 1.75rem);
+  margin-top: clamp(2.75rem, 5.5vw, 4rem);
   margin-bottom: clamp(6rem, 12vw, 8rem);
-  padding-top: clamp(2.75rem, 5.5vw, 3.75rem);
+  padding-top: clamp(5rem, 9vw, 7rem);
   --hs-phone-w: clamp(10.75rem, 19vw, 13rem);
 }
 
 .hs-phone-iterations__arrow {
   position: absolute;
-  top: -1.75rem;
+  top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -7201,13 +7201,13 @@ p {
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-top: clamp(1rem, 3vw, 1.75rem);
-  padding-top: clamp(2.75rem, 5.5vw, 3.75rem);
+  margin-top: clamp(2.75rem, 5.5vw, 4rem);
+  padding-top: clamp(5rem, 9vw, 7rem);
 }
 
 .hs-iterations__arrow {
   position: absolute;
-  top: -1.75rem;
+  top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
