@@ -6887,7 +6887,7 @@ p {
 .hs-feedback-phones {
   position: relative;
   width: min(100%, 58rem);
-  margin: clamp(3.75rem, 7.5vw, 5.25rem) auto 0;
+  margin: clamp(4.75rem, 9vw, 6.5rem) auto 0;
   min-height: clamp(34rem, 66vw, 42rem);
   /* Phone + note geometry (synced to reference placement) */
   --hs-phone-w: clamp(10.75rem, 19vw, 13rem);
