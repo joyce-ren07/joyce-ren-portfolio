@@ -6950,14 +6950,14 @@ p {
 /* Above-left of left phone → To field (vertical) */
 .hs-feedback-phones__note--top-left {
   top: calc(50% - var(--hs-phone-h) / 2 - 4.75rem);
-  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.74);
+  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.86);
   width: min(var(--hs-note-w), calc(var(--hs-phone-w) - 1.25rem));
   right: auto;
   transform: translateX(-50%);
 }
 
 .hs-feedback-phones__note--top-left::after {
-  left: 66%;
+  left: 74%;
   top: 100%;
   width: 1px;
   height: 2.35rem;
@@ -6967,13 +6967,13 @@ p {
 /* Above right side of left phone → pencil icon (vertical) */
 .hs-feedback-phones__note--top-center {
   top: calc(50% - var(--hs-phone-h) / 2 - 9.5rem);
-  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.26);
+  left: calc(50% - var(--hs-phone-gap) / 2 - var(--hs-phone-w) * 0.14);
   width: min(var(--hs-note-w), calc(var(--hs-phone-w) - 1.25rem));
   transform: translateX(-50%);
 }
 
 .hs-feedback-phones__note--top-center::after {
-  left: 34%;
+  left: 26%;
   top: 100%;
   width: 1px;
   height: 3.75rem;
