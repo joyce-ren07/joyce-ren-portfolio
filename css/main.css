@@ -868,6 +868,25 @@ p {
   object-fit: cover;
   object-position: center;
   border: 0;
+  pointer-events: none;
+}
+
+/* Hide iOS/Safari native play overlay on muted looping covers */
+.work-card__cover-video::-webkit-media-controls,
+.work-card__cover-video::-webkit-media-controls-enclosure,
+.work-card__cover-video::-webkit-media-controls-start-playback-button,
+.work-card__image .case-device-video__media::-webkit-media-controls,
+.work-card__image .case-device-video__media::-webkit-media-controls-enclosure,
+.work-card__image .case-device-video__media::-webkit-media-controls-start-playback-button,
+.case-hero-image--video::-webkit-media-controls,
+.case-hero-image--video::-webkit-media-controls-enclosure,
+.case-hero-image--video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
 }
 
 .work-card__cover-video--cueturn {
@@ -3703,6 +3722,7 @@ p {
   object-position: center 36%;
   border-radius: inherit;
   background: #fff;
+  pointer-events: none;
 }
 
 .case-device-video__frame {
@@ -4480,6 +4500,7 @@ p {
   height: auto;
   border-radius: inherit;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .case-research-chat {
