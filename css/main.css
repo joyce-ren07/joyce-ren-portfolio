@@ -4063,6 +4063,10 @@ p {
   color: var(--cueturn-accent);
 }
 
+.case-study-page--cueturn #problem .case-emphasis {
+  color: var(--cueturn-accent);
+}
+
 /* AutoInvent — primary orange + headline type from design system base */
 .case-study-page--autoinvent {
   --ai-accent: #f0774c;
