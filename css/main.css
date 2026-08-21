@@ -4063,7 +4063,7 @@ p {
   color: var(--cueturn-accent);
 }
 
-.case-study-page--cueturn #problem .case-emphasis {
+.case-study-page--cueturn .case-emphasis {
   color: var(--cueturn-accent);
 }
 
