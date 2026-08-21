@@ -684,6 +684,111 @@
     }
   }
 
+  /* Project cover videos — force muted autoplay/loop on mobile (no play button) */
+  const coverVideos = document.querySelectorAll(
+    ".work-card__cover-video, .work-card__image .case-device-video__media, .case-hero-image--video"
+  );
+
+  if (coverVideos.length) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobileQuery = window.matchMedia("(max-width: 768px), (hover: none) and (pointer: coarse)");
+    const isMobile = () => mobileQuery.matches;
+
+    const prepareCover = (video) => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.removeAttribute("controls");
+      video.controls = false;
+      // Native loop can stall on some mobile browsers; reinforce in JS.
+      if (
+        !video.classList.contains("work-card__cover-video--cueturn") &&
+        !video.classList.contains("case-hero-image--cueturn-cover")
+      ) {
+        video.loop = true;
+      }
+    };
+
+    const tryPlay = (video) => {
+      if (reducedMotion) {
+        video.pause();
+        return;
+      }
+      const playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.catch === "function") {
+        playAttempt.catch(() => {});
+      }
+    };
+
+    const isCueTurnCover = (video) =>
+      video.classList.contains("work-card__cover-video--cueturn") ||
+      video.classList.contains("case-hero-image--cueturn-cover");
+
+    coverVideos.forEach((video) => {
+      prepareCover(video);
+
+      video.addEventListener(
+        "ended",
+        () => {
+          if (reducedMotion || isCueTurnCover(video)) return;
+          try {
+            video.currentTime = 0;
+          } catch {}
+          tryPlay(video);
+        },
+        { passive: true }
+      );
+
+      // Kick playback once media can play (helps iOS after first paint).
+      if (video.readyState >= 2) {
+        tryPlay(video);
+      } else {
+        video.addEventListener("loadeddata", () => tryPlay(video), { once: true });
+        video.addEventListener("canplay", () => tryPlay(video), { once: true });
+      }
+    });
+
+    // On mobile, keep covers looping while in view and restart when they return.
+    if (!reducedMotion && "IntersectionObserver" in window) {
+      const coverObserver = new IntersectionObserver(
+        (entries) => {
+          if (!isMobile()) return;
+          entries.forEach((entry) => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+              if (!isCueTurnCover(video)) {
+                try {
+                  video.currentTime = 0;
+                } catch {}
+              }
+              tryPlay(video);
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      coverVideos.forEach((video) => coverObserver.observe(video));
+    }
+
+    // Resume after tab visibility / bfcache restores (common mobile pause).
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden || reducedMotion || !isMobile()) return;
+      coverVideos.forEach((video) => {
+        const rect = video.getBoundingClientRect();
+        const inView =
+          rect.bottom > 0 &&
+          rect.top < (window.innerHeight || document.documentElement.clientHeight);
+        if (inView) tryPlay(video);
+      });
+    });
+  }
+
   /* Optional playback-rate overrides for cover / demo videos */
   document.querySelectorAll("video[data-playback-rate]").forEach((video) => {
     const rate = Number(video.getAttribute("data-playback-rate"));
