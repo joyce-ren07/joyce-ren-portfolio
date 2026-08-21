@@ -4053,6 +4053,16 @@ p {
   display: none;
 }
 
+/* CueTurn — premise pullquote matches focus-question badge 1 */
+.case-study-page--cueturn {
+  --cueturn-accent: #4c9c8e;
+}
+
+.case-study-page--cueturn #problem .case-pullquote,
+.case-study-page--cueturn #problem .case-pullquote strong {
+  color: var(--cueturn-accent);
+}
+
 /* AutoInvent — primary orange + headline type from design system base */
 .case-study-page--autoinvent {
   --ai-accent: #f0774c;
