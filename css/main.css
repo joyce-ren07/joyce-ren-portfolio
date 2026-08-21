@@ -7201,15 +7201,15 @@ p {
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-top: clamp(4.75rem, 9vw, 7rem);
-  padding-top: clamp(5.75rem, 10.5vw, 8rem);
+  margin-top: clamp(6.5rem, 12vw, 9.5rem);
+  padding-top: clamp(6.25rem, 11.5vw, 8.75rem);
 }
 
 .hs-iterations__arrow {
   position: absolute;
-  top: 0.85rem;
+  top: 1.35rem;
   left: 50%;
-  transform: translate(-50%, -35%);
+  transform: translate(-50%, -25%);
   display: flex;
   justify-content: center;
   margin: 0;
