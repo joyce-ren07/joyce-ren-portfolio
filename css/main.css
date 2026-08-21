@@ -2258,6 +2258,11 @@ p {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
+.case-image-grid__img--flat {
+  box-shadow: none;
+  border-radius: 0;
+}
+
 .case-results {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
