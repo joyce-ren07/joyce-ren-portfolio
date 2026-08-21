@@ -4043,6 +4043,16 @@ p {
   display: none;
 }
 
+.case-hero-media--cueturn-cover {
+  max-width: min(52rem, 100%);
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.case-hero-media--cueturn-cover::after {
+  display: none;
+}
+
 /* AutoInvent — primary orange + headline type from design system base */
 .case-study-page--autoinvent {
   --ai-accent: #f0774c;
