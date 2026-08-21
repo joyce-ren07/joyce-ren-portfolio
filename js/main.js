@@ -717,9 +717,19 @@
         video.pause();
         return;
       }
+      video.muted = true;
+      if (video.preload === "none") {
+        video.preload = "auto";
+      }
       const playAttempt = video.play();
       if (playAttempt && typeof playAttempt.catch === "function") {
-        playAttempt.catch(() => {});
+        playAttempt.catch(() => {
+          // Chrome may pause muted clips as "background media to save power"
+          // when too many videos play at once. Retry on the next frame.
+          requestAnimationFrame(() => {
+            video.play().catch(() => {});
+          });
+        });
       }
     };
 
@@ -730,14 +740,18 @@
     coverVideos.forEach((video) => {
       prepareCover(video);
 
-      // CueTurn seeks to a mid-clip countdown; a generic play-from-0 race
-      // cancels autoplay. Its own controller owns playback.
-      if (isCueTurnCover(video)) return;
+      // Defer off-screen covers so CueTurn can fetch media first.
+      if (!reducedMotion && !isCueTurnCover(video)) {
+        video.preload = "none";
+        video.autoplay = false;
+        video.removeAttribute("autoplay");
+        video.pause();
+      }
 
       video.addEventListener(
         "ended",
         () => {
-          if (reducedMotion) return;
+          if (reducedMotion || isCueTurnCover(video)) return;
           try {
             video.currentTime = 0;
           } catch {}
@@ -745,54 +759,67 @@
         },
         { passive: true }
       );
-
-      // Kick playback once media can play (helps iOS after first paint).
-      if (video.readyState >= 2) {
-        tryPlay(video);
-      } else {
-        video.addEventListener("loadeddata", () => tryPlay(video), { once: true });
-        video.addEventListener("canplay", () => tryPlay(video), { once: true });
-      }
     });
 
-    // Keep covers playing while in view. CueTurn sits below the lamp hero,
-    // so it needs this on desktop as well as mobile.
-    if (!reducedMotion && "IntersectionObserver" in window) {
+    // Play visible covers; always prioritize CueTurn when in view.
+    const MAX_PLAYING_COVERS = 2;
+    const coverVisibility = new Map();
+
+    const syncCoverPlayback = () => {
+      if (reducedMotion) {
+        coverVideos.forEach((video) => video.pause());
+        return;
+      }
+
+      const visible = Array.from(coverVideos).filter(
+        (video) => (coverVisibility.get(video) || 0) >= 0.2
+      );
+      const cueTurnVisible = visible.find(isCueTurnCover);
+      let slotsLeft = MAX_PLAYING_COVERS - (cueTurnVisible ? 1 : 0);
+
+      coverVideos.forEach((video) => {
+        if (!visible.includes(video)) {
+          video.pause();
+          return;
+        }
+        if (isCueTurnCover(video)) {
+          tryPlay(video);
+          return;
+        }
+        if (slotsLeft > 0) {
+          tryPlay(video);
+          slotsLeft -= 1;
+        } else {
+          video.pause();
+        }
+      });
+    };
+
+    if ("IntersectionObserver" in window) {
       const coverObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             const video = entry.target;
-            const cueTurn = isCueTurnCover(video);
-            if (!isMobile() && !cueTurn) return;
-            if (entry.isIntersecting) {
-              if (!cueTurn) {
-                try {
-                  video.currentTime = 0;
-                } catch {}
-              }
-              tryPlay(video);
-            } else {
-              video.pause();
+            coverVisibility.set(video, entry.isIntersecting ? entry.intersectionRatio : 0);
+            if (isMobile() && entry.isIntersecting && !isCueTurnCover(video)) {
+              try {
+                video.currentTime = 0;
+              } catch {}
             }
           });
+          syncCoverPlayback();
         },
-        { threshold: 0.15 }
+        { threshold: [0, 0.15, 0.2, 0.35, 0.5, 0.75, 1] }
       );
 
       coverVideos.forEach((video) => coverObserver.observe(video));
+    } else if (!reducedMotion) {
+      coverVideos.forEach((video) => tryPlay(video));
     }
 
-    // Resume after tab visibility / bfcache restores (common mobile pause).
     document.addEventListener("visibilitychange", () => {
       if (document.hidden || reducedMotion) return;
-      coverVideos.forEach((video) => {
-        if (!isMobile() && !isCueTurnCover(video)) return;
-        const rect = video.getBoundingClientRect();
-        const inView =
-          rect.bottom > 0 &&
-          rect.top < (window.innerHeight || document.documentElement.clientHeight);
-        if (inView) tryPlay(video);
-      });
+      syncCoverPlayback();
     });
   }
 
@@ -808,7 +835,7 @@
     video.addEventListener("play", applyRate);
   });
 
-  /* CueTurn demo — start from the countdown ("Holding for a turn") stage */
+  /* CueTurn demo — loop from the countdown stage after playback starts */
   const cueTurnStartAt = 6.9; // seconds into cueturn-demo-vid.mp4
   const cueTurnVideos = document.querySelectorAll(
     "video.work-card__cover-video--cueturn, video.case-hero-image--cueturn-cover"
@@ -817,103 +844,62 @@
   if (cueTurnVideos.length && Number.isFinite(cueTurnStartAt) && cueTurnStartAt > 0) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const playCueTurn = (video) => {
-      if (reducedMotion) {
-        video.pause();
-        return;
-      }
-      video.muted = true;
-      video.defaultMuted = true;
-      const playAttempt = video.play();
-      if (playAttempt && typeof playAttempt.catch === "function") {
-        playAttempt.catch(() => {});
-      }
-    };
-
     cueTurnVideos.forEach((video) => {
       if (!video || !("duration" in video)) return;
 
-      video.muted = true;
-      video.defaultMuted = true;
-      video.playsInline = true;
       video.loop = false;
-      video.preload = "auto";
+      let didJumpToCountdown = false;
 
-      let loopBound = false;
-      let seekingToStart = false;
-
-      const canSeekToStart = () =>
+      const canSeek = () =>
         Number.isFinite(video.duration) && video.duration > cueTurnStartAt + 0.2;
 
-      const atCountdown = () => Math.abs(video.currentTime - cueTurnStartAt) < 0.2;
-
-      const seekToCountdown = () => {
-        if (!canSeekToStart()) return false;
-        if (atCountdown() || seekingToStart) return true;
-        seekingToStart = true;
+      const jumpToCountdown = () => {
+        if (!canSeek()) return;
+        if (Math.abs(video.currentTime - cueTurnStartAt) < 0.15) return;
         try {
           video.currentTime = cueTurnStartAt;
         } catch {
-          seekingToStart = false;
-          return false;
+          /* ignore seek failures */
         }
-        return true;
       };
 
-      const startFromCountdown = () => {
-        if (!canSeekToStart()) return;
-        // Already in the looping stretch — don't yank back to 6.9s on canplay.
-        if (
-          video.currentTime >= cueTurnStartAt - 0.05 &&
-          video.currentTime < video.duration - 0.25
-        ) {
-          playCueTurn(video);
+      video.addEventListener("playing", () => {
+        if (reducedMotion || didJumpToCountdown) return;
+        if (video.currentTime >= cueTurnStartAt - 0.1) {
+          didJumpToCountdown = true;
           return;
         }
-        seekToCountdown();
-      };
+        didJumpToCountdown = true;
+        jumpToCountdown();
+      });
 
-      if (!loopBound) {
-        loopBound = true;
-        const endEpsilon = 0.2;
-
-        video.addEventListener("seeked", () => {
-          seekingToStart = false;
-          if (reducedMotion) {
-            video.pause();
-            return;
+      video.addEventListener(
+        "timeupdate",
+        () => {
+          if (!Number.isFinite(video.duration)) return;
+          if (video.currentTime >= video.duration - 0.2) {
+            jumpToCountdown();
           }
-          if (atCountdown() || video.currentTime >= cueTurnStartAt - 0.05) {
-            playCueTurn(video);
-          }
-        });
+        },
+        { passive: true }
+      );
 
+      video.addEventListener("ended", () => {
+        jumpToCountdown();
+        if (!reducedMotion) {
+          video.play().catch(() => {});
+        }
+      });
+
+      if (reducedMotion) {
         video.addEventListener(
-          "timeupdate",
+          "loadedmetadata",
           () => {
-            if (!Number.isFinite(video.duration)) return;
-            if (video.currentTime >= video.duration - endEpsilon) {
-              seekToCountdown();
-            }
+            jumpToCountdown();
+            video.pause();
           },
-          { passive: true }
+          { once: true }
         );
-
-        video.addEventListener("ended", () => {
-          seekToCountdown();
-          playCueTurn(video);
-        });
-
-        // Seek can stall until enough media is buffered; retry when it is.
-        video.addEventListener("canplay", startFromCountdown);
-        video.addEventListener("loadeddata", startFromCountdown);
-        video.addEventListener("durationchange", startFromCountdown);
-      }
-
-      if (video.readyState >= 1) {
-        startFromCountdown();
-      } else {
-        video.addEventListener("loadedmetadata", startFromCountdown, { once: true });
       }
     });
   }
