@@ -5963,6 +5963,11 @@ p {
   height: auto;
 }
 
+.case-image-grid--focus-questions {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  padding-top: clamp(1.25rem, 2.5vw, 2rem);
+}
+
 @media (max-width: 900px) {
   .case-features,
   .case-market__icons {
