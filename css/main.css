@@ -4046,7 +4046,7 @@ p {
 .case-hero-media--cueturn-cover {
   max-width: min(52rem, 100%);
   overflow: hidden;
-  border-radius: 1.5rem;
+  border-radius: var(--cueturn-media-radius, 1.5rem);
 }
 
 .case-hero-media--cueturn-cover::after {
@@ -4056,6 +4056,18 @@ p {
 /* CueTurn — premise pullquote matches focus-question badge 1 */
 .case-study-page--cueturn {
   --cueturn-accent: #4c9c8e;
+  --cueturn-media-radius: 1.5rem;
+}
+
+.case-study-page--cueturn .case-scroll-video--cueturn-wizard {
+  overflow: hidden;
+  border-radius: var(--cueturn-media-radius);
+}
+
+.case-study-page--cueturn .case-scroll-video__media--cueturn-wizard {
+  border-radius: var(--cueturn-media-radius);
+  transform: scale(1.028);
+  transform-origin: center center;
 }
 
 .case-study-page--cueturn #problem .case-pullquote,
