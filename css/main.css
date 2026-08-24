@@ -4065,8 +4065,9 @@ p {
 }
 
 .case-study-page--cueturn .case-scroll-video__media--cueturn-wizard {
-  overflow: hidden;
-  border-radius: var(--cueturn-media-radius);
+  border-radius: 0;
+  transform: translateX(-2.5%) scale(1.05);
+  transform-origin: center center;
 }
 
 .case-study-page--cueturn #problem .case-pullquote,
