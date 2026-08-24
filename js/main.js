@@ -684,7 +684,7 @@
     }
   }
 
-  /* Project cover videos — force muted autoplay/loop on mobile (no play button) */
+  /* Project cover videos — muted autoplay/replay without controls */
   const coverVideos = document.querySelectorAll(
     ".work-card__cover-video, .work-card__image .case-device-video__media, .case-hero-image--video"
   );
@@ -694,77 +694,126 @@
     const mobileQuery = window.matchMedia("(max-width: 768px), (hover: none) and (pointer: coarse)");
     const isMobile = () => mobileQuery.matches;
 
-    const prepareCover = (video) => {
-      video.muted = true;
-      video.defaultMuted = true;
-      video.playsInline = true;
-      video.setAttribute("muted", "");
-      video.setAttribute("playsinline", "");
-      video.setAttribute("webkit-playsinline", "");
-      video.removeAttribute("controls");
-      video.controls = false;
-      // Native loop can stall on some mobile browsers; reinforce in JS.
-      if (
-        !video.classList.contains("work-card__cover-video--cueturn") &&
-        !video.classList.contains("case-hero-image--cueturn-cover")
-      ) {
-        video.loop = true;
+    const isCueTurnCover = (video) =>
+      video.classList.contains("work-card__cover-video--cueturn") ||
+      video.classList.contains("case-hero-image--cueturn-cover");
+
+    const getLoopStart = (video) => {
+      const start = Number(video.getAttribute("data-loop-start"));
+      return Number.isFinite(start) && start > 0 ? start : 0;
+    };
+
+    const setCurrentTime = (video, time) => {
+      try {
+        video.currentTime = time;
+      } catch {
+        /* Ignore seek failures while media is loading. */
       }
     };
 
     const tryPlay = (video) => {
-      if (reducedMotion) {
+      // CueTurn covers are intentionally continuous demos, including when the
+      // user's reduced-motion preference is enabled.
+      if (reducedMotion && !isCueTurnCover(video)) {
         video.pause();
         return;
       }
+
       const playAttempt = video.play();
       if (playAttempt && typeof playAttempt.catch === "function") {
         playAttempt.catch(() => {});
       }
     };
 
-    const isCueTurnCover = (video) =>
-      video.classList.contains("work-card__cover-video--cueturn") ||
-      video.classList.contains("case-hero-image--cueturn-cover");
+    const replayCover = (video) => {
+      setCurrentTime(video, getLoopStart(video));
+      tryPlay(video);
+    };
+
+    const prepareCover = (video) => {
+      video.autoplay = true;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute("autoplay", "");
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.removeAttribute("controls");
+      video.controls = false;
+      // CueTurn starts at its countdown frame and therefore uses the
+      // explicit replay handler below instead of native looping to time 0.
+      video.loop = getLoopStart(video) === 0;
+    };
 
     coverVideos.forEach((video) => {
       prepareCover(video);
 
+      const loopStart = getLoopStart(video);
+      if (loopStart > 0) {
+        const seekToLoopStart = () => {
+          if (!Number.isFinite(video.duration) || video.duration <= loopStart) return;
+          setCurrentTime(video, loopStart);
+        };
+
+        if (video.readyState >= 1) {
+          seekToLoopStart();
+        } else {
+          video.addEventListener("loadedmetadata", seekToLoopStart, { once: true });
+        }
+
+        // Catch the boundary before browsers that skip the ended event.
+        video.addEventListener(
+          "timeupdate",
+          () => {
+            if (!Number.isFinite(video.duration)) return;
+            if (video.currentTime >= video.duration - 0.2) replayCover(video);
+          },
+          { passive: true }
+        );
+      }
+
       video.addEventListener(
         "ended",
         () => {
-          if (reducedMotion || isCueTurnCover(video)) return;
-          try {
-            video.currentTime = 0;
-          } catch {}
-          tryPlay(video);
+          if (reducedMotion && !isCueTurnCover(video)) return;
+          replayCover(video);
         },
         { passive: true }
       );
 
-      // Kick playback once media can play (helps iOS after first paint).
+      const requestPlay = () => {
+        if (video.ended) {
+          replayCover(video);
+        } else {
+          tryPlay(video);
+        }
+      };
+
+      // Kick playback once media can play (helps iOS after first paint), and
+      // keep retrying if the first autoplay attempt races media loading.
       if (video.readyState >= 2) {
-        tryPlay(video);
+        requestPlay();
       } else {
-        video.addEventListener("loadeddata", () => tryPlay(video), { once: true });
-        video.addEventListener("canplay", () => tryPlay(video), { once: true });
+        video.addEventListener("loadeddata", requestPlay);
+        video.addEventListener("canplay", requestPlay);
       }
     });
 
     // On mobile, keep covers looping while in view and restart when they return.
-    if (!reducedMotion && "IntersectionObserver" in window) {
+    if ("IntersectionObserver" in window) {
       const coverObserver = new IntersectionObserver(
         (entries) => {
           if (!isMobile()) return;
           entries.forEach((entry) => {
             const video = entry.target;
+            if (reducedMotion && !isCueTurnCover(video)) return;
             if (entry.isIntersecting) {
-              if (!isCueTurnCover(video)) {
-                try {
-                  video.currentTime = 0;
-                } catch {}
+              if (video.paused || video.ended) {
+                replayCover(video);
+              } else {
+                tryPlay(video);
               }
-              tryPlay(video);
             } else {
               video.pause();
             }
@@ -777,16 +826,23 @@
     }
 
     // Resume after tab visibility / bfcache restores (common mobile pause).
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden || reducedMotion || !isMobile()) return;
+    const resumeVisibleCovers = () => {
+      if (document.hidden) return;
       coverVideos.forEach((video) => {
+        if (reducedMotion && !isCueTurnCover(video)) return;
         const rect = video.getBoundingClientRect();
         const inView =
           rect.bottom > 0 &&
           rect.top < (window.innerHeight || document.documentElement.clientHeight);
-        if (inView) tryPlay(video);
+        if (inView) {
+          if (video.ended) replayCover(video);
+          else tryPlay(video);
+        }
       });
-    });
+    };
+
+    document.addEventListener("visibilitychange", resumeVisibleCovers);
+    window.addEventListener("pageshow", resumeVisibleCovers);
   }
 
   /* Optional playback-rate overrides for cover / demo videos */
@@ -800,63 +856,6 @@
     video.addEventListener("loadedmetadata", applyRate);
     video.addEventListener("play", applyRate);
   });
-
-  /* CueTurn demo — start from the countdown ("Holding for a turn") stage */
-  const cueTurnStartAt = 6.9; // seconds into cueturn-demo-vid.mp4
-  const cueTurnVideos = document.querySelectorAll(
-    "video.work-card__cover-video--cueturn, video.case-hero-image--cueturn-cover"
-  );
-
-  if (cueTurnVideos.length && Number.isFinite(cueTurnStartAt) && cueTurnStartAt > 0) {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    cueTurnVideos.forEach((video) => {
-      if (!video || !("duration" in video)) return;
-
-      const setupSeekAndLoop = () => {
-        // Ensure the video is long enough before seeking.
-        if (!Number.isFinite(video.duration) || video.duration <= cueTurnStartAt + 0.2) return;
-
-        // Disable native loop so we can loop from the countdown moment.
-        video.loop = false;
-
-        // Jump to the countdown stage as soon as possible.
-        try {
-          video.currentTime = cueTurnStartAt;
-        } catch {
-          // Ignore seek failures (e.g. unsupported ranges).
-        }
-
-        const endEpsilon = 0.2;
-        video.addEventListener(
-          "timeupdate",
-          () => {
-            if (!Number.isFinite(video.duration)) return;
-            if (video.currentTime >= video.duration - endEpsilon) {
-              try {
-                video.currentTime = cueTurnStartAt;
-              } catch {}
-            }
-          },
-          { passive: true }
-        );
-
-        // If reduced motion is enabled, show the correct starting frame but don't auto-play.
-        if (!reducedMotion) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      };
-
-      // If metadata is already available, seek immediately.
-      if (video.readyState >= 1) {
-        setupSeekAndLoop();
-      } else {
-        video.addEventListener("loadedmetadata", setupSeekAndLoop, { once: true });
-      }
-    });
-  }
 
   /* Social Listening notifications — staggered slide-fade on scroll */
   const notifStacks = document.querySelectorAll(".case-quotes--staggered");
