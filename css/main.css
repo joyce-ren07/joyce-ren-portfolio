@@ -4059,6 +4059,12 @@ p {
   --cueturn-media-radius: 1.5rem;
 }
 
+.case-study-page--cueturn .case-insights li {
+  font-size: var(--case-tertiary-size);
+  font-weight: var(--case-tertiary-weight, 500);
+  line-height: var(--case-body-leading, 1.58);
+}
+
 .case-study-page--cueturn .case-scroll-video--cueturn-wizard {
   overflow: hidden;
   border-radius: var(--cueturn-media-radius);
