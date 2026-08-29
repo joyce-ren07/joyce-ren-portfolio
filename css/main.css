@@ -2010,7 +2010,7 @@ p {
 }
 
 .about-title {
-  margin: 0 0 clamp(1.75rem, 4vw, 2.75rem);
+  margin: 0 auto clamp(1.75rem, 4vw, 2.75rem);
   font-family: "Inclusive Sans", var(--font-sans);
   font-size: var(--text-title-size);
   font-style: italic;
@@ -2019,17 +2019,19 @@ p {
   line-height: 1.05;
   color: #f0bfa1;
   text-align: left;
-  max-width: min(44rem, 100%);
+  width: 100%;
+  max-width: min(42rem, 100%);
   animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .about-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(2rem, 5vw, 3.5rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.75rem, 4.5vw, 3rem);
   align-items: start;
-  max-width: min(44rem, 100%);
-  margin-inline: 0;
+  width: 100%;
+  max-width: min(42rem, 100%);
+  margin-inline: auto;
 }
 
 .about-copy {
@@ -2058,7 +2060,7 @@ p {
 .about-portrait-stack {
   position: relative;
   width: 100%;
-  max-width: min(22.5rem, 100%);
+  max-width: min(20rem, 100%);
   justify-self: end;
   overflow: visible;
   animation: about-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both;
@@ -2157,15 +2159,12 @@ p {
 @media (max-width: 900px) {
   .about-layout {
     grid-template-columns: 1fr;
-    max-width: min(26rem, 100%);
+    max-width: min(24rem, 100%);
     gap: clamp(1.75rem, 4.5vw, 2.5rem);
-    margin-inline: auto;
   }
 
   .about-title {
-    max-width: min(26rem, 100%);
-    margin-inline: auto;
-    text-align: left;
+    max-width: min(24rem, 100%);
   }
 
   .about-copy {
@@ -2175,7 +2174,7 @@ p {
   }
 
   .about-portrait-stack {
-    max-width: min(18.5rem, 100%);
+    max-width: min(17.5rem, 100%);
     margin-inline: auto;
     justify-self: center;
     order: 1;
@@ -2202,18 +2201,15 @@ p {
 @media (max-width: 768px) {
   .about-title {
     font-size: var(--text-title-size);
+    max-width: 20rem;
   }
 
   .about-layout {
-    max-width: 22rem;
-  }
-
-  .about-title {
-    max-width: 22rem;
+    max-width: 20rem;
   }
 
   .about-portrait-stack {
-    max-width: 16.5rem;
+    max-width: 15.5rem;
   }
 
   .about-foreword-envelope {
