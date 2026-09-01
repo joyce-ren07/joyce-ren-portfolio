@@ -4119,6 +4119,11 @@ p {
   transform-origin: center center;
 }
 
+.case-study-page--cueturn .case-feature-video-card--cueturn .case-feature-video-card__media {
+  transform: scale(1.08);
+  transform-origin: center center;
+}
+
 .case-study-page--cueturn .case-scroll-video__media--cueturn-wizard {
   overflow: hidden;
   border-radius: var(--cueturn-media-radius);
