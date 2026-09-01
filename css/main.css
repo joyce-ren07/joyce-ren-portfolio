@@ -4107,6 +4107,18 @@ p {
   border-radius: var(--cueturn-media-radius);
 }
 
+.case-study-page--cueturn .case-scroll-video--cueturn-interview {
+  overflow: hidden;
+  border-radius: var(--cueturn-media-radius);
+}
+
+.case-study-page--cueturn .case-scroll-video__media--cueturn-interview {
+  overflow: hidden;
+  border-radius: var(--cueturn-media-radius);
+  transform: scale(1.028);
+  transform-origin: center center;
+}
+
 .case-study-page--cueturn .case-scroll-video__media--cueturn-wizard {
   overflow: hidden;
   border-radius: var(--cueturn-media-radius);
