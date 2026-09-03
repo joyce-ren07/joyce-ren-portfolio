@@ -1066,22 +1066,22 @@ p {
    -------------------------------------------------------------------------- */
 
 .about-page {
-  --case-bg: #2f3631;
-  --case-text: #36413a;
-  --case-heading: #f5f5eb;
-  --about-stage: #aeb9ad;
-  --about-ink: #36413a;
-  --about-muted: rgba(54, 65, 58, 0.72);
-  --nav-glow-color: rgb(239, 242, 224);
-  --nav-glow-core: rgba(239, 242, 224, 0.72);
-  --nav-glow-mid: rgba(227, 234, 211, 0.42);
-  --nav-glow-soft: rgba(227, 234, 211, 0.22);
-  --nav-glow-hover: #f1f3e5;
+  --case-bg: #3a322e;
+  --case-text: #4a3931;
+  --case-heading: #fff7ed;
+  --about-stage: #cdb9a7;
+  --about-ink: #4a3931;
+  --about-muted: rgba(74, 57, 49, 0.72);
+  --nav-glow-color: rgb(255, 190, 120);
+  --nav-glow-core: rgba(255, 190, 120, 0.72);
+  --nav-glow-mid: rgba(255, 160, 80, 0.42);
+  --nav-glow-soft: rgba(255, 175, 100, 0.22);
+  --nav-glow-hover: #fff0dd;
   --nav-glow-fill: radial-gradient(
     circle at 50% 50%,
-    rgba(247, 248, 232, 0.92) 0%,
-    rgba(230, 237, 215, 0.56) 42%,
-    rgba(211, 224, 202, 0.18) 72%,
+    rgba(255, 195, 130, 0.92) 0%,
+    rgba(255, 170, 95, 0.55) 42%,
+    rgba(255, 150, 75, 0.18) 72%,
     transparent 100%
   );
   background: var(--case-bg);
@@ -1090,27 +1090,27 @@ p {
 }
 
 .about-page .case-topbar {
-  --topbar-glass-bg: rgba(199, 206, 193, 0.34);
-  --topbar-glass-border: rgba(246, 247, 235, 0.28);
-  --topbar-glass-edge: rgba(35, 48, 39, 0.08);
+  --topbar-glass-bg: rgba(210, 192, 176, 0.34);
+  --topbar-glass-border: rgba(255, 244, 229, 0.28);
+  --topbar-glass-edge: rgba(55, 39, 29, 0.08);
 }
 
 .about-page .case-topbar__nav a,
 .about-page .case-topbar__resume {
-  color: rgba(54, 65, 58, 0.78);
+  color: rgba(74, 57, 49, 0.78);
 }
 
 .about-page .case-topbar__nav a:hover:not(.is-active),
 .about-page .case-topbar__resume:hover {
-  color: #f1f3e5;
+  color: #fff0dd;
 }
 
 .about-page .case-topbar__nav a.is-active {
-  color: #f5f5eb;
+  color: #fff7ed;
   text-shadow:
-    0 0 10px rgba(245, 247, 227, 0.95),
-    0 0 22px rgba(222, 233, 207, 0.66),
-    0 0 36px rgba(206, 222, 193, 0.34);
+    0 0 10px rgba(255, 246, 228, 0.95),
+    0 0 22px rgba(255, 218, 179, 0.66),
+    0 0 36px rgba(255, 190, 130, 0.34);
 }
 
 .canvas-page {
@@ -2046,12 +2046,12 @@ p {
   min-height: calc(100svh - clamp(1rem, 2.4vw, 2.25rem));
   margin: clamp(0.5rem, 1.2vw, 1.125rem) auto;
   padding: 0 clamp(1rem, 5vw, 5rem) clamp(5rem, 10vw, 9rem);
-  border: 1px solid rgba(241, 243, 232, 0.22);
+  border: 1px solid rgba(255, 241, 224, 0.22);
   border-radius: clamp(1rem, 2.4vw, 2rem);
   background: var(--about-stage);
   box-shadow:
-    0 1.5rem 4rem rgba(12, 19, 15, 0.16),
-    inset 0 1px 0 rgba(255, 255, 245, 0.34);
+    0 1.5rem 4rem rgba(44, 29, 20, 0.16),
+    inset 0 1px 0 rgba(255, 250, 242, 0.34);
   overflow: hidden;
   isolation: isolate;
 }
@@ -2062,8 +2062,8 @@ p {
   z-index: 0;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(242, 244, 231, 0.28), transparent 43%),
-    linear-gradient(320deg, rgba(64, 84, 68, 0.28), transparent 58%),
+    linear-gradient(135deg, rgba(255, 239, 214, 0.28), transparent 43%),
+    linear-gradient(320deg, rgba(115, 79, 55, 0.22), transparent 58%),
     var(--about-stage);
   pointer-events: none;
 }
@@ -2073,11 +2073,11 @@ p {
   position: absolute;
   inset: -12%;
   background:
-    radial-gradient(ellipse 21rem 14rem at 11% 17%, rgba(245, 247, 230, 0.38), transparent 72%),
-    radial-gradient(ellipse 26rem 17rem at 41% 3%, rgba(244, 246, 228, 0.31), transparent 74%),
-    radial-gradient(ellipse 24rem 18rem at 91% 30%, rgba(239, 244, 224, 0.36), transparent 73%),
-    radial-gradient(ellipse 28rem 17rem at 67% 91%, rgba(238, 243, 225, 0.29), transparent 72%),
-    radial-gradient(ellipse 20rem 13rem at 5% 82%, rgba(66, 86, 70, 0.24), transparent 74%);
+    radial-gradient(ellipse 21rem 14rem at 11% 17%, rgba(255, 241, 217, 0.38), transparent 72%),
+    radial-gradient(ellipse 26rem 17rem at 41% 3%, rgba(255, 239, 214, 0.31), transparent 74%),
+    radial-gradient(ellipse 24rem 18rem at 91% 30%, rgba(255, 235, 206, 0.36), transparent 73%),
+    radial-gradient(ellipse 28rem 17rem at 67% 91%, rgba(255, 232, 198, 0.29), transparent 72%),
+    radial-gradient(ellipse 20rem 13rem at 5% 82%, rgba(115, 79, 55, 0.18), transparent 74%);
   filter: blur(1.25rem);
   opacity: 0.95;
   transform: scale(1.08);
@@ -2090,12 +2090,12 @@ p {
   background:
     repeating-radial-gradient(
       circle at 18% 22%,
-      rgba(255, 255, 245, 0.13) 0 1px,
+      rgba(255, 249, 238, 0.13) 0 1px,
       transparent 1px 5px
     ),
     repeating-radial-gradient(
       circle at 73% 78%,
-      rgba(40, 56, 44, 0.08) 0 1px,
+      rgba(82, 57, 42, 0.06) 0 1px,
       transparent 1px 7px
     );
   mix-blend-mode: soft-light;
@@ -2116,9 +2116,9 @@ p {
   background:
     radial-gradient(
       ellipse at 50% 48%,
-      rgba(255, 253, 233, 0.9) 0%,
-      rgba(247, 249, 228, 0.62) 34%,
-      rgba(239, 243, 220, 0.2) 61%,
+      rgba(255, 246, 226, 0.9) 0%,
+      rgba(255, 234, 205, 0.62) 34%,
+      rgba(255, 211, 164, 0.2) 61%,
       transparent 76%
     );
   filter: blur(var(--dapple-blur, 0.8rem));
@@ -2221,9 +2221,9 @@ p {
   background:
     radial-gradient(
       circle at 48% 45%,
-      rgba(255, 255, 238, 0.58) 0%,
-      rgba(249, 251, 232, 0.32) 26%,
-      rgba(240, 245, 224, 0.12) 48%,
+      rgba(255, 246, 225, 0.58) 0%,
+      rgba(255, 231, 199, 0.32) 26%,
+      rgba(255, 208, 158, 0.12) 48%,
       transparent 70%
     );
   filter: blur(0.95rem);
@@ -2244,7 +2244,7 @@ p {
   background:
     repeating-linear-gradient(
       112deg,
-      rgba(255, 255, 246, 0.05) 0 1px,
+      rgba(255, 247, 231, 0.05) 0 1px,
       transparent 1px 4px
     );
   mix-blend-mode: overlay;
@@ -2283,7 +2283,7 @@ p {
 .about-title {
   max-width: 100%;
   margin: 1.1rem auto 1rem;
-  color: #f5f5eb;
+  color: #fff7ed;
   font-family: "Inclusive Sans", var(--font-sans);
   font-size: var(--text-title-size);
   font-style: italic;
@@ -2291,15 +2291,15 @@ p {
   letter-spacing: -0.04em;
   line-height: 1.05;
   text-shadow:
-    0 1px 1px rgba(44, 57, 47, 0.12),
-    0 0 2rem rgba(248, 249, 234, 0.18);
+    0 1px 1px rgba(63, 42, 29, 0.12),
+    0 0 2rem rgba(255, 241, 217, 0.18);
   animation: about-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .about-lede {
   max-width: 28rem;
   margin: 0;
-  color: rgba(247, 247, 235, 0.86);
+  color: rgba(255, 247, 237, 0.86);
   font-size: var(--text-tertiary-size);
   font-weight: var(--text-tertiary-weight);
   line-height: 1.55;
@@ -2311,7 +2311,7 @@ p {
   align-items: center;
   gap: 0.55rem;
   margin: clamp(3.5rem, 9vh, 6.5rem) 0 0;
-  color: rgba(54, 65, 58, 0.68);
+  color: rgba(74, 57, 49, 0.68);
   font-size: var(--text-tertiary-size);
   font-style: italic;
   font-weight: 400;
@@ -2320,9 +2320,9 @@ p {
 }
 
 .about-hint__mark {
-  color: rgba(249, 249, 232, 0.88);
+  color: rgba(255, 244, 222, 0.88);
   font-style: normal;
-  text-shadow: 0 0 0.8rem rgba(255, 255, 235, 0.75);
+  text-shadow: 0 0 0.8rem rgba(255, 236, 208, 0.75);
 }
 
 .about-layout {
@@ -2333,7 +2333,7 @@ p {
   width: min(100%, 59rem);
   margin-inline: auto;
   padding-top: clamp(4rem, 9vw, 7.5rem);
-  border-top: 1px solid rgba(245, 246, 235, 0.35);
+  border-top: 1px solid rgba(255, 241, 222, 0.35);
 }
 
 .about-copy {
@@ -2352,7 +2352,7 @@ p {
 
 .about-note {
   margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
-  color: rgba(54, 65, 58, 0.65);
+  color: rgba(74, 57, 49, 0.65);
   font-size: var(--text-tertiary-size);
   font-style: italic;
   line-height: 1.55;
@@ -2372,20 +2372,20 @@ p {
   max-width: none;
   margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(245, 246, 235, 0.52);
+  border: 1px solid rgba(255, 240, 221, 0.52);
   border-radius: clamp(1.25rem, 2.6vw, 1.85rem);
-  background: #e6e9de;
+  background: #eadfd3;
   box-shadow:
-    0 0 0 8px rgba(237, 240, 225, 0.3),
-    0 1.5rem 3.5rem rgba(34, 48, 38, 0.18);
+    0 0 0 8px rgba(255, 234, 207, 0.3),
+    0 1.5rem 3.5rem rgba(58, 39, 27, 0.18);
   transition: box-shadow 0.55s ease;
 }
 
 .about-portrait:hover {
   box-shadow:
-    0 0 0 8px rgba(244, 246, 232, 0.58),
-    0 1.5rem 3.5rem rgba(34, 48, 38, 0.22),
-    0 0 4rem rgba(242, 245, 225, 0.36);
+    0 0 0 8px rgba(255, 239, 218, 0.58),
+    0 1.5rem 3.5rem rgba(58, 39, 27, 0.22),
+    0 0 4rem rgba(255, 221, 185, 0.36);
 }
 
 .about-portrait__frame {
@@ -2424,7 +2424,7 @@ p {
   bottom: -1rem;
   left: -1.1rem;
   z-index: 4;
-  filter: drop-shadow(0 12px 18px rgba(33, 49, 38, 0.16));
+  filter: drop-shadow(0 12px 18px rgba(60, 40, 27, 0.16));
   transition: transform 0.35s ease;
 }
 
@@ -2434,12 +2434,12 @@ p {
 }
 
 .about-foreword-envelope .foreword-envelope__label {
-  color: #59675b;
+  color: #9b725d;
 }
 
 .about-endnote {
   margin: clamp(5rem, 10vw, 8rem) auto 0;
-  color: rgba(247, 247, 235, 0.76);
+  color: rgba(255, 247, 237, 0.76);
   font-size: var(--text-tertiary-size);
   font-style: italic;
   font-weight: 400;
