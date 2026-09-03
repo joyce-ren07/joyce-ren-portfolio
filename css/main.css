@@ -1069,7 +1069,7 @@ p {
   --case-bg: #2f3631;
   --case-text: #36413a;
   --case-heading: #f5f5eb;
-  --about-stage: #c7cec1;
+  --about-stage: #aeb9ad;
   --about-ink: #36413a;
   --about-muted: rgba(54, 65, 58, 0.72);
   --nav-glow-color: rgb(239, 242, 224);
@@ -2062,8 +2062,8 @@ p {
   z-index: 0;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(242, 244, 231, 0.26), transparent 43%),
-    linear-gradient(320deg, rgba(151, 170, 151, 0.24), transparent 58%),
+    linear-gradient(135deg, rgba(242, 244, 231, 0.28), transparent 43%),
+    linear-gradient(320deg, rgba(64, 84, 68, 0.28), transparent 58%),
     var(--about-stage);
   pointer-events: none;
 }
@@ -2073,12 +2073,12 @@ p {
   position: absolute;
   inset: -12%;
   background:
-    radial-gradient(ellipse 21rem 14rem at 11% 17%, rgba(247, 247, 233, 0.3), transparent 72%),
-    radial-gradient(ellipse 26rem 17rem at 41% 3%, rgba(244, 246, 228, 0.24), transparent 74%),
-    radial-gradient(ellipse 24rem 18rem at 91% 30%, rgba(238, 242, 224, 0.28), transparent 73%),
-    radial-gradient(ellipse 28rem 17rem at 67% 91%, rgba(239, 242, 226, 0.2), transparent 72%),
-    radial-gradient(ellipse 20rem 13rem at 5% 82%, rgba(172, 188, 167, 0.22), transparent 74%);
-  filter: blur(1.5rem);
+    radial-gradient(ellipse 21rem 14rem at 11% 17%, rgba(245, 247, 230, 0.38), transparent 72%),
+    radial-gradient(ellipse 26rem 17rem at 41% 3%, rgba(244, 246, 228, 0.31), transparent 74%),
+    radial-gradient(ellipse 24rem 18rem at 91% 30%, rgba(239, 244, 224, 0.36), transparent 73%),
+    radial-gradient(ellipse 28rem 17rem at 67% 91%, rgba(238, 243, 225, 0.29), transparent 72%),
+    radial-gradient(ellipse 20rem 13rem at 5% 82%, rgba(66, 86, 70, 0.24), transparent 74%);
+  filter: blur(1.25rem);
   opacity: 0.95;
   transform: scale(1.08);
 }
@@ -2116,12 +2116,12 @@ p {
   background:
     radial-gradient(
       ellipse at 50% 48%,
-      rgba(253, 252, 239, 0.72) 0%,
-      rgba(245, 247, 230, 0.42) 34%,
-      rgba(239, 243, 226, 0.12) 61%,
+      rgba(255, 253, 233, 0.9) 0%,
+      rgba(247, 249, 228, 0.62) 34%,
+      rgba(239, 243, 220, 0.2) 61%,
       transparent 76%
     );
-  filter: blur(var(--dapple-blur, 1.15rem));
+  filter: blur(var(--dapple-blur, 0.8rem));
   mix-blend-mode: screen;
   opacity: var(--dapple-opacity, 0.72);
   transform: translate3d(var(--dapple-shift-x), var(--dapple-shift-y), 0)
@@ -2137,7 +2137,8 @@ p {
   --dapple-width: 31%;
   --dapple-height: 24%;
   --dapple-rotation: -18deg;
-  --dapple-opacity: 0.68;
+  --dapple-opacity: 0.78;
+  --dapple-blur: 0.75rem;
 }
 
 .about-dapple__light--two {
@@ -2146,7 +2147,8 @@ p {
   --dapple-width: 28%;
   --dapple-height: 30%;
   --dapple-rotation: 24deg;
-  --dapple-opacity: 0.58;
+  --dapple-opacity: 0.7;
+  --dapple-blur: 0.95rem;
 }
 
 .about-dapple__light--three {
@@ -2155,7 +2157,8 @@ p {
   --dapple-width: 35%;
   --dapple-height: 25%;
   --dapple-rotation: -10deg;
-  --dapple-opacity: 0.76;
+  --dapple-opacity: 0.88;
+  --dapple-blur: 0.7rem;
 }
 
 .about-dapple__light--four {
@@ -2164,7 +2167,8 @@ p {
   --dapple-width: 31%;
   --dapple-height: 28%;
   --dapple-rotation: 20deg;
-  --dapple-opacity: 0.64;
+  --dapple-opacity: 0.76;
+  --dapple-blur: 0.9rem;
 }
 
 .about-dapple__light--five {
@@ -2173,7 +2177,8 @@ p {
   --dapple-width: 36%;
   --dapple-height: 28%;
   --dapple-rotation: 9deg;
-  --dapple-opacity: 0.54;
+  --dapple-opacity: 0.64;
+  --dapple-blur: 0.95rem;
 }
 
 .about-dapple__light--six {
@@ -2182,7 +2187,8 @@ p {
   --dapple-width: 30%;
   --dapple-height: 27%;
   --dapple-rotation: -25deg;
-  --dapple-opacity: 0.5;
+  --dapple-opacity: 0.62;
+  --dapple-blur: 0.8rem;
 }
 
 .about-dapple__light--seven {
@@ -2191,7 +2197,8 @@ p {
   --dapple-width: 38%;
   --dapple-height: 31%;
   --dapple-rotation: 16deg;
-  --dapple-opacity: 0.62;
+  --dapple-opacity: 0.78;
+  --dapple-blur: 0.75rem;
 }
 
 .about-dapple__light--eight {
@@ -2200,34 +2207,35 @@ p {
   --dapple-width: 32%;
   --dapple-height: 28%;
   --dapple-rotation: -18deg;
-  --dapple-opacity: 0.56;
+  --dapple-opacity: 0.68;
+  --dapple-blur: 0.9rem;
 }
 
 .about-dapple__cursor {
   position: absolute;
   left: var(--dapple-cursor-x, 50%);
   top: var(--dapple-cursor-y, 44%);
-  width: min(44vw, 38rem);
+  width: min(48vw, 42rem);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
     radial-gradient(
       circle at 48% 45%,
-      rgba(255, 255, 243, 0.42) 0%,
-      rgba(249, 250, 234, 0.2) 26%,
-      rgba(240, 244, 226, 0.08) 48%,
+      rgba(255, 255, 238, 0.58) 0%,
+      rgba(249, 251, 232, 0.32) 26%,
+      rgba(240, 245, 224, 0.12) 48%,
       transparent 70%
     );
-  filter: blur(1.2rem);
+  filter: blur(0.95rem);
   mix-blend-mode: screen;
-  opacity: 0.3;
+  opacity: 0.4;
   transform: translate(-50%, -50%) scale(calc(0.92 + var(--dapple-pulse, 0) * 0.1));
   transition: opacity 0.8s ease;
   will-change: left, top, transform;
 }
 
 .about-main.is-pointer-active .about-dapple__cursor {
-  opacity: 0.78;
+  opacity: 0.95;
 }
 
 .about-dapple__grain {

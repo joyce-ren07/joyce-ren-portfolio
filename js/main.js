@@ -1320,10 +1320,10 @@
         dappleCursor.style.setProperty("--dapple-pulse", pulse.toFixed(3));
 
         dappleLayers.forEach((layer) => {
-          const desiredX = (pointer.x - 0.5) * 58 * layer.depth;
-          const desiredY = (pointer.y - 0.44) * 44 * layer.depth;
+          const desiredX = (pointer.x - 0.5) * 94 * layer.depth;
+          const desiredY = (pointer.y - 0.44) * 68 * layer.depth;
           const idleWave = Math.sin(time * 0.0014 + layer.phase) * 1.7;
-          const rippleWave = Math.sin(time * 0.0038 - layer.phase * 1.7) * pulse * 4.5;
+          const rippleWave = Math.sin(time * 0.0038 - layer.phase * 1.7) * pulse * 6.5;
 
           layer.x += (desiredX - layer.x) * layer.follow;
           layer.y += (desiredY - layer.y) * layer.follow;
