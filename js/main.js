@@ -1264,6 +1264,94 @@
     }
   }
 
+  /* About page — soft cursor-responsive dappled light */
+  const dappleScene = document.querySelector("[data-dapple-scene]");
+  if (dappleScene) {
+    const dappleCursor = dappleScene.querySelector(".about-dapple__cursor");
+    const dappleLayers = Array.from(dappleScene.querySelectorAll("[data-dapple-layer]")).map(
+      (element, index) => ({
+        element,
+        depth: Math.min(Math.max(Number(element.dataset.dappleLayer) || 0.5, 0.2), 1),
+        follow: 0.045 + index * 0.006,
+        phase: index * 0.82,
+        x: 0,
+        y: 0,
+      })
+    );
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reducedMotion && dappleCursor && dappleLayers.length) {
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      const pointer = { x: 0.5, y: 0.44 };
+      const target = { x: 0.5, y: 0.44 };
+      const lastTarget = { x: 0.5, y: 0.44 };
+      let pulse = 0;
+
+      const updateTarget = (event) => {
+        if (event.pointerType === "touch") return;
+
+        const rect = dappleScene.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+
+        const x = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+        const y = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+        const travel = Math.hypot(x - lastTarget.x, y - lastTarget.y);
+
+        target.x = x;
+        target.y = y;
+        lastTarget.x = x;
+        lastTarget.y = y;
+        pulse = Math.min(1, pulse + travel * 3.2);
+        dappleScene.classList.add("is-pointer-active");
+      };
+
+      const resetTarget = () => {
+        target.x = 0.5;
+        target.y = 0.44;
+        dappleScene.classList.remove("is-pointer-active");
+      };
+
+      const tick = (time) => {
+        pointer.x += (target.x - pointer.x) * 0.1;
+        pointer.y += (target.y - pointer.y) * 0.1;
+
+        dappleCursor.style.setProperty("--dapple-cursor-x", `${pointer.x * 100}%`);
+        dappleCursor.style.setProperty("--dapple-cursor-y", `${pointer.y * 100}%`);
+        dappleCursor.style.setProperty("--dapple-pulse", pulse.toFixed(3));
+
+        dappleLayers.forEach((layer) => {
+          const desiredX = (pointer.x - 0.5) * 94 * layer.depth;
+          const desiredY = (pointer.y - 0.44) * 68 * layer.depth;
+          const idleWave = Math.sin(time * 0.0014 + layer.phase) * 1.7;
+          const rippleWave = Math.sin(time * 0.0038 - layer.phase * 1.7) * pulse * 6.5;
+
+          layer.x += (desiredX - layer.x) * layer.follow;
+          layer.y += (desiredY - layer.y) * layer.follow;
+          layer.element.style.setProperty(
+            "--dapple-shift-x",
+            `${(layer.x + idleWave + rippleWave).toFixed(2)}px`
+          );
+          layer.element.style.setProperty(
+            "--dapple-shift-y",
+            `${(layer.y + idleWave * 0.72 + rippleWave * 0.58).toFixed(2)}px`
+          );
+          layer.element.style.setProperty(
+            "--dapple-pulse",
+            (pulse * (0.55 + layer.depth * 0.45)).toFixed(3)
+          );
+        });
+
+        pulse *= 0.94;
+        window.requestAnimationFrame(tick);
+      };
+
+      dappleScene.addEventListener("pointermove", updateTarget, { passive: true });
+      dappleScene.addEventListener("pointerleave", resetTarget, { passive: true });
+      dappleScene.addEventListener("pointercancel", resetTarget, { passive: true });
+      window.requestAnimationFrame(tick);
+    }
+  }
+
   const envelopeTrigger = document.querySelector("[data-foreword-envelope]");
   const forewordLetter = document.querySelector("[data-foreword-letter]");
   if (envelopeTrigger && forewordLetter) {

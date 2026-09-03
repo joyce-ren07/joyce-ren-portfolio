@@ -33,58 +33,84 @@
     </div>
   </header>
 
-  <main class="about-main">
-    <h1 class="about-title">Hey, I'm Joyce!</h1>
+  <main class="about-main" data-dapple-scene>
+    <div class="about-dapple" aria-hidden="true">
+      <span class="about-dapple__light about-dapple__light--one" data-dapple-layer="0.34"></span>
+      <span class="about-dapple__light about-dapple__light--two" data-dapple-layer="0.52"></span>
+      <span class="about-dapple__light about-dapple__light--three" data-dapple-layer="0.72"></span>
+      <span class="about-dapple__light about-dapple__light--four" data-dapple-layer="0.44"></span>
+      <span class="about-dapple__light about-dapple__light--five" data-dapple-layer="0.64"></span>
+      <span class="about-dapple__light about-dapple__light--six" data-dapple-layer="0.88"></span>
+      <span class="about-dapple__light about-dapple__light--seven" data-dapple-layer="0.56"></span>
+      <span class="about-dapple__light about-dapple__light--eight" data-dapple-layer="0.78"></span>
+      <span class="about-dapple__cursor"></span>
+      <span class="about-dapple__grain"></span>
+    </div>
 
-    <div class="about-layout">
-      <div class="about-copy">
-        <p class="about-body">
-          I'm a Cognitive Science &amp; HCI student at UC San Diego, exploring where thinking, feeling,
-          and design overlap. I'm endlessly curious about how I can create to shed light: on the texture
-          of everyday interactions, on our most overlooked margins and creases.
+    <div class="about-main__content">
+      <section class="about-hero" aria-labelledby="about-title">
+        <p class="about-kicker">ABOUT / HUMAN-CENTERED DESIGN</p>
+        <h1 class="about-title" id="about-title">Hey, I'm Joyce!</h1>
+        <p class="about-lede">Designing for the parts of being human that don't fit neatly into a box.</p>
+        <p class="about-hint">
+          <span class="about-hint__mark" aria-hidden="true">✦</span>
+          move through the light
         </p>
-        <p class="about-hint">ps, hover over me!</p>
-      </div>
+      </section>
 
-      <div class="about-portrait-stack">
-        <figure class="about-portrait">
-          <div class="about-portrait__frame">
-            <img
-              src="../assets/images/joyce-about-bw.jpg"
-              alt="Joyce Ren smiling outdoors on a balcony"
-              class="about-portrait__img about-portrait__img--bw"
-              width="1536"
-              height="2304"
-            >
-            <img
-              src="../assets/images/joyce-about-color.jpg"
-              alt=""
-              class="about-portrait__img about-portrait__img--color"
-              width="1536"
-              height="2304"
-              aria-hidden="true"
-            >
-          </div>
-        </figure>
+      <section class="about-layout" aria-label="A little about Joyce">
+        <div class="about-copy">
+          <p class="about-detail-kicker">THE SHORT VERSION</p>
+          <p class="about-body">
+            I'm a Cognitive Science &amp; HCI student at UC San Diego, exploring where thinking, feeling,
+            and design overlap. I'm endlessly curious about how I can create to shed light: on the texture
+            of everyday interactions, on our most overlooked margins and creases.
+          </p>
+          <p class="about-note">ps, hover over my portrait to bring it to life.</p>
+        </div>
 
-        <button
-          type="button"
-          class="foreword-envelope about-foreword-envelope"
-          data-foreword-envelope
-          aria-haspopup="dialog"
-          aria-controls="foreword-letter"
-          aria-label="Open foreword letter"
-        >
-          <span class="foreword-envelope__paper" aria-hidden="true">
-            <span class="foreword-envelope__paper-lines"></span>
-          </span>
-          <span class="foreword-envelope__body" aria-hidden="true">
-            <span class="foreword-envelope__flap"></span>
-            <span class="foreword-envelope__face"></span>
-          </span>
-          <span class="foreword-envelope__label">Foreword</span>
-        </button>
-      </div>
+        <div class="about-portrait-stack">
+          <figure class="about-portrait">
+            <div class="about-portrait__frame">
+              <img
+                src="../assets/images/joyce-about-bw.jpg"
+                alt="Joyce Ren smiling outdoors on a balcony"
+                class="about-portrait__img about-portrait__img--bw"
+                width="1536"
+                height="2304"
+              >
+              <img
+                src="../assets/images/joyce-about-color.jpg"
+                alt=""
+                class="about-portrait__img about-portrait__img--color"
+                width="1536"
+                height="2304"
+                aria-hidden="true"
+              >
+            </div>
+          </figure>
+
+          <button
+            type="button"
+            class="foreword-envelope about-foreword-envelope"
+            data-foreword-envelope
+            aria-haspopup="dialog"
+            aria-controls="foreword-letter"
+            aria-label="Open foreword letter"
+          >
+            <span class="foreword-envelope__paper" aria-hidden="true">
+              <span class="foreword-envelope__paper-lines"></span>
+            </span>
+            <span class="foreword-envelope__body" aria-hidden="true">
+              <span class="foreword-envelope__flap"></span>
+              <span class="foreword-envelope__face"></span>
+            </span>
+            <span class="foreword-envelope__label">Foreword</span>
+          </button>
+        </div>
+      </section>
+
+      <p class="about-endnote">There is always more to notice.</p>
     </div>
   </main>
 
