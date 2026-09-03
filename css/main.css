@@ -704,7 +704,7 @@ p {
 
 .work-card {
   --work-card-radius: 1.25rem;
-  --work-card-glow-spread: 12px;
+  --work-card-glow-spread: 10px;
   display: flex;
   flex-direction: column;
   background: var(--color-surface);
