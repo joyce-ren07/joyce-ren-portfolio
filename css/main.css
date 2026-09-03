@@ -44,6 +44,10 @@
   --nav-glow-mid: rgba(255, 160, 80, 0.38);
   --nav-glow-soft: rgba(255, 175, 100, 0.22);
   --nav-glow-hover: var(--nav-glow-color);
+  --nav-glow-hover-shadow:
+    0 0 10px rgba(255, 220, 175, 0.95),
+    0 0 22px rgba(255, 185, 120, 0.65),
+    0 0 36px rgba(255, 160, 90, 0.35);
   --nav-glow-travel: 0.9s cubic-bezier(0.33, 1, 0.68, 1);
   --nav-glow-pad-x: 10px;
   --nav-glow-pad-y: 6px;
@@ -2431,7 +2435,7 @@ p {
   font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
-  transition: color 0.32s ease, border-color 0.32s ease;
+  transition: color 0.32s ease, border-color 0.32s ease, text-shadow 0.5s ease;
 }
 
 .home-footer__email-text,
@@ -2447,8 +2451,9 @@ p {
 
 .home-footer__email:hover,
 .home-footer__email:focus-visible {
-  color: #8a8a8a;
+  color: var(--nav-glow-hover);
   border-color: rgba(255, 198, 145, 0.42);
+  text-shadow: var(--nav-glow-hover-shadow);
 }
 
 .home-footer__links {
@@ -2463,12 +2468,13 @@ p {
   font-weight: 500;
   color: #a1a1a1;
   line-height: 1.45;
-  transition: color 0.32s ease;
+  transition: color 0.32s ease, text-shadow 0.5s ease;
 }
 
 .home-footer__links a:hover,
 .home-footer__links a:focus-visible {
-  color: #7a7a7a;
+  color: var(--nav-glow-hover);
+  text-shadow: var(--nav-glow-hover-shadow);
 }
 
 @media (max-width: 768px) {
@@ -2874,8 +2880,10 @@ p {
   flex-shrink: 0;
 }
 
-.case-topbar__nav a:hover:not(.is-active) {
+.case-topbar__nav a:hover:not(.is-active),
+.case-topbar__nav a:focus-visible:not(.is-active) {
   color: var(--nav-glow-hover);
+  text-shadow: var(--nav-glow-hover-shadow);
 }
 
 .case-topbar__nav a.is-active {
@@ -2887,8 +2895,10 @@ p {
     0 0 36px rgba(255, 160, 90, 0.35);
 }
 
-.case-topbar__resume:hover {
-  color: #a1a1a1;
+.case-topbar__resume:hover,
+.case-topbar__resume:focus-visible {
+  color: var(--nav-glow-hover);
+  text-shadow: var(--nav-glow-hover-shadow);
 }
 
 @media (prefers-reduced-motion: reduce) {
