@@ -1286,6 +1286,12 @@
       const POINTER_TRAVEL_SENSITIVITY = 4.2;
       const RIPPLE_AMPLITUDE = 8;
       const RIPPLE_DECAY = 0.93;
+      const IDLE_RIPPLE_SPEED = 0.0018;
+      const IDLE_RIPPLE_AMPLITUDE = 2.4;
+      const IDLE_WOBBLE_SPEED = 0.0031;
+      const IDLE_WOBBLE_AMPLITUDE = 0.9;
+      const IDLE_PULSE_SPEED = 0.0012;
+      const IDLE_PULSE_AMOUNT = 0.12;
       const pointer = { x: 0.5, y: 0.44 };
       const target = { x: 0.5, y: 0.44 };
       const lastTarget = { x: 0.5, y: 0.44 };
@@ -1326,7 +1332,17 @@
         dappleLayers.forEach((layer) => {
           const desiredX = (pointer.x - 0.5) * 102 * layer.depth;
           const desiredY = (pointer.y - 0.44) * 74 * layer.depth;
-          const idleWave = Math.sin(time * 0.0014 + layer.phase) * 1.7;
+          // Keep a low-amplitude, phase-shifted ripple alive while the pointer
+          // is still so the spots never become completely static.
+          const idleRipple =
+            Math.sin(time * IDLE_RIPPLE_SPEED - layer.phase * 1.15) *
+            IDLE_RIPPLE_AMPLITUDE;
+          const idleWobble =
+            Math.cos(time * IDLE_WOBBLE_SPEED + layer.phase * 0.7) *
+            IDLE_WOBBLE_AMPLITUDE;
+          const idlePulse =
+            (0.5 + 0.5 * Math.sin(time * IDLE_PULSE_SPEED - layer.phase * 0.8)) *
+            IDLE_PULSE_AMOUNT;
           const rippleWave =
             Math.sin(time * 0.0038 - layer.phase * 1.7) * pulse * RIPPLE_AMPLITUDE;
 
@@ -1334,15 +1350,15 @@
           layer.y += (desiredY - layer.y) * layer.follow;
           layer.element.style.setProperty(
             "--dapple-shift-x",
-            `${(layer.x + idleWave + rippleWave).toFixed(2)}px`
+            `${(layer.x + idleRipple + idleWobble + rippleWave).toFixed(2)}px`
           );
           layer.element.style.setProperty(
             "--dapple-shift-y",
-            `${(layer.y + idleWave * 0.72 + rippleWave * 0.58).toFixed(2)}px`
+            `${(layer.y + idleRipple * 0.72 + idleWobble * 0.55 + rippleWave * 0.58).toFixed(2)}px`
           );
           layer.element.style.setProperty(
             "--dapple-pulse",
-            (pulse * (0.55 + layer.depth * 0.45)).toFixed(3)
+            (pulse * (0.55 + layer.depth * 0.45) + idlePulse).toFixed(3)
           );
         });
 
