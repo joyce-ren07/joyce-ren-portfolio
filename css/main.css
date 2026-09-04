@@ -2603,16 +2603,6 @@ p {
   color: #9b725d;
 }
 
-.about-endnote {
-  margin: clamp(5rem, 10vw, 8rem) auto 0;
-  color: rgba(255, 247, 237, 0.76);
-  font-size: var(--text-tertiary-size);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  text-align: center;
-}
-
 @keyframes about-rise {
   from {
     opacity: 0;
