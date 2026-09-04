@@ -497,7 +497,7 @@ p {
 .lamp-hero__intro .lamp-hero__tagline {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: calc(var(--text-secondary-size) - 1px);
+  font-size: calc(var(--text-secondary-size) - 2px);
   font-style: italic;
   font-weight: 550;
   letter-spacing: -0.02em;
@@ -551,7 +551,7 @@ p {
   }
 
   .lamp-hero__intro .lamp-hero__tagline {
-    font-size: calc(var(--text-secondary-size) - 1px);
+    font-size: calc(var(--text-secondary-size) - 2px);
   }
 }
 
