@@ -2269,7 +2269,6 @@ p {
   text-align: center;
 }
 
-.about-kicker,
 .about-detail-kicker {
   margin: 0;
   color: var(--about-muted);
@@ -2282,7 +2281,7 @@ p {
 
 .about-title {
   max-width: 100%;
-  margin: 1.1rem auto 1rem;
+  margin: 0 auto 1rem;
   color: #fff7ed;
   font-family: "Inclusive Sans", var(--font-sans);
   font-size: var(--text-title-size);
