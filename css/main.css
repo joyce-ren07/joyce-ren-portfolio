@@ -448,10 +448,9 @@ p {
 
 .lamp-hero__hint {
   margin-top: 0.3rem;
-  font-size: clamp(0.8rem, 1.4vw, 0.95rem);
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.04em;
+  font-size: var(--text-tertiary-size);
+  font-style: normal;
+  font-weight: var(--text-tertiary-weight);
   color: rgb(153, 153, 153);
   white-space: nowrap;
   opacity: calc(1 - var(--lamp-power));
