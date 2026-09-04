@@ -2942,7 +2942,7 @@ p {
 
 .home-footer__email:hover,
 .home-footer__email:focus-visible {
-  color: #8a8a8a;
+  color: var(--nav-glow-hover);
   border-color: rgba(255, 198, 145, 0.42);
 }
 
@@ -2963,7 +2963,7 @@ p {
 
 .home-footer__links a:hover,
 .home-footer__links a:focus-visible {
-  color: #7a7a7a;
+  color: var(--nav-glow-hover);
 }
 
 @media (max-width: 768px) {
@@ -3383,7 +3383,7 @@ p {
 }
 
 .case-topbar__resume:hover {
-  color: #a1a1a1;
+  color: var(--nav-glow-hover);
 }
 
 @media (prefers-reduced-motion: reduce) {
