@@ -2258,8 +2258,8 @@ p {
   inset: -18%;
   z-index: 1;
   pointer-events: none;
-  mix-blend-mode: soft-light;
-  opacity: 0.68;
+  mix-blend-mode: overlay;
+  opacity: 0.72;
   transform: translate3d(var(--streak-shift-x), var(--streak-shift-y), 0);
   will-change: transform;
   backface-visibility: hidden;
@@ -2276,13 +2276,13 @@ p {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 247, 231, 0.04) 9%,
-    rgba(255, 241, 217, 0.13) 29%,
-    rgba(255, 246, 226, 0.2) 52%,
-    rgba(255, 239, 214, 0.09) 76%,
+    rgba(255, 247, 231, 0.08) 9%,
+    rgba(255, 241, 217, 0.24) 29%,
+    rgba(255, 246, 226, 0.34) 52%,
+    rgba(255, 239, 214, 0.16) 76%,
     transparent 100%
   );
-  filter: blur(var(--streak-blur, 1rem));
+  filter: blur(var(--streak-blur, 0.75rem));
   opacity: var(--streak-opacity, 0.78);
   transform: rotate(var(--streak-angle, -27deg)) scaleX(var(--streak-scale, 1));
   transform-origin: center;
@@ -2295,7 +2295,7 @@ p {
   --streak-height: 2.4rem;
   --streak-angle: -24deg;
   --streak-opacity: 0.7;
-  --streak-blur: 1.15rem;
+  --streak-blur: 0.8rem;
 }
 
 .about-dapple__streak--two {
@@ -2305,7 +2305,7 @@ p {
   --streak-height: 1.15rem;
   --streak-angle: -31deg;
   --streak-opacity: 0.62;
-  --streak-blur: 0.85rem;
+  --streak-blur: 0.6rem;
   --streak-scale: 0.82;
 }
 
@@ -2316,7 +2316,7 @@ p {
   --streak-height: 3.2rem;
   --streak-angle: -27deg;
   --streak-opacity: 0.76;
-  --streak-blur: 1.35rem;
+  --streak-blur: 0.95rem;
   --streak-scale: 1.08;
 }
 
@@ -2327,7 +2327,7 @@ p {
   --streak-height: 1.75rem;
   --streak-angle: -19deg;
   --streak-opacity: 0.56;
-  --streak-blur: 0.95rem;
+  --streak-blur: 0.7rem;
   --streak-scale: 0.9;
 }
 
@@ -2338,7 +2338,7 @@ p {
   --streak-height: 2.5rem;
   --streak-angle: -34deg;
   --streak-opacity: 0.68;
-  --streak-blur: 1.1rem;
+  --streak-blur: 0.8rem;
 }
 
 .about-dapple__streak--six {
@@ -2348,7 +2348,7 @@ p {
   --streak-height: 3rem;
   --streak-angle: -22deg;
   --streak-opacity: 0.72;
-  --streak-blur: 1.3rem;
+  --streak-blur: 0.9rem;
   --streak-scale: 1.12;
 }
 
@@ -2359,7 +2359,7 @@ p {
   --streak-height: 1.3rem;
   --streak-angle: -30deg;
   --streak-opacity: 0.58;
-  --streak-blur: 0.9rem;
+  --streak-blur: 0.65rem;
   --streak-scale: 0.86;
 }
 
@@ -2370,7 +2370,7 @@ p {
   --streak-height: 2.7rem;
   --streak-angle: -26deg;
   --streak-opacity: 0.66;
-  --streak-blur: 1.25rem;
+  --streak-blur: 0.85rem;
 }
 
 .about-main__content {
