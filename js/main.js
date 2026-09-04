@@ -1352,9 +1352,10 @@
     }
   }
 
-  /* About page — delayed cursor parallax for diagonal light streaks */
+  /* About page — move the complete diagonal light-streak group as one layer */
   const streakLayer = document.querySelector("[data-dapple-streaks]");
-  if (streakLayer) {
+  const streakScene = streakLayer?.closest("[data-dapple-scene]");
+  if (streakLayer && streakScene) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (!reducedMotion) {
@@ -1397,15 +1398,11 @@
         window.requestAnimationFrame(tick);
       };
 
-      window.addEventListener("pointermove", updateTarget, { passive: true });
-      window.addEventListener(
-        "pointerout",
-        (event) => {
-          if (!event.relatedTarget) resetTarget();
-        },
-        { passive: true }
-      );
-      window.addEventListener("pointercancel", resetTarget, { passive: true });
+      // The decorative streak layer ignores pointer events, so track the scene
+      // once and apply the shared transform to the wrapper around every streak.
+      streakScene.addEventListener("pointermove", updateTarget, { passive: true });
+      streakScene.addEventListener("pointerleave", resetTarget, { passive: true });
+      streakScene.addEventListener("pointercancel", resetTarget, { passive: true });
       window.addEventListener("blur", resetTarget);
       window.requestAnimationFrame(tick);
     }
