@@ -1298,7 +1298,7 @@
       let pulse = 0;
 
       const updateTarget = (event) => {
-        if (event.pointerType === "touch") return;
+        if (event.pointerType === "touch" && event.isPrimary === false) return;
 
         const rect = dappleScene.getBoundingClientRect();
         if (!rect.width || !rect.height) return;
@@ -1319,6 +1319,10 @@
         target.x = 0.5;
         target.y = 0.44;
         dappleScene.classList.remove("is-pointer-active");
+      };
+
+      const resetTouchTarget = (event) => {
+        if (event.pointerType === "touch") resetTarget();
       };
 
       const tick = (time) => {
@@ -1366,7 +1370,9 @@
         window.requestAnimationFrame(tick);
       };
 
+      dappleScene.addEventListener("pointerdown", updateTarget, { passive: true });
       dappleScene.addEventListener("pointermove", updateTarget, { passive: true });
+      dappleScene.addEventListener("pointerup", resetTouchTarget, { passive: true });
       dappleScene.addEventListener("pointerleave", resetTarget, { passive: true });
       dappleScene.addEventListener("pointercancel", resetTarget, { passive: true });
       window.requestAnimationFrame(tick);
@@ -1388,7 +1394,7 @@
       const target = { x: 0, y: 0 };
 
       const updateTarget = (event) => {
-        if (event.pointerType === "touch") return;
+        if (event.pointerType === "touch" && event.isPrimary === false) return;
 
         const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -1401,6 +1407,10 @@
       const resetTarget = () => {
         target.x = 0;
         target.y = 0;
+      };
+
+      const resetTouchTarget = (event) => {
+        if (event.pointerType === "touch") resetTarget();
       };
 
       const tick = () => {
@@ -1421,7 +1431,9 @@
 
       // The decorative streak layer ignores pointer events, so track the scene
       // once and apply the shared transform to the wrapper around every streak.
+      streakScene.addEventListener("pointerdown", updateTarget, { passive: true });
       streakScene.addEventListener("pointermove", updateTarget, { passive: true });
+      streakScene.addEventListener("pointerup", resetTouchTarget, { passive: true });
       streakScene.addEventListener("pointerleave", resetTarget, { passive: true });
       streakScene.addEventListener("pointercancel", resetTarget, { passive: true });
       window.addEventListener("blur", resetTarget);
