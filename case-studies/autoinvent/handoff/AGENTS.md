@@ -5,7 +5,7 @@ the tokens and classes below. Never introduce colors, fonts, or radii not define
 
 ## Non-negotiables
 - Page background is always `--page-bg` (#EAE8E4, warm grey). Cards are `--card-bg` (#FAF9F7).
-- Type is `--font` (TT Norms Pro, falling back to Hanken Grotesk). No Inter, Roboto, or Arial.
+- Type is `--font` (Rethink Sans, falling back to the system sans-serif stack). Keep all text in the shared title, secondary, or tertiary roles.
 - Orange `--accent` (#F0774C) is the only accent. Use it for eyebrows, number badges,
   card top-rules, and card titles when a card is a "principle". Never as a large background fill.
 - No gradients, no drop shadows, no emoji, no decorative icons.

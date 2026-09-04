@@ -1,5 +1,7 @@
 # Design tokens
 
+The portfolio uses Rethink Sans through the shared `--font-sans` token on every page.
+
 ## Type scale (fixed)
 
 These sizes are the source of truth for portfolio and case-study typography.
