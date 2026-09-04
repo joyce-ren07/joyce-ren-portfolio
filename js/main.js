@@ -1272,7 +1272,7 @@
       (element, index) => ({
         element,
         depth: Math.min(Math.max(Number(element.dataset.dappleLayer) || 0.5, 0.2), 1),
-        follow: 0.045 + index * 0.006,
+        follow: 0.06 + index * 0.004,
         phase: index * 0.82,
         x: 0,
         y: 0,
@@ -1282,6 +1282,10 @@
 
     if (!reducedMotion && dappleCursor && dappleLayers.length) {
       const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      const POINTER_EASE = 0.12;
+      const POINTER_TRAVEL_SENSITIVITY = 4.2;
+      const RIPPLE_AMPLITUDE = 8;
+      const RIPPLE_DECAY = 0.93;
       const pointer = { x: 0.5, y: 0.44 };
       const target = { x: 0.5, y: 0.44 };
       const lastTarget = { x: 0.5, y: 0.44 };
@@ -1301,7 +1305,7 @@
         target.y = y;
         lastTarget.x = x;
         lastTarget.y = y;
-        pulse = Math.min(1, pulse + travel * 3.2);
+        pulse = Math.min(1, pulse + travel * POINTER_TRAVEL_SENSITIVITY);
         dappleScene.classList.add("is-pointer-active");
       };
 
@@ -1312,18 +1316,19 @@
       };
 
       const tick = (time) => {
-        pointer.x += (target.x - pointer.x) * 0.1;
-        pointer.y += (target.y - pointer.y) * 0.1;
+        pointer.x += (target.x - pointer.x) * POINTER_EASE;
+        pointer.y += (target.y - pointer.y) * POINTER_EASE;
 
         dappleCursor.style.setProperty("--dapple-cursor-x", `${pointer.x * 100}%`);
         dappleCursor.style.setProperty("--dapple-cursor-y", `${pointer.y * 100}%`);
         dappleCursor.style.setProperty("--dapple-pulse", pulse.toFixed(3));
 
         dappleLayers.forEach((layer) => {
-          const desiredX = (pointer.x - 0.5) * 94 * layer.depth;
-          const desiredY = (pointer.y - 0.44) * 68 * layer.depth;
+          const desiredX = (pointer.x - 0.5) * 102 * layer.depth;
+          const desiredY = (pointer.y - 0.44) * 74 * layer.depth;
           const idleWave = Math.sin(time * 0.0014 + layer.phase) * 1.7;
-          const rippleWave = Math.sin(time * 0.0038 - layer.phase * 1.7) * pulse * 6.5;
+          const rippleWave =
+            Math.sin(time * 0.0038 - layer.phase * 1.7) * pulse * RIPPLE_AMPLITUDE;
 
           layer.x += (desiredX - layer.x) * layer.follow;
           layer.y += (desiredY - layer.y) * layer.follow;
@@ -1341,7 +1346,7 @@
           );
         });
 
-        pulse *= 0.94;
+        pulse *= RIPPLE_DECAY;
         window.requestAnimationFrame(tick);
       };
 

@@ -2130,83 +2130,123 @@ p {
 }
 
 .about-dapple__light--one {
-  --dapple-left: -7%;
-  --dapple-top: 6%;
-  --dapple-width: 31%;
-  --dapple-height: 24%;
+  --dapple-left: -2%;
+  --dapple-top: 8%;
+  --dapple-width: 24%;
+  --dapple-height: 18%;
   --dapple-rotation: -18deg;
   --dapple-opacity: 0.78;
-  --dapple-blur: 0.75rem;
+  --dapple-blur: 0.65rem;
 }
 
 .about-dapple__light--two {
-  --dapple-left: 16%;
-  --dapple-top: -11%;
-  --dapple-width: 28%;
-  --dapple-height: 30%;
+  --dapple-left: 19%;
+  --dapple-top: 1%;
+  --dapple-width: 21%;
+  --dapple-height: 19%;
   --dapple-rotation: 24deg;
   --dapple-opacity: 0.7;
-  --dapple-blur: 0.95rem;
+  --dapple-blur: 0.75rem;
 }
 
 .about-dapple__light--three {
-  --dapple-left: 45%;
-  --dapple-top: -8%;
-  --dapple-width: 35%;
-  --dapple-height: 25%;
+  --dapple-left: 43%;
+  --dapple-top: 7%;
+  --dapple-width: 25%;
+  --dapple-height: 18%;
   --dapple-rotation: -10deg;
   --dapple-opacity: 0.88;
-  --dapple-blur: 0.7rem;
+  --dapple-blur: 0.58rem;
 }
 
 .about-dapple__light--four {
-  --dapple-left: 75%;
-  --dapple-top: 8%;
-  --dapple-width: 31%;
-  --dapple-height: 28%;
+  --dapple-left: 68%;
+  --dapple-top: 9%;
+  --dapple-width: 23%;
+  --dapple-height: 20%;
   --dapple-rotation: 20deg;
   --dapple-opacity: 0.76;
-  --dapple-blur: 0.9rem;
+  --dapple-blur: 0.7rem;
 }
 
 .about-dapple__light--five {
-  --dapple-left: -12%;
-  --dapple-top: 45%;
-  --dapple-width: 36%;
-  --dapple-height: 28%;
+  --dapple-left: 1%;
+  --dapple-top: 39%;
+  --dapple-width: 24%;
+  --dapple-height: 19%;
   --dapple-rotation: 9deg;
   --dapple-opacity: 0.64;
-  --dapple-blur: 0.95rem;
+  --dapple-blur: 0.75rem;
 }
 
 .about-dapple__light--six {
   --dapple-left: 24%;
-  --dapple-top: 34%;
-  --dapple-width: 30%;
-  --dapple-height: 27%;
+  --dapple-top: 33%;
+  --dapple-width: 22%;
+  --dapple-height: 18%;
   --dapple-rotation: -25deg;
   --dapple-opacity: 0.62;
-  --dapple-blur: 0.8rem;
+  --dapple-blur: 0.65rem;
 }
 
 .about-dapple__light--seven {
-  --dapple-left: 53%;
-  --dapple-top: 47%;
-  --dapple-width: 38%;
-  --dapple-height: 31%;
+  --dapple-left: 49%;
+  --dapple-top: 46%;
+  --dapple-width: 26%;
+  --dapple-height: 21%;
   --dapple-rotation: 16deg;
   --dapple-opacity: 0.78;
-  --dapple-blur: 0.75rem;
+  --dapple-blur: 0.62rem;
 }
 
 .about-dapple__light--eight {
-  --dapple-left: 74%;
-  --dapple-top: 70%;
-  --dapple-width: 32%;
-  --dapple-height: 28%;
+  --dapple-left: 70%;
+  --dapple-top: 64%;
+  --dapple-width: 24%;
+  --dapple-height: 19%;
   --dapple-rotation: -18deg;
   --dapple-opacity: 0.68;
-  --dapple-blur: 0.9rem;
+  --dapple-blur: 0.72rem;
+}
+
+.about-dapple__light--nine {
+  --dapple-left: 10%;
+  --dapple-top: 19%;
+  --dapple-width: 18%;
+  --dapple-height: 14%;
+  --dapple-rotation: -8deg;
+  --dapple-opacity: 0.56;
+  --dapple-blur: 0.58rem;
+}
+
+.about-dapple__light--ten {
+  --dapple-left: 34%;
+  --dapple-top: 23%;
+  --dapple-width: 17%;
+  --dapple-height: 13%;
+  --dapple-rotation: 28deg;
+  --dapple-opacity: 0.54;
+  --dapple-blur: 0.55rem;
+}
+
+.about-dapple__light--eleven {
+  --dapple-left: 57%;
+  --dapple-top: 22%;
+  --dapple-width: 19%;
+  --dapple-height: 15%;
+  --dapple-rotation: -27deg;
+  --dapple-opacity: 0.58;
+  --dapple-blur: 0.6rem;
+}
+
+.about-dapple__light--twelve {
+  --dapple-left: 78%;
+  --dapple-top: 43%;
+  --dapple-width: 16%;
+  --dapple-height: 14%;
+  --dapple-rotation: 8deg;
+  --dapple-opacity: 0.5;
+  --dapple-blur: 0.56rem;
 }
 
 .about-dapple__cursor {
