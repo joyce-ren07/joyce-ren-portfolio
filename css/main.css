@@ -448,10 +448,9 @@ p {
 
 .lamp-hero__hint {
   margin-top: 0.3rem;
-  font-size: clamp(0.8rem, 1.4vw, 0.95rem);
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.04em;
+  font-size: var(--text-tertiary-size);
+  font-style: normal;
+  font-weight: var(--text-tertiary-weight);
   color: rgb(153, 153, 153);
   white-space: nowrap;
   opacity: calc(1 - var(--lamp-power));
@@ -1091,8 +1090,10 @@ p {
 
 .about-page .case-topbar {
   --topbar-glass-bg: rgba(255, 255, 255, 0.82);
-  --topbar-glass-border: rgba(255, 190, 120, 0.2);
-  --topbar-glass-edge: rgba(74, 57, 49, 0.06);
+  --topbar-glass-border: transparent;
+  --topbar-glass-edge: transparent;
+  border-bottom: 0;
+  box-shadow: none;
 }
 
 .about-page .case-topbar__nav a,
@@ -2045,7 +2046,6 @@ p {
   min-height: calc(100svh - clamp(1rem, 2.4vw, 2.25rem));
   margin: clamp(0.5rem, 1.2vw, 1.125rem) auto;
   padding: 0 clamp(1rem, 5vw, 5rem) clamp(5rem, 10vw, 9rem);
-  border: 1px solid rgba(255, 190, 120, 0.2);
   border-radius: clamp(1rem, 2.4vw, 2rem);
   background: var(--about-stage);
   box-shadow: none;
@@ -2446,6 +2446,10 @@ p {
   text-transform: uppercase;
 }
 
+.about-detail-kicker {
+  text-transform: none;
+}
+
 .about-title {
   max-width: 100%;
   margin: 1.1rem auto 1rem;
@@ -2499,7 +2503,6 @@ p {
   width: min(100%, 59rem);
   margin-inline: auto;
   padding-top: clamp(4rem, 9vw, 7.5rem);
-  border-top: 1px solid rgba(255, 190, 120, 0.24);
 }
 
 .about-copy {
@@ -2538,7 +2541,6 @@ p {
   max-width: none;
   margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 240, 221, 0.52);
   border-radius: clamp(1.25rem, 2.6vw, 1.85rem);
   background: #eadfd3;
   box-shadow:
@@ -2601,16 +2603,6 @@ p {
 
 .about-foreword-envelope .foreword-envelope__label {
   color: #9b725d;
-}
-
-.about-endnote {
-  margin: clamp(5rem, 10vw, 8rem) auto 0;
-  color: rgba(74, 57, 49, 0.62);
-  font-size: var(--text-tertiary-size);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  text-align: center;
 }
 
 @keyframes about-rise {
@@ -3434,15 +3426,20 @@ p {
 
 .case-sidebar {
   position: fixed;
-  left: 40px;
+  left: clamp(0.75rem, 2vw, 2rem);
   top: 50%;
   transform: translateY(-50%);
   z-index: 100;
   display: flex;
   flex-direction: column;
   gap: var(--case-sidebar-gap, 0.7rem);
-  width: auto;
-  padding: 0;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 2rem rgba(30, 24, 18, 0.08);
 }
 
 .case-sidebar__link {
@@ -3957,6 +3954,32 @@ p {
   transform: rotate(-14deg);
 }
 
+@media (max-width: 1150px) {
+  .case-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding:
+      calc(var(--case-topbar-height) + 1.5rem)
+      var(--nav-padding-inline)
+      4rem;
+  }
+
+  .case-sidebar {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 auto 2rem;
+  }
+
+  .case-content {
+    grid-column: 1;
+  }
+}
+
 @media (max-width: 900px) {
   .case-hifi-flow {
     flex-direction: column;
@@ -3995,7 +4018,7 @@ p {
   }
 
   .case-sidebar {
-    display: none;
+    display: flex;
   }
 
   .case-content {
