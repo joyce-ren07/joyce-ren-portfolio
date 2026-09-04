@@ -899,6 +899,10 @@ p {
   transform-origin: center center;
 }
 
+.work-card__cover-video--cueturn {
+  object-position: 46% center;
+}
+
 .work-card__image--uber-med {
   padding: 0;
   color: inherit;
