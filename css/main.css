@@ -1071,10 +1071,10 @@ p {
    -------------------------------------------------------------------------- */
 
 .about-page {
-  --case-bg: #fff4e8;
+  --case-bg: #fff0dd;
   --case-text: #4a3931;
   --case-heading: #4a3931;
-  --about-stage: #fff4e8;
+  --about-stage: #fff0dd;
   --about-ink: #4a3931;
   --about-muted: rgba(74, 57, 49, 0.72);
   --nav-glow-color: rgb(255, 190, 120);
@@ -2065,8 +2065,8 @@ p {
   z-index: 0;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 43%),
-    linear-gradient(320deg, rgba(255, 255, 255, 0.06), transparent 58%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 43%),
+    linear-gradient(320deg, rgba(255, 255, 255, 0.1), transparent 58%),
     var(--about-stage);
   pointer-events: none;
 }
@@ -2076,11 +2076,11 @@ p {
   position: absolute;
   inset: -12%;
   background:
-    radial-gradient(ellipse 14rem 9rem at 11% 17%, rgba(255, 255, 255, 0.12), transparent 66%),
-    radial-gradient(ellipse 17rem 10rem at 41% 3%, rgba(255, 255, 255, 0.09), transparent 68%),
-    radial-gradient(ellipse 16rem 11rem at 91% 30%, rgba(255, 255, 255, 0.11), transparent 67%),
-    radial-gradient(ellipse 18rem 10rem at 67% 91%, rgba(255, 255, 255, 0.08), transparent 66%),
-    radial-gradient(ellipse 13rem 8rem at 5% 82%, rgba(255, 255, 255, 0.07), transparent 68%);
+    radial-gradient(ellipse 14rem 9rem at 11% 17%, rgba(255, 255, 255, 0.24), transparent 66%),
+    radial-gradient(ellipse 17rem 10rem at 41% 3%, rgba(255, 255, 255, 0.18), transparent 68%),
+    radial-gradient(ellipse 16rem 11rem at 91% 30%, rgba(255, 255, 255, 0.22), transparent 67%),
+    radial-gradient(ellipse 18rem 10rem at 67% 91%, rgba(255, 255, 255, 0.16), transparent 66%),
+    radial-gradient(ellipse 13rem 8rem at 5% 82%, rgba(255, 255, 255, 0.13), transparent 68%);
   filter: blur(1.25rem);
   opacity: 0.95;
   transform: scale(1.08);
@@ -2119,9 +2119,9 @@ p {
   background:
     radial-gradient(
       ellipse at 50% 48%,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.12) 26%,
-      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.34) 0%,
+      rgba(255, 255, 255, 0.22) 26%,
+      rgba(255, 255, 255, 0.09) 50%,
       transparent 66%
     );
   filter: blur(var(--dapple-blur, 0.45rem));
@@ -2264,14 +2264,14 @@ p {
   background:
     radial-gradient(
       circle at 48% 45%,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.12) 22%,
-      rgba(255, 255, 255, 0.05) 43%,
+      rgba(255, 255, 255, 0.34) 0%,
+      rgba(255, 255, 255, 0.22) 22%,
+      rgba(255, 255, 255, 0.09) 43%,
       transparent 62%
     );
   filter: blur(0.7rem);
   mix-blend-mode: normal;
-  opacity: 0.4;
+  opacity: 0.55;
   transform: translate(-50%, -50%) scale(calc(0.92 + var(--dapple-pulse, 0) * 0.1));
   transition: opacity 0.8s ease;
   will-change: left, top, transform;
@@ -2303,7 +2303,7 @@ p {
   z-index: 1;
   pointer-events: none;
   mix-blend-mode: normal;
-  opacity: 0.65;
+  opacity: 0.8;
   -webkit-mask: none;
   mask: none;
   transform: translate3d(var(--streak-shift-x), var(--streak-shift-y), 0);
@@ -2322,10 +2322,10 @@ p {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.03) 9%,
-    rgba(255, 255, 255, 0.08) 29%,
-    rgba(255, 255, 255, 0.12) 52%,
-    rgba(255, 255, 255, 0.06) 76%,
+    rgba(255, 255, 255, 0.06) 9%,
+    rgba(255, 255, 255, 0.14) 29%,
+    rgba(255, 255, 255, 0.22) 52%,
+    rgba(255, 255, 255, 0.1) 76%,
     transparent 100%
   );
   filter: blur(var(--streak-blur, 0.35rem));
