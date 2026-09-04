@@ -1282,16 +1282,18 @@
 
     if (!reducedMotion && dappleCursor && dappleLayers.length) {
       const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-      const POINTER_EASE = 0.12;
-      const POINTER_TRAVEL_SENSITIVITY = 4.2;
-      const RIPPLE_AMPLITUDE = 8;
+      // Keep the pointer as a soft nudge; the ambient drift is the main motion.
+      const POINTER_EASE = 0.1;
+      const POINTER_TRAVEL_SENSITIVITY = 2.8;
+      const RIPPLE_AMPLITUDE = 5;
       const RIPPLE_DECAY = 0.93;
-      const IDLE_RIPPLE_SPEED = 0.0018;
-      const IDLE_RIPPLE_AMPLITUDE = 2.4;
-      const IDLE_WOBBLE_SPEED = 0.0031;
-      const IDLE_WOBBLE_AMPLITUDE = 0.9;
-      const IDLE_PULSE_SPEED = 0.0012;
-      const IDLE_PULSE_AMOUNT = 0.12;
+      // Slow, offset cycles create the continuously drifting gradient feel.
+      const IDLE_RIPPLE_SPEED = 0.00042;
+      const IDLE_RIPPLE_AMPLITUDE = 13;
+      const IDLE_WOBBLE_SPEED = 0.00024;
+      const IDLE_WOBBLE_AMPLITUDE = 4.5;
+      const IDLE_PULSE_SPEED = 0.00065;
+      const IDLE_PULSE_AMOUNT = 0.08;
       const pointer = { x: 0.5, y: 0.44 };
       const target = { x: 0.5, y: 0.44 };
       const lastTarget = { x: 0.5, y: 0.44 };
@@ -1390,6 +1392,9 @@
       const MAX_SHIFT_X = 24;
       const MAX_SHIFT_Y = 24;
       const FOLLOW_EASE = 0.075;
+      const AMBIENT_DRIFT_X = 5;
+      const AMBIENT_DRIFT_Y = 3;
+      const AMBIENT_DRIFT_SPEED = 0.0003;
       const current = { x: 0, y: 0 };
       const target = { x: 0, y: 0 };
 
@@ -1413,17 +1418,20 @@
         if (event.pointerType === "touch") resetTarget();
       };
 
-      const tick = () => {
+      const tick = (time) => {
         current.x += (target.x - current.x) * FOLLOW_EASE;
         current.y += (target.y - current.y) * FOLLOW_EASE;
+        const ambientX = Math.sin(time * AMBIENT_DRIFT_SPEED) * AMBIENT_DRIFT_X;
+        const ambientY =
+          Math.cos(time * AMBIENT_DRIFT_SPEED * 0.82 + 1.4) * AMBIENT_DRIFT_Y;
 
         streakLayer.style.setProperty(
           "--streak-shift-x",
-          `${(current.x * MAX_SHIFT_X).toFixed(2)}px`
+          `${(current.x * MAX_SHIFT_X + ambientX).toFixed(2)}px`
         );
         streakLayer.style.setProperty(
           "--streak-shift-y",
-          `${(current.y * MAX_SHIFT_Y).toFixed(2)}px`
+          `${(current.y * MAX_SHIFT_Y + ambientY).toFixed(2)}px`
         );
 
         window.requestAnimationFrame(tick);
