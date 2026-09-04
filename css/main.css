@@ -6796,6 +6796,11 @@ p {
   margin-top: 0;
 }
 
+/* Keep the Process intro close to its first investigation; 120px starts between subsections. */
+#process > .case-section-heading + .case-body + .case-subheading--large {
+  margin-top: 0;
+}
+
 #takeaways .case-section-heading {
   font-size: var(--case-secondary-size, var(--text-secondary-size));
   font-weight: 500;
