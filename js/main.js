@@ -1352,6 +1352,65 @@
     }
   }
 
+  /* About page — delayed cursor parallax for diagonal light streaks */
+  const streakLayer = document.querySelector("[data-dapple-streaks]");
+  if (streakLayer) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reducedMotion) {
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      const MAX_SHIFT_X = 24;
+      const MAX_SHIFT_Y = 24;
+      const FOLLOW_EASE = 0.075;
+      const current = { x: 0, y: 0 };
+      const target = { x: 0, y: 0 };
+
+      const updateTarget = (event) => {
+        if (event.pointerType === "touch") return;
+
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        if (!viewportWidth || !viewportHeight) return;
+
+        target.x = clamp((event.clientX / viewportWidth - 0.5) * 2, -1, 1);
+        target.y = clamp((event.clientY / viewportHeight - 0.5) * 2, -1, 1);
+      };
+
+      const resetTarget = () => {
+        target.x = 0;
+        target.y = 0;
+      };
+
+      const tick = () => {
+        current.x += (target.x - current.x) * FOLLOW_EASE;
+        current.y += (target.y - current.y) * FOLLOW_EASE;
+
+        streakLayer.style.setProperty(
+          "--streak-shift-x",
+          `${(current.x * MAX_SHIFT_X).toFixed(2)}px`
+        );
+        streakLayer.style.setProperty(
+          "--streak-shift-y",
+          `${(current.y * MAX_SHIFT_Y).toFixed(2)}px`
+        );
+
+        window.requestAnimationFrame(tick);
+      };
+
+      window.addEventListener("pointermove", updateTarget, { passive: true });
+      window.addEventListener(
+        "pointerout",
+        (event) => {
+          if (!event.relatedTarget) resetTarget();
+        },
+        { passive: true }
+      );
+      window.addEventListener("pointercancel", resetTarget, { passive: true });
+      window.addEventListener("blur", resetTarget);
+      window.requestAnimationFrame(tick);
+    }
+  }
+
   const envelopeTrigger = document.querySelector("[data-foreword-envelope]");
   const forewordLetter = document.querySelector("[data-foreword-letter]");
   if (envelopeTrigger && forewordLetter) {
