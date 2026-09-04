@@ -2134,7 +2134,7 @@ p {
   --dapple-top: 8%;
   --dapple-width: 24%;
   --dapple-height: 18%;
-  --dapple-rotation: -18deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.78;
   --dapple-blur: 0.65rem;
 }
@@ -2144,7 +2144,7 @@ p {
   --dapple-top: 1%;
   --dapple-width: 21%;
   --dapple-height: 19%;
-  --dapple-rotation: 24deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.7;
   --dapple-blur: 0.75rem;
 }
@@ -2154,7 +2154,7 @@ p {
   --dapple-top: 7%;
   --dapple-width: 25%;
   --dapple-height: 18%;
-  --dapple-rotation: -10deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.88;
   --dapple-blur: 0.58rem;
 }
@@ -2164,7 +2164,7 @@ p {
   --dapple-top: 9%;
   --dapple-width: 23%;
   --dapple-height: 20%;
-  --dapple-rotation: 20deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.76;
   --dapple-blur: 0.7rem;
 }
@@ -2174,7 +2174,7 @@ p {
   --dapple-top: 39%;
   --dapple-width: 24%;
   --dapple-height: 19%;
-  --dapple-rotation: 9deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.64;
   --dapple-blur: 0.75rem;
 }
@@ -2184,7 +2184,7 @@ p {
   --dapple-top: 33%;
   --dapple-width: 22%;
   --dapple-height: 18%;
-  --dapple-rotation: -25deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.62;
   --dapple-blur: 0.65rem;
 }
@@ -2194,7 +2194,7 @@ p {
   --dapple-top: 46%;
   --dapple-width: 26%;
   --dapple-height: 21%;
-  --dapple-rotation: 16deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.78;
   --dapple-blur: 0.62rem;
 }
@@ -2204,7 +2204,7 @@ p {
   --dapple-top: 64%;
   --dapple-width: 24%;
   --dapple-height: 19%;
-  --dapple-rotation: -18deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.68;
   --dapple-blur: 0.72rem;
 }
@@ -2214,7 +2214,7 @@ p {
   --dapple-top: 19%;
   --dapple-width: 18%;
   --dapple-height: 14%;
-  --dapple-rotation: -8deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.56;
   --dapple-blur: 0.58rem;
 }
@@ -2224,7 +2224,7 @@ p {
   --dapple-top: 23%;
   --dapple-width: 17%;
   --dapple-height: 13%;
-  --dapple-rotation: 28deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.54;
   --dapple-blur: 0.55rem;
 }
@@ -2234,7 +2234,7 @@ p {
   --dapple-top: 22%;
   --dapple-width: 19%;
   --dapple-height: 15%;
-  --dapple-rotation: -27deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.58;
   --dapple-blur: 0.6rem;
 }
@@ -2244,7 +2244,7 @@ p {
   --dapple-top: 43%;
   --dapple-width: 16%;
   --dapple-height: 14%;
-  --dapple-rotation: 8deg;
+  --dapple-rotation: -24deg;
   --dapple-opacity: 0.5;
   --dapple-blur: 0.56rem;
 }
