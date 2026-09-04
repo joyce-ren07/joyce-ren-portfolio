@@ -657,6 +657,39 @@
     });
   }
 
+  /* CueTurn countdown comparison — de-emphasize the earlier pair as the next pair enters view */
+  const countdownComparisons = document.querySelectorAll("[data-countdown-comparison]");
+  if (countdownComparisons.length) {
+    countdownComparisons.forEach((comparison) => {
+      const formatRow = comparison.querySelector('[data-countdown-row="format"]');
+      const explicitnessRow = comparison.querySelector('[data-countdown-row="explicitness"]');
+      if (!formatRow || !explicitnessRow) return;
+
+      const setFaded = (faded) => {
+        formatRow.classList.toggle("is-faded", faded);
+      };
+
+      const isInViewport = () => {
+        const rect = explicitnessRow.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        return rect.top < viewportHeight && rect.bottom > 0;
+      };
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          ([entry]) => setFaded(entry.isIntersecting),
+          { threshold: 0.1 }
+        );
+        observer.observe(explicitnessRow);
+      } else {
+        const sync = () => setFaded(isInViewport());
+        window.addEventListener("scroll", sync, { passive: true });
+        window.addEventListener("resize", sync);
+        sync();
+      }
+    });
+  }
+
   /* Scroll-triggered videos — replay from start each time they enter view */
   const scrollVideos = document.querySelectorAll(".case-scroll-video__media");
   if (scrollVideos.length && "IntersectionObserver" in window) {

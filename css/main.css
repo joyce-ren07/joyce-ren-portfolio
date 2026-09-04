@@ -4625,6 +4625,21 @@ p {
   --cueturn-media-radius: 1.5rem;
 }
 
+.cueturn-countdown-demo__comparison-row--format {
+  transition: opacity 0.45s ease, filter 0.45s ease;
+}
+
+.cueturn-countdown-demo__comparison-row--format.is-faded {
+  opacity: 0.32;
+  filter: grayscale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cueturn-countdown-demo__comparison-row--format {
+    transition: none;
+  }
+}
+
 .case-study-page--cueturn .case-body--summary {
   max-width: none;
 }
