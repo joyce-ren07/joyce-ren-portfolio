@@ -470,7 +470,7 @@ p {
   left: 50%;
   top: clamp(59%, 66vh, 72%);
   z-index: 2;
-  width: min(100% - 2rem, 36rem);
+  width: min(100% - 2rem, 72rem);
   text-align: center;
   transform: translate(-50%, 0);
   opacity: var(--lamp-power);
@@ -501,6 +501,7 @@ p {
   letter-spacing: -0.02em;
   line-height: 1.4;
   color: #dbbea9;
+  white-space: nowrap;
 }
 
 @media (max-width: 900px) {
@@ -537,6 +538,10 @@ p {
 
   .lamp-hero__intro {
     top: clamp(57%, 63vh, 69%);
+  }
+
+  .lamp-hero__intro .lamp-hero__tagline {
+    white-space: normal;
   }
 
   .lamp-hero__intro .lamp-hero__name {
