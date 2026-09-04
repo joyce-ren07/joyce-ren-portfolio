@@ -450,9 +450,8 @@ p {
 .lamp-hero__hint {
   margin-top: 0.3rem;
   font-size: var(--text-tertiary-size);
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.04em;
+  font-style: normal;
+  font-weight: var(--text-tertiary-weight);
   color: rgb(153, 153, 153);
   white-space: nowrap;
   opacity: calc(1 - var(--lamp-power));
@@ -1067,10 +1066,10 @@ p {
    -------------------------------------------------------------------------- */
 
 .about-page {
-  --case-bg: #3a322e;
+  --case-bg: #ffffff;
   --case-text: #4a3931;
-  --case-heading: #fff7ed;
-  --about-stage: #d2ae8c;
+  --case-heading: #4a3931;
+  --about-stage: #ffffff;
   --about-ink: #4a3931;
   --about-muted: rgba(74, 57, 49, 0.72);
   --nav-glow-color: rgb(255, 190, 120);
@@ -1091,9 +1090,11 @@ p {
 }
 
 .about-page .case-topbar {
-  --topbar-glass-bg: rgba(210, 192, 176, 0.34);
-  --topbar-glass-border: rgba(255, 244, 229, 0.28);
-  --topbar-glass-edge: rgba(55, 39, 29, 0.08);
+  --topbar-glass-bg: rgba(255, 255, 255, 0.82);
+  --topbar-glass-border: transparent;
+  --topbar-glass-edge: transparent;
+  border-bottom: 0;
+  box-shadow: none;
 }
 
 .about-page .case-topbar__nav a,
@@ -1103,15 +1104,14 @@ p {
 
 .about-page .case-topbar__nav a:hover:not(.is-active),
 .about-page .case-topbar__resume:hover {
-  color: #fff0dd;
+  color: #9b6c45;
 }
 
 .about-page .case-topbar__nav a.is-active {
-  color: #fff7ed;
+  color: #8a5a38;
   text-shadow:
-    0 0 10px rgba(255, 246, 228, 0.95),
-    0 0 22px rgba(255, 218, 179, 0.66),
-    0 0 36px rgba(255, 190, 130, 0.34);
+    0 0 10px rgba(255, 190, 120, 0.55),
+    0 0 22px rgba(255, 175, 95, 0.3);
 }
 
 .canvas-page {
@@ -2047,7 +2047,6 @@ p {
   min-height: calc(100svh - clamp(1rem, 2.4vw, 2.25rem));
   margin: clamp(0.5rem, 1.2vw, 1.125rem) auto;
   padding: 0 clamp(1rem, 5vw, 5rem) clamp(5rem, 10vw, 9rem);
-  border: 1px solid rgba(255, 241, 224, 0.22);
   border-radius: clamp(1rem, 2.4vw, 2rem);
   background: var(--about-stage);
   box-shadow: none;
@@ -2061,8 +2060,8 @@ p {
   z-index: 0;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(255, 231, 194, 0.28), transparent 43%),
-    linear-gradient(320deg, rgba(128, 76, 42, 0.2), transparent 58%),
+    linear-gradient(135deg, rgba(255, 190, 120, 0.1), transparent 43%),
+    linear-gradient(320deg, rgba(255, 160, 80, 0.06), transparent 58%),
     var(--about-stage);
   pointer-events: none;
 }
@@ -2072,11 +2071,11 @@ p {
   position: absolute;
   inset: -12%;
   background:
-    radial-gradient(ellipse 14rem 9rem at 11% 17%, rgba(255, 237, 207, 0.38), transparent 66%),
-    radial-gradient(ellipse 17rem 10rem at 41% 3%, rgba(255, 233, 198, 0.31), transparent 68%),
-    radial-gradient(ellipse 16rem 11rem at 91% 30%, rgba(255, 229, 190, 0.36), transparent 67%),
-    radial-gradient(ellipse 18rem 10rem at 67% 91%, rgba(255, 224, 180, 0.29), transparent 66%),
-    radial-gradient(ellipse 13rem 8rem at 5% 82%, rgba(128, 76, 42, 0.18), transparent 68%);
+    radial-gradient(ellipse 14rem 9rem at 11% 17%, rgba(255, 190, 120, 0.12), transparent 66%),
+    radial-gradient(ellipse 17rem 10rem at 41% 3%, rgba(255, 175, 95, 0.09), transparent 68%),
+    radial-gradient(ellipse 16rem 11rem at 91% 30%, rgba(255, 190, 120, 0.11), transparent 67%),
+    radial-gradient(ellipse 18rem 10rem at 67% 91%, rgba(255, 160, 80, 0.08), transparent 66%),
+    radial-gradient(ellipse 13rem 8rem at 5% 82%, rgba(255, 175, 95, 0.07), transparent 68%);
   filter: blur(1.25rem);
   opacity: 0.95;
   transform: scale(1.08);
@@ -2089,16 +2088,16 @@ p {
   background:
     repeating-radial-gradient(
       circle at 18% 22%,
-      rgba(255, 249, 238, 0.13) 0 1px,
+      rgba(255, 190, 120, 0.06) 0 1px,
       transparent 1px 5px
     ),
     repeating-radial-gradient(
       circle at 73% 78%,
-      rgba(82, 57, 42, 0.06) 0 1px,
+      rgba(255, 160, 80, 0.035) 0 1px,
       transparent 1px 7px
     );
-  mix-blend-mode: soft-light;
-  opacity: 0.4;
+  mix-blend-mode: multiply;
+  opacity: 0.24;
 }
 
 .about-dapple__light {
@@ -2115,13 +2114,13 @@ p {
   background:
     radial-gradient(
       ellipse at 50% 48%,
-      rgba(255, 242, 218, 0.92) 0%,
-      rgba(255, 226, 185, 0.64) 26%,
-      rgba(255, 190, 122, 0.22) 50%,
+      rgba(255, 190, 120, 0.18) 0%,
+      rgba(255, 175, 95, 0.12) 26%,
+      rgba(255, 150, 75, 0.05) 50%,
       transparent 66%
     );
   filter: blur(var(--dapple-blur, 0.45rem));
-  mix-blend-mode: screen;
+  mix-blend-mode: normal;
   opacity: var(--dapple-opacity, 0.72);
   transform: translate3d(var(--dapple-shift-x), var(--dapple-shift-y), 0)
     rotate(var(--dapple-rotation, 0deg))
@@ -2260,13 +2259,13 @@ p {
   background:
     radial-gradient(
       circle at 48% 45%,
-      rgba(255, 246, 225, 0.58) 0%,
-      rgba(255, 226, 185, 0.34) 22%,
-      rgba(255, 190, 122, 0.14) 43%,
+      rgba(255, 190, 120, 0.18) 0%,
+      rgba(255, 175, 95, 0.12) 22%,
+      rgba(255, 150, 75, 0.05) 43%,
       transparent 62%
     );
   filter: blur(0.7rem);
-  mix-blend-mode: screen;
+  mix-blend-mode: normal;
   opacity: 0.4;
   transform: translate(-50%, -50%) scale(calc(0.92 + var(--dapple-pulse, 0) * 0.1));
   transition: opacity 0.8s ease;
@@ -2283,11 +2282,11 @@ p {
   background:
     repeating-linear-gradient(
       112deg,
-      rgba(255, 247, 231, 0.05) 0 1px,
+      rgba(255, 190, 120, 0.025) 0 1px,
       transparent 1px 4px
     );
-  mix-blend-mode: overlay;
-  opacity: 0.5;
+  mix-blend-mode: multiply;
+  opacity: 0.35;
 }
 
 .about-dapple__streaks {
@@ -2298,8 +2297,8 @@ p {
   inset: -18%;
   z-index: 1;
   pointer-events: none;
-  mix-blend-mode: overlay;
-  opacity: 0.8;
+  mix-blend-mode: multiply;
+  opacity: 0.65;
   -webkit-mask: none;
   mask: none;
   transform: translate3d(var(--streak-shift-x), var(--streak-shift-y), 0);
@@ -2318,10 +2317,10 @@ p {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 247, 231, 0.15) 9%,
-    rgba(255, 241, 217, 0.38) 29%,
-    rgba(255, 246, 226, 0.55) 52%,
-    rgba(255, 239, 214, 0.26) 76%,
+    rgba(255, 190, 120, 0.03) 9%,
+    rgba(255, 175, 95, 0.08) 29%,
+    rgba(255, 190, 120, 0.12) 52%,
+    rgba(255, 160, 80, 0.06) 76%,
     transparent 100%
   );
   filter: blur(var(--streak-blur, 0.35rem));
@@ -2433,6 +2432,10 @@ p {
   text-align: center;
 }
 
+.about-page .about-hero {
+  display: none;
+}
+
 .about-kicker,
 .about-detail-kicker {
   margin: 0;
@@ -2442,6 +2445,10 @@ p {
   letter-spacing: 0.12em;
   line-height: 1.4;
   text-transform: uppercase;
+}
+
+.about-detail-kicker {
+  text-transform: none;
 }
 
 .about-title {
@@ -2497,7 +2504,6 @@ p {
   width: min(100%, 59rem);
   margin-inline: auto;
   padding-top: clamp(4rem, 9vw, 7.5rem);
-  border-top: 1px solid rgba(255, 241, 222, 0.35);
 }
 
 .about-copy {
@@ -2536,7 +2542,6 @@ p {
   max-width: none;
   margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 240, 221, 0.52);
   border-radius: clamp(1.25rem, 2.6vw, 1.85rem);
   background: #eadfd3;
   box-shadow:
@@ -2599,16 +2604,6 @@ p {
 
 .about-foreword-envelope .foreword-envelope__label {
   color: #9b725d;
-}
-
-.about-endnote {
-  margin: clamp(5rem, 10vw, 8rem) auto 0;
-  color: rgba(255, 247, 237, 0.76);
-  font-size: var(--text-tertiary-size);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  text-align: center;
 }
 
 @keyframes about-rise {
@@ -3432,15 +3427,20 @@ p {
 
 .case-sidebar {
   position: fixed;
-  left: 40px;
+  left: clamp(0.75rem, 2vw, 2rem);
   top: 50%;
   transform: translateY(-50%);
   z-index: 100;
   display: flex;
   flex-direction: column;
   gap: var(--case-sidebar-gap, 0.7rem);
-  width: auto;
-  padding: 0;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 2rem rgba(30, 24, 18, 0.08);
 }
 
 .case-sidebar__link {
@@ -3955,6 +3955,32 @@ p {
   transform: rotate(-14deg);
 }
 
+@media (max-width: 1150px) {
+  .case-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding:
+      calc(var(--case-topbar-height) + 1.5rem)
+      var(--nav-padding-inline)
+      4rem;
+  }
+
+  .case-sidebar {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 auto 2rem;
+  }
+
+  .case-content {
+    grid-column: 1;
+  }
+}
+
 @media (max-width: 900px) {
   .case-hifi-flow {
     flex-direction: column;
@@ -3993,7 +4019,7 @@ p {
   }
 
   .case-sidebar {
-    display: none;
+    display: flex;
   }
 
   .case-content {
