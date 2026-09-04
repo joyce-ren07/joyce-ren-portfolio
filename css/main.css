@@ -1091,8 +1091,10 @@ p {
 
 .about-page .case-topbar {
   --topbar-glass-bg: rgba(210, 192, 176, 0.34);
-  --topbar-glass-border: rgba(255, 244, 229, 0.28);
-  --topbar-glass-edge: rgba(55, 39, 29, 0.08);
+  --topbar-glass-border: transparent;
+  --topbar-glass-edge: transparent;
+  border-bottom: 0;
+  box-shadow: none;
 }
 
 .about-page .case-topbar__nav a,
@@ -2046,7 +2048,6 @@ p {
   min-height: calc(100svh - clamp(1rem, 2.4vw, 2.25rem));
   margin: clamp(0.5rem, 1.2vw, 1.125rem) auto;
   padding: 0 clamp(1rem, 5vw, 5rem) clamp(5rem, 10vw, 9rem);
-  border: 1px solid rgba(255, 241, 224, 0.22);
   border-radius: clamp(1rem, 2.4vw, 2rem);
   background: var(--about-stage);
   box-shadow: none;
@@ -2496,7 +2497,6 @@ p {
   width: min(100%, 59rem);
   margin-inline: auto;
   padding-top: clamp(4rem, 9vw, 7.5rem);
-  border-top: 1px solid rgba(255, 241, 222, 0.35);
 }
 
 .about-copy {
@@ -2535,7 +2535,6 @@ p {
   max-width: none;
   margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 240, 221, 0.52);
   border-radius: clamp(1.25rem, 2.6vw, 1.85rem);
   background: #eadfd3;
   box-shadow:
