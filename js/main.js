@@ -686,7 +686,7 @@
 
   /* Project cover videos — muted autoplay/replay without controls */
   const coverVideos = document.querySelectorAll(
-    ".work-card__cover-video, .work-card__image .case-device-video__media, .case-hero-image--video"
+    ".portfolio-page .work-card__image video, .case-hero-image--video"
   );
 
   if (coverVideos.length) {
@@ -800,7 +800,9 @@
       }
     });
 
-    // On mobile, keep covers looping while in view and restart when they return.
+    // On mobile, retry visible covers after browser pauses them. Do not
+    // intentionally pause offscreen covers: every homepage cover should keep
+    // its autoplay/replay behavior available as the user moves through Work.
     if ("IntersectionObserver" in window) {
       const coverObserver = new IntersectionObserver(
         (entries) => {
@@ -814,8 +816,6 @@
               } else {
                 tryPlay(video);
               }
-            } else {
-              video.pause();
             }
           });
         },
