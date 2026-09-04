@@ -2444,6 +2444,10 @@ p {
   text-transform: uppercase;
 }
 
+.about-detail-kicker {
+  text-transform: none;
+}
+
 .about-title {
   max-width: 100%;
   margin: 1.1rem auto 1rem;
