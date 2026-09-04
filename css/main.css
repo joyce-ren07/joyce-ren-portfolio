@@ -1069,7 +1069,7 @@ p {
   --case-bg: #3a322e;
   --case-text: #4a3931;
   --case-heading: #fff7ed;
-  --about-stage: #cdb9a7;
+  --about-stage: #d2ae8c;
   --about-ink: #4a3931;
   --about-muted: rgba(74, 57, 49, 0.72);
   --nav-glow-color: rgb(255, 190, 120);
@@ -2060,8 +2060,8 @@ p {
   z-index: 0;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(255, 239, 214, 0.28), transparent 43%),
-    linear-gradient(320deg, rgba(115, 79, 55, 0.22), transparent 58%),
+    linear-gradient(135deg, rgba(255, 231, 194, 0.28), transparent 43%),
+    linear-gradient(320deg, rgba(128, 76, 42, 0.2), transparent 58%),
     var(--about-stage);
   pointer-events: none;
 }
@@ -2071,11 +2071,11 @@ p {
   position: absolute;
   inset: -12%;
   background:
-    radial-gradient(ellipse 21rem 14rem at 11% 17%, rgba(255, 241, 217, 0.38), transparent 72%),
-    radial-gradient(ellipse 26rem 17rem at 41% 3%, rgba(255, 239, 214, 0.31), transparent 74%),
-    radial-gradient(ellipse 24rem 18rem at 91% 30%, rgba(255, 235, 206, 0.36), transparent 73%),
-    radial-gradient(ellipse 28rem 17rem at 67% 91%, rgba(255, 232, 198, 0.29), transparent 72%),
-    radial-gradient(ellipse 20rem 13rem at 5% 82%, rgba(115, 79, 55, 0.18), transparent 74%);
+    radial-gradient(ellipse 14rem 9rem at 11% 17%, rgba(255, 237, 207, 0.38), transparent 66%),
+    radial-gradient(ellipse 17rem 10rem at 41% 3%, rgba(255, 233, 198, 0.31), transparent 68%),
+    radial-gradient(ellipse 16rem 11rem at 91% 30%, rgba(255, 229, 190, 0.36), transparent 67%),
+    radial-gradient(ellipse 18rem 10rem at 67% 91%, rgba(255, 224, 180, 0.29), transparent 66%),
+    radial-gradient(ellipse 13rem 8rem at 5% 82%, rgba(128, 76, 42, 0.18), transparent 68%);
   filter: blur(1.25rem);
   opacity: 0.95;
   transform: scale(1.08);
@@ -2114,12 +2114,12 @@ p {
   background:
     radial-gradient(
       ellipse at 50% 48%,
-      rgba(255, 246, 226, 0.9) 0%,
-      rgba(255, 234, 205, 0.62) 34%,
-      rgba(255, 211, 164, 0.2) 61%,
-      transparent 76%
+      rgba(255, 242, 218, 0.92) 0%,
+      rgba(255, 226, 185, 0.64) 26%,
+      rgba(255, 190, 122, 0.22) 50%,
+      transparent 66%
     );
-  filter: blur(var(--dapple-blur, 0.8rem));
+  filter: blur(var(--dapple-blur, 0.45rem));
   mix-blend-mode: screen;
   opacity: var(--dapple-opacity, 0.72);
   transform: translate3d(var(--dapple-shift-x), var(--dapple-shift-y), 0)
@@ -2132,139 +2132,139 @@ p {
 .about-dapple__light--one {
   --dapple-left: -2%;
   --dapple-top: 8%;
-  --dapple-width: 24%;
-  --dapple-height: 18%;
+  --dapple-width: 17%;
+  --dapple-height: 13%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.78;
-  --dapple-blur: 0.65rem;
+  --dapple-blur: 0.4rem;
 }
 
 .about-dapple__light--two {
   --dapple-left: 19%;
   --dapple-top: 1%;
-  --dapple-width: 21%;
-  --dapple-height: 19%;
+  --dapple-width: 15%;
+  --dapple-height: 13%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.7;
-  --dapple-blur: 0.75rem;
+  --dapple-blur: 0.45rem;
 }
 
 .about-dapple__light--three {
   --dapple-left: 43%;
   --dapple-top: 7%;
-  --dapple-width: 25%;
-  --dapple-height: 18%;
+  --dapple-width: 18%;
+  --dapple-height: 13%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.88;
-  --dapple-blur: 0.58rem;
+  --dapple-blur: 0.36rem;
 }
 
 .about-dapple__light--four {
   --dapple-left: 68%;
   --dapple-top: 9%;
-  --dapple-width: 23%;
-  --dapple-height: 20%;
+  --dapple-width: 16%;
+  --dapple-height: 14%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.76;
-  --dapple-blur: 0.7rem;
+  --dapple-blur: 0.42rem;
 }
 
 .about-dapple__light--five {
   --dapple-left: 1%;
   --dapple-top: 39%;
-  --dapple-width: 24%;
-  --dapple-height: 19%;
+  --dapple-width: 17%;
+  --dapple-height: 13%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.64;
-  --dapple-blur: 0.75rem;
+  --dapple-blur: 0.45rem;
 }
 
 .about-dapple__light--six {
   --dapple-left: 24%;
   --dapple-top: 33%;
-  --dapple-width: 22%;
-  --dapple-height: 18%;
+  --dapple-width: 15%;
+  --dapple-height: 12%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.62;
-  --dapple-blur: 0.65rem;
+  --dapple-blur: 0.4rem;
 }
 
 .about-dapple__light--seven {
   --dapple-left: 49%;
   --dapple-top: 46%;
-  --dapple-width: 26%;
-  --dapple-height: 21%;
+  --dapple-width: 18%;
+  --dapple-height: 14%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.78;
-  --dapple-blur: 0.62rem;
+  --dapple-blur: 0.38rem;
 }
 
 .about-dapple__light--eight {
   --dapple-left: 70%;
   --dapple-top: 64%;
-  --dapple-width: 24%;
-  --dapple-height: 19%;
+  --dapple-width: 16%;
+  --dapple-height: 13%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.68;
-  --dapple-blur: 0.72rem;
+  --dapple-blur: 0.44rem;
 }
 
 .about-dapple__light--nine {
   --dapple-left: 10%;
   --dapple-top: 19%;
-  --dapple-width: 18%;
-  --dapple-height: 14%;
+  --dapple-width: 12%;
+  --dapple-height: 10%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.56;
-  --dapple-blur: 0.58rem;
+  --dapple-blur: 0.36rem;
 }
 
 .about-dapple__light--ten {
   --dapple-left: 34%;
   --dapple-top: 23%;
-  --dapple-width: 17%;
-  --dapple-height: 13%;
+  --dapple-width: 11%;
+  --dapple-height: 9%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.54;
-  --dapple-blur: 0.55rem;
+  --dapple-blur: 0.34rem;
 }
 
 .about-dapple__light--eleven {
   --dapple-left: 57%;
   --dapple-top: 22%;
-  --dapple-width: 19%;
-  --dapple-height: 15%;
+  --dapple-width: 13%;
+  --dapple-height: 10%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.58;
-  --dapple-blur: 0.6rem;
+  --dapple-blur: 0.38rem;
 }
 
 .about-dapple__light--twelve {
   --dapple-left: 78%;
   --dapple-top: 43%;
-  --dapple-width: 16%;
-  --dapple-height: 14%;
+  --dapple-width: 11%;
+  --dapple-height: 9%;
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.5;
-  --dapple-blur: 0.56rem;
+  --dapple-blur: 0.34rem;
 }
 
 .about-dapple__cursor {
   position: absolute;
   left: var(--dapple-cursor-x, 50%);
   top: var(--dapple-cursor-y, 44%);
-  width: min(48vw, 42rem);
+  width: min(34vw, 28rem);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
     radial-gradient(
       circle at 48% 45%,
       rgba(255, 246, 225, 0.58) 0%,
-      rgba(255, 231, 199, 0.32) 26%,
-      rgba(255, 208, 158, 0.12) 48%,
-      transparent 70%
+      rgba(255, 226, 185, 0.34) 22%,
+      rgba(255, 190, 122, 0.14) 43%,
+      transparent 62%
     );
-  filter: blur(0.95rem);
+  filter: blur(0.7rem);
   mix-blend-mode: screen;
   opacity: 0.4;
   transform: translate(-50%, -50%) scale(calc(0.92 + var(--dapple-pulse, 0) * 0.1));
