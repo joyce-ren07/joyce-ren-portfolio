@@ -482,7 +482,7 @@ p {
   margin: 0 0 0.4rem;
   font-family: var(--font-sans);
   font-size: var(--text-title-size);
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1.05;
