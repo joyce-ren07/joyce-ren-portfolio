@@ -4625,6 +4625,10 @@ p {
   --cueturn-media-radius: 1.5rem;
 }
 
+.case-study-page--cueturn .case-body--summary {
+  max-width: none;
+}
+
 .case-study-page--cueturn .case-insights li {
   font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 500);
