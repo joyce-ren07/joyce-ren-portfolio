@@ -4596,6 +4596,11 @@ p {
   line-height: var(--case-body-leading, 1.58);
 }
 
+.case-study-page--cueturn #takeaways .case-body--summary {
+  max-width: none;
+  width: 100%;
+}
+
 .case-study-page--cueturn .case-scroll-video--cueturn-wizard {
   overflow: hidden;
   border-radius: var(--cueturn-media-radius);
