@@ -484,11 +484,11 @@ p {
   margin: 0 0 0.4rem;
   font-family: var(--font-sans);
   font-size: var(--text-title-size);
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  color: #A89E9D;
+  color: #f0bfa1;
   display: inline-block;
   transform: translateY(calc((1 - var(--lamp-power)) * -0.75rem));
   transition: transform 0.1s ease;
@@ -502,7 +502,7 @@ p {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.4;
-  color: #A89E9D;
+  color: #dbbea9;
   white-space: nowrap;
 }
 
