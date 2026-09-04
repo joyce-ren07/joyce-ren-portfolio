@@ -13,6 +13,36 @@
   <link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon/favicon-192.png">
   <link rel="apple-touch-icon" href="../../assets/favicon/apple-touch-icon.png">
   <link rel="stylesheet" href="../../css/main.css">
+  <style>
+    .cueturn-countdown-demo {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    @keyframes morph {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 40% 60% 65% 35% / 45% 65% 35% 60%; }
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.075); }
+    }
+
+    @keyframes breatheFast {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.11); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px 2px rgba(245, 205, 60, .4); }
+      50% { box-shadow: 0 0 36px 9px rgba(245, 205, 60, .75); }
+    }
+
+    @keyframes vibeBar {
+      0%, 100% { transform: scaleY(.35); }
+      50% { transform: scaleY(1); }
+    }
+  </style>
 </head>
 <body class="case-study-page case-study-page--cueturn">
 
@@ -227,9 +257,53 @@
           <strong class="case-emphasis">hold</strong> and <strong class="case-emphasis">speak</strong>.
         </p>
 
-        <div class="case-image-grid">
-          <div class="case-placeholder" aria-hidden="true">hold vs no hold</div>
-          <div class="case-placeholder" aria-hidden="true">ring vs bar</div>
+        <div class="cueturn-countdown-demo" style="width:min(1080px,100%); margin:0 auto; padding:40px;">
+
+          <!-- ============ FORMAT: Ring vs Bar Countdown ============ -->
+          <div style="display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px; margin-bottom:40px;">
+
+            <div style="background:#fff; border:1px solid #e5e5ea; border-radius:18px; padding:16px 16px 22px; box-shadow:0 4px 20px rgba(0,0,0,.05); transition:transform .15s;">
+              <div style="position:relative; height:184px; border-radius:10px; background:#fff; overflow:hidden;" data-stage-cycle="fmt-ring">
+                <div class="stage-inner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; opacity:1; transition:opacity .35s ease;"></div>
+              </div>
+              <div style="font-size:16px; font-weight:600; margin:14px 0 2px; color:#1d1d1f; letter-spacing:-.01em;">Ring Countdown</div>
+            </div>
+
+            <span style="font-size:13px; font-weight:700; color:#a1a1a6; letter-spacing:.02em;">vs</span>
+
+            <div style="background:#fff; border:1px solid #e5e5ea; border-radius:18px; padding:16px 16px 22px; box-shadow:0 4px 20px rgba(0,0,0,.05); transition:transform .15s;">
+              <div style="position:relative; height:184px; border-radius:10px; background:#fff; overflow:hidden;" data-stage-cycle="fmt-bar">
+                <div class="stage-inner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; opacity:1; transition:opacity .35s ease;"></div>
+              </div>
+              <div style="font-size:16px; font-weight:600; margin:14px 0 2px; color:#1d1d1f; letter-spacing:-.01em;">Bar Countdown</div>
+            </div>
+          </div>
+
+          <!-- ============ Arrow: shape → explicitness ============ -->
+          <div style="display:flex; flex-direction:column; align-items:center; gap:2px; margin:6px 0 26px;">
+            <span style="font-size:11px; letter-spacing:.02em; color:#a1a1a6; font-weight:600;">Shape → explicitness</span>
+            <img src="../../assets/images/uber-med/hifi-flow-arrow.png" alt="" style="width:130px; height:auto; transform:rotate(80deg); filter:grayscale(1); opacity:.55; margin:14px 0;">
+          </div>
+
+          <!-- ============ EXPLICITNESS: numbers vs no numbers ============ -->
+          <div style="display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px; margin-bottom:40px;">
+
+            <div style="background:#fff; border:1px solid #e5e5ea; border-radius:18px; padding:16px 16px 22px; box-shadow:0 4px 20px rgba(0,0,0,.05); transition:transform .15s;">
+              <div style="position:relative; height:184px; border-radius:10px; background:#fff; overflow:hidden;" data-stage-cycle="expl-num">
+                <div class="stage-inner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; opacity:1; transition:opacity .35s ease;"></div>
+              </div>
+              <div style="font-size:16px; font-weight:600; margin:14px 0 2px; color:#1d1d1f; letter-spacing:-.01em;">Countdown with numbers</div>
+            </div>
+
+            <span style="font-size:13px; font-weight:700; color:#a1a1a6; letter-spacing:.02em;">vs</span>
+
+            <div style="background:#fff; border:1px solid #e5e5ea; border-radius:18px; padding:16px 16px 22px; box-shadow:0 4px 20px rgba(0,0,0,.05); transition:transform .15s;">
+              <div style="position:relative; height:184px; border-radius:10px; background:#fff; overflow:hidden;" data-stage-cycle="expl-nonum">
+                <div class="stage-inner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; opacity:1; transition:opacity .35s ease;"></div>
+              </div>
+              <div style="font-size:16px; font-weight:600; margin:14px 0 2px; color:#1d1d1f; letter-spacing:-.01em;">Countdown without numbers</div>
+            </div>
+          </div>
         </div>
 
         <h3 class="case-subheading case-subheading--large">Designing the experimental study</h3>
@@ -319,6 +393,97 @@
     </article>
   </div>
 
+  <script>
+    (function () {
+      const boxes = [...document.querySelectorAll('[data-stage-cycle]')];
+      if (!boxes.length) return;
+      const timers = [];
+
+      const lightListening = { ms: 2200, bg: '#fff', html:
+        '<div style="width:50px;height:50px;background:radial-gradient(circle at 35% 30%,#8bf3e0,#1f9e8e 72%);box-shadow:0 0 20px rgba(31,158,142,.35);border-radius:60% 40% 30% 70%/60% 30% 70% 40%;animation:morph 7s ease-in-out infinite, breathe 3.4s ease-in-out infinite;"></div>' +
+        '<span style="font-size:11px;letter-spacing:normal;color:#1f7d70;">Listening</span>' };
+
+      const lightCountdownCircle = { ms: 2700, countdown: true, bg: '#fff', html:
+        '<div style="position:relative;width:92px;height:92px;display:flex;align-items:center;justify-content:center;">' +
+        '<svg width="92" height="92" viewBox="0 0 92 92" style="position:absolute;transform:rotate(-90deg);"><circle cx="46" cy="46" r="36" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="3"></circle><circle class="cd-ring" cx="46" cy="46" r="36" fill="none" stroke="#c97a1f" stroke-width="3" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="0"></circle></svg>' +
+        '<div style="width:52px;height:52px;background:radial-gradient(circle at 35% 30%,#ffb877,#e8791f 72%);border-radius:55% 45% 40% 60%;box-shadow:0 0 18px rgba(201,122,31,.35);animation:morph 7s ease-in-out infinite, breathe 1.4s ease-in-out infinite;"></div></div>' +
+        '<span style="font-size:11px;letter-spacing:normal;color:#a05f18;">Speaking in</span>' +
+        '<span class="cd-num" style="font-family:\'IBM Plex Mono\',monospace;font-size:32px;font-weight:700;color:#a05f18;line-height:1;">3</span>' };
+
+      const lightCountdownCircleNoNum = { ms: 2700, countdown: true, bg: '#fff', html:
+        '<div style="position:relative;width:92px;height:92px;display:flex;align-items:center;justify-content:center;">' +
+        '<svg width="92" height="92" viewBox="0 0 92 92" style="position:absolute;transform:rotate(-90deg);"><circle cx="46" cy="46" r="36" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="3"></circle><circle class="cd-ring" cx="46" cy="46" r="36" fill="none" stroke="#c97a1f" stroke-width="3" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="0"></circle></svg>' +
+        '<div style="width:52px;height:52px;background:radial-gradient(circle at 35% 30%,#ffb877,#e8791f 72%);border-radius:55% 45% 40% 60%;box-shadow:0 0 18px rgba(201,122,31,.35);animation:morph 7s ease-in-out infinite, breathe 1.4s ease-in-out infinite;"></div></div>' +
+        '<span style="font-size:11px;letter-spacing:normal;color:#a05f18;">Speaking soon</span>' };
+
+      const lightCountdownBar = { ms: 2700, countdown: true, bg: '#fff', html:
+        '<div style="width:46px;height:46px;background:radial-gradient(circle at 35% 30%,#ffb877,#e8791f 72%);box-shadow:0 0 18px rgba(201,122,31,.35);border-radius:55% 45% 40% 60%;animation:morph 6s ease-in-out infinite, breatheFast 1.3s ease-in-out infinite, pulseGlow 1.3s ease-in-out infinite;"></div>' +
+        '<div style="display:flex;align-items:center;gap:10px;">' +
+        '<span class="cd-num" style="font-family:\'IBM Plex Mono\',monospace;font-size:15px;font-weight:600;color:#a05f18;min-width:12px;text-align:center;">3</span>' +
+        '<div style="width:88px;height:5px;background:rgba(0,0,0,.1);border-radius:3px;overflow:hidden;"><div class="cd-fill" style="height:100%;width:100%;background:#a05f18;border-radius:3px;"></div></div>' +
+        '</div>' };
+
+      const lightVibeBars = (() => {
+        const heights = [8, 15, 22, 14, 9], delays = [0, .12, .24, .36, .48];
+        return '<div style="display:flex;align-items:center;gap:3px;height:22px;">' +
+          heights.map((h, i) => `<div style="width:3px;height:${h}px;background:#b8492a;border-radius:2px;animation:vibeBar .9s ease-in-out infinite;animation-delay:${delays[i]}s;"></div>`).join('') +
+          '</div>';
+      })();
+      const lightSpeakingHtml = '<div style="width:56px;height:56px;background:radial-gradient(circle at 35% 30%,#ffb27a,#e5471a 72%);box-shadow:0 0 22px rgba(184,73,42,.3);border-radius:50%;animation:morph 4s ease-in-out infinite, breatheFast 1s ease-in-out infinite;"></div>' +
+        '<span style="font-size:11px;letter-spacing:normal;color:#b8492a;">Speaking</span>' + lightVibeBars;
+      const lightSpeakingStretched = { ms: 3550, bg: '#fff', html: lightSpeakingHtml };
+
+      const sequences = {
+        'fmt-ring': [lightListening, lightCountdownCircle, lightSpeakingStretched],
+        'fmt-bar': [lightListening, lightCountdownBar, lightSpeakingStretched],
+        'expl-num': [lightListening, lightCountdownCircle, lightSpeakingStretched],
+        'expl-nonum': [lightListening, lightCountdownCircleNoNum, lightSpeakingStretched]
+      };
+
+      function runCountdown(inner, ms) {
+        const numEl = inner.querySelector('.cd-num');
+        const fillEl = inner.querySelector('.cd-fill');
+        const ringEl = inner.querySelector('.cd-ring');
+        if (!numEl && !ringEl && !fillEl) return;
+        const steps = 3, stepMs = ms / steps, circ = ringEl ? 226 : 170;
+        let n = steps;
+        const paint = () => {
+          if (numEl) numEl.textContent = n;
+          if (fillEl) fillEl.style.width = (100 * (n - 1) / steps) + '%';
+          if (ringEl) ringEl.style.strokeDashoffset = (circ * (1 - (n - 1) / steps)) + '';
+        };
+        if (fillEl) fillEl.style.transition = 'none';
+        if (ringEl) ringEl.style.transition = 'none';
+        paint();
+        requestAnimationFrame(() => {
+          if (fillEl) fillEl.style.transition = `width ${stepMs}ms linear`;
+          if (ringEl) ringEl.style.transition = `stroke-dashoffset ${stepMs}ms linear`;
+        });
+        const iv = setInterval(() => { n--; if (n <= 0) { clearInterval(iv); return; } paint(); }, stepMs);
+        timers.push(iv);
+      }
+
+      boxes.forEach(box => {
+        const seq = sequences[box.dataset.stageCycle];
+        const inner = box.querySelector('.stage-inner');
+        if (!seq || !inner) return;
+        const advance = (idx) => {
+          inner.innerHTML = seq[idx].html;
+          inner.style.opacity = '1';
+          box.style.transition = 'background .4s ease';
+          box.style.background = seq[idx].bg || '#fff';
+          if (seq[idx].countdown) runCountdown(inner, seq[idx].ms);
+          const t1 = setTimeout(() => {
+            inner.style.opacity = '0';
+            const t2 = setTimeout(() => advance((idx + 1) % seq.length), 350);
+            timers.push(t2);
+          }, seq[idx].ms);
+          timers.push(t1);
+        };
+        advance(0);
+      });
+    })();
+  </script>
   <script src="../../js/main.js"></script>
 </body>
 </html>
