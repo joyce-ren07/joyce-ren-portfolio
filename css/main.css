@@ -9541,14 +9541,16 @@ p {
   --case-subsection-gap: 120px;
   --case-section-gap: 180px;
   min-height: 100%;
-  overflow-x: clip;
+  max-width: 100vw;
+  overflow-x: hidden;
   overflow-y: auto;
   background: var(--case-bg);
   color: var(--case-text);
 }
 
 .canvas-stage {
-  width: min(100%, var(--nav-max-width));
+  width: 100%;
+  max-width: var(--nav-max-width);
   min-height: 0;
   height: auto;
   margin-inline: auto;
