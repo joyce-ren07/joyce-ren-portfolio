@@ -2143,7 +2143,7 @@ p {
     rotate(var(--dapple-rotation, 0deg))
     scale(calc(1 + var(--dapple-pulse) * 0.12));
   transform-origin: center;
-  animation: about-dapple-drift var(--dapple-duration, 17s)
+  animation: about-dapple-drift var(--dapple-duration, 14s)
     cubic-bezier(0.45, 0.05, 0.55, 0.95) var(--dapple-delay, 0s) infinite
     alternate;
   will-change: transform, opacity;
@@ -2151,18 +2151,18 @@ p {
 
 @keyframes about-dapple-drift {
   0% {
-    margin-left: calc(var(--dapple-drift-x, 1.75rem) * -1);
-    margin-top: var(--dapple-drift-y, 1.25rem);
+    margin-left: calc(var(--dapple-drift-x, 2.75rem) * -1);
+    margin-top: var(--dapple-drift-y, 1.75rem);
   }
 
   50% {
-    margin-left: var(--dapple-drift-x, 1.75rem);
-    margin-top: calc(var(--dapple-drift-y, 1.25rem) * -1);
+    margin-left: var(--dapple-drift-x, 2.75rem);
+    margin-top: calc(var(--dapple-drift-y, 1.75rem) * -1);
   }
 
   100% {
-    margin-left: calc(var(--dapple-drift-x, 1.75rem) * 0.35);
-    margin-top: var(--dapple-drift-y, 1.25rem);
+    margin-left: calc(var(--dapple-drift-x, 2.75rem) * 0.35);
+    margin-top: var(--dapple-drift-y, 1.75rem);
   }
 }
 
@@ -2174,10 +2174,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.96;
   --dapple-blur: 0.3rem;
-  --dapple-duration: 15s;
+  --dapple-duration: 12s;
   --dapple-delay: -5s;
-  --dapple-drift-x: 2rem;
-  --dapple-drift-y: 1.35rem;
+  --dapple-drift-x: 3rem;
+  --dapple-drift-y: 2rem;
 }
 
 .about-dapple__light--two {
@@ -2188,10 +2188,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.9;
   --dapple-blur: 0.34rem;
-  --dapple-duration: 19s;
+  --dapple-duration: 15s;
   --dapple-delay: -11s;
-  --dapple-drift-x: 2.75rem;
-  --dapple-drift-y: 1.65rem;
+  --dapple-drift-x: 4rem;
+  --dapple-drift-y: 2.4rem;
 }
 
 .about-dapple__light--three {
@@ -2202,10 +2202,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 1;
   --dapple-blur: 0.28rem;
-  --dapple-duration: 16s;
+  --dapple-duration: 13s;
   --dapple-delay: -2s;
-  --dapple-drift-x: 2.25rem;
-  --dapple-drift-y: 1.15rem;
+  --dapple-drift-x: 3.4rem;
+  --dapple-drift-y: 1.75rem;
 }
 
 .about-dapple__light--four {
@@ -2216,10 +2216,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.92;
   --dapple-blur: 0.32rem;
-  --dapple-duration: 21s;
+  --dapple-duration: 17s;
   --dapple-delay: -14s;
-  --dapple-drift-x: 3rem;
-  --dapple-drift-y: 1.9rem;
+  --dapple-drift-x: 4.5rem;
+  --dapple-drift-y: 2.8rem;
 }
 
 .about-dapple__light--five {
@@ -2230,10 +2230,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.84;
   --dapple-blur: 0.34rem;
-  --dapple-duration: 18s;
+  --dapple-duration: 14s;
   --dapple-delay: -8s;
-  --dapple-drift-x: 2.5rem;
-  --dapple-drift-y: 1.45rem;
+  --dapple-drift-x: 3.75rem;
+  --dapple-drift-y: 2.2rem;
 }
 
 .about-dapple__light--six {
@@ -2244,10 +2244,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.82;
   --dapple-blur: 0.3rem;
-  --dapple-duration: 23s;
+  --dapple-duration: 18s;
   --dapple-delay: -17s;
-  --dapple-drift-x: 3.25rem;
-  --dapple-drift-y: 2.15rem;
+  --dapple-drift-x: 4.75rem;
+  --dapple-drift-y: 3.1rem;
 }
 
 .about-dapple__light--seven {
@@ -2258,10 +2258,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.98;
   --dapple-blur: 0.28rem;
-  --dapple-duration: 17s;
+  --dapple-duration: 13s;
   --dapple-delay: -6s;
-  --dapple-drift-x: 2.25rem;
-  --dapple-drift-y: 1.4rem;
+  --dapple-drift-x: 3.4rem;
+  --dapple-drift-y: 2.1rem;
 }
 
 .about-dapple__light--eight {
@@ -2272,10 +2272,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.88;
   --dapple-blur: 0.34rem;
-  --dapple-duration: 20s;
+  --dapple-duration: 16s;
   --dapple-delay: -12s;
-  --dapple-drift-x: 2.75rem;
-  --dapple-drift-y: 1.85rem;
+  --dapple-drift-x: 4rem;
+  --dapple-drift-y: 2.7rem;
 }
 
 .about-dapple__light--nine {
@@ -2286,10 +2286,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.76;
   --dapple-blur: 0.28rem;
-  --dapple-duration: 14s;
+  --dapple-duration: 11s;
   --dapple-delay: -4s;
-  --dapple-drift-x: 1.75rem;
-  --dapple-drift-y: 1.15rem;
+  --dapple-drift-x: 2.75rem;
+  --dapple-drift-y: 1.75rem;
 }
 
 .about-dapple__light--ten {
@@ -2300,10 +2300,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.74;
   --dapple-blur: 0.26rem;
-  --dapple-duration: 22s;
+  --dapple-duration: 17s;
   --dapple-delay: -15s;
-  --dapple-drift-x: 2.4rem;
-  --dapple-drift-y: 1.55rem;
+  --dapple-drift-x: 3.6rem;
+  --dapple-drift-y: 2.3rem;
 }
 
 .about-dapple__light--eleven {
@@ -2314,10 +2314,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.8;
   --dapple-blur: 0.3rem;
-  --dapple-duration: 18s;
+  --dapple-duration: 14s;
   --dapple-delay: -9s;
-  --dapple-drift-x: 2.1rem;
-  --dapple-drift-y: 1.3rem;
+  --dapple-drift-x: 3.25rem;
+  --dapple-drift-y: 2rem;
 }
 
 .about-dapple__light--twelve {
@@ -2328,10 +2328,10 @@ p {
   --dapple-rotation: -24deg;
   --dapple-opacity: 0.72;
   --dapple-blur: 0.26rem;
-  --dapple-duration: 24s;
+  --dapple-duration: 19s;
   --dapple-delay: -19s;
-  --dapple-drift-x: 2.8rem;
-  --dapple-drift-y: 1.8rem;
+  --dapple-drift-x: 4.1rem;
+  --dapple-drift-y: 2.7rem;
 }
 
 .about-dapple__cursor {
