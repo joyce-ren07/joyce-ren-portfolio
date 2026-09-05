@@ -3528,9 +3528,7 @@ p {
   max-width: calc(100vw - 2rem);
   padding: 1rem;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 1rem;
-  box-shadow: 0 0.75rem 2rem rgba(30, 24, 18, 0.08);
 }
 
 .case-sidebar__link {
