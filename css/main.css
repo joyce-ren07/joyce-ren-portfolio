@@ -9061,6 +9061,7 @@ p {
   --case-bg: #ffffff;
   --case-text: #A89E9D;
   --case-heading: #A89E9D;
+  --about-stage: #ffffff;
   --case-text-active: #A89E9D;
   --case-text-faint: #A89E9D;
   --case-text-active-hover: #a1a1a1;
@@ -9104,12 +9105,19 @@ p {
 }
 
 .about-main {
+  position: static;
   width: min(100%, var(--nav-max-width));
+  min-height: 0;
   margin-inline: auto;
   padding:
     calc(var(--case-topbar-height) + clamp(3rem, 7vw, 6rem))
     var(--nav-padding-inline)
     clamp(5rem, 10vw, 9rem);
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  isolation: auto;
 }
 
 .about-intro {
@@ -9127,6 +9135,7 @@ p {
   color: #A89E9D;
   font-family: var(--font-sans);
   font-size: var(--text-title-size);
+  font-style: normal;
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.05;
