@@ -33,155 +33,49 @@
     </div>
   </header>
 
-  <main class="about-main" data-dapple-scene>
-    <div class="about-dapple" aria-hidden="true">
-      <span class="about-dapple__light about-dapple__light--one" data-dapple-layer="0.34"></span>
-      <span class="about-dapple__light about-dapple__light--two" data-dapple-layer="0.52"></span>
-      <span class="about-dapple__light about-dapple__light--three" data-dapple-layer="0.72"></span>
-      <span class="about-dapple__light about-dapple__light--four" data-dapple-layer="0.44"></span>
-      <span class="about-dapple__light about-dapple__light--five" data-dapple-layer="0.64"></span>
-      <span class="about-dapple__light about-dapple__light--six" data-dapple-layer="0.88"></span>
-      <span class="about-dapple__light about-dapple__light--seven" data-dapple-layer="0.56"></span>
-      <span class="about-dapple__light about-dapple__light--eight" data-dapple-layer="0.78"></span>
-      <span class="about-dapple__light about-dapple__light--nine" data-dapple-layer="0.6"></span>
-      <span class="about-dapple__light about-dapple__light--ten" data-dapple-layer="0.82"></span>
-      <span class="about-dapple__light about-dapple__light--eleven" data-dapple-layer="0.48"></span>
-      <span class="about-dapple__light about-dapple__light--twelve" data-dapple-layer="0.7"></span>
-      <span class="about-dapple__cursor"></span>
-      <span class="about-dapple__grain"></span>
-      <div class="about-dapple__streaks" data-dapple-streaks>
-        <span class="about-dapple__streak about-dapple__streak--one"></span>
-        <span class="about-dapple__streak about-dapple__streak--two"></span>
-        <span class="about-dapple__streak about-dapple__streak--three"></span>
-        <span class="about-dapple__streak about-dapple__streak--four"></span>
-        <span class="about-dapple__streak about-dapple__streak--five"></span>
-        <span class="about-dapple__streak about-dapple__streak--six"></span>
-        <span class="about-dapple__streak about-dapple__streak--seven"></span>
-        <span class="about-dapple__streak about-dapple__streak--eight"></span>
+  <main class="about-main">
+    <header class="about-intro" aria-labelledby="about-title">
+      <p class="eyebrow">About me</p>
+      <h1 class="about-title" id="about-title">Hey, I&rsquo;m Joyce!</h1>
+    </header>
+
+    <section class="about-profile" aria-label="A little about Joyce">
+      <div class="about-images" aria-label="Image placeholders">
+        <figure class="about-image about-image--primary">
+          <div class="about-image__placeholder" role="img" aria-label="Portrait image placeholder">
+            <span>Image placeholder</span>
+          </div>
+          <figcaption>Portrait / study</figcaption>
+        </figure>
+
+        <figure class="about-image about-image--landscape">
+          <div class="about-image__placeholder" role="img" aria-label="Landscape image placeholder">
+            <span>Image placeholder</span>
+          </div>
+          <figcaption>Place / process</figcaption>
+        </figure>
+
+        <figure class="about-image about-image--detail">
+          <div class="about-image__placeholder" role="img" aria-label="Detail image placeholder">
+            <span>Image placeholder</span>
+          </div>
+          <figcaption>Detail / in progress</figcaption>
+        </figure>
       </div>
-    </div>
 
-    <div class="about-main__content">
-      <section class="about-hero" aria-labelledby="about-title">
-        <p class="about-kicker">ABOUT / HUMAN-CENTERED DESIGN</p>
-        <h1 class="about-title" id="about-title">Hey, I'm Joyce!</h1>
-        <p class="about-lede">Designing for the parts of being human that don't fit neatly into a box.</p>
-        <p class="about-hint">
-          <span class="about-hint__mark" aria-hidden="true">✦</span>
-          move through the light
-        </p>
-      </section>
-
-      <section class="about-layout" aria-label="A little about Joyce">
-        <div class="about-copy">
-          <p class="about-detail-kicker">hi, it's joyce!</p>
-          <p class="about-body">
-            I'm a Cognitive Science &amp; HCI student at UC San Diego, exploring where thinking, feeling,
-            and design overlap. I'm endlessly curious about how I can create to shed light: on the texture
-            of everyday interactions, on our most overlooked margins and creases.
-          </p>
-          <p class="about-note">ps, hover over my portrait to bring it to life.</p>
-        </div>
-
-        <div class="about-portrait-stack">
-          <figure class="about-portrait">
-            <div class="about-portrait__frame">
-              <img
-                src="../assets/images/joyce-about-bw.jpg"
-                alt="Joyce Ren smiling outdoors on a balcony"
-                class="about-portrait__img about-portrait__img--bw"
-                width="1536"
-                height="2304"
-              >
-              <img
-                src="../assets/images/joyce-about-color.jpg"
-                alt=""
-                class="about-portrait__img about-portrait__img--color"
-                width="1536"
-                height="2304"
-                aria-hidden="true"
-              >
-            </div>
-          </figure>
-
-          <button
-            type="button"
-            class="foreword-envelope about-foreword-envelope"
-            data-foreword-envelope
-            aria-haspopup="dialog"
-            aria-controls="foreword-letter"
-            aria-label="Open foreword letter"
-          >
-            <span class="foreword-envelope__paper" aria-hidden="true">
-              <span class="foreword-envelope__paper-lines"></span>
-            </span>
-            <span class="foreword-envelope__body" aria-hidden="true">
-              <span class="foreword-envelope__flap"></span>
-              <span class="foreword-envelope__face"></span>
-            </span>
-            <span class="foreword-envelope__label">Foreword</span>
-          </button>
-        </div>
-      </section>
-
-    </div>
+      <div class="about-descriptors">
+        <p class="about-section-label">A few descriptors</p>
+        <h2 class="about-descriptors__title">The short version</h2>
+        <ul class="about-descriptors__list">
+          <li>Product designer</li>
+          <li>Cognitive Science &amp; HCI student</li>
+          <li>Human-centered researcher</li>
+          <li>Creative technologist</li>
+          <li>Curious by default</li>
+        </ul>
+      </div>
+    </section>
   </main>
-
-  <dialog
-    id="foreword-letter"
-    class="foreword-letter"
-    data-foreword-letter
-    aria-labelledby="foreword-letter-title"
-  >
-    <div class="foreword-letter__stage">
-      <button
-        type="button"
-        class="foreword-letter__close"
-        data-foreword-close
-        aria-label="Close letter"
-      >
-        Close
-      </button>
-
-      <div class="foreword-letter__scene">
-        <div class="foreword-letter__envelope">
-          <div class="foreword-letter__envelope-back" aria-hidden="true"></div>
-
-          <article class="foreword-letter__paper">
-            <div class="foreword-letter__fold">
-              <div class="foreword-letter__panel">
-                <img
-                  class="foreword-letter__photo"
-                  src="../assets/images/canvas/foreword-paper.jpg"
-                  alt=""
-                  aria-hidden="true"
-                  draggable="false"
-                >
-                <p class="foreword-letter__kicker" id="foreword-letter-title">Foreword</p>
-                <div class="foreword-letter__body">
-                  <p>
-                    My Yeye counts growth in rings. Each morning for a decade, he disappeared into the backyard to tend to our apricot tree, staking its slender trunk with cloth-bound planks. His unhurried movements became the pulse of our garden, a rhythm as constant as his cultivation.
-                  </p>
-                  <p>
-                    As he worked, Yeye told stories. He planted in me the roots of Chinese mythology: Chang’e’s elixir of immortality, Monkey King’s defiant climb against the heavens. These weren’t simply fables—they were puzzles. Why does she seek eternity? What drives his rebellion? With each new question, Yeye encouraged me to dig deeper, to tug at loose threads and see where they unraveled.
-                  </p>
-                  <p>
-                    Yeye’s advice guides my chase to understand the quirks of human nature through stories. I dissect the intricacies of West African spider folklore, where cultural ideology is encoded in power dynamics and ancestral tradition; I trace the etymology of Sanskrit mantras, unearthing the entwinement of language and spirituality. My process always begins simply: a slew of ‘why would he?’s and ‘how come they?’s, followed by a patient persistence to peel back each tree ring of what drives and defines us.
-                  </p>
-                  <p>
-                    Nowadays, Yeye doesn’t always feel well to leave his bed, but the apricot tree no longer needs his care—its roots can venture deep to find its own sustenance. As the apricots and I continue upwards in his absence, I carry the lessons he sowed: Monkey King’s rebellion, Chang’e’s longing, and the joy of understanding humanity—one deliberate, unhurried question at a time.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <div class="foreword-letter__pocket" aria-hidden="true"></div>
-          <div class="foreword-letter__flap" aria-hidden="true"></div>
-        </div>
-      </div>
-    </div>
-  </dialog>
 
   <script src="../js/main.js"></script>
 </body>
