@@ -16,28 +16,73 @@
 </head>
 <body class="canvas-page">
 
-  <main class="canvas-stage" aria-label="Canvas">
-    <a class="canvas-gallery__back" href="../index.html" aria-label="Back to home">←</a>
+  <header class="case-topbar">
+    <div class="case-topbar__inner">
+      <div class="case-topbar__left">
+        <a href="../index.html" class="case-topbar__logo" aria-label="Joyce Ren home"></a>
+        <nav id="site-nav" class="case-topbar__nav" aria-label="Main">
+          <a href="../index.html#work">Work</a>
+          <a href="index.html" aria-current="page">Canvas</a>
+          <a href="../about/index.html">About</a>
+        </nav>
+      </div>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        Menu
+      </button>
+      <a href="../index.html#resume" class="case-topbar__resume">Resume</a>
+    </div>
+  </header>
 
-    <section class="canvas-gallery" data-canvas-gallery aria-label="Canvas gallery">
-      <article
-        class="canvas-gallery__slide is-active"
-        data-canvas-slide
-        data-site-url="../index.html#work"
-        aria-hidden="false"
-      >
-        <div class="canvas-gallery__artboard">
-          <span class="canvas-gallery__folio">I.</span>
-          <div class="canvas-gallery__collage" role="img" aria-label="Six studies arranged on a paper field">
-            <span class="canvas-gallery__photo canvas-gallery__photo--one" data-photo-label="(1)"></span>
-            <span class="canvas-gallery__photo canvas-gallery__photo--two" data-photo-label="(2)"></span>
-            <span class="canvas-gallery__photo canvas-gallery__photo--three" data-photo-label="(3)"></span>
-            <span class="canvas-gallery__photo canvas-gallery__photo--four" data-photo-label="(4)"></span>
-            <span class="canvas-gallery__photo canvas-gallery__photo--five" data-photo-label="(5)"></span>
-            <span class="canvas-gallery__photo canvas-gallery__photo--six" data-photo-label="(6)"></span>
-          </div>
-          <h1 class="canvas-gallery__title">studies</h1>
-          <ol class="canvas-gallery__legend">
+  <main class="canvas-stage">
+    <section class="canvas-gallery" aria-labelledby="canvas-title">
+      <header class="canvas-gallery__intro">
+        <p class="eyebrow">Canvas</p>
+        <h1 class="canvas-gallery__title" id="canvas-title">studies</h1>
+      </header>
+
+      <div class="canvas-gallery__layout">
+        <div class="canvas-gallery__collage" aria-label="Six image placeholders">
+          <figure class="canvas-gallery__image canvas-gallery__image--one">
+            <div class="canvas-gallery__placeholder" role="img" aria-label="Image placeholder one">
+              <span>Image placeholder</span>
+            </div>
+            <figcaption>01</figcaption>
+          </figure>
+          <figure class="canvas-gallery__image canvas-gallery__image--two">
+            <div class="canvas-gallery__placeholder" role="img" aria-label="Image placeholder two">
+              <span>Image placeholder</span>
+            </div>
+            <figcaption>02</figcaption>
+          </figure>
+          <figure class="canvas-gallery__image canvas-gallery__image--three">
+            <div class="canvas-gallery__placeholder" role="img" aria-label="Image placeholder three">
+              <span>Image placeholder</span>
+            </div>
+            <figcaption>03</figcaption>
+          </figure>
+          <figure class="canvas-gallery__image canvas-gallery__image--four">
+            <div class="canvas-gallery__placeholder" role="img" aria-label="Image placeholder four">
+              <span>Image placeholder</span>
+            </div>
+            <figcaption>04</figcaption>
+          </figure>
+          <figure class="canvas-gallery__image canvas-gallery__image--five">
+            <div class="canvas-gallery__placeholder" role="img" aria-label="Image placeholder five">
+              <span>Image placeholder</span>
+            </div>
+            <figcaption>05</figcaption>
+          </figure>
+          <figure class="canvas-gallery__image canvas-gallery__image--six">
+            <div class="canvas-gallery__placeholder" role="img" aria-label="Image placeholder six">
+              <span>Image placeholder</span>
+            </div>
+            <figcaption>06</figcaption>
+          </figure>
+        </div>
+
+        <div class="canvas-gallery__descriptors">
+          <p class="canvas-gallery__label">A few descriptors</p>
+          <ol class="canvas-gallery__list">
             <li>Portrait study</li>
             <li>Walking wide angle</li>
             <li>Sitting wide angle</li>
@@ -46,72 +91,8 @@
             <li>Mirror full body</li>
           </ol>
         </div>
-      </article>
-
-      <article
-        class="canvas-gallery__slide"
-        data-canvas-slide
-        data-site-url="../index.html#work"
-        aria-hidden="true"
-      >
-        <div class="canvas-gallery__artboard canvas-gallery__artboard--field">
-          <span class="canvas-gallery__folio">II.</span>
-          <div class="canvas-gallery__field-grid" role="img" aria-label="Fragments of a field study">
-            <span class="canvas-gallery__field-block canvas-gallery__field-block--large"></span>
-            <span class="canvas-gallery__field-block canvas-gallery__field-block--small"></span>
-            <span class="canvas-gallery__field-block canvas-gallery__field-block--line"></span>
-          </div>
-          <h1 class="canvas-gallery__title">field notes</h1>
-          <p class="canvas-gallery__description">
-            Fragments gathered between places, people, and the things they leave behind.
-          </p>
-        </div>
-      </article>
-
-      <article
-        class="canvas-gallery__slide"
-        data-canvas-slide
-        data-site-url="../index.html#work"
-        aria-hidden="true"
-      >
-        <div class="canvas-gallery__artboard canvas-gallery__artboard--writing">
-          <span class="canvas-gallery__folio">III.</span>
-          <div class="canvas-gallery__writing-stack" role="img" aria-label="A stack of writing fragments">
-            <span class="canvas-gallery__writing-card canvas-gallery__writing-card--back">a note to return to</span>
-            <span class="canvas-gallery__writing-card canvas-gallery__writing-card--middle">the shape of a thought</span>
-            <span class="canvas-gallery__writing-card canvas-gallery__writing-card--front">writing fragments</span>
-          </div>
-          <h1 class="canvas-gallery__title">writing</h1>
-          <p class="canvas-gallery__description">
-            Short observations, unfinished sentences, and room for another idea.
-          </p>
-        </div>
-      </article>
+      </div>
     </section>
-
-    <div class="canvas-gallery__nav" aria-label="Canvas navigation">
-      <button type="button" class="canvas-gallery__arrow" data-canvas-prev aria-label="Previous canvas piece">
-        <span aria-hidden="true">←</span>
-      </button>
-      <button type="button" class="canvas-gallery__arrow" data-canvas-next aria-label="Next canvas piece">
-        <span aria-hidden="true">→</span>
-      </button>
-    </div>
-
-    <a class="canvas-gallery__visit" data-canvas-visit href="../index.html#work">
-      <span aria-hidden="true">↗</span>
-      Visit site
-    </a>
-
-    <div class="canvas-gallery__dots" data-canvas-dots role="tablist" aria-label="Choose a canvas piece">
-      <button type="button" data-canvas-dot data-index="0" role="tab" aria-label="Show studies" aria-selected="true"></button>
-      <button type="button" data-canvas-dot data-index="1" role="tab" aria-label="Show field notes" aria-selected="false"></button>
-      <button type="button" data-canvas-dot data-index="2" role="tab" aria-label="Show writing" aria-selected="false"></button>
-    </div>
-
-    <button type="button" class="canvas-gallery__expand" data-canvas-expand aria-label="Enter full screen">
-      <span aria-hidden="true">⤢</span>
-    </button>
   </main>
 
   <script src="../js/main.js"></script>

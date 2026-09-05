@@ -31,7 +31,8 @@
   if (
     topbar &&
     !document.body.classList.contains("portfolio-page") &&
-    !document.body.classList.contains("about-page")
+    !document.body.classList.contains("about-page") &&
+    !document.body.classList.contains("canvas-page")
   ) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let lastY = window.scrollY || 0;
