@@ -9052,3 +9052,479 @@ p {
 #research .case-process-key + .case-body {
   margin-top: var(--case-subsection-gap, 120px);
 }
+
+/* --------------------------------------------------------------------------
+   Canvas gallery
+   -------------------------------------------------------------------------- */
+
+.canvas-page {
+  --canvas-gallery-paper: #f6f5ef;
+  --canvas-gallery-ink: #123d78;
+  --canvas-gallery-muted: #6c7890;
+  min-height: 100svh;
+  background: var(--canvas-gallery-paper);
+  color: var(--canvas-gallery-ink);
+  overflow: hidden;
+}
+
+.canvas-stage {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 34rem;
+  padding: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.55), transparent 30%),
+    radial-gradient(circle at 82% 72%, rgba(221, 218, 205, 0.3), transparent 36%),
+    var(--canvas-gallery-paper);
+}
+
+.canvas-stage::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(30, 39, 49, 0.16) 0.45px, transparent 0.45px);
+  background-size: 5px 5px;
+  content: "";
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.canvas-gallery {
+  position: absolute;
+  inset: 0;
+}
+
+.canvas-gallery__slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.985);
+  transition: opacity 0.42s ease, transform 0.42s ease, visibility 0.42s ease;
+  visibility: hidden;
+}
+
+.canvas-gallery__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  visibility: visible;
+}
+
+.canvas-gallery__artboard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.canvas-gallery__folio {
+  position: absolute;
+  top: clamp(2rem, 6vw, 4rem);
+  right: clamp(2rem, 10vw, 8rem);
+  font-size: var(--text-tertiary-size);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--canvas-gallery-ink);
+}
+
+.canvas-gallery__collage {
+  position: absolute;
+  top: 8%;
+  left: 10%;
+  width: min(42vw, 23rem);
+  height: 52%;
+}
+
+.canvas-gallery__photo {
+  position: absolute;
+  display: block;
+  width: clamp(4.75rem, 12vw, 6.25rem);
+  height: clamp(6rem, 14vw, 8rem);
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  background-color: #d6d4cc;
+  box-shadow: 0 0.35rem 1rem rgba(42, 49, 56, 0.08);
+}
+
+.canvas-gallery__photo::before {
+  position: absolute;
+  top: -1.45rem;
+  left: 0;
+  color: var(--canvas-gallery-ink);
+  content: attr(data-photo-label);
+  font-size: var(--text-tertiary-size);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.canvas-gallery__photo::after {
+  position: absolute;
+  inset: 10% 9%;
+  border-radius: 48% 52% 45% 55%;
+  background:
+    radial-gradient(circle at 54% 28%, rgba(255, 255, 255, 0.72) 0 7%, transparent 8%),
+    linear-gradient(145deg, rgba(32, 45, 57, 0.16), transparent 42%),
+    linear-gradient(35deg, rgba(245, 241, 225, 0.42), transparent 45%);
+  content: "";
+  opacity: 0.92;
+}
+
+.canvas-gallery__photo--one {
+  top: 0;
+  left: 0;
+  background: linear-gradient(145deg, #8e9d9c, #d6c5ac 62%, #6d817b);
+}
+
+.canvas-gallery__photo--two {
+  top: 0;
+  left: 34%;
+  background: linear-gradient(155deg, #5f718a, #9eafad 48%, #d9cfc3);
+}
+
+.canvas-gallery__photo--three {
+  top: 25%;
+  left: 0;
+  background: linear-gradient(165deg, #c2ae8d, #e1d4bb 48%, #7f8f87);
+}
+
+.canvas-gallery__photo--four {
+  top: 25%;
+  left: 68%;
+  background: linear-gradient(145deg, #b7b5aa, #667b81 53%, #d8c6b2);
+}
+
+.canvas-gallery__photo--five {
+  top: 50%;
+  left: 34%;
+  background: linear-gradient(155deg, #566d75, #b9bda9 46%, #d9c6a3);
+}
+
+.canvas-gallery__photo--six {
+  top: 75%;
+  left: 0;
+  background: linear-gradient(145deg, #8d756a, #d1c5ad 52%, #566d7a);
+}
+
+.canvas-gallery__title {
+  position: absolute;
+  bottom: 17%;
+  left: 10%;
+  margin: 0;
+  color: var(--canvas-gallery-ink);
+  font-size: var(--text-secondary-size);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.canvas-gallery__legend {
+  position: absolute;
+  right: 10%;
+  bottom: 14%;
+  width: min(30vw, 19rem);
+  margin: 0;
+  padding: 0;
+  color: var(--canvas-gallery-ink);
+  font-size: var(--text-tertiary-size);
+  line-height: 1.65;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.canvas-gallery__legend li::before {
+  display: inline-block;
+  width: 1.35rem;
+  content: counter(list-item);
+}
+
+.canvas-gallery__description {
+  position: absolute;
+  right: 10%;
+  bottom: 17%;
+  width: min(28vw, 20rem);
+  margin: 0;
+  color: var(--canvas-gallery-muted);
+  font-size: var(--text-tertiary-size);
+  line-height: 1.55;
+}
+
+.canvas-gallery__field-grid {
+  position: absolute;
+  top: 14%;
+  left: 11%;
+  width: 57%;
+  height: 60%;
+}
+
+.canvas-gallery__field-block {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(18, 61, 120, 0.24);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.canvas-gallery__field-block--large {
+  inset: 0 17% 25% 0;
+  background:
+    linear-gradient(145deg, transparent 38%, rgba(18, 61, 120, 0.25) 39% 40%, transparent 41%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(180, 190, 185, 0.3));
+}
+
+.canvas-gallery__field-block--small {
+  right: 0;
+  bottom: 0;
+  width: 42%;
+  height: 40%;
+  background:
+    radial-gradient(circle at 40% 30%, rgba(255, 255, 255, 0.8), transparent 34%),
+    linear-gradient(135deg, #b9c2b2, #ded6c2);
+}
+
+.canvas-gallery__field-block--line {
+  top: 15%;
+  right: 2%;
+  width: 35%;
+  height: 1px;
+  border: 0;
+  background: var(--canvas-gallery-ink);
+  box-shadow: 0 5.5rem 0 rgba(18, 61, 120, 0.55), 0 11rem 0 rgba(18, 61, 120, 0.25);
+}
+
+.canvas-gallery__writing-stack {
+  position: absolute;
+  top: 17%;
+  left: 14%;
+  width: 58%;
+  height: 54%;
+}
+
+.canvas-gallery__writing-card {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 56%;
+  height: 44%;
+  padding: 1rem;
+  color: var(--canvas-gallery-ink);
+  font-size: var(--text-tertiary-size);
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.canvas-gallery__writing-card--back {
+  top: 5%;
+  left: 25%;
+  background: #ddd3bd;
+  transform: rotate(7deg);
+}
+
+.canvas-gallery__writing-card--middle {
+  top: 28%;
+  left: 7%;
+  background: #b5c2bc;
+  transform: rotate(-6deg);
+}
+
+.canvas-gallery__writing-card--front {
+  top: 43%;
+  left: 30%;
+  background: #e9e3d4;
+  box-shadow: 0 1rem 2rem rgba(47, 53, 57, 0.08);
+  transform: rotate(2deg);
+}
+
+.canvas-gallery__nav {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 3vw, 2.75rem);
+  pointer-events: none;
+}
+
+.canvas-gallery__arrow,
+.canvas-gallery__back,
+.canvas-gallery__expand {
+  display: grid;
+  place-items: center;
+  appearance: none;
+  border: 0;
+  background: rgba(255, 255, 255, 0.86);
+  color: #16191d;
+  cursor: pointer;
+  box-shadow: 0 0.75rem 1.8rem rgba(43, 48, 53, 0.08);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.canvas-gallery__arrow:hover,
+.canvas-gallery__arrow:focus-visible,
+.canvas-gallery__back:hover,
+.canvas-gallery__back:focus-visible,
+.canvas-gallery__expand:hover,
+.canvas-gallery__expand:focus-visible {
+  background: #fff;
+  transform: scale(1.04);
+}
+
+.canvas-gallery__arrow {
+  width: clamp(3.25rem, 6vw, 4rem);
+  height: clamp(3.25rem, 6vw, 4rem);
+  border-radius: 1.35rem;
+  font: inherit;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1;
+  pointer-events: auto;
+}
+
+.canvas-gallery__back {
+  position: absolute;
+  top: 1rem;
+  left: -0.75rem;
+  z-index: 7;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0 1.25rem 1.25rem 0;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.canvas-gallery__visit {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 7;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.35rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #16191d;
+  font-size: var(--text-tertiary-size);
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 0.75rem 1.8rem rgba(43, 48, 53, 0.06);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.canvas-gallery__visit:hover,
+.canvas-gallery__visit:focus-visible {
+  background: #fff;
+  color: #16191d;
+  transform: translateY(-0.1rem);
+}
+
+.canvas-gallery__dots {
+  position: absolute;
+  bottom: 1.9rem;
+  left: 50%;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  transform: translateX(-50%);
+}
+
+.canvas-gallery__dots button {
+  width: 0.9rem;
+  height: 0.9rem;
+  padding: 0;
+  border: 1px solid rgba(18, 61, 120, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.canvas-gallery__dots button[aria-selected="true"] {
+  background: var(--canvas-gallery-ink);
+  transform: scale(1.12);
+}
+
+.canvas-gallery__dots button:hover,
+.canvas-gallery__dots button:focus-visible {
+  transform: scale(1.18);
+}
+
+.canvas-gallery__expand {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 7;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1.35rem;
+  font: inherit;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+@media (max-width: 700px) {
+  .canvas-stage {
+    min-height: 30rem;
+  }
+
+  .canvas-gallery__collage {
+    top: 12%;
+    left: 10%;
+    width: 53vw;
+    height: 54%;
+  }
+
+  .canvas-gallery__title {
+    bottom: 19%;
+    font-size: var(--text-secondary-size);
+  }
+
+  .canvas-gallery__legend,
+  .canvas-gallery__description {
+    right: 8%;
+    bottom: 11%;
+    width: 39vw;
+    font-size: 0.75rem;
+    line-height: 1.55;
+  }
+
+  .canvas-gallery__description {
+    bottom: 17%;
+  }
+
+  .canvas-gallery__field-grid,
+  .canvas-gallery__writing-stack {
+    width: 64%;
+  }
+
+  .canvas-gallery__visit {
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .canvas-gallery__expand {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .canvas-gallery__dots {
+    bottom: 1.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas-gallery__slide,
+  .canvas-gallery__arrow,
+  .canvas-gallery__back,
+  .canvas-gallery__expand,
+  .canvas-gallery__visit,
+  .canvas-gallery__dots button {
+    transition: none;
+  }
+}
