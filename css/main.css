@@ -2542,7 +2542,7 @@ p {
   color: #fff7ed;
   font-family: var(--font-sans);
   font-size: var(--text-title-size);
-  font-style: italic;
+  font-style: normal;
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.05;
