@@ -1321,12 +1321,12 @@
       const RIPPLE_AMPLITUDE = 5;
       const RIPPLE_DECAY = 0.93;
       // Slow, offset cycles create a visible but continuously drifting gradient feel.
-      const IDLE_RIPPLE_SPEED = 0.00042;
-      const IDLE_RIPPLE_AMPLITUDE = 38;
-      const IDLE_WOBBLE_SPEED = 0.00024;
-      const IDLE_WOBBLE_AMPLITUDE = 14;
+      const IDLE_RIPPLE_SPEED = 0.0005;
+      const IDLE_RIPPLE_AMPLITUDE = 50;
+      const IDLE_WOBBLE_SPEED = 0.0003;
+      const IDLE_WOBBLE_AMPLITUDE = 20;
       const IDLE_PULSE_SPEED = 0.00065;
-      const IDLE_PULSE_AMOUNT = 0.32;
+      const IDLE_PULSE_AMOUNT = 0.4;
       const pointer = { x: 0.5, y: 0.44 };
       const target = { x: 0.5, y: 0.44 };
       const lastTarget = { x: 0.5, y: 0.44 };
