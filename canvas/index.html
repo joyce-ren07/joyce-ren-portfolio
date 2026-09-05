@@ -16,171 +16,103 @@
 </head>
 <body class="canvas-page">
 
-  <header class="case-topbar">
-    <div class="case-topbar__inner">
-      <div class="case-topbar__left">
-        <a href="../index.html" class="case-topbar__logo" aria-label="Joyce Ren home"></a>
-        <nav id="site-nav" class="case-topbar__nav" aria-label="Main">
-          <a href="../index.html#work">Work</a>
-          <a href="index.html" aria-current="page">Canvas</a>
-          <a href="../about/index.html">About</a>
-        </nav>
-      </div>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-        Menu
-      </button>
-      <a href="../index.html#resume" class="case-topbar__resume">Resume</a>
-    </div>
-  </header>
-
   <main class="canvas-stage" aria-label="Canvas">
-    <div class="canvas-toolbar" data-canvas-toolbar>
-      <span class="canvas-toolbar__hint">Scroll to zoom · drag to pan</span>
-      <div class="canvas-toolbar__controls" role="group" aria-label="Zoom controls">
-        <button type="button" class="canvas-toolbar__btn" data-canvas-zoom-out aria-label="Zoom out">−</button>
-        <span class="canvas-toolbar__level" data-canvas-zoom-level>100%</span>
-        <button type="button" class="canvas-toolbar__btn" data-canvas-zoom-in aria-label="Zoom in">+</button>
-        <button type="button" class="canvas-toolbar__btn canvas-toolbar__btn--reset" data-canvas-zoom-reset>Reset</button>
-      </div>
-    </div>
+    <a class="canvas-gallery__back" href="../index.html" aria-label="Back to home">←</a>
 
-    <div class="canvas-viewport" data-canvas-viewport>
-      <div class="canvas-world" data-canvas-world data-canvas-gallery>
-        <div class="canvas-spread" aria-hidden="false">
-          <div class="canvas-page-sheet canvas-page-sheet--left">
-            <span class="canvas-page-sheet__mark">01 / 02</span>
-            <p class="canvas-spread__spine-label">Canvas</p>
-
-            <p class="canvas-note canvas-note--vertical">Studies in progress</p>
-
-            <aside class="canvas-copy canvas-copy--lede">
-              <p>
-                A place for art, mostly — and some writing. Placeholders for now;
-                click any piece to open it.
-              </p>
-            </aside>
-
-            <button
-              type="button"
-              class="canvas-piece canvas-piece--a"
-              data-canvas-piece
-              data-title="Untitled study I"
-              data-caption="Placeholder for a tall work — painting, photo, or print."
-              aria-haspopup="dialog"
-            >
-              <span class="canvas-piece__frame" aria-hidden="true"></span>
-              <span class="canvas-piece__meta">Fig. 01 · Untitled study I</span>
-            </button>
-
-            <div class="canvas-copy canvas-copy--overlap">
-              <p>
-                Negative space holds as much as the object. Overlap is a way of
-                letting two thoughts share a margin.
-              </p>
-            </div>
-
-            <button
-              type="button"
-              class="canvas-piece canvas-piece--b"
-              data-canvas-piece
-              data-title="Field notes"
-              data-caption="Placeholder for a landscape piece or short writing excerpt."
-              aria-haspopup="dialog"
-            >
-              <span class="canvas-piece__frame" aria-hidden="true"></span>
-              <span class="canvas-piece__meta">Fig. 02 · Field notes</span>
-            </button>
-
-            <ul class="canvas-index">
-              <li><span>IMG 01</span> Tall study, unfinished</li>
-              <li><span>IMG 02</span> Landscape fragment</li>
-              <li><span>IMG 03</span> Object / still</li>
-            </ul>
+    <section class="canvas-gallery" data-canvas-gallery aria-label="Canvas gallery">
+      <article
+        class="canvas-gallery__slide is-active"
+        data-canvas-slide
+        data-site-url="../index.html#work"
+        aria-hidden="false"
+      >
+        <div class="canvas-gallery__artboard">
+          <span class="canvas-gallery__folio">I.</span>
+          <div class="canvas-gallery__collage" role="img" aria-label="Six studies arranged on a paper field">
+            <span class="canvas-gallery__photo canvas-gallery__photo--one" data-photo-label="(1)"></span>
+            <span class="canvas-gallery__photo canvas-gallery__photo--two" data-photo-label="(2)"></span>
+            <span class="canvas-gallery__photo canvas-gallery__photo--three" data-photo-label="(3)"></span>
+            <span class="canvas-gallery__photo canvas-gallery__photo--four" data-photo-label="(4)"></span>
+            <span class="canvas-gallery__photo canvas-gallery__photo--five" data-photo-label="(5)"></span>
+            <span class="canvas-gallery__photo canvas-gallery__photo--six" data-photo-label="(6)"></span>
           </div>
-
-          <div class="canvas-gutter" aria-hidden="true"></div>
-
-          <div class="canvas-page-sheet canvas-page-sheet--right">
-            <span class="canvas-page-sheet__mark">02 / 02</span>
-            <div class="canvas-veil" aria-hidden="true"></div>
-
-            <button
-              type="button"
-              class="canvas-piece canvas-piece--c"
-              data-canvas-piece
-              data-title="Spread II"
-              data-caption="Placeholder for a wide composition or page study."
-              aria-haspopup="dialog"
-            >
-              <span class="canvas-piece__frame" aria-hidden="true"></span>
-              <span class="canvas-piece__meta">Fig. 03 · Spread II</span>
-            </button>
-
-            <div class="canvas-copy canvas-copy--caption-block">
-              <p><strong>Fig. 03</strong> Wide composition — room for a photograph or a short essay pull.</p>
-              <p><strong>Fig. 04</strong> Vertical study overlapping the caption plane.</p>
-            </div>
-
-            <button
-              type="button"
-              class="canvas-piece canvas-piece--d"
-              data-canvas-piece
-              data-title="Vertical study"
-              data-caption="Placeholder for a portrait-oriented work."
-              aria-haspopup="dialog"
-            >
-              <span class="canvas-piece__frame" aria-hidden="true"></span>
-              <span class="canvas-piece__meta">Fig. 04 · Vertical study</span>
-            </button>
-
-            <button
-              type="button"
-              class="canvas-piece canvas-piece--e"
-              data-canvas-piece
-              data-title="Object"
-              data-caption="Placeholder for a still life or object photograph."
-              aria-haspopup="dialog"
-            >
-              <span class="canvas-piece__frame" aria-hidden="true"></span>
-              <span class="canvas-piece__meta">Fig. 05 · Object</span>
-            </button>
-
-            <button
-              type="button"
-              class="canvas-piece canvas-piece--f"
-              data-canvas-piece
-              data-title="Writing fragment"
-              data-caption="Placeholder for a short essay or captioned piece."
-              aria-haspopup="dialog"
-            >
-              <span class="canvas-piece__frame" aria-hidden="true"></span>
-              <span class="canvas-piece__meta">Fig. 06 · Writing fragment</span>
-            </button>
-
-            <aside class="canvas-copy canvas-copy--footnote">
-              <p>
-                Drag the spread. Zoom with the wheel or buttons. Each frame
-                expands on click.
-              </p>
-            </aside>
-          </div>
+          <h1 class="canvas-gallery__title">studies</h1>
+          <ol class="canvas-gallery__legend">
+            <li>Portrait study</li>
+            <li>Walking wide angle</li>
+            <li>Sitting wide angle</li>
+            <li>Front camera</li>
+            <li>Video screenshot</li>
+            <li>Mirror full body</li>
+          </ol>
         </div>
-      </div>
-    </div>
-  </main>
+      </article>
 
-  <dialog class="canvas-lightbox" data-canvas-lightbox aria-label="Artwork detail">
-    <div class="canvas-lightbox__panel">
-      <button type="button" class="canvas-lightbox__close" data-canvas-lightbox-close aria-label="Close">
-        Close
+      <article
+        class="canvas-gallery__slide"
+        data-canvas-slide
+        data-site-url="../index.html#work"
+        aria-hidden="true"
+      >
+        <div class="canvas-gallery__artboard canvas-gallery__artboard--field">
+          <span class="canvas-gallery__folio">II.</span>
+          <div class="canvas-gallery__field-grid" role="img" aria-label="Fragments of a field study">
+            <span class="canvas-gallery__field-block canvas-gallery__field-block--large"></span>
+            <span class="canvas-gallery__field-block canvas-gallery__field-block--small"></span>
+            <span class="canvas-gallery__field-block canvas-gallery__field-block--line"></span>
+          </div>
+          <h1 class="canvas-gallery__title">field notes</h1>
+          <p class="canvas-gallery__description">
+            Fragments gathered between places, people, and the things they leave behind.
+          </p>
+        </div>
+      </article>
+
+      <article
+        class="canvas-gallery__slide"
+        data-canvas-slide
+        data-site-url="../index.html#work"
+        aria-hidden="true"
+      >
+        <div class="canvas-gallery__artboard canvas-gallery__artboard--writing">
+          <span class="canvas-gallery__folio">III.</span>
+          <div class="canvas-gallery__writing-stack" role="img" aria-label="A stack of writing fragments">
+            <span class="canvas-gallery__writing-card canvas-gallery__writing-card--back">a note to return to</span>
+            <span class="canvas-gallery__writing-card canvas-gallery__writing-card--middle">the shape of a thought</span>
+            <span class="canvas-gallery__writing-card canvas-gallery__writing-card--front">writing fragments</span>
+          </div>
+          <h1 class="canvas-gallery__title">writing</h1>
+          <p class="canvas-gallery__description">
+            Short observations, unfinished sentences, and room for another idea.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <div class="canvas-gallery__nav" aria-label="Canvas navigation">
+      <button type="button" class="canvas-gallery__arrow" data-canvas-prev aria-label="Previous canvas piece">
+        <span aria-hidden="true">←</span>
       </button>
-      <div class="canvas-lightbox__visual" data-canvas-lightbox-visual aria-hidden="true"></div>
-      <div class="canvas-lightbox__copy">
-        <h2 class="canvas-lightbox__title" data-canvas-lightbox-title></h2>
-        <p class="canvas-lightbox__caption" data-canvas-lightbox-caption></p>
-      </div>
+      <button type="button" class="canvas-gallery__arrow" data-canvas-next aria-label="Next canvas piece">
+        <span aria-hidden="true">→</span>
+      </button>
     </div>
-  </dialog>
+
+    <a class="canvas-gallery__visit" data-canvas-visit href="../index.html#work">
+      <span aria-hidden="true">↗</span>
+      Visit site
+    </a>
+
+    <div class="canvas-gallery__dots" data-canvas-dots role="tablist" aria-label="Choose a canvas piece">
+      <button type="button" data-canvas-dot data-index="0" role="tab" aria-label="Show studies" aria-selected="true"></button>
+      <button type="button" data-canvas-dot data-index="1" role="tab" aria-label="Show field notes" aria-selected="false"></button>
+      <button type="button" data-canvas-dot data-index="2" role="tab" aria-label="Show writing" aria-selected="false"></button>
+    </div>
+
+    <button type="button" class="canvas-gallery__expand" data-canvas-expand aria-label="Enter full screen">
+      <span aria-hidden="true">⤢</span>
+    </button>
+  </main>
 
   <script src="../js/main.js"></script>
 </body>
