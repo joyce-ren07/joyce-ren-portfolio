@@ -3590,8 +3590,8 @@ p {
 
 .case-intro-header__subtitle {
   font-size: var(--case-tertiary-size, var(--text-tertiary-size));
-  font-weight: 400;
-  line-height: 1.55;
+  font-weight: var(--case-tertiary-weight, 500);
+  line-height: var(--case-body-leading, 1.58);
   color: #A89E9D;
   max-width: 34rem;
   margin: 0 auto;
