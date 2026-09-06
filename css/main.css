@@ -9709,6 +9709,7 @@ p {
   display: block;
   color: var(--case-heading);
   font-weight: 500;
+  overflow-wrap: anywhere;
 }
 
 .canvas-gallery__details {
