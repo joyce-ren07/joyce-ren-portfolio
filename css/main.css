@@ -9612,11 +9612,23 @@ p {
 }
 
 .canvas-gallery__image {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
   min-height: 0;
   margin: 0;
+  z-index: 0;
+}
+
+.canvas-gallery__image:is(:hover, :focus-visible, :focus-within) {
+  z-index: 2;
+}
+
+.canvas-gallery__image:focus-visible {
+  outline: 2px solid #f0bfa1;
+  outline-offset: 0.5rem;
+  border-radius: 1.25rem;
 }
 
 .canvas-gallery__media {
@@ -9632,6 +9644,7 @@ p {
     linear-gradient(145deg, rgba(255, 255, 255, 0.78), transparent 55%),
     #f5f3f0;
   box-shadow: 0 0.75rem 1.8rem rgba(47, 53, 57, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .canvas-gallery__image--landscape .canvas-gallery__media {
@@ -9647,8 +9660,12 @@ p {
   transition: transform 0.45s ease;
 }
 
-.canvas-gallery__image:hover .canvas-gallery__media img,
-.canvas-gallery__image:focus-within .canvas-gallery__media img {
+.canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__media {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 1rem 2.2rem rgba(47, 53, 57, 0.11);
+}
+
+.canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__media img {
   transform: scale(1.015);
 }
 
@@ -9674,41 +9691,84 @@ p {
 }
 
 .canvas-gallery__image figcaption {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.7rem;
-  align-items: start;
+  display: block;
   margin-top: 0.65rem;
+  padding-inline: 0.1rem;
   color: var(--case-text);
   font-size: var(--text-tertiary-size);
   font-weight: var(--text-tertiary-weight);
   line-height: 1.4;
 }
 
-.canvas-gallery__index {
-  color: #f0bfa1;
-  line-height: 1;
-}
-
 .canvas-gallery__caption {
-  display: grid;
-  gap: 0.2rem;
+  display: block;
   min-width: 0;
 }
 
-.canvas-gallery__work,
-.canvas-gallery__meta {
-  display: block;
-}
-
 .canvas-gallery__work {
+  display: block;
   color: var(--case-heading);
   font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.canvas-gallery__details {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  left: 50%;
+  z-index: 3;
+  box-sizing: border-box;
+  width: min(20rem, calc(100vw - 2rem));
+  padding: 1rem 1.1rem 1.05rem;
+  border: 1px solid rgba(168, 158, 157, 0.24);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 1.2rem 2.75rem rgba(47, 53, 57, 0.14);
+  color: var(--case-text);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -0.45rem) scale(0.97);
+  transform-origin: top center;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0s linear 0.2s;
+}
+
+.canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__details {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+  transition-delay: 0s;
+}
+
+.canvas-gallery__details-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: #9d8f89;
+  font-size: var(--text-tertiary-size);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.canvas-gallery__details-work {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--case-heading);
+  font-size: var(--text-tertiary-size);
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .canvas-gallery__meta {
+  display: block;
   color: var(--case-text);
   font-weight: var(--text-tertiary-weight);
+  line-height: 1.45;
 }
 
 .canvas-gallery__image--unmatched .canvas-gallery__meta,
@@ -9808,10 +9868,24 @@ p {
     grid-template-rows: none;
     min-height: 0;
   }
+
+  .canvas-gallery__details {
+    right: 0;
+    left: 0;
+    width: auto;
+    transform: translateY(-0.45rem) scale(0.97);
+    transform-origin: top left;
+  }
+
+  .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__details {
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .canvas-gallery__media img {
+  .canvas-gallery__media,
+  .canvas-gallery__media img,
+  .canvas-gallery__details {
     transition: none;
   }
 }
