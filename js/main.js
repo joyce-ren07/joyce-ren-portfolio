@@ -1389,6 +1389,72 @@
     updateFullscreenLabel();
   }
 
+  /* Canvas catalog plates — click to open side-detail lightbox */
+  const canvasPlateLightbox = document.querySelector("[data-canvas-plate-lightbox]");
+  const canvasPlates = Array.from(document.querySelectorAll("[data-canvas-plate]"));
+  if (canvasPlateLightbox && canvasPlates.length) {
+    const closeBtn = canvasPlateLightbox.querySelector("[data-canvas-plate-close]");
+    const imageEl = canvasPlateLightbox.querySelector("[data-canvas-plate-image]");
+    const titleEl = canvasPlateLightbox.querySelector("[data-canvas-plate-title]");
+    const metaEl = canvasPlateLightbox.querySelector("[data-canvas-plate-meta]");
+    const indexEl = canvasPlateLightbox.querySelector("[data-canvas-plate-index]");
+    let lastTrigger = null;
+
+    const openPlate = (plate) => {
+      if (!plate) return;
+      lastTrigger = plate;
+      const img = plate.querySelector("img");
+      if (imageEl && img) {
+        imageEl.src = img.currentSrc || img.src;
+        imageEl.alt = img.alt || plate.dataset.title || "";
+      }
+      if (titleEl) titleEl.textContent = plate.dataset.title || "";
+      if (metaEl) metaEl.textContent = plate.dataset.meta || "";
+      if (indexEl) indexEl.textContent = plate.dataset.index || "";
+      canvasPlateLightbox.classList.toggle(
+        "is-unmatched",
+        plate.classList.contains("canvas-gallery__image--unmatched")
+      );
+      if (typeof canvasPlateLightbox.showModal === "function") {
+        canvasPlateLightbox.showModal();
+      } else {
+        canvasPlateLightbox.setAttribute("open", "");
+      }
+      closeBtn?.focus();
+    };
+
+    const closePlate = () => {
+      if (typeof canvasPlateLightbox.close === "function") {
+        canvasPlateLightbox.close();
+      } else {
+        canvasPlateLightbox.removeAttribute("open");
+      }
+      if (lastTrigger) {
+        lastTrigger.focus();
+        lastTrigger = null;
+      }
+    };
+
+    canvasPlates.forEach((plate) => {
+      plate.addEventListener("click", () => openPlate(plate));
+      plate.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openPlate(plate);
+        }
+      });
+    });
+
+    closeBtn?.addEventListener("click", closePlate);
+    canvasPlateLightbox.addEventListener("click", (event) => {
+      if (event.target === canvasPlateLightbox) closePlate();
+    });
+    canvasPlateLightbox.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closePlate();
+    });
+  }
+
   /* About page — soft cursor-responsive dappled light */
   const dappleScene = document.querySelector("[data-dapple-scene]");
   if (dappleScene) {
