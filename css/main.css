@@ -1135,14 +1135,11 @@ p {
   --canvas-serif: var(--font-sans);
   background: #ffffff;
   color: #A89E9D;
-  min-height: 100vh;
-  overflow: hidden;
+  /* overflow/height owned by the catalog .canvas-page block later in this file */
 }
 
 .canvas-stage {
   position: relative;
-  height: 100vh;
-  padding-top: var(--case-topbar-height);
   box-sizing: border-box;
 }
 
@@ -9571,7 +9568,7 @@ p {
 }
 
 .canvas-page .canvas-gallery__collage {
-  --canvas-plate-max: 9.25rem;
+  --canvas-plate-max: 10.5rem;
   position: static;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -9663,18 +9660,18 @@ p {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 12rem;
+  max-height: 13.5rem;
   object-fit: contain;
   object-position: center top;
   background: transparent;
   transition: transform 0.45s ease;
 }
 
-.canvas-page .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-page .canvas-gallery__media {
+.canvas-page .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__media {
   transform: translateY(-0.18rem);
 }
 
-.canvas-page .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-page .canvas-gallery__media img {
+.canvas-page .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__media img {
   transform: scale(1.02);
 }
 
@@ -9725,7 +9722,7 @@ p {
     visibility 0s linear 0.2s;
 }
 
-.canvas-page .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-page .canvas-gallery__details {
+.canvas-page .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__details {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -9765,11 +9762,11 @@ p {
   color: #9d8f89;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .canvas-page .canvas-gallery__collage {
-    --canvas-plate-max: 10rem;
+    --canvas-plate-max: 11rem;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    width: min(100%, 42rem);
+    width: min(100%, 44rem);
   }
 }
 
@@ -9808,7 +9805,7 @@ p {
     transform-origin: top left;
   }
 
-  .canvas-page .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-page .canvas-gallery__details {
+  .canvas-page .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__details {
     transform: translateY(0) scale(1);
   }
 }
