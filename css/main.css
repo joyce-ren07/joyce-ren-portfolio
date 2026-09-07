@@ -9742,10 +9742,13 @@ p {
   right: clamp(0.85rem, 2vw, 1.15rem);
   z-index: 2;
   appearance: none;
+  -webkit-appearance: none;
   margin: 0;
   padding: 0.35rem 0.55rem;
   border: 0;
+  border-radius: 0;
   background: transparent;
+  box-shadow: none;
   color: #A89E9D;
   font: inherit;
   font-size: var(--text-tertiary-size);
@@ -9756,6 +9759,11 @@ p {
 .canvas-plate-lightbox__close:hover,
 .canvas-plate-lightbox__close:focus-visible {
   color: #6f6f6f;
+}
+
+.canvas-plate-lightbox__close:focus-visible {
+  outline: 2px solid #f0bfa1;
+  outline-offset: 0.2rem;
 }
 
 .canvas-plate-lightbox__visual {
@@ -9769,7 +9777,7 @@ p {
 .canvas-plate-lightbox__visual img {
   display: block;
   width: 100%;
-  max-height: min(72vh, 40rem);
+  max-height: min(78vh, 44rem);
   height: auto;
   object-fit: contain;
   object-position: center;
