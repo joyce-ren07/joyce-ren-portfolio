@@ -9578,7 +9578,6 @@ p {
 }
 
 .canvas-page .canvas-gallery__image {
-  --canvas-rot: 0deg;
   --canvas-plate-w: var(--canvas-plate-max);
   position: absolute;
   display: flex;
@@ -9591,15 +9590,13 @@ p {
   margin: 0;
   z-index: 0;
   cursor: pointer;
-  transform: rotate(var(--canvas-rot));
   animation: canvas-plate-in 0.75s ease both;
   animation-delay: calc(0.05s * var(--canvas-plate-i, 0));
 }
 
-/* Irregular collage field — intentional uneven clusters, not columns */
+/* Irregular collage field — uneven clusters, level plates (no rotation) */
 .canvas-page .canvas-gallery__image:nth-child(1) {
   --canvas-plate-i: 1;
-  --canvas-rot: -3.1deg;
   --canvas-plate-w: 12.25rem;
   left: 5%;
   top: 1%;
@@ -9607,7 +9604,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(2) {
   --canvas-plate-i: 2;
-  --canvas-rot: 2.8deg;
   --canvas-plate-w: 8.75rem;
   left: 58%;
   top: 0;
@@ -9615,7 +9611,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(3) {
   --canvas-plate-i: 3;
-  --canvas-rot: -1.2deg;
   --canvas-plate-w: 14.5rem;
   right: 4%;
   left: auto;
@@ -9624,7 +9619,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(4) {
   --canvas-plate-i: 4;
-  --canvas-rot: 3.4deg;
   --canvas-plate-w: 9.25rem;
   left: 28%;
   top: 11%;
@@ -9632,7 +9626,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(5) {
   --canvas-plate-i: 5;
-  --canvas-rot: -2.4deg;
   --canvas-plate-w: 8.5rem;
   left: 7%;
   top: 26%;
@@ -9640,7 +9633,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(6) {
   --canvas-plate-i: 6;
-  --canvas-rot: 1.6deg;
   --canvas-plate-w: 11rem;
   right: 22%;
   left: auto;
@@ -9649,7 +9641,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(7) {
   --canvas-plate-i: 7;
-  --canvas-rot: -2.9deg;
   --canvas-plate-w: 15rem;
   left: 34%;
   top: 22%;
@@ -9657,7 +9648,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(8) {
   --canvas-plate-i: 8;
-  --canvas-rot: 2.2deg;
   --canvas-plate-w: 9.75rem;
   left: 2%;
   top: 48%;
@@ -9665,7 +9655,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(9) {
   --canvas-plate-i: 9;
-  --canvas-rot: -1.5deg;
   --canvas-plate-w: 11.75rem;
   left: 52%;
   top: 49%;
@@ -9673,7 +9662,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(10) {
   --canvas-plate-i: 10;
-  --canvas-rot: 2.6deg;
   --canvas-plate-w: 10.25rem;
   left: 18%;
   top: 64%;
@@ -9681,7 +9669,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(11) {
   --canvas-plate-i: 11;
-  --canvas-rot: -2.1deg;
   --canvas-plate-w: 12.5rem;
   right: 6%;
   left: auto;
@@ -9690,7 +9677,6 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(12) {
   --canvas-plate-i: 12;
-  --canvas-rot: 1.3deg;
   --canvas-plate-w: 9.5rem;
   left: 40%;
   top: 78%;
