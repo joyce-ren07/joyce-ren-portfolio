@@ -9571,8 +9571,8 @@ p {
   --canvas-plate-max: 11.5rem;
   position: relative;
   display: block;
-  width: min(100%, 72rem);
-  min-height: 96rem;
+  width: min(100%, 74rem);
+  min-height: 102rem;
   margin-inline: auto;
   height: auto;
 }
@@ -9585,7 +9585,7 @@ p {
   flex-direction: column;
   align-items: flex-start;
   width: var(--canvas-plate-w);
-  max-width: min(42vw, 14rem);
+  max-width: min(44vw, 15rem);
   min-width: 0;
   min-height: 0;
   margin: 0;
@@ -9596,104 +9596,104 @@ p {
   animation-delay: calc(0.05s * var(--canvas-plate-i, 0));
 }
 
+/* Irregular collage field — intentional uneven clusters, not columns */
 .canvas-page .canvas-gallery__image:nth-child(1) {
   --canvas-plate-i: 1;
-  --canvas-rot: -2.2deg;
-  --canvas-plate-w: 11rem;
-  left: 4%;
-  top: 0.5%;
+  --canvas-rot: -3.1deg;
+  --canvas-plate-w: 12.25rem;
+  left: 5%;
+  top: 1%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(2) {
   --canvas-plate-i: 2;
-  --canvas-rot: 1.6deg;
-  --canvas-plate-w: 9.5rem;
-  left: 36%;
-  top: 2%;
+  --canvas-rot: 2.8deg;
+  --canvas-plate-w: 8.75rem;
+  left: 58%;
+  top: 0;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(3) {
   --canvas-plate-i: 3;
-  --canvas-rot: -0.8deg;
-  --canvas-plate-w: 13.5rem;
-  right: 3%;
+  --canvas-rot: -1.2deg;
+  --canvas-plate-w: 14.5rem;
+  right: 4%;
   left: auto;
-  top: 5%;
+  top: 17%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(4) {
   --canvas-plate-i: 4;
-  --canvas-rot: 2.4deg;
-  --canvas-plate-w: 10.25rem;
-  left: 16%;
-  top: 18%;
+  --canvas-rot: 3.4deg;
+  --canvas-plate-w: 9.25rem;
+  left: 28%;
+  top: 11%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(5) {
   --canvas-plate-i: 5;
-  --canvas-rot: -1.4deg;
-  --canvas-plate-w: 9rem;
-  left: 49%;
-  top: 16%;
+  --canvas-rot: -2.4deg;
+  --canvas-plate-w: 8.5rem;
+  left: 7%;
+  top: 26%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(6) {
   --canvas-plate-i: 6;
-  --canvas-rot: 1.1deg;
-  --canvas-plate-w: 10.75rem;
-  right: 4%;
+  --canvas-rot: 1.6deg;
+  --canvas-plate-w: 11rem;
+  right: 22%;
   left: auto;
-  top: 26%;
+  top: 34%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(7) {
   --canvas-plate-i: 7;
-  --canvas-rot: -2.6deg;
-  --canvas-plate-w: 14rem;
-  left: 2%;
-  top: 38%;
+  --canvas-rot: -2.9deg;
+  --canvas-plate-w: 15rem;
+  left: 34%;
+  top: 22%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(8) {
   --canvas-plate-i: 8;
-  --canvas-rot: 1.9deg;
-  --canvas-plate-w: 10rem;
-  left: 40%;
-  top: 35%;
+  --canvas-rot: 2.2deg;
+  --canvas-plate-w: 9.75rem;
+  left: 2%;
+  top: 48%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(9) {
   --canvas-plate-i: 9;
-  --canvas-rot: -1.1deg;
-  --canvas-plate-w: 11.25rem;
-  right: 6%;
-  left: auto;
-  top: 46%;
+  --canvas-rot: -1.5deg;
+  --canvas-plate-w: 11.75rem;
+  left: 52%;
+  top: 49%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(10) {
   --canvas-plate-i: 10;
-  --canvas-rot: 2.1deg;
-  --canvas-plate-w: 10.5rem;
-  left: 10%;
-  top: 62%;
+  --canvas-rot: 2.6deg;
+  --canvas-plate-w: 10.25rem;
+  left: 18%;
+  top: 64%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(11) {
   --canvas-plate-i: 11;
-  --canvas-rot: -1.7deg;
-  --canvas-plate-w: 12rem;
-  left: 46%;
-  top: 66%;
+  --canvas-rot: -2.1deg;
+  --canvas-plate-w: 12.5rem;
+  right: 6%;
+  left: auto;
+  top: 68%;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(12) {
   --canvas-plate-i: 12;
-  --canvas-rot: 0.9deg;
-  --canvas-plate-w: 10rem;
-  right: 8%;
-  left: auto;
-  top: 74%;
+  --canvas-rot: 1.3deg;
+  --canvas-plate-w: 9.5rem;
+  left: 40%;
+  top: 78%;
 }
 
 @keyframes canvas-plate-in {
@@ -9929,26 +9929,26 @@ p {
 @media (max-width: 980px) {
   .canvas-page .canvas-gallery__collage {
     --canvas-plate-max: 10.5rem;
-    width: min(100%, 54rem);
-    min-height: 92rem;
+    width: min(100%, 56rem);
+    min-height: 96rem;
   }
 
   .canvas-page .canvas-gallery__image {
-    max-width: min(46vw, 12.5rem);
+    max-width: min(48vw, 13rem);
   }
 
   .canvas-page .canvas-gallery__image:nth-child(1) { left: 3%; top: 0.5%; right: auto; }
-  .canvas-page .canvas-gallery__image:nth-child(2) { left: 40%; top: 1.5%; right: auto; }
-  .canvas-page .canvas-gallery__image:nth-child(3) { right: 2%; left: auto; top: 6%; }
-  .canvas-page .canvas-gallery__image:nth-child(4) { left: 6%; top: 19%; right: auto; }
-  .canvas-page .canvas-gallery__image:nth-child(5) { left: 46%; top: 17%; right: auto; }
-  .canvas-page .canvas-gallery__image:nth-child(6) { right: 3%; left: auto; top: 28%; }
-  .canvas-page .canvas-gallery__image:nth-child(7) { left: 2%; top: 40%; right: auto; }
-  .canvas-page .canvas-gallery__image:nth-child(8) { left: 38%; top: 37%; right: auto; }
-  .canvas-page .canvas-gallery__image:nth-child(9) { right: 4%; left: auto; top: 48%; }
-  .canvas-page .canvas-gallery__image:nth-child(10) { left: 8%; top: 64%; right: auto; }
-  .canvas-page .canvas-gallery__image:nth-child(11) { left: 44%; top: 68%; right: auto; }
-  .canvas-page .canvas-gallery__image:nth-child(12) { right: 6%; left: auto; top: 76%; }
+  .canvas-page .canvas-gallery__image:nth-child(2) { left: 56%; top: 1%; right: auto; }
+  .canvas-page .canvas-gallery__image:nth-child(3) { right: 2%; left: auto; top: 16%; }
+  .canvas-page .canvas-gallery__image:nth-child(4) { left: 24%; top: 12%; right: auto; }
+  .canvas-page .canvas-gallery__image:nth-child(5) { left: 4%; top: 28%; right: auto; }
+  .canvas-page .canvas-gallery__image:nth-child(6) { right: 18%; left: auto; top: 36%; }
+  .canvas-page .canvas-gallery__image:nth-child(7) { left: 30%; top: 24%; right: auto; }
+  .canvas-page .canvas-gallery__image:nth-child(8) { left: 2%; top: 50%; right: auto; }
+  .canvas-page .canvas-gallery__image:nth-child(9) { left: 50%; top: 51%; right: auto; }
+  .canvas-page .canvas-gallery__image:nth-child(10) { left: 14%; top: 66%; right: auto; }
+  .canvas-page .canvas-gallery__image:nth-child(11) { right: 4%; left: auto; top: 70%; }
+  .canvas-page .canvas-gallery__image:nth-child(12) { left: 38%; top: 80%; right: auto; }
 }
 
 @media (max-width: 720px) {
