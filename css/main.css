@@ -9824,6 +9824,20 @@ p {
   line-height: 1.5;
 }
 
+.canvas-plate-lightbox__desc {
+  margin: 0.35rem 0 0;
+  max-width: 22rem;
+  color: var(--case-text);
+  font-size: var(--text-tertiary-size);
+  font-weight: var(--text-tertiary-weight);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.canvas-plate-lightbox__desc[hidden] {
+  display: none;
+}
+
 .canvas-plate-lightbox.is-unmatched .canvas-plate-lightbox__meta {
   color: #9d8f89;
 }

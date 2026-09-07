@@ -1397,6 +1397,7 @@
     const imageEl = canvasPlateLightbox.querySelector("[data-canvas-plate-image]");
     const titleEl = canvasPlateLightbox.querySelector("[data-canvas-plate-title]");
     const metaEl = canvasPlateLightbox.querySelector("[data-canvas-plate-meta]");
+    const descEl = canvasPlateLightbox.querySelector("[data-canvas-plate-desc]");
     const indexEl = canvasPlateLightbox.querySelector("[data-canvas-plate-index]");
     let lastTrigger = null;
 
@@ -1410,6 +1411,11 @@
       }
       if (titleEl) titleEl.textContent = plate.dataset.title || "";
       if (metaEl) metaEl.textContent = plate.dataset.meta || "";
+      if (descEl) {
+        const description = (plate.dataset.description || "").trim();
+        descEl.textContent = description;
+        descEl.hidden = !description;
+      }
       if (indexEl) indexEl.textContent = plate.dataset.index || "";
       canvasPlateLightbox.classList.toggle(
         "is-unmatched",
