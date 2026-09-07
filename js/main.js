@@ -1439,9 +1439,11 @@
       let pointerStartX = 0;
       let pointerStartY = 0;
       let pointerId = null;
+      let openedByPointer = false;
 
       plate.addEventListener("pointerdown", (event) => {
         if (event.button != null && event.button !== 0) return;
+        openedByPointer = false;
         pointerStartX = event.clientX;
         pointerStartY = event.clientY;
         pointerId = event.pointerId;
@@ -1458,11 +1460,24 @@
         const dx = event.clientX - pointerStartX;
         const dy = event.clientY - pointerStartY;
         pointerId = null;
-        if (Math.hypot(dx, dy) < 8) openPlate(plate);
+        if (Math.hypot(dx, dy) < 24) {
+          openedByPointer = true;
+          openPlate(plate);
+        }
       });
 
       plate.addEventListener("pointercancel", () => {
         pointerId = null;
+      });
+
+      // Fallback for environments that synthesize click without pointer events
+      plate.addEventListener("click", (event) => {
+        if (openedByPointer) {
+          openedByPointer = false;
+          return;
+        }
+        event.preventDefault();
+        openPlate(plate);
       });
 
       plate.addEventListener("keydown", (event) => {
