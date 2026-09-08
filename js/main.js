@@ -1552,11 +1552,17 @@
       });
     }
 
+    let closePlateTimer = null;
+
     const openPlate = (plate) => {
       if (!plate) return;
       if (!dispersed) {
         disperseCollage();
         return;
+      }
+      if (closePlateTimer) {
+        window.clearTimeout(closePlateTimer);
+        closePlateTimer = null;
       }
       lastTrigger = plate;
       const img = plate.querySelector("img");
@@ -1576,24 +1582,56 @@
         "is-unmatched",
         plate.classList.contains("canvas-gallery__image--unmatched")
       );
+      canvasPlateLightbox.classList.remove("is-open");
       if (typeof canvasPlateLightbox.showModal === "function") {
         canvasPlateLightbox.showModal();
       } else {
         canvasPlateLightbox.setAttribute("open", "");
       }
-      closeBtn?.focus();
+
+      const reveal = () => {
+        canvasPlateLightbox.classList.add("is-open");
+        closeBtn?.focus();
+      };
+
+      if (reducedMotion) {
+        reveal();
+        return;
+      }
+
+      // Double rAF so the closed opacity paints before fading in.
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(reveal);
+      });
     };
 
     const closePlate = () => {
-      if (typeof canvasPlateLightbox.close === "function") {
-        canvasPlateLightbox.close();
-      } else {
-        canvasPlateLightbox.removeAttribute("open");
+      if (closePlateTimer) {
+        window.clearTimeout(closePlateTimer);
+        closePlateTimer = null;
       }
-      if (lastTrigger) {
-        lastTrigger.focus();
-        lastTrigger = null;
+
+      const finishClose = () => {
+        closePlateTimer = null;
+        canvasPlateLightbox.classList.remove("is-open");
+        if (typeof canvasPlateLightbox.close === "function") {
+          canvasPlateLightbox.close();
+        } else {
+          canvasPlateLightbox.removeAttribute("open");
+        }
+        if (lastTrigger) {
+          lastTrigger.focus();
+          lastTrigger = null;
+        }
+      };
+
+      if (reducedMotion || !canvasPlateLightbox.classList.contains("is-open")) {
+        finishClose();
+        return;
       }
+
+      canvasPlateLightbox.classList.remove("is-open");
+      closePlateTimer = window.setTimeout(finishClose, 280);
     };
 
     canvasPlates.forEach((plate) => {
