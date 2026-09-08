@@ -10127,12 +10127,15 @@ p {
 
 .about-image--primary {
   grid-row: span 2;
+  width: min(100%, 17.5rem);
 }
 
-.about-image__placeholder {
+.about-image__placeholder,
+.about-image__media {
   display: grid;
   place-items: center;
   width: 100%;
+  overflow: hidden;
   border: 1px solid #efede8;
   border-radius: 1.25rem;
   background:
@@ -10147,7 +10150,14 @@ p {
   text-transform: uppercase;
 }
 
-.about-image--primary .about-image__placeholder {
+.about-image__media {
+  position: relative;
+  padding: 0;
+  color: transparent;
+}
+
+.about-image--primary .about-image__placeholder,
+.about-image--primary .about-image__media {
   aspect-ratio: 4 / 5;
 }
 
@@ -10157,6 +10167,15 @@ p {
 
 .about-image--detail .about-image__placeholder {
   aspect-ratio: 1;
+}
+
+.about-image__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Match reference: waist-up 4:5 crop from the taller phone video */
+  object-position: center 42%;
 }
 
 .about-image figcaption {

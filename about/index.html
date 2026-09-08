@@ -40,12 +40,23 @@
     </header>
 
     <section class="about-profile" aria-label="A little about Joyce">
-      <div class="about-images" aria-label="Image placeholders">
-        <figure class="about-image about-image--primary">
-          <div class="about-image__placeholder" role="img" aria-label="Portrait image placeholder">
-            <span>Image placeholder</span>
+      <div class="about-images" aria-label="Photos and video">
+        <figure class="about-image about-image--primary about-image--video">
+          <div class="about-image__media">
+            <video
+              class="about-image__video"
+              autoplay
+              muted
+              loop
+              playsinline
+              webkit-playsinline
+              preload="metadata"
+              aria-label="Joyce waving hello"
+            >
+              <source src="../assets/videos/about/intro-wave.mp4" type="video/mp4">
+            </video>
           </div>
-          <figcaption>Portrait / study</figcaption>
+          <figcaption>Hi!</figcaption>
         </figure>
 
         <figure class="about-image about-image--landscape">
