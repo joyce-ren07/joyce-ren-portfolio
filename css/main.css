@@ -9931,6 +9931,23 @@ p {
 .canvas-plate-lightbox::backdrop {
   background: rgba(247, 245, 241, 0.82);
   backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+
+.canvas-plate-lightbox[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .canvas-plate-lightbox[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.canvas-plate-lightbox.is-closing::backdrop {
+  opacity: 0;
+  transition-duration: 0.32s;
 }
 
 .canvas-plate-lightbox__panel {
@@ -10207,9 +10224,14 @@ p {
   .canvas-gallery__media,
   .canvas-gallery__media img,
   .canvas-plate-lightbox__panel,
+  .canvas-plate-lightbox::backdrop,
   .canvas-page .canvas-gallery__collage,
   .canvas-page .canvas-gallery__expand-hint {
     transition: none;
+  }
+
+  .canvas-plate-lightbox[open]::backdrop {
+    opacity: 1;
   }
 }
 
