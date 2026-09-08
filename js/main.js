@@ -883,6 +883,68 @@
     window.addEventListener("pageshow", resumeVisibleCovers);
   }
 
+  /* About intro video — play once, hold last frame; loop while hovered */
+  const aboutVideo = document.querySelector(".about-media__video");
+  if (aboutVideo) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const hoverHost = aboutVideo.closest(".about-media") || aboutVideo;
+    let hovering = false;
+
+    aboutVideo.loop = false;
+    aboutVideo.muted = true;
+    aboutVideo.defaultMuted = true;
+    aboutVideo.playsInline = true;
+    aboutVideo.removeAttribute("loop");
+
+    const tryPlay = () => {
+      const playAttempt = aboutVideo.play();
+      if (playAttempt && typeof playAttempt.catch === "function") {
+        playAttempt.catch(() => {});
+      }
+    };
+
+    const freezeOnLastFrame = () => {
+      aboutVideo.pause();
+      if (!Number.isFinite(aboutVideo.duration) || aboutVideo.duration <= 0) return;
+      try {
+        aboutVideo.currentTime = Math.max(0, aboutVideo.duration - 0.05);
+      } catch (_) {
+        /* ignore seek errors before metadata is ready */
+      }
+    };
+
+    aboutVideo.addEventListener("ended", () => {
+      if (hovering) {
+        aboutVideo.currentTime = 0;
+        tryPlay();
+        return;
+      }
+      freezeOnLastFrame();
+    });
+
+    if (canHover && !reducedMotion) {
+      hoverHost.addEventListener("pointerenter", () => {
+        hovering = true;
+        aboutVideo.currentTime = 0;
+        tryPlay();
+      });
+
+      hoverHost.addEventListener("pointerleave", () => {
+        hovering = false;
+        freezeOnLastFrame();
+      });
+    }
+
+    if (reducedMotion) {
+      const holdStill = () => freezeOnLastFrame();
+      if (aboutVideo.readyState >= 1) holdStill();
+      else aboutVideo.addEventListener("loadedmetadata", holdStill, { once: true });
+    } else {
+      tryPlay();
+    }
+  }
+
   /* Optional playback-rate overrides for cover / demo videos */
   document.querySelectorAll("video[data-playback-rate]").forEach((video) => {
     const rate = Number(video.getAttribute("data-playback-rate"));
