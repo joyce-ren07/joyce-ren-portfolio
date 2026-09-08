@@ -1553,6 +1553,21 @@
     }
 
     let closePlateTimer = null;
+    let plateOpenAnimation = null;
+    let plateCloseAnimation = null;
+    const panelEl = canvasPlateLightbox.querySelector(".canvas-plate-lightbox__panel");
+
+    const cancelPlateAnimations = () => {
+      plateOpenAnimation?.cancel();
+      plateCloseAnimation?.cancel();
+      plateOpenAnimation = null;
+      plateCloseAnimation = null;
+      if (panelEl) {
+        panelEl.style.opacity = "";
+        panelEl.style.transform = "";
+      }
+      canvasPlateLightbox.style.opacity = "";
+    };
 
     const openPlate = (plate) => {
       if (!plate) return;
@@ -1564,6 +1579,7 @@
         window.clearTimeout(closePlateTimer);
         closePlateTimer = null;
       }
+      cancelPlateAnimations();
       lastTrigger = plate;
       const img = plate.querySelector("img");
       if (imageEl && img) {
@@ -1588,6 +1604,34 @@
       } else {
         canvasPlateLightbox.setAttribute("open", "");
       }
+
+      if (!reducedMotion && panelEl && typeof panelEl.animate === "function") {
+        canvasPlateLightbox.style.opacity = "0";
+        panelEl.style.opacity = "0";
+        panelEl.style.transform = "translateY(0.45rem)";
+        plateOpenAnimation = panelEl.animate(
+          [
+            { opacity: 0, transform: "translateY(0.45rem)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          {
+            duration: 520,
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            fill: "forwards",
+          }
+        );
+        canvasPlateLightbox.animate(
+          [{ opacity: 0 }, { opacity: 1 }],
+          { duration: 480, easing: "ease", fill: "forwards" }
+        ).finished.then(() => {
+          canvasPlateLightbox.style.opacity = "";
+        }).catch(() => {});
+        plateOpenAnimation.finished.then(() => {
+          panelEl.style.opacity = "";
+          panelEl.style.transform = "";
+        }).catch(() => {});
+      }
+
       closeBtn?.focus();
     };
 
@@ -1599,6 +1643,7 @@
 
       const finishClose = () => {
         closePlateTimer = null;
+        cancelPlateAnimations();
         canvasPlateLightbox.classList.remove("is-closing");
         if (typeof canvasPlateLightbox.close === "function") {
           canvasPlateLightbox.close();
@@ -1617,6 +1662,19 @@
       }
 
       canvasPlateLightbox.classList.add("is-closing");
+      if (panelEl && typeof panelEl.animate === "function") {
+        plateCloseAnimation = panelEl.animate(
+          [
+            { opacity: 1, transform: "translateY(0)" },
+            { opacity: 0, transform: "translateY(0.3rem)" },
+          ],
+          { duration: 280, easing: "ease", fill: "forwards" }
+        );
+        canvasPlateLightbox.animate(
+          [{ opacity: 1 }, { opacity: 0 }],
+          { duration: 260, easing: "ease", fill: "forwards" }
+        );
+      }
       closePlateTimer = window.setTimeout(finishClose, 280);
     };
 
