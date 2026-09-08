@@ -1555,18 +1555,16 @@
     let closePlateTimer = null;
     let plateOpenAnimation = null;
     let plateCloseAnimation = null;
+    let plateDialogAnimation = null;
     const panelEl = canvasPlateLightbox.querySelector(".canvas-plate-lightbox__panel");
 
     const cancelPlateAnimations = () => {
       plateOpenAnimation?.cancel();
       plateCloseAnimation?.cancel();
+      plateDialogAnimation?.cancel();
       plateOpenAnimation = null;
       plateCloseAnimation = null;
-      if (panelEl) {
-        panelEl.style.opacity = "";
-        panelEl.style.transform = "";
-      }
-      canvasPlateLightbox.style.opacity = "";
+      plateDialogAnimation = null;
     };
 
     const openPlate = (plate) => {
@@ -1606,10 +1604,7 @@
       }
 
       if (!reducedMotion && panelEl && typeof panelEl.animate === "function") {
-        canvasPlateLightbox.style.opacity = "0";
-        panelEl.style.opacity = "0";
-        panelEl.style.transform = "translateY(0.35rem)";
-        // Even easing so the fade reads clearly (not a snap to opaque).
+        // Keyframe 0 supplies the starting opacity — avoid sticky inline styles.
         plateOpenAnimation = panelEl.animate(
           [
             { opacity: 0, transform: "translateY(0.35rem)" },
@@ -1618,19 +1613,13 @@
           {
             duration: 560,
             easing: "ease",
-            fill: "forwards",
+            fill: "both",
           }
         );
-        canvasPlateLightbox.animate(
+        plateDialogAnimation = canvasPlateLightbox.animate(
           [{ opacity: 0 }, { opacity: 1 }],
-          { duration: 560, easing: "ease", fill: "forwards" }
-        ).finished.then(() => {
-          canvasPlateLightbox.style.opacity = "";
-        }).catch(() => {});
-        plateOpenAnimation.finished.then(() => {
-          panelEl.style.opacity = "";
-          panelEl.style.transform = "";
-        }).catch(() => {});
+          { duration: 560, easing: "ease", fill: "both" }
+        );
       }
 
       closeBtn?.focus();
@@ -1663,6 +1652,7 @@
       }
 
       canvasPlateLightbox.classList.add("is-closing");
+      cancelPlateAnimations();
       if (panelEl && typeof panelEl.animate === "function") {
         plateCloseAnimation = panelEl.animate(
           [
@@ -1671,7 +1661,7 @@
           ],
           { duration: 320, easing: "ease", fill: "forwards" }
         );
-        canvasPlateLightbox.animate(
+        plateDialogAnimation = canvasPlateLightbox.animate(
           [{ opacity: 1 }, { opacity: 0 }],
           { duration: 320, easing: "ease", fill: "forwards" }
         );
