@@ -9932,11 +9932,14 @@ p {
   background: rgba(247, 245, 241, 0.82);
   backdrop-filter: blur(12px);
   opacity: 0;
-  transition: opacity 0.42s ease;
 }
 
-.canvas-plate-lightbox.is-open::backdrop {
-  opacity: 1;
+.canvas-plate-lightbox[open]:not(.is-closing)::backdrop {
+  animation: canvas-lightbox-backdrop-in 0.42s ease forwards;
+}
+
+.canvas-plate-lightbox.is-closing::backdrop {
+  animation: canvas-lightbox-backdrop-out 0.28s ease forwards;
 }
 
 .canvas-plate-lightbox__panel {
@@ -9949,16 +9952,48 @@ p {
   background: #fffcf8;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.08);
-  transform: translateY(0.4rem);
   opacity: 0;
-  transition:
-    transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.42s ease;
+  transform: translateY(0.4rem);
 }
 
-.canvas-plate-lightbox.is-open .canvas-plate-lightbox__panel {
-  transform: none;
-  opacity: 1;
+.canvas-plate-lightbox[open]:not(.is-closing) .canvas-plate-lightbox__panel {
+  animation: canvas-lightbox-panel-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.canvas-plate-lightbox.is-closing .canvas-plate-lightbox__panel {
+  animation: canvas-lightbox-panel-out 0.28s ease forwards;
+}
+
+@keyframes canvas-lightbox-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes canvas-lightbox-panel-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+}
+
+@keyframes canvas-lightbox-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes canvas-lightbox-backdrop-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 .canvas-plate-lightbox__close {
@@ -10227,10 +10262,11 @@ p {
   .canvas-page .canvas-gallery__collage,
   .canvas-page .canvas-gallery__expand-hint {
     transition: none;
+    animation: none !important;
   }
 
-  .canvas-plate-lightbox.is-open .canvas-plate-lightbox__panel,
-  .canvas-plate-lightbox.is-open::backdrop {
+  .canvas-plate-lightbox[open] .canvas-plate-lightbox__panel,
+  .canvas-plate-lightbox[open]::backdrop {
     opacity: 1;
     transform: none;
   }

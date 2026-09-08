@@ -1582,27 +1582,13 @@
         "is-unmatched",
         plate.classList.contains("canvas-gallery__image--unmatched")
       );
-      canvasPlateLightbox.classList.remove("is-open");
+      canvasPlateLightbox.classList.remove("is-closing");
       if (typeof canvasPlateLightbox.showModal === "function") {
         canvasPlateLightbox.showModal();
       } else {
         canvasPlateLightbox.setAttribute("open", "");
       }
-
-      const reveal = () => {
-        canvasPlateLightbox.classList.add("is-open");
-        closeBtn?.focus();
-      };
-
-      if (reducedMotion) {
-        reveal();
-        return;
-      }
-
-      // Double rAF so the closed opacity paints before fading in.
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(reveal);
-      });
+      closeBtn?.focus();
     };
 
     const closePlate = () => {
@@ -1613,7 +1599,7 @@
 
       const finishClose = () => {
         closePlateTimer = null;
-        canvasPlateLightbox.classList.remove("is-open");
+        canvasPlateLightbox.classList.remove("is-closing");
         if (typeof canvasPlateLightbox.close === "function") {
           canvasPlateLightbox.close();
         } else {
@@ -1625,12 +1611,12 @@
         }
       };
 
-      if (reducedMotion || !canvasPlateLightbox.classList.contains("is-open")) {
+      if (reducedMotion || !canvasPlateLightbox.open) {
         finishClose();
         return;
       }
 
-      canvasPlateLightbox.classList.remove("is-open");
+      canvasPlateLightbox.classList.add("is-closing");
       closePlateTimer = window.setTimeout(finishClose, 280);
     };
 
