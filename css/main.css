@@ -9647,6 +9647,17 @@ p {
   transition-delay: 0s;
 }
 
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image--stack-front {
+  --stack-rot: -2deg;
+  --stack-x: 0.1rem;
+  --stack-y: -0.15rem;
+  z-index: 30;
+}
+
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image--stack-front:is(:hover, :focus-visible, :focus-within) {
+  z-index: 31;
+}
+
 /* Stack offsets — slight fan so the pile reads as a deck */
 .canvas-page .canvas-gallery__image:nth-child(1) { --stack-rot: -9deg; --stack-x: -0.85rem; --stack-y: 0.55rem; }
 .canvas-page .canvas-gallery__image:nth-child(2) { --stack-rot: 7deg; --stack-x: 0.95rem; --stack-y: -0.35rem; }
