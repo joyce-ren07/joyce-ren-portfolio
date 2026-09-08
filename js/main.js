@@ -1401,6 +1401,26 @@
     const indexEl = canvasPlateLightbox.querySelector("[data-canvas-plate-index]");
     let lastTrigger = null;
 
+    /* Fade in + slight distribute shift as each plate enters the viewport */
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealPlate = (plate) => plate.classList.add("is-inview");
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      canvasPlates.forEach(revealPlate);
+    } else {
+      const plateObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            revealPlate(entry.target);
+            plateObserver.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      );
+      canvasPlates.forEach((plate) => plateObserver.observe(plate));
+    }
+
     const openPlate = (plate) => {
       if (!plate) return;
       lastTrigger = plate;
