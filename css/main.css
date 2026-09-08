@@ -10107,7 +10107,7 @@ p {
 }
 
 .about-media {
-  width: min(100%, 18.5rem);
+  width: min(100%, 15.5rem);
   margin: 0;
   animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
@@ -10158,7 +10158,7 @@ p {
   }
 
   .about-media {
-    width: min(100%, 16rem);
+    width: min(100%, 13.5rem);
   }
 
   .about-bio {
