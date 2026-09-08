@@ -10131,7 +10131,7 @@ p {
   object-position: center 34%;
   transform: scale(1.14);
   transform-origin: center 32%;
-  filter: saturate(0.72) brightness(1.03);
+  filter: saturate(0.85) brightness(1.02);
 }
 
 .about-bio {
