@@ -10017,7 +10017,7 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   About page — shared portfolio layout
+   About page — centered greeting / media / bio
    -------------------------------------------------------------------------- */
 
 .about-page {
@@ -10025,6 +10025,7 @@ p {
   --case-text: #A89E9D;
   --case-heading: #A89E9D;
   --about-stage: #ffffff;
+  --about-ink: #A89E9D;
   --case-text-active: #A89E9D;
   --case-text-faint: #A89E9D;
   --case-text-active-hover: #a1a1a1;
@@ -10069,13 +10070,15 @@ p {
 
 .about-main {
   position: static;
+  display: grid;
+  place-items: center;
   width: min(100%, var(--nav-max-width));
-  min-height: 0;
+  min-height: calc(100vh - var(--case-topbar-height));
   margin-inline: auto;
   padding:
-    calc(var(--case-topbar-height) + clamp(3rem, 7vw, 6rem))
+    calc(var(--case-topbar-height) + clamp(2.5rem, 6vw, 5rem))
     var(--nav-padding-inline)
-    clamp(5rem, 10vw, 9rem);
+    clamp(4rem, 9vw, 7rem);
   overflow: visible;
   border-radius: 0;
   background: transparent;
@@ -10083,199 +10086,90 @@ p {
   isolation: auto;
 }
 
-.about-intro {
-  max-width: 58rem;
-  padding-bottom: var(--case-subsection-gap);
-  border-bottom: 1px solid var(--color-border);
+.about-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 34rem);
+  gap: clamp(2.25rem, 5vw, 3.5rem);
 }
 
-.about-intro .eyebrow {
-  margin-bottom: 1.25rem;
-}
-
-.about-title {
+.about-greeting {
   margin: 0;
-  color: #A89E9D;
+  color: var(--about-ink);
   font-family: var(--font-sans);
   font-size: var(--text-title-size);
-  font-style: normal;
   font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-}
-
-.about-profile {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
-  gap: clamp(3rem, 8vw, 8rem);
-  align-items: start;
-  padding-top: var(--case-subsection-gap);
-  padding-bottom: var(--case-section-gap);
-}
-
-.about-images {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: clamp(1rem, 2.2vw, 1.5rem);
-  align-items: start;
-}
-
-.about-image {
-  min-width: 0;
-  margin: 0;
-}
-
-.about-image--primary {
-  grid-row: span 2;
-  width: min(100%, 17.5rem);
-}
-
-.about-image__placeholder,
-.about-image__media {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid #efede8;
-  border-radius: 1.25rem;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.78), transparent 55%),
-    #f5f3f0;
-  color: #A89E9D;
-  font-size: var(--text-tertiary-size);
-  font-weight: var(--text-tertiary-weight);
-  letter-spacing: 0.06em;
-  line-height: 1.2;
+  letter-spacing: -0.04em;
+  line-height: 1;
   text-align: center;
-  text-transform: uppercase;
+  animation: about-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.about-image__media {
+.about-media {
+  width: min(100%, 22rem);
+  margin: 0;
+  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.about-media__frame {
   position: relative;
-  padding: 0;
-  color: transparent;
-}
-
-.about-image--primary .about-image__placeholder,
-.about-image--primary .about-image__media {
+  width: 100%;
   aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 0;
+  background: #f5f3f0;
 }
 
-.about-image--landscape .about-image__placeholder {
-  aspect-ratio: 4 / 3;
-}
-
-.about-image--detail .about-image__placeholder {
-  aspect-ratio: 1;
-}
-
-.about-image__video {
+.about-media__video {
   position: absolute;
   inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Tighter waist-up crop: zoom in and bias up to trim more bottom */
   object-position: center 34%;
   transform: scale(1.14);
   transform-origin: center 32%;
 }
 
-.about-image figcaption {
-  margin-top: 0.65rem;
-  color: #A89E9D;
+.about-bio {
+  margin: 0;
+  max-width: 28rem;
+  color: var(--about-ink);
+  font-family: var(--font-sans);
   font-size: var(--text-tertiary-size);
   font-weight: var(--text-tertiary-weight);
-  line-height: 1.4;
-}
-
-.about-descriptors {
-  padding-top: 0.2rem;
-}
-
-.about-section-label {
-  margin: 0 0 1.25rem;
-  color: #A89E9D;
-  font-size: var(--text-tertiary-size);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.about-descriptors__title {
-  margin: 0 0 2.5rem;
-  color: #A89E9D;
-  font-size: var(--text-secondary-size);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.12;
-}
-
-.about-descriptors__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--color-border);
-}
-
-.about-descriptors__list li {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--color-border);
-  color: #A89E9D;
-  font-size: var(--text-secondary-size);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-.about-descriptors__list li::before {
-  content: "•";
-  flex: 0 0 auto;
-  color: #f0bfa1;
-  font-size: 1em;
-  line-height: 1;
-}
-
-@media (max-width: 900px) {
-  .about-profile {
-    grid-template-columns: 1fr;
-    gap: var(--case-subsection-gap);
-  }
-
-  .about-descriptors {
-    max-width: 36rem;
-  }
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  text-align: left;
+  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 
 @media (max-width: 600px) {
   .about-main {
     padding-inline: 1.25rem;
+    min-height: 0;
   }
 
-  .about-intro {
-    padding-bottom: 5rem;
+  .about-stage {
+    width: 100%;
+    gap: 2rem;
   }
 
-  .about-profile {
-    padding-top: 5rem;
-    padding-bottom: 7.5rem;
+  .about-media {
+    width: min(100%, 18rem);
   }
 
-  .about-images {
-    grid-template-columns: 1fr 1fr;
+  .about-bio {
+    max-width: none;
   }
+}
 
-  .about-image--primary {
-    grid-column: 1 / -1;
-    grid-row: auto;
-  }
-
-  .about-descriptors__list li {
-    font-size: var(--text-secondary-size);
+@media (prefers-reduced-motion: reduce) {
+  .about-greeting,
+  .about-media,
+  .about-bio {
+    animation: none;
   }
 }
