@@ -1401,6 +1401,64 @@
     const indexEl = canvasPlateLightbox.querySelector("[data-canvas-plate-index]");
     let lastTrigger = null;
 
+    /* Fade in + slight distribute shift as each plate enters the viewport */
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealPlate = (plate) => plate.classList.add("is-inview");
+    const collage = document.querySelector(".canvas-page .canvas-gallery__collage");
+
+    const fitCollageHeight = () => {
+      if (!collage) return;
+      if (window.matchMedia("(max-width: 640px)").matches) {
+        collage.style.height = "";
+        return;
+      }
+      let maxBottom = 0;
+      canvasPlates.forEach((plate) => {
+        const bottom = plate.offsetTop + plate.offsetHeight;
+        if (bottom > maxBottom) maxBottom = bottom;
+      });
+      if (maxBottom > 0) {
+        collage.style.height = `${Math.ceil(maxBottom + 32)}px`;
+      }
+    };
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      canvasPlates.forEach(revealPlate);
+    } else {
+      const plateObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            revealPlate(entry.target);
+            plateObserver.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      );
+      canvasPlates.forEach((plate) => plateObserver.observe(plate));
+    }
+
+    const plateImages = canvasPlates
+      .map((plate) => plate.querySelector("img"))
+      .filter(Boolean);
+    let pendingImages = plateImages.length;
+    const onPlateImageReady = () => {
+      pendingImages = Math.max(0, pendingImages - 1);
+      fitCollageHeight();
+    };
+    if (!pendingImages) {
+      fitCollageHeight();
+    } else {
+      plateImages.forEach((img) => {
+        if (img.complete) onPlateImageReady();
+        else {
+          img.addEventListener("load", onPlateImageReady, { once: true });
+          img.addEventListener("error", onPlateImageReady, { once: true });
+        }
+      });
+    }
+    window.addEventListener("resize", fitCollageHeight);
+
     const openPlate = (plate) => {
       if (!plate) return;
       lastTrigger = plate;
