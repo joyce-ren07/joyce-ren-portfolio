@@ -9545,6 +9545,7 @@ p {
 
 .canvas-page .canvas-gallery__collage {
   --canvas-plate-max: 11.5rem;
+  --canvas-stack-height: 28rem;
   position: relative;
   display: block;
   width: min(100%, 74rem);
@@ -9552,12 +9553,61 @@ p {
   min-height: 0;
   height: 116rem;
   margin-inline: auto;
+  transition: height 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.canvas-page .canvas-gallery__collage.is-stacked {
+  height: var(--canvas-stack-height);
+  min-height: var(--canvas-stack-height);
+  cursor: pointer;
+}
+
+.canvas-page .canvas-gallery__expand-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.15rem;
+  z-index: 20;
+  translate: -50% 0;
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0.35rem 0.2rem;
+  border: 0;
+  background: transparent;
+  color: var(--case-heading);
+  font: inherit;
+  font-size: var(--text-tertiary-size);
+  font-weight: var(--text-tertiary-weight);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  cursor: pointer;
+  opacity: 0.72;
+  transition: opacity 0.35s ease, color 0.25s ease;
+}
+
+.canvas-page .canvas-gallery__expand-hint:hover,
+.canvas-page .canvas-gallery__expand-hint:focus-visible {
+  opacity: 1;
+  color: #6f6f6f;
+}
+
+.canvas-page .canvas-gallery__expand-hint:focus-visible {
+  outline: 2px solid #f0bfa1;
+  outline-offset: 0.25rem;
+}
+
+.canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__expand-hint {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .canvas-page .canvas-gallery__image {
   --canvas-plate-w: var(--canvas-plate-max);
   --canvas-from-x: 0;
   --canvas-from-y: 1.35rem;
+  --stack-rot: 0deg;
+  --stack-x: 0px;
+  --stack-y: 0px;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -9569,17 +9619,87 @@ p {
   margin: 0;
   z-index: 0;
   cursor: pointer;
-  opacity: 0;
-  translate: var(--canvas-from-x) var(--canvas-from-y);
-  transition:
-    opacity 0.7s ease,
-    translate 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(0.045s * var(--canvas-plate-i, 0));
-}
-
-.canvas-page .canvas-gallery__image.is-inview {
   opacity: 1;
   translate: 0 0;
+  transform: none;
+  transform-origin: center center;
+  transition:
+    left 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    top 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s ease;
+  transition-delay: calc(0.055s * var(--canvas-plate-i, 0));
+}
+
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image {
+  left: 50% !important;
+  top: 46% !important;
+  right: auto !important;
+  width: min(14.5rem, 58vw);
+  max-width: min(14.5rem, 58vw);
+  z-index: calc(1 + var(--canvas-plate-i, 0));
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--stack-rot))
+    translate(var(--stack-x), var(--stack-y));
+  transition-delay: 0s;
+}
+
+/* Stack offsets — slight fan so the pile reads as a deck */
+.canvas-page .canvas-gallery__image:nth-child(1) { --stack-rot: -9deg; --stack-x: -0.85rem; --stack-y: 0.55rem; }
+.canvas-page .canvas-gallery__image:nth-child(2) { --stack-rot: 7deg; --stack-x: 0.95rem; --stack-y: -0.35rem; }
+.canvas-page .canvas-gallery__image:nth-child(3) { --stack-rot: -3deg; --stack-x: 0.15rem; --stack-y: 0.2rem; }
+.canvas-page .canvas-gallery__image:nth-child(4) { --stack-rot: 11deg; --stack-x: -0.4rem; --stack-y: -0.7rem; }
+.canvas-page .canvas-gallery__image:nth-child(5) { --stack-rot: -6deg; --stack-x: 0.7rem; --stack-y: 0.45rem; }
+.canvas-page .canvas-gallery__image:nth-child(6) { --stack-rot: 4deg; --stack-x: -1rem; --stack-y: -0.15rem; }
+.canvas-page .canvas-gallery__image:nth-child(7) { --stack-rot: -12deg; --stack-x: 0.35rem; --stack-y: 0.75rem; }
+.canvas-page .canvas-gallery__image:nth-child(8) { --stack-rot: 8deg; --stack-x: -0.55rem; --stack-y: -0.5rem; }
+.canvas-page .canvas-gallery__image:nth-child(9) { --stack-rot: -2deg; --stack-x: 0.85rem; --stack-y: 0.1rem; }
+.canvas-page .canvas-gallery__image:nth-child(10) { --stack-rot: 5deg; --stack-x: -0.2rem; --stack-y: 0.6rem; }
+.canvas-page .canvas-gallery__image:nth-child(11) { --stack-rot: -7deg; --stack-x: 0.5rem; --stack-y: -0.25rem; }
+
+.canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image {
+  transform: none;
+}
+
+.canvas-page .canvas-gallery__index,
+.canvas-page .canvas-gallery__image figcaption {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.65s ease,
+    visibility 0s linear 0.65s,
+    max-height 0.55s ease,
+    margin 0.55s ease;
+  transition-delay: 0s;
+}
+
+.canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__index,
+.canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image figcaption {
+  opacity: 1;
+  visibility: visible;
+  max-height: 3.5rem;
+  pointer-events: auto;
+  transition:
+    opacity 0.7s ease,
+    visibility 0s linear 0s,
+    max-height 0.7s ease,
+    margin 0.7s ease;
+  transition-delay: calc(0.35s + 0.07s * var(--canvas-plate-i, 0));
+}
+
+.canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__index {
+  margin-bottom: 0.55rem;
+}
+
+.canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image figcaption {
+  margin-top: 0.55rem;
 }
 
 /* Irregular field — level plates, rem tops so slots never overlap */
@@ -9680,15 +9800,35 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .canvas-page .canvas-gallery__collage {
+    transition: none;
+  }
+
   .canvas-page .canvas-gallery__image {
     opacity: 1;
     translate: 0 0;
+    transform: none;
+    transition: none;
+  }
+
+  .canvas-page .canvas-gallery__index,
+  .canvas-page .canvas-gallery__image figcaption {
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+
+  .canvas-page .canvas-gallery__expand-hint {
     transition: none;
   }
 }
 
 .canvas-page .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) {
   z-index: 3;
+}
+
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) {
+  z-index: calc(2 + var(--canvas-plate-i, 0));
 }
 
 .canvas-page .canvas-gallery__image:focus-visible {
@@ -9698,7 +9838,6 @@ p {
 
 .canvas-page .canvas-gallery__index {
   display: block;
-  margin-bottom: 0.55rem;
   color: var(--case-heading);
   font-family: var(--font-sans);
   font-size: 0.72rem;
@@ -9739,10 +9878,14 @@ p {
   transform: scale(1.03);
 }
 
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__media,
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) .canvas-gallery__media img {
+  transform: none;
+}
+
 .canvas-page .canvas-gallery__image figcaption {
   display: block;
   width: 100%;
-  margin-top: 0.55rem;
   padding-inline: 0;
   color: var(--case-text);
   font-size: 0.78rem;
@@ -9908,12 +10051,18 @@ p {
 @media (max-width: 980px) {
   .canvas-page .canvas-gallery__collage {
     --canvas-plate-max: 10.5rem;
+    --canvas-stack-height: 26rem;
     width: min(100%, 56rem);
     height: 120rem;
   }
 
   .canvas-page .canvas-gallery__image {
     max-width: min(48vw, 13rem);
+  }
+
+  .canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image {
+    width: min(13.5rem, 56vw);
+    max-width: min(13.5rem, 56vw);
   }
 
   .canvas-page .canvas-gallery__image:nth-child(1) { left: 2%; top: 0; right: auto; }
@@ -9962,37 +10111,58 @@ p {
 
   .canvas-page .canvas-gallery__collage {
     --canvas-plate-max: 100%;
+    --canvas-stack-height: 24rem;
+    display: block;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+  }
+
+  .canvas-page .canvas-gallery__collage.is-stacked {
+    height: var(--canvas-stack-height);
+    min-height: var(--canvas-stack-height);
+  }
+
+  .canvas-page .canvas-gallery__collage.is-dispersed {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    width: 100%;
-    min-height: 0;
     height: auto !important;
+    min-height: 0;
   }
 
-  .canvas-page .canvas-gallery__image {
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image {
     position: relative;
     left: auto !important;
     top: auto !important;
     width: min(78%, 16rem);
     max-width: 78%;
     margin-bottom: clamp(2.4rem, 8vw, 3.6rem);
-    --canvas-from-x: 0;
-    --canvas-from-y: 1.1rem;
+    transform: none;
+    transition:
+      opacity 0.55s ease,
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .canvas-page .canvas-gallery__image:nth-child(odd) {
+  .canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image {
+    position: absolute;
+    width: min(72%, 15rem);
+    max-width: min(72%, 15rem);
+    margin: 0;
+  }
+
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image:nth-child(odd) {
     align-self: flex-start;
     margin-left: 0;
   }
 
-  .canvas-page .canvas-gallery__image:nth-child(even) {
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image:nth-child(even) {
     align-self: flex-end;
     margin-right: 0;
   }
 
-  .canvas-page .canvas-gallery__image:nth-child(3n) {
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image:nth-child(3n) {
     margin-left: 8%;
     align-self: center;
   }
@@ -10000,18 +10170,42 @@ p {
   .canvas-page .canvas-gallery__media img {
     max-height: 14rem;
   }
+
+  .canvas-page .canvas-gallery__expand-hint {
+    bottom: 0.85rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .canvas-page .canvas-gallery__image {
     opacity: 1;
     translate: 0 0;
+    transform: none;
     transition: none;
+  }
+
+  .canvas-page .canvas-gallery__index,
+  .canvas-page .canvas-gallery__image figcaption {
+    opacity: 1;
+    visibility: visible;
+    max-height: none;
+    margin: 0;
+    transition: none;
+  }
+
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__index {
+    margin-bottom: 0.55rem;
+  }
+
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image figcaption {
+    margin-top: 0.55rem;
   }
 
   .canvas-gallery__media,
   .canvas-gallery__media img,
-  .canvas-plate-lightbox__panel {
+  .canvas-plate-lightbox__panel,
+  .canvas-page .canvas-gallery__collage,
+  .canvas-page .canvas-gallery__expand-hint {
     transition: none;
   }
 }

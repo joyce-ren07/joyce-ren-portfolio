@@ -36,7 +36,11 @@
   <main class="canvas-stage">
     <section class="canvas-gallery" aria-label="Canvas">
       <div class="canvas-gallery__layout">
-        <div class="canvas-gallery__collage" aria-label="Artwork gallery">
+        <div
+          class="canvas-gallery__collage is-stacked"
+          data-canvas-collage
+          aria-label="Artwork stack"
+        >
           <figure
             class="canvas-gallery__image"
             tabindex="0"
@@ -286,6 +290,10 @@
               </span>
             </figcaption>
           </figure>
+
+          <button type="button" class="canvas-gallery__expand-hint" data-canvas-expand-stack>
+            View collection
+          </button>
         </div>
       </div>
     </section>
