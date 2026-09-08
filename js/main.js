@@ -1461,15 +1461,20 @@
     const metaEl = canvasPlateLightbox.querySelector("[data-canvas-plate-meta]");
     const descEl = canvasPlateLightbox.querySelector("[data-canvas-plate-desc]");
     const indexEl = canvasPlateLightbox.querySelector("[data-canvas-plate-index]");
+    const collage = document.querySelector("[data-canvas-collage]") ||
+      document.querySelector(".canvas-page .canvas-gallery__collage");
+    const expandHint = document.querySelector("[data-canvas-expand-stack]");
     let lastTrigger = null;
+    let dispersed = false;
 
-    /* Fade in + slight distribute shift as each plate enters the viewport */
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const revealPlate = (plate) => plate.classList.add("is-inview");
-    const collage = document.querySelector(".canvas-page .canvas-gallery__collage");
 
     const fitCollageHeight = () => {
       if (!collage) return;
+      if (collage.classList.contains("is-stacked")) {
+        collage.style.height = "";
+        return;
+      }
       if (window.matchMedia("(max-width: 640px)").matches) {
         collage.style.height = "";
         return;
@@ -1484,20 +1489,26 @@
       }
     };
 
-    if (reducedMotion || !("IntersectionObserver" in window)) {
-      canvasPlates.forEach(revealPlate);
-    } else {
-      const plateObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            revealPlate(entry.target);
-            plateObserver.unobserve(entry.target);
-          });
-        },
-        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-      );
-      canvasPlates.forEach((plate) => plateObserver.observe(plate));
+    const disperseCollage = () => {
+      if (!collage || dispersed) return;
+      dispersed = true;
+      collage.classList.add("is-dispersed");
+      collage.classList.remove("is-stacked");
+      collage.setAttribute("aria-label", "Artwork gallery");
+      if (expandHint) {
+        expandHint.setAttribute("aria-hidden", "true");
+        expandHint.tabIndex = -1;
+      }
+      // Recalc after plates finish traveling into place
+      window.setTimeout(fitCollageHeight, reducedMotion ? 0 : 1100);
+      window.setTimeout(fitCollageHeight, reducedMotion ? 0 : 1600);
+    };
+
+    if (reducedMotion) {
+      disperseCollage();
+    } else if (collage && !collage.classList.contains("is-stacked")) {
+      collage.classList.add("is-dispersed");
+      dispersed = true;
     }
 
     const plateImages = canvasPlates
@@ -1521,8 +1532,32 @@
     }
     window.addEventListener("resize", fitCollageHeight);
 
+    if (collage && !dispersed) {
+      const onStackActivate = (event) => {
+        if (dispersed) return;
+        event.preventDefault();
+        disperseCollage();
+      };
+      collage.addEventListener("click", (event) => {
+        if (dispersed) return;
+        // Allow the dedicated hint button + any plate click to expand
+        onStackActivate(event);
+      });
+      expandHint?.addEventListener("click", onStackActivate);
+      collage.addEventListener("keydown", (event) => {
+        if (dispersed) return;
+        if (event.key === "Enter" || event.key === " ") {
+          onStackActivate(event);
+        }
+      });
+    }
+
     const openPlate = (plate) => {
       if (!plate) return;
+      if (!dispersed) {
+        disperseCollage();
+        return;
+      }
       lastTrigger = plate;
       const img = plate.querySelector("img");
       if (imageEl && img) {
@@ -1600,15 +1635,18 @@
       plate.addEventListener("click", (event) => {
         if (openedByPointer) {
           openedByPointer = false;
+          event.stopPropagation();
           return;
         }
         event.preventDefault();
+        event.stopPropagation();
         openPlate(plate);
       });
 
       plate.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
+          event.stopPropagation();
           openPlate(plate);
         }
       });
