@@ -1608,21 +1608,22 @@
       if (!reducedMotion && panelEl && typeof panelEl.animate === "function") {
         canvasPlateLightbox.style.opacity = "0";
         panelEl.style.opacity = "0";
-        panelEl.style.transform = "translateY(0.45rem)";
+        panelEl.style.transform = "translateY(0.35rem)";
+        // Even easing so the fade reads clearly (not a snap to opaque).
         plateOpenAnimation = panelEl.animate(
           [
-            { opacity: 0, transform: "translateY(0.45rem)" },
+            { opacity: 0, transform: "translateY(0.35rem)" },
             { opacity: 1, transform: "translateY(0)" },
           ],
           {
-            duration: 520,
-            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            duration: 560,
+            easing: "ease",
             fill: "forwards",
           }
         );
         canvasPlateLightbox.animate(
           [{ opacity: 0 }, { opacity: 1 }],
-          { duration: 480, easing: "ease", fill: "forwards" }
+          { duration: 560, easing: "ease", fill: "forwards" }
         ).finished.then(() => {
           canvasPlateLightbox.style.opacity = "";
         }).catch(() => {});
@@ -1666,16 +1667,16 @@
         plateCloseAnimation = panelEl.animate(
           [
             { opacity: 1, transform: "translateY(0)" },
-            { opacity: 0, transform: "translateY(0.3rem)" },
+            { opacity: 0, transform: "translateY(0.25rem)" },
           ],
-          { duration: 280, easing: "ease", fill: "forwards" }
+          { duration: 320, easing: "ease", fill: "forwards" }
         );
         canvasPlateLightbox.animate(
           [{ opacity: 1 }, { opacity: 0 }],
-          { duration: 260, easing: "ease", fill: "forwards" }
+          { duration: 320, easing: "ease", fill: "forwards" }
         );
       }
-      closePlateTimer = window.setTimeout(finishClose, 280);
+      closePlateTimer = window.setTimeout(finishClose, 320);
     };
 
     canvasPlates.forEach((plate) => {
