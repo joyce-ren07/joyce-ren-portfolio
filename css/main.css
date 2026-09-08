@@ -9537,33 +9537,9 @@ p {
   width: 100%;
 }
 
-.canvas-page .canvas-gallery__intro {
-  max-width: 42rem;
-  margin-inline: auto;
-  padding-bottom: clamp(3rem, 6vw, 5rem);
-  text-align: center;
-  border-bottom: 0;
-}
-
-.canvas-page .canvas-gallery__intro .eyebrow {
-  margin-bottom: 1rem;
-}
-
-.canvas-page .canvas-gallery__title {
-  position: static;
-  margin: 0;
-  color: var(--case-heading);
-  font-family: var(--font-sans);
-  font-size: var(--text-title-size);
-  font-style: normal;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-}
-
 .canvas-page .canvas-gallery__layout {
   display: block;
-  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-top: 0;
   padding-bottom: var(--case-section-gap);
 }
 
@@ -9979,13 +9955,8 @@ p {
     padding-inline: 1.15rem;
   }
 
-  .canvas-page .canvas-gallery__intro {
-    padding-bottom: 3rem;
-    text-align: left;
-  }
-
   .canvas-page .canvas-gallery__layout {
-    padding-top: 3rem;
+    padding-top: 0;
     padding-bottom: 6rem;
   }
 
