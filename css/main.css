@@ -4932,6 +4932,10 @@ p {
   --ps-accent: var(--ai-accent, #f0774c);
   --ps-text: #191919;
   --ps-muted: #606060;
+  /* Scale all diagram type together (titles, body, center label). */
+  --ps-type-scale: 0.75;
+  --ps-title-size: calc(var(--case-secondary-size, var(--text-secondary-size)) * var(--ps-type-scale));
+  --ps-desc-size: calc(var(--case-tertiary-size, var(--text-tertiary-size)) * var(--ps-type-scale));
   width: 100%;
   max-width: 100%;
   margin: var(--case-subsection-gap, 120px) 0 0;
@@ -4969,13 +4973,13 @@ p {
 }
 
 .ps-hub__title {
-  font-size: var(--case-secondary-size, var(--text-secondary-size));
+  font-size: var(--ps-title-size);
   font-weight: 700;
   letter-spacing: -0.3px;
 }
 
 .ps-hub__desc {
-  font-size: var(--case-tertiary-size, var(--text-tertiary-size));
+  font-size: var(--ps-desc-size);
   font-weight: 500;
   line-height: 1.5;
   color: var(--ps-muted);
@@ -5015,7 +5019,7 @@ p {
   border-radius: 50%;
   background: var(--ps-accent);
   color: #fff;
-  font-size: var(--case-secondary-size, var(--text-secondary-size));
+  font-size: var(--ps-title-size);
   font-weight: 700;
   line-height: 1.25;
   text-align: center;
