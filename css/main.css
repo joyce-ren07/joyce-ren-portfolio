@@ -4211,7 +4211,8 @@ p {
 
 .case-body--summary {
   margin-top: 2rem;
-  max-width: 42rem;
+  max-width: none;
+  width: 100%;
 }
 
 /* Solution — feature rows with phone mockups */
@@ -4232,6 +4233,9 @@ p {
 
 .case-feature-row__text {
   text-align: left;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
 }
 
 .case-feature-row__title {
@@ -4249,7 +4253,8 @@ p {
   line-height: var(--case-body-leading, 1.58);
   color: #A89E9D;
   margin: 0;
-  max-width: 20rem;
+  max-width: none;
+  width: 100%;
 }
 
 .case-feature-row__media {
@@ -4274,11 +4279,12 @@ p {
 
 .case-feature-rows--stacked .case-feature-row__text {
   width: 100%;
-  max-width: 42rem;
+  max-width: none;
 }
 
 .case-feature-rows--stacked .case-feature-row__desc {
   max-width: none;
+  width: 100%;
 }
 
 .case-feature-rows--stacked .case-feature-row__media {
@@ -4315,11 +4321,13 @@ p {
 }
 
 .case-feature-row:has(.case-device-video--laptop) .case-feature-row__text {
-  max-width: 17rem;
+  max-width: none;
+  width: 100%;
 }
 
 .case-feature-row:has(.case-device-video--laptop) .case-feature-row__desc {
-  max-width: 16rem;
+  max-width: none;
+  width: 100%;
 }
 
 .case-feature-row:has(.case-device-video--laptop) .case-feature-row__media {
@@ -4862,7 +4870,8 @@ p {
 }
 
 .case-study-page--autoinvent #solution .case-body--solution-answer {
-  max-width: 42rem;
+  max-width: none;
+  width: 100%;
   margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
 }
 
@@ -8162,7 +8171,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-width: 42rem;
+  max-width: none;
+  width: 100%;
 }
 
 .case-tradeoffs li {
@@ -8183,7 +8193,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  max-width: 42rem;
+  max-width: none;
+  width: 100%;
 }
 
 .case-process-methods li {
