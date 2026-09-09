@@ -3,6 +3,40 @@
  */
 
 (function () {
+  /* Back to top — shared footer control on all pages */
+  const mountBackToTop = () => {
+    if (document.querySelector(".back-to-top")) return;
+
+    const nav = document.createElement("nav");
+    nav.className = "back-to-top";
+    nav.setAttribute("aria-label", "Back to top");
+
+    const link = document.createElement("a");
+    link.href = "#top";
+    link.textContent = "Back to the top ↑";
+    nav.appendChild(link);
+
+    const footer =
+      document.querySelector(".case-footer-note, .home-footer, .site-footer") ||
+      document.querySelector("main");
+
+    if (!footer) return;
+
+    if (footer.matches(".case-footer-note, .home-footer, .site-footer")) {
+      footer.parentNode.insertBefore(nav, footer);
+    } else {
+      footer.appendChild(nav);
+    }
+
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+    });
+  };
+
+  mountBackToTop();
+
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".site-nav") || document.querySelector(".case-topbar__nav");
 

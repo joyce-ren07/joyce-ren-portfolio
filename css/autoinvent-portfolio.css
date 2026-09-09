@@ -327,7 +327,7 @@ body.case-study-page--autoinvent a:not(.case-topbar__logo):not(.case-sidebar__li
   border-radius: var(--r-md);
 }
 
-.case-study-page--autoinvent .case-next-project a {
+.case-study-page--autoinvent .back-to-top a {
   color: var(--accent);
 }
 
