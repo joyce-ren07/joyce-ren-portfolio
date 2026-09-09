@@ -662,6 +662,19 @@
     });
   }
 
+  /* Case study — back to the top */
+  const backToTopLinks = document.querySelectorAll("[data-back-to-top]");
+  if (backToTopLinks.length) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    backToTopLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      });
+    });
+  }
+
   /* CueTurn countdown comparison — de-emphasize the earlier pair as the next pair enters view */
   const countdownComparisons = document.querySelectorAll("[data-countdown-comparison]");
   if (countdownComparisons.length) {
