@@ -4939,7 +4939,7 @@ p {
   padding: 0;
   background: transparent;
   border: none;
-  color: #A89E9D;
+  color: var(--ps-text);
   font-family: var(--ai-font);
   -webkit-font-smoothing: antialiased;
 }
@@ -4970,7 +4970,7 @@ p {
 
 .ps-hub__title {
   font-size: var(--case-secondary-size, var(--text-secondary-size));
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.3px;
 }
 
@@ -4978,7 +4978,7 @@ p {
   font-size: var(--case-tertiary-size, var(--text-tertiary-size));
   font-weight: 500;
   line-height: 1.5;
-  color: #A89E9D;
+  color: var(--ps-muted);
   text-wrap: pretty;
   max-width: 280px;
 }
@@ -5016,7 +5016,7 @@ p {
   background: var(--ps-accent);
   color: #fff;
   font-size: var(--case-secondary-size, var(--text-secondary-size));
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.25;
   text-align: center;
   letter-spacing: -0.3px;
@@ -5109,7 +5109,7 @@ p {
   background: var(--dp-surface);
   border: 1px solid var(--dp-line);
   border-radius: 16px;
-  color: #A89E9D;
+  color: var(--dp-text);
   font-family: var(--ai-font);
   -webkit-font-smoothing: antialiased;
 }
@@ -5119,7 +5119,7 @@ p {
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.5px;
-  color: #A89E9D;
+  color: var(--dp-accent);
   max-width: 720px;
   text-wrap: pretty;
   margin: 0 0 48px;
@@ -5145,11 +5145,11 @@ p {
 }
 
 .dp-dial__pole-from {
-  color: #A89E9D;
+  color: var(--dp-muted);
 }
 
 .dp-dial__pole-to {
-  color: #A89E9D;
+  color: var(--dp-accent);
   font-weight: 700;
 }
 
@@ -5192,7 +5192,7 @@ p {
 }
 
 .dp-dial__num {
-  color: #A89E9D;
+  color: var(--dp-accent);
 }
 
 @media (max-width: 860px) {
