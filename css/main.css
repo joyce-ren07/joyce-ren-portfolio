@@ -9667,15 +9667,15 @@ p {
 /* Hover: keep flux on top; elevate + fan the deck momentarily */
 .canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image {
   transform:
-    translate(-50%, calc(-50% - 0.4rem))
-    rotate(calc(var(--stack-rot) * 1.45))
-    translate(calc(var(--stack-x) * 1.7), calc(var(--stack-y) * 1.7));
+    translate(-50%, calc(-50% - 0.55rem))
+    rotate(calc(var(--stack-rot) * 1.75))
+    translate(calc(var(--stack-x) * 2.15), calc(var(--stack-y) * 2.15));
 }
 
 .canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image--stack-front {
   z-index: 31;
   transform:
-    translate(-50%, calc(-50% - 0.75rem))
+    translate(-50%, calc(-50% - 1rem))
     rotate(var(--stack-rot))
     translate(var(--stack-x), var(--stack-y));
 }
