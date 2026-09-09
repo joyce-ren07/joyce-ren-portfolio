@@ -9571,7 +9571,9 @@ p {
 .canvas-page .canvas-gallery__collage.is-stacked {
   height: var(--canvas-stack-height);
   min-height: var(--canvas-stack-height);
-  cursor: pointer;
+  /* Empty collage padding must not capture hover/click — only the stack + hint */
+  pointer-events: none;
+  cursor: default;
 }
 
 .canvas-page .canvas-gallery__expand-hint {
@@ -9593,6 +9595,7 @@ p {
   letter-spacing: 0.04em;
   line-height: 1.2;
   cursor: pointer;
+  pointer-events: auto;
   opacity: 0.72;
   transition: opacity 0.35s ease, color 0.25s ease;
 }
@@ -9715,15 +9718,15 @@ p {
   pointer-events: auto;
 }
 
-/* Hover: keep flux on top; elevate + fan the deck momentarily */
-.canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image {
+/* Hover: fan only while the painting stack itself is hovered/focused — not empty collage padding */
+.canvas-page .canvas-gallery__collage.is-stacked:has(.canvas-gallery__image--stack-front:is(:hover, :focus-visible, :focus-within)) .canvas-gallery__image {
   transform:
     translate(-50%, calc(-50% - 0.55rem))
     rotate(calc(var(--stack-rot) * 1.75))
     translate(calc(var(--stack-x) * 2.15), calc(var(--stack-y) * 2.15));
 }
 
-.canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image--stack-front {
+.canvas-page .canvas-gallery__collage.is-stacked:has(.canvas-gallery__image--stack-front:is(:hover, :focus-visible, :focus-within)) .canvas-gallery__image--stack-front {
   z-index: 31;
   transform:
     translate(-50%, calc(-50% - 1rem))
@@ -9732,8 +9735,8 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image,
-  .canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image--stack-front {
+  .canvas-page .canvas-gallery__collage.is-stacked:has(.canvas-gallery__image--stack-front:is(:hover, :focus-visible, :focus-within)) .canvas-gallery__image,
+  .canvas-page .canvas-gallery__collage.is-stacked:has(.canvas-gallery__image--stack-front:is(:hover, :focus-visible, :focus-within)) .canvas-gallery__image--stack-front {
     transform:
       translate(-50%, -50%)
       rotate(var(--stack-rot))
