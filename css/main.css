@@ -6621,6 +6621,10 @@ p {
   text-align: center;
 }
 
+.back-to-top + .case-footer-note {
+  margin-top: clamp(4rem, 7vw, 5.5rem);
+}
+
 .case-footer-note a {
   font-size: var(--case-tertiary-size);
   color: #A89E9D;
@@ -8272,19 +8276,25 @@ p {
   font-weight: 600;
 }
 
-.case-next-project {
-  margin-top: 2.5rem;
+.back-to-top {
+  margin-top: clamp(4rem, 8vw, 6rem);
   text-align: center;
 }
 
-.case-next-project a {
+.back-to-top a {
   font-size: var(--case-tertiary-size, var(--text-tertiary-size));
   color: #A89E9D;
   transition: color 0.2s ease;
 }
 
-.case-next-project a:hover {
+.back-to-top a:hover,
+.back-to-top a:focus-visible {
   color: var(--case-text-active-hover);
+}
+
+.back-to-top + .home-footer,
+.back-to-top + .site-footer {
+  margin-top: clamp(4rem, 7vw, 5.5rem);
 }
 
 @media (max-width: 900px) {
