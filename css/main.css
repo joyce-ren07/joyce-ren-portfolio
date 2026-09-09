@@ -9614,14 +9614,13 @@ p {
 }
 
 .canvas-page .canvas-gallery__collapse-hint {
-  position: sticky;
+  position: fixed;
   top: calc(var(--case-topbar-height) + 0.65rem);
+  right: max(0.75rem, env(safe-area-inset-right, 0px));
   z-index: 40;
-  display: block;
-  width: fit-content;
-  margin: 0 0.85rem 0 auto;
   appearance: none;
   -webkit-appearance: none;
+  margin: 0;
   padding: 0.45rem 0.65rem;
   border: 0;
   background: transparent;
@@ -10279,7 +10278,7 @@ p {
 
   .canvas-page .canvas-gallery__collapse-hint {
     top: calc(var(--case-topbar-height) + 0.35rem);
-    margin-right: 0.35rem;
+    right: 0.35rem;
   }
 }
 
