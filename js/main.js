@@ -1465,6 +1465,7 @@
       document.querySelector(".canvas-page .canvas-gallery__collage");
     const expandHint = document.querySelector("[data-canvas-expand-stack]");
     const collapseHint = document.querySelector("[data-canvas-collapse-stack]");
+    const galleryLayout = document.querySelector(".canvas-page .canvas-gallery__layout");
     let lastTrigger = null;
     let dispersed = false;
 
@@ -1491,6 +1492,7 @@
     };
 
     const setCollapseHintVisible = (visible) => {
+      galleryLayout?.classList.toggle("is-expanded", visible);
       if (!collapseHint) return;
       if (visible) {
         collapseHint.removeAttribute("aria-hidden");
@@ -1587,11 +1589,12 @@
         onStackActivate(event);
       });
       expandHint?.addEventListener("click", onStackActivate);
-      collapseHint?.addEventListener("click", (event) => {
+      const onCollapseActivate = (event) => {
         event.preventDefault();
         event.stopPropagation();
         collapseCollage();
-      });
+      };
+      collapseHint?.addEventListener("click", onCollapseActivate);
       collage.addEventListener("keydown", (event) => {
         if (dispersed) return;
         if (event.key === "Enter" || event.key === " ") {
