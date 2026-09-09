@@ -6164,7 +6164,7 @@ p {
   font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 500);
   line-height: 1.4;
-  color: #A89E9D;
+  color: #000000;
 }
 
 .case-constraints__list {
@@ -6185,7 +6185,7 @@ p {
   margin: 0;
   padding: 1.65rem 2rem;
   background: #ffffff;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #000000;
   border-radius: 2.25rem;
   text-align: center;
 }
@@ -6194,7 +6194,7 @@ p {
   font-size: var(--case-tertiary-size);
   font-weight: 400;
   line-height: 1.45;
-  color: #A89E9D;
+  color: #000000;
   white-space: nowrap;
 }
 
@@ -6203,14 +6203,14 @@ p {
   font-size: var(--case-tertiary-size);
   font-weight: 400;
   line-height: 1.45;
-  color: #A89E9D;
+  color: #000000;
 }
 
 .case-constraints__decision {
   font-size: var(--case-tertiary-size);
   font-weight: var(--case-tertiary-weight, 500);
   line-height: 1.45;
-  color: #A89E9D;
+  color: #000000;
   white-space: nowrap;
 }
 
