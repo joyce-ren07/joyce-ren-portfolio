@@ -1585,7 +1585,12 @@
       };
       collage.addEventListener("click", (event) => {
         if (dispersed) return;
-        // Allow the dedicated hint button + any plate click to expand
+        // Only the painting stack (or expand hint) should expand — not empty collage padding
+        const onPlate = event.target.closest("[data-canvas-plate]");
+        const onHint =
+          expandHint &&
+          (event.target === expandHint || expandHint.contains(event.target));
+        if (!onPlate && !onHint) return;
         onStackActivate(event);
       });
       expandHint?.addEventListener("click", onStackActivate);
