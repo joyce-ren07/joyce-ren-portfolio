@@ -1464,6 +1464,7 @@
     const collage = document.querySelector("[data-canvas-collage]") ||
       document.querySelector(".canvas-page .canvas-gallery__collage");
     const expandHint = document.querySelector("[data-canvas-expand-stack]");
+    const collapseHint = document.querySelector("[data-canvas-collapse-stack]");
     let lastTrigger = null;
     let dispersed = false;
 
@@ -1489,19 +1490,59 @@
       }
     };
 
+    const setCollapseHintVisible = (visible) => {
+      if (!collapseHint) return;
+      if (visible) {
+        collapseHint.removeAttribute("aria-hidden");
+        collapseHint.tabIndex = 0;
+      } else {
+        collapseHint.setAttribute("aria-hidden", "true");
+        collapseHint.tabIndex = -1;
+      }
+    };
+
+    const setExpandHintVisible = (visible) => {
+      if (!expandHint) return;
+      if (visible) {
+        expandHint.removeAttribute("aria-hidden");
+        expandHint.tabIndex = 0;
+      } else {
+        expandHint.setAttribute("aria-hidden", "true");
+        expandHint.tabIndex = -1;
+      }
+    };
+
     const disperseCollage = () => {
       if (!collage || dispersed) return;
       dispersed = true;
       collage.classList.add("is-dispersed");
       collage.classList.remove("is-stacked");
       collage.setAttribute("aria-label", "Artwork gallery");
-      if (expandHint) {
-        expandHint.setAttribute("aria-hidden", "true");
-        expandHint.tabIndex = -1;
-      }
+      setExpandHintVisible(false);
+      setCollapseHintVisible(true);
       // Recalc after plates finish traveling into place
       window.setTimeout(fitCollageHeight, reducedMotion ? 0 : 1100);
       window.setTimeout(fitCollageHeight, reducedMotion ? 0 : 1600);
+    };
+
+    const collapseCollage = () => {
+      if (!collage || !dispersed) return;
+      if (canvasPlateLightbox.open || canvasPlateLightbox.hasAttribute("open")) {
+        if (typeof canvasPlateLightbox.close === "function") {
+          canvasPlateLightbox.close();
+        } else {
+          canvasPlateLightbox.removeAttribute("open");
+        }
+        lastTrigger = null;
+      }
+      dispersed = false;
+      collage.classList.remove("is-dispersed");
+      collage.classList.add("is-stacked");
+      collage.setAttribute("aria-label", "Artwork stack");
+      setCollapseHintVisible(false);
+      setExpandHintVisible(true);
+      fitCollageHeight();
+      expandHint?.focus();
     };
 
     if (reducedMotion) {
@@ -1509,6 +1550,8 @@
     } else if (collage && !collage.classList.contains("is-stacked")) {
       collage.classList.add("is-dispersed");
       dispersed = true;
+      setExpandHintVisible(false);
+      setCollapseHintVisible(true);
     }
 
     const plateImages = canvasPlates
@@ -1532,7 +1575,7 @@
     }
     window.addEventListener("resize", fitCollageHeight);
 
-    if (collage && !dispersed) {
+    if (collage) {
       const onStackActivate = (event) => {
         if (dispersed) return;
         event.preventDefault();
@@ -1544,6 +1587,11 @@
         onStackActivate(event);
       });
       expandHint?.addEventListener("click", onStackActivate);
+      collapseHint?.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        collapseCollage();
+      });
       collage.addEventListener("keydown", (event) => {
         if (dispersed) return;
         if (event.key === "Enter" || event.key === " ") {
