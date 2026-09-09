@@ -9640,10 +9640,19 @@ p {
   width: min(14.5rem, 58vw);
   max-width: min(14.5rem, 58vw);
   z-index: calc(1 + var(--canvas-plate-i, 0));
+  /* Non-front plates don't steal hover through peeking edges */
+  pointer-events: none;
   transform:
     translate(-50%, -50%)
     rotate(var(--stack-rot))
     translate(var(--stack-x), var(--stack-y));
+  transition:
+    left 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    top 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s ease;
   transition-delay: 0s;
 }
 
@@ -9652,10 +9661,33 @@ p {
   --stack-x: 0.1rem;
   --stack-y: -0.15rem;
   z-index: 30;
+  pointer-events: auto;
 }
 
-.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image--stack-front:is(:hover, :focus-visible, :focus-within) {
+/* Hover: keep flux on top; elevate + fan the deck momentarily */
+.canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image {
+  transform:
+    translate(-50%, calc(-50% - 0.55rem))
+    rotate(calc(var(--stack-rot) * 1.75))
+    translate(calc(var(--stack-x) * 2.15), calc(var(--stack-y) * 2.15));
+}
+
+.canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image--stack-front {
   z-index: 31;
+  transform:
+    translate(-50%, calc(-50% - 1rem))
+    rotate(var(--stack-rot))
+    translate(var(--stack-x), var(--stack-y));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image,
+  .canvas-page .canvas-gallery__collage.is-stacked:is(:hover, :focus-within) .canvas-gallery__image--stack-front {
+    transform:
+      translate(-50%, -50%)
+      rotate(var(--stack-rot))
+      translate(var(--stack-x), var(--stack-y));
+  }
 }
 
 /* Stack offsets — slight fan so the pile reads as a deck */
@@ -9838,8 +9870,14 @@ p {
   z-index: 3;
 }
 
+/* While stacked, never demote the pinned front card via plate hover z-index */
 .canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image:is(:hover, :focus-visible, :focus-within) {
-  z-index: calc(2 + var(--canvas-plate-i, 0));
+  z-index: calc(1 + var(--canvas-plate-i, 0));
+}
+
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image--stack-front,
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image--stack-front:is(:hover, :focus-visible, :focus-within) {
+  z-index: 31;
 }
 
 .canvas-page .canvas-gallery__image:focus-visible {
