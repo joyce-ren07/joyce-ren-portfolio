@@ -6617,7 +6617,7 @@ p {
 }
 
 .case-footer-note {
-  margin-top: 2rem;
+  margin-top: 4.5rem;
   text-align: center;
 }
 
@@ -8272,18 +8272,19 @@ p {
   font-weight: 600;
 }
 
-.case-next-project {
-  margin-top: 2.5rem;
+.case-back-to-top {
+  margin-top: 6.5rem;
+  margin-bottom: 0;
   text-align: center;
 }
 
-.case-next-project a {
+.case-back-to-top a {
   font-size: var(--case-tertiary-size, var(--text-tertiary-size));
   color: #A89E9D;
   transition: color 0.2s ease;
 }
 
-.case-next-project a:hover {
+.case-back-to-top a:hover {
   color: var(--case-text-active-hover);
 }
 
