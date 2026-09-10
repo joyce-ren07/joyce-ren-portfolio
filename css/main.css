@@ -6883,7 +6883,8 @@ p {
   padding-bottom: var(--case-section-gap, 180px);
 }
 
-#solution .case-feature-rows--laptop {
+#solution .case-feature-rows--laptop,
+#solution .case-feature-rows--stacked {
   margin-bottom: clamp(2rem, 5vh, 3rem);
 }
 
