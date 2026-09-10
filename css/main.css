@@ -8996,6 +8996,17 @@ p {
   background: #ffffff;
 }
 
+/* Match persona image corners to Market Landscape competitive analysis cards */
+.case-study-page--current #research .case-image-grid--stacked .case-image-grid__img {
+  border-radius: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+@media (max-width: 600px) {
+  .case-study-page--current #research .case-image-grid--stacked .case-image-grid__img {
+    border-radius: 1.25rem;
+  }
+}
+
 /* Current Market Landscape logos: 5-up like Home Start, 48px gaps, centered */
 .case-study-page--current #process .case-competitive__logos {
   grid-template-columns: repeat(5, minmax(0, 10rem));
