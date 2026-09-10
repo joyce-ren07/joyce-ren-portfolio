@@ -3,9 +3,13 @@
  */
 
 (function () {
-  /* Back to top — shared footer control on all pages */
+  /* Back to top — case study pages only */
   const mountBackToTop = () => {
+    if (!document.body.classList.contains("case-study-page")) return;
     if (document.querySelector(".back-to-top")) return;
+
+    const footer = document.querySelector(".case-footer-note");
+    if (!footer || !footer.parentNode) return;
 
     const nav = document.createElement("nav");
     nav.className = "back-to-top";
@@ -15,18 +19,7 @@
     link.href = "#top";
     link.textContent = "Back to the top ↑";
     nav.appendChild(link);
-
-    const footer =
-      document.querySelector(".case-footer-note, .home-footer, .site-footer") ||
-      document.querySelector("main");
-
-    if (!footer) return;
-
-    if (footer.matches(".case-footer-note, .home-footer, .site-footer")) {
-      footer.parentNode.insertBefore(nav, footer);
-    } else {
-      footer.appendChild(nav);
-    }
+    footer.parentNode.insertBefore(nav, footer);
 
     link.addEventListener("click", (event) => {
       event.preventDefault();

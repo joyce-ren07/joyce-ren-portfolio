@@ -8295,11 +8295,6 @@ p {
   color: var(--case-text-active-hover);
 }
 
-.back-to-top + .home-footer,
-.back-to-top + .site-footer {
-  margin-top: clamp(4rem, 7vw, 5.5rem);
-}
-
 @media (max-width: 900px) {
   .case-insight-cards,
   .case-competitive__logos,
