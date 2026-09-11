@@ -137,7 +137,7 @@
 
     // Fallback for environments that mis-report pointer media (e.g. remote desktops).
     const onFirstMouse = (event) => {
-      if (event.pointerType && event.pointerType !== "mouse") return;
+      if (event.pointerType === "touch") return;
       window.removeEventListener("pointermove", onFirstMouse, true);
       enableCursor(event);
     };
