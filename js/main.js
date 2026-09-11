@@ -71,7 +71,7 @@
     };
 
     const render = () => {
-      const ease = reducedMotion ? 1 : 0.28;
+      const ease = reducedMotion ? 1 : 0.42;
       state.x += (state.targetX - state.x) * ease;
       state.y += (state.targetY - state.y) * ease;
       cursor.style.left = `${state.x}px`;
