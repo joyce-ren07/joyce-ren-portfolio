@@ -10503,11 +10503,9 @@ p {
    Site cursor — small nav-glow circle
    -------------------------------------------------------------------------- */
 
-@media (hover: hover) and (pointer: fine) {
-  html.has-site-cursor,
-  html.has-site-cursor * {
-    cursor: none !important;
-  }
+html.has-site-cursor,
+html.has-site-cursor * {
+  cursor: none !important;
 }
 
 .site-cursor {
