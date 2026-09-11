@@ -10040,15 +10040,17 @@ p {
   appearance: none;
   -webkit-appearance: none;
   margin: 0;
-  padding: 0.35rem 0.55rem;
+  padding: 0.2rem 0.35rem;
   border: 0;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
   color: #A89E9D;
   font: inherit;
-  font-size: var(--text-tertiary-size);
-  letter-spacing: 0.02em;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
   cursor: pointer;
 }
 
@@ -10087,18 +10089,7 @@ p {
   gap: 0.55rem;
   min-width: 0;
   padding-top: 0.15rem;
-  padding-right: 3rem;
-}
-
-.canvas-plate-lightbox__index {
-  display: block;
-  color: var(--case-heading);
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
+  padding-right: 2rem;
 }
 
 .canvas-plate-lightbox__title {
