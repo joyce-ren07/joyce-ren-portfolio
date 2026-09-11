@@ -327,7 +327,12 @@ body.case-study-page--autoinvent a:not(.case-topbar__logo):not(.case-sidebar__li
   border-radius: var(--r-md);
 }
 
-.case-study-page--autoinvent .back-to-top a {
+body.case-study-page--autoinvent .back-to-top a {
+  color: #A89E9D;
+}
+
+body.case-study-page--autoinvent .back-to-top a:hover,
+body.case-study-page--autoinvent .back-to-top a:focus-visible {
   color: var(--accent);
 }
 
