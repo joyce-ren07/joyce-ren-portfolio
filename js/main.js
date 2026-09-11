@@ -5,114 +5,143 @@
 (function () {
   /* Custom glow cursor — matches nav light; white core on interactive hover */
   const mountSiteCursor = () => {
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (!canHover) return;
     if (document.querySelector(".site-cursor")) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const cursor = document.createElement("div");
-    cursor.className = "site-cursor";
-    cursor.setAttribute("aria-hidden", "true");
-    document.body.appendChild(cursor);
-    document.documentElement.classList.add("has-site-cursor");
+    const finePointer = window.matchMedia("(any-pointer: fine)");
+    const canHover = window.matchMedia("(any-hover: hover)");
+    const prefersFineCursor = () => finePointer.matches && canHover.matches;
 
-    const interactiveSelector = [
-      "a",
-      "button",
-      "input",
-      "textarea",
-      "select",
-      "summary",
-      "label",
-      "[role='button']",
-      "[role='link']",
-      "[role='menuitem']",
-      "[tabindex]:not([tabindex='-1'])",
-      ".case-topbar__logo",
-      "[data-foreword-envelope]",
-      "[data-canvas-plate]",
-      "[data-canvas-piece]",
-      "[data-canvas-dot]",
-      "[data-canvas-prev]",
-      "[data-canvas-next]",
-      "[data-canvas-expand]",
-      "[data-canvas-zoom-in]",
-      "[data-canvas-zoom-out]",
-      "[data-canvas-zoom-reset]",
-      "[data-canvas-expand-stack]",
-      "[data-canvas-collapse-stack]",
-    ].join(",");
+    const enableCursor = (seedEvent) => {
+      if (document.querySelector(".site-cursor")) return;
 
-    const state = {
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2,
-      targetX: window.innerWidth / 2,
-      targetY: window.innerHeight / 2,
-      visible: false,
-      hot: false,
-      raf: 0,
-    };
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const cursor = document.createElement("div");
+      cursor.className = "site-cursor";
+      cursor.setAttribute("aria-hidden", "true");
+      document.body.appendChild(cursor);
+      document.documentElement.classList.add("has-site-cursor");
 
-    const setVisible = (visible) => {
-      if (state.visible === visible) return;
-      state.visible = visible;
-      cursor.classList.toggle("is-visible", visible);
-    };
+      const interactiveSelector = [
+        "a",
+        "button",
+        "input",
+        "textarea",
+        "select",
+        "summary",
+        "label",
+        "[role='button']",
+        "[role='link']",
+        "[role='menuitem']",
+        "[tabindex]:not([tabindex='-1'])",
+        ".case-topbar__logo",
+        "[data-foreword-envelope]",
+        "[data-canvas-plate]",
+        "[data-canvas-piece]",
+        "[data-canvas-dot]",
+        "[data-canvas-prev]",
+        "[data-canvas-next]",
+        "[data-canvas-expand]",
+        "[data-canvas-zoom-in]",
+        "[data-canvas-zoom-out]",
+        "[data-canvas-zoom-reset]",
+        "[data-canvas-expand-stack]",
+        "[data-canvas-collapse-stack]",
+      ].join(",");
 
-    const setHot = (hot) => {
-      if (state.hot === hot) return;
-      state.hot = hot;
-      cursor.classList.toggle("is-hot", hot);
-    };
+      const seedX = seedEvent ? seedEvent.clientX : window.innerWidth / 2;
+      const seedY = seedEvent ? seedEvent.clientY : window.innerHeight / 2;
 
-    const isInteractiveTarget = (target) => {
-      if (!(target instanceof Element)) return false;
-      return Boolean(target.closest(interactiveSelector));
-    };
+      const state = {
+        x: seedX,
+        y: seedY,
+        targetX: seedX,
+        targetY: seedY,
+        visible: false,
+        hot: false,
+        raf: 0,
+      };
 
-    const render = () => {
-      const ease = reducedMotion ? 1 : 0.42;
-      state.x += (state.targetX - state.x) * ease;
-      state.y += (state.targetY - state.y) * ease;
+      const setVisible = (visible) => {
+        if (state.visible === visible) return;
+        state.visible = visible;
+        cursor.classList.toggle("is-visible", visible);
+      };
+
+      const setHot = (hot) => {
+        if (state.hot === hot) return;
+        state.hot = hot;
+        cursor.classList.toggle("is-hot", hot);
+      };
+
+      const isInteractiveTarget = (target) => {
+        if (!(target instanceof Element)) return false;
+        return Boolean(target.closest(interactiveSelector));
+      };
+
+      const render = () => {
+        const ease = reducedMotion ? 1 : 0.42;
+        state.x += (state.targetX - state.x) * ease;
+        state.y += (state.targetY - state.y) * ease;
+        cursor.style.left = `${state.x}px`;
+        cursor.style.top = `${state.y}px`;
+        state.raf = requestAnimationFrame(render);
+      };
+
+      const onPointerMove = (event) => {
+        if (event.pointerType === "touch") return;
+        state.targetX = event.clientX;
+        state.targetY = event.clientY;
+        if (reducedMotion) {
+          state.x = state.targetX;
+          state.y = state.targetY;
+        }
+        setVisible(true);
+        setHot(isInteractiveTarget(event.target));
+      };
+
+      const onPointerOver = (event) => {
+        if (event.pointerType === "touch") return;
+        setHot(isInteractiveTarget(event.target));
+      };
+
+      const onPointerDown = (event) => {
+        if (event.pointerType === "touch") return;
+        setHot(isInteractiveTarget(event.target));
+      };
+
+      const onPointerLeave = () => {
+        setVisible(false);
+        setHot(false);
+      };
+
+      window.addEventListener("pointermove", onPointerMove, { passive: true });
+      window.addEventListener("pointerover", onPointerOver, { passive: true });
+      window.addEventListener("pointerdown", onPointerDown, { passive: true });
+      document.documentElement.addEventListener("pointerleave", onPointerLeave, { passive: true });
+      window.addEventListener("blur", onPointerLeave);
+
       cursor.style.left = `${state.x}px`;
       cursor.style.top = `${state.y}px`;
+      if (seedEvent) {
+        setVisible(true);
+        setHot(isInteractiveTarget(seedEvent.target));
+      }
+
       state.raf = requestAnimationFrame(render);
     };
 
-    const onPointerMove = (event) => {
-      if (event.pointerType === "touch") return;
-      state.targetX = event.clientX;
-      state.targetY = event.clientY;
-      if (reducedMotion) {
-        state.x = state.targetX;
-        state.y = state.targetY;
-      }
-      setVisible(true);
-      setHot(isInteractiveTarget(event.target));
+    if (prefersFineCursor()) {
+      enableCursor();
+      return;
+    }
+
+    // Fallback for environments that mis-report pointer media (e.g. remote desktops).
+    const onFirstMouse = (event) => {
+      if (event.pointerType && event.pointerType !== "mouse") return;
+      window.removeEventListener("pointermove", onFirstMouse, true);
+      enableCursor(event);
     };
-
-    const onPointerOver = (event) => {
-      if (event.pointerType === "touch") return;
-      setHot(isInteractiveTarget(event.target));
-    };
-
-    const onPointerDown = (event) => {
-      if (event.pointerType === "touch") return;
-      setHot(isInteractiveTarget(event.target));
-    };
-
-    const onPointerLeave = () => {
-      setVisible(false);
-      setHot(false);
-    };
-
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-    window.addEventListener("pointerover", onPointerOver, { passive: true });
-    window.addEventListener("pointerdown", onPointerDown, { passive: true });
-    document.documentElement.addEventListener("pointerleave", onPointerLeave, { passive: true });
-    window.addEventListener("blur", onPointerLeave);
-
-    state.raf = requestAnimationFrame(render);
+    window.addEventListener("pointermove", onFirstMouse, { passive: true, capture: true });
   };
 
   mountSiteCursor();
