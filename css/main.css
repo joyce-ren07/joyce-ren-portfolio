@@ -3538,7 +3538,7 @@ p {
 }
 
 .case-sidebar__link:hover {
-  color: #a1a1a1;
+  color: var(--nav-glow-hover);
 }
 
 .case-sidebar__link.is-active {
@@ -8372,10 +8372,6 @@ p {
 .case-study-page--current .case-sidebar__link.is-active {
   color: var(--md-sys-color-primary);
   font-weight: 500;
-}
-
-.case-study-page--current .case-sidebar__link:hover {
-  color: var(--md-sys-color-on-surface);
 }
 
 .case-study-page--current .case-emphasis {
