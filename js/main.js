@@ -1630,7 +1630,6 @@
     const titleEl = canvasPlateLightbox.querySelector("[data-canvas-plate-title]");
     const metaEl = canvasPlateLightbox.querySelector("[data-canvas-plate-meta]");
     const descEl = canvasPlateLightbox.querySelector("[data-canvas-plate-desc]");
-    const indexEl = canvasPlateLightbox.querySelector("[data-canvas-plate-index]");
     const collage = document.querySelector("[data-canvas-collage]") ||
       document.querySelector(".canvas-page .canvas-gallery__collage");
     const expandHint = document.querySelector("[data-canvas-expand-stack]");
@@ -1797,7 +1796,6 @@
         descEl.textContent = description;
         descEl.hidden = !description;
       }
-      if (indexEl) indexEl.textContent = plate.dataset.index || "";
       canvasPlateLightbox.classList.toggle(
         "is-unmatched",
         plate.classList.contains("canvas-gallery__image--unmatched")
