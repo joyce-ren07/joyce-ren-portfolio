@@ -10498,3 +10498,71 @@ p {
     animation: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Site cursor — small nav-glow circle
+   -------------------------------------------------------------------------- */
+
+html.has-site-cursor,
+html.has-site-cursor * {
+  cursor: none !important;
+}
+
+.site-cursor {
+  --site-cursor-size: 1.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: var(--site-cursor-size);
+  height: var(--site-cursor-size);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 210, 155, 0.98) 0%,
+    rgba(255, 190, 120, 0.78) 36%,
+    rgba(255, 160, 80, 0.34) 64%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 12px var(--nav-glow-mid),
+    0 0 28px var(--nav-glow-soft);
+  filter: blur(4px);
+  transition:
+    width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.28s ease,
+    box-shadow 0.28s ease,
+    filter 0.28s ease,
+    opacity 0.22s ease;
+  will-change: left, top, width, height, opacity;
+}
+
+.site-cursor.is-visible {
+  opacity: 1;
+}
+
+.site-cursor.is-hot {
+  --site-cursor-size: 1.85rem;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 252, 245, 0.96) 14%,
+    rgba(255, 210, 155, 0.82) 38%,
+    rgba(255, 170, 95, 0.4) 66%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 16px rgba(255, 220, 170, 0.8),
+    0 0 32px rgba(255, 180, 110, 0.42);
+  filter: blur(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-cursor {
+    transition: opacity 0.15s ease;
+  }
+}
