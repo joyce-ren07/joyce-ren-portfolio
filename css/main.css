@@ -3181,6 +3181,8 @@ p {
   --case-text-faint: #A89E9D;
   --case-heading: #A89E9D;
   --case-text-active-hover: #a1a1a1;
+  /* Case primary — used for Back to the top hover; override per case study */
+  --case-accent: var(--case-text-active-hover);
   --nav-padding-inline: clamp(2.5rem, 10vw, 8rem);
   --case-body-leading: 1.58;
   --case-heading-leading: 1.12;
@@ -4708,6 +4710,7 @@ p {
 .case-study-page--cueturn {
   --cueturn-accent: #4c9c8e;
   --cueturn-media-radius: 1.5rem;
+  --case-accent: var(--cueturn-accent);
 }
 
 .cueturn-countdown-demo__comparison-row--format {
@@ -4761,6 +4764,7 @@ p {
   --ai-font: var(--font-sans);
   --ai-fs-section: var(--case-secondary-size);
   --ai-fs-body: var(--case-tertiary-size);
+  --case-accent: var(--ai-accent);
 }
 
 .case-study-page--autoinvent .case-callout--outline {
@@ -8293,7 +8297,16 @@ p {
 
 .back-to-top a:hover,
 .back-to-top a:focus-visible {
-  color: var(--case-text-active-hover);
+  color: var(--case-accent);
+}
+
+/* Case study primary accents — Back to the top hover */
+.case-study-page--uber {
+  --case-accent: #000000;
+}
+
+.case-study-page--home-start {
+  --case-accent: #3d6a6f;
 }
 
 @media (max-width: 900px) {
@@ -8367,6 +8380,7 @@ p {
   --case-text-active: #A89E9D;
   --case-text-faint: #A89E9D;
   --case-heading: #A89E9D;
+  --case-accent: var(--gds-primary);
 }
 
 .case-study-page--current .case-sidebar__link.is-active {
