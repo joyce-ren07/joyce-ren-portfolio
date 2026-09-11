@@ -4744,6 +4744,15 @@ p {
   line-height: 1.2;
 }
 
+.case-study-page--autoinvent .case-stat--bordered {
+  border-color: var(--ai-accent);
+}
+
+.case-study-page--autoinvent .case-stat--bordered .case-stat__value,
+.case-study-page--autoinvent .case-stat--bordered .case-stat__label {
+  color: var(--ai-accent);
+}
+
 /* HMW emphasis: loop highlight clarity → ownership → momentum */
 .case-study-page--autoinvent .case-hmw-mark {
   /* Short cycle so clarity → ownership → momentum hits bam-bam-bam */
