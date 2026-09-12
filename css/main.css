@@ -5203,11 +5203,13 @@ p {
   --ps-line-soft: #eceae7;
   --ps-chrome: #fcfbfa;
   --ps-fill: #f1efec;
-  --ps-surface: #faf9f7;
-  --ps-fs: var(--case-tertiary-size, var(--text-tertiary-size));
-  --ps-ui-title: 0.8125rem;
-  --ps-ui-section: 0.6875rem;
-  --ps-ui-micro: 0.65625rem;
+  --ps-surface: #ffffff;
+  /* Match original diagram type (13.5px), not case tertiary */
+  --ps-fs: 13.5px;
+  --ps-ui-title: 12.5px;
+  --ps-ui-section: 11px;
+  --ps-ui-micro: 10.5px;
+  --ps-ui-pill-sm: 9px;
   width: 100%;
   max-width: 100%;
   margin: 2rem 0 0;
@@ -5270,6 +5272,7 @@ p {
   flex: 1 1 300px;
   min-width: 0;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .ps-structure__chrome {
@@ -5354,6 +5357,8 @@ p {
 
 .ps-structure__pane--after {
   padding: 15px 16px;
+  display: flex;
+  flex-direction: column;
   gap: 19px;
 }
 
@@ -5410,10 +5415,10 @@ p {
 
 .ps-structure__pipeline {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 6px;
-  padding-right: clamp(0px, 12vw, 181px);
+  padding-right: 181px;
 }
 
 .ps-structure__pill {
@@ -5426,7 +5431,7 @@ p {
 }
 
 .ps-structure__pill--sm {
-  font-size: 0.5625rem;
+  font-size: var(--ps-ui-pill-sm);
   padding: 3px 7px;
 }
 
@@ -5452,7 +5457,7 @@ p {
 
 .ps-structure__pipe {
   color: #c9c5c1;
-  font-size: 0.6875rem;
+  font-size: 11px;
   line-height: 1;
 }
 
@@ -5469,6 +5474,7 @@ p {
   display: flex;
   align-items: stretch;
   gap: 0;
+  overflow: visible;
 }
 
 .ps-structure__filters {
@@ -5525,6 +5531,7 @@ p {
   background: var(--ps-line-soft);
   display: block;
   min-width: 0;
+  align-self: center;
 }
 
 .ps-structure__thumb {
@@ -5536,28 +5543,38 @@ p {
   flex-shrink: 0;
 }
 
+/* Notes sit absolutely so leader lines hit pipeline / search / merged log */
 .ps-structure__notes {
   flex: 0 1 172px;
-  min-width: 0;
+  width: 172px;
+  min-width: 140px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 52px;
-  padding: 0 0 8px 2px;
 }
 
 .ps-structure__note {
+  position: absolute;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: flex-start;
   gap: 0;
 }
 
 .ps-structure__note--top {
+  top: -41px;
+  left: 2px;
   flex-direction: column;
   gap: 3px;
   padding-left: 9px;
-  margin-top: -4px;
+}
+
+.ps-structure__note--search {
+  top: 84px;
+}
+
+.ps-structure__note--workflow {
+  top: 197px;
+  left: 2px;
 }
 
 .ps-structure__note-rule {
@@ -5566,7 +5583,7 @@ p {
   background: var(--ps-accent);
   display: block;
   flex-shrink: 0;
-  margin-top: 0.55em;
+  margin-top: 8px;
   margin-left: -2px;
 }
 
@@ -5588,7 +5605,7 @@ p {
 
 .ps-structure__note-body {
   font-size: var(--ps-fs);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5;
   color: var(--ps-muted);
 }
@@ -5598,7 +5615,7 @@ p {
   margin-top: auto;
   padding-top: 4px;
   font-size: var(--ps-fs);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.55;
   color: var(--ps-muted);
   text-wrap: pretty;
@@ -5612,7 +5629,8 @@ p {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(14px, 1.6vw, 22px);
-  margin-top: clamp(28px, 3vw, 44px);
+  margin-top: clamp(14px, 1.6vw, 22px);
+  padding-top: clamp(14px, 1.6vw, 22px);
 }
 
 .ps-structure__insight {
@@ -5636,7 +5654,7 @@ p {
 .ps-structure__insight-body {
   margin: 0;
   font-size: var(--ps-fs);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.55;
   color: var(--ps-muted);
   text-wrap: pretty;
@@ -5656,6 +5674,10 @@ p {
     padding-right: 0;
   }
 
+  .ps-structure__pipeline-rule {
+    display: none;
+  }
+
   .ps-structure__after-row {
     flex-direction: column;
     gap: 20px;
@@ -5663,14 +5685,21 @@ p {
 
   .ps-structure__notes {
     flex: 1 1 auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 16px 24px;
+    width: auto;
+    min-width: 0;
     position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
-  .ps-structure__note--top {
-    margin-top: 0;
+  .ps-structure__note,
+  .ps-structure__note--top,
+  .ps-structure__note--search,
+  .ps-structure__note--workflow {
+    position: static;
+    left: auto;
+    top: auto;
     padding-left: 0;
   }
 
@@ -5688,23 +5717,10 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .ps-structure__pipeline {
-    padding-right: 0;
-  }
-
-  .ps-structure__pipeline-rule {
-    display: none;
-  }
-
   .ps-structure__window,
   .ps-structure__window--after {
     width: 100%;
     max-width: 100%;
-  }
-
-  .ps-structure__notes {
-    flex-direction: column;
-    gap: 14px;
   }
 }
 
