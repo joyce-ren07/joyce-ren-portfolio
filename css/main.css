@@ -5272,6 +5272,7 @@ p {
   flex: 1 1 300px;
   min-width: 0;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .ps-structure__chrome {
@@ -5414,7 +5415,7 @@ p {
 
 .ps-structure__pipeline {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 6px;
   padding-right: 181px;
@@ -5473,6 +5474,7 @@ p {
   display: flex;
   align-items: stretch;
   gap: 0;
+  overflow: visible;
 }
 
 .ps-structure__filters {
@@ -5529,6 +5531,7 @@ p {
   background: var(--ps-line-soft);
   display: block;
   min-width: 0;
+  align-self: center;
 }
 
 .ps-structure__thumb {
