@@ -339,30 +339,143 @@
           lived or what stage it was in.
         </p>
 
-        <div class="case-feedback">
-          <div class="case-feedback__col">
-            <h4 class="case-feedback__title">Key changes</h4>
-            <ul class="case-feedback__list">
-              <li>Merged Dashboard and My Ideas into a single view</li>
-              <li>Organized work with tags: Idea, Draft, Ready to File, Filed</li>
-              <li>Clearer entry points by intent: ideate vs. ready to file</li>
-              <li>Removed unnecessary progress indicators</li>
-            </ul>
-          </div>
-          <div class="case-feedback__col">
-            <h4 class="case-feedback__title">Why it mattered</h4>
-            <ul class="case-feedback__list">
-              <li>Clarified the product’s underlying logic, not just the interface</li>
-              <li>Matched how users already think about filing progress</li>
-              <li>Reduced “where does this live?” friction</li>
-            </ul>
-          </div>
-        </div>
+        <figure class="ps-structure" aria-label="Product structure before and after: fragmented surfaces versus a unified status workflow">
+          <div class="ps-structure__compare">
+            <div class="ps-structure__col ps-structure__col--before">
+              <div class="ps-structure__label">Before</div>
+              <div class="ps-structure__spacer" aria-hidden="true"></div>
+              <div class="ps-structure__window">
+                <div class="ps-structure__chrome">
+                  <span class="ps-structure__dot"></span>
+                  <span class="ps-structure__dot"></span>
+                </div>
+                <div class="ps-structure__app">
+                  <div class="ps-structure__rail" aria-hidden="true">
+                    <span class="ps-structure__rail-item ps-structure__rail-item--active"></span>
+                    <span class="ps-structure__rail-item"></span>
+                    <span class="ps-structure__rail-item ps-structure__rail-item--faint"></span>
+                  </div>
+                  <div class="ps-structure__pane">
+                    <span class="ps-structure__ui-title">Dashboard</span>
+                    <div class="ps-structure__tiles" aria-hidden="true">
+                      <span class="ps-structure__tile"></span>
+                      <span class="ps-structure__tile"></span>
+                    </div>
+                    <span class="ps-structure__ui-section">Patent Log</span>
+                    <span class="ps-structure__block" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="ps-structure__window ps-structure__window--stack">
+                <div class="ps-structure__pane ps-structure__pane--ideas">
+                  <span class="ps-structure__ui-section">My Ideas</span>
+                  <span class="ps-structure__bar" aria-hidden="true"></span>
+                  <span class="ps-structure__bar ps-structure__bar--mid" aria-hidden="true"></span>
+                  <span class="ps-structure__bar ps-structure__bar--long" aria-hidden="true"></span>
+                </div>
+              </div>
+              <p class="ps-structure__caption">
+                Fragmented with ideas and patents in separate sections! Unclear indications of progress.
+              </p>
+            </div>
 
-        <div class="case-image-grid">
-          <div class="case-placeholder" aria-hidden="true">IA before — fragmented</div>
-          <div class="case-placeholder" aria-hidden="true">IA after — merged My Ideas</div>
-        </div>
+            <div class="ps-structure__col ps-structure__col--after">
+              <div class="ps-structure__label ps-structure__label--accent">After</div>
+              <div class="ps-structure__pipeline" aria-label="Status flow from Idea to Filed">
+                <span class="ps-structure__pill ps-structure__pill--idea">Idea</span>
+                <span class="ps-structure__pipe" aria-hidden="true">&rarr;</span>
+                <span class="ps-structure__pill ps-structure__pill--draft">Draft</span>
+                <span class="ps-structure__pipe" aria-hidden="true">&rarr;</span>
+                <span class="ps-structure__pill ps-structure__pill--ready">Ready to File</span>
+                <span class="ps-structure__pipe" aria-hidden="true">&rarr;</span>
+                <span class="ps-structure__pill ps-structure__pill--filed">Filed to USPTO</span>
+                <span class="ps-structure__pipeline-rule" aria-hidden="true"></span>
+              </div>
+              <div class="ps-structure__after-row">
+                <div class="ps-structure__window ps-structure__window--after">
+                  <div class="ps-structure__chrome">
+                    <span class="ps-structure__dot ps-structure__dot--accent"></span>
+                    <span class="ps-structure__dot"></span>
+                  </div>
+                  <div class="ps-structure__app">
+                    <div class="ps-structure__rail" aria-hidden="true">
+                      <span class="ps-structure__rail-item ps-structure__rail-item--active"></span>
+                      <span class="ps-structure__rail-item"></span>
+                      <span class="ps-structure__rail-item"></span>
+                      <span class="ps-structure__rail-item ps-structure__rail-item--faint"></span>
+                    </div>
+                    <div class="ps-structure__pane ps-structure__pane--after">
+                      <span class="ps-structure__ui-title">Dashboard</span>
+                      <div class="ps-structure__filters" aria-hidden="true">
+                        <span class="ps-structure__filter">Search ideas and applications</span>
+                        <span class="ps-structure__filter ps-structure__filter--status">Status</span>
+                      </div>
+                      <div class="ps-structure__group">
+                        <span class="ps-structure__ui-section">My Ideas</span>
+                        <div class="ps-structure__row">
+                          <span class="ps-structure__row-dot" aria-hidden="true"></span>
+                          <span class="ps-structure__row-line" aria-hidden="true"></span>
+                          <span class="ps-structure__pill ps-structure__pill--idea ps-structure__pill--sm">Idea</span>
+                        </div>
+                      </div>
+                      <div class="ps-structure__group">
+                        <span class="ps-structure__ui-section">Patent Log</span>
+                        <div class="ps-structure__row">
+                          <span class="ps-structure__thumb" aria-hidden="true"></span>
+                          <span class="ps-structure__row-line" aria-hidden="true"></span>
+                          <span class="ps-structure__pill ps-structure__pill--draft ps-structure__pill--sm">Draft</span>
+                        </div>
+                        <div class="ps-structure__row">
+                          <span class="ps-structure__thumb" aria-hidden="true"></span>
+                          <span class="ps-structure__row-line" aria-hidden="true"></span>
+                          <span class="ps-structure__pill ps-structure__pill--filed ps-structure__pill--sm">Filed to USPTO</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ps-structure__notes">
+                  <div class="ps-structure__note ps-structure__note--top">
+                    <span class="ps-structure__note-title">Status on every item</span>
+                    <span class="ps-structure__note-body">Progress made legible</span>
+                  </div>
+                  <div class="ps-structure__note">
+                    <span class="ps-structure__note-rule" aria-hidden="true"></span>
+                    <div class="ps-structure__note-copy">
+                      <span class="ps-structure__note-title">Search &amp; filtering</span>
+                      <span class="ps-structure__note-body">Mental organization</span>
+                    </div>
+                  </div>
+                  <div class="ps-structure__note">
+                    <span class="ps-structure__note-rule" aria-hidden="true"></span>
+                    <div class="ps-structure__note-copy">
+                      <span class="ps-structure__note-title">One workflow</span>
+                      <span class="ps-structure__note-body">Two surfaces consolidated</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="ps-structure__caption ps-structure__caption--strong">
+                Dashboard and My Ideas merged into one log where a status label says where each invention stands.
+              </p>
+            </div>
+          </div>
+
+          <div class="ps-structure__insights">
+            <div class="ps-structure__insight">
+              <span class="ps-structure__insight-title">What the original split protected</span>
+              <p class="ps-structure__insight-body">Keeping Ideas apart from the Patent Log separated brainstorming from the pressure of filing.</p>
+            </div>
+            <div class="ps-structure__insight">
+              <span class="ps-structure__insight-title">Why it still failed</span>
+              <p class="ps-structure__insight-body">It divided by mindset, but users think in terms of one invention moving forward.</p>
+            </div>
+            <div class="ps-structure__insight ps-structure__insight--accent">
+              <span class="ps-structure__insight-title">What replaced it</span>
+              <p class="ps-structure__insight-body">An idea still feels low-stakes, but now it progresses in the same place it gets filed from.</p>
+            </div>
+          </div>
+        </figure>
 
         <h3 class="case-subheading case-subheading--large">Decision 2: Making AI assistance feel steerable</h3>
         <p class="case-body case-body--tertiary">
