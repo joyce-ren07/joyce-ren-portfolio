@@ -10485,7 +10485,22 @@ html.has-site-cursor * {
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
-  transform: translate(-50%, -50%);
+  transform: translate3d(0, 0, 0) translate(-50%, -50%);
+  transition: opacity 0.22s ease;
+  will-change: transform, opacity;
+  contain: layout style;
+}
+
+.site-cursor__glow,
+.site-cursor__core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Outer halo stays fixed — no size/blur/shadow morph on hover. */
+.site-cursor__glow {
   background: radial-gradient(
     circle at 50% 50%,
     rgba(255, 210, 155, 0.98) 0%,
@@ -10497,38 +10512,34 @@ html.has-site-cursor * {
     0 0 12px var(--nav-glow-mid),
     0 0 28px var(--nav-glow-soft);
   filter: blur(4px);
-  transition:
-    width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.28s ease,
-    box-shadow 0.28s ease,
-    filter 0.28s ease,
-    opacity 0.22s ease;
-  will-change: left, top, width, height, opacity;
+}
+
+/* White core fades in only; keeps the amber envelope consistent. */
+.site-cursor__core {
+  inset: 18%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 252, 245, 0.92) 42%,
+    rgba(255, 240, 220, 0.35) 72%,
+    transparent 100%
+  );
+  opacity: 0;
+  filter: blur(0.6px);
+  transition: opacity 0.2s ease;
 }
 
 .site-cursor.is-visible {
   opacity: 1;
 }
 
-.site-cursor.is-hot {
-  --site-cursor-size: 1.85rem;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 252, 245, 0.96) 14%,
-    rgba(255, 210, 155, 0.82) 38%,
-    rgba(255, 170, 95, 0.4) 66%,
-    transparent 100%
-  );
-  box-shadow:
-    0 0 16px rgba(255, 220, 170, 0.8),
-    0 0 32px rgba(255, 180, 110, 0.42);
-  filter: blur(3px);
+.site-cursor.is-hot .site-cursor__core {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-cursor {
+  .site-cursor,
+  .site-cursor__core {
     transition: opacity 0.15s ease;
   }
 }

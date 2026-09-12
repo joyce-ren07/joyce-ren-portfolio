@@ -3,7 +3,7 @@
  */
 
 (function () {
-  /* Custom glow cursor — matches nav light; white core on interactive hover */
+  /* Custom glow cursor — stable amber halo; white core fades in on interactive hover */
   const mountSiteCursor = () => {
     if (document.querySelector(".site-cursor")) return;
 
@@ -18,6 +18,8 @@
       const cursor = document.createElement("div");
       cursor.className = "site-cursor";
       cursor.setAttribute("aria-hidden", "true");
+      cursor.innerHTML =
+        '<span class="site-cursor__glow"></span><span class="site-cursor__core"></span>';
       document.body.appendChild(cursor);
       document.documentElement.classList.add("has-site-cursor");
 
@@ -33,6 +35,9 @@
         "[role='link']",
         "[role='menuitem']",
         "[tabindex]:not([tabindex='-1'])",
+        ".work-card",
+        ".edge-glow",
+        ".back-to-top",
         ".case-topbar__logo",
         "[data-foreword-envelope]",
         "[data-canvas-plate]",
@@ -58,6 +63,7 @@
         targetY: seedY,
         visible: false,
         hot: false,
+        hotOffTimer: 0,
         raf: 0,
       };
 
@@ -67,10 +73,36 @@
         cursor.classList.toggle("is-visible", visible);
       };
 
-      const setHot = (hot) => {
-        if (state.hot === hot) return;
-        state.hot = hot;
-        cursor.classList.toggle("is-hot", hot);
+      const setHot = (hot, immediate = false) => {
+        if (hot) {
+          if (state.hotOffTimer) {
+            window.clearTimeout(state.hotOffTimer);
+            state.hotOffTimer = 0;
+          }
+          if (state.hot) return;
+          state.hot = true;
+          cursor.classList.add("is-hot");
+          return;
+        }
+
+        if (!state.hot) return;
+        if (immediate) {
+          if (state.hotOffTimer) {
+            window.clearTimeout(state.hotOffTimer);
+            state.hotOffTimer = 0;
+          }
+          state.hot = false;
+          cursor.classList.remove("is-hot");
+          return;
+        }
+
+        // Brief hold prevents flicker across gaps between interactive hit targets.
+        if (state.hotOffTimer) return;
+        state.hotOffTimer = window.setTimeout(() => {
+          state.hotOffTimer = 0;
+          state.hot = false;
+          cursor.classList.remove("is-hot");
+        }, 60);
       };
 
       const isInteractiveTarget = (target) => {
@@ -78,12 +110,15 @@
         return Boolean(target.closest(interactiveSelector));
       };
 
+      const placeCursor = (x, y) => {
+        cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+      };
+
       const render = () => {
-        const ease = reducedMotion ? 1 : 0.42;
+        const ease = reducedMotion ? 1 : 0.55;
         state.x += (state.targetX - state.x) * ease;
         state.y += (state.targetY - state.y) * ease;
-        cursor.style.left = `${state.x}px`;
-        cursor.style.top = `${state.y}px`;
+        placeCursor(state.x, state.y);
         state.raf = requestAnimationFrame(render);
       };
 
@@ -111,7 +146,7 @@
 
       const onPointerLeave = () => {
         setVisible(false);
-        setHot(false);
+        setHot(false, true);
       };
 
       window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -120,8 +155,7 @@
       document.documentElement.addEventListener("pointerleave", onPointerLeave, { passive: true });
       window.addEventListener("blur", onPointerLeave);
 
-      cursor.style.left = `${state.x}px`;
-      cursor.style.top = `${state.y}px`;
+      placeCursor(state.x, state.y);
       if (seedEvent) {
         setVisible(true);
         setHot(isInteractiveTarget(seedEvent.target));
