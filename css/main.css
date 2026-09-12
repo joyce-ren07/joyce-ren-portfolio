@@ -994,8 +994,7 @@ p {
 }
 
 .work-card__desc {
-  font-weight: 400;
-  color: #A89E9D;
+  font-weight: var(--text-tertiary-weight);
 }
 
 .work-card__tags {
