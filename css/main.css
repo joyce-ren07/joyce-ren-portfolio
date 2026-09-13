@@ -5265,7 +5265,7 @@ p {
 }
 
 .ps-structure__window--stack {
-  margin-top: -2px;
+  margin-top: 10px;
 }
 
 .ps-structure__window--after {
@@ -5350,6 +5350,45 @@ p {
   gap: 9px;
 }
 
+.ps-structure__pane-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ps-structure__create {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--ps-accent-hot);
+  flex-shrink: 0;
+  display: block;
+}
+
+.ps-structure__create::before,
+.ps-structure__create::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #ffffff;
+  border-radius: 1px;
+  transform: translate(-50%, -50%);
+}
+
+.ps-structure__create::before {
+  width: 8px;
+  height: 1.5px;
+}
+
+.ps-structure__create::after {
+  width: 1.5px;
+  height: 8px;
+}
+
 .ps-structure__pane--ideas {
   padding: 13px 15px;
   gap: 8px;
@@ -5363,7 +5402,7 @@ p {
 }
 
 /* OG rhythm: tighter title→search, larger breaks into each section */
-.ps-structure__pane--after > .ps-structure__ui-title {
+.ps-structure__pane--after > .ps-structure__pane-head {
   margin-bottom: 10px;
 }
 
@@ -5590,12 +5629,16 @@ p {
   padding-left: 9px;
 }
 
+.ps-structure__note--create {
+  top: 38px;
+}
+
 .ps-structure__note--search {
-  top: 70px;
+  top: 100px;
 }
 
 .ps-structure__note--workflow {
-  top: 172px;
+  top: 202px;
   left: 2px;
 }
 
@@ -5610,6 +5653,7 @@ p {
 }
 
 /* Reach into the window so leaders hit Status / the merged log, not the chrome edge */
+.ps-structure__note--create .ps-structure__note-rule,
 .ps-structure__note--search .ps-structure__note-rule,
 .ps-structure__note--workflow .ps-structure__note-rule {
   width: clamp(34px, 3.2vw, 52px);
@@ -5724,6 +5768,7 @@ p {
 
   .ps-structure__note,
   .ps-structure__note--top,
+  .ps-structure__note--create,
   .ps-structure__note--search,
   .ps-structure__note--workflow {
     position: static;
