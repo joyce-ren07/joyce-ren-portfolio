@@ -10587,6 +10587,23 @@ p {
 .canvas-plate-lightbox::backdrop {
   background: rgba(247, 245, 241, 0.82);
   backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+
+.canvas-plate-lightbox[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .canvas-plate-lightbox[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.canvas-plate-lightbox.is-closing::backdrop {
+  opacity: 0;
+  transition-duration: 0.32s;
 }
 
 .canvas-plate-lightbox__panel {
@@ -10599,14 +10616,6 @@ p {
   background: #fffcf8;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.08);
-  transform: translateY(0.65rem) scale(0.985);
-  opacity: 0;
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-.canvas-plate-lightbox[open] .canvas-plate-lightbox__panel {
-  transform: none;
-  opacity: 1;
 }
 
 .canvas-plate-lightbox__close {
@@ -10867,12 +10876,17 @@ p {
   .canvas-gallery__media,
   .canvas-gallery__media img,
   .canvas-plate-lightbox__panel,
+  .canvas-plate-lightbox::backdrop,
   .canvas-page .canvas-gallery__collage,
   .canvas-page .canvas-gallery__expand-hint,
   .canvas-page .canvas-gallery__collapse-hint,
   .canvas-page .canvas-gallery__expand-hint::before,
   .canvas-page .canvas-gallery__collapse-hint::before {
     transition: none;
+  }
+
+  .canvas-plate-lightbox[open]::backdrop {
+    opacity: 1;
   }
 }
 

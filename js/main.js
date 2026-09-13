@@ -1811,12 +1811,32 @@
       });
     }
 
+    let closePlateTimer = null;
+    let plateOpenAnimation = null;
+    let plateCloseAnimation = null;
+    let plateDialogAnimation = null;
+    const panelEl = canvasPlateLightbox.querySelector(".canvas-plate-lightbox__panel");
+
+    const cancelPlateAnimations = () => {
+      plateOpenAnimation?.cancel();
+      plateCloseAnimation?.cancel();
+      plateDialogAnimation?.cancel();
+      plateOpenAnimation = null;
+      plateCloseAnimation = null;
+      plateDialogAnimation = null;
+    };
+
     const openPlate = (plate) => {
       if (!plate) return;
       if (!dispersed) {
         disperseCollage();
         return;
       }
+      if (closePlateTimer) {
+        window.clearTimeout(closePlateTimer);
+        closePlateTimer = null;
+      }
+      cancelPlateAnimations();
       lastTrigger = plate;
       const img = plate.querySelector("img");
       if (imageEl && img) {
@@ -1834,24 +1854,77 @@
         "is-unmatched",
         plate.classList.contains("canvas-gallery__image--unmatched")
       );
+      canvasPlateLightbox.classList.remove("is-closing");
       if (typeof canvasPlateLightbox.showModal === "function") {
         canvasPlateLightbox.showModal();
       } else {
         canvasPlateLightbox.setAttribute("open", "");
       }
+
+      if (!reducedMotion && panelEl && typeof panelEl.animate === "function") {
+        // Keyframe 0 supplies the starting opacity — avoid sticky inline styles.
+        plateOpenAnimation = panelEl.animate(
+          [
+            { opacity: 0, transform: "translateY(0.35rem)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          {
+            duration: 560,
+            easing: "ease",
+            fill: "both",
+          }
+        );
+        plateDialogAnimation = canvasPlateLightbox.animate(
+          [{ opacity: 0 }, { opacity: 1 }],
+          { duration: 560, easing: "ease", fill: "both" }
+        );
+      }
+
       closeBtn?.focus();
     };
 
     const closePlate = () => {
-      if (typeof canvasPlateLightbox.close === "function") {
-        canvasPlateLightbox.close();
-      } else {
-        canvasPlateLightbox.removeAttribute("open");
+      if (closePlateTimer) {
+        window.clearTimeout(closePlateTimer);
+        closePlateTimer = null;
       }
-      if (lastTrigger) {
-        lastTrigger.focus();
-        lastTrigger = null;
+
+      const finishClose = () => {
+        closePlateTimer = null;
+        cancelPlateAnimations();
+        canvasPlateLightbox.classList.remove("is-closing");
+        if (typeof canvasPlateLightbox.close === "function") {
+          canvasPlateLightbox.close();
+        } else {
+          canvasPlateLightbox.removeAttribute("open");
+        }
+        if (lastTrigger) {
+          lastTrigger.focus();
+          lastTrigger = null;
+        }
+      };
+
+      if (reducedMotion || !canvasPlateLightbox.open) {
+        finishClose();
+        return;
       }
+
+      canvasPlateLightbox.classList.add("is-closing");
+      cancelPlateAnimations();
+      if (panelEl && typeof panelEl.animate === "function") {
+        plateCloseAnimation = panelEl.animate(
+          [
+            { opacity: 1, transform: "translateY(0)" },
+            { opacity: 0, transform: "translateY(0.25rem)" },
+          ],
+          { duration: 320, easing: "ease", fill: "forwards" }
+        );
+        plateDialogAnimation = canvasPlateLightbox.animate(
+          [{ opacity: 1 }, { opacity: 0 }],
+          { duration: 320, easing: "ease", fill: "forwards" }
+        );
+      }
+      closePlateTimer = window.setTimeout(finishClose, 320);
     };
 
     canvasPlates.forEach((plate) => {
