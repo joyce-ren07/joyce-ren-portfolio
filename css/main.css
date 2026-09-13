@@ -5223,13 +5223,13 @@ p {
 .ps-structure__compare {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(28px, 4vw, 64px);
+  gap: clamp(16px, 2.2vw, 36px);
 }
 
 .ps-structure__col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   min-width: 0;
 }
 
@@ -5239,7 +5239,7 @@ p {
 
 .ps-structure__col--after {
   flex: 2 1 420px;
-  padding-left: clamp(28px, 4vw, 68px);
+  padding-left: clamp(8px, 1.5vw, 28px);
 }
 
 .ps-structure__label {
@@ -5254,7 +5254,7 @@ p {
 }
 
 .ps-structure__spacer {
-  height: 25px;
+  height: 22px;
 }
 
 .ps-structure__window {
@@ -5471,7 +5471,7 @@ p {
   align-items: center;
   gap: 6px;
   padding-right: 181px;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 }
 
 .ps-structure__pill {
@@ -5622,7 +5622,7 @@ p {
 }
 
 .ps-structure__note--top {
-  top: -47px;
+  top: -42px;
   left: 2px;
   flex-direction: column;
   gap: 3px;
