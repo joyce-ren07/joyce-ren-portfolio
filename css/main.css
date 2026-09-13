@@ -5239,7 +5239,7 @@ p {
 
 .ps-structure__col--after {
   flex: 2 1 420px;
-  padding-left: clamp(0px, 4vw, 68px);
+  padding-left: clamp(28px, 4vw, 68px);
 }
 
 .ps-structure__label {
@@ -5356,10 +5356,23 @@ p {
 }
 
 .ps-structure__pane--after {
-  padding: 15px 16px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  gap: 19px;
+  gap: 0;
+}
+
+/* OG rhythm: tighter title→search, larger breaks into each section */
+.ps-structure__pane--after > .ps-structure__ui-title {
+  margin-bottom: 10px;
+}
+
+.ps-structure__pane--after > .ps-structure__filters {
+  margin-bottom: 16px;
+}
+
+.ps-structure__pane--after > .ps-structure__group + .ps-structure__group {
+  margin-top: 16px;
 }
 
 .ps-structure__ui-title {
@@ -5419,6 +5432,7 @@ p {
   align-items: center;
   gap: 6px;
   padding-right: 181px;
+  margin-bottom: 6px;
 }
 
 .ps-structure__pill {
@@ -5479,7 +5493,7 @@ p {
 
 .ps-structure__filters {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -5503,16 +5517,20 @@ p {
 .ps-structure__group {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
 }
 
 .ps-structure__row {
   border: 1px solid var(--ps-line-soft);
-  border-radius: 8px;
-  padding: 9px;
+  border-radius: 7px;
+  padding: 6px 8px;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.ps-structure__group .ps-structure__row + .ps-structure__row {
+  margin-top: -2px;
 }
 
 .ps-structure__row-dot {
@@ -5561,7 +5579,7 @@ p {
 }
 
 .ps-structure__note--top {
-  top: -41px;
+  top: -47px;
   left: 2px;
   flex-direction: column;
   gap: 3px;
@@ -5569,11 +5587,11 @@ p {
 }
 
 .ps-structure__note--search {
-  top: 84px;
+  top: 72px;
 }
 
 .ps-structure__note--workflow {
-  top: 197px;
+  top: 168px;
   left: 2px;
 }
 
@@ -5585,6 +5603,13 @@ p {
   flex-shrink: 0;
   margin-top: 8px;
   margin-left: -2px;
+}
+
+/* Reach into the window so leaders hit Status / the merged log, not the chrome edge */
+.ps-structure__note--search .ps-structure__note-rule,
+.ps-structure__note--workflow .ps-structure__note-rule {
+  width: clamp(34px, 3.2vw, 52px);
+  margin-left: -26px;
 }
 
 .ps-structure__note-copy {
