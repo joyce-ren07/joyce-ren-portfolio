@@ -5223,7 +5223,8 @@ p {
 .ps-structure__compare {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(16px, 2.2vw, 36px);
+  align-items: flex-start;
+  gap: clamp(14px, 1.8vw, 28px);
 }
 
 .ps-structure__col {
@@ -5234,12 +5235,13 @@ p {
 }
 
 .ps-structure__col--before {
-  flex: 1 1 230px;
+  flex: 0 1 250px;
+  max-width: 280px;
 }
 
 .ps-structure__col--after {
-  flex: 2 1 420px;
-  padding-left: clamp(8px, 1.5vw, 28px);
+  flex: 1 1 420px;
+  padding-left: 0;
 }
 
 .ps-structure__label {
