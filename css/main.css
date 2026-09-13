@@ -5472,7 +5472,7 @@ p {
   flex-wrap: nowrap;
   align-items: center;
   gap: 6px;
-  padding-right: 181px;
+  padding-right: 196px;
   margin-bottom: 2px;
 }
 
@@ -5608,9 +5608,9 @@ p {
 
 /* Notes sit absolutely so leader lines hit pipeline / search / merged log */
 .ps-structure__notes {
-  flex: 0 1 172px;
-  width: 172px;
-  min-width: 140px;
+  flex: 0 1 188px;
+  width: 188px;
+  min-width: 156px;
   position: relative;
 }
 
@@ -5632,15 +5632,15 @@ p {
 }
 
 .ps-structure__note--create {
-  top: 38px;
+  top: 36px;
 }
 
 .ps-structure__note--search {
-  top: 100px;
+  top: 118px;
 }
 
 .ps-structure__note--workflow {
-  top: 202px;
+  top: 214px;
   left: 2px;
 }
 
