@@ -5368,11 +5368,11 @@ p {
 }
 
 .ps-structure__pane--after > .ps-structure__filters {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .ps-structure__pane--after > .ps-structure__group + .ps-structure__group {
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .ps-structure__ui-title {
@@ -5517,20 +5517,24 @@ p {
 .ps-structure__group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0;
+}
+
+.ps-structure__group > .ps-structure__ui-section {
+  margin-bottom: 10px;
 }
 
 .ps-structure__row {
   border: 1px solid var(--ps-line-soft);
   border-radius: 7px;
-  padding: 6px 8px;
+  padding: 7px 8px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .ps-structure__group .ps-structure__row + .ps-structure__row {
-  margin-top: -2px;
+  margin-top: 8px;
 }
 
 .ps-structure__row-dot {
@@ -5587,11 +5591,11 @@ p {
 }
 
 .ps-structure__note--search {
-  top: 72px;
+  top: 70px;
 }
 
 .ps-structure__note--workflow {
-  top: 168px;
+  top: 172px;
   left: 2px;
 }
 
