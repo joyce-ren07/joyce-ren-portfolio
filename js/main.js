@@ -926,32 +926,40 @@
     }
   }
 
-  /* AutoInvent insight cards — staggered fade-in on scroll */
-  const insightGroups = document.querySelectorAll(".ps-structure__insights--staggered");
-  if (insightGroups.length) {
+  /* AutoInvent insight cards — reveal one at a time as scrolling advances */
+  const insightCards = document.querySelectorAll(
+    ".ps-structure__insights--staggered .ps-structure__insight"
+  );
+  if (insightCards.length) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    insightGroups.forEach((group) => {
-      const reveal = () => group.classList.add("is-inview");
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      insightCards.forEach((card) => card.classList.add("is-inview"));
+    } else {
+      const revealThresholds = [
+        "0px 0px -8% 0px",
+        "0px 0px -20% 0px",
+        "0px 0px -32% 0px",
+      ];
 
-      if (reducedMotion || !("IntersectionObserver" in window)) {
-        reveal();
-        return;
-      }
+      insightCards.forEach((card, index) => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              card.classList.add("is-inview");
+              observer.unobserve(card);
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: revealThresholds[index] || revealThresholds[revealThresholds.length - 1],
+          }
+        );
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            reveal();
-            observer.unobserve(group);
-          });
-        },
-        { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
-      );
-
-      observer.observe(group);
-    });
+        observer.observe(card);
+      });
+    }
   }
 
   /* Project cover videos — muted autoplay/replay without controls */
