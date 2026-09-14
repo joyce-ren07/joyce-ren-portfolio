@@ -5635,13 +5635,12 @@ p {
   top: 36px;
 }
 
-.ps-structure__note--search {
-  top: 118px;
-}
-
+/* Spans Idea → Filed rows; text sits vertically between them */
 .ps-structure__note--workflow {
-  top: 214px;
+  top: 124px;
+  height: 146px;
   left: 2px;
+  align-items: center;
 }
 
 .ps-structure__note-rule {
@@ -5655,11 +5654,33 @@ p {
 }
 
 /* Reach into the window so leaders hit Status / the merged log, not the chrome edge */
-.ps-structure__note--create .ps-structure__note-rule,
-.ps-structure__note--search .ps-structure__note-rule,
-.ps-structure__note--workflow .ps-structure__note-rule {
+.ps-structure__note--create .ps-structure__note-rule {
   width: clamp(34px, 3.2vw, 52px);
   margin-left: -26px;
+}
+
+/* Bracket spans Idea → Filed, open toward the cards, stem to the note */
+.ps-structure__note-bracket {
+  position: relative;
+  flex-shrink: 0;
+  align-self: stretch;
+  width: clamp(34px, 3.2vw, 52px);
+  margin-left: -26px;
+  box-sizing: border-box;
+  border-top: 1px solid var(--ps-accent);
+  border-bottom: 1px solid var(--ps-accent);
+  border-left: 1px solid var(--ps-accent);
+}
+
+.ps-structure__note-bracket::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ps-accent);
+  transform: translateY(-50%);
 }
 
 .ps-structure__note-copy {
@@ -5771,15 +5792,17 @@ p {
   .ps-structure__note,
   .ps-structure__note--top,
   .ps-structure__note--create,
-  .ps-structure__note--search,
   .ps-structure__note--workflow {
     position: static;
     left: auto;
     top: auto;
+    height: auto;
     padding-left: 0;
+    align-items: flex-start;
   }
 
-  .ps-structure__note-rule {
+  .ps-structure__note-rule,
+  .ps-structure__note-bracket {
     display: none;
   }
 
