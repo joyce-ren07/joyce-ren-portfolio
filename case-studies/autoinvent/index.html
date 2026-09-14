@@ -487,71 +487,333 @@
           </div>
         </figure>
 
-        <h3 class="case-subheading case-subheading--large">Decision 2: Making AI assistance feel steerable</h3>
-        <p class="case-body case-body--tertiary">
-          In the original ReInvent flow (for revamping abandoned patents), AI suggestions felt too much like preset answers. In a product
-          centered on originality and ownership, that made the system feel overly authoritative.
-        </p>
+<div style="height:1px;background:#E6E4E0;"></div>
 
-        <div class="case-feedback">
-          <div class="case-feedback__col">
-            <h4 class="case-feedback__title">Key changes</h4>
-            <ul class="case-feedback__list">
-              <li>Clarified that AI outputs were starting points, not final directions</li>
-              <li>Explored bullet-point selection so users could choose what to keep</li>
-              <li>Added a refinement step for user overrides and steering</li>
-              <li>Moved “summarize your change” to the end of the flow</li>
-              <li>Reframed comparison around original patent vs. final version</li>
-            </ul>
+<div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vw,32px);">
+  <h3 class="case-subheading case-subheading--large">Decision 2: Making AI assistance feel steerable</h3>
+          <p class="case-body case-body--tertiary">
+            In the original ReInvent flow (for revamping abandoned patents), AI suggestions felt too much like preset answers. In a product
+            centered on originality and ownership, that made the system feel overly authoritative.
+          </p>
+  <span style="font-size:11px;font-weight:700;color:#606060;letter-spacing:.06em;">WHAT IT LOOKED LIKE</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(20px,3vw,44px);">
+          <div style="flex:1 1 230px;max-width:300px;min-width:0;display:flex;flex-direction:column;gap:9px;">
+                      <div style="display:flex;flex-direction:column;gap:5px;">
+              <div style="border:1px solid #E6E4E0;background:#FCFBFA;border-radius:9px;padding:10px 12px;"><span style="font-size:13.5px;color:#606060;">Pick 1 of 3 directions</span></div>
+              <div style="border:1px solid #E6E4E0;background:#FCFBFA;border-radius:9px;padding:10px 12px;"><span style="font-size:13.5px;color:#606060;">Explain your change</span></div>
+              <div style="border:1px solid #E6E4E0;background:#FCFBFA;border-radius:9px;padding:10px 12px;"><span style="font-size:13.5px;color:#606060;">AI rewrites it</span></div>
+              <div style="border:1px solid #E6E4E0;background:#FCFBFA;border-radius:9px;padding:10px 12px;"><span style="font-size:13.5px;color:#606060;">Review the result</span></div>
+            </div>
+            <div style="background:#FDEFE9;border-radius:9px;padding:11px 12px;"><span style="font-size:13.5px;font-weight:600;color:#191919;">Control arrived too late.</span></div>
           </div>
-          <div class="case-feedback__col">
-            <h4 class="case-feedback__title">Why it mattered</h4>
-            <ul class="case-feedback__list">
-              <li>Made the AI feel more like a collaborator than an answer engine</li>
-              <li>Preserved user ownership of the invention</li>
-              <li>Kept users anchored to source material throughout the flow</li>
-            </ul>
+          <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px;padding-top:26px;">
+            <p style="margin:0;border-left:2px solid #F0774C;padding-left:14px;font-size:16px;line-height:1.5;color:#191919;text-wrap:pretty;">&ldquo;It feels like I&rsquo;m picking the final thing, not a draft.&rdquo;</p>
+            <p style="margin:0;border-left:2px solid #F0774C;padding-left:14px;font-size:16px;line-height:1.5;color:#191919;text-wrap:pretty;">&ldquo;I don&rsquo;t know which part to argue with.&rdquo;</p>
           </div>
         </div>
-
-        <div class="case-image-grid">
-          <div class="case-placeholder" aria-hidden="true">Before — ReInvent flow</div>
-          <div class="case-placeholder" aria-hidden="true">After — steerable ReInvent</div>
+  <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:16px;border:1px solid #E6E4E0;border-radius:12px;padding:18px;">
+        <div style="flex:1 1 190px;min-width:0;padding:16px 0;display:flex;flex-direction:column;gap:5px;">
+          <span style="font-size:11px;font-weight:700;color:#606060;letter-spacing:.06em;line-height:16px;">The tension</span>
+          <span style="font-size:13.5px;font-weight:700;color:#191919;">AI creates the foundation</span>
+          <span style="font-size:13.5px;line-height:1.5;color:#606060;text-wrap:pretty;">AI assistance helps overcome the initial inertia of starting from scratch.</span>
         </div>
-
-        <h3 class="case-subheading case-subheading--large">Decision 3: Discovery for retention</h3>
-        <p class="case-body case-body--tertiary">
-          The abandoned patent feed gave users a large opportunity space, but also too much to process.
-          The team saw retention dropping after 1–2 days, partly because the experience felt overwhelming.
-        </p>
-
-        <p class="case-body case-body--tertiary">
-          What I explored:
-        </p>
-        <ul class="case-tradeoffs">
-          <li>Daily curated patent drops by industry</li>
-          <li>“Today” / “New” framing to make browsing feel bounded</li>
-          <li>Category filters for quicker scanning</li>
-          <li>Limiting visible patents per session to reduce overload</li>
-          <li>More visual browsing — animated figure loops and action-oriented cards</li>
-        </ul>
-
-        <p class="case-body case-body--tertiary">
-          A related product decision — shifting usage limits from
-          <strong class="case-emphasis">1,000/week to 500/day</strong> — reflected the same logic: encourage
-          return behavior instead of one-time consumption.
-        </p>
-
-        <p class="case-body case-body--tertiary case-body--summary">
-          This pushed the design from pure access toward sustained engagement.
-        </p>
-
-        <div class="case-image-grid">
-          <div class="case-placeholder" aria-hidden="true">Discovery concept A</div>
-          <div class="case-placeholder" aria-hidden="true">Discovery concept B</div>
-          <div class="case-placeholder" aria-hidden="true">Discovery concept C</div>
-          <div class="case-placeholder" aria-hidden="true">Discovery concept D</div>
+        <span style="flex:0 0 auto;align-self:flex-start;margin-top:37px;font-size:13.5px;font-weight:600;color:#C9C5C1;line-height:18px;">but...</span>
+        <div style="flex:1 1 190px;min-width:0;padding:16px 0;display:flex;flex-direction:column;gap:5px;">
+          <span style="font-size:11px;font-weight:700;color:#606060;letter-spacing:.06em;line-height:16px;visibility:hidden;">Tradeoff</span>
+          <span style="font-size:13.5px;font-weight:700;color:#191919;">Authorship has to stay with the user!</span>
+          <span style="font-size:13.5px;line-height:1.5;color:#606060;text-wrap:pretty;">A finished AI draft creates editing friction (where to start?) and sidelines user input.</span>
         </div>
+        <span style="flex:0 0 auto;align-self:flex-start;margin-top:37px;font-size:16px;line-height:18px;color:#F0774C;">&rarr;</span>
+        <div style="flex:1.3 1 230px;min-width:0;background:#FDEFE9;border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:5px;">
+          <span style="font-size:11px;font-weight:700;color:#D9603A;letter-spacing:.06em;line-height:16px;">Solution</span>
+          <span style="font-size:13.5px;font-weight:700;color:#191919;">Splitting the draft into decisions</span>
+          <span style="font-size:13.5px;line-height:1.5;color:#303030;text-wrap:pretty;">AI proposes claims; the user keeps, cuts, or adds each one, then sees what changed before filing.</span>
+        </div>
+      </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(18px,3vw,44px);border-top:1px solid #E6E4E0;border-bottom:1px solid #E6E4E0;padding:18px 0;">
+          <div style="flex:1 1 340px;min-width:240px;display:flex;flex-direction:column;gap:6px;">
+            <span style="font-size:11px;font-weight:700;color:#606060;letter-spacing:.06em;">THE PRINCIPLE I TOOK</span>
+            <span style="font-size:19px;font-weight:700;color:#F0774C;letter-spacing:-0.015em;">AI should guide, not decide.</span>
+          </div>
+          <div style="flex:1 1 260px;min-width:220px;display:flex;flex-direction:column;gap:7px;">
+            <div style="display:flex;justify-content:space-between;gap:12px;">
+              <span style="font-size:12.5px;color:#606060;">AI decides</span>
+              <span style="font-size:12.5px;font-weight:600;color:#F0774C;">User decides</span>
+            </div>
+            <div style="position:relative;height:5px;border-radius:3px;background:#E6E4E0;">
+              <span style="position:absolute;left:0;top:0;bottom:0;width:76%;border-radius:3px;background:#F0774C;display:block;"></span>
+              <span style="position:absolute;left:76%;top:-3px;width:11px;height:11px;margin-left:-6px;border-radius:50%;background:#F0774C;display:block;"></span>
+            </div>
+          </div>
+        </div>
+        <span style="font-size:11px;font-weight:700;color:#606060;letter-spacing:.06em;">WHAT REPLACED IT</span>
+        <div style="flex:1 1 100%;min-width:0;display:flex;flex-direction:column;gap:9px;">
+                      <div style="display:flex;align-items:stretch;">
+              <div style="flex:1 1 260px;min-width:0;border:1px solid #E6E4E0;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03),0 22px 44px -32px rgba(166,165,164,.6);">
+                <div style="height:26px;border-bottom:1px solid #ECEAE7;background:#FCFBFA;display:flex;align-items:center;gap:5px;padding:0 11px;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#F0774C;opacity:.5;display:block;"></span>
+                  <span style="width:6px;height:6px;border-radius:50%;background:#E6E4E0;display:block;"></span>
+                </div>
+                <div style="padding:15px 16px;display:flex;flex-direction:column;gap:12px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                    <span style="font-size:12.5px;font-weight:700;color:#191919;letter-spacing:-0.01em;">Refine your reinvention</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    <div style="border:1px solid #BFDCC4;background:#F1F8F1;border-radius:8px;padding:10px;display:flex;align-items:center;gap:9px;">
+                      <span style="width:13px;height:13px;border-radius:4px;background:#43703F;display:block;flex-shrink:0;"></span>
+                      <span style="flex:1;height:4px;border-radius:2px;background:#C6DCC6;display:block;"></span>
+                      <span style="font-size:9.5px;font-weight:600;color:#43703F;">Keep</span>
+                    </div>
+                    <div style="border:1px solid #BFDCC4;background:#F1F8F1;border-radius:8px;padding:10px;display:flex;align-items:center;gap:9px;">
+                      <span style="width:13px;height:13px;border-radius:4px;background:#43703F;display:block;flex-shrink:0;"></span>
+                      <span style="flex:1;height:4px;border-radius:2px;background:#C6DCC6;display:block;"></span>
+                      <span style="font-size:9.5px;font-weight:600;color:#43703F;">Keep</span>
+                    </div>
+                    <div style="border:1px solid #EFC7B6;background:#FDF1EC;border-radius:8px;padding:10px;display:flex;align-items:center;gap:9px;">
+                      <span style="width:13px;height:13px;border-radius:4px;border:1.5px solid #D9603A;display:block;flex-shrink:0;"></span>
+                      <span style="flex:1;height:4px;border-radius:2px;background:#EED4C7;display:block;"></span>
+                      <span style="font-size:9.5px;font-weight:600;color:#D9603A;">Remove</span>
+                    </div>
+                    <div style="border:1px dashed #C9C5C1;border-radius:8px;padding:10px;"><span style="font-size:10.5px;color:#606060;">Add a detail of your own&hellip;</span></div>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;"></div>
+                </div>
+              </div>
+              <div style="flex:0 1 168px;min-width:0;position:relative;">
+                <div style="position:absolute;left:0;right:0;top:70px;display:flex;align-items:flex-start;">
+                  <span style="width:clamp(14px,1.6vw,26px);height:1px;background:#F0774C;display:block;flex-shrink:0;margin-top:8px;"></span>
+                  <span style="font-size:13.5px;font-weight:600;color:#303030;padding-left:9px;line-height:1.35;">Opportunity for user input at each step</span>
+                </div>
+                <div style="position:absolute;left:0;right:0;top:196px;display:flex;align-items:flex-start;">
+                  <span style="width:clamp(14px,1.6vw,26px);height:1px;background:#F0774C;display:block;flex-shrink:0;margin-top:8px;"></span>
+                  <span style="font-size:13.5px;font-weight:600;color:#303030;padding-left:9px;line-height:1.35;">Direct text editing instead of prompting</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:stretch;padding-top:9px;">
+              <div style="flex:1 1 260px;min-width:0;border:1px solid #E6E4E0;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03),0 22px 44px -32px rgba(166,165,164,.6);">
+                <div style="padding:14px 16px;display:flex;flex-direction:column;gap:11px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                    <span style="font-size:12.5px;font-weight:700;color:#191919;letter-spacing:-0.01em;">Step 3 &middot; Confirm what changed</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                    <div style="border:1px solid #ECEAE7;background:#FCFBFA;border-radius:8px;padding:9px;display:flex;flex-direction:column;gap:6px;min-width:0;">
+                      <span style="font-size:9.5px;font-weight:600;color:#606060;">Original</span>
+                      <span style="height:4px;border-radius:2px;background:#E6E4E0;display:block;width:92%;"></span>
+                      <span style="height:4px;border-radius:2px;background:#E6E4E0;display:block;width:74%;"></span>
+                      <span style="height:4px;border-radius:2px;background:#E6E4E0;display:block;width:58%;"></span>
+                    </div>
+                    <div style="border:1px solid #EED4C7;background:#FDF6F2;border-radius:8px;padding:9px;display:flex;flex-direction:column;gap:6px;min-width:0;">
+                      <span style="font-size:9.5px;font-weight:600;color:#D9603A;">Your version</span>
+                      <span style="height:4px;border-radius:2px;background:#EED4C7;display:block;width:92%;"></span>
+                      <span style="height:4px;border-radius:2px;background:#F0774C;display:block;width:66%;"></span>
+                      <span style="height:4px;border-radius:2px;background:#EED4C7;display:block;width:48%;"></span>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;"></div>
+                </div>
+              </div>
+              <div style="flex:0 1 168px;min-width:0;position:relative;">
+                <div style="position:absolute;left:0;right:0;top:46px;display:flex;align-items:flex-start;">
+                  <span style="width:clamp(14px,1.6vw,26px);height:1px;background:#F0774C;display:block;flex-shrink:0;margin-top:8px;"></span>
+                  <span style="font-size:13.5px;font-weight:600;color:#303030;padding-left:9px;line-height:1.35;">Side by side at confirm, no clicking back and forth</span>
+                </div>
+              </div>
+            </div>
+      </div>
+</div>
+
+<div style="height:1px;background:#E6E4E0;"></div>
+
+<div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vw,32px);">
+  <h3 class="case-subheading case-subheading--large">Decision 3: Discovery for retention</h3>
+          <p class="case-body case-body--tertiary">
+            The abandoned patent feed gave users a large opportunity space, but also too much to process.
+            The team saw retention dropping after 1–2 days, partly because the experience felt overwhelming.
+          </p>
+  <span style="font-size:11px;font-weight:700;color:#606060;letter-spacing:.06em;">WHAT IT LOOKED LIKE</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(20px,3vw,44px);">
+          <div style="flex:1 1 230px;max-width:300px;min-width:0;display:flex;flex-direction:column;gap:9px;">
+                      <div style="position:relative;border:1px solid #E6E4E0;border-radius:11px;overflow:hidden;">
+              <div style="height:24px;border-bottom:1px solid #ECEAE7;background:#FCFBFA;"></div>
+              <div style="position:relative;height:176px;overflow:hidden;">
+                <div style="padding:12px 24px 12px 12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;">
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                  <span style="height:40px;border:1px solid #ECEAE7;border-radius:6px;display:block;"></span>
+                </div>
+                <span style="position:absolute;top:10px;right:7px;bottom:10px;width:4px;border-radius:2px;background:#F1EFEC;display:block;"></span>
+                <span style="position:absolute;top:10px;right:7px;width:4px;height:22px;border-radius:2px;background:#C9C5C1;display:block;"></span>
+                <span style="position:absolute;left:0;right:0;bottom:0;height:64px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,#FFFFFF 78%);display:block;"></span>
+                <span style="position:absolute;left:12px;bottom:9px;display:flex;gap:5px;align-items:center;">
+                  <span style="width:4px;height:4px;border-radius:50%;background:#C9C5C1;display:block;"></span>
+                  <span style="width:4px;height:4px;border-radius:50%;background:#C9C5C1;display:block;"></span>
+                  <span style="width:4px;height:4px;border-radius:50%;background:#C9C5C1;display:block;"></span>
+                  <span style="font-size:11px;color:#75726F;padding-left:4px;">keeps loading</span>
+                </span>
+              </div>
+            </div>
+            <div style="background:#FDEFE9;border-radius:9px;padding:11px 12px;"><span style="font-size:13.5px;font-weight:600;color:#191919;">Burned through in 1 to 2 sessions.</span></div>
+          </div>
+          <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px;padding-top:26px;">
+            <p style="margin:0;border-left:2px solid #F0774C;padding-left:14px;font-size:16px;line-height:1.5;color:#191919;text-wrap:pretty;">&ldquo;Search is already accurate. Scrolling is where I find things.&rdquo;</p>
+            <p style="margin:0;border-left:2px solid #F0774C;padding-left:14px;font-size:16px;line-height:1.5;color:#191919;text-wrap:pretty;">&ldquo;I went through it once and never opened it again.&rdquo;</p>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(18px,3vw,44px);border-top:1px solid #E6E4E0;border-bottom:1px solid #E6E4E0;padding:18px 0;">
+          <div style="flex:1 1 340px;min-width:240px;display:flex;flex-direction:column;gap:6px;">
+            <span style="font-size:11px;font-weight:700;color:#606060;letter-spacing:.06em;">THE PRINCIPLE I TOOK</span>
+            <span style="font-size:19px;font-weight:700;color:#F0774C;letter-spacing:-0.015em;">Bounded beats infinite.</span>
+          </div>
+          <div style="flex:1 1 260px;min-width:220px;display:flex;flex-direction:column;gap:7px;">
+            <div style="display:flex;justify-content:space-between;gap:12px;">
+              <span style="font-size:12.5px;color:#606060;">Everything at once</span>
+              <span style="font-size:12.5px;font-weight:600;color:#F0774C;">A set per day</span>
+            </div>
+            <div style="position:relative;height:5px;border-radius:3px;background:#E6E4E0;">
+              <span style="position:absolute;left:0;top:0;bottom:0;width:82%;border-radius:3px;background:#F0774C;display:block;"></span>
+              <span style="position:absolute;left:82%;top:-3px;width:11px;height:11px;margin-left:-6px;border-radius:50%;background:#F0774C;display:block;"></span>
+            </div>
+          </div>
+        </div>
+        <span style="font-size:11px;font-weight:700;color:#606060;letter-spacing:.06em;">WHAT REPLACED IT</span>
+        <div style="flex:1 1 100%;min-width:0;display:flex;flex-direction:column;gap:9px;">
+                      <div style="display:flex;align-items:stretch;">
+              <div style="flex:1 1 260px;min-width:0;border:1px solid #E6E4E0;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03),0 22px 44px -32px rgba(166,165,164,.6);">
+                <div style="height:26px;border-bottom:1px solid #ECEAE7;background:#FCFBFA;display:flex;align-items:center;gap:5px;padding:0 11px;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#F0774C;opacity:.5;display:block;"></span>
+                  <span style="width:6px;height:6px;border-radius:50%;background:#E6E4E0;display:block;"></span>
+                </div>
+                <div style="padding:15px 16px;display:flex;flex-direction:column;gap:12px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                    <span style="font-size:12.5px;font-weight:700;color:#191919;letter-spacing:-0.01em;">Today&rsquo;s patents</span>
+                    <span style="font-size:9.5px;font-weight:600;color:#F0774C;background:rgba(240,119,76,.13);border-radius:20px;padding:4px 9px;">12 left today</span>
+                  </div>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                    <span style="font-size:9.5px;font-weight:600;color:#FFFFFF;background:#191919;border-radius:20px;padding:5px 11px;">All</span>
+                    <span style="font-size:9.5px;font-weight:600;color:#606060;border:1px solid #E6E4E0;border-radius:20px;padding:5px 11px;">Medical</span>
+                    <span style="font-size:9.5px;font-weight:600;color:#606060;border:1px solid #E6E4E0;border-radius:20px;padding:5px 11px;">Hardware</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                    <div style="border:1px solid #ECEAE7;border-radius:9px;padding:9px;display:flex;flex-direction:column;gap:7px;min-width:0;">
+                      <span style="height:30px;border-radius:5px;background:#F1EFEC;display:block;"></span>
+                      <span style="height:4px;border-radius:2px;background:#ECEAE7;display:block;width:80%;"></span>
+                      <span style="font-size:9.5px;font-weight:600;color:#14919B;border:1px solid #9CC9CC;border-radius:20px;padding:4px 9px;align-self:flex-start;">ReInvent</span>
+                    </div>
+                    <div style="border:1px solid #ECEAE7;border-radius:9px;padding:9px;display:flex;flex-direction:column;gap:7px;min-width:0;">
+                      <span style="height:30px;border-radius:5px;background:#F1EFEC;display:block;"></span>
+                      <span style="height:4px;border-radius:2px;background:#ECEAE7;display:block;width:66%;"></span>
+                      <span style="font-size:9.5px;font-weight:600;color:#14919B;border:1px solid #9CC9CC;border-radius:20px;padding:4px 9px;align-self:flex-start;">ReInvent</span>
+                    </div>
+                    <div style="border:1px solid #ECEAE7;border-radius:9px;padding:9px;display:flex;flex-direction:column;gap:7px;min-width:0;">
+                      <span style="height:30px;border-radius:5px;background:#F1EFEC;display:block;"></span>
+                      <span style="height:4px;border-radius:2px;background:#ECEAE7;display:block;width:74%;"></span>
+                      <span style="font-size:9.5px;font-weight:600;color:#14919B;border:1px solid #9CC9CC;border-radius:20px;padding:4px 9px;align-self:flex-start;">ReInvent</span>
+                    </div>
+                  </div>
+                  <div style="height:1px;background:#ECEAE7;"></div>
+                  <div style="background:#FDEFE9;border-radius:9px;padding:10px;display:flex;align-items:center;gap:9px;">
+                    <span style="width:51px;height:39px;border-radius:4px;background:#FFFFFF;border:1px solid #EED4C7;display:block;flex-shrink:0;"></span>
+                    <div style="display:flex;flex-direction:column;gap:5px;min-width:0;flex:1;">
+                      <span style="font-size:10.5px;font-weight:700;color:#191919;">Electronic baby remote viewer</span>
+                      <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;">
+                        <span style="font-size:9.5px;font-weight:700;color:#FFFFFF;background:#F0774C;border-radius:20px;padding:4px 9px;">47 hours left</span>
+                        <span style="font-size:9.5px;color:#606060;">On hold for you</span>
+                      </div>
+                    </div>
+                    <span style="font-size:9.5px;font-weight:600;color:#FFFFFF;background:#191919;border-radius:20px;padding:5px 10px;flex-shrink:0;">Start draft</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span style="width:6px;height:6px;border-radius:50%;background:#F0774C;display:block;"></span>
+                    <span style="font-size:10.5px;color:#606060;">New set unlocks tomorrow</span>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:0 1 168px;min-width:0;position:relative;">
+                <div style="position:absolute;left:0;right:0;top:52px;display:flex;align-items:flex-start;">
+                  <span style="width:clamp(14px,1.6vw,26px);height:1px;background:#F0774C;display:block;flex-shrink:0;margin-top:8px;"></span>
+                  <span style="font-size:13.5px;font-weight:600;color:#303030;padding-left:9px;line-height:1.35;">A visible end to the set, limit resets daily</span>
+                </div>
+                <div style="position:absolute;left:0;right:0;top:258px;display:flex;align-items:flex-start;">
+                  <span style="width:clamp(14px,1.6vw,26px);height:1px;background:#F0774C;display:block;flex-shrink:0;margin-top:8px;"></span>
+                  <span style="font-size:13.5px;font-weight:600;color:#303030;padding-left:9px;line-height:1.35;">Claiming holds it 48 hours, and a new set lands every morning &mdash; so action beats browsing</span>
+                </div>
+              </div>
+            </div>
+      </div>
+        <span style="font-size:11px;font-weight:700;color:#606060;letter-spacing:.06em;">OPTIONS WEIGHED</span>
+        <div style="display:flex;flex-direction:column;gap:11px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
+          <div style="border:1px solid #E6E4E0;border-radius:12px;padding:13px 14px;display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <span style="font-size:13.5px;font-weight:700;color:#75726F;">Unlimited wall</span>
+              <span style="width:17px;height:17px;flex-shrink:0;border:1.5px solid #C9C5C1;border-radius:5px;background:#FFFFFF;display:block;"></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:stretch;gap:5px;height:76px;">
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:100%;min-height:3px;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:42%;min-height:3px;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:16%;min-height:3px;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:0%;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:0%;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:0%;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+              </div>
+              <span style="font-size:12.5px;font-weight:600;color:#606060;">Spike &amp; then nothing</span>
+            </div>
+            <span style="font-size:12.5px;line-height:1.45;color:#606060;">No limit, so users burn out in a session or two.</span>
+          </div>
+          <div style="border:1px solid #E6E4E0;border-radius:12px;padding:13px 14px;display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <span style="font-size:13.5px;font-weight:700;color:#75726F;">1,000 per week</span>
+              <span style="width:17px;height:17px;flex-shrink:0;border:1.5px solid #C9C5C1;border-radius:5px;background:#FFFFFF;display:block;"></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:stretch;gap:5px;height:76px;">
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:58%;min-height:3px;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:0%;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:0%;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:0%;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:0%;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+                <span style="flex:1;background:#EFEDEA;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:0%;border-radius:3px;background:#B5B1AC;display:block;"></span></span>
+              </div>
+              <span style="font-size:12.5px;font-weight:600;color:#606060;">Active Monday &amp; six dead days</span>
+            </div>
+            <span style="font-size:12.5px;line-height:1.45;color:#606060;">The whole week&rsquo;s limit reached in the first 1-2 days.</span>
+          </div>
+          <div style="border:1px solid #F0774C;background:#FDEFE9;border-radius:12px;padding:13px 14px;display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <span style="font-size:13.5px;font-weight:700;color:#191919;">500 per day</span>
+              <span style="width:17px;height:17px;flex-shrink:0;border:1.5px solid #F0774C;border-radius:5px;background:#F0774C;display:flex;align-items:center;justify-content:center;"><span style="width:9px;height:5px;border-left:2px solid #FFFFFF;border-bottom:2px solid #FFFFFF;transform:rotate(-45deg);margin-top:-2px;display:block;"></span></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:stretch;gap:5px;height:76px;">
+                <span style="flex:1;background:#F3D3C3;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:20.8%;border-radius:3px;background:#F0774C;display:block;"></span></span>
+                <span style="flex:1;background:#F3D3C3;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:20.8%;border-radius:3px;background:#F0774C;display:block;"></span></span>
+                <span style="flex:1;background:#F3D3C3;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:20.8%;border-radius:3px;background:#F0774C;display:block;"></span></span>
+                <span style="flex:1;background:#F3D3C3;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:20.8%;border-radius:3px;background:#F0774C;display:block;"></span></span>
+                <span style="flex:1;background:#F3D3C3;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:20.8%;border-radius:3px;background:#F0774C;display:block;"></span></span>
+                <span style="flex:1;background:#F3D3C3;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:20.8%;border-radius:3px;background:#F0774C;display:block;"></span></span>
+                <span style="flex:1;background:#F3D3C3;border-radius:3px;display:flex;align-items:flex-end;"><span style="width:100%;height:20.8%;border-radius:3px;background:#F0774C;display:block;"></span></span>
+              </div>
+              <span style="font-size:12.5px;font-weight:600;color:#D9603A;">Same set, every morning</span>
+            </div>
+            <span style="font-size:12.5px;line-height:1.45;color:#303030;">Action-driven, and refilled every morning.</span>
+          </div>
+        </div>
+      </div>
+        <span style="font-size:13.5px;line-height:1.55;color:#606060;max-width:720px;text-wrap:pretty;">Reinventing starts with a claim, which hides the patent from other users for 48 hours. Long enough to write a draft, short enough that abandoned holds don&rsquo;t shrink the pool.</span>
+</div>
       </section>
 
       <section id="takeaways" class="case-block case-block--last" data-section="takeaways">
