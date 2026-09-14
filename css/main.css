@@ -5637,8 +5637,8 @@ p {
 
 /* Spans Idea → Filed rows; text sits vertically between them */
 .ps-structure__note--workflow {
-  top: 124px;
-  height: 146px;
+  top: 147px;
+  height: 138px;
   left: 2px;
   align-items: center;
 }
@@ -5659,7 +5659,7 @@ p {
   margin-left: -26px;
 }
 
-/* Bracket spans Idea → Filed, open toward the cards, stem to the note */
+/* Bracket spans Idea → Filed, opens toward the cards with the stem at the note */
 .ps-structure__note-bracket {
   position: relative;
   flex-shrink: 0;
@@ -5669,7 +5669,7 @@ p {
   box-sizing: border-box;
   border-top: 1px solid var(--ps-accent);
   border-bottom: 1px solid var(--ps-accent);
-  border-left: 1px solid var(--ps-accent);
+  border-right: 1px solid var(--ps-accent);
 }
 
 .ps-structure__note-bracket::after {
