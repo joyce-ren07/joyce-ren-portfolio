@@ -926,6 +926,34 @@
     }
   }
 
+  /* AutoInvent insight cards — staggered fade-in on scroll */
+  const insightGroups = document.querySelectorAll(".ps-structure__insights--staggered");
+  if (insightGroups.length) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    insightGroups.forEach((group) => {
+      const reveal = () => group.classList.add("is-inview");
+
+      if (reducedMotion || !("IntersectionObserver" in window)) {
+        reveal();
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            reveal();
+            observer.unobserve(group);
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+      );
+
+      observer.observe(group);
+    });
+  }
+
   /* Project cover videos — muted autoplay/replay without controls */
   const coverVideos = document.querySelectorAll(
     ".portfolio-page .work-card__image video, .case-hero-image--video"
