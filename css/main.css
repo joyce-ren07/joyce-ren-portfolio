@@ -5723,6 +5723,24 @@ p {
   padding-top: clamp(14px, 1.6vw, 22px);
 }
 
+.ps-structure__insights--staggered .ps-structure__insight {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  will-change: opacity;
+}
+
+.ps-structure__insights--staggered .ps-structure__insight:nth-child(2) {
+  transition-delay: 0.12s;
+}
+
+.ps-structure__insights--staggered .ps-structure__insight:nth-child(3) {
+  transition-delay: 0.24s;
+}
+
+.ps-structure__insights--staggered.is-inview .ps-structure__insight {
+  opacity: 1;
+}
+
 .ps-structure__insight {
   border: 1px solid var(--ps-accent);
   border-radius: 14px;
@@ -5753,6 +5771,14 @@ p {
 .ps-structure__insight--accent .ps-structure__insight-title,
 .ps-structure__insight--accent .ps-structure__insight-body {
   color: var(--ps-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-structure__insights--staggered .ps-structure__insight {
+    opacity: 1;
+    transition: none;
+    will-change: auto;
+  }
 }
 
 @media (max-width: 980px) {
