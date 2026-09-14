@@ -5223,23 +5223,25 @@ p {
 .ps-structure__compare {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(28px, 4vw, 64px);
+  align-items: flex-start;
+  gap: clamp(14px, 1.8vw, 28px);
 }
 
 .ps-structure__col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   min-width: 0;
 }
 
 .ps-structure__col--before {
-  flex: 1 1 230px;
+  flex: 0 1 250px;
+  max-width: 280px;
 }
 
 .ps-structure__col--after {
-  flex: 2 1 420px;
-  padding-left: clamp(28px, 4vw, 68px);
+  flex: 1 1 420px;
+  padding-left: 0;
 }
 
 .ps-structure__label {
@@ -5254,7 +5256,7 @@ p {
 }
 
 .ps-structure__spacer {
-  height: 25px;
+  height: 22px;
 }
 
 .ps-structure__window {
@@ -5470,8 +5472,8 @@ p {
   flex-wrap: nowrap;
   align-items: center;
   gap: 6px;
-  padding-right: 181px;
-  margin-bottom: 6px;
+  padding-right: 196px;
+  margin-bottom: 2px;
 }
 
 .ps-structure__pill {
@@ -5606,9 +5608,9 @@ p {
 
 /* Notes sit absolutely so leader lines hit pipeline / search / merged log */
 .ps-structure__notes {
-  flex: 0 1 172px;
-  width: 172px;
-  min-width: 140px;
+  flex: 0 1 188px;
+  width: 188px;
+  min-width: 156px;
   position: relative;
 }
 
@@ -5622,7 +5624,7 @@ p {
 }
 
 .ps-structure__note--top {
-  top: -47px;
+  top: -42px;
   left: 2px;
   flex-direction: column;
   gap: 3px;
@@ -5630,15 +5632,15 @@ p {
 }
 
 .ps-structure__note--create {
-  top: 38px;
+  top: 36px;
 }
 
 .ps-structure__note--search {
-  top: 100px;
+  top: 118px;
 }
 
 .ps-structure__note--workflow {
-  top: 202px;
+  top: 214px;
   left: 2px;
 }
 
