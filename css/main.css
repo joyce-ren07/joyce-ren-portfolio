@@ -5270,6 +5270,11 @@ p {
   margin-top: 10px;
 }
 
+.ps-structure__window--stack .ps-structure__rail {
+  padding: 8px 0;
+  gap: 7.5px;
+}
+
 .ps-structure__window--after {
   flex: 1 1 300px;
   min-width: 0;
