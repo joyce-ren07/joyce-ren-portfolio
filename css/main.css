@@ -5436,7 +5436,7 @@ p {
 }
 
 .ps-structure__tile {
-  height: 34px;
+  height: 30px;
   border: 1px solid var(--ps-line-soft);
   border-radius: 5px;
   background: var(--ps-chrome);
@@ -5444,7 +5444,7 @@ p {
 }
 
 .ps-structure__block {
-  height: 56px;
+  height: 52px;
   border: 1px solid var(--ps-line-soft);
   border-radius: 5px;
   background: var(--ps-chrome);
