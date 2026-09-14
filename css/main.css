@@ -4732,6 +4732,10 @@ p {
   --ai-fs-body: var(--case-tertiary-size);
 }
 
+.case-study-page--autoinvent .case-emphasis--accent {
+  color: var(--ai-accent);
+}
+
 .case-study-page--autoinvent .case-callout--outline {
   border-color: var(--ai-accent);
   color: var(--ai-accent);
