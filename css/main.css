@@ -4751,6 +4751,7 @@ p {
 
 .case-study-page--autoinvent .ai-decision-state-label--after {
   margin-top: calc(6px - clamp(18px, 2.4vw, 32px));
+  color: var(--ai-accent);
 }
 
 .case-study-page--autoinvent .ai-decision-state-label--preserve-total-spacing {
