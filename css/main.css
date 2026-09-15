@@ -11022,9 +11022,7 @@ p {
   .canvas-plate-lightbox__panel,
   .canvas-page .canvas-gallery__collage,
   .canvas-page .canvas-gallery__expand-hint,
-  .canvas-page .canvas-gallery__collapse-hint,
-  .canvas-page .canvas-gallery__expand-hint::before,
-  .canvas-page .canvas-gallery__collapse-hint::before {
+  .canvas-page .canvas-gallery__collapse-hint {
     transition: none;
   }
 }
