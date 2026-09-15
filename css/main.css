@@ -4777,7 +4777,6 @@ p {
   display: flex;
   flex-direction: column;
   gap: 1.375rem;
-  padding-top: 1.625rem;
   color: #191919;
   font-family: var(--ai-font);
 }
@@ -10286,39 +10285,15 @@ p {
   cursor: pointer;
   pointer-events: auto;
   opacity: 0.72;
-  isolation: isolate;
-  overflow: visible;
   transition:
     opacity 0.35s ease,
     color 0.32s ease;
-}
-
-.canvas-page .canvas-gallery__expand-hint::before,
-.canvas-page .canvas-gallery__collapse-hint::before {
-  content: "";
-  position: absolute;
-  top: calc(-1 * var(--nav-glow-pad-y));
-  right: calc(-1 * var(--nav-glow-pad-x));
-  bottom: calc(-1 * var(--nav-glow-pad-y));
-  left: calc(-1 * var(--nav-glow-pad-x));
-  z-index: -1;
-  border-radius: 999px;
-  background: var(--nav-glow-fill);
-  filter: blur(10px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
 }
 
 .canvas-page .canvas-gallery__expand-hint:hover,
 .canvas-page .canvas-gallery__expand-hint:focus-visible {
   opacity: 1;
   color: var(--nav-glow-hover);
-}
-
-.canvas-page .canvas-gallery__expand-hint:hover::before,
-.canvas-page .canvas-gallery__expand-hint:focus-visible::before {
-  opacity: 1;
 }
 
 .canvas-page .canvas-gallery__expand-hint:focus-visible {
@@ -10351,8 +10326,6 @@ p {
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  isolation: isolate;
-  overflow: visible;
   transition:
     opacity 0.35s ease,
     color 0.32s ease;
@@ -10367,11 +10340,6 @@ p {
 .canvas-page .canvas-gallery__collapse-hint:focus-visible {
   opacity: 1;
   color: var(--nav-glow-hover);
-}
-
-.canvas-page .canvas-gallery__collapse-hint:hover::before,
-.canvas-page .canvas-gallery__collapse-hint:focus-visible::before {
-  opacity: 1;
 }
 
 .canvas-page .canvas-gallery__collapse-hint:focus-visible {
@@ -10640,9 +10608,7 @@ p {
   }
 
   .canvas-page .canvas-gallery__expand-hint,
-  .canvas-page .canvas-gallery__collapse-hint,
-  .canvas-page .canvas-gallery__expand-hint::before,
-  .canvas-page .canvas-gallery__collapse-hint::before {
+  .canvas-page .canvas-gallery__collapse-hint {
     transition: none;
   }
 }
@@ -11032,9 +10998,7 @@ p {
   .canvas-plate-lightbox__panel,
   .canvas-page .canvas-gallery__collage,
   .canvas-page .canvas-gallery__expand-hint,
-  .canvas-page .canvas-gallery__collapse-hint,
-  .canvas-page .canvas-gallery__expand-hint::before,
-  .canvas-page .canvas-gallery__collapse-hint::before {
+  .canvas-page .canvas-gallery__collapse-hint {
     transition: none;
   }
 }
