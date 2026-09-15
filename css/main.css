@@ -4732,6 +4732,14 @@ p {
   --ai-fs-body: var(--case-tertiary-size);
 }
 
+.case-study-page--autoinvent .ai-decision-state-label {
+  margin-bottom: calc(6px - clamp(18px, 2.4vw, 32px));
+}
+
+.case-study-page--autoinvent .ai-decision-state-label--after {
+  margin-top: calc(6px - clamp(18px, 2.4vw, 32px));
+}
+
 .case-study-page--autoinvent .case-emphasis--accent {
   color: var(--ai-accent);
 }
