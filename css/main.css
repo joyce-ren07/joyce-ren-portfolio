@@ -4751,6 +4751,7 @@ p {
 
 .case-study-page--autoinvent .ai-decision-state-label--after {
   margin-top: calc(6px - clamp(18px, 2.4vw, 32px));
+  color: var(--ai-accent);
 }
 
 .case-study-page--autoinvent .ai-decision-state-label--preserve-total-spacing {
@@ -5306,13 +5307,18 @@ p {
   font-family: var(--ai-font, var(--font-sans));
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  grid-template-areas:
+    "before notes"
+    "arrow arrow"
+    "after after";
+  column-gap: clamp(24px, 4vw, 64px);
+  align-items: start;
 }
 
 .ps-structure__compare {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: clamp(14px, 1.8vw, 28px);
+  display: contents;
 }
 
 .ps-structure__col {
@@ -5323,12 +5329,15 @@ p {
 }
 
 .ps-structure__col--before {
-  flex: 0 1 250px;
-  max-width: 280px;
+  grid-area: before;
+  width: 100%;
+  max-width: none;
 }
 
 .ps-structure__col--after {
-  flex: 1 1 420px;
+  grid-area: after;
+  width: 100%;
+  min-width: 0;
   padding-left: 0;
 }
 
@@ -5341,6 +5350,30 @@ p {
 
 .ps-structure__label--accent {
   color: var(--ps-accent);
+}
+
+.ps-structure__flow-arrow {
+  grid-area: arrow;
+  justify-self: center;
+  width: clamp(88px, 13vw, 150px);
+  height: clamp(94px, 13vw, 146px);
+  margin: clamp(28px, 4vw, 52px) 0;
+  color: var(--ps-accent);
+}
+
+.ps-structure__flow-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ps-structure__flow-arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .ps-structure__spacer {
@@ -5804,11 +5837,14 @@ p {
 }
 
 .ps-structure__insights {
+  grid-area: notes;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(14px, 1.6vw, 22px);
-  margin-top: clamp(14px, 1.6vw, 22px);
-  padding-top: clamp(14px, 1.6vw, 22px);
+  align-self: stretch;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .ps-structure__insights--staggered .ps-structure__insight {
@@ -5862,6 +5898,16 @@ p {
 }
 
 @media (max-width: 980px) {
+  .ps-structure {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "before"
+      "notes"
+      "arrow"
+      "after";
+    column-gap: 0;
+  }
+
   .ps-structure__col--after {
     padding-left: 0;
   }
