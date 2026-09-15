@@ -185,8 +185,8 @@
     if (!document.body.classList.contains("case-study-page")) return;
     if (document.querySelector(".back-to-top")) return;
 
-    const footer = document.querySelector(".case-footer-note");
-    if (!footer || !footer.parentNode) return;
+    const lastSection = document.querySelector(".case-block--last");
+    if (!lastSection) return;
 
     const nav = document.createElement("nav");
     nav.className = "back-to-top";
@@ -196,7 +196,7 @@
     link.href = "#top";
     link.textContent = "Back to the top ↑";
     nav.appendChild(link);
-    footer.parentNode.insertBefore(nav, footer);
+    lastSection.appendChild(nav);
 
     link.addEventListener("click", (event) => {
       event.preventDefault();
@@ -866,6 +866,52 @@
     });
   }
 
+  /* Case studies — reveal direct section children as quick, grouped views */
+  const caseStudyPages = document.querySelectorAll(".case-study-page");
+  caseStudyPages.forEach((caseStudyPage) => {
+    const revealItems = [];
+
+    caseStudyPage.querySelectorAll(".case-block").forEach((section) => {
+      Array.from(section.children).forEach((item, index) => {
+        if (item.matches("script, style")) return;
+
+        item.classList.add("case-reveal-item");
+        item.style.setProperty(
+          "--case-reveal-delay",
+          `${Math.min(index * 45, 180)}ms`
+        );
+        revealItems.push(item);
+      });
+    });
+
+    if (!revealItems.length) return;
+    caseStudyPage.classList.add("has-case-reveals");
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealAll = () => revealItems.forEach((item) => item.classList.add("is-inview"));
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      revealAll();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-inview");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.05,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  });
+
   /* CueTurn countdown comparison — de-emphasize the earlier pair as the next pair enters view */
   const countdownComparisons = document.querySelectorAll("[data-countdown-comparison]");
   if (countdownComparisons.length) {
@@ -938,8 +984,8 @@
     } else {
       const revealThresholds = [
         "0px 0px -8% 0px",
-        "0px 0px -20% 0px",
-        "0px 0px -32% 0px",
+        "0px 0px -24% 0px",
+        "0px 0px -40% 0px",
       ];
 
       insightCards.forEach((card, index) => {

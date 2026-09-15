@@ -2936,22 +2936,6 @@ p {
    Footer
    -------------------------------------------------------------------------- */
 
-.site-footer {
-  padding-block: var(--space-lg);
-  border-top: 1px solid var(--color-border);
-  margin-top: var(--space-xl);
-}
-
-.site-footer__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  font-size: var(--text-tertiary-size);
-  color: #A89E9D;
-}
-
 /* Homepage contact footer — email pill + traveling edge glow */
 .home-footer {
   padding-block: clamp(3.5rem, 8vw, 5.5rem) clamp(2.5rem, 6vw, 4rem);
@@ -3204,6 +3188,7 @@ p {
   --topbar-glass-bg: rgba(255, 255, 255, 0.14);
   --topbar-glass-border: rgba(255, 255, 255, 0.3);
   --topbar-glass-edge: rgba(0, 0, 0, 0.035);
+  --nav-padding-inline: 1.25rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -3566,6 +3551,33 @@ p {
 
 .case-block--last {
   padding-bottom: 2rem;
+}
+
+/* Shared case-study reveal — direct section children enter as quick, grouped views. */
+.case-study-page.has-case-reveals .case-reveal-item {
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 240ms ease-out,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--case-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.case-study-page.has-case-reveals .case-reveal-item.is-inview {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-page.has-case-reveals .case-reveal-item,
+  .case-study-page.has-case-reveals .case-reveal-item.is-inview {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
 }
 
 .case-intro-header {
@@ -7314,32 +7326,6 @@ p {
   color: #A89E9D;
 }
 
-.case-footer-note {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.back-to-top + .case-footer-note {
-  margin-top: clamp(4rem, 7vw, 5.5rem);
-}
-
-.case-footer-note a {
-  font-size: var(--case-tertiary-size);
-  color: #A89E9D;
-  transition: color 0.2s ease;
-}
-
-.case-footer-note a:hover {
-  color: var(--case-text-active-hover);
-}
-
-.case-footer-note__copy {
-  display: block;
-  margin-top: 0.75rem;
-  font-size: var(--case-tertiary-size);
-  color: #A89E9D;
-}
-
 .case-image-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -9076,14 +9062,6 @@ p {
 
 .case-study-page--current #research .case-emphasis {
   font-weight: inherit;
-}
-
-.case-study-page--current .case-footer-note a {
-  color: var(--md-sys-color-primary);
-}
-
-.case-study-page--current .case-footer-note a:hover {
-  color: var(--gds-blue-800);
 }
 
 .case-study-page--current .case-topbar__nav a:hover,
