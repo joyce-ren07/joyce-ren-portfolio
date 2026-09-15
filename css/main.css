@@ -5308,7 +5308,7 @@ p {
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
   grid-template-areas:
     "before notes"
     "arrow arrow"
