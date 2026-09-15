@@ -11112,18 +11112,19 @@ p {
     0 0 36px rgba(255, 160, 90, 0.35);
 }
 
-.about-main {
+.about-page .about-main {
   position: static;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-height: calc(100vh - var(--case-topbar-height));
-  margin-inline: auto;
+  max-width: none;
+  min-height: 0;
+  margin: 0 auto;
   padding:
-    calc(var(--case-topbar-height) + clamp(2.5rem, 6vw, 5rem))
+    calc(var(--case-topbar-height) + clamp(1.75rem, 4.5vw, 3rem))
     0
-    clamp(3rem, 7vw, 5.5rem);
+    clamp(2.5rem, 6vw, 4.5rem);
   overflow: visible;
   border-radius: 0;
   background: transparent;
@@ -11198,9 +11199,8 @@ p {
   --about-carousel-gap: 1.15rem;
   position: relative;
   width: 100%;
-  margin-top: clamp(3.25rem, 8vw, 5.75rem);
+  margin-top: clamp(2.5rem, 6vw, 4.25rem);
   overflow: hidden;
-  animation: about-rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
 }
 
 .about-carousel::before,
@@ -11317,8 +11317,7 @@ p {
 @media (prefers-reduced-motion: reduce) {
   .about-greeting,
   .about-media,
-  .about-bio,
-  .about-carousel {
+  .about-bio {
     animation: none;
   }
 }
