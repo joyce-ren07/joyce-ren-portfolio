@@ -5355,8 +5355,8 @@ p {
 .ps-structure__flow-arrow {
   grid-area: arrow;
   justify-self: center;
-  width: 28px;
-  height: 38px;
+  width: 40px;
+  height: 54px;
   margin: clamp(16px, 2vw, 28px) 0;
   color: var(--ps-accent);
 }
