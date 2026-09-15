@@ -5849,11 +5849,23 @@ p {
 
 .ps-structure__insights--staggered .ps-structure__insight {
   opacity: 0;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity;
 }
 
-.ps-structure__insights--staggered .ps-structure__insight.is-inview {
+.ps-structure__insights--staggered .ps-structure__insight:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.ps-structure__insights--staggered .ps-structure__insight:nth-child(2) {
+  transition-delay: 0.18s;
+}
+
+.ps-structure__insights--staggered .ps-structure__insight:nth-child(3) {
+  transition-delay: 0.36s;
+}
+
+.ps-structure__insights--staggered.is-inview .ps-structure__insight {
   opacity: 1;
 }
 
@@ -5893,6 +5905,7 @@ p {
   .ps-structure__insights--staggered .ps-structure__insight {
     opacity: 1;
     transition: none;
+    transition-delay: 0s;
     will-change: auto;
   }
 }

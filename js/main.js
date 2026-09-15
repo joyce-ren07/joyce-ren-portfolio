@@ -972,40 +972,32 @@
     }
   }
 
-  /* AutoInvent insight cards — reveal one at a time as scrolling advances */
-  const insightCards = document.querySelectorAll(
-    ".ps-structure__insights--staggered .ps-structure__insight"
-  );
-  if (insightCards.length) {
+  /* AutoInvent insight cards — fade in one by one when the stack enters view */
+  const insightStacks = document.querySelectorAll(".ps-structure__insights--staggered");
+  if (insightStacks.length) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (reducedMotion || !("IntersectionObserver" in window)) {
-      insightCards.forEach((card) => card.classList.add("is-inview"));
-    } else {
-      const revealThresholds = [
-        "0px 0px -8% 0px",
-        "0px 0px -24% 0px",
-        "0px 0px -40% 0px",
-      ];
+    insightStacks.forEach((stack) => {
+      const reveal = () => stack.classList.add("is-inview");
 
-      insightCards.forEach((card, index) => {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              card.classList.add("is-inview");
-              observer.unobserve(card);
-            });
-          },
-          {
-            threshold: 0.15,
-            rootMargin: revealThresholds[index] || revealThresholds[revealThresholds.length - 1],
-          }
-        );
+      if (reducedMotion || !("IntersectionObserver" in window)) {
+        reveal();
+        return;
+      }
 
-        observer.observe(card);
-      });
-    }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            reveal();
+            observer.unobserve(stack);
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+      );
+
+      observer.observe(stack);
+    });
   }
 
   /* Project cover videos — muted autoplay/replay without controls */
