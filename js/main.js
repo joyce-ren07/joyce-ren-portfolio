@@ -866,6 +866,52 @@
     });
   }
 
+  /* Case studies — reveal direct section children as quick, grouped views */
+  const caseStudyPages = document.querySelectorAll(".case-study-page");
+  caseStudyPages.forEach((caseStudyPage) => {
+    const revealItems = [];
+
+    caseStudyPage.querySelectorAll(".case-block").forEach((section) => {
+      Array.from(section.children).forEach((item, index) => {
+        if (item.matches("script, style")) return;
+
+        item.classList.add("case-reveal-item");
+        item.style.setProperty(
+          "--case-reveal-delay",
+          `${Math.min(index * 45, 180)}ms`
+        );
+        revealItems.push(item);
+      });
+    });
+
+    if (!revealItems.length) return;
+    caseStudyPage.classList.add("has-case-reveals");
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealAll = () => revealItems.forEach((item) => item.classList.add("is-inview"));
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      revealAll();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-inview");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.05,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  });
+
   /* CueTurn countdown comparison — de-emphasize the earlier pair as the next pair enters view */
   const countdownComparisons = document.querySelectorAll("[data-countdown-comparison]");
   if (countdownComparisons.length) {
