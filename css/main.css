@@ -5377,7 +5377,7 @@ p {
 .ps-structure__flow-arrow path {
   fill: none;
   stroke: currentColor;
-  stroke-width: 4.5;
+  stroke-width: 3.75;
   stroke-linecap: round;
   stroke-linejoin: miter;
   stroke-miterlimit: 2.4;
