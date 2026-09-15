@@ -4764,6 +4764,10 @@ p {
   color: var(--ai-accent);
 }
 
+.case-study-page--autoinvent .ai-decision-visuals {
+  margin-top: 40px;
+}
+
 .case-study-page--autoinvent .case-emphasis--accent {
   color: var(--ai-accent);
 }
@@ -5307,7 +5311,7 @@ p {
   --ps-ui-pill-sm: 9px;
   width: 100%;
   max-width: 100%;
-  margin: 2rem 0 0;
+  margin: 40px 0 0;
   box-sizing: border-box;
   color: var(--ps-text);
   font-family: var(--ai-font, var(--font-sans));
