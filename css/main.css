@@ -4727,7 +4727,7 @@ p {
 .case-study-page--autoinvent {
   --ai-accent: #f0774c;
   --ai-accent-mark: rgba(240, 119, 76, 0.18);
-  --ai-accent-tint: rgba(240, 119, 76, 0.08);
+  --ai-accent-tint: color-mix(in srgb, var(--ai-accent) 8%, #fff);
   --ai-font: var(--font-sans);
   --ai-fs-section: var(--case-secondary-size);
   --ai-fs-body: var(--case-tertiary-size);
