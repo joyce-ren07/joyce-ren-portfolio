@@ -2936,22 +2936,6 @@ p {
    Footer
    -------------------------------------------------------------------------- */
 
-.site-footer {
-  padding-block: var(--space-lg);
-  border-top: 1px solid var(--color-border);
-  margin-top: var(--space-xl);
-}
-
-.site-footer__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  font-size: var(--text-tertiary-size);
-  color: #A89E9D;
-}
-
 /* Homepage contact footer — email pill + traveling edge glow */
 .home-footer {
   padding-block: clamp(3.5rem, 8vw, 5.5rem) clamp(2.5rem, 6vw, 4rem);
@@ -7315,32 +7299,6 @@ p {
   color: #A89E9D;
 }
 
-.case-footer-note {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.back-to-top + .case-footer-note {
-  margin-top: clamp(4rem, 7vw, 5.5rem);
-}
-
-.case-footer-note a {
-  font-size: var(--case-tertiary-size);
-  color: #A89E9D;
-  transition: color 0.2s ease;
-}
-
-.case-footer-note a:hover {
-  color: var(--case-text-active-hover);
-}
-
-.case-footer-note__copy {
-  display: block;
-  margin-top: 0.75rem;
-  font-size: var(--case-tertiary-size);
-  color: #A89E9D;
-}
-
 .case-image-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -9077,14 +9035,6 @@ p {
 
 .case-study-page--current #research .case-emphasis {
   font-weight: inherit;
-}
-
-.case-study-page--current .case-footer-note a {
-  color: var(--md-sys-color-primary);
-}
-
-.case-study-page--current .case-footer-note a:hover {
-  color: var(--gds-blue-800);
 }
 
 .case-study-page--current .case-topbar__nav a:hover,
