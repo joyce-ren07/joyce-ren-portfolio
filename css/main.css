@@ -4766,7 +4766,6 @@ p {
   display: flex;
   flex-direction: column;
   gap: 1.375rem;
-  padding-top: 1.625rem;
   color: #191919;
   font-family: var(--ai-font);
 }
