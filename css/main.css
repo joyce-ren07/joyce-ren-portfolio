@@ -3204,6 +3204,7 @@ p {
   --topbar-glass-bg: rgba(255, 255, 255, 0.14);
   --topbar-glass-border: rgba(255, 255, 255, 0.3);
   --topbar-glass-edge: rgba(0, 0, 0, 0.035);
+  --nav-padding-inline: 1.25rem;
   position: fixed;
   top: 0;
   left: 0;
