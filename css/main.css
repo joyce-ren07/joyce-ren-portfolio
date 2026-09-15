@@ -7959,6 +7959,14 @@ p {
   max-width: min(52rem, 100%);
 }
 
+.case-section-heading + .case-pillar {
+  margin-top: 0;
+}
+
+.case-pillar:not(:has(.case-body)) + .case-feature-rows {
+  margin-top: 0;
+}
+
 .case-pillar__title {
   font-size: var(--case-secondary-size, var(--text-secondary-size));
   font-weight: 500;
