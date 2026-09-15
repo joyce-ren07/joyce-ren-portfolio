@@ -3568,6 +3568,33 @@ p {
   padding-bottom: 2rem;
 }
 
+/* Shared case-study reveal — direct section children enter as quick, grouped views. */
+.case-study-page.has-case-reveals .case-reveal-item {
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 240ms ease-out,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--case-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.case-study-page.has-case-reveals .case-reveal-item.is-inview {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-page.has-case-reveals .case-reveal-item,
+  .case-study-page.has-case-reveals .case-reveal-item.is-inview {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
 .case-intro-header {
   text-align: center;
   margin-bottom: clamp(2rem, 5vw, 3rem);
