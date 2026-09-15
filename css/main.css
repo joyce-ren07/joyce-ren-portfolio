@@ -4745,17 +4745,27 @@ p {
   --ai-fs-body: var(--case-tertiary-size);
 }
 
+.case-study-page--autoinvent .ai-decision-state {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
 .case-study-page--autoinvent .ai-decision-state-label {
-  margin-bottom: calc(6px - clamp(18px, 2.4vw, 32px));
+  margin: 0;
+  font-size: var(--case-tertiary-size);
+  font-weight: var(--case-tertiary-weight);
+  color: #606060;
+  line-height: 1.2;
 }
 
 .case-study-page--autoinvent .ai-decision-state-label--after {
-  margin-top: calc(6px - clamp(18px, 2.4vw, 32px));
   color: var(--ai-accent);
 }
 
-.case-study-page--autoinvent .ai-decision-state-label--preserve-total-spacing {
-  margin-top: calc(clamp(18px, 2.4vw, 32px) - 6px);
+.case-study-page--autoinvent .ai-decision-visuals {
+  margin-top: 40px;
 }
 
 .case-study-page--autoinvent .case-emphasis--accent {
@@ -5418,7 +5428,7 @@ p {
   --ps-ui-pill-sm: 9px;
   width: 100%;
   max-width: 100%;
-  margin: 2rem 0 0;
+  margin: 40px 0 0;
   box-sizing: border-box;
   color: var(--ps-text);
   font-family: var(--ai-font, var(--font-sans));
@@ -5459,8 +5469,8 @@ p {
 }
 
 .ps-structure__label {
-  font-size: var(--ps-fs);
-  font-weight: 600;
+  font-size: var(--case-tertiary-size);
+  font-weight: var(--case-tertiary-weight);
   color: var(--ps-muted);
   line-height: 1.2;
 }
@@ -5472,8 +5482,8 @@ p {
 .ps-structure__flow-arrow {
   grid-area: arrow;
   justify-self: center;
-  width: 18px;
-  height: 40px;
+  width: 38px;
+  height: 60px;
   margin: clamp(16px, 2vw, 28px) 0;
   color: var(--ps-accent);
 }
@@ -5482,14 +5492,16 @@ p {
   display: block;
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
 .ps-structure__flow-arrow path {
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: 3.75;
   stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 2.4;
 }
 
 .ps-structure__window {
