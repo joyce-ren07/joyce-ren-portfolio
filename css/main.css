@@ -4954,7 +4954,7 @@ p {
   gap: 14px;
   min-height: 0;
   padding: 28px 26px;
-  background: #faf9f7;
+  background: var(--ai-accent-tint);
   border: 1px solid rgba(166, 165, 164, 0.35);
   border-top: 3px solid var(--ai-accent);
   border-radius: 14px;
