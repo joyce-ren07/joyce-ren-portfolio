@@ -185,8 +185,8 @@
     if (!document.body.classList.contains("case-study-page")) return;
     if (document.querySelector(".back-to-top")) return;
 
-    const footer = document.querySelector(".case-footer-note");
-    if (!footer || !footer.parentNode) return;
+    const lastSection = document.querySelector(".case-block--last");
+    if (!lastSection) return;
 
     const nav = document.createElement("nav");
     nav.className = "back-to-top";
@@ -196,7 +196,7 @@
     link.href = "#top";
     link.textContent = "Back to the top ↑";
     nav.appendChild(link);
-    footer.parentNode.insertBefore(nav, footer);
+    lastSection.appendChild(nav);
 
     link.addEventListener("click", (event) => {
       event.preventDefault();
