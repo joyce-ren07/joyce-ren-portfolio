@@ -11195,8 +11195,8 @@ p {
 }
 
 .about-carousel {
-  --about-carousel-height: 18.5rem;
-  --about-carousel-gap: -2.35rem;
+  --about-carousel-height: 16.75rem;
+  --about-carousel-gap: -1.15rem;
   position: relative;
   width: 100%;
   margin-top: clamp(2.5rem, 6vw, 4.25rem);
@@ -11236,7 +11236,7 @@ p {
 
 .about-carousel__viewport {
   overflow: hidden;
-  padding: 3.15rem 0 6.15rem;
+  padding: 4.25rem 0 8.5rem;
 }
 
 .about-carousel__track {
@@ -11269,8 +11269,8 @@ p {
   border-radius: 1.65rem;
   background: #efeae6;
   box-shadow:
-    0 18px 40px rgba(40, 28, 22, 0.14),
-    0 2px 8px rgba(40, 28, 22, 0.08);
+    0 14px 28px rgba(40, 28, 22, 0.1),
+    0 2px 6px rgba(40, 28, 22, 0.06);
   transition: transform 0.32s ease, box-shadow 0.32s ease;
 }
 
@@ -11335,13 +11335,13 @@ p {
   }
 
   .about-carousel {
-    --about-carousel-height: 14.5rem;
-    --about-carousel-gap: -1.85rem;
+    --about-carousel-height: 13.25rem;
+    --about-carousel-gap: -0.85rem;
     margin-top: 2.75rem;
   }
 
   .about-carousel__viewport {
-    padding: 2.25rem 0 5.25rem;
+    padding: 3.25rem 0 7rem;
   }
 
   .about-carousel__frame {
