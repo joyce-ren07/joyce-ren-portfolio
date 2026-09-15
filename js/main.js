@@ -1223,6 +1223,80 @@
     }
   }
 
+  /* About photo carousel — infinite drift with viewport-relative arc */
+  const aboutCarousel = document.querySelector("[data-about-carousel]");
+  if (aboutCarousel) {
+    const track = aboutCarousel.querySelector(".about-carousel__track");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const originals = Array.from(track.children);
+
+    originals.forEach((card) => {
+      track.appendChild(card.cloneNode(true));
+    });
+
+    const applyArc = () => {
+      const cards = track.querySelectorAll(".about-carousel__card");
+      const centerX = window.innerWidth / 2;
+      const radius = Math.max(720, window.innerWidth * 0.72);
+
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const dx = rect.left + rect.width / 2 - centerX;
+        const angle = Math.max(-0.62, Math.min(0.62, dx / radius));
+        const drop = (1 - Math.cos(angle)) * Math.min(168, window.innerWidth * 0.12);
+        const tilt = angle * 38;
+        card.style.transform = `translateY(${drop}px) rotate(${tilt}deg)`;
+      });
+    };
+
+    applyArc();
+
+    if (reducedMotion) {
+      window.addEventListener("resize", applyArc);
+    } else {
+      let offset = 0;
+      let lastTime = performance.now();
+      let paused = false;
+      let loopWidth = 0;
+
+      const measure = () => {
+        const styles = window.getComputedStyle(track);
+        const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
+        loopWidth = originals.reduce((sum, card, index) => {
+          return sum + card.getBoundingClientRect().width + (index < originals.length - 1 ? gap : 0);
+        }, 0);
+        loopWidth += gap;
+      };
+
+      measure();
+      window.addEventListener("resize", () => {
+        measure();
+        applyArc();
+      });
+
+      aboutCarousel.addEventListener("pointerenter", () => {
+        paused = true;
+      });
+      aboutCarousel.addEventListener("pointerleave", () => {
+        paused = false;
+      });
+
+      const tick = (now) => {
+        const delta = Math.min(48, now - lastTime);
+        lastTime = now;
+        if (!paused && loopWidth > 0) {
+          offset += delta * 0.038;
+          if (offset >= loopWidth) offset -= loopWidth;
+          track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+        }
+        applyArc();
+        requestAnimationFrame(tick);
+      };
+
+      requestAnimationFrame(tick);
+    }
+  }
+
   /* Optional playback-rate overrides for cover / demo videos */
   document.querySelectorAll("video[data-playback-rate]").forEach((video) => {
     const rate = Number(video.getAttribute("data-playback-rate"));
