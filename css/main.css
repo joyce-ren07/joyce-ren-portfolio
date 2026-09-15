@@ -5355,9 +5355,9 @@ p {
 .ps-structure__flow-arrow {
   grid-area: arrow;
   justify-self: center;
-  width: clamp(88px, 13vw, 150px);
-  height: clamp(94px, 13vw, 146px);
-  margin: clamp(28px, 4vw, 52px) 0;
+  width: 18px;
+  height: 40px;
+  margin: clamp(16px, 2vw, 28px) 0;
   color: var(--ps-accent);
 }
 
@@ -5365,19 +5365,14 @@ p {
   display: block;
   width: 100%;
   height: 100%;
-  overflow: visible;
 }
 
 .ps-structure__flow-arrow path {
   fill: none;
   stroke: currentColor;
-  stroke-width: 5;
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-
-.ps-structure__spacer {
-  height: 22px;
 }
 
 .ps-structure__window {
