@@ -5375,10 +5375,6 @@ p {
   stroke-linejoin: round;
 }
 
-.ps-structure__spacer {
-  height: 22px;
-}
-
 .ps-structure__window {
   border: 1px solid var(--ps-line);
   border-radius: 11px;
