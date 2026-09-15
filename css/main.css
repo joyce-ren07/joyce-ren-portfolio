@@ -4785,7 +4785,7 @@ p {
 .ai-user-quotes__label {
   font-size: var(--ai-fs-body);
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: normal;
   line-height: 1.2;
   color: #606060;
 }
