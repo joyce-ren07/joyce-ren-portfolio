@@ -4740,6 +4740,10 @@ p {
   margin-top: calc(6px - clamp(18px, 2.4vw, 32px));
 }
 
+.case-study-page--autoinvent .ai-decision-state-label--preserve-total-spacing {
+  margin-top: calc(clamp(18px, 2.4vw, 32px) - 6px);
+}
+
 .case-study-page--autoinvent .case-emphasis--accent {
   color: var(--ai-accent);
 }
