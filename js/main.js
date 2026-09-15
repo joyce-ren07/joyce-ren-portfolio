@@ -938,8 +938,8 @@
     } else {
       const revealThresholds = [
         "0px 0px -8% 0px",
-        "0px 0px -20% 0px",
-        "0px 0px -32% 0px",
+        "0px 0px -24% 0px",
+        "0px 0px -40% 0px",
       ];
 
       insightCards.forEach((card, index) => {
