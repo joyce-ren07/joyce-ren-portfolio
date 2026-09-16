@@ -11372,8 +11372,10 @@ p {
   width: 100%;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 1.65rem;
   background: #f5f3f0;
+  isolation: isolate;
+  transform: translateZ(0);
 }
 
 .about-media__video {
@@ -11384,6 +11386,7 @@ p {
   height: 100%;
   object-fit: cover;
   object-position: center 34%;
+  border-radius: inherit;
   transform: scale(1.14);
   transform-origin: center 32%;
   filter: saturate(0.88) brightness(1.03) sepia(0.05);
@@ -11552,7 +11555,8 @@ p {
     padding: 3.25rem 0 7rem;
   }
 
-  .about-carousel__frame {
+  .about-carousel__frame,
+  .about-media__frame {
     border-radius: 1.25rem;
   }
 }
