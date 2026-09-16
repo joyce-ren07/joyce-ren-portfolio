@@ -4735,6 +4735,11 @@ p {
   color: var(--cueturn-accent);
 }
 
+/* Diagram → following body: match heading-to-body gap used on other case studies */
+.case-study-page--cueturn #process .case-image-grid--stacked:has(+ .case-body) {
+  margin-bottom: var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
+}
+
 /* AutoInvent — primary orange + headline type from design system base */
 .case-study-page--autoinvent {
   --ai-accent: #f0774c;
