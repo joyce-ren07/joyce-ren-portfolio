@@ -11370,22 +11370,21 @@ p {
 }
 
 .about-stage {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: minmax(0, 28rem) auto;
   align-items: center;
   justify-content: center;
-  width: min(100%, 56rem);
+  width: min(100%, 54rem);
   padding-inline: var(--nav-padding-inline);
-  gap: clamp(2.5rem, 6vw, 4.5rem);
+  column-gap: clamp(2.75rem, 6vw, 5rem);
+  row-gap: 2rem;
 }
 
 .about-stage__copy {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 1 1 0;
   min-width: 0;
-  max-width: 28rem;
   gap: clamp(1.25rem, 3vw, 1.75rem);
 }
 
@@ -11402,10 +11401,9 @@ p {
 }
 
 .about-media {
-  flex: 0 0 auto;
-  width: min(100%, 15.5rem);
+  width: 18rem;
   margin: 0;
-  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .about-media__frame {
@@ -11443,7 +11441,7 @@ p {
   letter-spacing: -0.01em;
   line-height: 1.45;
   text-align: left;
-  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .about-carousel {
@@ -11568,10 +11566,9 @@ p {
 
 @media (max-width: 800px) {
   .about-stage {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
     width: min(100%, 34rem);
-    gap: 2.25rem;
   }
 
   .about-stage__copy {
@@ -11601,7 +11598,7 @@ p {
   }
 
   .about-media {
-    width: min(100%, 13.5rem);
+    width: min(100%, 15.5rem);
   }
 
   .about-carousel {
