@@ -11370,12 +11370,22 @@ p {
 }
 
 .about-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 18rem) auto;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 44rem);
+  padding-inline: var(--nav-padding-inline);
+  column-gap: clamp(2.75rem, 6vw, 5rem);
+  row-gap: 2rem;
+}
+
+.about-stage__copy {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: min(100%, 34rem);
-  padding-inline: var(--nav-padding-inline);
-  gap: clamp(2.25rem, 5vw, 3.5rem);
+  align-items: flex-start;
+  min-width: 0;
+  gap: clamp(1.25rem, 3vw, 1.75rem);
 }
 
 .about-greeting {
@@ -11386,14 +11396,14 @@ p {
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1;
-  text-align: center;
+  text-align: left;
   animation: about-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .about-media {
-  width: min(100%, 15.5rem);
+  width: 18rem;
   margin: 0;
-  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .about-media__frame {
@@ -11423,7 +11433,7 @@ p {
 
 .about-bio {
   margin: 0;
-  max-width: 28rem;
+  max-width: none;
   color: var(--about-ink);
   font-family: var(--font-sans);
   font-size: var(--text-tertiary-size);
@@ -11431,7 +11441,7 @@ p {
   letter-spacing: -0.01em;
   line-height: 1.45;
   text-align: left;
-  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .about-carousel {
@@ -11554,6 +11564,23 @@ p {
   transform: translateY(0);
 }
 
+@media (max-width: 800px) {
+  .about-stage {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    width: min(100%, 34rem);
+  }
+
+  .about-stage__copy {
+    align-items: center;
+    max-width: 18rem;
+  }
+
+  .about-greeting {
+    text-align: center;
+  }
+}
+
 @media (max-width: 600px) {
   .about-main {
     padding-inline: 0;
@@ -11566,12 +11593,12 @@ p {
     gap: 2rem;
   }
 
-  .about-media {
-    width: min(100%, 13.5rem);
+  .about-stage__copy {
+    max-width: none;
   }
 
-  .about-bio {
-    max-width: none;
+  .about-media {
+    width: min(100%, 15.5rem);
   }
 
   .about-carousel {
