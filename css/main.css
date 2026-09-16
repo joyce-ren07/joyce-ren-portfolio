@@ -9309,6 +9309,35 @@ p {
   background: var(--md-sys-color-surface-container);
 }
 
+/* Two product pillars: cluster each pair of demos, then use section gap between pillars. */
+.case-study-page--current #solution .case-solution-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-study-page--current #solution .case-solution-group .case-pillar {
+  margin-top: 0;
+}
+
+.case-study-page--current #solution .case-solution-group .case-pillar__title {
+  margin-bottom: var(--case-heading-to-body, clamp(1.125rem, 2.2vw, 1.625rem));
+}
+
+.case-study-page--current #solution .case-solution-group .case-feature-rows,
+.case-study-page--current #solution .case-solution-group .case-feature-rows--stacked {
+  margin-top: 0;
+  margin-bottom: 0;
+  gap: var(--case-subsection-gap, 120px);
+}
+
+.case-study-page--current #solution .case-solution-group + .case-solution-group {
+  margin-top: var(--case-section-gap, 180px);
+}
+
+.case-study-page--current #solution .case-solution-group + .case-body {
+  margin-top: var(--case-subsection-gap, 120px);
+}
+
 .case-study-page--current .case-competitive__icon--sf {
   background: var(--gds-brand-blue);
   color: var(--md-sys-color-on-primary);
