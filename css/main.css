@@ -11371,10 +11371,10 @@ p {
 
 .about-stage {
   display: grid;
-  grid-template-columns: minmax(0, 28rem) auto;
+  grid-template-columns: minmax(0, 18rem) auto;
   align-items: center;
   justify-content: center;
-  width: min(100%, 54rem);
+  width: min(100%, 44rem);
   padding-inline: var(--nav-padding-inline);
   column-gap: clamp(2.75rem, 6vw, 5rem);
   row-gap: 2rem;
@@ -11573,7 +11573,7 @@ p {
 
   .about-stage__copy {
     align-items: center;
-    max-width: 28rem;
+    max-width: 18rem;
   }
 
   .about-greeting {
