@@ -5352,7 +5352,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem 1.25rem;
-  margin: 0.15rem 0 1.4rem;
+  margin: 0.15rem 0 2.75rem;
   padding: 0;
   list-style: none;
   font-size: 13px;
@@ -5426,11 +5426,13 @@ p {
 .case-study-page--cueturn .cueturn-synth__bars {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.32rem;
+  justify-items: stretch;
+  gap: 0.32rem 0.4rem;
 }
 
 .case-study-page--cueturn .cueturn-synth__bars span {
   display: block;
+  width: 100%;
   height: 0.55rem;
   border-radius: 0.22rem;
 }
@@ -5443,17 +5445,29 @@ p {
 .case-study-page--cueturn .cueturn-synth__connector {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  min-height: 1.4rem;
+  min-height: 1.75rem;
+  margin: 0.15rem 0 0.55rem;
 }
 
 .case-study-page--cueturn .cueturn-synth__arrow {
   display: block;
-  width: 0.85rem;
-  height: 0.85rem;
-  margin: 0.1rem auto 0;
+  width: 2.5px;
+  height: 0.95rem;
+  margin: 0.15rem auto 0;
+  background: var(--cueturn-accent);
+  position: relative;
+}
+
+.case-study-page--cueturn .cueturn-synth__arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 0.55rem;
+  height: 0.55rem;
   border-right: 2.5px solid var(--cueturn-accent);
   border-bottom: 2.5px solid var(--cueturn-accent);
-  transform: rotate(45deg);
+  transform: translateX(-50%) rotate(45deg);
 }
 
 .case-study-page--cueturn .cueturn-synth__thoughts {
