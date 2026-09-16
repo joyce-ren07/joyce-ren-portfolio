@@ -11046,12 +11046,21 @@ p {
 }
 
 .canvas-plate-lightbox__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
   margin: 0;
   max-width: 18rem;
   color: var(--case-text);
   font-size: var(--text-tertiary-size);
   font-weight: var(--text-tertiary-weight);
   line-height: 1.5;
+}
+
+.canvas-plate-lightbox__medium,
+.canvas-plate-lightbox__size {
+  display: block;
 }
 
 .canvas-plate-lightbox__desc {
