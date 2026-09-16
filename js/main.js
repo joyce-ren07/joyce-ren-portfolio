@@ -912,6 +912,30 @@
     revealItems.forEach((item) => observer.observe(item));
   });
 
+  /* CueTurn design-space tabs */
+  document.querySelectorAll("[data-cueturn-ds]").forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll("[data-tab]"));
+    const panels = Array.from(root.querySelectorAll("[data-panel]"));
+
+    const show = (key) => {
+      tabs.forEach((tab) => {
+        const on = tab.dataset.tab === key;
+        tab.setAttribute("aria-selected", on ? "true" : "false");
+        tab.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach((panel) => {
+        const on = panel.dataset.panel === key;
+        panel.hidden = !on;
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => show(tab.dataset.tab));
+    });
+
+    show("notif");
+  });
+
   /* CueTurn countdown comparison — de-emphasize the earlier pair as the next pair enters view */
   const countdownComparisons = document.querySelectorAll("[data-countdown-comparison]");
   if (countdownComparisons.length) {

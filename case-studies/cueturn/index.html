@@ -223,9 +223,165 @@
           <strong class="case-emphasis">audio notifications</strong>.
         </p>
 
-        <div class="case-image-grid case-image-grid--stacked">
-          <div class="case-placeholder" aria-hidden="true">Stages of speaking</div>
-          <div class="case-placeholder" aria-hidden="true">Design space</div>
+        <div class="cueturn-ds" data-cueturn-ds>
+          <section class="cueturn-ds__card" aria-labelledby="cueturn-ds-stages-label">
+            <h4 class="cueturn-ds__kicker" id="cueturn-ds-stages-label">Stages of speaking</h4>
+            <div class="cueturn-ds__stages">
+              <figure class="cueturn-ds__stage">
+                <div class="cueturn-ds__stage-frame cueturn-ds__stage-frame--listen">
+                  <div class="cueturn-ds__blob-slot">
+                    <div class="cueturn-ds__blob cueturn-ds__blob--listen"></div>
+                  </div>
+                  <span class="cueturn-ds__stage-status cueturn-ds__stage-status--listen">Listening</span>
+                </div>
+                <figcaption class="cueturn-ds__caption">Listening</figcaption>
+              </figure>
+              <figure class="cueturn-ds__stage">
+                <div class="cueturn-ds__stage-frame cueturn-ds__stage-frame--hold">
+                  <div class="cueturn-ds__blob-slot">
+                    <div class="cueturn-ds__blob cueturn-ds__blob--hold"></div>
+                  </div>
+                  <span class="cueturn-ds__stage-status cueturn-ds__stage-status--hold">Holding for a turn...</span>
+                </div>
+                <figcaption class="cueturn-ds__caption">Holding</figcaption>
+              </figure>
+              <figure class="cueturn-ds__stage">
+                <div class="cueturn-ds__stage-frame cueturn-ds__stage-frame--count">
+                  <div class="cueturn-ds__blob-slot">
+                    <div class="cueturn-ds__blob cueturn-ds__blob--count"></div>
+                  </div>
+                  <span class="cueturn-ds__stage-status cueturn-ds__stage-status--count">About to speak</span>
+                  <div class="cueturn-ds__stage-bar" aria-hidden="true">
+                    <div class="cueturn-ds__stage-bar-fill"></div>
+                  </div>
+                </div>
+                <figcaption class="cueturn-ds__caption">Countdown</figcaption>
+              </figure>
+              <figure class="cueturn-ds__stage">
+                <div class="cueturn-ds__stage-frame cueturn-ds__stage-frame--speak">
+                  <div class="cueturn-ds__blob-slot">
+                    <div class="cueturn-ds__blob cueturn-ds__blob--speak"></div>
+                  </div>
+                  <span class="cueturn-ds__stage-status cueturn-ds__stage-status--speak">Speaking</span>
+                  <div class="cueturn-ds__transcript" aria-hidden="true">
+                    <span class="cueturn-ds__transcript-dot"></span>
+                    <div class="cueturn-ds__transcript-lines">
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+                <figcaption class="cueturn-ds__caption">Speaking</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="cueturn-ds__card cueturn-ds__card--space" aria-labelledby="cueturn-ds-space-label">
+            <h4 class="cueturn-ds__kicker" id="cueturn-ds-space-label">Design space</h4>
+            <div class="cueturn-ds__tabs" role="tablist" aria-label="Design space dimensions">
+              <button type="button" class="cueturn-ds__tab" role="tab" id="cueturn-ds-tab-notif" aria-controls="cueturn-ds-panel-notif" data-tab="notif">Occupancy</button>
+              <button type="button" class="cueturn-ds__tab" role="tab" id="cueturn-ds-tab-count" aria-controls="cueturn-ds-panel-count" data-tab="count">Countdown</button>
+              <button type="button" class="cueturn-ds__tab" role="tab" id="cueturn-ds-tab-sound" aria-controls="cueturn-ds-panel-sound" data-tab="sound">Sound signal</button>
+            </div>
+
+            <div class="cueturn-ds__panel" id="cueturn-ds-panel-notif" role="tabpanel" data-panel="notif" aria-labelledby="cueturn-ds-tab-notif">
+              <div class="cueturn-ds__grid cueturn-ds__grid--2">
+                <figure class="cueturn-ds__variant">
+                  <div class="cueturn-ds__ui">
+                    <div class="cueturn-ds__ui-screen">
+                      <div class="cueturn-ds__ui-tiles cueturn-ds__ui-tiles--fade">
+                        <div class="cueturn-ds__ui-row"><span></span><span></span></div>
+                        <div class="cueturn-ds__ui-row"><span></span><span></span></div>
+                      </div>
+                      <div class="cueturn-ds__takeover">
+                        <div class="cueturn-ds__blob cueturn-ds__blob--hold cueturn-ds__blob--sm"></div>
+                      </div>
+                    </div>
+                    <div class="cueturn-ds__ui-dock" aria-hidden="true">
+                      <span></span><span></span><span></span><span class="cueturn-ds__ui-dock-live"></span>
+                    </div>
+                  </div>
+                  <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">Screen takeover</figcaption>
+                </figure>
+                <figure class="cueturn-ds__variant">
+                  <div class="cueturn-ds__ui">
+                    <div class="cueturn-ds__ui-screen cueturn-ds__ui-screen--split">
+                      <div class="cueturn-ds__ui-tiles">
+                        <div class="cueturn-ds__ui-row"><span></span><span></span></div>
+                        <div class="cueturn-ds__ui-row"><span></span><span></span></div>
+                      </div>
+                      <div class="cueturn-ds__sidebar-glow">
+                        <div class="cueturn-ds__blob cueturn-ds__blob--hold cueturn-ds__blob--sm"></div>
+                      </div>
+                    </div>
+                    <div class="cueturn-ds__ui-dock" aria-hidden="true">
+                      <span></span><span></span><span></span><span class="cueturn-ds__ui-dock-live"></span>
+                    </div>
+                  </div>
+                  <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">Sidebar glow</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="cueturn-ds__panel" id="cueturn-ds-panel-count" role="tabpanel" data-panel="count" aria-labelledby="cueturn-ds-tab-count" hidden>
+              <div class="cueturn-ds__grid cueturn-ds__grid--2">
+                <figure class="cueturn-ds__variant">
+                  <div class="cueturn-ds__count-stage">
+                    <div class="cueturn-ds__blob cueturn-ds__blob--count"></div>
+                    <div class="cueturn-ds__nums" aria-hidden="true">
+                      <span class="cueturn-ds__num cueturn-ds__num--3">3</span>
+                      <span class="cueturn-ds__num cueturn-ds__num--2">2</span>
+                      <span class="cueturn-ds__num cueturn-ds__num--1">1</span>
+                    </div>
+                    <div class="cueturn-ds__count-bar"><div class="cueturn-ds__count-bar-fill"></div></div>
+                  </div>
+                  <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">With numbers</figcaption>
+                </figure>
+                <figure class="cueturn-ds__variant">
+                  <div class="cueturn-ds__count-stage">
+                    <div class="cueturn-ds__blob cueturn-ds__blob--count"></div>
+                    <div class="cueturn-ds__count-bar"><div class="cueturn-ds__count-bar-fill"></div></div>
+                  </div>
+                  <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">Without numbers</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="cueturn-ds__panel" id="cueturn-ds-panel-sound" role="tabpanel" data-panel="sound" aria-labelledby="cueturn-ds-tab-sound" hidden>
+              <div class="cueturn-ds__grid cueturn-ds__grid--3">
+                <figure class="cueturn-ds__variant">
+                  <div class="cueturn-ds__sound-stage">
+                    <svg width="150" height="120" viewBox="0 0 50 40" aria-hidden="true">
+                      <path d="M4 17V23C4 24.6569 5.34315 26 7 26H11.2L18.6 32.2C19.5 32.95 21 32.3 21 31.1V8.9C21 7.7 19.5 7.05 18.6 7.8L11.2 14H7C5.34315 14 4 15.3431 4 17Z" fill="none" stroke="#C0461F" stroke-width="2.6" stroke-linejoin="round"></path>
+                      <path d="M28 14L38 26" stroke="#C0461F" stroke-width="2.6" stroke-linecap="round"></path>
+                      <path d="M38 14L28 26" stroke="#C0461F" stroke-width="2.6" stroke-linecap="round"></path>
+                    </svg>
+                  </div>
+                  <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">No sound</figcaption>
+                </figure>
+                <figure class="cueturn-ds__variant">
+                  <div class="cueturn-ds__sound-stage">
+                    <svg width="150" height="120" viewBox="0 0 50 40" aria-hidden="true">
+                      <path d="M4 17V23C4 24.6569 5.34315 26 7 26H11.2L18.6 32.2C19.5 32.95 21 32.3 21 31.1V8.9C21 7.7 19.5 7.05 18.6 7.8L11.2 14H7C5.34315 14 4 15.3431 4 17Z" fill="none" stroke="#C0461F" stroke-width="2.6" stroke-linejoin="round"></path>
+                      <path class="cueturn-ds__arc cueturn-ds__arc--once" d="M28 13C30.5 16.2 30.5 23.8 28 27" fill="none" stroke="#C0461F" stroke-width="2.6" stroke-linecap="round"></path>
+                    </svg>
+                  </div>
+                  <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">Single ping</figcaption>
+                </figure>
+                <figure class="cueturn-ds__variant">
+                  <div class="cueturn-ds__sound-stage">
+                    <svg width="150" height="120" viewBox="0 0 50 40" aria-hidden="true">
+                      <path d="M4 17V23C4 24.6569 5.34315 26 7 26H11.2L18.6 32.2C19.5 32.95 21 32.3 21 31.1V8.9C21 7.7 19.5 7.05 18.6 7.8L11.2 14H7C5.34315 14 4 15.3431 4 17Z" fill="none" stroke="#C0461F" stroke-width="2.6" stroke-linejoin="round"></path>
+                      <path class="cueturn-ds__arc cueturn-ds__arc--loop" d="M27 14C29.2 16.8 29.2 23.2 27 26" fill="none" stroke="#C0461F" stroke-width="2.6" stroke-linecap="round"></path>
+                      <path class="cueturn-ds__arc cueturn-ds__arc--loop cueturn-ds__arc--delay-1" d="M33 10C36.6 14.6 36.6 25.4 33 30" fill="none" stroke="#C0461F" stroke-width="2.6" stroke-linecap="round"></path>
+                      <path class="cueturn-ds__arc cueturn-ds__arc--loop cueturn-ds__arc--delay-2" d="M39 6C43.8 12.2 43.8 27.8 39 34" fill="none" stroke="#C0461F" stroke-width="2.6" stroke-linecap="round"></path>
+                    </svg>
+                  </div>
+                  <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">Escalating ping</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
         </div>
 
         <h3 class="case-subheading case-subheading--large">Investigation 2: Narrowing the design space</h3>
