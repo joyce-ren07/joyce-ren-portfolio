@@ -4986,6 +4986,7 @@ p {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .cueturn-ds__ui-screen {
@@ -4998,7 +4999,7 @@ p {
 .cueturn-ds__ui-screen--split {
   display: flex;
   gap: 8px;
-  padding: 8px;
+  padding: 8px 8px 42px;
 }
 
 .cueturn-ds__ui-tiles {
@@ -5010,7 +5011,7 @@ p {
 
 .cueturn-ds__ui-tiles--fade {
   position: absolute;
-  inset: 8px 90px 8px 8px;
+  inset: 8px 90px 42px 8px;
   animation: cueturn-ds-fade 5s ease-in-out infinite;
 }
 
@@ -5055,23 +5056,49 @@ p {
 }
 
 .cueturn-ds__ui-dock {
-  height: 30px;
-  flex: none;
-  background: #e5e8ea;
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  z-index: 2;
+  transform: translateX(-50%);
+  height: auto;
+  padding: 6px 7px;
+  border-radius: 10px;
+  background: #3c4043;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 5px;
 }
 
-.cueturn-ds__ui-dock span {
-  width: 34px;
-  height: 11px;
+.cueturn-ds__ui-dock-btn {
+  width: 22px;
+  height: 22px;
   border-radius: 6px;
-  background: #bfc7cc;
+  background: #5f6368;
+  color: #f1f3f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cueturn-ds__ui-dock-live {
+.cueturn-ds__ui-dock-btn svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.cueturn-ds__ui-dock-btn--share {
+  background: #0e7a54;
+}
+
+.cueturn-ds__ui-dock-btn--more {
+  background: transparent;
+}
+
+.cueturn-ds__ui-dock-btn--leave {
+  width: 28px;
   background: #e0603f;
 }
 
