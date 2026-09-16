@@ -4743,6 +4743,9 @@ p {
   --ai-font: var(--font-sans);
   --ai-fs-section: var(--case-secondary-size);
   --ai-fs-body: var(--case-tertiary-size);
+  /* Smallest existing decision-arrow clearance (was clamp(16px, 2vw, 28px)) */
+  --ai-decision-arrow-space: 16px;
+  --ai-decision-arrow-stroke: 2.75;
 }
 
 .case-study-page--autoinvent .ai-decision-state {
@@ -4843,12 +4846,12 @@ p {
 .ai-d2 {
   display: flex;
   flex-direction: column;
-  gap: clamp(18px, 2.4vw, 32px);
+  gap: var(--ai-decision-arrow-space);
 }
 
 .ai-d2 .ps-structure__flow-arrow {
   justify-self: unset;
-  margin-inline: auto;
+  margin: 0 auto;
   color: var(--ai-accent);
 }
 
@@ -5485,7 +5488,7 @@ p {
   justify-self: center;
   width: 38px;
   height: 60px;
-  margin: clamp(16px, 2vw, 28px) 0;
+  margin: var(--ai-decision-arrow-space, 16px) 0;
   color: var(--ps-accent);
 }
 
@@ -5499,7 +5502,7 @@ p {
 .ps-structure__flow-arrow path {
   fill: none;
   stroke: currentColor;
-  stroke-width: 3.75;
+  stroke-width: var(--ai-decision-arrow-stroke, 2.75);
   stroke-linecap: round;
   stroke-linejoin: miter;
   stroke-miterlimit: 2.4;
