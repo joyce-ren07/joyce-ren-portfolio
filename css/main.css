@@ -4743,6 +4743,9 @@ p {
   --ai-font: var(--font-sans);
   --ai-fs-section: var(--case-secondary-size);
   --ai-fs-body: var(--case-tertiary-size);
+  /* Smallest existing decision-arrow clearance (was clamp(16px, 2vw, 28px)) */
+  --ai-decision-arrow-space: 16px;
+  --ai-decision-arrow-stroke: 2.75;
 }
 
 .case-study-page--autoinvent .ai-decision-state {
@@ -4766,6 +4769,38 @@ p {
 
 .case-study-page--autoinvent .ai-decision-visuals {
   margin-top: 40px;
+}
+
+.case-study-page--autoinvent .ai-before-split {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(20px, 3vw, 44px);
+}
+
+.case-study-page--autoinvent .ai-before-split__mockup {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.case-study-page--autoinvent .ai-before-split__quote {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 26px;
+}
+
+@media (max-width: 640px) {
+  .case-study-page--autoinvent .ai-before-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-study-page--autoinvent .ai-before-split__quote {
+    padding-top: 0;
+  }
 }
 
 .case-study-page--autoinvent .case-emphasis--accent {
@@ -4843,12 +4878,12 @@ p {
 .ai-d2 {
   display: flex;
   flex-direction: column;
-  gap: clamp(18px, 2.4vw, 32px);
+  gap: var(--ai-decision-arrow-space);
 }
 
 .ai-d2 .ps-structure__flow-arrow {
   justify-self: unset;
-  margin-inline: auto;
+  margin: 0 auto;
   color: var(--ai-accent);
 }
 
@@ -5485,7 +5520,7 @@ p {
   justify-self: center;
   width: 38px;
   height: 60px;
-  margin: clamp(16px, 2vw, 28px) 0;
+  margin: var(--ai-decision-arrow-space, 16px) 0;
   color: var(--ps-accent);
 }
 
@@ -5499,7 +5534,7 @@ p {
 .ps-structure__flow-arrow path {
   fill: none;
   stroke: currentColor;
-  stroke-width: 3.75;
+  stroke-width: var(--ai-decision-arrow-stroke, 2.75);
   stroke-linecap: round;
   stroke-linejoin: miter;
   stroke-miterlimit: 2.4;
@@ -8400,7 +8435,7 @@ p {
 
 #process .case-insight-card__text em {
   font-style: italic;
-  font-weight: 400;
+  font-weight: 700;
   color: #4e7b80;
 }
 
@@ -11004,12 +11039,21 @@ p {
 }
 
 .canvas-plate-lightbox__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
   margin: 0;
   max-width: 18rem;
   color: var(--case-text);
   font-size: var(--text-tertiary-size);
   font-weight: var(--text-tertiary-weight);
   line-height: 1.5;
+}
+
+.canvas-plate-lightbox__medium,
+.canvas-plate-lightbox__size {
+  display: block;
 }
 
 .canvas-plate-lightbox__desc {
@@ -11333,8 +11377,8 @@ p {
 }
 
 .about-carousel {
-  --about-carousel-card-width: 13.75rem;
-  --about-carousel-gap: 1.15rem;
+  --about-carousel-height: 16.75rem;
+  --about-carousel-gap: -1.15rem;
   position: relative;
   width: 100%;
   margin-top: clamp(2.5rem, 6vw, 4.25rem);
@@ -11374,7 +11418,7 @@ p {
 
 .about-carousel__viewport {
   overflow: hidden;
-  padding: 2.75rem 0 4.5rem;
+  padding: 4.25rem 0 8.5rem;
 }
 
 .about-carousel__track {
@@ -11386,35 +11430,70 @@ p {
 }
 
 .about-carousel__card {
-  flex: 0 0 var(--about-carousel-card-width);
-  width: var(--about-carousel-card-width);
+  position: relative;
+  flex: 0 0 auto;
+  width: auto;
   margin: 0;
+  overflow: visible;
+  background: transparent;
+  transform-origin: 50% 85%;
+  will-change: transform;
+  z-index: 0;
+}
+
+.about-carousel__card:hover,
+.about-carousel__card:focus-within {
+  z-index: 4;
+}
+
+.about-carousel__frame {
   overflow: hidden;
   border-radius: 1.65rem;
   background: #efeae6;
   box-shadow:
-    0 18px 40px rgba(40, 28, 22, 0.14),
-    0 2px 8px rgba(40, 28, 22, 0.08);
-  transform-origin: 50% 85%;
-  will-change: transform;
+    0 14px 28px rgba(40, 28, 22, 0.1),
+    0 2px 6px rgba(40, 28, 22, 0.06);
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
 }
 
-.about-carousel__card img {
+.about-carousel__card:hover .about-carousel__frame,
+.about-carousel__card:focus-within .about-carousel__frame {
+  transform: translateY(-3px);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.045),
+    0 22px 44px rgba(40, 28, 22, 0.16);
+}
+
+.about-carousel__frame img {
   display: block;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center 28%;
+  height: var(--about-carousel-height);
+  width: auto;
+  max-width: none;
 }
 
-.about-carousel__card:nth-child(8n + 1) img,
-.about-carousel__card:nth-child(8n + 4) img,
-.about-carousel__card:nth-child(8n + 7) img {
-  object-position: center 42%;
+.about-carousel__caption {
+  position: absolute;
+  left: 0.15rem;
+  right: 0.15rem;
+  top: 100%;
+  z-index: 2;
+  margin: 0;
+  padding-top: 0.7rem;
+  color: var(--about-ink);
+  font-size: var(--text-tertiary-size);
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity 0.38s ease, transform 0.38s ease;
 }
 
-.about-carousel__card:nth-child(8n + 8) img {
-  object-position: center 70%;
+.about-carousel__card:hover .about-carousel__caption,
+.about-carousel__card:focus-within .about-carousel__caption {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (max-width: 600px) {
@@ -11438,16 +11517,16 @@ p {
   }
 
   .about-carousel {
-    --about-carousel-card-width: 10.75rem;
-    --about-carousel-gap: 0.85rem;
+    --about-carousel-height: 13.25rem;
+    --about-carousel-gap: -0.85rem;
     margin-top: 2.75rem;
   }
 
   .about-carousel__viewport {
-    padding: 2rem 0 3.25rem;
+    padding: 3.25rem 0 7rem;
   }
 
-  .about-carousel__card {
+  .about-carousel__frame {
     border-radius: 1.25rem;
   }
 }
@@ -11457,6 +11536,20 @@ p {
   .about-media,
   .about-bio {
     animation: none;
+  }
+
+  .about-carousel__frame {
+    transition: box-shadow 0.32s ease;
+  }
+
+  .about-carousel__card:hover .about-carousel__frame,
+  .about-carousel__card:focus-within .about-carousel__frame {
+    transform: none;
+  }
+
+  .about-carousel__caption {
+    transform: none;
+    transition: opacity 0.38s ease;
   }
 }
 

@@ -1161,19 +1161,20 @@
     window.addEventListener("pageshow", resumeVisibleCovers);
   }
 
-  /* About intro video — play once, hold last frame; loop while hovered */
+  /* About intro video — loop continuously (still freeze for reduced motion) */
   const aboutVideo = document.querySelector(".about-media__video");
   if (aboutVideo) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const hoverHost = aboutVideo.closest(".about-media") || aboutVideo;
-    let hovering = false;
 
-    aboutVideo.loop = false;
     aboutVideo.muted = true;
     aboutVideo.defaultMuted = true;
     aboutVideo.playsInline = true;
-    aboutVideo.removeAttribute("loop");
+    aboutVideo.loop = !reducedMotion;
+    if (reducedMotion) {
+      aboutVideo.removeAttribute("loop");
+    } else {
+      aboutVideo.setAttribute("loop", "");
+    }
 
     const tryPlay = () => {
       const playAttempt = aboutVideo.play();
@@ -1191,28 +1192,6 @@
         /* ignore seek errors before metadata is ready */
       }
     };
-
-    aboutVideo.addEventListener("ended", () => {
-      if (hovering) {
-        aboutVideo.currentTime = 0;
-        tryPlay();
-        return;
-      }
-      freezeOnLastFrame();
-    });
-
-    if (canHover && !reducedMotion) {
-      hoverHost.addEventListener("pointerenter", () => {
-        hovering = true;
-        aboutVideo.currentTime = 0;
-        tryPlay();
-      });
-
-      hoverHost.addEventListener("pointerleave", () => {
-        hovering = false;
-        freezeOnLastFrame();
-      });
-    }
 
     if (reducedMotion) {
       const holdStill = () => freezeOnLastFrame();
@@ -1251,40 +1230,38 @@
 
     applyArc();
 
-    if (reducedMotion) {
-      window.addEventListener("resize", applyArc);
-    } else {
+    const measureLoop = () => {
+      const styles = window.getComputedStyle(track);
+      const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
+      return originals.reduce((sum, card, index) => {
+        return sum + card.getBoundingClientRect().width + (index < originals.length - 1 ? gap : 0);
+      }, 0) + gap;
+    };
+
+    window.addEventListener("resize", applyArc);
+    track.querySelectorAll("img").forEach((img) => {
+      if (!img.complete) img.addEventListener("load", applyArc, { once: true });
+    });
+
+    if (!reducedMotion) {
       let offset = 0;
       let lastTime = performance.now();
-      let paused = false;
-      let loopWidth = 0;
+      let loopWidth = measureLoop();
 
       const measure = () => {
-        const styles = window.getComputedStyle(track);
-        const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
-        loopWidth = originals.reduce((sum, card, index) => {
-          return sum + card.getBoundingClientRect().width + (index < originals.length - 1 ? gap : 0);
-        }, 0);
-        loopWidth += gap;
+        loopWidth = measureLoop();
       };
 
       measure();
-      window.addEventListener("resize", () => {
-        measure();
-        applyArc();
-      });
-
-      aboutCarousel.addEventListener("pointerenter", () => {
-        paused = true;
-      });
-      aboutCarousel.addEventListener("pointerleave", () => {
-        paused = false;
+      window.addEventListener("resize", measure);
+      track.querySelectorAll("img").forEach((img) => {
+        if (!img.complete) img.addEventListener("load", measure, { once: true });
       });
 
       const tick = (now) => {
         const delta = Math.min(48, now - lastTime);
         lastTime = now;
-        if (!paused && loopWidth > 0) {
+        if (loopWidth > 0) {
           offset += delta * 0.038;
           if (offset >= loopWidth) offset -= loopWidth;
           track.style.transform = `translate3d(${-offset}px, 0, 0)`;
@@ -1972,7 +1949,24 @@
         imageEl.alt = img.alt || plate.dataset.title || "";
       }
       if (titleEl) titleEl.textContent = plate.dataset.title || "";
-      if (metaEl) metaEl.textContent = plate.dataset.meta || "";
+      if (metaEl) {
+        const parts = (plate.dataset.meta || "")
+          .split("·")
+          .map((part) => part.trim())
+          .filter(Boolean);
+        metaEl.replaceChildren();
+        if (parts.length >= 2) {
+          const mediumEl = document.createElement("span");
+          mediumEl.className = "canvas-plate-lightbox__medium";
+          mediumEl.textContent = parts[0];
+          const sizeEl = document.createElement("span");
+          sizeEl.className = "canvas-plate-lightbox__size";
+          sizeEl.textContent = parts.slice(1).join(" · ");
+          metaEl.append(mediumEl, sizeEl);
+        } else {
+          metaEl.textContent = plate.dataset.meta || "";
+        }
+      }
       if (descEl) {
         const description = (plate.dataset.description || "").trim();
         descEl.textContent = description;
