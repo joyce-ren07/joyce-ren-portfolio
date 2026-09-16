@@ -1949,7 +1949,24 @@
         imageEl.alt = img.alt || plate.dataset.title || "";
       }
       if (titleEl) titleEl.textContent = plate.dataset.title || "";
-      if (metaEl) metaEl.textContent = plate.dataset.meta || "";
+      if (metaEl) {
+        const parts = (plate.dataset.meta || "")
+          .split("·")
+          .map((part) => part.trim())
+          .filter(Boolean);
+        metaEl.replaceChildren();
+        if (parts.length >= 2) {
+          const mediumEl = document.createElement("span");
+          mediumEl.className = "canvas-plate-lightbox__medium";
+          mediumEl.textContent = parts[0];
+          const sizeEl = document.createElement("span");
+          sizeEl.className = "canvas-plate-lightbox__size";
+          sizeEl.textContent = parts.slice(1).join(" · ");
+          metaEl.append(mediumEl, sizeEl);
+        } else {
+          metaEl.textContent = plate.dataset.meta || "";
+        }
+      }
       if (descEl) {
         const description = (plate.dataset.description || "").trim();
         descEl.textContent = description;
