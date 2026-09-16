@@ -1161,19 +1161,20 @@
     window.addEventListener("pageshow", resumeVisibleCovers);
   }
 
-  /* About intro video — play once, hold last frame; loop while hovered */
+  /* About intro video — loop continuously (still freeze for reduced motion) */
   const aboutVideo = document.querySelector(".about-media__video");
   if (aboutVideo) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const hoverHost = aboutVideo.closest(".about-media") || aboutVideo;
-    let hovering = false;
 
-    aboutVideo.loop = false;
     aboutVideo.muted = true;
     aboutVideo.defaultMuted = true;
     aboutVideo.playsInline = true;
-    aboutVideo.removeAttribute("loop");
+    aboutVideo.loop = !reducedMotion;
+    if (reducedMotion) {
+      aboutVideo.removeAttribute("loop");
+    } else {
+      aboutVideo.setAttribute("loop", "");
+    }
 
     const tryPlay = () => {
       const playAttempt = aboutVideo.play();
@@ -1191,28 +1192,6 @@
         /* ignore seek errors before metadata is ready */
       }
     };
-
-    aboutVideo.addEventListener("ended", () => {
-      if (hovering) {
-        aboutVideo.currentTime = 0;
-        tryPlay();
-        return;
-      }
-      freezeOnLastFrame();
-    });
-
-    if (canHover && !reducedMotion) {
-      hoverHost.addEventListener("pointerenter", () => {
-        hovering = true;
-        aboutVideo.currentTime = 0;
-        tryPlay();
-      });
-
-      hoverHost.addEventListener("pointerleave", () => {
-        hovering = false;
-        freezeOnLastFrame();
-      });
-    }
 
     if (reducedMotion) {
       const holdStill = () => freezeOnLastFrame();
