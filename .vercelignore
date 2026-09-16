@@ -1,0 +1,38 @@
+# Files the site does not serve. Excluding them keeps Vercel production
+# deploys small enough to complete so joyceren.com can track main.
+
+.cursor
+uploads
+scripts
+
+*.mov
+*.heic
+*.HEIC
+*.zip
+*.pdf
+
+Current Wave.gif
+cueturn interview board video.mp4
+IMG_*.JPG
+IMG_*.JPEG
+IMG_*.heic
+IMG_*.HEIC
+"IMG_8815 copy.jpg"
+"IMG_2936 copy.jpg"
+"Self Picture.jpg"
+"Self Picture (B&W).jpg"
+"Variant 1.jpg"
+"Variant 1 (1).jpg"
+"Autoinvent 2 Before.png"
+"Autoinvent 3 Before.png"
+"Untitled Artwork.png"
+"Untitled Artwork 5.png"
+"Pull switch.png"
+"user feedback 0.png"
+"uber iterations 1.png"
+"uber iterations 2.png"
+"app store logo.png"
+"reddit logo.png"
+"MacBook Pro 14_ - 5th Gen - Silver.png"
+Frame.png
+Image.png

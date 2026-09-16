@@ -29,6 +29,8 @@ python3 -m http.server 8000
 
 Then visit `http://localhost:8000`.
 
+The live domain [joyceren.com](https://joyceren.com) is a **Vercel production** deploy of `main`. GitHack / raw GitHub previews read the repo directly, so they can show newer commits while the custom domain is still on the last successful production build. After merging to `main`, confirm the Vercel production deployment succeeded (Redeploy with build cache disabled if the domain looks stale). Unused source dumps are listed in `.vercelignore` so production uploads stay under Vercel’s size limits.
+
 ## Adding a new case study
 
 1. Copy `case-studies/_template.html` into a new folder, e.g. `case-studies/my-project/index.html`
