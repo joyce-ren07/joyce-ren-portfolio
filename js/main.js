@@ -1230,40 +1230,38 @@
 
     applyArc();
 
-    if (reducedMotion) {
-      window.addEventListener("resize", applyArc);
-    } else {
+    const measureLoop = () => {
+      const styles = window.getComputedStyle(track);
+      const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
+      return originals.reduce((sum, card, index) => {
+        return sum + card.getBoundingClientRect().width + (index < originals.length - 1 ? gap : 0);
+      }, 0) + gap;
+    };
+
+    window.addEventListener("resize", applyArc);
+    track.querySelectorAll("img").forEach((img) => {
+      if (!img.complete) img.addEventListener("load", applyArc, { once: true });
+    });
+
+    if (!reducedMotion) {
       let offset = 0;
       let lastTime = performance.now();
-      let paused = false;
-      let loopWidth = 0;
+      let loopWidth = measureLoop();
 
       const measure = () => {
-        const styles = window.getComputedStyle(track);
-        const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
-        loopWidth = originals.reduce((sum, card, index) => {
-          return sum + card.getBoundingClientRect().width + (index < originals.length - 1 ? gap : 0);
-        }, 0);
-        loopWidth += gap;
+        loopWidth = measureLoop();
       };
 
       measure();
-      window.addEventListener("resize", () => {
-        measure();
-        applyArc();
-      });
-
-      aboutCarousel.addEventListener("pointerenter", () => {
-        paused = true;
-      });
-      aboutCarousel.addEventListener("pointerleave", () => {
-        paused = false;
+      window.addEventListener("resize", measure);
+      track.querySelectorAll("img").forEach((img) => {
+        if (!img.complete) img.addEventListener("load", measure, { once: true });
       });
 
       const tick = (now) => {
         const delta = Math.min(48, now - lastTime);
         lastTime = now;
-        if (!paused && loopWidth > 0) {
+        if (loopWidth > 0) {
           offset += delta * 0.038;
           if (offset >= loopWidth) offset -= loopWidth;
           track.style.transform = `translate3d(${-offset}px, 0, 0)`;
