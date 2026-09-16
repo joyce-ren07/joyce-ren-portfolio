@@ -11367,7 +11367,7 @@ p {
   width: 100%;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 1.65rem;
   background: #f5f3f0;
 }
 
@@ -11547,7 +11547,8 @@ p {
     padding: 3.25rem 0 7rem;
   }
 
-  .about-carousel__frame {
+  .about-carousel__frame,
+  .about-media__frame {
     border-radius: 1.25rem;
   }
 }
