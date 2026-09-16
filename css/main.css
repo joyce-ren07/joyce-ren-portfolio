@@ -11388,18 +11388,6 @@ p {
   gap: clamp(1.25rem, 3vw, 1.75rem);
 }
 
-.about-greeting {
-  margin: 0;
-  color: var(--about-ink);
-  font-family: var(--font-sans);
-  font-size: var(--text-title-size);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  text-align: left;
-  animation: about-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
 .about-media {
   width: 11rem;
   margin: 0;
@@ -11575,10 +11563,6 @@ p {
     align-items: center;
     max-width: 18rem;
   }
-
-  .about-greeting {
-    text-align: center;
-  }
 }
 
 @media (max-width: 600px) {
@@ -11618,7 +11602,6 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-greeting,
   .about-media,
   .about-bio {
     animation: none;
