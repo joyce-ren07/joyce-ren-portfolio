@@ -10724,10 +10724,10 @@ p {
 /* Irregular field — level plates, rem tops so slots never overlap */
 .canvas-page .canvas-gallery__image:nth-child(1) {
   --canvas-plate-i: 1;
-  --canvas-plate-w: 12.25rem;
-  --canvas-from-x: 1.6rem;
-  left: 3%;
-  top: 0;
+  --canvas-plate-w: 9.25rem;
+  --canvas-from-x: 1.7rem;
+  left: 4%;
+  top: 34rem;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(2) {
@@ -10748,10 +10748,10 @@ p {
 
 .canvas-page .canvas-gallery__image:nth-child(4) {
   --canvas-plate-i: 4;
-  --canvas-plate-w: 9.25rem;
-  --canvas-from-x: 1.7rem;
-  left: 4%;
-  top: 34rem;
+  --canvas-plate-w: 12.25rem;
+  --canvas-from-x: 1.6rem;
+  left: 3%;
+  top: 0;
 }
 
 .canvas-page .canvas-gallery__image:nth-child(5) {
@@ -11091,10 +11091,10 @@ p {
     max-width: min(13.5rem, 56vw);
   }
 
-  .canvas-page .canvas-gallery__image:nth-child(1) { left: 2%; top: 0; right: auto; }
+  .canvas-page .canvas-gallery__image:nth-child(1) { left: 3%; top: 35rem; right: auto; }
   .canvas-page .canvas-gallery__image:nth-child(2) { left: 66%; top: 1rem; right: auto; }
   .canvas-page .canvas-gallery__image:nth-child(3) { left: 28%; top: 17.5rem; right: auto; }
-  .canvas-page .canvas-gallery__image:nth-child(4) { left: 3%; top: 35rem; right: auto; }
+  .canvas-page .canvas-gallery__image:nth-child(4) { left: 2%; top: 0; right: auto; }
   .canvas-page .canvas-gallery__image:nth-child(5) { left: 54%; top: 33rem; right: auto; }
   .canvas-page .canvas-gallery__image:nth-child(6) { left: 16%; top: 51rem; right: auto; }
   .canvas-page .canvas-gallery__image:nth-child(7) { left: 72%; top: 53rem; right: auto; }
@@ -11178,6 +11178,14 @@ p {
     margin: 0;
   }
 
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image {
+    order: var(--canvas-plate-i, 0);
+  }
+
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__expand-hint {
+    order: 99;
+  }
+
   .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image:nth-child(odd) {
     align-self: flex-start;
     margin-left: 0;
@@ -11191,6 +11199,19 @@ p {
   .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image:nth-child(3n) {
     margin-left: 8%;
     align-self: center;
+  }
+
+  /* Swap 01/04 visual order in the expanded list only; stacked DOM order stays. */
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image:nth-child(1) {
+    order: 4;
+    align-self: flex-end;
+    margin-left: 0;
+  }
+
+  .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image:nth-child(4) {
+    order: 1;
+    align-self: flex-start;
+    margin-left: 0;
   }
 
   .canvas-page .canvas-gallery__media img {
