@@ -5228,6 +5228,24 @@ p {
   line-height: var(--case-body-leading, 1.58);
 }
 
+/* Process investigations: title → question → body → list as one cluster */
+.case-study-page--cueturn #process .case-subheading--large + .case-body--tertiary {
+  margin-bottom: var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
+}
+
+.case-study-page--cueturn #process .case-body--tertiary:has(+ .case-insights) {
+  margin-bottom: var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
+}
+
+.case-study-page--cueturn #process .case-insights {
+  margin: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
+  gap: 0.35rem;
+}
+
+.case-study-page--cueturn #process .case-insights + .case-body {
+  margin-top: 0;
+}
+
 .case-study-page--cueturn .case-scroll-video--cueturn-wizard {
   overflow: hidden;
   border-radius: var(--cueturn-media-radius);
