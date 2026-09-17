@@ -4760,8 +4760,8 @@ p {
 }
 
 .cueturn-ds--stages {
-  margin-top: 0;
-  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  margin-bottom: clamp(2.25rem, 4.5vw, 3.25rem);
 }
 
 .cueturn-ds__card {
@@ -5497,7 +5497,7 @@ p {
 }
 
 .case-study-page--cueturn #process .case-body--tertiary:has(+ .cueturn-ds--stages) {
-  margin-bottom: var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
+  margin-bottom: 0;
 }
 
 .case-study-page--cueturn #process .cueturn-ds--stages + .case-body {
