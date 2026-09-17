@@ -12405,6 +12405,7 @@ p {
   --case-heading: #A89E9D;
   --about-stage: #ffffff;
   --about-ink: #A89E9D;
+  --about-carousel-height: 16.75rem;
   --case-text-active: #A89E9D;
   --case-text-faint: #A89E9D;
   --case-text-active-hover: #a1a1a1;
@@ -12499,7 +12500,8 @@ p {
 }
 
 .about-media {
-  width: 11rem;
+  /* 4/5 frame so the video height matches the carousel photos */
+  width: calc(var(--about-carousel-height) * 4 / 5);
   margin: 0;
   animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -12543,11 +12545,10 @@ p {
 }
 
 .about-carousel {
-  --about-carousel-height: 16.75rem;
   --about-carousel-gap: -1.15rem;
   position: relative;
   width: 100%;
-  margin-top: clamp(2.5rem, 6vw, 4.25rem);
+  margin-top: clamp(5.75rem, 11vw, 9rem);
   overflow: hidden;
 }
 
@@ -12695,14 +12696,17 @@ p {
     max-width: none;
   }
 
+  .about-page {
+    --about-carousel-height: 13.25rem;
+  }
+
   .about-media {
-    width: min(100%, 10.5rem);
+    width: min(100%, calc(var(--about-carousel-height) * 4 / 5));
   }
 
   .about-carousel {
-    --about-carousel-height: 13.25rem;
     --about-carousel-gap: -0.85rem;
-    margin-top: 2.75rem;
+    margin-top: 5.25rem;
   }
 
   .about-carousel__viewport {
