@@ -44,8 +44,8 @@
     }
 
     @keyframes cueturn-am-clock {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: 37.7; }
+      from { transform: scaleX(1); }
+      to { transform: scaleX(0); }
     }
   </style>
 </head>
@@ -834,11 +834,11 @@
 
         elClock.innerHTML = "";
         if (auto && inView && !reduceMotion) {
-          elClock.innerHTML =
-            '<svg viewBox="0 0 14 14" aria-hidden="true">' +
-              '<circle class="cueturn-am__clock-track" cx="7" cy="7" r="6"></circle>' +
-              '<circle class="cueturn-am__clock-fill" cx="7" cy="7" r="6" style="stroke:' + t.deep + ';animation-duration:' + DUR + 'ms"></circle>' +
-            '</svg>';
+          const fill = document.createElement("div");
+          fill.className = "cueturn-am__clock-fill";
+          fill.style.background = t.deep;
+          fill.style.animationDuration = DUR + "ms";
+          elClock.appendChild(fill);
         }
       }
 

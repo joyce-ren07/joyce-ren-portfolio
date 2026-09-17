@@ -5419,7 +5419,8 @@ p {
 
 .case-study-page--cueturn .cueturn-am__dims-head {
   margin: 28px 0 -22px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 12px;
 }
@@ -5429,32 +5430,19 @@ p {
 }
 
 .case-study-page--cueturn .cueturn-am__clock {
-  flex: none;
-  width: 14px;
-  height: 14px;
-  background: none;
-  overflow: visible;
-}
-
-.case-study-page--cueturn .cueturn-am__clock svg {
-  display: block;
-  width: 14px;
-  height: 14px;
-  transform: rotate(-90deg);
-}
-
-.case-study-page--cueturn .cueturn-am__clock-track {
-  fill: none;
-  stroke: rgba(0, 0, 0, 0.1);
-  stroke-width: 1.75;
+  justify-self: start;
+  width: 25%;
+  height: 2px;
+  border-radius: 1px;
+  background: rgba(0, 0, 0, 0.07);
+  overflow: hidden;
 }
 
 .case-study-page--cueturn .cueturn-am__clock-fill {
-  fill: none;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-dasharray: 37.7;
-  stroke-dashoffset: 0;
+  height: 2px;
+  border-radius: 1px;
+  width: 100%;
+  transform-origin: left;
   animation: cueturn-am-clock 7000ms linear forwards;
 }
 
