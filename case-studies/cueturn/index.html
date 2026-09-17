@@ -848,10 +848,9 @@
       }
 
       function jump(n) {
-        auto = false;
-        clearTimeout(timer);
         active = n;
         render();
+        schedule();
       }
 
       elClusters.addEventListener("click", (e) => {

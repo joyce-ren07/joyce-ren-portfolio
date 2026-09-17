@@ -960,9 +960,8 @@
     };
 
     const jump = (key) => {
-      auto = false;
-      clearTimeout(timer);
       show(key);
+      schedule();
     };
 
     tabs.forEach((tab) => {
