@@ -144,11 +144,11 @@
           <ol class="cueturn-focus__list">
             <li class="cueturn-focus__item">
               <span class="cueturn-focus__num cueturn-focus__num--signal">1</span>
-              <p class="cueturn-focus__q">How anticipation signals shaped noticeability<br>and perceived disruption</p>
+              <p class="cueturn-focus__q">How anticipation signals shaped noticeability and perceived disruption</p>
             </li>
             <li class="cueturn-focus__item">
               <span class="cueturn-focus__num cueturn-focus__num--delivery">2</span>
-              <p class="cueturn-focus__q">How timing and delivery style influenced<br>participant response to AI intervention</p>
+              <p class="cueturn-focus__q">How timing and delivery style influenced participant response to AI intervention</p>
             </li>
           </ol>
         </div>
@@ -828,7 +828,7 @@
           '</div>';
 
         elClock.innerHTML = "";
-        if (auto && inView && !reduceMotion) {
+        if (auto && !reduceMotion) {
           const fill = document.createElement("div");
           fill.className = "cueturn-am__clock-fill";
           fill.style.background = t.deep;
@@ -848,10 +848,10 @@
       }
 
       function jump(n) {
-        auto = false;
-        clearTimeout(timer);
+        inView = true;
         active = n;
         render();
+        schedule();
       }
 
       elClusters.addEventListener("click", (e) => {
@@ -875,7 +875,7 @@
           inView = entries.some((entry) => entry.isIntersecting);
           if (inView) schedule();
           else clearTimeout(timer);
-        }, { threshold: 0.2 });
+        }, { threshold: 0, rootMargin: "80px" });
         io.observe(wrap);
       }
 
