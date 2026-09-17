@@ -4750,15 +4750,14 @@ p {
   gap: 1.5rem;
   width: 100%;
   margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 12px;
-  background: #f7f7f7;
+  padding: 0;
+  background: transparent;
 }
 
 .cueturn-ds__card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 3rem;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
@@ -4780,8 +4779,15 @@ p {
   color: rgb(110, 110, 110);
 }
 
+.cueturn-ds__space-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
 .cueturn-ds__card--space .cueturn-ds__kicker {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .cueturn-ds__stages {
@@ -5193,10 +5199,6 @@ p {
 }
 
 @media (max-width: 860px) {
-  .cueturn-ds__card {
-    padding: 1.75rem;
-  }
-
   .cueturn-ds__stages,
   .cueturn-ds__grid--3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
