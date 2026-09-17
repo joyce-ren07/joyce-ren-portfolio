@@ -42,6 +42,11 @@
       0%, 100% { transform: scaleY(.35); }
       50% { transform: scaleY(1); }
     }
+
+    @keyframes cueturn-am-clock {
+      from { transform: scaleX(1); }
+      to { transform: scaleX(0); }
+    }
   </style>
 </head>
 <body class="case-study-page case-study-page--cueturn">
@@ -525,176 +530,69 @@
           noticing &mdash; or missing &mdash; the cue.
         </p>
 
-        <figure class="cueturn-synth" aria-label="Coded notes across anticipation variables, clustered into interaction dimensions, with attention leading into user thoughts">
-          <p class="cueturn-synth__kicker">Anticipation variables</p>
-          <div class="cueturn-synth__vars">
-            <section class="cueturn-synth__var">
-              <h3 class="cueturn-synth__pill">Occupancy</h3>
-              <div class="cueturn-synth__var-cols">
-                <div class="cueturn-synth__col">
-                  <p class="cueturn-synth__col-label">Screen takeover</p>
-                  <div class="cueturn-synth__dots" aria-hidden="true">
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                  </div>
+        <figure class="cueturn-am" aria-label="Interactive affinity map of formative session findings">
+          <p class="cueturn-am__eyebrow">Anticipation variables</p>
+          <div class="cueturn-am__vars">
+            <section class="cueturn-am__card">
+              <h3 class="cueturn-am__chip">Occupancy</h3>
+              <div class="cueturn-am__var-cols">
+                <div class="cueturn-am__col">
+                  <p class="cueturn-am__mini">Screen takeover</p>
+                  <div class="cueturn-am__grid" data-cells="r,r,r,r,r,r,r,r,g" aria-hidden="true"></div>
                 </div>
-                <div class="cueturn-synth__col">
-                  <p class="cueturn-synth__col-label">Sidebar glow</p>
-                  <div class="cueturn-synth__dots" aria-hidden="true">
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                  </div>
+                <div class="cueturn-am__col">
+                  <p class="cueturn-am__mini">Sidebar glow</p>
+                  <div class="cueturn-am__grid" data-cells="g,g,g,g,g,g,y,y" aria-hidden="true"></div>
                 </div>
               </div>
             </section>
-            <section class="cueturn-synth__var">
-              <h3 class="cueturn-synth__pill">Countdown</h3>
-              <div class="cueturn-synth__var-cols">
-                <div class="cueturn-synth__col">
-                  <p class="cueturn-synth__col-label">With numbers</p>
-                  <div class="cueturn-synth__dots" aria-hidden="true">
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                  </div>
+            <section class="cueturn-am__card">
+              <h3 class="cueturn-am__chip">Countdown</h3>
+              <div class="cueturn-am__var-cols">
+                <div class="cueturn-am__col">
+                  <p class="cueturn-am__mini">With numbers</p>
+                  <div class="cueturn-am__grid" data-cells="g,g,g,g,g,g,r,r,r,y,y" aria-hidden="true"></div>
                 </div>
-                <div class="cueturn-synth__col">
-                  <p class="cueturn-synth__col-label">Without numbers</p>
-                  <div class="cueturn-synth__dots" aria-hidden="true">
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                  </div>
+                <div class="cueturn-am__col">
+                  <p class="cueturn-am__mini">Without numbers</p>
+                  <div class="cueturn-am__grid" data-cells="r,r,y,y,g,g,r,y" aria-hidden="true"></div>
                 </div>
               </div>
             </section>
-            <section class="cueturn-synth__var">
-              <h3 class="cueturn-synth__pill">Sound signal</h3>
-              <div class="cueturn-synth__var-cols cueturn-synth__var-cols--3">
-                <div class="cueturn-synth__col">
-                  <p class="cueturn-synth__col-label">No sound</p>
-                  <div class="cueturn-synth__dots" aria-hidden="true">
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                  </div>
+            <section class="cueturn-am__card">
+              <h3 class="cueturn-am__chip">Sound signal</h3>
+              <div class="cueturn-am__var-cols cueturn-am__var-cols--3">
+                <div class="cueturn-am__col">
+                  <p class="cueturn-am__mini">No sound</p>
+                  <div class="cueturn-am__grid" data-cells="r,r,r,r,r,y,r,g" aria-hidden="true"></div>
                 </div>
-                <div class="cueturn-synth__col">
-                  <p class="cueturn-synth__col-label">Single ping</p>
-                  <div class="cueturn-synth__dots" aria-hidden="true">
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                  </div>
+                <div class="cueturn-am__col">
+                  <p class="cueturn-am__mini">Single ping</p>
+                  <div class="cueturn-am__grid" data-cells="g,g,g,g,y,g,g,y,y" aria-hidden="true"></div>
                 </div>
-                <div class="cueturn-synth__col">
-                  <p class="cueturn-synth__col-label">Escalating ping</p>
-                  <div class="cueturn-synth__dots" aria-hidden="true">
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--valued"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--conditional"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                    <span class="cueturn-synth__dot cueturn-synth__dot--pain"></span>
-                  </div>
+                <div class="cueturn-am__col">
+                  <p class="cueturn-am__mini">Escalating ping</p>
+                  <div class="cueturn-am__grid" data-cells="r,r,r,g,y,y,r,r" aria-hidden="true"></div>
                 </div>
               </div>
             </section>
           </div>
-          <ul class="cueturn-synth__legend">
-            <li><span class="cueturn-synth__dot cueturn-synth__dot--pain" aria-hidden="true"></span> Pain point</li>
-            <li><span class="cueturn-synth__dot cueturn-synth__dot--valued" aria-hidden="true"></span> Valued</li>
-            <li><span class="cueturn-synth__dot cueturn-synth__dot--conditional" aria-hidden="true"></span> Conditional</li>
+          <ul class="cueturn-am__legend">
+            <li><span class="cueturn-am__swatch cueturn-am__swatch--pain" aria-hidden="true"></span> Pain point</li>
+            <li><span class="cueturn-am__swatch cueturn-am__swatch--valued" aria-hidden="true"></span> Valued</li>
+            <li><span class="cueturn-am__swatch cueturn-am__swatch--conditional" aria-hidden="true"></span> Conditional</li>
           </ul>
 
-          <div class="cueturn-synth__dims-head">
-            <p class="cueturn-synth__kicker">Interaction dimensions</p>
-            <span class="cueturn-synth__rule" aria-hidden="true"></span>
+          <div class="cueturn-am__dims-head">
+            <p class="cueturn-am__eyebrow">Interaction dimensions</p>
+            <div class="cueturn-am__clock" id="cueturn-am-clock" aria-hidden="true"></div>
           </div>
-          <div class="cueturn-synth__dims">
-            <section class="cueturn-synth__dim cueturn-synth__dim--intensity">
-              <h3 class="cueturn-synth__dim-title">Visual intensity</h3>
-              <div class="cueturn-synth__bars" aria-hidden="true">
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-                <span></span>
-              </div>
-            </section>
-            <section class="cueturn-synth__dim cueturn-synth__dim--interrupt">
-              <h3 class="cueturn-synth__dim-title">Interruption</h3>
-              <div class="cueturn-synth__bars" aria-hidden="true">
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-                <span></span><span></span>
-              </div>
-            </section>
-            <section class="cueturn-synth__dim cueturn-synth__dim--attention">
-              <h3 class="cueturn-synth__dim-title">Attention</h3>
-              <div class="cueturn-synth__bars" aria-hidden="true">
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-              </div>
-            </section>
-            <section class="cueturn-synth__dim cueturn-synth__dim--social">
-              <h3 class="cueturn-synth__dim-title">Social presence</h3>
-              <div class="cueturn-synth__bars" aria-hidden="true">
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-                <span></span><span></span>
-              </div>
-            </section>
-          </div>
-          <div class="cueturn-synth__connector" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span class="cueturn-synth__arrow"></span>
-            <span></span>
-          </div>
+          <div class="cueturn-am__clusters" id="cueturn-am-clusters"></div>
 
-          <p class="cueturn-synth__kicker">User thoughts</p>
-          <div class="cueturn-synth__thoughts">
-            <blockquote class="cueturn-synth__thought">
-              <p>&ldquo;I wasn&rsquo;t constantly looking at the AI blob&hellip; I&rsquo;d be looking away from my screen when I was talking.&rdquo;</p>
-              <footer>Focus</footer>
-            </blockquote>
-            <blockquote class="cueturn-synth__thought">
-              <p>&ldquo;I was mainly focused on the conversation. I only really noticed the AI blob when it interjected or had a question for us.&rdquo;</p>
-              <footer>Noticing</footer>
-            </blockquote>
-            <blockquote class="cueturn-synth__thought">
-              <p>Hard to re-orient after backgrounding</p>
-              <footer>Re-orienting</footer>
-            </blockquote>
+          <p class="cueturn-am__eyebrow">User thoughts</p>
+          <div class="cueturn-am__thoughts-wrap">
+            <div class="cueturn-am__quotes" id="cueturn-am-quotes"></div>
+            <div class="cueturn-am__patterns" id="cueturn-am-patterns"></div>
           </div>
         </figure>
 
@@ -810,6 +708,184 @@
         };
         advance(0);
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      const PAL = { r: "rgb(255,184,168)", g: "rgb(179,239,189)", y: "rgb(255,226,150)" };
+      document.querySelectorAll(".cueturn-am [data-cells]").forEach((el) => {
+        el.innerHTML = el.dataset.cells.split(",").map((c) =>
+          '<i style="background:' + PAL[c.trim()] + '"></i>'
+        ).join("");
+      });
+
+      const THEMES = [
+        {
+          label: "Visual intensity",
+          dotCount: 8,
+          tint: "rgb(248,245,255)",
+          edge: "rgb(220,204,255)",
+          chip: "rgb(224,208,255)",
+          deep: "rgb(145,106,219)",
+          quotes: [
+            { text: "\u201cThe blob taking over the whole screen feels really demeaning\u2026 you can't finish what you're saying.\u201d", meta: "Screen occupancy" },
+            { text: "\u201cIt fills up the entire screen\u2026 Oh my God. It's more intrusive.\u201d", meta: "Escalation" },
+            { text: "\u201cWhen it turned orange for the holding because someone was talking\u2026 I did notice that part.\u201d", meta: "Color as signal" }
+          ],
+          pattern: "Early pattern: Large AI screen presence feels authoritarian; color to show AI's internal state can be good transparency!"
+        },
+        {
+          label: "Interruption",
+          dotCount: 11,
+          tint: "rgb(255,240,224)",
+          edge: "rgb(255,205,194)",
+          chip: "rgb(255,224,193)",
+          deep: "rgb(217,143,63)",
+          quotes: [
+            { text: "\u201cThere's something about its tone that was kind of rude\u2026 the way it interrupted didn't feel natural.\u201d", meta: "Tone" },
+            { text: "\u201cIt kind of just cut someone off and then it started talking.\u201d", meta: "Turn-taking" },
+            { text: "\u201cWe would lose our train of thought, and then we wouldn't remember what we were saying.\u201d", meta: "Cost" }
+          ],
+          pattern: "Early pattern: poorly-timed AI intervention especially amplified negative perceptions"
+        },
+        {
+          label: "Attention",
+          dotCount: 9,
+          tint: "rgb(240,252,250)",
+          edge: "rgb(198,238,231)",
+          chip: "rgb(193,239,232)",
+          deep: "rgb(64,158,145)",
+          quotes: [
+            { text: "\u201cI wasn't constantly looking at the AI blob\u2026 I'd be looking away from my screen when I was talking.\u201d", meta: "Focus" },
+            { text: "\u201cI was mainly focused on the conversation. I only really noticed the AI blob when it interjected or had a question for us.\u201d", meta: "Noticing" },
+            { text: "Hard to re-orient after backgrounding", meta: "Re-orienting" }
+          ],
+          pattern: "Early pattern: the AI sat in the users' mental background until it acted, and resurfacing required signal noticeability"
+        },
+        {
+          label: "Social presence",
+          dotCount: 10,
+          tint: "rgb(245,251,255)",
+          edge: "rgb(194,229,255)",
+          chip: "rgb(196,230,255)",
+          deep: "rgb(76,150,211)",
+          quotes: [
+            { text: "\u201cIf I was having a conversation with a classmate and this comment was coming from a TA or a person, I would be a lot more receptive to it.\u201d", meta: "Authority" },
+            { text: "\u201cThe yellow blob's voice was really off-putting\u2026 kind of staticky, which doesn't feel as natural to talk to.\u201d", meta: "Voice quality" },
+            { text: "\u201cWe shouldn't treat it like a human\u2026 we can't expect it to feel like a human.\u201d", meta: "Expectations" }
+          ],
+          pattern: "Early pattern: AI's inherent social positioning can make this dynamic feel foreign (how can we prime this?)"
+        }
+      ];
+
+      const DUR = 7000;
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let active = 1;
+      let auto = !reduceMotion;
+      let timer = null;
+      let inView = true;
+
+      const elClusters = document.getElementById("cueturn-am-clusters");
+      const elQuotes = document.getElementById("cueturn-am-quotes");
+      const elPatterns = document.getElementById("cueturn-am-patterns");
+      const elClock = document.getElementById("cueturn-am-clock");
+      const wrap = document.querySelector(".cueturn-am");
+      if (!elClusters || !elQuotes || !elPatterns || !elClock || !wrap) return;
+
+      function esc(s) {
+        return s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+      }
+
+      function render() {
+        const t = THEMES[active];
+
+        elClusters.innerHTML = THEMES.map((th, n) => {
+          const on = n === active;
+          const pointer = on ? th.deep : "transparent";
+          const dots = Array.from({ length: th.dotCount }, () =>
+            '<span style="height:15px;border-radius:2px;background:' + th.chip + '"></span>'
+          ).join("");
+          return '<div class="cueturn-am__cluster">' +
+            '<button type="button" data-i="' + n + '" aria-pressed="' + on + '" class="cueturn-am__dim" style="' +
+              'opacity:' + (on ? 1 : 0.55) + ';' +
+              'background:' + th.tint + ';' +
+              'box-shadow:inset 0 0 0 2px ' + (on ? th.deep : th.edge) + ';' +
+              'transform:translateY(' + (on ? "-2px" : "0") + ');">' +
+              '<span class="cueturn-am__dim-title">' + th.label + '</span>' +
+              '<span class="cueturn-am__bars">' + dots + '</span>' +
+            '</button>' +
+            '<span class="cueturn-am__pointer-stem" style="height:' + (on ? "30px" : "0") + ';background:' + pointer + '"></span>' +
+            '<span class="cueturn-am__pointer-head" style="border-right-color:' + pointer + ';border-bottom-color:' + pointer + '"></span>' +
+          '</div>';
+        }).join("");
+
+        elQuotes.innerHTML = t.quotes.map((q) =>
+          '<blockquote class="cueturn-am__quote" style="background:' + t.chip + '">' +
+            '<p>' + esc(q.text) + '</p>' +
+            '<footer>' + esc(q.meta) + '</footer>' +
+          '</blockquote>'
+        ).join("");
+
+        elPatterns.innerHTML =
+          '<div class="cueturn-am__pattern">' +
+            '<span class="cueturn-am__pattern-dot" style="background:' + t.chip + '"></span>' +
+            '<p>' + esc(t.pattern) + '</p>' +
+          '</div>';
+
+        elClock.innerHTML = "";
+        if (auto && inView && !reduceMotion) {
+          const fill = document.createElement("div");
+          fill.className = "cueturn-am__clock-fill";
+          fill.style.background = t.deep;
+          fill.style.animationDuration = DUR + "ms";
+          elClock.appendChild(fill);
+        }
+      }
+
+      function schedule() {
+        clearTimeout(timer);
+        if (!auto || !inView || reduceMotion) return;
+        timer = setTimeout(() => {
+          active = (active + 1) % THEMES.length;
+          render();
+          schedule();
+        }, DUR);
+      }
+
+      function jump(n) {
+        auto = false;
+        clearTimeout(timer);
+        active = n;
+        render();
+      }
+
+      elClusters.addEventListener("click", (e) => {
+        const card = e.target.closest("[data-i]");
+        if (card) jump(+card.dataset.i);
+      });
+
+      wrap.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+          e.preventDefault();
+          jump((active + 1) % THEMES.length);
+        }
+        if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+          e.preventDefault();
+          jump((active + THEMES.length - 1) % THEMES.length);
+        }
+      });
+
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((entries) => {
+          inView = entries.some((entry) => entry.isIntersecting);
+          if (inView) schedule();
+          else clearTimeout(timer);
+        }, { threshold: 0.2 });
+        io.observe(wrap);
+      }
+
+      render();
+      schedule();
     })();
   </script>
   <script src="../../js/main.js"></script>
