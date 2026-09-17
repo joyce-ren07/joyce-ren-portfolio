@@ -828,7 +828,7 @@
           '</div>';
 
         elClock.innerHTML = "";
-        if (auto && inView && !reduceMotion) {
+        if (auto && !reduceMotion) {
           const fill = document.createElement("div");
           fill.className = "cueturn-am__clock-fill";
           fill.style.background = t.deep;
@@ -848,6 +848,7 @@
       }
 
       function jump(n) {
+        inView = true;
         active = n;
         render();
         schedule();
@@ -874,7 +875,7 @@
           inView = entries.some((entry) => entry.isIntersecting);
           if (inView) schedule();
           else clearTimeout(timer);
-        }, { threshold: 0.2 });
+        }, { threshold: 0, rootMargin: "80px" });
         io.observe(wrap);
       }
 

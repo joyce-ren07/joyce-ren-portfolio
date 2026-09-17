@@ -928,7 +928,7 @@
     const restartClock = () => {
       if (!clock) return;
       clock.innerHTML = "";
-      if (!auto || !inView || reduceMotion) return;
+      if (!auto || reduceMotion) return;
       const fill = document.createElement("div");
       fill.className = "cueturn-am__clock-fill";
       fill.style.background = "rgb(30, 30, 30)";
@@ -960,6 +960,7 @@
     };
 
     const jump = (key) => {
+      inView = true;
       show(key);
       schedule();
     };
@@ -977,7 +978,7 @@
         } else {
           clearTimeout(timer);
         }
-      }, { threshold: 0.2 });
+      }, { threshold: 0, rootMargin: "80px" });
       io.observe(root);
     }
 
