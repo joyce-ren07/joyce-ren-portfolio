@@ -14,35 +14,6 @@
   <link rel="apple-touch-icon" href="../../assets/favicon/apple-touch-icon.png">
   <link rel="stylesheet" href="../../css/main.css">
   <style>
-    .cueturn-countdown-demo {
-      font-family: var(--font-sans);
-    }
-
-    @keyframes morph {
-      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-      50% { border-radius: 40% 60% 65% 35% / 45% 65% 35% 60%; }
-    }
-
-    @keyframes breathe {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.075); }
-    }
-
-    @keyframes breatheFast {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.11); }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 20px 2px rgba(245, 205, 60, .4); }
-      50% { box-shadow: 0 0 36px 9px rgba(245, 205, 60, .75); }
-    }
-
-    @keyframes vibeBar {
-      0%, 100% { transform: scaleY(.35); }
-      50% { transform: scaleY(1); }
-    }
-
     @keyframes cueturn-am-clock {
       from { transform: scaleX(1); }
       to { transform: scaleX(0); }
@@ -153,16 +124,33 @@
           prepare the group for AI intervention, examining:
         </p>
 
-        <div class="case-image-grid case-image-grid--stacked case-image-grid--focus-questions">
-          <img
-            src="../../assets/images/cueturn/cueturn-focus-questions.png"
-            alt="CueTurn focus questions: how anticipation signals shaped noticeability and perceived disruption; how timing and delivery style influenced participant response to AI intervention"
-            class="case-image-grid__img case-image-grid__img--flat"
-            loading="lazy"
-            width="1574"
-            height="590"
-            decoding="async"
-          >
+        <div
+          class="cueturn-ds cueturn-focus"
+          role="img"
+          aria-label="CueTurn focus questions: how anticipation signals shaped noticeability and perceived disruption; how timing and delivery style influenced participant response to AI intervention"
+        >
+          <div class="cueturn-focus__rail" aria-hidden="true">
+            <figure class="cueturn-focus__step">
+              <div class="cueturn-ds__blob cueturn-ds__blob--listen"></div>
+              <figcaption class="cueturn-focus__label cueturn-focus__label--signal">Signal</figcaption>
+            </figure>
+            <span class="cueturn-focus__arrow"></span>
+            <figure class="cueturn-focus__step">
+              <div class="cueturn-ds__blob cueturn-ds__blob--speak"></div>
+              <figcaption class="cueturn-focus__label cueturn-focus__label--delivery">Delivery</figcaption>
+            </figure>
+          </div>
+
+          <ol class="cueturn-focus__list">
+            <li class="cueturn-focus__item">
+              <span class="cueturn-focus__num cueturn-focus__num--signal">1</span>
+              <p class="cueturn-focus__q">How anticipation signals shaped noticeability<br>and perceived disruption</p>
+            </li>
+            <li class="cueturn-focus__item">
+              <span class="cueturn-focus__num cueturn-focus__num--delivery">2</span>
+              <p class="cueturn-focus__q">How timing and delivery style influenced<br>participant response to AI intervention</p>
+            </li>
+          </ol>
         </div>
       </section>
 
@@ -431,52 +419,48 @@
           <strong class="case-emphasis">explicitness</strong>: visible numbers versus a less explicit timer.
         </p>
 
-        <div class="cueturn-countdown-demo" data-countdown-comparison style="width:min(1080px,100%); margin:0 auto; padding:40px;">
-
-          <!-- ============ FORMAT: Ring vs Bar Countdown ============ -->
-          <div class="cueturn-countdown-demo__comparison-row cueturn-countdown-demo__comparison-row--format" data-countdown-row="format" style="display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px; margin-bottom:28px;">
-
-            <div style="background:#fff; border:1px solid #e5e5ea; border-radius:18px; padding:16px 16px 22px; box-shadow:0 4px 20px rgba(0,0,0,.05); transition:transform .15s;">
-              <div style="position:relative; height:184px; border-radius:10px; background:#fff; overflow:hidden;" data-stage-cycle="fmt-ring">
-                <div class="stage-inner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; opacity:1; transition:opacity .35s ease;"></div>
-              </div>
-              <div style="font-size:16px; font-weight:600; margin:14px 0 2px; color:#1d1d1f; letter-spacing:-.01em;">Ring Countdown</div>
+        <div class="cueturn-ds cueturn-narrow">
+          <section class="cueturn-ds__card cueturn-ds__card--space" aria-labelledby="cueturn-narrow-form-label">
+            <h4 class="cueturn-ds__kicker" id="cueturn-narrow-form-label">Countdown form</h4>
+            <div class="cueturn-narrow__row">
+              <figure class="cueturn-ds__variant">
+                <div class="cueturn-narrow__stage" data-stage-cycle="fmt-ring">
+                  <div class="cueturn-narrow__inner stage-inner"></div>
+                </div>
+                <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">Ring countdown</figcaption>
+              </figure>
+              <span class="cueturn-narrow__vs">vs</span>
+              <figure class="cueturn-ds__variant">
+                <div class="cueturn-narrow__stage" data-stage-cycle="fmt-bar">
+                  <div class="cueturn-narrow__inner stage-inner"></div>
+                </div>
+                <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">Bar countdown</figcaption>
+              </figure>
             </div>
+          </section>
 
-            <span style="font-size:13px; font-weight:700; color:#a1a1a6; letter-spacing:.02em;">vs</span>
-
-            <div style="background:#fff; border:1px solid #e5e5ea; border-radius:18px; padding:16px 16px 22px; box-shadow:0 4px 20px rgba(0,0,0,.05); transition:transform .15s;">
-              <div style="position:relative; height:184px; border-radius:10px; background:#fff; overflow:hidden;" data-stage-cycle="fmt-bar">
-                <div class="stage-inner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; opacity:1; transition:opacity .35s ease;"></div>
-              </div>
-              <div style="font-size:16px; font-weight:600; margin:14px 0 2px; color:#1d1d1f; letter-spacing:-.01em;">Bar Countdown</div>
-            </div>
+          <div class="cueturn-narrow__arrow" aria-hidden="true">
+            <img src="../../assets/images/uber-med/hifi-flow-arrow.png" alt="">
           </div>
 
-          <!-- ============ Transition arrow ============ -->
-          <div style="display:flex; flex-direction:column; align-items:center; gap:2px; margin:6px 0 26px;">
-            <img src="../../assets/images/uber-med/hifi-flow-arrow.png" alt="" style="width:130px; height:auto; transform:rotate(80deg); filter:grayscale(1); opacity:.55; margin:14px 0;">
-          </div>
-
-          <!-- ============ EXPLICITNESS: numbers vs no numbers ============ -->
-          <div class="cueturn-countdown-demo__comparison-row cueturn-countdown-demo__comparison-row--explicitness" data-countdown-row="explicitness" style="display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px; margin-bottom:40px;">
-
-            <div style="background:#fff; border:1px solid #e5e5ea; border-radius:18px; padding:16px 16px 22px; box-shadow:0 4px 20px rgba(0,0,0,.05); transition:transform .15s;">
-              <div style="position:relative; height:184px; border-radius:10px; background:#fff; overflow:hidden;" data-stage-cycle="expl-num">
-                <div class="stage-inner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; opacity:1; transition:opacity .35s ease;"></div>
-              </div>
-              <div style="font-size:16px; font-weight:600; margin:14px 0 2px; color:#1d1d1f; letter-spacing:-.01em;">Countdown with numbers</div>
+          <section class="cueturn-ds__card cueturn-ds__card--space" aria-labelledby="cueturn-narrow-explicit-label">
+            <h4 class="cueturn-ds__kicker" id="cueturn-narrow-explicit-label">Explicitness</h4>
+            <div class="cueturn-narrow__row">
+              <figure class="cueturn-ds__variant">
+                <div class="cueturn-narrow__stage" data-stage-cycle="expl-num">
+                  <div class="cueturn-narrow__inner stage-inner"></div>
+                </div>
+                <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">With numbers</figcaption>
+              </figure>
+              <span class="cueturn-narrow__vs">vs</span>
+              <figure class="cueturn-ds__variant">
+                <div class="cueturn-narrow__stage" data-stage-cycle="expl-nonum">
+                  <div class="cueturn-narrow__inner stage-inner"></div>
+                </div>
+                <figcaption class="cueturn-ds__caption cueturn-ds__caption--center">Without numbers</figcaption>
+              </figure>
             </div>
-
-            <span style="font-size:13px; font-weight:700; color:#a1a1a6; letter-spacing:.02em;">vs</span>
-
-            <div style="background:#fff; border:1px solid #e5e5ea; border-radius:18px; padding:16px 16px 22px; box-shadow:0 4px 20px rgba(0,0,0,.05); transition:transform .15s;">
-              <div style="position:relative; height:184px; border-radius:10px; background:#fff; overflow:hidden;" data-stage-cycle="expl-nonum">
-                <div class="stage-inner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; opacity:1; transition:opacity .35s ease;"></div>
-              </div>
-              <div style="font-size:16px; font-weight:600; margin:14px 0 2px; color:#1d1d1f; letter-spacing:-.01em;">Countdown without numbers</div>
-            </div>
-          </div>
+          </section>
         </div>
 
         <h3 class="case-subheading case-subheading--large">Designing the experimental study</h3>
@@ -621,39 +605,54 @@
       if (!boxes.length) return;
       const timers = [];
 
-      const lightListening = { ms: 2200, bg: '#fff', html:
-        '<div style="width:50px;height:50px;background:radial-gradient(circle at 35% 30%,#8bf3e0,#1f9e8e 72%);box-shadow:0 0 20px rgba(31,158,142,.35);border-radius:60% 40% 30% 70%/60% 30% 70% 40%;animation:morph 7s ease-in-out infinite, breathe 3.4s ease-in-out infinite;"></div>' +
-        '<span style="font-size:11px;letter-spacing:normal;color:#1f7d70;">Listening</span>' };
+      const blob = (kind) =>
+        '<div class="cueturn-ds__blob cueturn-ds__blob--' + kind + '"></div>';
+      const status = (kind, label) =>
+        '<span class="cueturn-ds__stage-status cueturn-ds__stage-status--' + kind + '">' + label + '</span>';
+      const ringSvg =
+        '<div class="cueturn-narrow__ring-wrap">' +
+        '<svg class="cueturn-narrow__ring" width="92" height="92" viewBox="0 0 92 92" aria-hidden="true">' +
+        '<circle cx="46" cy="46" r="36" fill="none" stroke="rgba(219,116,32,0.16)" stroke-width="3"></circle>' +
+        '<circle class="cd-ring" cx="46" cy="46" r="36" fill="none" stroke="#db7420" stroke-width="3" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="0"></circle>' +
+        '</svg>' + blob('count') + '</div>';
+      const countBar =
+        '<div class="cueturn-ds__count-bar"><div class="cueturn-ds__count-bar-fill cd-fill"></div></div>';
+      const countNum =
+        '<span class="cd-num cueturn-ds__num cueturn-narrow__num">3</span>';
 
-      const lightCountdownCircle = { ms: 2700, countdown: true, bg: '#fff', html:
-        '<div style="position:relative;width:92px;height:92px;display:flex;align-items:center;justify-content:center;">' +
-        '<svg width="92" height="92" viewBox="0 0 92 92" style="position:absolute;transform:rotate(-90deg);"><circle cx="46" cy="46" r="36" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="3"></circle><circle class="cd-ring" cx="46" cy="46" r="36" fill="none" stroke="#c97a1f" stroke-width="3" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="0"></circle></svg>' +
-        '<div style="width:52px;height:52px;background:radial-gradient(circle at 35% 30%,#ffb877,#e8791f 72%);border-radius:55% 45% 40% 60%;box-shadow:0 0 18px rgba(201,122,31,.35);animation:morph 7s ease-in-out infinite, breathe 1.4s ease-in-out infinite;"></div></div>' +
-        '<span style="font-size:11px;letter-spacing:normal;color:#a05f18;">Speaking in</span>' +
-        '<span class="cd-num" style="font-family:\'IBM Plex Mono\',monospace;font-size:32px;font-weight:700;color:#a05f18;line-height:1;">3</span>' };
+      const lightListening = {
+        ms: 2200,
+        phase: 'listen',
+        html: blob('listen') + status('listen', 'Listening')
+      };
 
-      const lightCountdownCircleNoNum = { ms: 2700, countdown: true, bg: '#fff', html:
-        '<div style="position:relative;width:92px;height:92px;display:flex;align-items:center;justify-content:center;">' +
-        '<svg width="92" height="92" viewBox="0 0 92 92" style="position:absolute;transform:rotate(-90deg);"><circle cx="46" cy="46" r="36" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="3"></circle><circle class="cd-ring" cx="46" cy="46" r="36" fill="none" stroke="#c97a1f" stroke-width="3" stroke-linecap="round" stroke-dasharray="226" stroke-dashoffset="0"></circle></svg>' +
-        '<div style="width:52px;height:52px;background:radial-gradient(circle at 35% 30%,#ffb877,#e8791f 72%);border-radius:55% 45% 40% 60%;box-shadow:0 0 18px rgba(201,122,31,.35);animation:morph 7s ease-in-out infinite, breathe 1.4s ease-in-out infinite;"></div></div>' +
-        '<span style="font-size:11px;letter-spacing:normal;color:#a05f18;">Speaking soon</span>' };
+      const lightCountdownCircle = {
+        ms: 2700,
+        phase: 'count',
+        countdown: true,
+        html: ringSvg + status('count', 'About to speak') + countNum
+      };
 
-      const lightCountdownBar = { ms: 2700, countdown: true, bg: '#fff', html:
-        '<div style="width:46px;height:46px;background:radial-gradient(circle at 35% 30%,#ffb877,#e8791f 72%);box-shadow:0 0 18px rgba(201,122,31,.35);border-radius:55% 45% 40% 60%;animation:morph 6s ease-in-out infinite, breatheFast 1.3s ease-in-out infinite, pulseGlow 1.3s ease-in-out infinite;"></div>' +
-        '<div style="display:flex;align-items:center;gap:10px;">' +
-        '<span class="cd-num" style="font-family:\'IBM Plex Mono\',monospace;font-size:15px;font-weight:600;color:#a05f18;min-width:12px;text-align:center;">3</span>' +
-        '<div style="width:88px;height:5px;background:rgba(0,0,0,.1);border-radius:3px;overflow:hidden;"><div class="cd-fill" style="height:100%;width:100%;background:#a05f18;border-radius:3px;"></div></div>' +
-        '</div>' };
+      const lightCountdownCircleNoNum = {
+        ms: 2700,
+        phase: 'count',
+        countdown: true,
+        html: ringSvg + status('count', 'About to speak')
+      };
 
-      const lightVibeBars = (() => {
-        const heights = [8, 15, 22, 14, 9], delays = [0, .12, .24, .36, .48];
-        return '<div style="display:flex;align-items:center;gap:3px;height:22px;">' +
-          heights.map((h, i) => `<div style="width:3px;height:${h}px;background:#b8492a;border-radius:2px;animation:vibeBar .9s ease-in-out infinite;animation-delay:${delays[i]}s;"></div>`).join('') +
-          '</div>';
-      })();
-      const lightSpeakingHtml = '<div style="width:56px;height:56px;background:radial-gradient(circle at 35% 30%,#ffb27a,#e5471a 72%);box-shadow:0 0 22px rgba(184,73,42,.3);border-radius:50%;animation:morph 4s ease-in-out infinite, breatheFast 1s ease-in-out infinite;"></div>' +
-        '<span style="font-size:11px;letter-spacing:normal;color:#b8492a;">Speaking</span>' + lightVibeBars;
-      const lightSpeakingStretched = { ms: 3550, bg: '#fff', html: lightSpeakingHtml };
+      const lightCountdownBar = {
+        ms: 2700,
+        phase: 'count',
+        countdown: true,
+        html: blob('count') + status('count', 'About to speak') + countNum + countBar
+      };
+
+      const lightSpeakingStretched = {
+        ms: 3550,
+        phase: 'speak',
+        html: blob('speak') + status('speak', 'Speaking') +
+          '<div class="cueturn-narrow__vibe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>'
+      };
 
       const sequences = {
         'fmt-ring': [lightListening, lightCountdownCircle, lightSpeakingStretched],
@@ -692,8 +691,8 @@
         const advance = (idx) => {
           inner.innerHTML = seq[idx].html;
           inner.style.opacity = '1';
-          box.style.transition = 'background .4s ease';
-          box.style.background = seq[idx].bg || '#fff';
+          box.classList.remove('is-listen', 'is-count', 'is-speak');
+          box.classList.add('is-' + (seq[idx].phase || 'listen'));
           if (seq[idx].countdown) runCountdown(inner, seq[idx].ms);
           const t1 = setTimeout(() => {
             inner.style.opacity = '0';
