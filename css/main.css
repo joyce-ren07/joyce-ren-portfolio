@@ -4779,8 +4779,15 @@ p {
   color: rgb(110, 110, 110);
 }
 
+.cueturn-ds__space-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
 .cueturn-ds__card--space .cueturn-ds__kicker {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .cueturn-ds__stages {

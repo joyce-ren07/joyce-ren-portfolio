@@ -916,8 +916,28 @@
   document.querySelectorAll("[data-cueturn-ds]").forEach((root) => {
     const tabs = Array.from(root.querySelectorAll("[data-tab]"));
     const panels = Array.from(root.querySelectorAll("[data-panel]"));
+    const clock = root.querySelector("#cueturn-ds-clock");
+    const keys = tabs.map((tab) => tab.dataset.tab);
+    const DUR = 7000;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let auto = !reduceMotion;
+    let timer = null;
+    let inView = true;
+    let index = Math.max(0, keys.indexOf("notif"));
+
+    const restartClock = () => {
+      if (!clock) return;
+      clock.innerHTML = "";
+      if (!auto || !inView || reduceMotion) return;
+      const fill = document.createElement("div");
+      fill.className = "cueturn-am__clock-fill";
+      fill.style.background = "rgb(30, 30, 30)";
+      fill.style.animationDuration = DUR + "ms";
+      clock.appendChild(fill);
+    };
 
     const show = (key) => {
+      index = Math.max(0, keys.indexOf(key));
       tabs.forEach((tab) => {
         const on = tab.dataset.tab === key;
         tab.setAttribute("aria-selected", on ? "true" : "false");
@@ -927,13 +947,43 @@
         const on = panel.dataset.panel === key;
         panel.hidden = !on;
       });
+      restartClock();
+    };
+
+    const schedule = () => {
+      clearTimeout(timer);
+      if (!auto || !inView || reduceMotion || !keys.length) return;
+      timer = setTimeout(() => {
+        show(keys[(index + 1) % keys.length]);
+        schedule();
+      }, DUR);
+    };
+
+    const jump = (key) => {
+      auto = false;
+      clearTimeout(timer);
+      show(key);
     };
 
     tabs.forEach((tab) => {
-      tab.addEventListener("click", () => show(tab.dataset.tab));
+      tab.addEventListener("click", () => jump(tab.dataset.tab));
     });
 
-    show("notif");
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        inView = entries.some((entry) => entry.isIntersecting);
+        if (inView) {
+          restartClock();
+          schedule();
+        } else {
+          clearTimeout(timer);
+        }
+      }, { threshold: 0.2 });
+      io.observe(root);
+    }
+
+    show(keys[index] || "notif");
+    schedule();
   });
 
   /* CueTurn countdown comparison — de-emphasize the earlier pair as the next pair enters view */
