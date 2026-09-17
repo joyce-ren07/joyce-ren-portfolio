@@ -4759,6 +4759,11 @@ p {
   background: transparent;
 }
 
+.cueturn-ds--stages {
+  margin-top: 0;
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
 .cueturn-ds__card {
   background: transparent;
   border-radius: 0;
@@ -5491,16 +5496,11 @@ p {
   margin-bottom: var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
 }
 
-.case-study-page--cueturn #process .case-body--tertiary:has(+ .case-insights) {
+.case-study-page--cueturn #process .case-body--tertiary:has(+ .cueturn-ds--stages) {
   margin-bottom: var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
 }
 
-.case-study-page--cueturn #process .case-insights {
-  margin: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
-  gap: 0.35rem;
-}
-
-.case-study-page--cueturn #process .case-insights + .case-body {
+.case-study-page--cueturn #process .cueturn-ds--stages + .case-body {
   margin-top: 0;
 }
 
