@@ -912,6 +912,28 @@
     revealItems.forEach((item) => observer.observe(item));
   });
 
+  /* CueTurn focus questions — dim the top row as soon as the bottom row enters view */
+  document.querySelectorAll(".cueturn-focus").forEach((block) => {
+    const bottomRow = block.querySelector(".cueturn-focus__item:last-child");
+    if (!bottomRow) return;
+
+    if (!("IntersectionObserver" in window)) {
+      block.classList.add("is-bottom-active");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          block.classList.toggle("is-bottom-active", entry.isIntersecting);
+        });
+      },
+      { threshold: 0, rootMargin: "0px 0px 0px 0px" }
+    );
+
+    observer.observe(bottomRow);
+  });
+
   /* CueTurn design-space tabs */
   document.querySelectorAll("[data-cueturn-ds]").forEach((root) => {
     const tabs = Array.from(root.querySelectorAll("[data-tab]"));

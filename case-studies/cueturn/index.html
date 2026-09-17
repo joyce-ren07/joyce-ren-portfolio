@@ -134,7 +134,12 @@
               <div class="cueturn-ds__blob cueturn-ds__blob--listen"></div>
               <figcaption class="cueturn-focus__label cueturn-focus__label--signal">Signal</figcaption>
             </figure>
-            <span class="cueturn-focus__arrow"></span>
+            <span class="cueturn-focus__arrow" aria-hidden="true">
+              <svg viewBox="0 0 32 48" role="presentation">
+                <path d="M16 3v30"></path>
+                <path d="M6 24l10 14 10-14"></path>
+              </svg>
+            </span>
             <figure class="cueturn-focus__step">
               <div class="cueturn-ds__blob cueturn-ds__blob--speak"></div>
               <figcaption class="cueturn-focus__label cueturn-focus__label--delivery">Delivery</figcaption>
@@ -200,10 +205,7 @@
 
         <h3 class="case-subheading case-subheading--large">Investigation 1: Anticipation signals</h3>
         <p class="case-body case-body--tertiary">
-          How can AI signal an upcoming intervention without feeling disruptive?
-        </p>
-        <p class="case-body case-body--tertiary">
-          We designed the anticipatory period before the AI spoke as a sequence of stages:
+          How can AI signal an upcoming intervention without feeling disruptive? To start, we designed the anticipatory period before the AI spoke as a sequence of stages:
         </p>
         <div class="cueturn-ds cueturn-ds--stages">
           <section class="cueturn-ds__card" aria-labelledby="cueturn-ds-stages-label">
