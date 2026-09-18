@@ -917,21 +917,17 @@
     const bottomRow = block.querySelector(".cueturn-ds__card:last-child");
     if (!bottomRow) return;
 
-    if (!("IntersectionObserver" in window)) {
-      block.classList.add("is-bottom-active");
-      return;
-    }
+    const update = () => {
+      const rect = bottomRow.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const fullyInView =
+        rect.height > 0 && rect.top >= -1 && rect.bottom <= vh + 1;
+      block.classList.toggle("is-bottom-active", fullyInView);
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          block.classList.toggle("is-bottom-active", entry.intersectionRatio >= 1);
-        });
-      },
-      { threshold: [0, 1], rootMargin: "0px 0px 0px 0px" }
-    );
-
-    observer.observe(bottomRow);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
   });
 
   /* CueTurn design-space tabs */
