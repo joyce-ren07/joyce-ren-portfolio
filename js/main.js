@@ -1267,10 +1267,16 @@
     const track = aboutCarousel.querySelector(".about-carousel__track");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const originals = Array.from(track.children);
+    const setCount = originals.length;
 
-    originals.forEach((card) => {
-      track.appendChild(card.cloneNode(true));
-    });
+    const appendCopy = () => {
+      originals.forEach((card) => {
+        track.appendChild(card.cloneNode(true));
+      });
+    };
+
+    appendCopy();
+    appendCopy();
 
     const applyArc = () => {
       const cards = track.querySelectorAll(".about-carousel__card");
@@ -1290,11 +1296,10 @@
     applyArc();
 
     const measureLoop = () => {
-      const styles = window.getComputedStyle(track);
-      const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
-      return originals.reduce((sum, card, index) => {
-        return sum + card.getBoundingClientRect().width + (index < originals.length - 1 ? gap : 0);
-      }, 0) + gap;
+      const first = track.children[0];
+      const nextSet = track.children[setCount];
+      if (!first || !nextSet) return 0;
+      return nextSet.offsetLeft - first.offsetLeft;
     };
 
     window.addEventListener("resize", applyArc);
@@ -1305,10 +1310,14 @@
     if (!reducedMotion) {
       let offset = 0;
       let lastTime = performance.now();
-      let loopWidth = measureLoop();
+      let loopWidth = 0;
 
       const measure = () => {
-        loopWidth = measureLoop();
+        const nextWidth = measureLoop();
+        if (nextWidth > 0) {
+          if (loopWidth > 0) offset = offset % nextWidth;
+          loopWidth = nextWidth;
+        }
       };
 
       measure();
@@ -1317,12 +1326,16 @@
         if (!img.complete) img.addEventListener("load", measure, { once: true });
       });
 
+      if (typeof ResizeObserver === "function") {
+        const ro = new ResizeObserver(measure);
+        originals.forEach((card) => ro.observe(card));
+      }
+
       const tick = (now) => {
         const delta = Math.min(48, now - lastTime);
         lastTime = now;
         if (loopWidth > 0) {
-          offset += delta * 0.038;
-          if (offset >= loopWidth) offset -= loopWidth;
+          offset = (offset + delta * 0.038) % loopWidth;
           track.style.transform = `translate3d(${-offset}px, 0, 0)`;
         }
         applyArc();
