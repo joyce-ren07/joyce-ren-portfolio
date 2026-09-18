@@ -912,9 +912,9 @@
     revealItems.forEach((item) => observer.observe(item));
   });
 
-  /* CueTurn focus questions — dim the top row as soon as the bottom row enters view */
-  document.querySelectorAll(".cueturn-focus").forEach((block) => {
-    const bottomRow = block.querySelector(".cueturn-focus__item:last-child");
+  /* CueTurn narrowing visual — dim countdown form as soon as explicitness enters view */
+  document.querySelectorAll(".cueturn-narrow").forEach((block) => {
+    const bottomRow = block.querySelector(".cueturn-ds__card:last-child");
     if (!bottomRow) return;
 
     if (!("IntersectionObserver" in window)) {
