@@ -5400,7 +5400,7 @@ p {
   stroke: currentColor;
   stroke-width: 2.75;
   stroke-linecap: round;
-  stroke-linejoin: miter;
+  stroke-linejoin: round;
   stroke-miterlimit: 2.4;
 }
 
