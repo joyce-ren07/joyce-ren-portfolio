@@ -617,12 +617,6 @@
       const countNum =
         '<span class="cd-num cueturn-ds__num cueturn-narrow__num">3</span>';
 
-      const lightListening = {
-        ms: 2200,
-        phase: 'listen',
-        html: blob('listen') + status('listen', 'Listening')
-      };
-
       const lightCountdownCircle = {
         ms: 2700,
         phase: 'count',
@@ -652,10 +646,10 @@
       };
 
       const sequences = {
-        'fmt-ring': [lightListening, lightCountdownCircle, lightSpeakingStretched],
-        'fmt-bar': [lightListening, lightCountdownBar, lightSpeakingStretched],
-        'expl-num': [lightListening, lightCountdownCircle, lightSpeakingStretched],
-        'expl-nonum': [lightListening, lightCountdownCircleNoNum, lightSpeakingStretched]
+        'fmt-ring': [lightCountdownCircle, lightSpeakingStretched],
+        'fmt-bar': [lightCountdownBar, lightSpeakingStretched],
+        'expl-num': [lightCountdownCircle, lightSpeakingStretched],
+        'expl-nonum': [lightCountdownCircleNoNum, lightSpeakingStretched]
       };
 
       function runCountdown(inner, ms) {
