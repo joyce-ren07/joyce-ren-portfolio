@@ -5543,9 +5543,13 @@ p {
   color: var(--cueturn-accent);
 }
 
-/* Diagram → following body: match heading-to-body gap used on other case studies */
-.case-study-page--cueturn #process .case-image-grid--stacked:has(+ .case-body) {
+/* Body → following diagram: match heading-to-body gap used on other case studies */
+.case-study-page--cueturn #process .case-body:has(+ .case-image-grid--stacked) {
   margin-bottom: var(--case-feature-heading-to-body, clamp(0.75rem, 1.5vw, 1rem));
+}
+
+.case-study-page--cueturn #process .case-body + .case-image-grid--stacked {
+  margin-top: 0;
 }
 
 .case-study-page--cueturn .cueturn-am {
