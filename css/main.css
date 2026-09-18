@@ -5395,13 +5395,9 @@ p {
   overflow: visible;
 }
 
-.cueturn-narrow__arrow path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-miterlimit: 2.4;
+.cueturn-narrow__arrow :is(path, rect, polygon) {
+  fill: currentColor;
+  stroke: none;
 }
 
 .cueturn-narrow__stage {
