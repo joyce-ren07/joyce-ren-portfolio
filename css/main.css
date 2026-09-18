@@ -5322,7 +5322,7 @@ p {
   margin: 0;
   width: 100%;
   font-family: var(--font-sans);
-  font-size: var(--text-secondary-size);
+  font-size: var(--case-tertiary-size, var(--text-tertiary-size));
   font-weight: 500;
   line-height: 1.25;
   color: #1d1d1f;

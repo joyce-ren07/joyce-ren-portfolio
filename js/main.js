@@ -912,7 +912,7 @@
     revealItems.forEach((item) => observer.observe(item));
   });
 
-  /* CueTurn narrowing visual — dim countdown form as soon as explicitness enters view */
+  /* CueTurn narrowing visual — dim countdown form only once explicitness is fully in view */
   document.querySelectorAll(".cueturn-narrow").forEach((block) => {
     const bottomRow = block.querySelector(".cueturn-ds__card:last-child");
     if (!bottomRow) return;
@@ -925,10 +925,10 @@
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          block.classList.toggle("is-bottom-active", entry.isIntersecting);
+          block.classList.toggle("is-bottom-active", entry.intersectionRatio >= 1);
         });
       },
-      { threshold: 0, rootMargin: "0px 0px 0px 0px" }
+      { threshold: [0, 1], rootMargin: "0px 0px 0px 0px" }
     );
 
     observer.observe(bottomRow);
