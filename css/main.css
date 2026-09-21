@@ -11642,6 +11642,14 @@ p {
   transition: height 1.05s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Avoid a first-paint leap from dispersed slots / auto height into the stack. */
+.canvas-page .canvas-gallery__collage:not(.is-ready),
+.canvas-page .canvas-gallery__collage:not(.is-ready) .canvas-gallery__image,
+.canvas-page .canvas-gallery__collage:not(.is-ready) .canvas-gallery__media,
+.canvas-page .canvas-gallery__collage:not(.is-ready) .canvas-gallery__media img {
+  transition: none;
+}
+
 .canvas-page .canvas-gallery__collage.is-stacked {
   height: var(--canvas-stack-height);
   min-height: var(--canvas-stack-height);
@@ -11741,9 +11749,7 @@ p {
   --stack-x: 0px;
   --stack-y: 0px;
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: block;
   width: var(--canvas-plate-w);
   max-width: min(44vw, 15rem);
   min-width: 0;
@@ -11794,6 +11800,11 @@ p {
   --stack-y: -0.15rem;
   z-index: 30;
   pointer-events: auto;
+}
+
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__media {
+  min-height: 15rem;
+  background: #eae6e0;
 }
 
 /* Hover: fan only while the painting stack itself is hovered/focused — not empty collage padding */
@@ -12033,12 +12044,16 @@ p {
   position: relative;
   display: block;
   width: 100%;
-  overflow: visible;
+  overflow: hidden;
   border: 0;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
   transition: transform 0.3s ease;
+}
+
+.canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__media {
+  overflow: visible;
 }
 
 .canvas-page .canvas-gallery__media img {
@@ -12049,6 +12064,10 @@ p {
   object-fit: contain;
   object-position: center top;
   background: transparent;
+  /* Safari paints alt text over replaced images; keep it invisible. */
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
   transition: transform 0.45s ease;
 }
 
