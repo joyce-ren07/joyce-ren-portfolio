@@ -1964,6 +1964,16 @@
     }
     window.addEventListener("resize", fitCollageHeight);
 
+    const markCollageReady = () => {
+      if (!collage) return;
+      collage.classList.add("is-ready");
+    };
+    if (collage) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(markCollageReady);
+      });
+    }
+
     if (collage) {
       const onStackActivate = (event) => {
         if (dispersed) return;
