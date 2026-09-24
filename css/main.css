@@ -11803,8 +11803,32 @@ p {
 }
 
 .canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__media {
-  min-height: 15rem;
-  background: #eae6e0;
+  min-height: 0;
+  background: transparent;
+  line-height: 0;
+}
+
+.canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__media img {
+  width: 100%;
+  height: auto;
+  max-height: 16.5rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* One soft shadow under the pile, not a mat around each painting */
+.canvas-page .canvas-gallery__collage.is-stacked::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  z-index: 0;
+  width: min(12.5rem, 50vw);
+  height: 14.5rem;
+  transform: translate(-50%, -46%);
+  border-radius: 2px;
+  box-shadow: 0 14px 28px rgba(40, 32, 24, 0.12);
+  pointer-events: none;
 }
 
 /* Hover: fan only while the painting stack itself is hovered/focused — not empty collage padding */
