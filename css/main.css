@@ -3605,7 +3605,6 @@ p {
 
 .case-intro-header--home-start .case-intro-header__title {
   font-size: var(--case-title-size, var(--text-title-size));
-  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
   white-space: nowrap;
 }
 
