@@ -8975,6 +8975,87 @@ p {
   margin-top: var(--case-subsection-gap, 120px);
 }
 
+/* AutoInvent — live-site closer under takeaways */
+.case-study-page--autoinvent .ai-visit {
+  margin-top: var(--case-subsection-gap, 120px);
+  padding-top: clamp(1.75rem, 3.5vw, 2.75rem);
+  border-top: 1px solid #A89E9D;
+}
+
+.case-study-page--autoinvent .ai-visit__link {
+  display: inline;
+  max-width: 100%;
+  color: #A89E9D;
+  font-family: var(--font-sans);
+  font-size: var(--case-title-size, var(--text-title-size));
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.32s ease;
+}
+
+.case-study-page--autoinvent .ai-visit__label {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.14em;
+  text-decoration-skip-ink: none;
+}
+
+.case-study-page--autoinvent .ai-visit__arrow {
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  margin-left: 0.28em;
+  vertical-align: 0.08em;
+  transition: transform 0.32s ease;
+}
+
+@media (max-width: 720px) {
+  .case-study-page--autoinvent .ai-visit__link {
+    font-size: var(--case-secondary-size, var(--text-secondary-size));
+  }
+}
+
+.case-study-page--autoinvent .ai-visit__link:hover,
+.case-study-page--autoinvent .ai-visit__link:focus-visible {
+  color: var(--nav-glow-hover);
+}
+
+.case-study-page--autoinvent .ai-visit__link:hover .ai-visit__arrow,
+.case-study-page--autoinvent .ai-visit__link:focus-visible .ai-visit__arrow {
+  transform: translate(0.08em, -0.08em);
+}
+
+.case-study-page--autoinvent .ai-visit__link:focus-visible {
+  outline: 2px solid var(--nav-glow-hover);
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+
+.case-study-page--autoinvent .ai-visit__note {
+  margin: var(--case-heading-to-body, clamp(1.125rem, 2.2vw, 1.625rem)) 0 0;
+  max-width: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--case-tertiary-size, var(--text-tertiary-size));
+  font-weight: var(--case-tertiary-weight, 500);
+  line-height: var(--case-body-leading, 1.58);
+  color: #A89E9D;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-page--autoinvent .ai-visit__link,
+  .case-study-page--autoinvent .ai-visit__arrow {
+    transition: none;
+  }
+
+  .case-study-page--autoinvent .ai-visit__link:hover .ai-visit__arrow,
+  .case-study-page--autoinvent .ai-visit__link:focus-visible .ai-visit__arrow {
+    transform: none;
+  }
+}
+
 #process .case-process-key + .case-process-competitive {
   margin-top: var(--case-subsection-gap, 120px);
 }
