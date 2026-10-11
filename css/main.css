@@ -3609,10 +3609,19 @@ p {
   white-space: nowrap;
 }
 
+.case-intro-header--home-start .case-intro-header__subtitle {
+  max-width: none;
+  white-space: nowrap;
+}
+
 @media (max-width: 1100px) {
   .case-intro-header--home-start .case-intro-header__title {
     white-space: normal;
     font-size: var(--case-title-size, var(--text-title-size));
+  }
+
+  .case-intro-header--home-start .case-intro-header__subtitle {
+    white-space: normal;
   }
 }
 
