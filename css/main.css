@@ -5866,6 +5866,7 @@ p {
 /* AutoInvent — primary orange + headline type from design system base */
 .case-study-page--autoinvent {
   --ai-accent: #f0774c;
+  --ai-accent-light: #f3d3c3;
   --ai-accent-mark: rgba(240, 119, 76, 0.18);
   --ai-accent-tint: color-mix(in srgb, var(--ai-accent) 8%, #fff);
   --ai-font: var(--font-sans);
@@ -8978,19 +8979,17 @@ p {
 /* AutoInvent — live-site closer under takeaways */
 .case-study-page--autoinvent .ai-visit {
   margin-top: var(--case-subsection-gap, 120px);
-  padding-top: clamp(1.75rem, 3.5vw, 2.75rem);
-  border-top: 1px solid #A89E9D;
 }
 
 .case-study-page--autoinvent .ai-visit__link {
   display: inline;
   max-width: 100%;
-  color: #A89E9D;
+  color: var(--ai-accent);
   font-family: var(--font-sans);
-  font-size: var(--case-title-size, var(--text-title-size));
+  font-size: var(--case-secondary-size, var(--text-secondary-size));
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.08;
+  line-height: var(--case-heading-leading, 1.12);
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.32s ease;
@@ -9012,15 +9011,9 @@ p {
   transition: transform 0.32s ease;
 }
 
-@media (max-width: 720px) {
-  .case-study-page--autoinvent .ai-visit__link {
-    font-size: var(--case-secondary-size, var(--text-secondary-size));
-  }
-}
-
 .case-study-page--autoinvent .ai-visit__link:hover,
 .case-study-page--autoinvent .ai-visit__link:focus-visible {
-  color: var(--nav-glow-hover);
+  color: var(--ai-accent-light);
 }
 
 .case-study-page--autoinvent .ai-visit__link:hover .ai-visit__arrow,
@@ -9029,7 +9022,7 @@ p {
 }
 
 .case-study-page--autoinvent .ai-visit__link:focus-visible {
-  outline: 2px solid var(--nav-glow-hover);
+  outline: 2px solid var(--ai-accent);
   outline-offset: 6px;
   border-radius: 2px;
 }
