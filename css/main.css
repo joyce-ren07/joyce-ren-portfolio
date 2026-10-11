@@ -8900,7 +8900,8 @@ p {
   background: linear-gradient(
     90deg,
     rgba(100, 140, 145, 0.75) 0%,
-    rgba(180, 210, 215, 0.15) 100%
+    rgba(100, 140, 145, 0.75) 90%,
+    rgba(170, 200, 205, 0.35) 100%
   );
   color: #fff;
   font-style: italic;
