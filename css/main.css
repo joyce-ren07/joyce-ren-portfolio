@@ -6098,9 +6098,16 @@ p {
 }
 
 .ai-user-quotes__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 1.375rem;
+}
+
+.ai-user-quotes__grid .ai-user-quote {
+  flex: 0 0 auto;
+  width: max-content;
+  max-width: 100%;
 }
 
 @media (max-width: 720px) {
@@ -6124,10 +6131,6 @@ p {
 
   .ai-d2__note {
     position: static;
-  }
-
-  .ai-user-quotes__grid {
-    grid-template-columns: 1fr;
   }
 }
 
