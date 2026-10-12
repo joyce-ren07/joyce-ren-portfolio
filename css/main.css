@@ -6257,6 +6257,10 @@ p {
   margin-top: 0;
 }
 
+.case-study-page--autoinvent #solution .case-feature-rows--stacked {
+  margin-bottom: 0;
+}
+
 /* AutoInvent problem tensions — design-system cards, unsquished text */
 .case-study-page--autoinvent .case-insight-cards {
   gap: 16px;
@@ -8905,6 +8909,23 @@ p {
   color: #A89E9D;
   text-align: center;
   max-width: 100%;
+}
+
+/* AutoInvent intro — impact sits a subsection below the summary */
+.case-study-page--autoinvent .case-intro-impact {
+  margin-top: var(--case-subsection-gap, 120px);
+}
+
+.case-study-page--autoinvent .case-intro-impact .case-subheading--large {
+  margin-top: 0;
+}
+
+.case-study-page--autoinvent .case-intro-impact .case-body {
+  margin-bottom: 0;
+}
+
+.case-study-page--autoinvent .case-intro-impact .case-stats {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
 }
 
 .case-emphasis {
