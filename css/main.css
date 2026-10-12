@@ -8941,9 +8941,11 @@ p {
   border-radius: 32px;
   background: linear-gradient(
     90deg,
-    rgba(100, 140, 145, 0.75) 0%,
-    rgba(100, 140, 145, 0.75) 90%,
-    rgba(170, 200, 205, 0.35) 100%
+    #9eb8bb 0%,
+    #b0c6c9 25%,
+    #c2d4d6 50%,
+    #d2e0e2 75%,
+    #e2ecee 100%
   );
   color: #fff;
   font-style: italic;
