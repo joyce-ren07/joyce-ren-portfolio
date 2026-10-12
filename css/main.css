@@ -8914,6 +8914,7 @@ p {
 /* AutoInvent intro — impact sits a subsection below the summary */
 .case-study-page--autoinvent .case-intro-impact {
   margin-top: var(--case-subsection-gap, 120px);
+  text-align: left;
 }
 
 .case-study-page--autoinvent .case-intro-impact .case-subheading--large {
