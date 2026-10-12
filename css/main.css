@@ -4153,6 +4153,11 @@ p {
     margin-top: 2rem;
     margin-bottom: 2rem;
     padding: 2rem 1.75rem;
+    border-radius: var(--hs-radius, 3.25rem);
+  }
+
+  .case-study-page--home-start .case-callout {
+    border-radius: var(--hs-radius, 3.25rem);
   }
 }
 
@@ -8930,6 +8935,16 @@ p {
 }
 
 /* Home Start intro — same placement as AutoInvent, cards match the process panels */
+.case-study-page--home-start {
+  --hs-radius: 3.25rem;
+}
+
+.case-study-page--home-start .case-competitive__tile-wrap,
+.case-study-page--home-start .case-callout,
+.case-study-page--home-start .case-callout--gradient {
+  border-radius: var(--hs-radius);
+}
+
 .case-study-page--home-start .case-intro-impact {
   margin-top: var(--case-subsection-gap, 120px);
   text-align: left;
@@ -8961,7 +8976,7 @@ p {
   min-height: clamp(8.5rem, 14vw, 10.25rem);
   padding: clamp(1.875rem, 3.5vw, 2.5rem) clamp(2.125rem, 4.2vw, 2.875rem);
   border: none;
-  border-radius: 3.25rem;
+  border-radius: var(--hs-radius);
   background: radial-gradient(
     130% 110% at 100% 0%,
     #87adb0 0%,
@@ -9001,7 +9016,7 @@ p {
   margin-bottom: 48px;
   padding: 48px 56px;
   border: none;
-  border-radius: 32px;
+  border-radius: var(--hs-radius, 3.25rem);
   background: linear-gradient(
     90deg,
     #96b3b6 0%,
@@ -9207,7 +9222,7 @@ p {
   min-height: clamp(14rem, 28vw, 17.5rem);
   padding: clamp(3rem, 6vw, 4.25rem) clamp(2rem, 4.5vw, 3rem);
   border: 1px solid rgba(160, 190, 195, 0.55);
-  border-radius: 3.75rem;
+  border-radius: var(--hs-radius, 3.25rem);
   background: #fff;
 }
 
@@ -9716,7 +9731,7 @@ p {
   gap: clamp(1.25rem, 2.4vw, 1.75rem);
   padding: clamp(1.625rem, 3vw, 2rem) clamp(1.875rem, 3.8vw, 2.625rem);
   min-height: clamp(5.75rem, 10vw, 6.75rem);
-  border-radius: 3.25rem;
+  border-radius: var(--hs-radius, 3.25rem);
   background: radial-gradient(
     130% 110% at 100% 0%,
     #87adb0 0%,
@@ -9774,7 +9789,7 @@ p {
     #f3f6f8 100%
   );
   border: none;
-  border-radius: 3.25rem;
+  border-radius: var(--hs-radius, 3.25rem);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -9881,7 +9896,7 @@ p {
   width: var(--hs-phone-w);
   aspect-ratio: 640 / 1440;
   border: 1px solid #8fb7be;
-  border-radius: 2rem;
+  border-radius: var(--hs-radius, 3.25rem);
   overflow: hidden;
   background: #fff;
 }
@@ -9901,7 +9916,7 @@ p {
   width: var(--hs-note-w);
   padding: 0.95rem 1.05rem;
   border: 1px solid #bfd3d7;
-  border-radius: 0.75rem;
+  border-radius: var(--hs-radius, 3.25rem);
   background: #fff;
   font-size: var(--case-tertiary-size);
   font-weight: 500;
@@ -10063,7 +10078,7 @@ p {
   width: var(--hs-phone-w);
   aspect-ratio: 640 / 1440;
   border: 1px solid #8fb7be;
-  border-radius: 2rem;
+  border-radius: var(--hs-radius, 3.25rem);
   overflow: hidden;
   background: #fff;
 }
@@ -10093,7 +10108,7 @@ p {
 .hs-critique__device,
 .hs-iterations__device {
   border: 1px solid #3d6a6f;
-  border-radius: 0.85rem;
+  border-radius: var(--hs-radius, 3.25rem);
   overflow: hidden;
   line-height: 0;
   background: #fff;
@@ -10104,7 +10119,7 @@ p {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0.85rem;
+  border-radius: var(--hs-radius, 3.25rem);
 }
 
 .hs-critique__note {
@@ -10113,7 +10128,7 @@ p {
   padding: 0.85rem 1.1rem;
   background: #ffffff;
   border: 1px solid #d4d4d4;
-  border-radius: 0.75rem;
+  border-radius: var(--hs-radius, 3.25rem);
   font-size: var(--case-tertiary-size);
   font-weight: 400;
   line-height: 1.4;
