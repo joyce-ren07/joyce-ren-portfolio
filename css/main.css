@@ -8929,6 +8929,68 @@ p {
   margin-top: clamp(2rem, 4vw, 2.75rem);
 }
 
+/* Home Start intro — same placement as AutoInvent, cards match the process panels */
+.case-study-page--home-start .case-intro-impact {
+  margin-top: var(--case-subsection-gap, 120px);
+  text-align: left;
+  width: 100%;
+}
+
+.case-study-page--home-start .case-intro-impact .case-subheading--large {
+  margin-top: 0;
+}
+
+.case-study-page--home-start .case-intro-impact .case-body {
+  margin-bottom: 0;
+}
+
+.case-study-page--home-start .case-intro-impact .case-stats {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+}
+
+.case-study-page--home-start .case-intro-impact .case-stats__row {
+  gap: clamp(0.875rem, 1.75vw, 1.125rem);
+  align-items: stretch;
+}
+
+.case-study-page--home-start .case-stat--home-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: clamp(8.5rem, 14vw, 10.25rem);
+  padding: clamp(1.875rem, 3.5vw, 2.5rem) clamp(2.125rem, 4.2vw, 2.875rem);
+  border: none;
+  border-radius: 3.25rem;
+  background: radial-gradient(
+    130% 110% at 100% 0%,
+    #87adb0 0%,
+    #a8bec1 32%,
+    #d4e0e2 58%,
+    #f3f6f8 100%
+  );
+  text-align: left;
+  box-shadow: none;
+}
+
+.case-study-page--home-start .case-stat--home-start .case-stat__value {
+  font-size: var(--case-secondary-size, var(--text-secondary-size));
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: var(--case-heading-leading, 1.12);
+  color: #4a6772;
+  margin-bottom: 0.45rem;
+}
+
+.case-study-page--home-start .case-stat--home-start .case-stat__label {
+  font-size: var(--case-tertiary-size);
+  font-weight: var(--case-tertiary-weight, 500);
+  line-height: 1.38;
+  letter-spacing: -0.01em;
+  color: #4a6772;
+  min-height: calc(1.38em * 2);
+}
+
 .case-emphasis {
   color: #A89E9D;
   font-weight: 600;
