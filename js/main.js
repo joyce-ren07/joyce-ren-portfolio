@@ -23,6 +23,22 @@
       document.body.appendChild(cursor);
       document.documentElement.classList.add("has-site-cursor");
 
+      // Modal dialogs paint in the top layer, above this cursor, while the
+      // native cursor stays hidden. Park the cursor inside the open painting
+      // dialog so it remains visible there.
+      const syncCursorLayer = () => {
+        const openDialog = document.querySelector("dialog.canvas-plate-lightbox[open]");
+        const parent = openDialog || document.body;
+        if (cursor.parentElement !== parent) parent.appendChild(cursor);
+      };
+      const cursorLayerObserver = new MutationObserver(syncCursorLayer);
+      cursorLayerObserver.observe(document.body, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["open"],
+      });
+      syncCursorLayer();
+
       const interactiveSelector = [
         "a",
         "button",
@@ -1228,6 +1244,7 @@
     aboutVideo.muted = true;
     aboutVideo.defaultMuted = true;
     aboutVideo.playsInline = true;
+    aboutVideo.playbackRate = 1.1;
     aboutVideo.loop = !reducedMotion;
     if (reducedMotion) {
       aboutVideo.removeAttribute("loop");
