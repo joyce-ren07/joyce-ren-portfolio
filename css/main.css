@@ -3882,7 +3882,7 @@ p {
   background: #ffffff;
   color: #A89E9D;
   font-size: var(--case-secondary-size, var(--text-secondary-size));
-  font-weight: 500;
+  font-weight: 550;
   font-style: italic;
   letter-spacing: -0.02em;
   line-height: 1.35;
@@ -3890,8 +3890,9 @@ p {
   box-sizing: border-box;
 }
 
-.case-callout--outline strong {
-  font-weight: 550;
+.case-callout--outline strong,
+.case-callout--outline .case-callout__stat {
+  font-weight: 600;
   color: inherit;
   font-style: inherit;
 }
@@ -3934,6 +3935,14 @@ p {
   font-weight: 600;
   font-style: italic;
   color: #A89E9D;
+}
+
+.case-study-page--uber .case-pullquote {
+  font-weight: 550;
+}
+
+.case-study-page--uber .case-pullquote strong {
+  font-weight: 550;
 }
 
 .case-placeholder {
