@@ -3010,29 +3010,43 @@ p {
   border-color: rgba(255, 198, 145, 0.42);
 }
 
+.home-footer__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
 .home-footer__linkedin {
+  --home-footer-bubble-size: calc(1.44rem + 1.2 * var(--text-tertiary-size) + 2px);
   display: inline-flex;
-  margin-top: 0.35rem;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: var(--home-footer-bubble-size);
+  height: var(--home-footer-bubble-size);
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid #e8e6e1;
+  background: #ffffff;
   color: #A89E9D;
   line-height: 0;
-  transition: color 0.32s ease;
+  text-decoration: none;
+  transition: color 0.32s ease, border-color 0.32s ease;
 }
 
 .home-footer__linkedin svg {
-  width: 22px;
-  height: 22px;
+  position: relative;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
   display: block;
 }
 
 .home-footer__linkedin:hover,
 .home-footer__linkedin:focus-visible {
   color: var(--nav-glow-hover);
-}
-
-.home-footer__linkedin:focus-visible {
-  outline: 2px solid var(--nav-glow-hover);
-  outline-offset: 3px;
-  border-radius: 4px;
+  border-color: rgba(255, 198, 145, 0.42);
 }
 
 @media (max-width: 768px) {
