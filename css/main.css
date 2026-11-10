@@ -2990,7 +2990,11 @@ p {
   font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
-  transition: color 0.32s ease, border-color 0.32s ease;
+  transition:
+    color 0.32s ease,
+    border-color 0.32s ease,
+    transform 0.32s ease,
+    box-shadow 0.32s ease;
 }
 
 .home-footer__email-text,
@@ -3008,6 +3012,8 @@ p {
 .home-footer__email:focus-visible {
   color: var(--nav-glow-hover);
   border-color: rgba(255, 198, 145, 0.42);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.045);
 }
 
 .home-footer__linkedin {
@@ -3015,7 +3021,7 @@ p {
   margin-top: 0.35rem;
   color: #A89E9D;
   line-height: 0;
-  transition: color 0.32s ease;
+  transition: color 0.32s ease, transform 0.32s ease, filter 0.32s ease;
 }
 
 .home-footer__linkedin svg {
@@ -3027,12 +3033,31 @@ p {
 .home-footer__linkedin:hover,
 .home-footer__linkedin:focus-visible {
   color: var(--nav-glow-hover);
+  transform: translateY(-3px);
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.12));
 }
 
 .home-footer__linkedin:focus-visible {
   outline: 2px solid var(--nav-glow-hover);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-footer__email {
+    transition: color 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
+  }
+
+  .home-footer__linkedin {
+    transition: color 0.32s ease, filter 0.32s ease;
+  }
+
+  .home-footer__email:hover,
+  .home-footer__email:focus-visible,
+  .home-footer__linkedin:hover,
+  .home-footer__linkedin:focus-visible {
+    transform: none;
+  }
 }
 
 @media (max-width: 768px) {
