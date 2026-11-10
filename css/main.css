@@ -2936,7 +2936,7 @@ p {
    Footer
    -------------------------------------------------------------------------- */
 
-/* Homepage contact footer — email pill + traveling edge glow */
+/* Site contact footer — email pill + traveling edge glow, on every page */
 .home-footer {
   padding-block: clamp(3.5rem, 8vw, 5.5rem) clamp(2.5rem, 6vw, 4rem);
   background: #ffffff;
@@ -3080,6 +3080,34 @@ p {
 
   .home-footer__bottom {
     margin-top: var(--space-lg);
+  }
+}
+
+/* Case studies: sit the footer in the article column, clear of the fixed sidebar */
+.case-study-page .home-footer .container {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, var(--case-content-max)) 1fr;
+  align-items: start;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: var(--nav-padding-inline);
+}
+
+.case-study-page .home-footer__cta,
+.case-study-page .home-footer__copy {
+  grid-column: 2;
+  justify-self: start;
+}
+
+@media (max-width: 1150px) {
+  .case-study-page .home-footer .container {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study-page .home-footer__cta,
+  .case-study-page .home-footer__copy {
+    grid-column: 1;
   }
 }
 
@@ -3530,7 +3558,7 @@ p {
   padding:
     calc(var(--case-topbar-height) + 2rem)
     var(--nav-padding-inline)
-    5rem;
+    0;
 }
 
 .case-sidebar {
@@ -4077,7 +4105,7 @@ p {
     padding:
       calc(var(--case-topbar-height) + 1.5rem)
       var(--nav-padding-inline)
-      4rem;
+      0;
   }
 
   .case-sidebar {
@@ -4130,7 +4158,7 @@ p {
     padding:
       calc(var(--case-topbar-height) + 1.5rem)
       var(--nav-padding-inline)
-      4rem;
+      0;
   }
 
   .case-sidebar {
@@ -4166,6 +4194,10 @@ p {
 
   .case-block--intro {
     padding-bottom: var(--case-section-gap, 180px);
+  }
+
+  .case-block--last {
+    padding-bottom: 1.5rem;
   }
 
   .case-device-video--laptop {
@@ -11845,7 +11877,7 @@ p {
   padding:
     calc(var(--case-topbar-height) + clamp(2.5rem, 6vw, 5rem))
     clamp(1rem, 3vw, 2.5rem)
-    clamp(5rem, 10vw, 9rem);
+    clamp(1rem, 3vw, 2rem);
   overflow: visible;
   background: transparent;
 }
@@ -11860,7 +11892,7 @@ p {
   position: relative;
   display: block;
   padding-top: 0;
-  padding-bottom: var(--case-section-gap);
+  padding-bottom: 0;
 }
 
 .canvas-page .canvas-gallery__collage {
@@ -12761,7 +12793,7 @@ p {
   padding:
     calc(var(--case-topbar-height) + clamp(3.5rem, 9vw, 6rem))
     0
-    clamp(2.5rem, 6vw, 4.5rem);
+    clamp(0.5rem, 2vw, 1.25rem);
   overflow: visible;
   border-radius: 0;
   background: transparent;
