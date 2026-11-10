@@ -2938,7 +2938,7 @@ p {
 
 /* Site contact footer — email pill + traveling edge glow, on every page */
 .home-footer {
-  padding-block: clamp(3.5rem, 8vw, 5.5rem) clamp(2.5rem, 6vw, 4rem);
+  padding-block: clamp(2.5rem, 6vw, 4rem) clamp(2.5rem, 6vw, 4rem);
   background: #ffffff;
 }
 
@@ -2947,12 +2947,14 @@ p {
   justify-content: space-between;
   align-items: flex-end;
   gap: var(--space-lg);
+  padding-top: clamp(1.75rem, 4vw, 2.5rem);
+  border-top: 1px solid #efede9;
 }
 
 .home-footer__bottom {
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
-  padding-top: clamp(1rem, 2.5vw, 1.5rem);
-  border-top: 1px solid #efede9;
+  margin-top: clamp(1.5rem, 3.5vw, 2.25rem);
+  padding-top: 0;
+  border-top: none;
 }
 
 .home-footer__copy {
@@ -3079,7 +3081,7 @@ p {
   }
 
   .home-footer__bottom {
-    margin-top: var(--space-lg);
+    margin-top: var(--space-md);
   }
 }
 
