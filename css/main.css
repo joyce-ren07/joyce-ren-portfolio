@@ -495,13 +495,13 @@ p {
   filter: none;
   transform: translateY(0);
   transition:
-    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.88s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .portfolio-page.lamp-is-lit .lamp-hero__intro .lamp-hero__tagline {
-  transition-delay: 0.14s;
+  transition-delay: 0.11s;
 }
 
 .lamp-hero__intro .lamp-hero__name {
@@ -3333,6 +3333,43 @@ p {
   pointer-events: none;
 }
 
+/* Homepage — keep the bar hidden until the lamp scroll animation starts */
+.portfolio-page .case-topbar {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, -0.7rem, 0);
+  transition:
+    opacity 0.85s ease,
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.85s;
+}
+
+.portfolio-page .case-topbar a,
+.portfolio-page .case-topbar button,
+.portfolio-page .case-topbar__logo,
+.portfolio-page .case-topbar__nav,
+.portfolio-page .nav-toggle {
+  pointer-events: none;
+}
+
+.portfolio-page.lamp-nav-in .case-topbar {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 0.85s ease,
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+.portfolio-page.lamp-nav-in .case-topbar a,
+.portfolio-page.lamp-nav-in .case-topbar button,
+.portfolio-page.lamp-nav-in .case-topbar__logo,
+.portfolio-page.lamp-nav-in .case-topbar__nav,
+.portfolio-page.lamp-nav-in .nav-toggle {
+  pointer-events: auto;
+}
+
 .case-topbar::before {
   content: "";
   position: absolute;
@@ -3439,6 +3476,11 @@ p {
   .case-topbar.is-hidden {
     transform: none;
     opacity: 1;
+  }
+
+  .portfolio-page .case-topbar,
+  .portfolio-page.lamp-nav-in .case-topbar {
+    transition: none;
   }
 }
 

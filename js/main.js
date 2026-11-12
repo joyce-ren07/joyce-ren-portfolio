@@ -1459,10 +1459,12 @@
   if (lampHero) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.querySelector(".portfolio-page") || document.documentElement;
+    const topbar = document.querySelector(".case-topbar");
     const state = {
       target: 0,
       current: 0,
       forced: null,
+      navReady: false,
     };
 
     /* Flip lit after a short scroll — no long progressive blend */
@@ -1484,6 +1486,19 @@
     const applyPower = (power) => {
       root.style.setProperty("--lamp-power", power.toFixed(3));
       root.classList.toggle("lamp-is-lit", power > 0.5);
+      const navIn = state.target > 0.5;
+      if (topbar && navIn && !state.navReady) {
+        /* Already triggered on load — show the bar without replaying the fade. */
+        topbar.style.transition = "none";
+        root.classList.add("lamp-nav-in");
+        topbar.setAttribute("aria-hidden", "false");
+        void topbar.offsetWidth;
+        topbar.style.transition = "";
+      } else {
+        root.classList.toggle("lamp-nav-in", navIn);
+        if (topbar) topbar.setAttribute("aria-hidden", navIn ? "false" : "true");
+      }
+      state.navReady = true;
       if (lampPull) {
         lampPull.setAttribute("aria-pressed", power > 0.5 ? "true" : "false");
       }
