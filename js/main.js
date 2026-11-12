@@ -1463,7 +1463,6 @@
     const state = {
       target: 0,
       current: 0,
-      intro: 0,
       forced: null,
       navReady: false,
     };
@@ -1484,9 +1483,8 @@
       return scrolled > SCROLL_ON_PX ? 1 : 0;
     };
 
-    const applyPower = (power, introPower) => {
+    const applyPower = (power) => {
       root.style.setProperty("--lamp-power", power.toFixed(3));
-      root.style.setProperty("--intro-power", introPower.toFixed(3));
       root.classList.toggle("lamp-is-lit", power > 0.5);
       const navIn = state.target > 0.5;
       if (topbar && navIn && !state.navReady) {
@@ -1517,17 +1515,11 @@
     const tick = () => {
       syncTarget();
       const ease = reducedMotion ? 1 : 0.78;
-      /* Name and tagline resolve a little ahead of the lamp. */
-      const introEase = reducedMotion ? 1 : 0.94;
       state.current += (state.target - state.current) * ease;
-      state.intro += (state.target - state.intro) * introEase;
       if (Math.abs(state.target - state.current) < 0.01) {
         state.current = state.target;
       }
-      if (Math.abs(state.target - state.intro) < 0.01) {
-        state.intro = state.target;
-      }
-      applyPower(state.current, state.intro);
+      applyPower(state.current);
       if (!reducedMotion) {
         requestAnimationFrame(tick);
       }
@@ -1545,8 +1537,7 @@
       syncTarget();
       if (reducedMotion) {
         state.current = state.target;
-        state.intro = state.target;
-        applyPower(state.current, state.intro);
+        applyPower(state.current);
       }
     };
 
@@ -1579,16 +1570,14 @@
         syncTarget();
         if (reducedMotion) {
           state.current = state.target;
-          state.intro = state.target;
-          applyPower(state.current, state.intro);
+          applyPower(state.current);
         }
       });
     }
 
     syncTarget();
     state.current = state.target;
-    state.intro = state.target;
-    applyPower(state.current, state.intro);
+    applyPower(state.current);
     if (!reducedMotion) {
       requestAnimationFrame(tick);
     }
