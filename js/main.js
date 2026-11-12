@@ -1459,10 +1459,13 @@
   if (lampHero) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.querySelector(".portfolio-page") || document.documentElement;
+    const topbar = document.querySelector(".case-topbar");
     const state = {
       target: 0,
       current: 0,
+      intro: 0,
       forced: null,
+      navReady: false,
     };
 
     /* Flip lit after a short scroll — no long progressive blend */
@@ -1481,9 +1484,23 @@
       return scrolled > SCROLL_ON_PX ? 1 : 0;
     };
 
-    const applyPower = (power) => {
+    const applyPower = (power, introPower) => {
       root.style.setProperty("--lamp-power", power.toFixed(3));
+      root.style.setProperty("--intro-power", introPower.toFixed(3));
       root.classList.toggle("lamp-is-lit", power > 0.5);
+      const navIn = state.target > 0.5;
+      if (topbar && navIn && !state.navReady) {
+        /* Already triggered on load — show the bar without replaying the fade. */
+        topbar.style.transition = "none";
+        root.classList.add("lamp-nav-in");
+        topbar.setAttribute("aria-hidden", "false");
+        void topbar.offsetWidth;
+        topbar.style.transition = "";
+      } else {
+        root.classList.toggle("lamp-nav-in", navIn);
+        if (topbar) topbar.setAttribute("aria-hidden", navIn ? "false" : "true");
+      }
+      state.navReady = true;
       if (lampPull) {
         lampPull.setAttribute("aria-pressed", power > 0.5 ? "true" : "false");
       }
@@ -1500,11 +1517,17 @@
     const tick = () => {
       syncTarget();
       const ease = reducedMotion ? 1 : 0.78;
+      /* Name and tagline resolve a little ahead of the lamp. */
+      const introEase = reducedMotion ? 1 : 0.94;
       state.current += (state.target - state.current) * ease;
+      state.intro += (state.target - state.intro) * introEase;
       if (Math.abs(state.target - state.current) < 0.01) {
         state.current = state.target;
       }
-      applyPower(state.current);
+      if (Math.abs(state.target - state.intro) < 0.01) {
+        state.intro = state.target;
+      }
+      applyPower(state.current, state.intro);
       if (!reducedMotion) {
         requestAnimationFrame(tick);
       }
@@ -1522,7 +1545,8 @@
       syncTarget();
       if (reducedMotion) {
         state.current = state.target;
-        applyPower(state.current);
+        state.intro = state.target;
+        applyPower(state.current, state.intro);
       }
     };
 
@@ -1555,14 +1579,16 @@
         syncTarget();
         if (reducedMotion) {
           state.current = state.target;
-          applyPower(state.current);
+          state.intro = state.target;
+          applyPower(state.current, state.intro);
         }
       });
     }
 
     syncTarget();
     state.current = state.target;
-    applyPower(state.current);
+    state.intro = state.target;
+    applyPower(state.current, state.intro);
     if (!reducedMotion) {
       requestAnimationFrame(tick);
     }
