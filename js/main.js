@@ -1544,6 +1544,34 @@
     window.addEventListener("scroll", onScrollOrResize, { passive: true });
     window.addEventListener("resize", onScrollOrResize);
 
+    /* Down-caret scroll hint — first landing only, then gone after a scroll */
+    const scrollCue = lampHero.querySelector(".lamp-hero__scroll-cue");
+    if (scrollCue) {
+      const CUE_HIDE_PX = 24;
+      let cueDismissed = false;
+      const cueShouldHide = () => {
+        if (window.location.hash && window.location.hash !== "#intro") return true;
+        return getScrolledPx() > CUE_HIDE_PX || (window.scrollY || 0) > CUE_HIDE_PX;
+      };
+      const dismissCue = () => {
+        if (cueDismissed) return;
+        cueDismissed = true;
+        scrollCue.classList.add("is-dismissed");
+      };
+
+      if (cueShouldHide()) {
+        scrollCue.classList.add("is-dismissed");
+        cueDismissed = true;
+      } else {
+        const onCueScroll = () => {
+          if (!cueShouldHide()) return;
+          dismissCue();
+          window.removeEventListener("scroll", onCueScroll);
+        };
+        window.addEventListener("scroll", onCueScroll, { passive: true });
+      }
+    }
+
     if (lampPull) {
       lampPull.addEventListener("click", () => {
         const lit = (state.forced !== null ? state.forced : state.current) > 0.5;

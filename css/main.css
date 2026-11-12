@@ -504,6 +504,48 @@ p {
   transition-delay: 0.11s;
 }
 
+/* First-view scroll hint. Sits above the bottom glass edge so the caret stays crisp. */
+.lamp-hero__scroll-cue {
+  position: fixed;
+  left: 50%;
+  bottom: calc(1.35rem + env(safe-area-inset-bottom, 0px));
+  z-index: 190;
+  display: flex;
+  color: #A89E9D;
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: lamp-scroll-cue 1.8s ease-in-out infinite;
+}
+
+.lamp-hero__scroll-cue svg {
+  display: block;
+  width: 1.375rem;
+  height: auto;
+}
+
+@keyframes lamp-scroll-cue {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.88;
+    transform: translateX(-50%) translateY(0.42rem);
+  }
+}
+
+.lamp-hero__scroll-cue.is-dismissed {
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(0.3rem);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    visibility 0s linear 0.4s;
+}
+
 .lamp-hero__intro .lamp-hero__name {
   margin: 0 0 0.4rem;
   font-family: var(--font-sans);
@@ -621,6 +663,12 @@ p {
     opacity: 1;
     filter: none;
     transform: none;
+  }
+
+  .lamp-hero__scroll-cue {
+    animation: none;
+    opacity: 0.7;
+    transform: translateX(-50%);
   }
 }
 
