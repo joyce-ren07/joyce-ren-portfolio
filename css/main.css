@@ -397,16 +397,26 @@ p {
   transition: opacity 0.1s ease, filter 0.1s ease;
 }
 
+@keyframes lamp-pull-sway {
+  0%,
+  100% {
+    transform: rotate(-2.4deg);
+  }
+  50% {
+    transform: rotate(2.4deg);
+  }
+}
+
 .lamp-hero__pull {
-  /* Hang beside the lantern; chain top matches the cord top in the lamp art. */
+  /* Hang beside the lantern, close enough and large enough to read as the pull. */
   position: absolute;
   top: calc(var(--lamp-top) + var(--lamp-height) * 0.055);
-  left: calc(50% + clamp(17.5rem, 34.5vw, 24.5rem));
+  left: calc(50% + clamp(12.25rem, 22vw, 16rem));
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: clamp(1rem, 2.05vw, 1.35rem);
+  width: clamp(1.85rem, 3.7vw, 2.5rem);
   padding: 0;
   margin: 0;
   border: 0;
@@ -432,34 +442,46 @@ p {
   width: 100%;
   max-width: none;
   height: auto;
-  max-height: clamp(5.5rem, 16vh, 7.35rem);
+  max-height: clamp(10rem, 30vh, 14rem);
   object-fit: contain;
   object-position: top center;
+  transform-origin: top center;
   user-select: none;
   -webkit-user-drag: none;
+  filter:
+    drop-shadow(0 0 0.6px rgba(110, 72, 32, 0.55))
+    drop-shadow(0 8px 14px rgba(110, 72, 32, 0.16));
+  animation: lamp-pull-sway 2.8s ease-in-out infinite;
   transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
+.lamp-hero__pull:hover .lamp-hero__pull-img,
+.lamp-hero__pull.is-pulled .lamp-hero__pull-img,
+.portfolio-page.lamp-is-lit .lamp-hero__pull-img {
+  animation: none;
+}
+
 .lamp-hero__pull:hover .lamp-hero__pull-img {
-  transform: translateY(4px);
+  transform: translateY(6px);
 }
 
 .lamp-hero__pull.is-pulled .lamp-hero__pull-img {
-  transform: translateY(10px);
+  transform: translateY(14px);
   transition-duration: 0.45s;
 }
 
 .lamp-hero__hint {
-  margin-top: 0.3rem;
+  margin-top: 0.45rem;
   font-size: var(--text-tertiary-size);
   font-style: normal;
   font-weight: var(--text-tertiary-weight);
-  color: #A89E9D;
+  color: #6d625b;
   white-space: nowrap;
   opacity: calc(1 - var(--lamp-power));
   visibility: visible;
   transition: opacity 0.1s ease, visibility 0.1s ease;
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
   text-align: center;
 }
 
@@ -572,7 +594,7 @@ p {
 
 @media (max-width: 900px) {
   .lamp-hero__pull {
-    left: calc(50% + clamp(9.5rem, 28vw, 14rem));
+    left: calc(50% + clamp(10.25rem, 30vw, 14.5rem));
   }
 }
 
@@ -589,12 +611,12 @@ p {
 
   .lamp-hero__pull {
     top: calc(var(--lamp-top) + var(--lamp-height) * 0.055);
-    left: calc(50% + clamp(6.75rem, 34vw, 9.5rem));
-    width: clamp(0.95rem, 4.4vw, 1.25rem);
+    left: calc(50% + clamp(7.6rem, 38vw, 10.75rem));
+    width: clamp(1.55rem, 7vw, 1.95rem);
   }
 
   .lamp-hero__pull-img {
-    max-height: clamp(5.1rem, 14.5vh, 6.9rem);
+    max-height: clamp(8.25rem, 24vh, 11rem);
   }
 
   .lamp-hero__hint {
@@ -625,12 +647,12 @@ p {
   }
 
   .lamp-hero__pull {
-    left: calc(50% + 5.85rem);
+    left: calc(50% + 7.15rem);
   }
 
   .lamp-hero__hint {
     font-size: var(--text-tertiary-size);
-    max-width: 4.75rem;
+    max-width: 6.25rem;
     white-space: normal;
     line-height: 1.25;
   }
@@ -650,6 +672,13 @@ p {
   .portfolio-page.lamp-is-lit .lamp-hero__intro .lamp-hero__tagline {
     filter: none;
     transition: none;
+    animation: none;
+  }
+
+  .lamp-hero__pull-img {
+    filter:
+      drop-shadow(0 0 0.6px rgba(110, 72, 32, 0.55))
+      drop-shadow(0 8px 14px rgba(110, 72, 32, 0.16));
   }
 
   .lamp-hero__intro {
