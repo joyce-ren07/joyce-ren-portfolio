@@ -1572,6 +1572,44 @@
       }
     }
 
+    /* Pull chain stays off the first landing, then remains after the first scroll. */
+    if (lampPull) {
+      let pullRevealed = false;
+      const pullShouldReveal = () => {
+        if (window.location.hash && window.location.hash !== "#intro") return true;
+        return getScrolledPx() > SCROLL_ON_PX || (window.scrollY || 0) > SCROLL_ON_PX;
+      };
+      const revealPull = (immediate) => {
+        if (pullRevealed) return;
+        pullRevealed = true;
+        const show = () => {
+          lampPull.classList.add("is-revealed");
+          lampPull.removeAttribute("aria-hidden");
+          lampPull.removeAttribute("tabindex");
+        };
+        if (!immediate) {
+          show();
+          return;
+        }
+        const previous = lampPull.style.transition;
+        lampPull.style.transition = "none";
+        show();
+        void lampPull.offsetWidth;
+        lampPull.style.transition = previous;
+      };
+
+      if (pullShouldReveal()) {
+        revealPull(true);
+      } else {
+        const onPullScroll = () => {
+          if (!pullShouldReveal()) return;
+          revealPull(false);
+          window.removeEventListener("scroll", onPullScroll);
+        };
+        window.addEventListener("scroll", onPullScroll, { passive: true });
+      }
+    }
+
     /* Case studies fade and blur in the first time they scroll into view. */
     const workItems = Array.from(document.querySelectorAll(".work-grid > li"));
     if (workItems.length && !reducedMotion) {
