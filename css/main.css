@@ -438,6 +438,17 @@ p {
   user-select: none;
   -webkit-user-drag: none;
   transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+  /* Extend the chain's top fade so it becomes solid level with the lamp cord. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 calc(var(--lamp-height) * 0.135)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 calc(var(--lamp-height) * 0.135)
+  );
 }
 
 .lamp-hero__pull:hover .lamp-hero__pull-img {
@@ -508,7 +519,7 @@ p {
 .lamp-hero__scroll-cue {
   position: fixed;
   left: 50%;
-  bottom: calc(1.35rem + env(safe-area-inset-bottom, 0px));
+  bottom: calc(2.05rem + env(safe-area-inset-bottom, 0px));
   z-index: 190;
   display: flex;
   color: #4e4746;
@@ -519,7 +530,7 @@ p {
 
 .lamp-hero__scroll-cue svg {
   display: block;
-  width: 2.35rem;
+  width: 2.75rem;
   height: auto;
 }
 
