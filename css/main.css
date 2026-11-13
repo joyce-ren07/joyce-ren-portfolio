@@ -511,27 +511,27 @@ p {
   bottom: calc(1.35rem + env(safe-area-inset-bottom, 0px));
   z-index: 190;
   display: flex;
-  color: #A89E9D;
+  color: #4e4746;
   pointer-events: none;
   transform: translateX(-50%);
-  animation: lamp-scroll-cue 1.8s ease-in-out infinite;
+  animation: lamp-scroll-cue 1.35s ease-in-out infinite;
 }
 
 .lamp-hero__scroll-cue svg {
   display: block;
-  width: 1.375rem;
+  width: 2.35rem;
   height: auto;
 }
 
 @keyframes lamp-scroll-cue {
   0%,
   100% {
-    opacity: 0.32;
+    opacity: 0.85;
     transform: translateX(-50%) translateY(0);
   }
   50% {
-    opacity: 0.88;
-    transform: translateX(-50%) translateY(0.42rem);
+    opacity: 1;
+    transform: translateX(-50%) translateY(0.85rem);
   }
 }
 
@@ -667,7 +667,7 @@ p {
 
   .lamp-hero__scroll-cue {
     animation: none;
-    opacity: 0.7;
+    opacity: 1;
     transform: translateX(-50%);
   }
 }
