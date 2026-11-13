@@ -1572,6 +1572,24 @@
       }
     }
 
+    /* Case studies fade and blur in the first time they scroll into view. */
+    const workItems = Array.from(document.querySelectorAll(".work-grid > li"));
+    if (workItems.length && !reducedMotion) {
+      root.classList.add("work-reveal");
+      if ("IntersectionObserver" in window) {
+        const workObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-in");
+            workObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.01 });
+        workItems.forEach((item) => workObserver.observe(item));
+      } else {
+        workItems.forEach((item) => item.classList.add("is-in"));
+      }
+    }
+
     if (lampPull) {
       lampPull.addEventListener("click", () => {
         const lit = (state.forced !== null ? state.forced : state.current) > 0.5;
