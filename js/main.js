@@ -1621,7 +1621,7 @@
             entry.target.classList.add("is-in");
             workObserver.unobserve(entry.target);
           });
-        }, { threshold: 0.01 });
+        }, { threshold: 0.08, rootMargin: "0px 0px -72px 0px" });
         workItems.forEach((item) => workObserver.observe(item));
       } else {
         workItems.forEach((item) => item.classList.add("is-in"));
