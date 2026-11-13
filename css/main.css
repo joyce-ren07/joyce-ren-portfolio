@@ -460,24 +460,6 @@ p {
   transition-duration: 0.45s;
 }
 
-.lamp-hero__hint {
-  margin-top: 0.3rem;
-  font-size: var(--text-tertiary-size);
-  font-style: normal;
-  font-weight: var(--text-tertiary-weight);
-  color: #A89E9D;
-  white-space: nowrap;
-  opacity: calc(1 - var(--lamp-power));
-  visibility: visible;
-  transition: opacity 0.1s ease, visibility 0.1s ease;
-  pointer-events: none;
-  text-align: center;
-}
-
-.portfolio-page.lamp-is-lit .lamp-hero__hint {
-  visibility: hidden;
-}
-
 .lamp-hero__intro {
   position: absolute;
   left: 50%;
@@ -608,11 +590,6 @@ p {
     max-height: clamp(5.1rem, 14.5vh, 6.9rem);
   }
 
-  .lamp-hero__hint {
-    font-size: var(--text-tertiary-size);
-    letter-spacing: -0.03em;
-  }
-
   .lamp-hero__intro {
     top: clamp(57%, 63vh, 69%);
   }
@@ -638,13 +615,6 @@ p {
   .lamp-hero__pull {
     left: calc(50% + 5.85rem);
   }
-
-  .lamp-hero__hint {
-    font-size: var(--text-tertiary-size);
-    max-width: 4.75rem;
-    white-space: normal;
-    line-height: 1.25;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -653,7 +623,6 @@ p {
   .lamp-hero__lamp-img--lit,
   .lamp-hero__pull,
   .lamp-hero__pull-img,
-  .lamp-hero__hint,
   .lamp-hero__intro,
   .lamp-hero__intro .lamp-hero__name,
   .lamp-hero__intro .lamp-hero__tagline,
