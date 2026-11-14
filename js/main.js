@@ -1453,7 +1453,7 @@
       });
   }
 
-  /* Home lamp hero — pull chain toggle + near-instant scroll lighting */
+  /* Home lamp hero — first scroll lights the room; the pull chain owns the reset. */
   const lampHero = document.querySelector(".lamp-hero");
   const lampPull = document.getElementById("lamp-pull");
   if (lampHero) {
@@ -1463,29 +1463,25 @@
     const state = {
       target: 0,
       current: 0,
-      forced: null,
+      /* "scroll" is the dark landing. "hold" keeps the lamp and nav put. */
+      mode: "scroll",
       navReady: false,
     };
+    /* Scroll position when a pull started the trip home, so a downward flick can cancel it. */
+    let resetAnchorY = null;
 
     /* Flip lit after a short scroll — no long progressive blend */
     const SCROLL_ON_PX = 32;
     const SCROLL_OFF_PX = 12;
 
-    const getScrollRange = () => Math.max(0, lampHero.offsetHeight - window.innerHeight);
-
     const getScrolledPx = () => Math.max(0, -lampHero.getBoundingClientRect().top);
 
-    const getScrollPower = () => {
-      const scrolled = getScrolledPx();
-      if (state.current >= 0.5) {
-        return scrolled > SCROLL_OFF_PX ? 1 : 0;
-      }
-      return scrolled > SCROLL_ON_PX ? 1 : 0;
-    };
+    const getScrollPower = () => (getScrolledPx() > SCROLL_ON_PX ? 1 : 0);
 
     const applyPower = (power) => {
       root.style.setProperty("--lamp-power", power.toFixed(3));
-      root.classList.toggle("lamp-is-lit", power > 0.5);
+      const lit = power > 0.5;
+      root.classList.toggle("lamp-is-lit", lit);
       const navIn = state.target > 0.5;
       if (topbar && navIn && !state.navReady) {
         /* Already triggered on load — show the bar without replaying the fade. */
@@ -1500,16 +1496,20 @@
       }
       state.navReady = true;
       if (lampPull) {
-        lampPull.setAttribute("aria-pressed", power > 0.5 ? "true" : "false");
+        lampPull.setAttribute("aria-pressed", lit ? "true" : "false");
+        lampPull.setAttribute("aria-label", lit ? "Pull to return to the landing" : "Pull to light the lamp");
       }
     };
 
     const syncTarget = () => {
-      if (state.forced !== null) {
-        state.target = state.forced;
+      if (state.mode === "hold") return;
+      const next = getScrollPower();
+      if (next > 0.5) {
+        state.mode = "hold";
+        state.target = 1;
         return;
       }
-      state.target = getScrollPower();
+      state.target = next;
     };
 
     const tick = () => {
@@ -1526,12 +1526,16 @@
     };
 
     const onScrollOrResize = () => {
-      if (state.forced !== null) {
-        const scrolled = getScrolledPx();
-        if (state.forced === 1 && scrolled > SCROLL_ON_PX) {
-          state.forced = null;
-        } else if (state.forced === 0 && scrolled <= SCROLL_OFF_PX) {
-          state.forced = null;
+      if (state.mode === "hold" && state.target < 0.5 && resetAnchorY !== null) {
+        const y = window.scrollY || 0;
+        if (y > resetAnchorY + 48) {
+          resetAnchorY = null;
+          window.scrollTo({ top: y, behavior: "auto" });
+          state.target = 1;
+        } else if (y <= SCROLL_OFF_PX) {
+          resetAnchorY = null;
+          state.mode = "scroll";
+          state.target = 0;
         }
       }
       syncTarget();
@@ -1630,25 +1634,29 @@
 
     if (lampPull) {
       lampPull.addEventListener("click", () => {
-        const lit = (state.forced !== null ? state.forced : state.current) > 0.5;
-        state.forced = lit ? 0 : 1;
+        const lit = state.target > 0.5;
         lampPull.classList.add("is-pulled");
         window.setTimeout(() => lampPull.classList.remove("is-pulled"), reducedMotion ? 0 : 280);
 
         if (!lit) {
-          const range = getScrollRange();
-          const targetTop = Math.min(Math.max(SCROLL_ON_PX + 8, range * 0.35), Math.max(range, SCROLL_ON_PX + 8));
-          if (getScrolledPx() < SCROLL_ON_PX) {
-            window.scrollTo({
-              top: targetTop,
-              behavior: reducedMotion ? "auto" : "smooth",
-            });
+          if (resetAnchorY !== null) {
+            window.scrollTo({ top: window.scrollY || 0, behavior: "auto" });
           }
-        } else if (getScrolledPx() > SCROLL_OFF_PX) {
+          resetAnchorY = null;
+          state.mode = "hold";
+          state.target = 1;
+        } else if ((window.scrollY || 0) > SCROLL_OFF_PX) {
+          resetAnchorY = window.scrollY || 0;
+          state.mode = "hold";
+          state.target = 0;
           window.scrollTo({
             top: 0,
             behavior: reducedMotion ? "auto" : "smooth",
           });
+        } else {
+          resetAnchorY = null;
+          state.mode = "scroll";
+          state.target = 0;
         }
 
         syncTarget();
