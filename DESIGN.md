@@ -26,7 +26,7 @@ On `.case-study-page`:
 
 - **Title (64px):** major section headings (e.g. The Problem, The Solution, Research, Design Process), intro titles, page titles
 - **Secondary (32px, weight 500):** section subtitles — e.g. Surveys & Interviews, Social Listening, Market Analysis, Key Insights, Core Design, Constraints & Tradeoffs, Hi-fi Flow Adjustments, User Feedback & Iterations, Clinic-Level Drop-off, Ride Accommodations, Key Takeaways!, What's Next
-- **Tertiary / body (16px, weight 500):** body copy, tertiary body (`.case-body--tertiary`), feature-row descriptions, process body, takeaways body, captions that use the tertiary token
+- **Tertiary / body (16px, weight 500):** body copy, tertiary body (`.case-body--tertiary`), feature-row descriptions, process body, takeaways body, captions that use the tertiary token, canvas painting names (gallery labels and the artwork lightbox title)
 
 ## Spacing scale (fixed)
 

@@ -12315,7 +12315,7 @@ p {
 .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image figcaption {
   opacity: 1;
   visibility: visible;
-  max-height: 3.5rem;
+  max-height: 4.5rem;
   pointer-events: auto;
   transition:
     opacity 0.7s ease,
@@ -12534,7 +12534,8 @@ p {
   width: 100%;
   padding-inline: 0;
   color: var(--case-text);
-  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-tertiary-size);
   font-weight: var(--text-tertiary-weight);
   line-height: 1.35;
 }
@@ -12547,8 +12548,11 @@ p {
 .canvas-page .canvas-gallery__work {
   display: block;
   color: var(--case-heading);
-  font-weight: 500;
-  overflow-wrap: anywhere;
+  font-family: var(--font-sans);
+  font-size: var(--text-tertiary-size);
+  font-weight: var(--text-tertiary-weight);
+  line-height: 1.35;
+  overflow-wrap: break-word;
 }
 
 .canvas-plate-lightbox {
@@ -12652,10 +12656,10 @@ p {
   margin: 0;
   color: var(--case-heading);
   font-family: var(--font-sans);
-  font-size: var(--text-secondary-size);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  font-size: var(--text-tertiary-size);
+  font-weight: var(--text-tertiary-weight);
+  letter-spacing: normal;
+  line-height: 1.35;
 }
 
 .canvas-plate-lightbox__meta {
@@ -12738,10 +12742,6 @@ p {
 
   .canvas-plate-lightbox__copy {
     padding-right: 4rem;
-  }
-
-  .canvas-plate-lightbox__title {
-    font-size: clamp(1.35rem, 5vw, 2rem);
   }
 }
 
