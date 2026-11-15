@@ -1982,7 +1982,28 @@
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    const syncArtEdges = () => {
+      if (!collage || collage.classList.contains("is-stacked")) return;
+      canvasPlates.forEach((plate) => {
+        const img = plate.querySelector("img");
+        if (!img || !img.naturalWidth || !img.naturalHeight) return;
+        const box = img.getBoundingClientRect();
+        if (box.width < 1 || box.height < 1) return;
+        const scale = Math.min(box.width / img.naturalWidth, box.height / img.naturalHeight);
+        const contentW = img.naturalWidth * scale;
+        const slack = box.width - contentW;
+        if (slack < 1) {
+          plate.style.setProperty("--art-inset", "0px");
+          plate.style.setProperty("--art-width", "100%");
+          return;
+        }
+        plate.style.setProperty("--art-inset", `${(slack / 2).toFixed(2)}px`);
+        plate.style.setProperty("--art-width", `${contentW.toFixed(2)}px`);
+      });
+    };
+
     const fitCollageHeight = () => {
+      syncArtEdges();
       if (!collage) return;
       if (collage.classList.contains("is-stacked")) {
         collage.style.height = "";
@@ -2033,7 +2054,19 @@
       collage.setAttribute("aria-label", "Artwork gallery");
       setExpandHintVisible(false);
       setCollapseHintVisible(true);
-      // Recalc after plates finish traveling into place
+      // Recalc after plates finish traveling into place. Titles track the
+      // picture edge while plate widths are still animating.
+      const trackEdges = () => {
+        const started = performance.now();
+        const step = () => {
+          syncArtEdges();
+          if (!reducedMotion && performance.now() - started < 1200) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        window.requestAnimationFrame(step);
+      };
+      trackEdges();
       window.setTimeout(fitCollageHeight, reducedMotion ? 0 : 1100);
       window.setTimeout(fitCollageHeight, reducedMotion ? 0 : 1600);
     };
