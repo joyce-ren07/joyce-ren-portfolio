@@ -12307,7 +12307,7 @@ p {
     opacity 0.65s ease,
     visibility 0s linear 0.65s,
     max-height 0.55s ease,
-    margin 0.55s ease;
+    margin-block 0.55s ease;
   transition-delay: 0s;
 }
 
@@ -12321,7 +12321,8 @@ p {
     opacity 0.7s ease,
     visibility 0s linear 0s,
     max-height 0.7s ease,
-    margin 0.7s ease;
+    margin-block 0.7s ease;
+  margin-left: var(--art-inset, 0px);
   transition-delay: calc(0.35s + 0.07s * var(--canvas-plate-i, 0));
 }
 
@@ -12331,6 +12332,9 @@ p {
 
 .canvas-page .canvas-gallery__collage.is-dispersed .canvas-gallery__image figcaption {
   margin-top: 0.55rem;
+  width: var(--art-width, 100%);
+  max-width: 100%;
+  text-align: left;
 }
 
 /* Irregular field — level plates, rem tops so slots never overlap */
@@ -12552,6 +12556,7 @@ p {
   font-size: var(--text-tertiary-size);
   font-weight: var(--text-tertiary-weight);
   line-height: 1.35;
+  text-align: left;
   overflow-wrap: break-word;
 }
 
