@@ -11,7 +11,7 @@ They are defined as CSS variables in `css/main.css` (`:root`).
 | --- | --- | --- | --- |
 | Title | `--text-title-size` | **64px** | — |
 | Subheading / secondary | `--text-secondary-size` | **32px** | **500** |
-| Tertiary / body | `--text-tertiary-size` / `--text-tertiary-weight` | **16px** | **500** |
+| Tertiary / body | `--text-tertiary-size` / `--text-tertiary-weight` / `--text-tertiary-color` | **16px** | **500** |
 
 ### Case-study aliases
 
@@ -26,7 +26,7 @@ On `.case-study-page`:
 
 - **Title (64px):** major section headings (e.g. The Problem, The Solution, Research, Design Process), intro titles, page titles
 - **Secondary (32px, weight 500):** section subtitles — e.g. Surveys & Interviews, Social Listening, Market Analysis, Key Insights, Core Design, Constraints & Tradeoffs, Hi-fi Flow Adjustments, User Feedback & Iterations, Clinic-Level Drop-off, Ride Accommodations, Key Takeaways!, What's Next
-- **Tertiary / body (16px, weight 500):** body copy, tertiary body (`.case-body--tertiary`), feature-row descriptions, process body, takeaways body, captions that use the tertiary token, canvas painting names (gallery labels and the artwork lightbox title)
+- **Tertiary / body (16px, weight 500, `#242222`):** body copy, tertiary body (`.case-body--tertiary`), feature-row descriptions, process body, takeaways body, captions that use the tertiary token, canvas painting names (gallery labels and the artwork lightbox title). Color token: `--text-tertiary-color`.
 
 ## Spacing scale (fixed)
 
