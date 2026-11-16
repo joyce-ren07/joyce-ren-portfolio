@@ -5197,6 +5197,14 @@ p {
   line-height: 1.35;
 }
 
+.cueturn-ds[data-cueturn-ds] .cueturn-ds__caption--center {
+  font-size: var(--case-tertiary-size, var(--text-tertiary-size));
+  font-weight: var(--case-tertiary-weight, 500);
+  font-style: normal;
+  line-height: var(--case-body-leading, 1.58);
+  color: var(--case-text, #A89E9D);
+}
+
 .cueturn-ds__tabs {
   display: flex;
   flex-wrap: wrap;
