@@ -5183,10 +5183,26 @@ p {
   color: rgb(110, 110, 110);
 }
 
+.cueturn-ds__stage > .cueturn-ds__caption {
+  font-size: var(--case-tertiary-size, var(--text-tertiary-size));
+  font-weight: var(--case-tertiary-weight, 500);
+  font-style: normal;
+  line-height: var(--case-body-leading, 1.58);
+  color: var(--case-text, #A89E9D);
+}
+
 .cueturn-ds__caption--center {
   text-align: center;
   font-size: 13px;
   line-height: 1.35;
+}
+
+.cueturn-ds[data-cueturn-ds] .cueturn-ds__caption--center {
+  font-size: var(--case-tertiary-size, var(--text-tertiary-size));
+  font-weight: var(--case-tertiary-weight, 500);
+  font-style: normal;
+  line-height: var(--case-body-leading, 1.58);
+  color: var(--case-text, #A89E9D);
 }
 
 .cueturn-ds__tabs {
