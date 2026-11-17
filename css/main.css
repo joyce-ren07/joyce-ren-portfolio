@@ -12589,11 +12589,11 @@ p {
   overflow-wrap: break-word;
 }
 
-.canvas-page .canvas-gallery__work::before {
+.canvas-plate-lightbox__title::before {
   content: "\201C";
 }
 
-.canvas-page .canvas-gallery__work::after {
+.canvas-plate-lightbox__title::after {
   content: "\201D";
 }
 
