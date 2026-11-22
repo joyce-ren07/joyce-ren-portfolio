@@ -1979,8 +1979,17 @@
       }
     };
 
+    let stackEntranceTimer = 0;
+
+    const completeStackEntrance = () => {
+      if (!collage) return;
+      window.clearTimeout(stackEntranceTimer);
+      collage.classList.add("is-ready", "is-revealed", "is-settled", "is-stack-idle");
+    };
+
     const disperseCollage = () => {
       if (!collage || dispersed) return;
+      completeStackEntrance();
       dispersed = true;
       collage.classList.add("is-dispersed");
       collage.classList.remove("is-stacked");
@@ -2015,6 +2024,7 @@
         lastTrigger = null;
       }
       dispersed = false;
+      completeStackEntrance();
       collage.classList.remove("is-dispersed");
       collage.classList.add("is-stacked");
       collage.setAttribute("aria-label", "Artwork stack");
@@ -2054,15 +2064,38 @@
     }
     window.addEventListener("resize", fitCollageHeight);
 
-    const markCollageReady = () => {
+    const playStackEntrance = () => {
       if (!collage) return;
-      collage.classList.add("is-ready");
-    };
-    if (collage) {
+      const entrance = document.documentElement.classList.contains("canvas-stack-enter")
+        && collage.classList.contains("is-stacked")
+        && !reducedMotion;
+      if (!entrance) {
+        completeStackEntrance();
+        return;
+      }
+      /* Paint the blurred, loose pile before transitions turn on. */
       requestAnimationFrame(() => {
-        requestAnimationFrame(markCollageReady);
+        requestAnimationFrame(() => {
+          if (!collage.classList.contains("is-stacked") || dispersed) {
+            completeStackEntrance();
+            return;
+          }
+          collage.classList.add("is-ready");
+          void collage.offsetWidth;
+          collage.classList.add("is-revealed");
+          /* Let the home-page blur read, then close the loose pile while the last of it clears. */
+          stackEntranceTimer = window.setTimeout(() => {
+            if (!collage.classList.contains("is-stacked") || dispersed) return;
+            collage.classList.add("is-settled");
+            stackEntranceTimer = window.setTimeout(() => {
+              if (!collage.classList.contains("is-stacked") || dispersed) return;
+              collage.classList.add("is-stack-idle");
+            }, 1200);
+          }, 700);
+        });
       });
-    }
+    };
+    playStackEntrance();
 
     if (collage) {
       const onStackActivate = (event) => {

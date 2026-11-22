@@ -13,6 +13,11 @@
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/favicon-192.png">
   <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
   <link rel="stylesheet" href="../css/main.css">
+  <script>
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("canvas-stack-enter");
+    }
+  </script>
 </head>
 <body class="canvas-page">
 
