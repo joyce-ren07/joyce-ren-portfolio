@@ -1244,7 +1244,7 @@
     aboutVideo.muted = true;
     aboutVideo.defaultMuted = true;
     aboutVideo.playsInline = true;
-    aboutVideo.playbackRate = 1.1;
+    aboutVideo.playbackRate = 1;
     aboutVideo.loop = !reducedMotion;
     if (reducedMotion) {
       aboutVideo.removeAttribute("loop");
