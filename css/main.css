@@ -12012,9 +12012,16 @@ p {
   padding-bottom: 0;
 }
 
+@property --stack-open {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 .canvas-page .canvas-gallery__collage {
   --canvas-plate-max: 11.5rem;
   --canvas-stack-height: 28rem;
+  --stack-open: 0;
   position: relative;
   display: block;
   width: min(100%, 74rem);
@@ -12039,6 +12046,32 @@ p {
   /* Empty collage padding must not capture hover/click — only the stack + hint */
   pointer-events: none;
   cursor: default;
+}
+
+/* Opening the canvas page: same blur rise as the home work grid, then the pile closes. */
+html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked:not(.is-revealed) {
+  opacity: 0;
+  filter: blur(22px);
+  transform: translateY(1.15rem);
+}
+
+html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked.is-revealed {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  transition:
+    height 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.8s cubic-bezier(0.2, 0.65, 0.2, 1),
+    filter 1.05s cubic-bezier(0.25, 0.45, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+
+html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked:not(.is-settled) .canvas-gallery__image {
+  --stack-open: 1;
+}
+
+html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked.is-settled .canvas-gallery__image {
+  --stack-open: 0;
 }
 
 .canvas-page .canvas-gallery__expand-hint {
@@ -12165,8 +12198,11 @@ p {
   pointer-events: none;
   transform:
     translate(-50%, -50%)
-    rotate(var(--stack-rot))
-    translate(var(--stack-x), var(--stack-y));
+    rotate(calc(var(--stack-rot) * (1 + var(--stack-open) * 2.1)))
+    translate(
+      calc(var(--stack-x) * (1 + var(--stack-open) * 2.8)),
+      calc(var(--stack-y) * (1 + var(--stack-open) * 2.8))
+    );
   transition:
     left 1.05s cubic-bezier(0.22, 1, 0.36, 1),
     top 1.05s cubic-bezier(0.22, 1, 0.36, 1),
@@ -12175,6 +12211,17 @@ p {
     transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.55s ease;
   transition-delay: 0s;
+}
+
+/* Let --stack-open drive the gather. A transform transition would swallow it. */
+html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked:not(.is-stack-idle) .canvas-gallery__image {
+  transition:
+    left 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    top 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s ease,
+    --stack-open 1.05s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .canvas-page .canvas-gallery__collage.is-stacked .canvas-gallery__image--stack-front {
@@ -12398,6 +12445,14 @@ p {
 
 @media (prefers-reduced-motion: reduce) {
   .canvas-page .canvas-gallery__collage {
+    transition: none;
+  }
+
+  html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked:not(.is-revealed),
+  html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked.is-revealed {
+    opacity: 1;
+    filter: none;
+    transform: none;
     transition: none;
   }
 
