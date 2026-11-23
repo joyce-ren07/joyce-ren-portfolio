@@ -1236,6 +1236,33 @@
     window.addEventListener("pageshow", resumeVisibleCovers);
   }
 
+  /* About page — same blur-fade as the home work grid, once each piece is on screen. */
+  const aboutRoot = document.querySelector(".about-page");
+  if (aboutRoot) {
+    const aboutItems = Array.from(
+      aboutRoot.querySelectorAll(".about-greeting, .about-bio, .about-media, .about-carousel")
+    );
+    const aboutReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (aboutItems.length && !aboutReducedMotion && document.documentElement.classList.contains("about-reveal")) {
+      const reveal = (item) => item.classList.add("is-in");
+      if ("IntersectionObserver" in window) {
+        const aboutObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            aboutObserver.unobserve(entry.target);
+            /* Paint the blurred state before the transition starts. */
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => reveal(entry.target));
+            });
+          });
+        }, { threshold: 0.08, rootMargin: "0px 0px -72px 0px" });
+        aboutItems.forEach((item) => aboutObserver.observe(item));
+      } else {
+        aboutItems.forEach(reveal);
+      }
+    }
+  }
+
   /* About intro video — loop continuously (still freeze for reduced motion) */
   const aboutVideo = document.querySelector(".about-media__video");
   if (aboutVideo) {
