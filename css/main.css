@@ -13000,14 +13000,12 @@ html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked:not(.is
   letter-spacing: -0.04em;
   line-height: 1;
   text-align: left;
-  animation: about-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .about-media {
   /* 4/5 frame so the video height matches the carousel photos */
   width: calc(var(--about-carousel-height) * 4 / 5);
   margin: 0;
-  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .about-media__frame {
@@ -13045,7 +13043,29 @@ html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked:not(.is
   letter-spacing: -0.01em;
   line-height: 1.45;
   text-align: left;
-  animation: about-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Same blur-fade as the home work grid, the first time each piece is on screen. */
+html.about-reveal .about-greeting,
+html.about-reveal .about-bio,
+html.about-reveal .about-media,
+html.about-reveal .about-carousel {
+  opacity: 0;
+  filter: blur(22px);
+  transform: translateY(1.15rem);
+}
+
+html.about-reveal .about-greeting.is-in,
+html.about-reveal .about-bio.is-in,
+html.about-reveal .about-media.is-in,
+html.about-reveal .about-carousel.is-in {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.65, 0.2, 1),
+    filter 1.05s cubic-bezier(0.25, 0.45, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.65, 0.2, 1);
 }
 
 .about-carousel {
@@ -13224,10 +13244,18 @@ html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked:not(.is
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-greeting,
-  .about-media,
-  .about-bio {
-    animation: none;
+  html.about-reveal .about-greeting,
+  html.about-reveal .about-bio,
+  html.about-reveal .about-media,
+  html.about-reveal .about-carousel,
+  html.about-reveal .about-greeting.is-in,
+  html.about-reveal .about-bio.is-in,
+  html.about-reveal .about-media.is-in,
+  html.about-reveal .about-carousel.is-in {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
   }
 
   .about-carousel__frame {
