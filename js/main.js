@@ -1236,7 +1236,7 @@
     window.addEventListener("pageshow", resumeVisibleCovers);
   }
 
-  /* About page — same blur-fade as the home work grid, once each piece is on screen. */
+  /* About page — blur-fade like the home work grid. The photo row sharpens left to right. */
   const aboutRoot = document.querySelector(".about-page");
   if (aboutRoot) {
     const aboutItems = Array.from(
@@ -1244,7 +1244,14 @@
     );
     const aboutReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (aboutItems.length && !aboutReducedMotion && document.documentElement.classList.contains("about-reveal")) {
-      const reveal = (item) => item.classList.add("is-in");
+      const reveal = (item) => {
+        if (item.classList.contains("about-carousel")) {
+          item.querySelectorAll(".about-carousel__card").forEach((card, index) => {
+            card.style.setProperty("--about-card-index", String(index));
+          });
+        }
+        item.classList.add("is-in");
+      };
       if ("IntersectionObserver" in window) {
         const aboutObserver = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {

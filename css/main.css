@@ -13045,11 +13045,10 @@ html.canvas-stack-enter .canvas-page .canvas-gallery__collage.is-stacked:not(.is
   text-align: left;
 }
 
-/* Same blur-fade as the home work grid, the first time each piece is on screen. */
+/* Same blur-fade as the home work grid, the first time the greeting, bio, and portrait are on screen. */
 html.about-reveal .about-greeting,
 html.about-reveal .about-bio,
-html.about-reveal .about-media,
-html.about-reveal .about-carousel {
+html.about-reveal .about-media {
   opacity: 0;
   filter: blur(22px);
   transform: translateY(1.15rem);
@@ -13057,8 +13056,7 @@ html.about-reveal .about-carousel {
 
 html.about-reveal .about-greeting.is-in,
 html.about-reveal .about-bio.is-in,
-html.about-reveal .about-media.is-in,
-html.about-reveal .about-carousel.is-in {
+html.about-reveal .about-media.is-in {
   opacity: 1;
   filter: none;
   transform: none;
@@ -13066,6 +13064,21 @@ html.about-reveal .about-carousel.is-in {
     opacity 0.8s cubic-bezier(0.2, 0.65, 0.2, 1),
     filter 1.05s cubic-bezier(0.25, 0.45, 0.2, 1),
     transform 0.9s cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+
+/* Photo row sharpens from left to right. A short step keeps the sweep gradual and overlapping. */
+html.about-reveal .about-carousel__card {
+  opacity: 0;
+  filter: blur(22px);
+}
+
+html.about-reveal .about-carousel.is-in .about-carousel__card {
+  opacity: 1;
+  filter: none;
+  transition:
+    opacity 1.05s cubic-bezier(0.2, 0.65, 0.2, 1),
+    filter 1.35s cubic-bezier(0.25, 0.45, 0.2, 1);
+  transition-delay: calc(var(--about-card-index, 0) * 0.085s);
 }
 
 .about-carousel {
@@ -13247,11 +13260,11 @@ html.about-reveal .about-carousel.is-in {
   html.about-reveal .about-greeting,
   html.about-reveal .about-bio,
   html.about-reveal .about-media,
-  html.about-reveal .about-carousel,
+  html.about-reveal .about-carousel__card,
   html.about-reveal .about-greeting.is-in,
   html.about-reveal .about-bio.is-in,
   html.about-reveal .about-media.is-in,
-  html.about-reveal .about-carousel.is-in {
+  html.about-reveal .about-carousel.is-in .about-carousel__card {
     opacity: 1;
     filter: none;
     transform: none;
