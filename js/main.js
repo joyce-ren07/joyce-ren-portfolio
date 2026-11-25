@@ -1493,13 +1493,11 @@
   if (lampHero) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.querySelector(".portfolio-page") || document.documentElement;
-    const topbar = document.querySelector(".case-topbar");
     const state = {
       target: 0,
       current: 0,
-      /* "scroll" is the dark landing. "hold" keeps the lamp and nav put. */
+      /* "scroll" is the dark landing. "hold" keeps the lamp put. */
       mode: "scroll",
-      navReady: false,
     };
     /* Scroll position when a pull started the trip home, so a downward flick can cancel it. */
     let resetAnchorY = null;
@@ -1516,19 +1514,6 @@
       root.style.setProperty("--lamp-power", power.toFixed(3));
       const lit = power > 0.5;
       root.classList.toggle("lamp-is-lit", lit);
-      const navIn = state.target > 0.5;
-      if (topbar && navIn && !state.navReady) {
-        /* Already triggered on load — show the bar without replaying the fade. */
-        topbar.style.transition = "none";
-        root.classList.add("lamp-nav-in");
-        topbar.setAttribute("aria-hidden", "false");
-        void topbar.offsetWidth;
-        topbar.style.transition = "";
-      } else {
-        root.classList.toggle("lamp-nav-in", navIn);
-        if (topbar) topbar.setAttribute("aria-hidden", navIn ? "false" : "true");
-      }
-      state.navReady = true;
       if (lampPull) {
         lampPull.setAttribute("aria-pressed", lit ? "true" : "false");
         lampPull.setAttribute("aria-label", lit ? "Pull to return to the landing" : "Pull to light the lamp");
