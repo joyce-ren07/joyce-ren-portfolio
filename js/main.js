@@ -1937,6 +1937,7 @@
   if (canvasPlateLightbox && canvasPlates.length) {
     const closeBtn = canvasPlateLightbox.querySelector("[data-canvas-plate-close]");
     const imageEl = canvasPlateLightbox.querySelector("[data-canvas-plate-image]");
+    const flightEl = canvasPlateLightbox.querySelector("[data-canvas-plate-flight]");
     const titleEl = canvasPlateLightbox.querySelector("[data-canvas-plate-title]");
     const metaEl = canvasPlateLightbox.querySelector("[data-canvas-plate-meta]");
     const collage = document.querySelector("[data-canvas-collage]") ||
@@ -2050,12 +2051,7 @@
     const collapseCollage = () => {
       if (!collage || !dispersed) return;
       if (canvasPlateLightbox.open || canvasPlateLightbox.hasAttribute("open")) {
-        if (typeof canvasPlateLightbox.close === "function") {
-          canvasPlateLightbox.close();
-        } else {
-          canvasPlateLightbox.removeAttribute("open");
-        }
-        lastTrigger = null;
+        forceClosePlate();
       }
       dispersed = false;
       completeStackEntrance();
@@ -2162,12 +2158,136 @@
       });
     }
 
+    const PLATE_OPEN_MS = 380;
+    const PLATE_CLOSE_MS = 260;
+    const FLIGHT_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+    let plateMotion = 0;
+    let plateMotionTimer = 0;
+
+    const axisRatio = (token, fallback) => {
+      if (!token) return fallback;
+      if (token === "left" || token === "top") return 0;
+      if (token === "center") return 0.5;
+      if (token === "right" || token === "bottom") return 1;
+      if (token.endsWith("%")) {
+        const value = parseFloat(token);
+        return Number.isFinite(value) ? value / 100 : fallback;
+      }
+      return fallback;
+    };
+
+    const paintedRect = (img) => {
+      const box = img.getBoundingClientRect();
+      const rect = {
+        left: box.left,
+        top: box.top,
+        width: box.width,
+        height: box.height,
+      };
+      const nw = img.naturalWidth;
+      const nh = img.naturalHeight;
+      if (nw && nh && box.width > 1 && box.height > 1) {
+        const style = getComputedStyle(img);
+        const fit = style.objectFit;
+        const pos = (style.objectPosition || "50% 50%").trim().split(/\s+/);
+        let scale = null;
+        if (fit === "cover") scale = Math.max(box.width / nw, box.height / nh);
+        else if (fit === "contain" || fit === "scale-down") scale = Math.min(box.width / nw, box.height / nh);
+        if (scale) {
+          const width = nw * scale;
+          const height = nh * scale;
+          const xRatio = axisRatio(pos[0], 0.5);
+          const yRatio = axisRatio(pos[1] || "center", 0.5);
+          rect.left = box.left + (box.width - width) * xRatio;
+          rect.top = box.top + (box.height - height) * yRatio;
+          rect.width = width;
+          rect.height = height;
+        }
+      }
+      rect.cx = rect.left + rect.width / 2;
+      rect.cy = rect.top + rect.height / 2;
+      return rect;
+    };
+
+    const rectReady = (rect) => Boolean(rect && rect.width > 2 && rect.height > 2);
+
+    const resetFlight = () => {
+      if (!flightEl) return;
+      flightEl.hidden = true;
+      flightEl.classList.remove("is-melting");
+      flightEl.style.cssText = "";
+    };
+
+    const releaseLift = () => {
+      lastTrigger?.classList.remove("is-lifted");
+    };
+
+    const showPlateModal = () => {
+      if (canvasPlateLightbox.open) return;
+      if (typeof canvasPlateLightbox.showModal === "function") {
+        canvasPlateLightbox.showModal();
+      } else {
+        canvasPlateLightbox.setAttribute("open", "");
+      }
+    };
+
+    const hidePlateModal = () => {
+      releaseLift();
+      resetFlight();
+      canvasPlateLightbox.classList.remove("is-flying", "is-presented", "is-closing");
+      if (canvasPlateLightbox.open && typeof canvasPlateLightbox.close === "function") {
+        canvasPlateLightbox.close();
+      } else {
+        canvasPlateLightbox.removeAttribute("open");
+      }
+    };
+
+    const forceClosePlate = () => {
+      plateMotion += 1;
+      window.clearTimeout(plateMotionTimer);
+      hidePlateModal();
+      lastTrigger = null;
+    };
+
+    const nudgeFlight = (expectedLeft, expectedTop) => {
+      if (!flightEl) return;
+      const box = flightEl.getBoundingClientRect();
+      const dx = expectedLeft - box.left;
+      const dy = expectedTop - box.top;
+      if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) return;
+      flightEl.style.left = `${parseFloat(flightEl.style.left) + dx}px`;
+      flightEl.style.top = `${parseFloat(flightEl.style.top) + dy}px`;
+    };
+
+    const parkFlight = (from, to) => {
+      if (!flightEl || !imageEl) return;
+      const sx = from.width / to.width;
+      const sy = from.height / to.height;
+      flightEl.src = imageEl.currentSrc || imageEl.src || "";
+      flightEl.style.left = `${to.left}px`;
+      flightEl.style.top = `${to.top}px`;
+      flightEl.style.width = `${to.width}px`;
+      flightEl.style.height = `${to.height}px`;
+      flightEl.style.opacity = "1";
+      flightEl.style.filter = "none";
+      flightEl.style.transition = "none";
+      flightEl.style.transformOrigin = "center center";
+      flightEl.style.transform = `translate(${from.cx - to.cx}px, ${from.cy - to.cy}px) scale(${sx}, ${sy})`;
+      flightEl.classList.remove("is-melting");
+      flightEl.hidden = false;
+      void flightEl.offsetWidth;
+      nudgeFlight(from.left, from.top);
+    };
+
     const openPlate = (plate) => {
       if (!plate) return;
       if (!dispersed) {
         disperseCollage();
         return;
       }
+      const motion = ++plateMotion;
+      window.clearTimeout(plateMotionTimer);
+      releaseLift();
       lastTrigger = plate;
       const img = plate.querySelector("img");
       if (imageEl && img) {
@@ -2197,24 +2317,126 @@
         "is-unmatched",
         plate.classList.contains("canvas-gallery__image--unmatched")
       );
-      if (typeof canvasPlateLightbox.showModal === "function") {
-        canvasPlateLightbox.showModal();
-      } else {
-        canvasPlateLightbox.setAttribute("open", "");
+      canvasPlateLightbox.classList.remove("is-presented", "is-closing");
+
+      if (reducedMotion || !flightEl || !imageEl || !img) {
+        canvasPlateLightbox.classList.remove("is-flying");
+        canvasPlateLightbox.classList.add("is-presented");
+        showPlateModal();
+        closeBtn?.focus();
+        return;
       }
-      closeBtn?.focus();
+
+      plate.classList.add("is-lifted");
+      canvasPlateLightbox.classList.add("is-flying");
+      showPlateModal();
+
+      const launch = (attempt) => {
+        if (motion !== plateMotion) return;
+        const from = paintedRect(img);
+        const to = paintedRect(imageEl);
+        if ((!rectReady(from) || !rectReady(to)) && attempt < 4) {
+          window.requestAnimationFrame(() => launch(attempt + 1));
+          return;
+        }
+        if (!rectReady(from) || !rectReady(to)) {
+          canvasPlateLightbox.classList.remove("is-flying");
+          canvasPlateLightbox.classList.add("is-presented");
+          releaseLift();
+          closeBtn?.focus();
+          return;
+        }
+        parkFlight(from, to);
+        window.requestAnimationFrame(() => {
+          if (motion !== plateMotion) return;
+          flightEl.style.transition = `transform ${PLATE_OPEN_MS}ms ${FLIGHT_EASE}`;
+          flightEl.style.transform = "translate(0px, 0px) scale(1, 1)";
+          flightEl.classList.add("is-melting");
+          canvasPlateLightbox.classList.add("is-presented");
+          closeBtn?.focus();
+          plateMotionTimer = window.setTimeout(() => {
+            if (motion !== plateMotion) return;
+            canvasPlateLightbox.classList.remove("is-flying");
+            window.requestAnimationFrame(() => {
+              if (motion !== plateMotion) return;
+              resetFlight();
+            });
+          }, PLATE_OPEN_MS + 40);
+        });
+      };
+      launch(0);
     };
 
     const closePlate = () => {
-      if (typeof canvasPlateLightbox.close === "function") {
-        canvasPlateLightbox.close();
-      } else {
-        canvasPlateLightbox.removeAttribute("open");
-      }
-      if (lastTrigger) {
-        lastTrigger.focus();
+      if (!canvasPlateLightbox.open && !canvasPlateLightbox.hasAttribute("open")) return;
+      if (canvasPlateLightbox.classList.contains("is-closing")) return;
+
+      const motion = ++plateMotion;
+      window.clearTimeout(plateMotionTimer);
+      const trigger = lastTrigger;
+
+      const finish = () => {
+        if (motion !== plateMotion) return;
+        hidePlateModal();
         lastTrigger = null;
+        trigger?.focus();
+      };
+
+      if (reducedMotion || !flightEl || !imageEl) {
+        finish();
+        return;
       }
+
+      const settled = canvasPlateLightbox.classList.contains("is-presented")
+        && !canvasPlateLightbox.classList.contains("is-flying");
+      const sourceImg = trigger?.querySelector("img");
+      const from = settled ? paintedRect(imageEl) : null;
+      const home = sourceImg ? paintedRect(sourceImg) : null;
+
+      canvasPlateLightbox.classList.remove("is-presented");
+      canvasPlateLightbox.classList.add("is-closing");
+
+      if (settled && rectReady(from) && rectReady(home)) {
+        canvasPlateLightbox.classList.add("is-flying");
+        flightEl.src = imageEl.currentSrc || imageEl.src || "";
+        flightEl.classList.remove("is-melting");
+        flightEl.style.transition = "none";
+        flightEl.style.filter = "none";
+        flightEl.style.opacity = "1";
+        flightEl.style.transform = "none";
+        flightEl.style.transformOrigin = "center center";
+        flightEl.style.left = `${from.left}px`;
+        flightEl.style.top = `${from.top}px`;
+        flightEl.style.width = `${from.width}px`;
+        flightEl.style.height = `${from.height}px`;
+        flightEl.hidden = false;
+        void flightEl.offsetWidth;
+        nudgeFlight(from.left, from.top);
+        window.requestAnimationFrame(() => {
+          if (motion !== plateMotion) return;
+          const sx = home.width / from.width;
+          const sy = home.height / from.height;
+          flightEl.style.transition = `transform ${PLATE_CLOSE_MS}ms ${FLIGHT_EASE}, filter ${PLATE_CLOSE_MS}ms ease, opacity ${PLATE_CLOSE_MS}ms ease`;
+          flightEl.style.transform = `translate(${home.cx - from.cx}px, ${home.cy - from.cy}px) scale(${sx}, ${sy})`;
+          flightEl.style.filter = "blur(7px)";
+          flightEl.style.opacity = "0";
+        });
+      } else if (!flightEl.hidden) {
+        const frozen = getComputedStyle(flightEl).transform;
+        flightEl.style.transition = "none";
+        if (frozen && frozen !== "none") flightEl.style.transform = frozen;
+        void flightEl.offsetWidth;
+        flightEl.style.transition = `filter ${PLATE_CLOSE_MS}ms ease, opacity ${PLATE_CLOSE_MS}ms ease`;
+        flightEl.style.filter = "blur(8px)";
+        flightEl.style.opacity = "0";
+        releaseLift();
+      }
+
+      plateMotionTimer = window.setTimeout(() => {
+        if (motion !== plateMotion) return;
+        releaseLift();
+        plateMotionTimer = window.setTimeout(finish, Math.round(PLATE_CLOSE_MS * 0.55) + 30);
+      }, Math.round(PLATE_CLOSE_MS * 0.45));
     };
 
     canvasPlates.forEach((plate) => {
