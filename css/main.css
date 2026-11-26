@@ -474,7 +474,15 @@ p {
   pointer-events: none;
 }
 
-.lamp-hero__intro .lamp-hero__name,
+/* Name is already on screen, unlit. The tagline waits for the lamp. */
+.lamp-hero__intro .lamp-hero__name {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  color: var(--text-tertiary-color);
+  transition: color 0.32s ease;
+}
+
 .lamp-hero__intro .lamp-hero__tagline {
   opacity: 0;
   filter: blur(18px);
@@ -485,7 +493,11 @@ p {
     transform 0.32s ease;
 }
 
-.portfolio-page.lamp-is-lit .lamp-hero__intro .lamp-hero__name,
+.portfolio-page.lamp-is-lit .lamp-hero__intro .lamp-hero__name {
+  color: #f4c8ae;
+  transition: color 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .portfolio-page.lamp-is-lit .lamp-hero__intro .lamp-hero__tagline {
   opacity: 1;
   filter: none;
@@ -494,9 +506,6 @@ p {
     opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
     filter 0.95s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.88s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.portfolio-page.lamp-is-lit .lamp-hero__intro .lamp-hero__tagline {
   transition-delay: 0.11s;
 }
 
@@ -508,7 +517,6 @@ p {
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  color: #f4c8ae;
   display: inline-block;
 }
 
@@ -594,12 +602,22 @@ p {
   }
 
   .lamp-hero__intro {
-    opacity: var(--lamp-power);
+    opacity: 1;
   }
 
   .lamp-hero__intro .lamp-hero__name,
-  .lamp-hero__intro .lamp-hero__tagline,
-  .portfolio-page.lamp-is-lit .lamp-hero__intro .lamp-hero__name,
+  .portfolio-page.lamp-is-lit .lamp-hero__intro .lamp-hero__name {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .lamp-hero__intro .lamp-hero__tagline {
+    opacity: 0;
+    filter: none;
+    transform: none;
+  }
+
   .portfolio-page.lamp-is-lit .lamp-hero__intro .lamp-hero__tagline {
     opacity: 1;
     filter: none;
